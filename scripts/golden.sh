@@ -7,6 +7,8 @@ ROOT=$(cd "$(dirname "$0")/../.." && pwd)
 FIX="$ROOT/native/HexplateCore/Tests/HexplateCoreTests/Fixtures"
 export IN=${1:-$FIX/history-state.json}
 export OUT=${2:-$FIX/history-golden.json}
+export STAMP_IN="$FIX/stamp-cases.json" STAMP_OUT="$FIX/stamp-golden.json"
+export SCHEDULE_IN="$FIX/schedule-cases.json" SCHEDULE_OUT="$FIX/schedule-golden.json"
 export CATALOGUE_OUT="$ROOT/native/HexplateCore/Sources/HexplateCore/Resources/exercises.json"
 mkdir -p "$(dirname "$CATALOGUE_OUT")"
 cd "$ROOT/frontend"
