@@ -23,18 +23,14 @@ struct HistoryView: View {
                     List(model.months) { month in
                         Section(month.title) {
                             ForEach(month.items) { item in
-                                NavigationLink(value: item.id) { WorkoutRow(item: item) }
+                                NavigationLink(value: WorkoutLink(id: item.id)) { WorkoutRow(item: item) }
                             }
                         }
                     }
                 }
             }
             .navigationTitle("History")
-            .navigationDestination(for: String.self) { id in
-                if let workout = model.workout(id: id), let history = model.history {
-                    WorkoutDetailView(workout: workout, history: history)
-                }
-            }
+            .workoutDestination()
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu("More", systemImage: "ellipsis") {
@@ -47,7 +43,7 @@ struct HistoryView: View {
     }
 }
 
-private struct WorkoutRow: View {
+struct WorkoutRow: View {
     let item: AppModel.Item
     @ScaledMetric(relativeTo: .title3) private var tile = 46.0
     @Environment(\.dynamicTypeSize) private var typeSize
@@ -112,4 +108,23 @@ struct RecordBadge: View {
     }
 
     static func spoken(_ n: Int) -> String { n == 1 ? "1 personal record" : "\(n) personal records" }
+}
+
+/// A workout's id pushed on a navigation stack opens its detail.
+struct WorkoutLink: Hashable { let id: String }
+
+extension View {
+    func workoutDestination() -> some View { modifier(WorkoutDestination()) }
+}
+
+private struct WorkoutDestination: ViewModifier {
+    @Environment(AppModel.self) private var model
+
+    func body(content: Content) -> some View {
+        content.navigationDestination(for: WorkoutLink.self) { link in
+            if let workout = model.workout(id: link.id), let history = model.history {
+                WorkoutDetailView(workout: workout, history: history)
+            }
+        }
+    }
 }

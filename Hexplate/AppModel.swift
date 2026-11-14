@@ -30,9 +30,75 @@ final class AppModel {
         let metrics: [String]
     }
 
+    /// The device's day, refreshed when the app comes to the front.
+    var today = Day.today()
+
     init() {
         load(store.load())
     }
+
+    // MARK: Reading
+
+    var root: [String: JSONValue] { document?.root ?? [:] }
+    var catalog: ExerciseCatalog { history?.catalog ?? .builtIn }
+    var settings: ProfileSettings { history?.settings ?? ProfileSettings([:]) }
+
+    /// A routine as the plan screens show it; `slots` are its planned exercises as stored.
+    struct Routine: Identifiable {
+        let id: String
+        let name: String
+        let symbol: String
+        let slots: [[String: JSONValue]]
+    }
+
+    var routines: [Routine] {
+        (root["routines"]?.arrayValue ?? []).compactMap { v in
+            guard let r = v.object, let id = r["id"]?.stringValue else { return nil }
+            return Routine(
+                id: id,
+                name: r["name"]?.stringValue ?? "",
+                symbol: Glyph.symbol(r["emoji"]?.stringValue),
+                slots: (r["ex"]?.arrayValue ?? []).compactMap(\.object)
+            )
+        }
+    }
+
+    func routine(_ id: String) -> Routine? { routines.first { $0.id == id } }
+
+    // MARK: Writing
+
+    /// A profile that has nothing in it yet.
+    // ponytail: only the keys Hexplate reads; the Capacitor app's freshState() has every default.
+    private static let empty = try! StateDocument(data: Data(
+        #"{"unit":"kg","workouts":[],"routines":[],"week":{},"dayPlan":{},"bodyweight":[],"measurements":[],"customEx":[]}"#.utf8))
+
+    /// Every change to the profile goes through here: stamped for sync, saved, then shown.
+    // ponytail: rebuilds the whole history after each change; narrow it when a profile is large
+    // enough for an edit to feel slow.
+    func change(_ mutate: (inout [String: JSONValue]) -> Void) {
+        var doc = document ?? Self.empty
+        doc.change(mutate)
+        guard doc != document else { return }
+        do {
+            try store.save(doc)
+            load(doc)
+        } catch {
+            errorMessage = "The change could not be saved. \(error.localizedDescription)"
+        }
+    }
+
+    /// Changes one routine in place.
+    func changeRoutine(_ id: String, _ mutate: (inout [String: JSONValue]) -> Void) {
+        change { s in
+            guard var list = s["routines"]?.arrayValue,
+                  let i = list.firstIndex(where: { $0.object?["id"] == .string(id) }), var r = list[i].object else { return }
+            mutate(&r)
+            list[i] = .object(r)
+            s["routines"] = .array(list)
+        }
+    }
+
+    var now: Double { (Date().timeIntervalSince1970 * 1000).rounded() }
 
     private func load(_ new: StateDocument?) {
         document = new

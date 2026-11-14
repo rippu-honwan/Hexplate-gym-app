@@ -73,18 +73,35 @@ extension String {
 /// The catalogue plus the profile's custom exercises, by id (lib/exercises.js EXIDX).
 public struct ExerciseCatalog: Sendable {
     private var byId: [String: Exercise]
+    /// Every exercise once: the profile's own first, then the catalogue in its order.
+    public private(set) var all: [Exercise]
 
     public init(exercises: [Exercise], aliases: [String: String] = [:]) {
+        all = exercises
         byId = Dictionary(exercises.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         for (alias, id) in aliases { if let ex = byId[id] { byId[alias] = ex } }
     }
 
     public subscript(id: String) -> Exercise? { byId[id] }
 
+    /// Exercises whose name holds every word of `query`, in catalogue order.
+    public func search(_ query: String, limit: Int = 100) -> [Exercise] {
+        let words = query.lowercased().split(separator: " ")
+        guard !words.isEmpty else { return Array(all.prefix(limit)) }
+        var out: [Exercise] = []
+        for ex in all where words.allSatisfy({ ex.name.localizedCaseInsensitiveContains($0) }) {
+            out.append(ex)
+            if out.count == limit { break }
+        }
+        return out
+    }
+
     /// A custom exercise replaces a catalogue one of the same id, as registerCustom does.
     public func adding(custom: [Exercise]) -> ExerciseCatalog {
         var copy = self
         for ex in custom { copy.byId[ex.id] = ex }
+        let ids = Set(custom.map(\.id))
+        copy.all = custom + all.filter { !ids.contains($0.id) }
         return copy
     }
 

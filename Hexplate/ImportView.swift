@@ -13,7 +13,6 @@ struct ImportView: View {
     @State private var pickingFile = false
 
     var body: some View {
-        @Bindable var model = model
         NavigationStack {
             List {
                 Section("Your data") {
@@ -59,11 +58,6 @@ struct ImportView: View {
             case .success(let url): model.importFile(url)
             case .failure(let error): model.errorMessage = error.localizedDescription
             }
-        }
-        .alert("Import failed", isPresented: .init(get: { model.errorMessage != nil }, set: { if !$0 { model.errorMessage = nil } })) {
-            Button("OK", role: .cancel) {}
-        } message: {
-            Text(model.errorMessage ?? "")
         }
     }
 
