@@ -3,15 +3,20 @@
 name: Hexplate
 options:
   deploymentTarget:
-    iOS: "18.0"
+    iOS: "26.0"
 configFiles:
   Debug: Config.xcconfig
   Release: Config.xcconfig
+packages:
+  HexplateCore:
+    path: HexplateCore
 targets:
   Hexplate:
     type: application
     platform: iOS
     sources: [Hexplate]
+    dependencies:
+      - package: HexplateCore
     settings:
       base:
         # Same id as the Capacitor app on purpose: Hexplate installs over it.
