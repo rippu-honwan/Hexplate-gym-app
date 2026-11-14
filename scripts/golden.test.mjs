@@ -22,6 +22,8 @@ import * as R from '../../frontend/src/lib/rotation.js'
 import { workoutsLeft } from '../../frontend/src/lib/week-left.js'
 import { effectiveRoutineIds, nextTrainingDay, pairAdjacent, unpairSuperset, cleanupSg, pickedExerciseConfig, exLine } from '../../frontend/src/lib/history.js'
 import { deleteRoutine, copyRoutine } from '../../frontend/src/lib/routines.js'
+import { muscleWeightsOf } from '../../frontend/src/lib/muscles.js'
+import { eqAvailable, profileEquipment } from '../../frontend/src/lib/equipment.js'
 import { stampChange } from '../../frontend/src/lib/sync-merge.js'
 
 // The settings a screen's numbers depend on; each variant is the same history under other settings.
@@ -64,12 +66,38 @@ it('writes the golden file', () => {
   writeFileSync(process.env.OUT, JSON.stringify(out, null, 1) + '\n')
 })
 
-// The exercise index Hexplate bundles: what its logic and labels read of each catalogue exercise.
-// Text only; no media is read or copied.
-it('writes the exercise index', () => {
+// What Hexplate bundles of the catalogue: per exercise what its logic and screens read, the
+// muscle and equipment vocabulary, the body map's outlines and the English how-to text.
+// Text and shapes only; no exercise media is read or copied.
+it('writes the exercise index', async () => {
   if (!process.env.CATALOGUE_OUT) return
-  const exercises = CATALOGUE.map(e => ({ id: e.id, n: e.n, bp: e.bp, eq: e.eq, tg: e.tg, mg: e.mg, sm: e.sm, ...(e.hd ? { hd: true } : {}) }))
-  writeFileSync(process.env.CATALOGUE_OUT, JSON.stringify({ exercises, aliases: EXALIAS }) + '\n')
+  const M = await import('../../frontend/src/lib/muscles.js')
+  const E = await import('../../frontend/src/lib/equipment.js')
+  const nonEmpty = o => (Object.keys(o).length ? o : undefined)
+  const exercises = CATALOGUE.map(e => ({
+    id: e.id, n: e.n, bp: e.bp, eq: e.eq, tg: e.tg, mg: e.mg, sm: e.sm,
+    ...(e.hd ? { hd: true } : {}),
+    ...(e.nd ? { nd: e.nd } : {}),
+    mw: nonEmpty(M.muscleWeightsOf(e)),
+    acc: E.accessoriesOf(e).length ? E.accessoriesOf(e) : undefined,
+  }))
+  // Every spelling the dataset uses for a muscle, and the muscle it means (null: not drawable).
+  const spellings = new Set(M.MUSCLES)
+  for (const e of CATALOGUE) [e.tg, e.mg, ...[].concat(e.sm || [])].forEach(x => x && spellings.add(String(x).toLowerCase().trim()))
+  const alias = {}
+  for (const x of spellings) alias[x] = Object.keys(M.muscleWeightsOf({ id: 'probe', custom: true, n: 'probe', tg: x }))[0] ?? null
+  const byBodyPart = {}
+  for (const bp of new Set(CATALOGUE.map(e => e.bp))) byBodyPart[bp] = M.muscleWeightsOf({ id: 'probe', custom: true, n: 'probe', bp })
+  const meta = { equipment: E.ALL_EQUIPMENT, accessories: E.ACCESSORIES, muscles: M.MUSCLES, muscleNames: M.MUSCLE_NAME, inert: M.INERT, alias, byBodyPart }
+  writeFileSync(process.env.CATALOGUE_OUT, JSON.stringify({ exercises, aliases: EXALIAS, meta }) + '\n')
+
+  const dir = process.env.CATALOGUE_OUT.replace(/[^/]+$/, '')
+  writeFileSync(dir + 'body-paths.json', JSON.stringify((await import('../../frontend/src/lib/body-paths.js')).default) + '\n')
+  const steps = (await import('../../frontend/src/instr/en.js')).default
+  const about = (await import('../../frontend/src/exercise-desc/en.js')).default
+  const text = {}
+  for (const e of CATALOGUE) if (steps[e.id] || about[e.id]) text[e.id] = { ...(about[e.id] ? { d: about[e.id] } : {}), ...(steps[e.id] ? { i: steps[e.id] } : {}) }
+  writeFileSync(dir + 'exercise-text.json', JSON.stringify(text) + '\n')
 })
 
 // How the store stamps a change for sync (lib/sync-merge.js stampChange, store/useStore.js update):
@@ -136,6 +164,8 @@ it('writes the routine golden file', () => {
     else if (c.op === 'cleanup') { const ex = structuredClone(c.items); cleanupSg(ex); result = ex }
     else if (c.op === 'picked') result = pickedExerciseConfig(c.id)
     else if (c.op === 'exLine') result = exLine(c.cfg, c.unit, c.unit === 'lb' ? 'mph' : 'kmh')
+    else if (c.op === 'muscles') result = muscleWeightsOf(c.ex)
+    else if (c.op === 'available') result = eqAvailable(profileEquipment(c.profile), c.ex)
     return { name: c.name, result }
   })
   writeFileSync(process.env.ROUTINE_OUT, JSON.stringify(out, null, 1) + '\n')

@@ -15,7 +15,7 @@ final class RoutineGoldenTests: XCTestCase {
         let cases = try JSONDecoder().decode([JSONValue].self, from: try fixture("routine-cases")).compactMap(\.object)
         let golden = try JSONDecoder().decode([Golden].self, from: try fixture("routine-golden"))
         XCTAssertEqual(cases.map { $0["name"] }, golden.map { .string($0.name) })
-        XCTAssertGreaterThan(cases.count, 60)
+        XCTAssertGreaterThan(cases.count, 120)
 
         let custom = try JSONDecoder().decode(Exercise.self, from: Data(#"{"id":"cx-custom","n":"one arm custom thing","custom":true,"eq":"body weight","bp":"waist"}"#.utf8))
         let catalog = ExerciseCatalog.builtIn.adding(custom: [custom])
@@ -47,12 +47,39 @@ final class RoutineGoldenTests: XCTestCase {
             case "exLine":
                 let settings = ProfileSettings(["unit": try XCTUnwrap(c["unit"])])
                 result = .string(RoutineOps.line(try XCTUnwrap(c["cfg"]?.object), catalog: catalog, settings: settings))
+            case "muscles":
+                let ex = try JSONDecoder().decode(Exercise.self, from: JSONEncoder().encode(try XCTUnwrap(c["ex"])))
+                result = .object(catalog.muscleWeights(of: ex).mapValues(JSONValue.number))
+            case "available":
+                let ex = try JSONDecoder().decode(Exercise.self, from: JSONEncoder().encode(JSONValue.object((c["ex"]?.object ?? [:]).merging(["id": .string("x")]) { a, _ in a })))
+                result = .bool(catalog.isAvailable(ex, with: ExerciseCatalog.equipment(of: c["profile"]?.object)))
             default:
                 XCTFail("unknown op in \(g.name)")
                 continue
             }
             if result != g.result { XCTFail("\(g.name)\n  swift \(text(result))\n  js    \(text(g.result))") }
         }
+    }
+
+    /// The index carries what the JavaScript worked out for every catalogue exercise; the Swift
+    /// rules for custom exercises must agree with it across the whole catalogue.
+    func testAccessoriesAgreeAcrossTheCatalogue() throws {
+        struct File: Decodable { struct Ex: Decodable { let id: String; let acc: [String]? }; let exercises: [Ex] }
+        let catalog = ExerciseCatalog.builtIn
+        let url = try XCTUnwrap(Bundle.allBundles.compactMap { $0.url(forResource: "exercises", withExtension: "json") }.first
+            ?? Bundle.allBundles.compactMap { $0.resourceURL }.flatMap { (try? FileManager.default.contentsOfDirectory(at: $0, includingPropertiesForKeys: nil)) ?? [] }
+                .compactMap { Bundle(url: $0)?.url(forResource: "exercises", withExtension: "json") }.first)
+        let file = try JSONDecoder().decode(File.self, from: Data(contentsOf: url))
+        for e in file.exercises { XCTAssertEqual(catalog[e.id]?.accessories ?? [], e.acc ?? [], e.id) }
+        XCTAssertEqual(catalog.all.count, 5632)
+        XCTAssertEqual(catalog.meta.muscles.count, 18)
+        XCTAssertEqual(catalog.muscle("delts"), "deltoids")
+        XCTAssertNil(catalog.muscle("hands"))
+        XCTAssertEqual(catalog["0025"].map(catalog.muscleWeights)?["chest"], 1)
+        XCTAssertEqual(catalog["0025"].flatMap(catalog.primaryMuscle), "chest")
+        XCTAssertEqual(catalog["0025"]?.accessories, ["bench"])
+        XCTAssertNotNil(ExerciseCatalog.texts["0025"]?.steps?.first)
+        XCTAssertNotNil(ExerciseCatalog.bodyPathsURL)
     }
 
     func testNewIdsLookLikeTheOriginals() {

@@ -1228,5 +1228,261 @@
  {
   "name": "line {\"id\": \"0025\", \"sets\": 0, \"reps\": 5, \"weight\": 6000} lb",
   "result": "1 × 5 · 6,000 lb"
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"abs\"}",
+  "result": {
+   "abs": 1
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"Pectorals\", \"mg\": \"delts\", \"sm\": [\"triceps\", \"hands\", \"rear deltoids\"]}",
+  "result": {
+   "chest": 1,
+   "deltoids": 0.4,
+   "triceps": 0.4
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"quads\", \"sm\": \"glutes\"}",
+  "result": {
+   "quadriceps": 1,
+   "gluteal": 0.4
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"bp\": \"upper legs\"}",
+  "result": {
+   "quadriceps": 0.4,
+   "hamstring": 0.35,
+   "gluteal": 0.25
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"bp\": \"cardio\"}",
+  "result": {}
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"nonsense\", \"bp\": \"waist\"}",
+  "result": {
+   "abs": 0.7,
+   "obliques": 0.3
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"chest\", \"muscleWeights\": {\"chest\": 1, \"triceps\": 0.25, \"biceps\": 7, \"abs\": 0}}",
+  "result": {
+   "chest": 1,
+   "triceps": 0.25,
+   "abs": 0
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"upper-back\"}",
+  "result": {
+   "upper-back": 1
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true}",
+  "result": {}
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"cardiovascular system\"}",
+  "result": {
+   "cardiovascular system": 1
+  }
+ },
+ {
+  "name": "available [\"barbell\"]2 barbell bench press",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]2 pull-up",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]2 push-up",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]2 lever incline press",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]2 foam roll",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]2 odd",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]2 dumbbell curl",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]2 no kit",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 barbell bench press",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 pull-up",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 push-up",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 lever incline press",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 foam roll",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 odd",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 dumbbell curl",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 no kit",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]None barbell bench press",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]None pull-up",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]None push-up",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]None lever incline press",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]None foam roll",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]None odd",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]None dumbbell curl",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]None no kit",
+  "result": true
+ },
+ {
+  "name": "available [\"roller\"]1 barbell bench press",
+  "result": false
+ },
+ {
+  "name": "available [\"roller\"]1 pull-up",
+  "result": false
+ },
+ {
+  "name": "available [\"roller\"]1 push-up",
+  "result": true
+ },
+ {
+  "name": "available [\"roller\"]1 lever incline press",
+  "result": false
+ },
+ {
+  "name": "available [\"roller\"]1 foam roll",
+  "result": true
+ },
+ {
+  "name": "available [\"roller\"]1 odd",
+  "result": true
+ },
+ {
+  "name": "available [\"roller\"]1 dumbbell curl",
+  "result": false
+ },
+ {
+  "name": "available [\"roller\"]1 no kit",
+  "result": true
+ },
+ {
+  "name": "available []2 barbell bench press",
+  "result": false
+ },
+ {
+  "name": "available []2 pull-up",
+  "result": false
+ },
+ {
+  "name": "available []2 push-up",
+  "result": true
+ },
+ {
+  "name": "available []2 lever incline press",
+  "result": false
+ },
+ {
+  "name": "available []2 foam roll",
+  "result": false
+ },
+ {
+  "name": "available []2 odd",
+  "result": true
+ },
+ {
+  "name": "available []2 dumbbell curl",
+  "result": false
+ },
+ {
+  "name": "available []2 no kit",
+  "result": true
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 barbell bench press",
+  "result": false
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 pull-up",
+  "result": true
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 push-up",
+  "result": true
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 lever incline press",
+  "result": true
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 foam roll",
+  "result": false
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 odd",
+  "result": true
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 dumbbell curl",
+  "result": false
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 no kit",
+  "result": true
  }
 ]

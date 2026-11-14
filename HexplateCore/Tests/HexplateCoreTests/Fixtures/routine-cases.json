@@ -1598,5 +1598,898 @@
    "weight": 6000
   },
   "unit": "lb"
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"abs\"}",
+  "op": "muscles",
+  "ex": {
+   "id": "cx",
+   "n": "my thing",
+   "custom": true,
+   "tg": "abs"
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"Pectorals\", \"mg\": \"delts\", \"sm\": [\"triceps\", \"hands\", \"rear deltoids\"]}",
+  "op": "muscles",
+  "ex": {
+   "id": "cx",
+   "n": "my thing",
+   "custom": true,
+   "tg": "Pectorals",
+   "mg": "delts",
+   "sm": [
+    "triceps",
+    "hands",
+    "rear deltoids"
+   ]
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"quads\", \"sm\": \"glutes\"}",
+  "op": "muscles",
+  "ex": {
+   "id": "cx",
+   "n": "my thing",
+   "custom": true,
+   "tg": "quads",
+   "sm": "glutes"
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"bp\": \"upper legs\"}",
+  "op": "muscles",
+  "ex": {
+   "id": "cx",
+   "n": "my thing",
+   "custom": true,
+   "bp": "upper legs"
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"bp\": \"cardio\"}",
+  "op": "muscles",
+  "ex": {
+   "id": "cx",
+   "n": "my thing",
+   "custom": true,
+   "bp": "cardio"
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"nonsense\", \"bp\": \"waist\"}",
+  "op": "muscles",
+  "ex": {
+   "id": "cx",
+   "n": "my thing",
+   "custom": true,
+   "tg": "nonsense",
+   "bp": "waist"
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"chest\", \"muscleWeights\": {\"chest\": 1, \"triceps\": 0.25, \"biceps\": 7, \"abs\": 0}}",
+  "op": "muscles",
+  "ex": {
+   "id": "cx",
+   "n": "my thing",
+   "custom": true,
+   "tg": "chest",
+   "muscleWeights": {
+    "chest": 1,
+    "triceps": 0.25,
+    "biceps": 7,
+    "abs": 0
+   }
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"upper-back\"}",
+  "op": "muscles",
+  "ex": {
+   "id": "cx",
+   "n": "my thing",
+   "custom": true,
+   "tg": "upper-back"
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true}",
+  "op": "muscles",
+  "ex": {
+   "id": "cx",
+   "n": "my thing",
+   "custom": true
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"cardiovascular system\"}",
+  "op": "muscles",
+  "ex": {
+   "id": "cx",
+   "n": "my thing",
+   "custom": true,
+   "tg": "cardiovascular system"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]2 barbell bench press",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "barbell bench press",
+   "eq": "barbell"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]2 pull-up",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "pull-up",
+   "eq": "body weight"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]2 push-up",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "push-up",
+   "eq": "body weight"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]2 lever incline press",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "lever incline press",
+   "eq": "leverage machine"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]2 foam roll",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "foam roll",
+   "eq": "massage ball"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]2 odd",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "odd",
+   "eq": "unheard of"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]2 dumbbell curl",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "dumbbell curl",
+   "eq": "dumbbell",
+   "nd": [
+    "bench"
+   ]
+  }
+ },
+ {
+  "name": "available [\"barbell\"]2 no kit",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "no kit"
+  }
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 barbell bench press",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "barbell bench press",
+   "eq": "barbell"
+  }
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 pull-up",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "pull-up",
+   "eq": "body weight"
+  }
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 push-up",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "push-up",
+   "eq": "body weight"
+  }
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 lever incline press",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "lever incline press",
+   "eq": "leverage machine"
+  }
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 foam roll",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "foam roll",
+   "eq": "massage ball"
+  }
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 odd",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "odd",
+   "eq": "unheard of"
+  }
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 dumbbell curl",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "dumbbell curl",
+   "eq": "dumbbell",
+   "nd": [
+    "bench"
+   ]
+  }
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 no kit",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "no kit"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]None barbell bench press",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ]
+  },
+  "ex": {
+   "n": "barbell bench press",
+   "eq": "barbell"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]None pull-up",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ]
+  },
+  "ex": {
+   "n": "pull-up",
+   "eq": "body weight"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]None push-up",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ]
+  },
+  "ex": {
+   "n": "push-up",
+   "eq": "body weight"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]None lever incline press",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ]
+  },
+  "ex": {
+   "n": "lever incline press",
+   "eq": "leverage machine"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]None foam roll",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ]
+  },
+  "ex": {
+   "n": "foam roll",
+   "eq": "massage ball"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]None odd",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ]
+  },
+  "ex": {
+   "n": "odd",
+   "eq": "unheard of"
+  }
+ },
+ {
+  "name": "available [\"barbell\"]None dumbbell curl",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ]
+  },
+  "ex": {
+   "n": "dumbbell curl",
+   "eq": "dumbbell",
+   "nd": [
+    "bench"
+   ]
+  }
+ },
+ {
+  "name": "available [\"barbell\"]None no kit",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "barbell"
+   ]
+  },
+  "ex": {
+   "n": "no kit"
+  }
+ },
+ {
+  "name": "available [\"roller\"]1 barbell bench press",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "roller"
+   ],
+   "accV": 1
+  },
+  "ex": {
+   "n": "barbell bench press",
+   "eq": "barbell"
+  }
+ },
+ {
+  "name": "available [\"roller\"]1 pull-up",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "roller"
+   ],
+   "accV": 1
+  },
+  "ex": {
+   "n": "pull-up",
+   "eq": "body weight"
+  }
+ },
+ {
+  "name": "available [\"roller\"]1 push-up",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "roller"
+   ],
+   "accV": 1
+  },
+  "ex": {
+   "n": "push-up",
+   "eq": "body weight"
+  }
+ },
+ {
+  "name": "available [\"roller\"]1 lever incline press",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "roller"
+   ],
+   "accV": 1
+  },
+  "ex": {
+   "n": "lever incline press",
+   "eq": "leverage machine"
+  }
+ },
+ {
+  "name": "available [\"roller\"]1 foam roll",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "roller"
+   ],
+   "accV": 1
+  },
+  "ex": {
+   "n": "foam roll",
+   "eq": "massage ball"
+  }
+ },
+ {
+  "name": "available [\"roller\"]1 odd",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "roller"
+   ],
+   "accV": 1
+  },
+  "ex": {
+   "n": "odd",
+   "eq": "unheard of"
+  }
+ },
+ {
+  "name": "available [\"roller\"]1 dumbbell curl",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "roller"
+   ],
+   "accV": 1
+  },
+  "ex": {
+   "n": "dumbbell curl",
+   "eq": "dumbbell",
+   "nd": [
+    "bench"
+   ]
+  }
+ },
+ {
+  "name": "available [\"roller\"]1 no kit",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "roller"
+   ],
+   "accV": 1
+  },
+  "ex": {
+   "n": "no kit"
+  }
+ },
+ {
+  "name": "available []2 barbell bench press",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [],
+   "accV": 2
+  },
+  "ex": {
+   "n": "barbell bench press",
+   "eq": "barbell"
+  }
+ },
+ {
+  "name": "available []2 pull-up",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [],
+   "accV": 2
+  },
+  "ex": {
+   "n": "pull-up",
+   "eq": "body weight"
+  }
+ },
+ {
+  "name": "available []2 push-up",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [],
+   "accV": 2
+  },
+  "ex": {
+   "n": "push-up",
+   "eq": "body weight"
+  }
+ },
+ {
+  "name": "available []2 lever incline press",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [],
+   "accV": 2
+  },
+  "ex": {
+   "n": "lever incline press",
+   "eq": "leverage machine"
+  }
+ },
+ {
+  "name": "available []2 foam roll",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [],
+   "accV": 2
+  },
+  "ex": {
+   "n": "foam roll",
+   "eq": "massage ball"
+  }
+ },
+ {
+  "name": "available []2 odd",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [],
+   "accV": 2
+  },
+  "ex": {
+   "n": "odd",
+   "eq": "unheard of"
+  }
+ },
+ {
+  "name": "available []2 dumbbell curl",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [],
+   "accV": 2
+  },
+  "ex": {
+   "n": "dumbbell curl",
+   "eq": "dumbbell",
+   "nd": [
+    "bench"
+   ]
+  }
+ },
+ {
+  "name": "available []2 no kit",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [],
+   "accV": 2
+  },
+  "ex": {
+   "n": "no kit"
+  }
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 barbell bench press",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "dumbbell",
+    "pull-up bar",
+    "leverage machine"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "barbell bench press",
+   "eq": "barbell"
+  }
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 pull-up",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "dumbbell",
+    "pull-up bar",
+    "leverage machine"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "pull-up",
+   "eq": "body weight"
+  }
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 push-up",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "dumbbell",
+    "pull-up bar",
+    "leverage machine"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "push-up",
+   "eq": "body weight"
+  }
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 lever incline press",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "dumbbell",
+    "pull-up bar",
+    "leverage machine"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "lever incline press",
+   "eq": "leverage machine"
+  }
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 foam roll",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "dumbbell",
+    "pull-up bar",
+    "leverage machine"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "foam roll",
+   "eq": "massage ball"
+  }
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 odd",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "dumbbell",
+    "pull-up bar",
+    "leverage machine"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "odd",
+   "eq": "unheard of"
+  }
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 dumbbell curl",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "dumbbell",
+    "pull-up bar",
+    "leverage machine"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "dumbbell curl",
+   "eq": "dumbbell",
+   "nd": [
+    "bench"
+   ]
+  }
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 no kit",
+  "op": "available",
+  "profile": {
+   "id": "p",
+   "name": "Gym",
+   "equipment": [
+    "dumbbell",
+    "pull-up bar",
+    "leverage machine"
+   ],
+   "accV": 2
+  },
+  "ex": {
+   "n": "no kit"
+  }
  }
 ]
