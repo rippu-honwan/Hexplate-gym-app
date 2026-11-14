@@ -37,12 +37,12 @@ struct WorkoutDetailView: View {
 private struct Summary: View {
     let workout: Workout
     let history: History
+    @ScaledMetric(relativeTo: .title3) private var column = 72.0
 
     var body: some View {
-        // Side by side while it fits; stacked at the largest text sizes.
-        ViewThatFits(in: .horizontal) {
-            HStack(alignment: .top, spacing: 0) { stats.frame(maxWidth: .infinity, alignment: .leading) }
-            VStack(alignment: .leading, spacing: 12) { stats }
+        // As many across as fit: four on a phone at the default size, fewer as the text grows.
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: column), alignment: .topLeading)], alignment: .leading, spacing: 12) {
+            stats
         }
         .padding(.vertical, 4)
     }

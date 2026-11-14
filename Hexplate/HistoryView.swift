@@ -50,6 +50,7 @@ struct HistoryView: View {
 private struct WorkoutRow: View {
     let item: AppModel.Item
     @ScaledMetric(relativeTo: .title3) private var tile = 46.0
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         HStack(spacing: 14) {
@@ -68,7 +69,8 @@ private struct WorkoutRow: View {
             VStack(alignment: .leading, spacing: 3) {
                 Text(item.workout.name ?? "Workout")
                     .font(.headline)
-                Text(item.metrics.joined(separator: " · "))
+                // One line at ordinary sizes; a line each once the text is too large to share one.
+                Text(item.metrics.joined(separator: typeSize.isAccessibilitySize ? "\n" : " · "))
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .monospacedDigit()
@@ -79,6 +81,8 @@ private struct WorkoutRow: View {
             }
         }
         .padding(.vertical, 4)
+        // One separator inset for every row, with or without a badge.
+        .alignmentGuide(.listRowSeparatorLeading) { _ in 0 }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(spoken)
     }
