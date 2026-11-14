@@ -1,0 +1,4 @@
+// Signing. Put your Apple team id in Local.xcconfig next to this file (not committed):
+//   DEVELOPMENT_TEAM = <TEAM_ID>
+CODE_SIGN_STYLE = Automatic
+#include? "Local.xcconfig"

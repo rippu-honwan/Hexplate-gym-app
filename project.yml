@@ -1,0 +1,27 @@
+# Hexplate: the native SwiftUI iPhone app. Generate the Xcode project with `xcodegen` in this
+# folder; the generated Hexplate.xcodeproj is not committed.
+name: Hexplate
+options:
+  deploymentTarget:
+    iOS: "18.0"
+configFiles:
+  Debug: Config.xcconfig
+  Release: Config.xcconfig
+targets:
+  Hexplate:
+    type: application
+    platform: iOS
+    sources: [Hexplate]
+    settings:
+      base:
+        # Same id as the Capacitor app on purpose: Hexplate installs over it.
+        PRODUCT_BUNDLE_IDENTIFIER: com.rippuhonwan.mygym
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "6.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Hexplate
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
