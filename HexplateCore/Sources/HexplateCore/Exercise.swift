@@ -10,8 +10,19 @@ public struct Exercise: Decodable, Equatable, Sendable {
     public let equipment: String?
     /// Set on a custom exercise to say the logged weight is help, not load.
     public let assisted: Bool?
+    /// The muscle the catalogue files it under, and the ones that help.
+    public let target: String?
+    public let muscleGroup: String?
+    public let secondary: [String]
+    /// A position held for time rather than repeated.
+    public let isHold: Bool
+    /// Made by the user, not from the catalogue.
+    public let isCustom: Bool
 
-    enum CodingKeys: String, CodingKey { case id, name = "n", bodyPart = "bp", equipment = "eq", assisted }
+    enum CodingKeys: String, CodingKey {
+        case id, name = "n", bodyPart = "bp", equipment = "eq", assisted
+        case target = "tg", muscleGroup = "mg", secondary = "sm", hold = "hd", custom
+    }
 
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
@@ -20,6 +31,11 @@ public struct Exercise: Decodable, Equatable, Sendable {
         bodyPart = c.string(.bodyPart)
         equipment = c.string(.equipment)
         assisted = c.bool(.assisted)
+        target = c.string(.target)
+        muscleGroup = c.string(.muscleGroup)
+        secondary = (try? c.decode([String].self, forKey: .secondary)) ?? c.string(.secondary).map { [$0] } ?? []
+        isHold = c.bool(.hold) == true
+        isCustom = c.bool(.custom) == true
     }
 
     public var displayName: String { Format.capWords(name) }
@@ -34,6 +50,13 @@ public struct Exercise: Decodable, Equatable, Sendable {
     /// An assistance machine: more weight is easier (lib/exercises.js assistedShape).
     public var isAssisted: Bool {
         assisted ?? (equipment == "leverage machine" && name.matches(#"\bassist(ed)?\b"#))
+    }
+
+    /// Done one arm or leg at a time, by its catalogue name (lib/exercises.js isOneLimb).
+    public var isOneLimb: Bool {
+        !isCustom && !isCardio
+            && name.matches(#"\b(single|one)[\s-]+(arm|leg|hand)\b|\bunilateral\b"#)
+            && !name.matches(#"stretch|\broll(er|ball)?\b|two to one|single leg (push|plank)|leg push up"#)
     }
 
     /// One bell at a time (lib/dumbbells.js ONE_ARM).

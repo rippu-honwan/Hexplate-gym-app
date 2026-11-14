@@ -6,6 +6,7 @@
 //   OUT  where to write the golden file
 //   STAMP_IN, STAMP_OUT  optional: change cases and where to write how the JS stamps them
 //   SCHEDULE_IN, SCHEDULE_OUT  optional: schedule cases and what the JS reads and does for them
+//   ROUTINE_IN, ROUTINE_OUT  optional: routine editing cases and what the JS makes of them
 //   CATALOGUE_OUT  optional: where to write the exercise index the app bundles (text only)
 import { readFileSync, writeFileSync } from 'node:fs'
 import { setsDone, sessionVolume, workoutDuration, setLabel } from '../../frontend/src/lib/history.js'
@@ -19,7 +20,8 @@ import { EXALIAS } from '../../frontend/src/lib/exercises-data.js'
 import * as Q from '../../frontend/src/lib/queue.js'
 import * as R from '../../frontend/src/lib/rotation.js'
 import { workoutsLeft } from '../../frontend/src/lib/week-left.js'
-import { effectiveRoutineIds, nextTrainingDay } from '../../frontend/src/lib/history.js'
+import { effectiveRoutineIds, nextTrainingDay, pairAdjacent, unpairSuperset, cleanupSg, pickedExerciseConfig, exLine } from '../../frontend/src/lib/history.js'
+import { deleteRoutine, copyRoutine } from '../../frontend/src/lib/routines.js'
 import { stampChange } from '../../frontend/src/lib/sync-merge.js'
 
 // The settings a screen's numbers depend on; each variant is the same history under other settings.
@@ -66,7 +68,7 @@ it('writes the golden file', () => {
 // Text only; no media is read or copied.
 it('writes the exercise index', () => {
   if (!process.env.CATALOGUE_OUT) return
-  const exercises = CATALOGUE.map(e => ({ id: e.id, n: e.n, bp: e.bp, eq: e.eq }))
+  const exercises = CATALOGUE.map(e => ({ id: e.id, n: e.n, bp: e.bp, eq: e.eq, tg: e.tg, mg: e.mg, sm: e.sm, ...(e.hd ? { hd: true } : {}) }))
   writeFileSync(process.env.CATALOGUE_OUT, JSON.stringify({ exercises, aliases: EXALIAS }) + '\n')
 })
 
@@ -115,4 +117,26 @@ it('writes the schedule golden file', () => {
     return { name: c.name, steps }
   })
   writeFileSync(process.env.SCHEDULE_OUT, JSON.stringify(out, null, 1) + '\n')
+})
+
+// Editing a plan: deleting and copying a routine, supersets, a picked exercise's defaults, the
+// line a planned exercise reads as.
+it('writes the routine golden file', () => {
+  if (!process.env.ROUTINE_IN) return
+  const cases = JSON.parse(readFileSync(process.env.ROUTINE_IN, 'utf8'))
+  registerCustom([{ id: 'cx-custom', n: 'one arm custom thing', custom: true, eq: 'body weight', bp: 'waist' }])
+  setWeightDecimals(1)
+  const out = cases.map(c => {
+    const safe = fn => { try { return fn() } catch (e) { return { error: true } } }
+    let result
+    if (c.op === 'deleteRoutine') { const s = structuredClone(c.state); const dropped = deleteRoutine(s, c.id); result = { state: s, dropped } }
+    else if (c.op === 'copyRoutine') { const r = copyRoutine(c.routine); result = { ...r, id: null } }
+    else if (c.op === 'pair') result = safe(() => pairAdjacent(c.items, c.first, c.second))
+    else if (c.op === 'unpair') result = safe(() => unpairSuperset(c.items, c.idx))
+    else if (c.op === 'cleanup') { const ex = structuredClone(c.items); cleanupSg(ex); result = ex }
+    else if (c.op === 'picked') result = pickedExerciseConfig(c.id)
+    else if (c.op === 'exLine') result = exLine(c.cfg, c.unit, c.unit === 'lb' ? 'mph' : 'kmh')
+    return { name: c.name, result }
+  })
+  writeFileSync(process.env.ROUTINE_OUT, JSON.stringify(out, null, 1) + '\n')
 })

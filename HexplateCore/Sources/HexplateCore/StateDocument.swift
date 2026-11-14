@@ -28,6 +28,15 @@ public struct StateDocument: Equatable, Sendable {
         return try encoder.encode(JSONValue.object(root))
     }
 
+    /// Makes a change to the document and stamps it for sync, the way the Capacitor app's store
+    /// does on every update (SyncStamps). A change that changes nothing leaves the document as it was.
+    public mutating func change(at wall: Double = (Date().timeIntervalSince1970 * 1000).rounded(), _ mutate: (inout [String: JSONValue]) -> Void) {
+        let prev = root
+        mutate(&root)
+        guard root != prev else { return }
+        root["_ts"] = .number(SyncStamps.stampChange(prev: prev, next: &root, wall: wall))
+    }
+
     /// Sets one top-level key. Everything else stays as it is.
     public mutating func set(_ key: String, to value: JSONValue) {
         root[key] = value

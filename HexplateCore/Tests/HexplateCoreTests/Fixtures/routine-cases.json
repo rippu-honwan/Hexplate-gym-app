@@ -1,0 +1,1602 @@
+[
+ {
+  "name": "delete a routine and its pointers",
+  "op": "deleteRoutine",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "ex": []
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1",
+     "r2"
+    ],
+    "3": "r2",
+    "5": [
+     "r2"
+    ],
+    "6": [
+     "r3"
+    ]
+   },
+   "dayPlan": {
+    "2026-03-11": "r2",
+    "2026-03-12": "r1",
+    "2026-03-13": "rest"
+   },
+   "rotation": {
+    "id": "x",
+    "sequence": [
+     "r1",
+     "r2"
+    ]
+   },
+   "queue": {
+    "ids": [
+     "r2"
+    ],
+    "since": 1
+   }
+  },
+  "id": "r2"
+ },
+ {
+  "name": "delete one nothing points at",
+  "op": "deleteRoutine",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "ex": []
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": "r1"
+   },
+   "dayPlan": {
+    "2026-03-11": "r2",
+    "2026-03-12": "r1",
+    "2026-03-13": "rest"
+   },
+   "rotation": {
+    "id": "x",
+    "sequence": [
+     "r1",
+     "r2"
+    ]
+   },
+   "queue": {
+    "ids": [
+     "r2"
+    ],
+    "since": 1
+   }
+  },
+  "id": "zz"
+ },
+ {
+  "name": "copy 'Push'",
+  "op": "copyRoutine",
+  "routine": {
+   "id": "r1",
+   "name": "Push",
+   "emoji": "arm",
+   "ex": [
+    {
+     "id": "0025",
+     "sets": 3
+    }
+   ],
+   "_ts": 5,
+   "_f": {
+    "name": 4
+   }
+  }
+ },
+ {
+  "name": "copy 'Push (Copy)'",
+  "op": "copyRoutine",
+  "routine": {
+   "id": "r1",
+   "name": "Push (Copy)",
+   "emoji": "arm",
+   "ex": [
+    {
+     "id": "0025",
+     "sets": 3
+    }
+   ],
+   "_ts": 5,
+   "_f": {
+    "name": 4
+   }
+  }
+ },
+ {
+  "name": "copy 'Push (Copy 2)'",
+  "op": "copyRoutine",
+  "routine": {
+   "id": "r1",
+   "name": "Push (Copy 2)",
+   "emoji": "arm",
+   "ex": [
+    {
+     "id": "0025",
+     "sets": 3
+    }
+   ],
+   "_ts": 5,
+   "_f": {
+    "name": 4
+   }
+  }
+ },
+ {
+  "name": "copy 'Push (Copy 9)'",
+  "op": "copyRoutine",
+  "routine": {
+   "id": "r1",
+   "name": "Push (Copy 9)",
+   "emoji": "arm",
+   "ex": [
+    {
+     "id": "0025",
+     "sets": 3
+    }
+   ],
+   "_ts": 5,
+   "_f": {
+    "name": 4
+   }
+  }
+ },
+ {
+  "name": "copy 'A (b) (Copy)'",
+  "op": "copyRoutine",
+  "routine": {
+   "id": "r1",
+   "name": "A (b) (Copy)",
+   "emoji": "arm",
+   "ex": [
+    {
+     "id": "0025",
+     "sets": 3
+    }
+   ],
+   "_ts": 5,
+   "_f": {
+    "name": 4
+   }
+  }
+ },
+ {
+  "name": "copy ''",
+  "op": "copyRoutine",
+  "routine": {
+   "id": "r1",
+   "name": "",
+   "emoji": "arm",
+   "ex": [
+    {
+     "id": "0025",
+     "sets": 3
+    }
+   ],
+   "_ts": 5,
+   "_f": {
+    "name": 4
+   }
+  }
+ },
+ {
+  "name": "pair 0 and 1",
+  "op": "pair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "first": 0,
+  "second": 1
+ },
+ {
+  "name": "pair 1 and 0",
+  "op": "pair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "first": 1,
+  "second": 0
+ },
+ {
+  "name": "pair 1 and 2",
+  "op": "pair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "first": 1,
+  "second": 2
+ },
+ {
+  "name": "pair 3 and 4",
+  "op": "pair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "first": 3,
+  "second": 4
+ },
+ {
+  "name": "pair 4 and 5",
+  "op": "pair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "first": 4,
+  "second": 5
+ },
+ {
+  "name": "pair 2 and 3",
+  "op": "pair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "first": 2,
+  "second": 3
+ },
+ {
+  "name": "pair 0 and 2",
+  "op": "pair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "first": 0,
+  "second": 2
+ },
+ {
+  "name": "pair 6 and 7",
+  "op": "pair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "first": 6,
+  "second": 7
+ },
+ {
+  "name": "pair 3 and 2",
+  "op": "pair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "first": 3,
+  "second": 2
+ },
+ {
+  "name": "pair when the fresh id is taken",
+  "op": "pair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "sg-0-1"
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "sg-0-1"
+   }
+  ],
+  "first": 0,
+  "second": 1
+ },
+ {
+  "name": "unpair 0",
+  "op": "unpair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "idx": 0
+ },
+ {
+  "name": "unpair 2",
+  "op": "unpair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "idx": 2
+ },
+ {
+  "name": "unpair 3",
+  "op": "unpair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "idx": 3
+ },
+ {
+  "name": "unpair 5",
+  "op": "unpair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "idx": 5
+ },
+ {
+  "name": "unpair 6",
+  "op": "unpair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "idx": 6
+ },
+ {
+  "name": "unpair 9",
+  "op": "unpair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ],
+  "idx": 9
+ },
+ {
+  "name": "unpair the middle of three",
+  "op": "unpair",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgRest": 45
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgRest": 45
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgRest": 45
+   }
+  ],
+  "idx": 1
+ },
+ {
+  "name": "cleanup: lonely tags and stray meta",
+  "op": "cleanup",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Solo"
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sgRest": 30,
+    "sgName": "Left over"
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y",
+    "sgName": "  Pair  "
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y",
+    "sgRest": 90.4
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x"
+   }
+  ]
+ },
+ {
+  "name": "cleanup: a member that joined takes the group's meta",
+  "op": "cleanup",
+  "items": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "z",
+    "sgName": "Tri",
+    "sgRest": 60
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "z"
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "z",
+    "sgName": "Other",
+    "sgRest": 10
+   }
+  ]
+ },
+ {
+  "name": "picked 0025",
+  "op": "picked",
+  "id": "0025"
+ },
+ {
+  "name": "picked 0652",
+  "op": "picked",
+  "id": "0652"
+ },
+ {
+  "name": "picked 2197",
+  "op": "picked",
+  "id": "2197"
+ },
+ {
+  "name": "picked 0292",
+  "op": "picked",
+  "id": "0292"
+ },
+ {
+  "name": "picked 4348",
+  "op": "picked",
+  "id": "4348"
+ },
+ {
+  "name": "picked 3983",
+  "op": "picked",
+  "id": "3983"
+ },
+ {
+  "name": "picked 0667",
+  "op": "picked",
+  "id": "0667"
+ },
+ {
+  "name": "picked 10915",
+  "op": "picked",
+  "id": "10915"
+ },
+ {
+  "name": "picked 4087",
+  "op": "picked",
+  "id": "4087"
+ },
+ {
+  "name": "picked cx-custom",
+  "op": "picked",
+  "id": "cx-custom"
+ },
+ {
+  "name": "picked nope",
+  "op": "picked",
+  "id": "nope"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 60} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "0025",
+   "sets": 3,
+   "reps": 10,
+   "weight": 60
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 60} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "0025",
+   "sets": 3,
+   "reps": 10,
+   "weight": 60
+  },
+  "unit": "lb"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 62.25, \"repsMin\": 8} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "0025",
+   "sets": 3,
+   "reps": 10,
+   "weight": 62.25,
+   "repsMin": 8
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 62.25, \"repsMin\": 8} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "0025",
+   "sets": 3,
+   "reps": 10,
+   "weight": 62.25,
+   "repsMin": 8
+  },
+  "unit": "lb"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 0, \"repsMin\": 10} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "0025",
+   "sets": 3,
+   "reps": 10,
+   "weight": 0,
+   "repsMin": 10
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 0, \"repsMin\": 10} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "0025",
+   "sets": 3,
+   "reps": 10,
+   "weight": 0,
+   "repsMin": 10
+  },
+  "unit": "lb"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 40, \"setsMax\": 5} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "0025",
+   "sets": 3,
+   "reps": 10,
+   "weight": 40,
+   "setsMax": 5
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 40, \"setsMax\": 5} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "0025",
+   "sets": 3,
+   "reps": 10,
+   "weight": 40,
+   "setsMax": 5
+  },
+  "unit": "lb"
+ },
+ {
+  "name": "line {\"id\": \"0652\", \"sets\": 3, \"reps\": 10, \"weight\": 0} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "0652",
+   "sets": 3,
+   "reps": 10,
+   "weight": 0
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"0652\", \"sets\": 3, \"reps\": 10, \"weight\": 0} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "0652",
+   "sets": 3,
+   "reps": 10,
+   "weight": 0
+  },
+  "unit": "lb"
+ },
+ {
+  "name": "line {\"id\": \"0652\", \"sets\": 3, \"reps\": 10, \"weight\": 10} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "0652",
+   "sets": 3,
+   "reps": 10,
+   "weight": 10
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"0652\", \"sets\": 3, \"reps\": 10, \"weight\": 10} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "0652",
+   "sets": 3,
+   "reps": 10,
+   "weight": 10
+  },
+  "unit": "lb"
+ },
+ {
+  "name": "line {\"id\": \"0652\", \"sets\": 3, \"reps\": 10, \"weight\": 10, \"bodyweight\": false} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "0652",
+   "sets": 3,
+   "reps": 10,
+   "weight": 10,
+   "bodyweight": false
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"0652\", \"sets\": 3, \"reps\": 10, \"weight\": 10, \"bodyweight\": false} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "0652",
+   "sets": 3,
+   "reps": 10,
+   "weight": 10,
+   "bodyweight": false
+  },
+  "unit": "lb"
+ },
+ {
+  "name": "line {\"id\": \"1454\", \"sets\": 3, \"reps\": 16, \"weight\": 20, \"side\": true, \"repsMin\": 12} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "1454",
+   "sets": 3,
+   "reps": 16,
+   "weight": 20,
+   "side": true,
+   "repsMin": 12
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"1454\", \"sets\": 3, \"reps\": 16, \"weight\": 20, \"side\": true, \"repsMin\": 12} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "1454",
+   "sets": 3,
+   "reps": 16,
+   "weight": 20,
+   "side": true,
+   "repsMin": 12
+  },
+  "unit": "lb"
+ },
+ {
+  "name": "line {\"id\": \"1454\", \"sets\": 3, \"reps\": 15, \"weight\": 20, \"side\": true} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "1454",
+   "sets": 3,
+   "reps": 15,
+   "weight": 20,
+   "side": true
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"1454\", \"sets\": 3, \"reps\": 15, \"weight\": 20, \"side\": true} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "1454",
+   "sets": 3,
+   "reps": 15,
+   "weight": 20,
+   "side": true
+  },
+  "unit": "lb"
+ },
+ {
+  "name": "line {\"id\": \"4348\", \"sets\": 3, \"sec\": 45, \"weight\": 0, \"mode\": \"time\"} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "4348",
+   "sets": 3,
+   "sec": 45,
+   "weight": 0,
+   "mode": "time"
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"4348\", \"sets\": 3, \"sec\": 45, \"weight\": 0, \"mode\": \"time\"} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "4348",
+   "sets": 3,
+   "sec": 45,
+   "weight": 0,
+   "mode": "time"
+  },
+  "unit": "lb"
+ },
+ {
+  "name": "line {\"id\": \"3983\", \"sets\": 2, \"sec\": 95, \"weight\": 5, \"mode\": \"time\", \"side\": true} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "3983",
+   "sets": 2,
+   "sec": 95,
+   "weight": 5,
+   "mode": "time",
+   "side": true
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"3983\", \"sets\": 2, \"sec\": 95, \"weight\": 5, \"mode\": \"time\", \"side\": true} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "3983",
+   "sets": 2,
+   "sec": 95,
+   "weight": 5,
+   "mode": "time",
+   "side": true
+  },
+  "unit": "lb"
+ },
+ {
+  "name": "line {\"id\": \"2197\", \"sets\": 1, \"min\": 20, \"speed\": 8} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "2197",
+   "sets": 1,
+   "min": 20,
+   "speed": 8
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"2197\", \"sets\": 1, \"min\": 20, \"speed\": 8} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "2197",
+   "sets": 1,
+   "min": 20,
+   "speed": 8
+  },
+  "unit": "lb"
+ },
+ {
+  "name": "line {\"id\": \"2197\", \"sets\": 2, \"incline\": 2.5} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "2197",
+   "sets": 2,
+   "incline": 2.5
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"2197\", \"sets\": 2, \"incline\": 2.5} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "2197",
+   "sets": 2,
+   "incline": 2.5
+  },
+  "unit": "lb"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 0, \"reps\": 5, \"weight\": 6000} kg",
+  "op": "exLine",
+  "cfg": {
+   "id": "0025",
+   "sets": 0,
+   "reps": 5,
+   "weight": 6000
+  },
+  "unit": "kg"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 0, \"reps\": 5, \"weight\": 6000} lb",
+  "op": "exLine",
+  "cfg": {
+   "id": "0025",
+   "sets": 0,
+   "reps": 5,
+   "weight": 6000
+  },
+  "unit": "lb"
+ }
+]
