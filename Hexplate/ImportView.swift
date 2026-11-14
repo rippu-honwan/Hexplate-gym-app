@@ -2,9 +2,11 @@ import HexplateCore
 import SwiftUI
 import UniformTypeIdentifiers
 
-/// Phase 2 screen: shows what is stored and imports an openGym backup.
+/// Shows what is stored and imports an openGym backup. A sheet from History's menu for now;
+/// it moves into Settings when that exists.
 struct ImportView: View {
     @Environment(AppModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
 
     private enum Source { case file, legacy }
     @State private var pending: Source?
@@ -41,9 +43,12 @@ struct ImportView: View {
                     Text("Importing replaces everything in Hexplate. A copy of the current data is kept first. The previous app's data is only read, never changed.")
                 }
             }
-            .navigationTitle("Hexplate")
+            .navigationTitle("Import")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } }
+            }
         }
-        .preferredColorScheme(.dark)
         .confirmationDialog("Replace the data in Hexplate?", isPresented: .init(get: { pending != nil }, set: { if !$0 { pending = nil } }), titleVisibility: .visible) {
             Button("Replace", role: .destructive) { if let pending { run(pending) } }
         } message: {

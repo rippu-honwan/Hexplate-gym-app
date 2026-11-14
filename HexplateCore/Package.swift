@@ -7,7 +7,7 @@ let package = Package(
     platforms: [.iOS(.v18), .macOS(.v14)],
     products: [.library(name: "HexplateCore", targets: ["HexplateCore"])],
     targets: [
-        .target(name: "HexplateCore"),
+        .target(name: "HexplateCore", resources: [.process("Resources")]),
         .testTarget(
             name: "HexplateCoreTests",
             dependencies: ["HexplateCore"],

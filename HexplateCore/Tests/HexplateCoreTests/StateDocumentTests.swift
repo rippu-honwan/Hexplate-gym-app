@@ -65,7 +65,7 @@ final class StateDocumentTests: XCTestCase {
         XCTAssertEqual(w.name, "Upper A")
         XCTAssertEqual(w.routineId, "r1")
         XCTAssertEqual(w.bodyweight, 72.4)
-        XCTAssertEqual(w.duration, 3900)
+        XCTAssertEqual(WorkoutMath.duration(w), 3_900_000)
         XCTAssertEqual(w.entries.map(\.exerciseId), ["0025", "0652", "1454", "custom-plank"])
         XCTAssertEqual(w.entries.map(\.supersetGroup), [nil, "a", "a", nil])
         XCTAssertEqual(w.entries[0].note, "felt strong")
@@ -88,20 +88,20 @@ final class StateDocumentTests: XCTestCase {
 
         // Drop set: the drops are extra work on top of the main set.
         XCTAssertEqual(bench[3].kind, .dropset)
-        XCTAssertEqual(bench[3].drops.map(\.w), [50, 40])
-        XCTAssertEqual(bench[3].drops.map(\.r), [5, 6])
+        XCTAssertEqual(bench[3].drops.map(\.weight), [50, 40])
+        XCTAssertEqual(bench[3].drops.map(\.reps), [5, 6])
 
         // Rest-pause: the clusters break down the row's own reps (SET_TYPES.md).
         XCTAssertEqual(bench[4].kind, .restpause)
-        XCTAssertEqual(bench[4].clusters.compactMap(\.r).reduce(0, +), bench[4].reps)
+        XCTAssertEqual(bench[4].clusters.compactMap(\.reps).reduce(0, +), bench[4].reps)
         XCTAssertEqual(bench[4].clusters.first?.restSec, 15)
 
         XCTAssertEqual(bench.map(\.done), [true, true, true, true, true, false])
 
         // Unilateral: per-side values.
         let split = entries[2].sets[0]
-        XCTAssertEqual(split.sides["L"]?.r, 6)
-        XCTAssertEqual(split.sides["R"]?.w, 20)
+        XCTAssertEqual(split.sides["L"]?.reps, 6)
+        XCTAssertEqual(split.sides["R"]?.weight, 20)
         XCTAssertEqual(split.sides["R"]?.done, true)
 
         // Timed: seconds instead of reps; an explicit phase wins over the legacy boolean.

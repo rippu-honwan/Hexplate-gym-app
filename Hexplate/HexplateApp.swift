@@ -6,8 +6,9 @@ struct HexplateApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ImportView()
+            HistoryView()
                 .environment(model)
+                .environment(\.locale, Theme.locale)
         }
     }
 }

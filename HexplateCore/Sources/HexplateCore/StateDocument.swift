@@ -28,6 +28,11 @@ public struct StateDocument: Equatable, Sendable {
         return try encoder.encode(JSONValue.object(root))
     }
 
+    /// Sets one top-level key. Everything else stays as it is.
+    public mutating func set(_ key: String, to value: JSONValue) {
+        root[key] = value
+    }
+
     /// When the document was last changed (`_ts`, milliseconds), 0 when it carries no stamp.
     public var timestamp: Double { root["_ts"]?.numberValue ?? 0 }
 
