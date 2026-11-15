@@ -45,4 +45,7 @@ cases = [
     {'name': 'weigh-ins, average', 'op': 'weigh', 'state': {'bwDaily': 'avg', 'bodyweight': []},
      'adds': [{'d': '2026-10-03', 'at': '07:00', 'w': 79.8, 't': 100, 'id': 'r1'}, {'d': '2026-10-03', 'at': '21:00', 'w': 80.65, 't': 200, 'id': 'r2'}]},
 ]
+inv_default = [{'w': w, 'n': 6} for w in (25, 20, 15, 10, 5, 2.5, 1.25)]
+inv_odd = [{'w': 20, 'n': 1}, {'w': 15, 'n': 2}, {'w': 10, 'n': 1}, {'w': 2.5, 'n': 3}, {'w': 1.25, 'n': 1}]
+cases.append({'name': 'plate stacks', 'op': 'plates', 'rows': [[w, inv] for inv in (inv_default, inv_odd, []) for w in (0, 1, 12.5, 30, 41.25, 47.5, 52.6, 61.25, 200)]})
 print(json.dumps(cases, indent=1))

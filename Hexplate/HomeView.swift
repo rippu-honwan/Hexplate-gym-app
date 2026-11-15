@@ -3,6 +3,7 @@ import SwiftUI
 
 /// Today: what is planned, how the week stands, the loop, and the latest workout.
 struct HomeView: View {
+    @State private var settings = false
     @Environment(AppModel.self) private var model
 
     var body: some View {
@@ -43,14 +44,20 @@ struct HomeView: View {
             }
             .navigationTitle("Today")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Settings", systemImage: "gearshape") { settings = true }
+                }
                 if model.active == nil {
-                    Button("Empty workout", systemImage: "plus") {
-                        model.startWorkout(routineIds: [])
-                        model.showWorkout = true
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button("Empty workout", systemImage: "plus") {
+                            model.startWorkout(routineIds: [])
+                            model.showWorkout = true
+                        }
                     }
                 }
             }
             .workoutDestination()
+            .sheet(isPresented: $settings) { SettingsView() }
         }
     }
 

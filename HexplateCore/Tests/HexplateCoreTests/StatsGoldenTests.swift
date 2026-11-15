@@ -42,6 +42,13 @@ final class StatsGoldenTests: XCTestCase {
                     .object(["slug": .string($0.slug), "sets": .number($0.sets), "lo": .number($0.low), "hi": .number($0.high), "status": .string($0.status)])
                 }
                 result = .object(["series": .object(series), "best": .object(best), "levels": .array(levels), "muscles": .array(muscles)])
+            case "plates":
+                result = .array((k["rows"]?.arrayValue ?? []).map { r in
+                    let a = r.arrayValue ?? []
+                    let inv = (a[1].arrayValue ?? []).compactMap(\.object).map { (w: $0["w"]?.num ?? 0, n: Int($0["n"]?.num ?? 0)) }
+                    let out = Plates.stack(a[0].num, inv)
+                    return .object(["plates": .array(out.plates.map(JSONValue.number)), "missing": .number(out.missing)])
+                })
             case "estimate":
                 result = .array((k["rows"]?.arrayValue ?? []).map { r in
                     let a = r.arrayValue ?? []

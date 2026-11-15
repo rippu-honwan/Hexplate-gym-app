@@ -77,6 +77,9 @@ final class AppModel {
     /// Every change to the profile goes through here: stamped for sync, saved, then shown.
     // ponytail: rebuilds the whole history after each change; narrow it when a profile is large
     // enough for an edit to feel slow.
+    /// One automatic copy of the document a day (Application Support/Hexplate/backups).
+    func backupIfDue() { try? store.autoBackup(today: today) }
+
     func change(_ mutate: (inout [String: JSONValue]) -> Void) {
         var doc = document ?? Self.empty
         doc.change(mutate)

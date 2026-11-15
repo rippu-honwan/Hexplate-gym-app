@@ -69,6 +69,9 @@ extension AppModel {
             s["active"] = nil
             _ = Schedule.refillAfter(&s, workout: w, today: day, now: at)
         }
+        if UserDefaults.standard.bool(forKey: "health"), let start = w["start"]?.numberValue, let end = w["end"]?.numberValue {
+            Task { await Health.save(workout: Date(timeIntervalSince1970: start / 1000), end: Date(timeIntervalSince1970: end / 1000)) }
+        }
         return w
     }
 

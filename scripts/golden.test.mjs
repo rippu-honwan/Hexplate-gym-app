@@ -208,7 +208,8 @@ it('writes the stats golden file', async () => {
   const { addWeighIn } = await import('../../frontend/src/lib/weigh-ins.js')
   const cases = JSON.parse(readFileSync(process.env.STATS_IN, 'utf8'))
   const ids = ['0043', '0025', '0289', '0027', '0031', '0662', '0017', '0334']
-  const out = cases.map(c => {
+  const out = []
+  for (const c of cases) {
     vi.useFakeTimers(); vi.setSystemTime(new Date('2026-11-15T12:00:00'))
     let result
     if (c.op === 'stats') {
@@ -220,6 +221,9 @@ it('writes the stats golden file', async () => {
         levels: strengthLevels(S).map(l => ({ lift: l.lift, id: l.id, level: l.level, ratio: l.ratio, e1rm: l.e1rm, bw: l.bw, next: l.next, thresholds: l.thresholds })),
         muscles: weeklyMuscleSets(S, c.today).map(m => ({ slug: m.slug, sets: m.sets, lo: m.lo, hi: m.hi, status: m.status })),
       }
+    } else if (c.op === 'plates') {
+      const { plateStack } = await import('../../frontend/src/lib/plates.js')
+      result = c.rows.map(([w, inv]) => plateStack(w, inv))
     } else if (c.op === 'estimate') {
       result = c.rows.map(([w, r, f, rir]) => O.estimate1RM(w, r, f, rir))
     } else {
@@ -228,7 +232,16 @@ it('writes the stats golden file', async () => {
       result = S.bodyweight
     }
     vi.useRealTimers()
-    return { name: c.name, result: JSON.parse(JSON.stringify(result)) }
-  })
+    out.push({ name: c.name, result: JSON.parse(JSON.stringify(result)) })
+  }
   writeFileSync(process.env.STATS_OUT, JSON.stringify(out, null, 1) + '\n')
+})
+
+// The workout CSV export of the history fixture.
+it('writes the CSV golden file', async () => {
+  if (!process.env.CSV_OUT) return
+  const { workoutsCSV } = await import('../../frontend/src/lib/export-csv.js')
+  const state = JSON.parse(readFileSync(process.env.IN, 'utf8'))
+  registerCustom(state.customEx || [])
+  writeFileSync(process.env.CSV_OUT, workoutsCSV(state))
 })

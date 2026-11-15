@@ -5,6 +5,7 @@ import SwiftUI
 struct HexplateApp: App {
     @State private var model = AppModel()
     @State private var timer = RestTimer()
+    @AppStorage("appearance") private var appearance = "system"
     @Environment(\.scenePhase) private var phase
 
     var body: some Scene {
@@ -16,7 +17,12 @@ struct HexplateApp: App {
                 .environment(timer)
                 .environment(\.locale, Theme.locale)
                 // The day may have changed while the app was in the background.
-                .onChange(of: phase) { if phase == .active { model.today = Day.today() } }
+                .preferredColorScheme(appearance == "light" ? .light : appearance == "dark" ? .dark : nil)
+                .onChange(of: phase) {
+                    if phase == .active { model.today = Day.today() }
+                    if phase == .background { model.backupIfDue() }
+                }
+                .task { model.backupIfDue() }
         }
     }
 }
