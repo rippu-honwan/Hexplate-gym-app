@@ -353,6 +353,14 @@ public enum Recovery {
         return neglected.first.map { Hint(kind: "neglect", group: $0.group, days: $0.days) }
     }
 
+    /// The Home card's hint, fatigue worked out from the profile (RecoveryHint.jsx).
+    public static func hint(_ s: Object, now: Double, today: String, catalog c: ExerciseCatalog) -> Hint? {
+        if s["recoveryHint"] == .bool(false) || s["recoveryHintDay"] == .string(today) { return nil }
+        let ws = (s["workouts"]?.arrayValue ?? []).compactMap(\.object)
+        let f = fatigue(ws, now: now, unit: s["unit"]?.stringValue, bodyweightKg: Balance.bodyweightKg(s), catalog: c)
+        return hint(s, now: now, today: today, fatigue: f, catalog: c)
+    }
+
     /// The hint's words: the main line and the follow-up (hintText).
     public static func text(_ h: Hint, today: String) -> (String, String) {
         let day = dayWord(h.day, today)

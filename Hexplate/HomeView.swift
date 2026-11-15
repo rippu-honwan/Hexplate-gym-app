@@ -4,6 +4,7 @@ import SwiftUI
 /// Today: what is planned, how the week stands, the loop, and the latest workout.
 struct HomeView: View {
     @State private var settings = false
+    @State private var swapping = false
     @Environment(AppModel.self) private var model
 
     var body: some View {
@@ -17,6 +18,10 @@ struct HomeView: View {
                     }
                 } footer: {
                     if let next { Text(next) }
+                }
+
+                if let hint = Recovery.hint(model.root, now: model.now, today: model.today, catalog: model.catalog) {
+                    Section { RecoveryCard(hint: hint) { swapping = true } }
                 }
 
                 Section {
@@ -58,6 +63,7 @@ struct HomeView: View {
             }
             .workoutDestination()
             .sheet(isPresented: $settings) { SettingsView() }
+            .sheet(isPresented: $swapping) { DaySwapSheet(iso: model.today) }
         }
     }
 
@@ -128,6 +134,93 @@ struct HomeView: View {
                 isToday: iso == model.today
             )
         }
+    }
+}
+
+/// A muscle group still recovering, or one left alone for a while (RecoveryHint.jsx).
+private struct RecoveryCard: View {
+    @Environment(AppModel.self) private var model
+    let hint: Recovery.Hint
+    let swap: () -> Void
+
+    var body: some View {
+        let words = Recovery.text(hint, today: model.today)
+        HStack(alignment: .top, spacing: 12) {
+            Image(systemName: "figure.strengthtraining.traditional")
+                .font(.title3)
+                .foregroundStyle(.tint)
+                .frame(width: 28)
+                .accessibilityHidden(true)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Recovery").font(.caption.weight(.semibold)).foregroundStyle(.secondary).textCase(.uppercase)
+                Text(words.0).font(.headline)
+                Text(words.1).font(.subheadline).foregroundStyle(.secondary)
+                if hint.kind == "lighter" {
+                    Button("Swap session", systemImage: "arrow.left.arrow.right", action: swap)
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+                        .padding(.top, 4)
+                }
+            }
+            Spacer(minLength: 0)
+            Button("Hide for today", systemImage: "xmark") { model.set("recoveryHintDay", .string(model.today)) }
+                .labelStyle(.iconOnly)
+                .buttonStyle(.borderless)
+                .foregroundStyle(.secondary)
+        }
+        .padding(.vertical, 4)
+    }
+}
+
+/// Pick what to train on one day instead of the weekly plan (sheets.jsx DayOverride).
+struct DaySwapSheet: View {
+    @Environment(AppModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+    let iso: String
+
+    var body: some View {
+        let plan = model.root["dayPlan"]?.object ?? [:]
+        let current = Schedule.routineIds(model.root, on: iso, today: model.today)
+        var weekly = model.root
+        weekly["dayPlan"] = .object(plan.filter { $0.key != iso })
+        let weeklyNames = Schedule.routineIds(weekly, on: iso, today: model.today).compactMap { model.routine($0)?.name }
+        return NavigationStack {
+            List {
+                Section {
+                    ForEach(model.routines) { r in
+                        Button { set(.string(r.id)) } label: {
+                            HStack {
+                                Label(r.name, systemImage: r.symbol)
+                                Spacer()
+                                if current.contains(r.id) { Image(systemName: "checkmark").foregroundStyle(.tint) }
+                            }
+                        }
+                        .foregroundStyle(.primary)
+                    }
+                    Button("Rest", systemImage: "moon.fill") { set(.string("rest")) }.foregroundStyle(.primary)
+                } header: {
+                    Text("Weekly plan: \(weeklyNames.isEmpty ? "Rest" : weeklyNames.joined(separator: " + "))")
+                } footer: {
+                    Text("Sick, missed a day or want a different session? Pick what to train instead.")
+                }
+                if plan[iso] != nil {
+                    Button("Back to weekly plan", systemImage: "arrow.uturn.backward") { set(nil) }
+                }
+            }
+            .navigationTitle(Day.date(iso)?.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(Theme.locale)) ?? iso)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } } }
+        }
+        .presentationDetents([.medium, .large])
+    }
+
+    private func set(_ v: JSONValue?) {
+        model.change { root in
+            var plan = root["dayPlan"]?.object ?? [:]
+            plan[iso] = v
+            root["dayPlan"] = .object(plan)
+        }
+        dismiss()
     }
 }
 
