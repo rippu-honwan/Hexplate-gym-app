@@ -77,6 +77,11 @@ final class AppModel {
     /// Every change to the profile goes through here: stamped for sync, saved, then shown.
     // ponytail: rebuilds the whole history after each change; narrow it when a profile is large
     // enough for an edit to feel slow.
+    /// Removes a saved workout from the history for good (sheets.jsx deleteWorkout).
+    func deleteWorkout(id: String) {
+        change { s in s["workouts"] = .array((s["workouts"]?.arrayValue ?? []).filter { $0.object?["id"]?.stringValue != id }) }
+    }
+
     /// One automatic copy of the document a day (Application Support/Hexplate/backups).
     func backupIfDue() { try? store.autoBackup(today: today) }
 

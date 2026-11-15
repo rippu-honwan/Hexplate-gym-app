@@ -1,8 +1,12 @@
 import HexplateCore
 import SwiftUI
 
-/// One logged workout: its totals, then every exercise with the sets that were done. Read only.
+/// One logged workout: its totals, then every exercise with the sets that were done. Read only,
+/// apart from deleting it.
 struct WorkoutDetailView: View {
+    @Environment(AppModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+    @State private var confirmDelete = false
     let workout: Workout
     let history: History
 
@@ -28,9 +32,22 @@ struct WorkoutDetailView: View {
                     }
                 }
             }
+
+            Section {
+                Button("Delete workout", systemImage: "trash", role: .destructive) { confirmDelete = true }
+            }
         }
         .navigationTitle(workout.name ?? "Workout")
         .navigationBarTitleDisplayMode(.large)
+        .alert("Delete this workout?", isPresented: $confirmDelete) {
+            Button("Delete", role: .destructive) {
+                dismiss()
+                model.deleteWorkout(id: workout.id)
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("It is removed from your history for good.")
+        }
     }
 }
 

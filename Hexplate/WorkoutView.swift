@@ -16,6 +16,8 @@ extension AppModel {
         let bw = history?.weighIns.last?.weight
         let session = Session.begin(root, routineIds: routineIds, bodyweight: bw, id: RoutineOps.newId(now: now), now: now, day: today, catalog: catalog)
         change { $0["active"] = .object(session) }
+        WatchBridge.shared.send()
+        WatchBridge.shared.openOnWatch()
     }
 
     func changeActive(_ mutate: (inout Object) -> Void) {

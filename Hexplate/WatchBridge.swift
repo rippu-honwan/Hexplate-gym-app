@@ -1,5 +1,6 @@
 import HexplateCore
 import SwiftUI
+import HealthKit
 import OSLog
 import WatchConnectivity
 
@@ -10,7 +11,7 @@ import WatchConnectivity
 /// Each is written to a file before the delegate returns (iOS may suspend the app right after),
 /// then applied once by its id.
 ///
-/// ponytail: exercise animations are not sent and the watch app is not opened from the phone yet.
+/// ponytail: exercise animations are not sent yet.
 final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
     static let shared = WatchBridge()
     private let log = Logger(subsystem: "com.rippuhonwan.mygym", category: "watch")
@@ -53,6 +54,29 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
             return
         }
         if WCSession.default.isReachable { WCSession.default.sendMessage(payload, replyHandler: nil, errorHandler: nil) }
+    }
+
+    /// A workout started on the phone opens the watch app (HealthKit launches it with a workout
+    /// configuration; Watch/OpenGymWatchApp.swift handle(_:)). Needs leave to share workouts with
+    /// Health, asked for here the first time.
+    @MainActor
+    func openOnWatch() {
+        let wc = WCSession.default
+        guard WCSession.isSupported(), wc.activationState == .activated, wc.isPaired, wc.isWatchAppInstalled, Health.available else {
+            log.notice("watch app not opened: activated \(wc.activationState == .activated), paired \(wc.isPaired), installed \(wc.isWatchAppInstalled), health \(Health.available)")
+            return
+        }
+        let config = HKWorkoutConfiguration()
+        config.activityType = .traditionalStrengthTraining
+        config.locationType = .indoor
+        Task {
+            try? await Health.store.requestAuthorization(toShare: [.workoutType()], read: [])
+            do {
+                try await Health.store.startWatchApp(toHandle: config)
+            } catch {
+                log.error("watch app not opened: \(error.localizedDescription, privacy: .public)")
+            }
+        }
     }
 
     // MARK: Watch → phone

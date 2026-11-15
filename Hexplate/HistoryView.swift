@@ -5,6 +5,7 @@ import SwiftUI
 struct HistoryView: View {
     @Environment(AppModel.self) private var model
     @State private var importing = false
+    @State private var deleting: AppModel.Item?
 
     var body: some View {
         NavigationStack {
@@ -24,6 +25,9 @@ struct HistoryView: View {
                         Section(month.title) {
                             ForEach(month.items) { item in
                                 NavigationLink(value: WorkoutLink(id: item.id)) { WorkoutRow(item: item) }
+                                    .swipeActions {
+                                        Button("Delete", systemImage: "trash", role: .destructive) { deleting = item }
+                                    }
                             }
                         }
                     }
@@ -39,6 +43,12 @@ struct HistoryView: View {
                 }
             }
             .sheet(isPresented: $importing) { ImportView() }
+            .alert("Delete this workout?", isPresented: Binding(get: { deleting != nil }, set: { if !$0 { deleting = nil } }), presenting: deleting) { item in
+                Button("Delete", role: .destructive) { model.deleteWorkout(id: item.id) }
+                Button("Cancel", role: .cancel) {}
+            } message: { item in
+                Text("\(item.workout.name ?? "This workout") is removed from your history for good.")
+            }
         }
     }
 }
