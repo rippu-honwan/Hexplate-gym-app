@@ -94,6 +94,7 @@ struct SettingsView: View {
                     picker("Start sets from", "startFrom", ["plan": "The plan", "last": "Last time"], fallback: "plan")
                     picker("Last time from", "lastFrom", ["routine": "Same routine", "any": "Any routine"], fallback: "routine")
                     picker("One-rep max", "oneRmFormula", Stats.formulaNames, fallback: "epley")
+                    picker("Effort", "effort", ["none": "Off", "rir": "Reps in reserve", "rpe": "RPE"], fallback: "none")
                 } header: {
                     Text("Training")
                 }

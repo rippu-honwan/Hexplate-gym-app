@@ -88,6 +88,16 @@ extension AppModel {
         return (sg != nil ? target["sgRest"]?.numberValue : nil) ?? target["restSec"]?.numberValue ?? root["restSec"]?.numberValue ?? 90
     }
 
+    /// "rir" or "rpe" when sets record how hard they were (history.js effortOf), else nil.
+    var effortKind: String? {
+        switch root["effort"]?.stringValue {
+        case "rir": "rir"
+        case "rpe": "rpe"
+        case "none": nil
+        default: root["showRir"] == .bool(true) ? "rir" : nil
+        }
+    }
+
     func discardWorkout() { change { $0["active"] = nil } }
 }
 
@@ -426,6 +436,9 @@ private struct SetRow: View {
                 field(fields["r"], unit: "reps") { v in set("r", v, side) }
             }
             Spacer(minLength: 0)
+            if mode == "reps" && !warm, let kind = model.effortKind {
+                EffortMenu(kind: kind, value: fields[kind]?.numberValue) { v in set(kind, v, side) }
+            }
             Button {
                 let now = model.now
                 model.changeSets(entry) { $0[index] = Session.settingDone($0[index], !isDone, side: side, at: now) }
@@ -452,15 +465,16 @@ private struct SetRow: View {
         }
     }
 
-    private func set(_ key: String, _ v: Double, _ side: String?) {
+    /// Sets one field of the row (or of one side); nil removes it.
+    private func set(_ key: String, _ v: Double?, _ side: String?) {
         edit { o in
             if let side, var sides = o["sides"]?.object, var one = sides[side]?.object {
-                one[key] = .number(v)
+                one[key] = v.map(JSONValue.number)
                 sides[side] = .object(one)
                 o["sides"] = .object(sides)
                 o = Session.syncSides(o).object ?? o
             } else {
-                o[key] = .number(v)
+                o[key] = v.map(JSONValue.number)
             }
         }
     }
@@ -483,6 +497,38 @@ private extension Dictionary where Key == String, Value == JSONValue {
         item[key] = .number(v)
         items[k] = .object(item)
         self[list] = .array(items)
+    }
+}
+
+/// How hard a set was: reps in reserve or RPE (history.js EFFORT, effort.js EFFORT_BANDS).
+private struct EffortMenu: View {
+    let kind: String
+    let value: Double?
+    let commit: (Double?) -> Void
+
+    static let rir: [(Double, String)] = [(0, "Nothing left, went to failure"), (0.5, "Maybe half a rep left"), (1, "One more rep in the tank"),
+                                         (2, "Two more reps"), (3, "Three more reps"), (4, "Easy, warm-up territory")]
+    static let rpe: [Double] = Array(stride(from: 10.0, through: 6, by: -0.5))
+
+    var body: some View {
+        Menu {
+            if kind == "rir" {
+                ForEach(Self.rir, id: \.0) { v, feel in
+                    Button { commit(v) } label: { Text("\(Format.number(v))\(v == 4 ? "+" : "") · \(feel)") }
+                }
+            } else {
+                ForEach(Self.rpe, id: \.self) { v in Button("RPE \(Format.number(v))") { commit(v) } }
+            }
+            if value != nil { Button("Clear", role: .destructive) { commit(nil) } }
+        } label: {
+            Text(value.map { (kind == "rir" ? "RIR " : "RPE ") + Format.number($0) } ?? kind.uppercased())
+                .font(.caption.weight(.semibold).monospacedDigit())
+                .foregroundStyle(value == nil ? AnyShapeStyle(.tertiary) : AnyShapeStyle(.primary))
+                .padding(.horizontal, 6).padding(.vertical, 4)
+                .background(.fill.tertiary, in: .capsule)
+        }
+        .accessibilityLabel(kind == "rir" ? "Reps in reserve" : "Effort, RPE")
+        .accessibilityValue(value.map { Format.number($0) } ?? "Not set")
     }
 }
 
