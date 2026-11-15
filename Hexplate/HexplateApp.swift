@@ -31,6 +31,7 @@ private struct RootView: View {
             Tab("Plan", systemImage: "calendar") { PlanView() }
             Tab("Exercises", systemImage: "dumbbell") { LibraryView() }
             Tab("History", systemImage: "clock.arrow.circlepath") { HistoryView() }
+            Tab("Stats", systemImage: "chart.xyaxis.line") { StatsView() }
         }
         .modifier(WorkoutAccessory())
         .fullScreenCover(isPresented: $model.showWorkout) { WorkoutView().tint(Color.accentColor) }

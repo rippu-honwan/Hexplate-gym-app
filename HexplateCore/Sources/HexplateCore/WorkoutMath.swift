@@ -176,6 +176,8 @@ public enum Day {
         return calendar.date(from: c)
     }
 
+    public static func iso(_ date: Date) -> String { iso(date.timeIntervalSince1970 * 1000) }
+
     static func iso(_ ms: Double) -> String {
         let c = calendar.dateComponents([.year, .month, .day], from: Date(timeIntervalSince1970: ms / 1000))
         return String(format: "%04d-%02d-%02d", c.year ?? 0, c.month ?? 0, c.day ?? 0)

@@ -198,3 +198,37 @@ it('writes the session golden file', async () => {
   })
   writeFileSync(process.env.SESSION_OUT, JSON.stringify(out, null, 1) + '\n')
 })
+
+// Stats and body: one-rep maxes, strength levels, weekly sets per muscle, weigh-ins.
+it('writes the stats golden file', async () => {
+  if (!process.env.STATS_IN) return
+  const O = await import('../../frontend/src/lib/onerm.js')
+  const { strengthLevels } = await import('../../frontend/src/lib/strength-level.js')
+  const { weeklyMuscleSets } = await import('../../frontend/src/lib/muscle-targets.js')
+  const { addWeighIn } = await import('../../frontend/src/lib/weigh-ins.js')
+  const cases = JSON.parse(readFileSync(process.env.STATS_IN, 'utf8'))
+  const ids = ['0043', '0025', '0289', '0027', '0031', '0662', '0017', '0334']
+  const out = cases.map(c => {
+    vi.useFakeTimers(); vi.setSystemTime(new Date('2026-11-15T12:00:00'))
+    let result
+    if (c.op === 'stats') {
+      const S = structuredClone(c.state)
+      const f = O.formulaOf(S)
+      result = {
+        series: Object.fromEntries(ids.map(id => [id, O.e1rmSeries(S, id, f).map(p => ({ d: p.d, y: p.y, w: p.w, r: p.r }))])),
+        best: Object.fromEntries(ids.map(id => [id, O.best1RM(S, id, f)?.est ?? null])),
+        levels: strengthLevels(S).map(l => ({ lift: l.lift, id: l.id, level: l.level, ratio: l.ratio, e1rm: l.e1rm, bw: l.bw, next: l.next, thresholds: l.thresholds })),
+        muscles: weeklyMuscleSets(S, c.today).map(m => ({ slug: m.slug, sets: m.sets, lo: m.lo, hi: m.hi, status: m.status })),
+      }
+    } else if (c.op === 'estimate') {
+      result = c.rows.map(([w, r, f, rir]) => O.estimate1RM(w, r, f, rir))
+    } else {
+      const S = structuredClone(c.state)
+      for (const a of c.adds) addWeighIn(S, a)
+      result = S.bodyweight
+    }
+    vi.useRealTimers()
+    return { name: c.name, result: JSON.parse(JSON.stringify(result)) }
+  })
+  writeFileSync(process.env.STATS_OUT, JSON.stringify(out, null, 1) + '\n')
+})
