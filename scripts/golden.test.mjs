@@ -245,3 +245,27 @@ it('writes the CSV golden file', async () => {
   registerCustom(state.customEx || [])
   writeFileSync(process.env.CSV_OUT, workoutsCSV(state))
 })
+
+// The watch link: the snapshot the watch runs from (each entry's best set and the Health type are
+// left out: not ported) and patching a set from a watch event.
+it('writes the watch golden file', async () => {
+  if (!process.env.WATCH_IN) return
+  const W = await import('../../frontend/src/lib/watch-sync.js')
+  const cases = JSON.parse(readFileSync(process.env.WATCH_IN, 'utf8'))
+  setWeightDecimals(1)
+  const strip = v => JSON.parse(JSON.stringify(v, (k, x) => (k === 'best' || k === 'healthType' ? undefined : x)))
+  const out = []
+  for (const c of cases) {
+    vi.useFakeTimers(); vi.setSystemTime(new Date(c.today ? c.today + 'T12:00:00' : '2026-11-15T12:00:00'))
+    const S = structuredClone(c.state)
+    let result
+    if (c.op === 'snapshot') result = strip(W.buildSnapshot(S, { ready: W.buildReady(S, c.today) }))
+    else {
+      const ok = W.patchSetIn(S, c.ref, c.fields, null, { ifNewer: c.ifNewer })
+      result = { ok, workouts: S.workouts, active: S.active ?? null }
+    }
+    vi.useRealTimers()
+    out.push({ name: c.name, result: JSON.parse(JSON.stringify(result)) })
+  }
+  writeFileSync(process.env.WATCH_OUT, JSON.stringify(out, null, 1) + '\n')
+})

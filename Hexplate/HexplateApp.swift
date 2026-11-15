@@ -19,10 +19,16 @@ struct HexplateApp: App {
                 // The day may have changed while the app was in the background.
                 .preferredColorScheme(appearance == "light" ? .light : appearance == "dark" ? .dark : nil)
                 .onChange(of: phase) {
-                    if phase == .active { model.today = Day.today() }
+                    if phase == .active { model.today = Day.today(); WatchBridge.shared.drain() }
                     if phase == .background { model.backupIfDue() }
                 }
-                .task { model.backupIfDue() }
+                .task {
+                    model.backupIfDue()
+                    WatchBridge.shared.start(model: model, timer: timer)
+                }
+                // The watch follows every change of the document and of the rest timer.
+                .onChange(of: model.root) { WatchBridge.shared.send() }
+                .onChange(of: timer.end) { WatchBridge.shared.send() }
         }
     }
 }

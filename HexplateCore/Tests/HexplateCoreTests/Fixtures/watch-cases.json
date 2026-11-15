@@ -1,0 +1,2237 @@
+[
+ {
+  "name": "idle, Sunday plan",
+  "op": "snapshot",
+  "today": "2026-11-15",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sg": "a"
+      },
+      {
+       "id": "0861",
+       "sets": 3,
+       "reps": 10,
+       "weight": 50,
+       "sg": "a"
+      },
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time"
+      },
+      {
+       "id": "0017",
+       "sets": 2,
+       "reps": 8,
+       "weight": 30
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Cardio",
+     "ex": [
+      {
+       "id": "0685",
+       "sets": 1,
+       "min": 20,
+       "speed": 9
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "scheduleMode": "week",
+   "week": {
+    "0": [
+     "r1"
+    ],
+    "1": [
+     "r2"
+    ]
+   },
+   "dayPlan": {}
+  }
+ },
+ {
+  "name": "idle, nothing planned",
+  "op": "snapshot",
+  "today": "2026-11-17",
+  "state": {
+   "unit": "lb",
+   "restSec": 90,
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sg": "a"
+      },
+      {
+       "id": "0861",
+       "sets": 3,
+       "reps": 10,
+       "weight": 50,
+       "sg": "a"
+      },
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time"
+      },
+      {
+       "id": "0017",
+       "sets": 2,
+       "reps": 8,
+       "weight": 30
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Cardio",
+     "ex": [
+      {
+       "id": "0685",
+       "sets": 1,
+       "min": 20,
+       "speed": 9
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "scheduleMode": "week",
+   "week": {
+    "0": [
+     "r1"
+    ],
+    "1": [
+     "r2"
+    ]
+   },
+   "dayPlan": {}
+  }
+ },
+ {
+  "name": "running",
+  "op": "snapshot",
+  "today": "2026-11-15",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sg": "a"
+      },
+      {
+       "id": "0861",
+       "sets": 3,
+       "reps": 10,
+       "weight": 50,
+       "sg": "a"
+      },
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time"
+      },
+      {
+       "id": "0017",
+       "sets": 2,
+       "reps": 8,
+       "weight": 30
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Cardio",
+     "ex": [
+      {
+       "id": "0685",
+       "sets": 1,
+       "min": 20,
+       "speed": 9
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "scheduleMode": "week",
+   "week": {
+    "0": [
+     "r1"
+    ],
+    "1": [
+     "r2"
+    ]
+   },
+   "dayPlan": {},
+   "active": {
+    "id": "live",
+    "d": "2026-11-15",
+    "start": 50000,
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Upper",
+    "cur": 7,
+    "entries": [
+     {
+      "id": "0025",
+      "rid": "r1",
+      "sg": "a",
+      "target": {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sg": "a"
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "done": true,
+        "phase": "warmup",
+        "at": 51000
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true,
+        "at": 52000
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "rid": "r1",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      },
+      "sets": [
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       }
+      ]
+     }
+    ]
+   }
+  }
+ },
+ {
+  "name": "patch a saved set",
+  "op": "patch",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sg": "a"
+      },
+      {
+       "id": "0861",
+       "sets": 3,
+       "reps": 10,
+       "weight": 50,
+       "sg": "a"
+      },
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time"
+      },
+      {
+       "id": "0017",
+       "sets": 2,
+       "reps": 8,
+       "weight": 30
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Cardio",
+     "ex": [
+      {
+       "id": "0685",
+       "sets": 1,
+       "min": 20,
+       "speed": 9
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "scheduleMode": "week",
+   "week": {
+    "0": [
+     "r1"
+    ],
+    "1": [
+     "r2"
+    ]
+   },
+   "dayPlan": {}
+  },
+  "ref": {
+   "wid": "w1",
+   "exId": "0025",
+   "entryIdx": 0,
+   "setIdx": 2
+  },
+  "fields": {
+   "w": 60,
+   "r": 8,
+   "done": true
+  },
+  "ifNewer": null
+ },
+ {
+  "name": "patch a newer saved set keeps it",
+  "op": "patch",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sg": "a"
+      },
+      {
+       "id": "0861",
+       "sets": 3,
+       "reps": 10,
+       "weight": 50,
+       "sg": "a"
+      },
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time"
+      },
+      {
+       "id": "0017",
+       "sets": 2,
+       "reps": 8,
+       "weight": 30
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Cardio",
+     "ex": [
+      {
+       "id": "0685",
+       "sets": 1,
+       "min": 20,
+       "speed": 9
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "scheduleMode": "week",
+   "week": {
+    "0": [
+     "r1"
+    ],
+    "1": [
+     "r2"
+    ]
+   },
+   "dayPlan": {}
+  },
+  "ref": {
+   "wid": "w1",
+   "exId": "0025",
+   "entryIdx": 0,
+   "setIdx": 2
+  },
+  "fields": {
+   "w": 70,
+   "r": 3,
+   "hr": {
+    "avg": 130,
+    "max": 150
+   },
+   "rpe": 8
+  },
+  "ifNewer": 6500
+ },
+ {
+  "name": "patch by exercise when the index moved",
+  "op": "patch",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sg": "a"
+      },
+      {
+       "id": "0861",
+       "sets": 3,
+       "reps": 10,
+       "weight": 50,
+       "sg": "a"
+      },
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time"
+      },
+      {
+       "id": "0017",
+       "sets": 2,
+       "reps": 8,
+       "weight": 30
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Cardio",
+     "ex": [
+      {
+       "id": "0685",
+       "sets": 1,
+       "min": 20,
+       "speed": 9
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "scheduleMode": "week",
+   "week": {
+    "0": [
+     "r1"
+    ],
+    "1": [
+     "r2"
+    ]
+   },
+   "dayPlan": {}
+  },
+  "ref": {
+   "wid": "w2",
+   "exId": "0463",
+   "entryIdx": 0,
+   "setIdx": 0
+  },
+  "fields": {
+   "restHr": {
+    "avg": 90,
+    "max": 100
+   }
+  },
+  "ifNewer": null
+ },
+ {
+  "name": "patch a warm-up marks it edited",
+  "op": "patch",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sg": "a"
+      },
+      {
+       "id": "0861",
+       "sets": 3,
+       "reps": 10,
+       "weight": 50,
+       "sg": "a"
+      },
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time"
+      },
+      {
+       "id": "0017",
+       "sets": 2,
+       "reps": 8,
+       "weight": 30
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Cardio",
+     "ex": [
+      {
+       "id": "0685",
+       "sets": 1,
+       "min": 20,
+       "speed": 9
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "scheduleMode": "week",
+   "week": {
+    "0": [
+     "r1"
+    ],
+    "1": [
+     "r2"
+    ]
+   },
+   "dayPlan": {}
+  },
+  "ref": {
+   "wid": "w2",
+   "exId": "0043",
+   "entryIdx": 0,
+   "setIdx": 0
+  },
+  "fields": {
+   "w": 50
+  },
+  "ifNewer": null
+ },
+ {
+  "name": "patch one side",
+  "op": "patch",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sg": "a"
+      },
+      {
+       "id": "0861",
+       "sets": 3,
+       "reps": 10,
+       "weight": 50,
+       "sg": "a"
+      },
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time"
+      },
+      {
+       "id": "0017",
+       "sets": 2,
+       "reps": 8,
+       "weight": 30
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Cardio",
+     "ex": [
+      {
+       "id": "0685",
+       "sets": 1,
+       "min": 20,
+       "speed": 9
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "scheduleMode": "week",
+   "week": {
+    "0": [
+     "r1"
+    ],
+    "1": [
+     "r2"
+    ]
+   },
+   "dayPlan": {},
+   "active": {
+    "id": "live",
+    "d": "2026-11-15",
+    "start": 50000,
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Upper",
+    "cur": 7,
+    "entries": [
+     {
+      "id": "0025",
+      "rid": "r1",
+      "sg": "a",
+      "target": {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sg": "a"
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "done": true,
+        "phase": "warmup",
+        "at": 51000
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true,
+        "at": 52000
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "rid": "r1",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      },
+      "sets": [
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "ref": {
+   "wid": "live",
+   "exId": "0334",
+   "entryIdx": 1,
+   "setIdx": 0,
+   "side": "L"
+  },
+  "fields": {
+   "w": 7,
+   "r": 6,
+   "done": true,
+   "at": 60000
+  },
+  "ifNewer": null
+ },
+ {
+  "name": "patch an unknown workout",
+  "op": "patch",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sg": "a"
+      },
+      {
+       "id": "0861",
+       "sets": 3,
+       "reps": 10,
+       "weight": 50,
+       "sg": "a"
+      },
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time"
+      },
+      {
+       "id": "0017",
+       "sets": 2,
+       "reps": 8,
+       "weight": 30
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Cardio",
+     "ex": [
+      {
+       "id": "0685",
+       "sets": 1,
+       "min": 20,
+       "speed": 9
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "scheduleMode": "week",
+   "week": {
+    "0": [
+     "r1"
+    ],
+    "1": [
+     "r2"
+    ]
+   },
+   "dayPlan": {}
+  },
+  "ref": {
+   "wid": "nope",
+   "exId": "0025",
+   "entryIdx": 0,
+   "setIdx": 0
+  },
+  "fields": {
+   "w": 1
+  },
+  "ifNewer": null
+ }
+]

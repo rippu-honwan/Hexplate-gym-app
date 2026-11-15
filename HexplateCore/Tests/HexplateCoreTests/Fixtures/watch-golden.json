@@ -1,0 +1,1798 @@
+[
+ {
+  "name": "idle, Sunday plan",
+  "result": {
+   "v": 1,
+   "unit": "kg",
+   "restSec": 90,
+   "active": null,
+   "ready": {
+    "today": {
+     "routineIds": [
+      "r1"
+     ],
+     "name": "Upper",
+     "entries": [
+      {
+       "id": "0025",
+       "name": "Barbell Bench Press",
+       "mode": "reps",
+       "restSec": 120,
+       "last": "57.5×8, 57.5×8, 57.5×7",
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "sec": null,
+         "done": false,
+         "warmup": false
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "sec": null,
+         "done": false,
+         "warmup": false
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "sec": null,
+         "done": false,
+         "warmup": false
+        }
+       ],
+       "group": "a",
+       "step": 2.5,
+       "bodyPart": "chest"
+      },
+      {
+       "id": "0861",
+       "name": "Cable Seated Row",
+       "mode": "reps",
+       "restSec": null,
+       "last": null,
+       "sets": [
+        {
+         "w": 50,
+         "r": 10,
+         "sec": null,
+         "done": false,
+         "warmup": false
+        },
+        {
+         "w": 50,
+         "r": 10,
+         "sec": null,
+         "done": false,
+         "warmup": false
+        },
+        {
+         "w": 50,
+         "r": 10,
+         "sec": null,
+         "done": false,
+         "warmup": false
+        }
+       ],
+       "group": "a",
+       "step": 5,
+       "bodyPart": "back"
+      },
+      {
+       "id": "0334",
+       "name": "Dumbbell Lateral Raise",
+       "mode": "reps",
+       "restSec": null,
+       "last": "L 6×6 · R 6×6",
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "sec": null,
+         "done": false,
+         "warmup": false,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": false
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": false
+          }
+         }
+        },
+        {
+         "w": 6,
+         "r": 12,
+         "sec": null,
+         "done": false,
+         "warmup": false,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": false
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": false
+          }
+         }
+        }
+       ],
+       "perSide": true,
+       "step": 2.5,
+       "bodyPart": "shoulders"
+      }
+     ]
+    },
+    "others": [
+     {
+      "routineIds": [
+       "r2"
+      ],
+      "name": "Lower",
+      "entries": [
+       {
+        "id": "0043",
+        "name": "Barbell Full Squat",
+        "mode": "reps",
+        "restSec": null,
+        "last": "100×5, 100×5 (RIR 2)",
+        "sets": [
+         {
+          "w": 100,
+          "r": 5,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 100,
+          "r": 5,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 100,
+          "r": 5,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "step": 5,
+        "bodyPart": "upper legs"
+       },
+       {
+        "id": "0463",
+        "name": "Front Plank",
+        "mode": "time",
+        "restSec": null,
+        "last": "0:45",
+        "sets": [
+         {
+          "w": 0,
+          "r": null,
+          "sec": 45,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 0,
+          "r": null,
+          "sec": 45,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "bodyweight": true,
+        "bodyPart": "waist"
+       },
+       {
+        "id": "0017",
+        "name": "Assisted Pull-Up",
+        "mode": "reps",
+        "restSec": null,
+        "last": null,
+        "sets": [
+         {
+          "w": 30,
+          "r": 8,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 30,
+          "r": 8,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "assisted": true,
+        "step": 5,
+        "bodyPart": "back"
+       }
+      ]
+     },
+     {
+      "routineIds": [
+       "r3"
+      ],
+      "name": "Cardio",
+      "entries": [
+       {
+        "id": "0685",
+        "name": "Run",
+        "mode": "cardio",
+        "restSec": null,
+        "last": null,
+        "sets": [
+         {
+          "w": null,
+          "r": null,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "bodyweight": true,
+        "bodyPart": "cardio"
+       }
+      ]
+     }
+    ]
+   }
+  }
+ },
+ {
+  "name": "idle, nothing planned",
+  "result": {
+   "v": 1,
+   "unit": "lb",
+   "restSec": 90,
+   "active": null,
+   "ready": {
+    "today": null,
+    "others": [
+     {
+      "routineIds": [
+       "r1"
+      ],
+      "name": "Upper",
+      "entries": [
+       {
+        "id": "0025",
+        "name": "Barbell Bench Press",
+        "mode": "reps",
+        "restSec": 120,
+        "last": "57.5×8, 57.5×8, 57.5×7",
+        "sets": [
+         {
+          "w": 57.5,
+          "r": 8,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 57.5,
+          "r": 8,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 57.5,
+          "r": 8,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "group": "a",
+        "step": 5,
+        "bodyPart": "chest"
+       },
+       {
+        "id": "0861",
+        "name": "Cable Seated Row",
+        "mode": "reps",
+        "restSec": null,
+        "last": null,
+        "sets": [
+         {
+          "w": 50,
+          "r": 10,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 50,
+          "r": 10,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 50,
+          "r": 10,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "group": "a",
+        "step": 10,
+        "bodyPart": "back"
+       },
+       {
+        "id": "0334",
+        "name": "Dumbbell Lateral Raise",
+        "mode": "reps",
+        "restSec": null,
+        "last": "L 6×6 · R 6×6",
+        "sets": [
+         {
+          "w": 6,
+          "r": 12,
+          "sec": null,
+          "done": false,
+          "warmup": false,
+          "sides": {
+           "L": {
+            "w": 6,
+            "r": 6,
+            "done": false
+           },
+           "R": {
+            "w": 6,
+            "r": 6,
+            "done": false
+           }
+          }
+         },
+         {
+          "w": 6,
+          "r": 12,
+          "sec": null,
+          "done": false,
+          "warmup": false,
+          "sides": {
+           "L": {
+            "w": 6,
+            "r": 6,
+            "done": false
+           },
+           "R": {
+            "w": 6,
+            "r": 6,
+            "done": false
+           }
+          }
+         }
+        ],
+        "perSide": true,
+        "step": 5,
+        "bodyPart": "shoulders"
+       }
+      ]
+     },
+     {
+      "routineIds": [
+       "r2"
+      ],
+      "name": "Lower",
+      "entries": [
+       {
+        "id": "0043",
+        "name": "Barbell Full Squat",
+        "mode": "reps",
+        "restSec": null,
+        "last": "100×5, 100×5 (RIR 2)",
+        "sets": [
+         {
+          "w": 100,
+          "r": 5,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 100,
+          "r": 5,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 100,
+          "r": 5,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "step": 10,
+        "bodyPart": "upper legs"
+       },
+       {
+        "id": "0463",
+        "name": "Front Plank",
+        "mode": "time",
+        "restSec": null,
+        "last": "0:45",
+        "sets": [
+         {
+          "w": 0,
+          "r": null,
+          "sec": 45,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 0,
+          "r": null,
+          "sec": 45,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "bodyweight": true,
+        "bodyPart": "waist"
+       },
+       {
+        "id": "0017",
+        "name": "Assisted Pull-Up",
+        "mode": "reps",
+        "restSec": null,
+        "last": null,
+        "sets": [
+         {
+          "w": 30,
+          "r": 8,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 30,
+          "r": 8,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "assisted": true,
+        "step": 10,
+        "bodyPart": "back"
+       }
+      ]
+     },
+     {
+      "routineIds": [
+       "r3"
+      ],
+      "name": "Cardio",
+      "entries": [
+       {
+        "id": "0685",
+        "name": "Run",
+        "mode": "cardio",
+        "restSec": null,
+        "last": null,
+        "sets": [
+         {
+          "w": null,
+          "r": null,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "bodyweight": true,
+        "bodyPart": "cardio"
+       }
+      ]
+     }
+    ]
+   }
+  }
+ },
+ {
+  "name": "running",
+  "result": {
+   "v": 1,
+   "unit": "kg",
+   "restSec": 90,
+   "ready": {
+    "today": {
+     "routineIds": [
+      "r1"
+     ],
+     "name": "Upper",
+     "entries": [
+      {
+       "id": "0025",
+       "name": "Barbell Bench Press",
+       "mode": "reps",
+       "restSec": 120,
+       "last": "57.5×8, 57.5×8, 57.5×7",
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "sec": null,
+         "done": false,
+         "warmup": false
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "sec": null,
+         "done": false,
+         "warmup": false
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "sec": null,
+         "done": false,
+         "warmup": false
+        }
+       ],
+       "group": "a",
+       "step": 2.5,
+       "bodyPart": "chest"
+      },
+      {
+       "id": "0861",
+       "name": "Cable Seated Row",
+       "mode": "reps",
+       "restSec": null,
+       "last": null,
+       "sets": [
+        {
+         "w": 50,
+         "r": 10,
+         "sec": null,
+         "done": false,
+         "warmup": false
+        },
+        {
+         "w": 50,
+         "r": 10,
+         "sec": null,
+         "done": false,
+         "warmup": false
+        },
+        {
+         "w": 50,
+         "r": 10,
+         "sec": null,
+         "done": false,
+         "warmup": false
+        }
+       ],
+       "group": "a",
+       "step": 5,
+       "bodyPart": "back"
+      },
+      {
+       "id": "0334",
+       "name": "Dumbbell Lateral Raise",
+       "mode": "reps",
+       "restSec": null,
+       "last": "L 6×6 · R 6×6",
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "sec": null,
+         "done": false,
+         "warmup": false,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": false
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": false
+          }
+         }
+        },
+        {
+         "w": 6,
+         "r": 12,
+         "sec": null,
+         "done": false,
+         "warmup": false,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": false
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": false
+          }
+         }
+        }
+       ],
+       "perSide": true,
+       "step": 2.5,
+       "bodyPart": "shoulders"
+      }
+     ]
+    },
+    "others": [
+     {
+      "routineIds": [
+       "r2"
+      ],
+      "name": "Lower",
+      "entries": [
+       {
+        "id": "0043",
+        "name": "Barbell Full Squat",
+        "mode": "reps",
+        "restSec": null,
+        "last": "100×5, 100×5 (RIR 2)",
+        "sets": [
+         {
+          "w": 100,
+          "r": 5,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 100,
+          "r": 5,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 100,
+          "r": 5,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "step": 5,
+        "bodyPart": "upper legs"
+       },
+       {
+        "id": "0463",
+        "name": "Front Plank",
+        "mode": "time",
+        "restSec": null,
+        "last": "0:45",
+        "sets": [
+         {
+          "w": 0,
+          "r": null,
+          "sec": 45,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 0,
+          "r": null,
+          "sec": 45,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "bodyweight": true,
+        "bodyPart": "waist"
+       },
+       {
+        "id": "0017",
+        "name": "Assisted Pull-Up",
+        "mode": "reps",
+        "restSec": null,
+        "last": null,
+        "sets": [
+         {
+          "w": 30,
+          "r": 8,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         },
+         {
+          "w": 30,
+          "r": 8,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "assisted": true,
+        "step": 5,
+        "bodyPart": "back"
+       }
+      ]
+     },
+     {
+      "routineIds": [
+       "r3"
+      ],
+      "name": "Cardio",
+      "entries": [
+       {
+        "id": "0685",
+        "name": "Run",
+        "mode": "cardio",
+        "restSec": null,
+        "last": null,
+        "sets": [
+         {
+          "w": null,
+          "r": null,
+          "sec": null,
+          "done": false,
+          "warmup": false
+         }
+        ],
+        "bodyweight": true,
+        "bodyPart": "cardio"
+       }
+      ]
+     }
+    ]
+   },
+   "active": {
+    "id": "live",
+    "name": "Upper",
+    "start": 50000,
+    "unit": "kg",
+    "cur": 1,
+    "restSec": 90,
+    "rest": null,
+    "entries": [
+     {
+      "id": "0025",
+      "name": "Barbell Bench Press",
+      "mode": "reps",
+      "restSec": 120,
+      "last": "57.5×8, 57.5×8, 57.5×7",
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "sec": null,
+        "done": true,
+        "warmup": true,
+        "at": 51000
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "sec": null,
+        "done": true,
+        "warmup": false,
+        "at": 52000
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "sec": null,
+        "done": false,
+        "warmup": false
+       }
+      ],
+      "group": "a",
+      "step": 2.5,
+      "bodyPart": "chest"
+     },
+     {
+      "id": "0334",
+      "name": "Dumbbell Lateral Raise",
+      "mode": "reps",
+      "restSec": null,
+      "last": "L 6×6 · R 6×6",
+      "sets": [
+       {
+        "w": 6,
+        "r": 12,
+        "sec": null,
+        "done": false,
+        "warmup": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       }
+      ],
+      "perSide": true,
+      "step": 2.5,
+      "bodyPart": "shoulders"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "name": "patch a saved set",
+  "result": {
+   "ok": true,
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "active": null
+  }
+ },
+ {
+  "name": "patch a newer saved set keeps it",
+  "result": {
+   "ok": true,
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 130,
+          "max": 150
+         },
+         "rpe": 8
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "active": null
+  }
+ },
+ {
+  "name": "patch by exercise when the index moved",
+  "result": {
+   "ok": true,
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true,
+         "restHr": {
+          "avg": 90,
+          "max": 100
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "active": null
+  }
+ },
+ {
+  "name": "patch a warm-up marks it edited",
+  "result": {
+   "ok": true,
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 50,
+         "r": 8,
+         "done": true,
+         "phase": "warmup",
+         "edited": true
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "active": null
+  }
+ },
+ {
+  "name": "patch one side",
+  "result": {
+   "ok": true,
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "active": {
+    "id": "live",
+    "d": "2026-11-15",
+    "start": 50000,
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Upper",
+    "cur": 7,
+    "entries": [
+     {
+      "id": "0025",
+      "rid": "r1",
+      "sg": "a",
+      "target": {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sg": "a"
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "done": true,
+        "phase": "warmup",
+        "at": 51000
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true,
+        "at": 52000
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "rid": "r1",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      },
+      "sets": [
+       {
+        "w": 7,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 7,
+          "r": 6,
+          "done": true
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        },
+        "at": 60000
+       }
+      ]
+     }
+    ]
+   }
+  }
+ },
+ {
+  "name": "patch an unknown workout",
+  "result": {
+   "ok": false,
+   "workouts": [
+    {
+     "id": "w1",
+     "d": "2026-11-10",
+     "start": 1000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "rid": "r1",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60,
+        "restSec": 120,
+        "sg": "a"
+       },
+       "sets": [
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 5000
+        },
+        {
+         "w": 57.5,
+         "r": 8,
+         "done": true,
+         "at": 6000
+        },
+        {
+         "w": 57.5,
+         "r": 7,
+         "done": true,
+         "at": 7000,
+         "hr": {
+          "avg": 120,
+          "max": 140
+         }
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "rid": "r1",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "at": 8000,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-12",
+     "start": 2000,
+     "routineIds": [
+      "r2"
+     ],
+     "routineId": "r2",
+     "entries": [
+      {
+       "id": "0043",
+       "rid": "r2",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 100
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 9500,
+         "rir": 2
+        }
+       ]
+      },
+      {
+       "id": "0463",
+       "rid": "r2",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 45,
+        "mode": "time"
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "active": null
+  }
+ }
+]
