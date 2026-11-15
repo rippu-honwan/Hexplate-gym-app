@@ -75,6 +75,18 @@ cases = [
     case('lb unit', [sq], history([entry(sq, rows(135, [5, 5, 5]))]), unit='lb'),
 ]
 
+DLIFT, CURL = '0032', '0031'
+cases += [
+    case('warm-ups: compounds, heavy squat on a bar', [sq], history([entry(sq, rows(100, [5, 5, 5]))]), warmupAuto='compounds'),
+    case('warm-ups: compounds skip an isolation lift', [{'id': CURL, 'sets': 3, 'reps': 10, 'weight': 30}], warmupAuto='compounds'),
+    case('warm-ups: all, light isolation', [{'id': CURL, 'sets': 3, 'reps': 10, 'weight': 30}, raise_], warmupAuto='all'),
+    case('warm-ups: mid compound', [{'id': DLIFT, 'sets': 3, 'reps': 5, 'weight': 40}, bench], warmupAuto='compounds'),
+    case('warm-ups: light compound and bodyweight', [{'id': BENCH, 'sets': 3, 'reps': 8, 'weight': 25}, push, {'id': ASSIST, 'sets': 2, 'reps': 8, 'weight': 30}], warmupAuto='all'),
+    case('warm-ups: own bar setting and lb', [sq, {'id': ROW, 'sets': 3, 'reps': 10, 'weight': 150}], warmupAuto='all', unit='lb', barWeights={SQUAT: 0}),
+    case('warm-ups: slot says none, module off', [{**sq, 'warmup': 'none'}, {**bench, 'warmup': 'auto'}], warmupAuto='all'),
+    case('warm-ups: plates module off', [sq], warmupAuto='all', modules={'plates': False}),
+]
+
 side = {'w': 6, 'r': 12, 'done': True, 'sides': {'L': {'w': 6, 'r': 6, 'done': True, 'weightOrigin': 'manual'}, 'R': {'w': 6, 'r': 6, 'done': True}}}
 active = {
     'id': 'live', 'd': '2026-11-15', 'start': 1000, 'routineIds': ['r1'], 'name': 'A', 'bw': 70, 'cur': 0, 'note': '  good day ',

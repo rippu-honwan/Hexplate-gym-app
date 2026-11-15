@@ -557,7 +557,8 @@ public enum Session {
             let kind = plan["kind"]?.stringValue
             let planReps = !fromLastSetting
             let fromLast = !noProg && kind == "off" && fromLastSetting
-            let rows = applyPrescription(buildSets(s, cfg, rid: rid, useTarget: kind == "off" && !fromLast, planReps: planReps, c), plan)
+            let built = applyPrescription(buildSets(s, cfg, rid: rid, useTarget: kind == "off" && !fromLast, planReps: planReps, c), plan)
+            let rows = withWarmupBlock(s, cfg, built, c)
             var target = cfg
             for k in ["weight", "reps", "sec", "sets"] where plan[k] != nil { target[k] = plan[k] }
             target["rowReps"] = nil; target["backoffStep"] = nil
@@ -565,7 +566,7 @@ public enum Session {
             if let sg = cfg["sg"] { e["sg"] = sg }
             let m = mode(cfg, c)
             if !planReps && (kind != "off" || fromLast) && plan["reps"] == nil && m == "reps"
-                && rows.contains(where: { !isWarmup($0) && ($0.object?["r"] ?? .null) != (cfg["reps"] ?? .null) }) { e["carried"] = .bool(true) }
+                && built.contains(where: { !isWarmup($0) && ($0.object?["r"] ?? .null) != (cfg["reps"] ?? .null) }) { e["carried"] = .bool(true) }
             if noProg { e["noProg"] = .bool(true) }
             if let rid { e["rid"] = .string(rid) }
             return .object(e)
@@ -770,5 +771,87 @@ public enum Session {
     /// Last time's logged work rows, for the "last time" line.
     public static func lastRows(_ s: Object, _ exId: String, routineId: String?) -> [JSONValue] {
         lastSets(s, exId, routineId) ?? []
+    }
+
+    // MARK: Automatic warm-ups (lib/warmup-ramp.js, warmup-snap.js, bar.js)
+    // ponytail: a slot's own warm-up rows (`warmup: "own"`), a planned warm-up count and owned
+    // plates as the snapping grid are not ported; such slots start without automatic warm-ups.
+
+    static let compoundName = try! NSRegularExpression(pattern: #"squat|deadlift|\bpress\b|\brow\b|rowing|pull-?up|chin-?up|\bdips?\b|lunge|clean|snatch|jerk|thrust|good ?morning|step-?up|push-?up|leg press|hack|rack pull|pulldown|pull-down|swing|carry|floor press|landmine"#, options: .caseInsensitive)
+    static let isolationName = try! NSRegularExpression(pattern: #"curl|extension|raise|\bfly\b|flye|kickback|shrug|calf|crunch|pullover|pushdown|push-down|face pull|wrist|adduct|abduct|lateral|stretch|twist|\bsit-?up"#, options: .caseInsensitive)
+
+    static func isCompound(_ id: String?, _ c: ExerciseCatalog) -> Bool {
+        guard let ex = id.flatMap({ c[$0] }), !ex.isCardio else { return false }
+        let r = NSRange(ex.name.startIndex..., in: ex.name)
+        return compoundName.firstMatch(in: ex.name, range: r) != nil && isolationName.firstMatch(in: ex.name, range: r) == nil
+    }
+
+    static let barEquipment: [String: (kg: Double, lb: Double)] = ["barbell": (20, 45), "olympic barbell": (20, 45), "ez barbell": (10, 25), "smith machine": (9, 20), "trap bar": (25, 55)]
+
+    /// The bar a lift is loaded on: the exercise's own setting, else the usual bar for its equipment.
+    public static func barFloor(_ s: Object, _ id: String?, _ c: ExerciseCatalog) -> Double {
+        guard let id, let eq = c[id]?.equipment, let bar = barEquipment[eq] else { return 0 }
+        if let own = s["barWeights"]?.object?[id]?.numberValue, own >= 0 { return own }
+        return s["unit"] == .string("lb") ? bar.lb : bar.kg
+    }
+
+    /// Whether this slot gets automatic warm-ups (warmupSource "auto").
+    static func autoWarmups(_ s: Object, _ cfg: Object, _ c: ExerciseCatalog) -> Bool {
+        if s["modules"]?.object?["plates"] == .bool(false) { return false }
+        guard mode(cfg, c) == "reps", cfg["intensifier"]?.object?["type"] != .string("restpause") else { return false }
+        switch cfg["warmup"]?.stringValue {
+        case "none", "own": return false
+        case "auto": return true
+        default: break
+        }
+        if (cfg["warmupSets"]?.num ?? 0).rounded() > 0 { return false }
+        switch s["warmupAuto"]?.stringValue {
+        case "all": return true
+        case "compounds": return isCompound(cfg["id"]?.stringValue, c)
+        default: return false
+        }
+    }
+
+    /// Warm-up rows in front of the work (warmupBlock + rungRows), the old ones replaced.
+    static func withWarmupBlock(_ s: Object, _ cfg: Object, _ rows: [JSONValue], _ c: ExerciseCatalog) -> [JSONValue] {
+        guard autoWarmups(s, cfg, c) else { return rows }
+        let work = rows.first { !isWarmup($0) }.map { n($0.object?["w"]) } ?? 0
+        let workRows = rows.filter { !isWarmup($0) }
+        guard work > 0 else { return workRows }
+        let unit = s["unit"]?.stringValue ?? "kg"
+        let kg = unit == "lb" ? work * 0.45359237 : work
+        let floor = barFloor(s, cfg["id"]?.stringValue, c)
+        let id = cfg["id"]?.stringValue
+        let bw = RoutineOps.isBodyweight(cfg, catalog: c) || id.flatMap { c[$0] }?.equipment == "weighted"
+        typealias Rung = (wp: Double?, bar: Bool, r: Double)
+        var rungs: [Rung] = []
+        if !isAssisted(cfg, c) {
+            if bw {
+                rungs = kg >= 10 ? [(0, false, 5), (60, false, 3)] : [(0, false, 5)]
+            } else if isCompound(id, c) {
+                let hasBar = floor > 0 && floor < work
+                if kg >= 60 { rungs = hasBar ? [(nil, true, 10), (40, false, 5), (60, false, 3), (80, false, 1)] : [(40, false, 8), (60, false, 4), (80, false, 1)] }
+                else if kg >= 30 { rungs = hasBar ? [(nil, true, 10), (70, false, 3)] : [(50, false, 8), (75, false, 3)] }
+                else { rungs = hasBar ? [(nil, true, 10)] : [(50, false, 8)] }
+            } else if kg >= 40 { rungs = [(50, false, 10), (75, false, 4)] }
+            else if kg >= 10 { rungs = [(50, false, 10)] }
+        }
+        let grid = weightIncrement(cfg, unit: unit, c)
+        let tidy = { (x: Double) in (x * 1000).rounded() / 1000 }
+        var block: [JSONValue] = [], last = -1.0
+        for rung in rungs {
+            let w: Double
+            if rung.bar { w = min(work, max(0, floor)) }
+            else if let pct = rung.wp, pct > 0 { w = min(work, max(0, floor, tidy(((work * pct / 100) / grid + 1e-9).rounded(.down) * grid))) }
+            else { w = 0 }
+            let body = rung.wp == 0 && !rung.bar
+            if !body && (!(w > 0) || w >= work) { continue }
+            if w <= last { continue }
+            last = w
+            var row: Object = ["w": .number(w), "r": .number(rung.r), "done": .bool(false), "phase": .string("warmup"), "warmup": .bool(true)]
+            if rung.bar { row["wb"] = .bool(true) } else { row["wp"] = .number(rung.wp!) }
+            if isPerSide(cfg) { row["r"] = .number(rung.r * 2); block.append(makeSideSet(row)) } else { block.append(.object(row)) }
+        }
+        return block + workRows
     }
 }

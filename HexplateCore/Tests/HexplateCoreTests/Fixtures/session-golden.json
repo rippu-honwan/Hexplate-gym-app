@@ -1269,6 +1269,736 @@
   ]
  },
  {
+  "name": "warm-ups: compounds, heavy squat on a bar",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 105
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "up",
+     "weight": 105,
+     "why": [
+      "Every rep last time. {0} {1} more.",
+      5,
+      "kg"
+     ]
+    },
+    "sets": [
+     {
+      "w": 20,
+      "r": 10,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wb": true
+     },
+     {
+      "w": 40,
+      "r": 5,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wp": 40
+     },
+     {
+      "w": 60,
+      "r": 3,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wp": 60
+     },
+     {
+      "w": 80,
+      "r": 1,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wp": 80
+     },
+     {
+      "w": 105,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 105,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 105,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "warm-ups: compounds skip an isolation lift",
+  "result": [
+   {
+    "id": "0031",
+    "target": {
+     "id": "0031",
+     "sets": 3,
+     "reps": 10,
+     "weight": 30
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 30,
+      "r": 10,
+      "done": false
+     },
+     {
+      "w": 30,
+      "r": 10,
+      "done": false
+     },
+     {
+      "w": 30,
+      "r": 10,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 10,
+     "weight": 30
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "warm-ups: all, light isolation",
+  "result": [
+   {
+    "id": "0031",
+    "target": {
+     "id": "0031",
+     "sets": 3,
+     "reps": 10,
+     "weight": 30
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 20,
+      "r": 10,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wp": 50
+     },
+     {
+      "w": 30,
+      "r": 10,
+      "done": false
+     },
+     {
+      "w": 30,
+      "r": 10,
+      "done": false
+     },
+     {
+      "w": 30,
+      "r": 10,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 10,
+     "weight": 30
+    },
+    "rid": "r1"
+   },
+   {
+    "id": "0334",
+    "target": {
+     "id": "0334",
+     "sets": 2,
+     "reps": 12,
+     "weight": 6,
+     "side": true
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 6,
+      "r": 12,
+      "done": false,
+      "sides": {
+       "L": {
+        "w": 6,
+        "r": 6,
+        "done": false
+       },
+       "R": {
+        "w": 6,
+        "r": 6,
+        "done": false
+       }
+      }
+     },
+     {
+      "w": 6,
+      "r": 12,
+      "done": false,
+      "sides": {
+       "L": {
+        "w": 6,
+        "r": 6,
+        "done": false
+       },
+       "R": {
+        "w": 6,
+        "r": 6,
+        "done": false
+       }
+      }
+     }
+    ],
+    "planned": {
+     "sets": 2,
+     "reps": 12,
+     "weight": 6
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "warm-ups: mid compound",
+  "result": [
+   {
+    "id": "0032",
+    "target": {
+     "id": "0032",
+     "sets": 3,
+     "reps": 5,
+     "weight": 40
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 20,
+      "r": 10,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wb": true
+     },
+     {
+      "w": 27.5,
+      "r": 3,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wp": 70
+     },
+     {
+      "w": 40,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 40,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 40,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 40
+    },
+    "rid": "r1"
+   },
+   {
+    "id": "0025",
+    "target": {
+     "id": "0025",
+     "sets": 3,
+     "reps": 8,
+     "weight": 50
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 20,
+      "r": 10,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wb": true
+     },
+     {
+      "w": 35,
+      "r": 3,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wp": 70
+     },
+     {
+      "w": 50,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 50,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 50,
+      "r": 8,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 8,
+     "weight": 50
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "warm-ups: light compound and bodyweight",
+  "result": [
+   {
+    "id": "0025",
+    "target": {
+     "id": "0025",
+     "sets": 3,
+     "reps": 8,
+     "weight": 25
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 20,
+      "r": 10,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wb": true
+     },
+     {
+      "w": 25,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 25,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 25,
+      "r": 8,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 8,
+     "weight": 25
+    },
+    "rid": "r1"
+   },
+   {
+    "id": "0662",
+    "target": {
+     "id": "0662",
+     "sets": 3,
+     "reps": 10,
+     "repsMax": 12
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "r": 10,
+      "done": false
+     },
+     {
+      "r": 10,
+      "done": false
+     },
+     {
+      "r": 10,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 10
+    },
+    "rid": "r1"
+   },
+   {
+    "id": "0017",
+    "target": {
+     "id": "0017",
+     "sets": 2,
+     "reps": 8,
+     "weight": 30
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 30,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 30,
+      "r": 8,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 2,
+     "reps": 8,
+     "weight": 30
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "warm-ups: own bar setting and lb",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 30,
+      "r": 8,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wp": 50
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   },
+   {
+    "id": "0861",
+    "target": {
+     "id": "0861",
+     "sets": 3,
+     "reps": 10,
+     "weight": 150
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 60,
+      "r": 8,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wp": 40
+     },
+     {
+      "w": 90,
+      "r": 4,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wp": 60
+     },
+     {
+      "w": 120,
+      "r": 1,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wp": 80
+     },
+     {
+      "w": 150,
+      "r": 10,
+      "done": false
+     },
+     {
+      "w": 150,
+      "r": 10,
+      "done": false
+     },
+     {
+      "w": 150,
+      "r": 10,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 10,
+     "weight": 150
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "warm-ups: slot says none, module off",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 60,
+     "warmup": "none"
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   },
+   {
+    "id": "0025",
+    "target": {
+     "id": "0025",
+     "sets": 3,
+     "reps": 8,
+     "weight": 50,
+     "warmup": "auto"
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 20,
+      "r": 10,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wb": true
+     },
+     {
+      "w": 35,
+      "r": 3,
+      "done": false,
+      "phase": "warmup",
+      "warmup": true,
+      "wp": 70
+     },
+     {
+      "w": 50,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 50,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 50,
+      "r": 8,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 8,
+     "weight": 50
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "warm-ups: plates module off",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
   "name": "finish: on time",
   "result": {
    "id": "live",

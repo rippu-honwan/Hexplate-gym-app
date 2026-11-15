@@ -2065,6 +2065,323 @@
   "routineId": "r1"
  },
  {
+  "name": "warm-ups: compounds, heavy squat on a bar",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 100,
+         "r": 5,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    }
+   ],
+   "warmupAuto": "compounds"
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "warm-ups: compounds skip an isolation lift",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0031",
+       "sets": 3,
+       "reps": 10,
+       "weight": 30
+      }
+     ]
+    }
+   ],
+   "workouts": [],
+   "warmupAuto": "compounds"
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "warm-ups: all, light isolation",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0031",
+       "sets": 3,
+       "reps": 10,
+       "weight": 30
+      },
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      }
+     ]
+    }
+   ],
+   "workouts": [],
+   "warmupAuto": "all"
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "warm-ups: mid compound",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0032",
+       "sets": 3,
+       "reps": 5,
+       "weight": 40
+      },
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 50
+      }
+     ]
+    }
+   ],
+   "workouts": [],
+   "warmupAuto": "compounds"
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "warm-ups: light compound and bodyweight",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 25
+      },
+      {
+       "id": "0662",
+       "sets": 3,
+       "reps": 10,
+       "repsMax": 12
+      },
+      {
+       "id": "0017",
+       "sets": 2,
+       "reps": 8,
+       "weight": 30
+      }
+     ]
+    }
+   ],
+   "workouts": [],
+   "warmupAuto": "all"
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "warm-ups: own bar setting and lb",
+  "op": "start",
+  "state": {
+   "unit": "lb",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60
+      },
+      {
+       "id": "0861",
+       "sets": 3,
+       "reps": 10,
+       "weight": 150
+      }
+     ]
+    }
+   ],
+   "workouts": [],
+   "warmupAuto": "all",
+   "barWeights": {
+    "0043": 0
+   }
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "warm-ups: slot says none, module off",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60,
+       "warmup": "none"
+      },
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 50,
+       "warmup": "auto"
+      }
+     ]
+    }
+   ],
+   "workouts": [],
+   "warmupAuto": "all"
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "warm-ups: plates module off",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60
+      }
+     ]
+    }
+   ],
+   "workouts": [],
+   "warmupAuto": "all",
+   "modules": {
+    "plates": false
+   }
+  },
+  "routineId": "r1"
+ },
+ {
   "name": "finish: on time",
   "op": "finish",
   "active": {
