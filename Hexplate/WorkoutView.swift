@@ -77,6 +77,17 @@ extension AppModel {
         return w
     }
 
+    /// The rest after a set of entry `i`: nil while its superset goes on to a partner, else the
+    /// superset's, the exercise's or the profile's rest (0: no rest).
+    func restSeconds(after i: Int) -> Double? {
+        let entries = activeEntries
+        guard entries.indices.contains(i) else { return nil }
+        let entry = entries[i], target = entry["target"]?.object ?? [:]
+        let sg = entry["sg"]?.stringValue.flatMap { $0.isEmpty ? nil : $0 }
+        if let sg, entries.indices.contains(where: { $0 > i && entries[$0]["sg"]?.stringValue == sg }) { return nil }
+        return (sg != nil ? target["sgRest"]?.numberValue : nil) ?? target["restSec"]?.numberValue ?? root["restSec"]?.numberValue ?? 90
+    }
+
     func discardWorkout() { change { $0["active"] = nil } }
 }
 
@@ -323,10 +334,7 @@ private struct EntrySection: View {
 
     /// After a set: on to the superset partner, or rest.
     private func completed(set i: Int) {
-        if next != nil { return }
-        let rest = (entry["sg"]?.stringValue).flatMap { _ in target["sgRest"]?.numberValue }
-            ?? target["restSec"]?.numberValue ?? model.root["restSec"]?.numberValue ?? 90
-        if rest > 0 { timer.start(rest, alerts: alerts) }
+        if let rest = model.restSeconds(after: index), rest > 0 { timer.start(rest, alerts: alerts) }
     }
 
     private var lastLine: String? {

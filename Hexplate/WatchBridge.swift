@@ -177,6 +177,12 @@ extension AppModel {
             } else {
                 timer.stop()
             }
+        case .tick(let i, let at):
+            // The rest runs from when the set was done on the watch.
+            guard let timer, let rest = restSeconds(after: i) else { return }
+            let left = rest - max(0, (now - (at ?? now)) / 1000)
+            let alerts = RestTimer.Alerts(sound: root["sound"] != .bool(false), flash: root["timerFlash"] == .bool(true))
+            if left > 0 { timer.start(left, alerts: alerts) }
         case .none:
             break
         }

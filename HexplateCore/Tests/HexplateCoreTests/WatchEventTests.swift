@@ -15,7 +15,9 @@ final class WatchEventTests: XCTestCase {
         XCTAssertEqual(s["active"]?.object?["bw"], .number(71.5))
 
         let tick = try object(#"{"id":"e2","type":"setDone","wid":"wx","exId":"0025","entryIdx":0,"setIdx":1,"w":62.5,"r":7,"at":1794700100000,"hr":{"avg":120.4,"max":140},"rir":2.3}"#)
-        _ = WatchLink.apply(tick, to: &s, today: "2026-11-15", now: 0, newId: "n", catalog: .builtIn)
+        // A new tick asks the phone for its rest (else the watch drops its own); the same tick again does not.
+        XCTAssertEqual(WatchLink.apply(tick, to: &s, today: "2026-11-15", now: 0, newId: "n", catalog: .builtIn), .tick(entryIdx: 0, at: 1794700100000))
+        XCTAssertEqual(WatchLink.apply(tick, to: &s, today: "2026-11-15", now: 0, newId: "n", catalog: .builtIn), .none)
         let set = s["active"]?.object?["entries"]?.arrayValue?[0].object?["sets"]?.arrayValue?[1].object
         XCTAssertEqual(set?["done"], .bool(true))
         XCTAssertEqual(set?["w"], .number(62.5))

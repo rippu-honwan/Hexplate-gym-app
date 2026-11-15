@@ -117,7 +117,9 @@ public enum WatchLink {
 
     // MARK: Events
 
-    public enum Effect: Equatable, Sendable { case none, finish, discard, rest(endsAt: Double?) }
+    /// `tick`: a work set of the running session was done on the watch; the phone starts its rest
+    /// as a tick there does (the watch follows the phone's rest and would end its own otherwise).
+    public enum Effect: Equatable, Sendable { case none, finish, discard, rest(endsAt: Double?), tick(entryIdx: Int, at: Double?) }
 
     static func hr(_ v: JSONValue?) -> JSONValue? {
         guard let o = v?.object, let a = n(o["avg"]), let m = n(o["max"]) else { return nil }
@@ -210,7 +212,14 @@ public enum WatchLink {
             if let v = ev["vel"]?.object, let best = n(v["best"]), let last = n(v["last"]), let loss = n(v["loss"]),
                best > 0, best <= 50, last >= 0, last <= 50, loss >= 0, loss <= 1 { f["vel"] = .object(["best": .number(best), "last": .number(last), "loss": .number(loss)]) }
             let target = ours ? active!["id"]?.stringValue ?? "" : wid ?? ""
-            patchSet(&s, wid: target, exId: ref.exId, entryIdx: ref.entryIdx, setIdx: ref.setIdx, side: side, f, ifNewer: ours ? nil : at)
+            // The row as it was, to tell a new tick from one the watch sends again.
+            let entries = active?["entries"]?.arrayValue ?? []
+            let i = entries.indices.contains(ref.entryIdx) && entries[ref.entryIdx].object?["id"]?.stringValue == ref.exId
+                ? ref.entryIdx : entries.firstIndex { $0.object?["id"]?.stringValue == ref.exId }
+            let row = i.flatMap { i in entries[i].object?["sets"]?.arrayValue.flatMap { $0.indices.contains(ref.setIdx) ? $0[ref.setIdx] : nil } }
+            let wasDone = side.flatMap { row?.object?["sides"]?.object?[$0] }.map(Session.done) ?? Session.done(row)
+            let ok = patchSet(&s, wid: target, exId: ref.exId, entryIdx: ref.entryIdx, setIdx: ref.setIdx, side: side, f, ifNewer: ours ? nil : at)
+            if ours, ok, !wasDone, let i, let row, !Session.isWarmup(row), side == nil || side == "R" { return .tick(entryIdx: i, at: at) }
         case "setHr":
             var f: Object = [:]
             if let h = hr(ev["hr"]) { f["hr"] = h }
