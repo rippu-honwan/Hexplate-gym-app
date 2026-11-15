@@ -48,4 +48,19 @@ cases = [
 inv_default = [{'w': w, 'n': 6} for w in (25, 20, 15, 10, 5, 2.5, 1.25)]
 inv_odd = [{'w': 20, 'n': 1}, {'w': 15, 'n': 2}, {'w': 10, 'n': 1}, {'w': 2.5, 'n': 3}, {'w': 1.25, 'n': 1}]
 cases.append({'name': 'plate stacks', 'op': 'plates', 'rows': [[w, inv] for inv in (inv_default, inv_odd, []) for w in (0, 1, 12.5, 30, 41.25, 47.5, 52.6, 61.25, 200)]})
+CGBENCH, INCLINE, CHIN, DIP, BB_ROW, FRONT, WCHIN = '0030', '0047', '1326', '0251', '0027', '0042', '1430'
+bal_workouts = [
+    workout(10, '2026-10-20', [{'id': CGBENCH, 'sets': sets(80, [5, 5])}, {'id': INCLINE, 'sets': sets(70, [6, 5])}, {'id': BB_ROW, 'sets': sets(70, [8])},
+                               {'id': CHIN, 'sets': sets(0, [8, 6])}, {'id': DIP, 'sets': sets(10, [8]) + [{'w': 20, 'r': 6, 'done': True, 'phase': 'warmup'}]}]),
+    workout(11, '2026-10-22', [{'id': SQUAT, 'sets': sets(120, [5])}, {'id': FRONT, 'sets': sets(90, [3])}, {'id': ASSIST, 'sets': sets(20, [10])},
+                               {'id': RAISE, 'sets': [{'w': 10, 'r': 20, 'done': True, 'sides': {'L': {'w': 10, 'r': 10, 'done': True}, 'R': {'w': 10, 'r': 12, 'done': True}}}]}]),
+]
+bal = {'unit': 'kg', 'workouts': bal_workouts, 'bodyweight': [{'d': '2026-10-01', 'w': 80}]}
+cases += [
+    {'name': 'balance: logged lifts', 'op': 'balance', 'state': bal},
+    {'name': 'balance: no body weight', 'op': 'balance', 'state': {**bal, 'bodyweight': []}},
+    {'name': 'balance: female, lb, stamped body weight', 'op': 'balance', 'state': {**bal, 'unit': 'lb', 'body': 'female', 'workouts': [{**w, 'bw': 170} for w in bal_workouts]}},
+    {'name': 'balance: an override', 'op': 'balance', 'state': {**bal, 'balanceOverrides': {'poliquin:narrowBench': {'id': BENCH, '_ts': 1}, 'atg:x': 'nope'}}},
+    {'name': 'balance: nothing logged', 'op': 'balance', 'state': {'unit': 'kg', 'workouts': [], 'bodyweight': []}},
+]
 print(json.dumps(cases, indent=1))

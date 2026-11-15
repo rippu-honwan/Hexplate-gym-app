@@ -3586,5 +3586,627 @@
     []
    ]
   ]
+ },
+ {
+  "name": "balance: logged lifts",
+  "op": "balance",
+  "state": {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w10",
+     "d": "2026-10-20",
+     "start": 1790864000000,
+     "entries": [
+      {
+       "id": "0030",
+       "sets": [
+        {
+         "w": 80,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0047",
+       "sets": [
+        {
+         "w": 70,
+         "r": 6,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "1326",
+       "sets": [
+        {
+         "w": 0,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 0,
+         "r": 6,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0251",
+       "sets": [
+        {
+         "w": 10,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 20,
+         "r": 6,
+         "done": true,
+         "phase": "warmup"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w11",
+     "d": "2026-10-22",
+     "start": 1790950400000,
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0042",
+       "sets": [
+        {
+         "w": 90,
+         "r": 3,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 20,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 10,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 10,
+           "r": 12,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "bodyweight": [
+    {
+     "d": "2026-10-01",
+     "w": 80
+    }
+   ]
+  }
+ },
+ {
+  "name": "balance: no body weight",
+  "op": "balance",
+  "state": {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w10",
+     "d": "2026-10-20",
+     "start": 1790864000000,
+     "entries": [
+      {
+       "id": "0030",
+       "sets": [
+        {
+         "w": 80,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0047",
+       "sets": [
+        {
+         "w": 70,
+         "r": 6,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "1326",
+       "sets": [
+        {
+         "w": 0,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 0,
+         "r": 6,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0251",
+       "sets": [
+        {
+         "w": 10,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 20,
+         "r": 6,
+         "done": true,
+         "phase": "warmup"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w11",
+     "d": "2026-10-22",
+     "start": 1790950400000,
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0042",
+       "sets": [
+        {
+         "w": 90,
+         "r": 3,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 20,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 10,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 10,
+           "r": 12,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "bodyweight": []
+  }
+ },
+ {
+  "name": "balance: female, lb, stamped body weight",
+  "op": "balance",
+  "state": {
+   "unit": "lb",
+   "workouts": [
+    {
+     "id": "w10",
+     "d": "2026-10-20",
+     "start": 1790864000000,
+     "entries": [
+      {
+       "id": "0030",
+       "sets": [
+        {
+         "w": 80,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0047",
+       "sets": [
+        {
+         "w": 70,
+         "r": 6,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "1326",
+       "sets": [
+        {
+         "w": 0,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 0,
+         "r": 6,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0251",
+       "sets": [
+        {
+         "w": 10,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 20,
+         "r": 6,
+         "done": true,
+         "phase": "warmup"
+        }
+       ]
+      }
+     ],
+     "bw": 170
+    },
+    {
+     "id": "w11",
+     "d": "2026-10-22",
+     "start": 1790950400000,
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0042",
+       "sets": [
+        {
+         "w": 90,
+         "r": 3,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 20,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 10,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 10,
+           "r": 12,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ],
+     "bw": 170
+    }
+   ],
+   "bodyweight": [
+    {
+     "d": "2026-10-01",
+     "w": 80
+    }
+   ],
+   "body": "female"
+  }
+ },
+ {
+  "name": "balance: an override",
+  "op": "balance",
+  "state": {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w10",
+     "d": "2026-10-20",
+     "start": 1790864000000,
+     "entries": [
+      {
+       "id": "0030",
+       "sets": [
+        {
+         "w": 80,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0047",
+       "sets": [
+        {
+         "w": 70,
+         "r": 6,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "1326",
+       "sets": [
+        {
+         "w": 0,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 0,
+         "r": 6,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0251",
+       "sets": [
+        {
+         "w": 10,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 20,
+         "r": 6,
+         "done": true,
+         "phase": "warmup"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w11",
+     "d": "2026-10-22",
+     "start": 1790950400000,
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0042",
+       "sets": [
+        {
+         "w": 90,
+         "r": 3,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 20,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 10,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 10,
+           "r": 12,
+           "done": true
+          }
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "bodyweight": [
+    {
+     "d": "2026-10-01",
+     "w": 80
+    }
+   ],
+   "balanceOverrides": {
+    "poliquin:narrowBench": {
+     "id": "0025",
+     "_ts": 1
+    },
+    "atg:x": "nope"
+   }
+  }
+ },
+ {
+  "name": "balance: nothing logged",
+  "op": "balance",
+  "state": {
+   "unit": "kg",
+   "workouts": [],
+   "bodyweight": []
+  }
  }
 ]

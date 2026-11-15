@@ -42,6 +42,20 @@ final class StatsGoldenTests: XCTestCase {
                     .object(["slug": .string($0.slug), "sets": .number($0.sets), "lo": .number($0.low), "hi": .number($0.high), "status": .string($0.status)])
                 }
                 result = .object(["series": .object(series), "best": .object(best), "levels": .array(levels), "muscles": .array(muscles)])
+            case "balance":
+                let st = try XCTUnwrap(k["state"]?.object)
+                let r6 = { (v: Double?) -> JSONValue in v.map { .number(($0 * 1e6).rounded() / 1e6) } ?? .null }
+                let str = { (v: String?) -> JSONValue in v.map(JSONValue.string) ?? .null }
+                var out: [String: JSONValue] = [:]
+                for t in Balance.templates {
+                    out[t.id] = .array(Balance.compute(st, t, catalog: c).map { x in
+                        .object(["roleId": .string(x.roleId), "configuredExerciseId": str(x.configuredExerciseId), "targetPct": .number(x.targetPct),
+                                 "isOverridden": .bool(x.isOverridden), "mappedExerciseId": str(x.mappedExerciseId), "actualPct": r6(x.actualPct),
+                                 "status": .string(x.status), "needsBodyweight": .bool(x.needsBodyweight), "needsAnchor": .bool(x.needsAnchor),
+                                 "current": x.current.map { .object(["kg": r6($0.kg), "w": .number($0.w), "r": .number($0.r), "exId": .string($0.exId), "d": .string($0.day)]) } ?? .null])
+                    })
+                }
+                result = .object(out)
             case "plates":
                 result = .array((k["rows"]?.arrayValue ?? []).map { r in
                     let a = r.arrayValue ?? []

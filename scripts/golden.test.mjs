@@ -98,6 +98,9 @@ it('writes the exercise index', async () => {
   const text = {}
   for (const e of CATALOGUE) if (steps[e.id] || about[e.id]) text[e.id] = { ...(about[e.id] ? { d: about[e.id] } : {}), ...(steps[e.id] ? { i: steps[e.id] } : {}) }
   writeFileSync(dir + 'exercise-text.json', JSON.stringify(text) + '\n')
+  // Structural balance standards (lib/structuralBalanceTemplates.js), the default first.
+  const B = await import('../../frontend/src/lib/structuralBalanceTemplates.js')
+  writeFileSync(dir + 'balance-templates.json', JSON.stringify({ defaultId: B.DEFAULT_TEMPLATE_ID, borderlinePct: B.BORDERLINE_BAND_PCT, templates: B.TEMPLATE_LIST }) + '\n')
 })
 
 // How the store stamps a change for sync (lib/sync-merge.js stampChange, store/useStore.js update):
@@ -221,6 +224,15 @@ it('writes the stats golden file', async () => {
         levels: strengthLevels(S).map(l => ({ lift: l.lift, id: l.id, level: l.level, ratio: l.ratio, e1rm: l.e1rm, bw: l.bw, next: l.next, thresholds: l.thresholds })),
         muscles: weeklyMuscleSets(S, c.today).map(m => ({ slug: m.slug, sets: m.sets, lo: m.lo, hi: m.hi, status: m.status })),
       }
+    } else if (c.op === 'balance') {
+      const { computeBalance } = await import('../../frontend/src/lib/structuralBalance.js')
+      const { TEMPLATE_LIST } = await import('../../frontend/src/lib/structuralBalanceTemplates.js')
+      const r6 = v => (v == null || !isFinite(v) ? null : Math.round(v * 1e6) / 1e6)
+      result = Object.fromEntries(TEMPLATE_LIST.map(t => [t.id, computeBalance(structuredClone(c.state), t).map(x => ({
+        roleId: x.roleId, configuredExerciseId: x.configuredExerciseId, targetPct: x.targetPct, isOverridden: x.isOverridden,
+        mappedExerciseId: x.mappedExerciseId, actualPct: r6(x.actualPct), status: x.status, needsBodyweight: x.needsBodyweight, needsAnchor: x.needsAnchor,
+        current: x.current ? { kg: r6(x.current.estKg ?? x.current.repsKg ?? null), w: x.current.w, r: x.current.r, exId: x.current.exId, d: x.current.d } : null,
+      }))]))
     } else if (c.op === 'plates') {
       const { plateStack } = await import('../../frontend/src/lib/plates.js')
       result = c.rows.map(([w, inv]) => plateStack(w, inv))

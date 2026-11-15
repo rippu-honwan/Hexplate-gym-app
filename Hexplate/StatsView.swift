@@ -32,6 +32,11 @@ struct StatsView: View {
                 volumeSection
                 daysSection
                 strengthSection
+                Section {
+                    NavigationLink("Structural balance") { BalanceView() }
+                } footer: {
+                    Text("How each lift compares with the others, against a strength standard.")
+                }
             }
             .navigationTitle("Stats")
             .sheet(item: $sheet) { s in
@@ -326,5 +331,61 @@ private struct MeasurementEntry: View {
         if !changes.isEmpty { model.saveMeasurements(changes, on: day, fields: fields) }
         if withWeight, let w = number(weight), w > 0 { model.logWeight(w, on: day) }
         dismiss()
+    }
+}
+
+/// Structural balance against the chosen standard (views/StructuralBalance.jsx).
+// ponytail: changing a role's exercise is not here yet; overrides set in the old app are honoured.
+private struct BalanceView: View {
+    @Environment(AppModel.self) private var model
+
+    var body: some View {
+        let template = Balance.template(model.root)
+        List {
+            Section {
+                Picker("Standard", selection: Binding(get: { template?.id ?? "" }, set: { model.set("balanceTemplate", .string($0)) })) {
+                    ForEach(Balance.templates, id: \.id) { Text($0.label).tag($0.id) }
+                }
+            }
+            if let template {
+                Section {
+                    ForEach(Balance.compute(model.root, template, catalog: model.catalog), id: \.roleId) { r in
+                        row(r, role: template.roles.first { $0.id == r.roleId })
+                    }
+                } footer: {
+                    Text("Balanced: at the standard. Borderline: within 5 points of it. Estimated from your best logged sets.")
+                }
+            }
+        }
+        .navigationTitle("Structural balance")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private func row(_ r: Balance.Result, role: Balance.Role?) -> some View {
+        let reps = role?.evaluationMode == "rep-count"
+        let actual = r.status == "no-data" ? "–" : reps ? "\(Int(r.current?.r ?? 0))" : "\(Int((r.actualPct ?? 0).rounded()))%"
+        let exId = r.mappedExerciseId ?? r.configuredExerciseId
+        let (label, symbol): (String, String) = switch r.status {
+        case "balanced": ("Balanced", "checkmark.circle.fill")
+        case "borderline": ("Borderline", "minus.circle")
+        case "weak": ("Weak", "arrow.down.circle")
+        default: (r.needsAnchor ? "Not scored" : "No data", "circle.dashed")
+        }
+        return HStack(alignment: .top) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(role?.label ?? r.roleId)
+                Text((exId.flatMap { model.catalog[$0]?.displayName } ?? "") + (r.isOverridden ? " · Custom" : ""))
+                    .font(.subheadline).foregroundStyle(.secondary)
+                if r.needsBodyweight { Text("Log your body weight to score this lift.").font(.footnote).foregroundStyle(.secondary) }
+                if r.needsAnchor { Text("Log the anchor lift to score this one.").font(.footnote).foregroundStyle(.secondary) }
+            }
+            Spacer()
+            VStack(alignment: .trailing, spacing: 2) {
+                Label(label, systemImage: symbol)
+                    .foregroundStyle(r.status == "balanced" ? AnyShapeStyle(.tint) : r.status == "no-data" ? AnyShapeStyle(.tertiary) : AnyShapeStyle(.primary))
+                Text("\(actual) / \(Format.number(r.targetPct))\(reps ? "" : "%")").font(.subheadline.monospacedDigit()).foregroundStyle(.secondary)
+            }
+        }
+        .accessibilityElement(children: .combine)
     }
 }

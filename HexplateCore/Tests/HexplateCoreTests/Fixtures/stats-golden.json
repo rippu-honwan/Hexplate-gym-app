@@ -2024,5 +2024,1476 @@
     "missing": 200
    }
   ]
+ },
+ {
+  "name": "balance: logged lifts",
+  "result": {
+   "poliquin": [
+    {
+     "roleId": "narrowBench",
+     "configuredExerciseId": "0030",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": "0030",
+     "actualPct": 100,
+     "status": "balanced",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 93.333333,
+      "w": 80,
+      "r": 5,
+      "exId": "0030",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "inclineBench",
+     "configuredExerciseId": "0047",
+     "targetPct": 91,
+     "isOverridden": false,
+     "mappedExerciseId": "0047",
+     "actualPct": 90,
+     "status": "borderline",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 84,
+      "w": 70,
+      "r": 6,
+      "exId": "0047",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "dips",
+     "configuredExerciseId": "0251",
+     "targetPct": 117,
+     "isOverridden": false,
+     "mappedExerciseId": "0251",
+     "actualPct": 122.142857,
+     "status": "balanced",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 114,
+      "w": 10,
+      "r": 8,
+      "exId": "0251",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "supinePullups",
+     "configuredExerciseId": "0652",
+     "targetPct": 87,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "barbellCurl",
+     "configuredExerciseId": "0031",
+     "targetPct": 40,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "highBarSquat",
+     "configuredExerciseId": "1436",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": "0043",
+     "actualPct": 100,
+     "status": "balanced",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 140,
+      "w": 120,
+      "r": 5,
+      "exId": "0043",
+      "d": "2026-10-22"
+     }
+    },
+    {
+     "roleId": "frontSquat",
+     "configuredExerciseId": "0042",
+     "targetPct": 85,
+     "isOverridden": false,
+     "mappedExerciseId": "0042",
+     "actualPct": 70.714286,
+     "status": "weak",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 99,
+      "w": 90,
+      "r": 3,
+      "exId": "0042",
+      "d": "2026-10-22"
+     }
+    },
+    {
+     "roleId": "deadlift",
+     "configuredExerciseId": "0032",
+     "targetPct": 125,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "powerClean",
+     "configuredExerciseId": "0648",
+     "targetPct": 61,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ],
+   "thibaudeauPowerlifting": [
+    {
+     "roleId": "squat",
+     "configuredExerciseId": "0043",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": "0043",
+     "actualPct": 100,
+     "status": "balanced",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 140,
+      "w": 120,
+      "r": 5,
+      "exId": "0043",
+      "d": "2026-10-22"
+     }
+    },
+    {
+     "roleId": "bench",
+     "configuredExerciseId": "0025",
+     "targetPct": 75,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "deadlift",
+     "configuredExerciseId": "0032",
+     "targetPct": 120,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "militaryPress",
+     "configuredExerciseId": "0091",
+     "targetPct": 45,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ],
+   "atg": [
+    {
+     "roleId": "romanianDeadlift",
+     "configuredExerciseId": "0085",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "goodMorning",
+     "configuredExerciseId": "0090",
+     "targetPct": 66,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "stepUp",
+     "configuredExerciseId": "0114",
+     "targetPct": 50,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "nordicCurl",
+     "configuredExerciseId": "3193",
+     "targetPct": 1,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "pullups",
+     "configuredExerciseId": "0652",
+     "targetPct": 10,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "atgDips",
+     "configuredExerciseId": "0251",
+     "targetPct": 10,
+     "isOverridden": false,
+     "mappedExerciseId": "0251",
+     "actualPct": 80,
+     "status": "weak",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": null,
+      "w": 10,
+      "r": 8,
+      "exId": "0251",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "inclineDbPress",
+     "configuredExerciseId": "0314",
+     "targetPct": 40,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "dbShoulderPress",
+     "configuredExerciseId": "0405",
+     "targetPct": 33,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ]
+  }
+ },
+ {
+  "name": "balance: no body weight",
+  "result": {
+   "poliquin": [
+    {
+     "roleId": "narrowBench",
+     "configuredExerciseId": "0030",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": "0030",
+     "actualPct": 100,
+     "status": "balanced",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 93.333333,
+      "w": 80,
+      "r": 5,
+      "exId": "0030",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "inclineBench",
+     "configuredExerciseId": "0047",
+     "targetPct": 91,
+     "isOverridden": false,
+     "mappedExerciseId": "0047",
+     "actualPct": 90,
+     "status": "borderline",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 84,
+      "w": 70,
+      "r": 6,
+      "exId": "0047",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "dips",
+     "configuredExerciseId": "0251",
+     "targetPct": 117,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": true,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "supinePullups",
+     "configuredExerciseId": "0652",
+     "targetPct": 87,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "barbellCurl",
+     "configuredExerciseId": "0031",
+     "targetPct": 40,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "highBarSquat",
+     "configuredExerciseId": "1436",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": "0043",
+     "actualPct": 100,
+     "status": "balanced",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 140,
+      "w": 120,
+      "r": 5,
+      "exId": "0043",
+      "d": "2026-10-22"
+     }
+    },
+    {
+     "roleId": "frontSquat",
+     "configuredExerciseId": "0042",
+     "targetPct": 85,
+     "isOverridden": false,
+     "mappedExerciseId": "0042",
+     "actualPct": 70.714286,
+     "status": "weak",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 99,
+      "w": 90,
+      "r": 3,
+      "exId": "0042",
+      "d": "2026-10-22"
+     }
+    },
+    {
+     "roleId": "deadlift",
+     "configuredExerciseId": "0032",
+     "targetPct": 125,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "powerClean",
+     "configuredExerciseId": "0648",
+     "targetPct": 61,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ],
+   "thibaudeauPowerlifting": [
+    {
+     "roleId": "squat",
+     "configuredExerciseId": "0043",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": "0043",
+     "actualPct": 100,
+     "status": "balanced",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 140,
+      "w": 120,
+      "r": 5,
+      "exId": "0043",
+      "d": "2026-10-22"
+     }
+    },
+    {
+     "roleId": "bench",
+     "configuredExerciseId": "0025",
+     "targetPct": 75,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "deadlift",
+     "configuredExerciseId": "0032",
+     "targetPct": 120,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "militaryPress",
+     "configuredExerciseId": "0091",
+     "targetPct": 45,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ],
+   "atg": [
+    {
+     "roleId": "romanianDeadlift",
+     "configuredExerciseId": "0085",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "goodMorning",
+     "configuredExerciseId": "0090",
+     "targetPct": 66,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "stepUp",
+     "configuredExerciseId": "0114",
+     "targetPct": 50,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "nordicCurl",
+     "configuredExerciseId": "3193",
+     "targetPct": 1,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "pullups",
+     "configuredExerciseId": "0652",
+     "targetPct": 10,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "atgDips",
+     "configuredExerciseId": "0251",
+     "targetPct": 10,
+     "isOverridden": false,
+     "mappedExerciseId": "0251",
+     "actualPct": 80,
+     "status": "weak",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": null,
+      "w": 10,
+      "r": 8,
+      "exId": "0251",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "inclineDbPress",
+     "configuredExerciseId": "0314",
+     "targetPct": 40,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "dbShoulderPress",
+     "configuredExerciseId": "0405",
+     "targetPct": 33,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ]
+  }
+ },
+ {
+  "name": "balance: female, lb, stamped body weight",
+  "result": {
+   "poliquin": [
+    {
+     "roleId": "narrowBench",
+     "configuredExerciseId": "0030",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": "0030",
+     "actualPct": 100,
+     "status": "balanced",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 42.335288,
+      "w": 80,
+      "r": 5,
+      "exId": "0030",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "inclineBench",
+     "configuredExerciseId": "0047",
+     "targetPct": 91,
+     "isOverridden": false,
+     "mappedExerciseId": "0047",
+     "actualPct": 90,
+     "status": "borderline",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 38.101759,
+      "w": 70,
+      "r": 6,
+      "exId": "0047",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "dips",
+     "configuredExerciseId": "0251",
+     "targetPct": 117,
+     "isOverridden": false,
+     "mappedExerciseId": "0251",
+     "actualPct": 244.285714,
+     "status": "balanced",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 103.41906,
+      "w": 10,
+      "r": 8,
+      "exId": "0251",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "supinePullups",
+     "configuredExerciseId": "0652",
+     "targetPct": 87,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "barbellCurl",
+     "configuredExerciseId": "0031",
+     "targetPct": 40,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "highBarSquat",
+     "configuredExerciseId": "1436",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": "0043",
+     "actualPct": 100,
+     "status": "balanced",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 63.502932,
+      "w": 120,
+      "r": 5,
+      "exId": "0043",
+      "d": "2026-10-22"
+     }
+    },
+    {
+     "roleId": "frontSquat",
+     "configuredExerciseId": "0042",
+     "targetPct": 85,
+     "isOverridden": false,
+     "mappedExerciseId": "0042",
+     "actualPct": 70.714286,
+     "status": "weak",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 44.905645,
+      "w": 90,
+      "r": 3,
+      "exId": "0042",
+      "d": "2026-10-22"
+     }
+    },
+    {
+     "roleId": "deadlift",
+     "configuredExerciseId": "0032",
+     "targetPct": 125,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "powerClean",
+     "configuredExerciseId": "0648",
+     "targetPct": 61,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ],
+   "thibaudeauPowerlifting": [
+    {
+     "roleId": "squat",
+     "configuredExerciseId": "0043",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": "0043",
+     "actualPct": 100,
+     "status": "balanced",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 63.502932,
+      "w": 120,
+      "r": 5,
+      "exId": "0043",
+      "d": "2026-10-22"
+     }
+    },
+    {
+     "roleId": "bench",
+     "configuredExerciseId": "0025",
+     "targetPct": 75,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "deadlift",
+     "configuredExerciseId": "0032",
+     "targetPct": 120,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "militaryPress",
+     "configuredExerciseId": "0091",
+     "targetPct": 45,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ],
+   "atg": [
+    {
+     "roleId": "romanianDeadlift",
+     "configuredExerciseId": "0085",
+     "targetPct": 80,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "goodMorning",
+     "configuredExerciseId": "0090",
+     "targetPct": 40,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "stepUp",
+     "configuredExerciseId": "0114",
+     "targetPct": 40,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "nordicCurl",
+     "configuredExerciseId": "3193",
+     "targetPct": 1,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "pullups",
+     "configuredExerciseId": "0652",
+     "targetPct": 1,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "atgDips",
+     "configuredExerciseId": "0251",
+     "targetPct": 10,
+     "isOverridden": false,
+     "mappedExerciseId": "0251",
+     "actualPct": 80,
+     "status": "weak",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": null,
+      "w": 10,
+      "r": 8,
+      "exId": "0251",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "inclineDbPress",
+     "configuredExerciseId": "0314",
+     "targetPct": 20,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "dbShoulderPress",
+     "configuredExerciseId": "0405",
+     "targetPct": 15,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ]
+  }
+ },
+ {
+  "name": "balance: an override",
+  "result": {
+   "poliquin": [
+    {
+     "roleId": "narrowBench",
+     "configuredExerciseId": "0025",
+     "targetPct": 100,
+     "isOverridden": true,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "inclineBench",
+     "configuredExerciseId": "0047",
+     "targetPct": 91,
+     "isOverridden": false,
+     "mappedExerciseId": "0047",
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": true,
+     "current": {
+      "kg": 84,
+      "w": 70,
+      "r": 6,
+      "exId": "0047",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "dips",
+     "configuredExerciseId": "0251",
+     "targetPct": 117,
+     "isOverridden": false,
+     "mappedExerciseId": "0251",
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": true,
+     "current": {
+      "kg": 114,
+      "w": 10,
+      "r": 8,
+      "exId": "0251",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "supinePullups",
+     "configuredExerciseId": "0652",
+     "targetPct": 87,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "barbellCurl",
+     "configuredExerciseId": "0031",
+     "targetPct": 40,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "highBarSquat",
+     "configuredExerciseId": "1436",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": "0043",
+     "actualPct": 100,
+     "status": "balanced",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 140,
+      "w": 120,
+      "r": 5,
+      "exId": "0043",
+      "d": "2026-10-22"
+     }
+    },
+    {
+     "roleId": "frontSquat",
+     "configuredExerciseId": "0042",
+     "targetPct": 85,
+     "isOverridden": false,
+     "mappedExerciseId": "0042",
+     "actualPct": 70.714286,
+     "status": "weak",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 99,
+      "w": 90,
+      "r": 3,
+      "exId": "0042",
+      "d": "2026-10-22"
+     }
+    },
+    {
+     "roleId": "deadlift",
+     "configuredExerciseId": "0032",
+     "targetPct": 125,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "powerClean",
+     "configuredExerciseId": "0648",
+     "targetPct": 61,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ],
+   "thibaudeauPowerlifting": [
+    {
+     "roleId": "squat",
+     "configuredExerciseId": "0043",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": "0043",
+     "actualPct": 100,
+     "status": "balanced",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": 140,
+      "w": 120,
+      "r": 5,
+      "exId": "0043",
+      "d": "2026-10-22"
+     }
+    },
+    {
+     "roleId": "bench",
+     "configuredExerciseId": "0025",
+     "targetPct": 75,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "deadlift",
+     "configuredExerciseId": "0032",
+     "targetPct": 120,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "militaryPress",
+     "configuredExerciseId": "0091",
+     "targetPct": 45,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ],
+   "atg": [
+    {
+     "roleId": "romanianDeadlift",
+     "configuredExerciseId": "0085",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "goodMorning",
+     "configuredExerciseId": "0090",
+     "targetPct": 66,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "stepUp",
+     "configuredExerciseId": "0114",
+     "targetPct": 50,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "nordicCurl",
+     "configuredExerciseId": "3193",
+     "targetPct": 1,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "pullups",
+     "configuredExerciseId": "0652",
+     "targetPct": 10,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "atgDips",
+     "configuredExerciseId": "0251",
+     "targetPct": 10,
+     "isOverridden": false,
+     "mappedExerciseId": "0251",
+     "actualPct": 80,
+     "status": "weak",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": {
+      "kg": null,
+      "w": 10,
+      "r": 8,
+      "exId": "0251",
+      "d": "2026-10-20"
+     }
+    },
+    {
+     "roleId": "inclineDbPress",
+     "configuredExerciseId": "0314",
+     "targetPct": 40,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "dbShoulderPress",
+     "configuredExerciseId": "0405",
+     "targetPct": 33,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ]
+  }
+ },
+ {
+  "name": "balance: nothing logged",
+  "result": {
+   "poliquin": [
+    {
+     "roleId": "narrowBench",
+     "configuredExerciseId": "0030",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "inclineBench",
+     "configuredExerciseId": "0047",
+     "targetPct": 91,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "dips",
+     "configuredExerciseId": "0251",
+     "targetPct": 117,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "supinePullups",
+     "configuredExerciseId": "0652",
+     "targetPct": 87,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "barbellCurl",
+     "configuredExerciseId": "0031",
+     "targetPct": 40,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "highBarSquat",
+     "configuredExerciseId": "1436",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "frontSquat",
+     "configuredExerciseId": "0042",
+     "targetPct": 85,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "deadlift",
+     "configuredExerciseId": "0032",
+     "targetPct": 125,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "powerClean",
+     "configuredExerciseId": "0648",
+     "targetPct": 61,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ],
+   "thibaudeauPowerlifting": [
+    {
+     "roleId": "squat",
+     "configuredExerciseId": "0043",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "bench",
+     "configuredExerciseId": "0025",
+     "targetPct": 75,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "deadlift",
+     "configuredExerciseId": "0032",
+     "targetPct": 120,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "militaryPress",
+     "configuredExerciseId": "0091",
+     "targetPct": 45,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ],
+   "atg": [
+    {
+     "roleId": "romanianDeadlift",
+     "configuredExerciseId": "0085",
+     "targetPct": 100,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "goodMorning",
+     "configuredExerciseId": "0090",
+     "targetPct": 66,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "stepUp",
+     "configuredExerciseId": "0114",
+     "targetPct": 50,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "nordicCurl",
+     "configuredExerciseId": "3193",
+     "targetPct": 1,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "pullups",
+     "configuredExerciseId": "0652",
+     "targetPct": 10,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "atgDips",
+     "configuredExerciseId": "0251",
+     "targetPct": 10,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "inclineDbPress",
+     "configuredExerciseId": "0314",
+     "targetPct": 40,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    },
+    {
+     "roleId": "dbShoulderPress",
+     "configuredExerciseId": "0405",
+     "targetPct": 33,
+     "isOverridden": false,
+     "mappedExerciseId": null,
+     "actualPct": null,
+     "status": "no-data",
+     "needsBodyweight": false,
+     "needsAnchor": false,
+     "current": null
+    }
+   ]
+  }
  }
 ]
