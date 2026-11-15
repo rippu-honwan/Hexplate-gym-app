@@ -2759,5 +2759,1191 @@
     ]
    }
   ]
+ },
+ {
+  "name": "set: failure on and off",
+  "result": [
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2,
+     "failure": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2,
+     "failure": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "failure": true
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "failure": true
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true,
+     "failure": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "failure": true
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: failure on a timed pair",
+  "result": [
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30,
+     "failure": true
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30,
+     "failure": true
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: warm-up and back",
+  "result": [
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "at": 5000
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "at": 5000
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "at": 5000
+    },
+    {
+     "w": 20,
+     "r": 10,
+     "done": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "at": 5000
+    },
+    {
+     "w": 20,
+     "r": 10,
+     "done": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: per side warm-up",
+  "result": [
+   [
+    {
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": false
+      },
+      "R": {
+       "w": 10,
+       "r": 7,
+       "done": false
+      }
+     },
+     "r": 15,
+     "w": 10,
+     "done": false
+    },
+    {
+     "w": 10,
+     "r": 16,
+     "done": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": true
+      },
+      "R": {
+       "w": 10,
+       "r": 8,
+       "done": true,
+       "rir": 2
+      }
+     }
+    }
+   ],
+   [
+    {
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": false
+      },
+      "R": {
+       "w": 10,
+       "r": 7,
+       "done": false
+      }
+     },
+     "r": 15,
+     "w": 10,
+     "done": false
+    },
+    {
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": false
+      },
+      "R": {
+       "w": 10,
+       "r": 7,
+       "done": false
+      }
+     },
+     "r": 15,
+     "w": 10,
+     "done": false
+    },
+    {
+     "w": 10,
+     "r": 16,
+     "done": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": true
+      },
+      "R": {
+       "w": 10,
+       "r": 8,
+       "done": true,
+       "rir": 2
+      }
+     }
+    }
+   ],
+   [
+    {
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": false
+      },
+      "R": {
+       "w": 10,
+       "r": 7,
+       "done": false
+      }
+     },
+     "r": 15,
+     "w": 10,
+     "done": false
+    },
+    {
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": false
+      },
+      "R": {
+       "w": 10,
+       "r": 7,
+       "done": false
+      }
+     },
+     "r": 15,
+     "w": 10,
+     "done": false
+    },
+    {
+     "w": 10,
+     "r": 16,
+     "done": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": true
+      },
+      "R": {
+       "w": 10,
+       "r": 8,
+       "done": true,
+       "rir": 2
+      }
+     }
+    },
+    {
+     "w": 10,
+     "r": 16,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": false
+      },
+      "R": {
+       "w": 10,
+       "r": 8,
+       "done": false,
+       "rir": 2
+      }
+     },
+     "done": false,
+     "rir": 2
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: own rest",
+  "result": [
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30,
+     "restSec": 75
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30,
+     "restSec": 75
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L",
+     "restSec": 0
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30,
+     "restSec": 900
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L",
+     "restSec": 0
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L",
+     "restSec": 0
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L",
+     "restSec": 0
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: notes",
+  "result": [
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2,
+     "note": "felt easy go up"
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ],
+     "note": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: copy",
+  "result": [
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "rir": 2,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "rir": 2,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 20,
+     "r": 10,
+     "phase": "warmup",
+     "warmup": true,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "rir": 2,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: copy a timed pair",
+  "result": [
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "side": "L",
+     "done": false
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "side": "R",
+     "done": false
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "side": "L",
+     "done": false
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "side": "R",
+     "done": false
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "side": "L",
+     "done": false
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "side": "R",
+     "done": false
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: remove",
+  "result": [
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: remove a timed pair",
+  "result": [
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ]
+  ]
  }
 ]

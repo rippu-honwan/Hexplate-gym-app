@@ -283,9 +283,33 @@ it('writes the edit golden file', async () => {
   const O = await import('../../frontend/src/lib/active-workout-order.js')
   const { swapActiveExercise } = await import('../../frontend/src/lib/active-exercise-swap.js')
   const { setEntryNoProg } = await import('../../frontend/src/lib/session-noprog.js')
+  const W = await import('../../frontend/src/lib/workout-model.js')
+  const { withSetNote } = await import('../../frontend/src/lib/set-notes.js')
   const cases = JSON.parse(readFileSync(process.env.EDIT_IN, 'utf8'))
   const out = []
   for (const c of cases) {
+    if (c.rows) {
+      let rows = structuredClone(c.rows)
+      const steps = []
+      for (const [op, i, v] of c.ops) {
+        if (op === 'failure') {
+          const [start, count] = H.setSpanAt(rows, i)
+          const on = !W.isFailureSet(rows[i])
+          for (let j = start; j < start + count; j++) if (W.isFailureSet(rows[j]) !== on) rows[j] = W.toggleFailure(rows[j])
+        } else if (op === 'warmup') rows = H.makeWarmupAt(rows, i)
+        else if (op === 'work') rows = H.makeWorkAt(rows, i)
+        else if (op === 'rest') {
+          const row = rows[H.setSpanAt(rows, i)[0]]
+          if (v == null) delete row.restSec
+          else row.restSec = Math.max(0, Math.min(15 * 60, Math.round(v)))
+        } else if (op === 'note') { const at = H.setSpanAt(rows, i)[0]; rows[at] = withSetNote(rows[at], v) }
+        else if (op === 'copy') rows = H.copyRowAt(rows, i)
+        else if (op === 'remove') rows = H.removeRowAt(rows, i)
+        steps.push(structuredClone(rows))
+      }
+      out.push({ name: c.name, result: JSON.parse(JSON.stringify(steps)) })
+      continue
+    }
     const a = structuredClone(c.active)
     const steps = []
     for (const [op, x, y, z] of c.ops) {

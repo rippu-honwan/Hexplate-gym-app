@@ -123,3 +123,152 @@ public enum ActiveEdit {
         if !on { a["noProg"] = nil }
     }
 }
+
+/// One set's own menu in a live session (Workout.jsx openSetMenu): failure, copy, phase, its own
+/// rest, a note, remove. Rows as stored on the entry; each returns the new rows.
+public enum SetEdit {
+    public typealias Object = [String: JSONValue]
+    public static let restMax = 15.0 * 60
+
+    static func o(_ rows: [JSONValue], _ i: Int) -> Object? { rows.indices.contains(i) ? rows[i].object : nil }
+
+    /// The rows one set takes up: a timed per-side hold is an L row and an R row (setSpanAt).
+    public static func span(_ rows: [JSONValue], _ i: Int) -> (start: Int, count: Int) {
+        let side = { (j: Int) in o(rows, j)?["side"]?.stringValue }
+        if side(i) == "L" && side(i + 1) == "R" { return (i, 2) }
+        if side(i) == "R" && side(i - 1) == "L" { return (i - 1, 2) }
+        return (i, 1)
+    }
+
+    public static func isFailure(_ row: JSONValue) -> Bool {
+        row.object?["failure"] == .bool(true) && !Recovery.isWarmupRow(row.object)
+    }
+
+    /// Taken to failure, on or off for the whole set.
+    public static func toggleFailure(_ rows: [JSONValue], _ i: Int) -> [JSONValue] {
+        guard rows.indices.contains(i) else { return rows }
+        var next = rows
+        let s = span(rows, i), on = !isFailure(rows[i])
+        for j in s.start..<(s.start + s.count) where isFailure(next[j]) != on {
+            guard var r = next[j].object else { continue }
+            r["failure"] = r["failure"] == .bool(true) ? nil : .bool(true)
+            next[j] = .object(r)
+        }
+        return next
+    }
+
+    static func isType(_ r: Object, _ t: String) -> Bool { r["type"] == .string(t) }
+    public static func canBeWarmup(_ row: JSONValue) -> Bool {
+        guard let r = row.object else { return false }
+        return !Recovery.isWarmupRow(r) && !isType(r, "dropset") && !isType(r, "restpause")
+    }
+
+    /// A row moved to the edge of the warm-ups (placeRow).
+    static func place(_ rows: [JSONValue], _ i: Int, _ row: Object) -> [JSONValue] {
+        var next = rows
+        next.remove(at: i)
+        let firstWork = next.firstIndex { !Recovery.isWarmupRow($0.object) } ?? next.count
+        next.insert(.object(row), at: firstWork)
+        return next
+    }
+
+    public static func makeWarmup(_ rows: [JSONValue], _ i: Int) -> [JSONValue] {
+        guard let src = o(rows, i), canBeWarmup(rows[i]) else { return rows }
+        var warm: Object
+        if Session.isSideSet(rows[i]), let sides = src["sides"]?.object {
+            func side(_ v: JSONValue?) -> JSONValue {
+                let s = v?.object ?? [:]
+                var out: Object = ["w": .number(s["w"]?.num ?? 0), "done": .bool(Session.truthy(s["done"]))]
+                out["r"] = s["r"]
+                return .object(out)
+            }
+            warm = Session.syncSides(["phase": .string("warmup"), "warmup": .bool(true), "edited": .bool(true), "sides": .object(["L": side(sides["L"]), "R": side(sides["R"])])]).object ?? [:]
+        } else {
+            warm = ["w": .number(src["w"]?.num ?? 0), "done": .bool(Session.truthy(src["done"])),
+                    "phase": .string("warmup"), "warmup": .bool(true), "edited": .bool(true)]
+            warm["r"] = src["r"]
+        }
+        if let at = src["at"], at != .null { warm["at"] = at }
+        return place(rows, i, warm)
+    }
+
+    public static func makeWork(_ rows: [JSONValue], _ i: Int) -> [JSONValue] {
+        guard var src = o(rows, i), Recovery.isWarmupRow(src) else { return rows }
+        for k in ["phase", "warmup", "edited"] { src[k] = nil }
+        return place(rows, i, src)
+    }
+
+    /// The set's own rest this session: nil goes back to the exercise's, 0 is no timer.
+    public static func setRest(_ rows: [JSONValue], _ i: Int, _ sec: Double?) -> [JSONValue] {
+        let start = span(rows, i).start
+        guard var r = o(rows, start) else { return rows }
+        r["restSec"] = sec.map { .number(Session.jsRound(max(0, min(restMax, $0)))) }
+        var next = rows
+        next[start] = .object(r)
+        return next
+    }
+
+    /// ownSetRest: the set's own rest in seconds, nil when it has none.
+    public static func ownRest(_ row: JSONValue?) -> Double? {
+        guard case .number(let v)? = row?.object?["restSec"], v.isFinite, v >= 0 else { return nil }
+        return Session.jsRound(v)
+    }
+
+    public static func note(_ row: JSONValue?) -> String {
+        (row?.object?["note"]?.stringValue ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    /// withSetNote: control characters become spaces, at most 140 characters, blank removes it.
+    public static func setNote(_ rows: [JSONValue], _ i: Int, _ text: String) -> [JSONValue] {
+        let start = span(rows, i).start
+        guard var r = o(rows, start) else { return rows }
+        let clean = String(text.unicodeScalars.map { $0.value < 0x20 || $0.value == 0x7f ? " " : Character($0) })
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        // ponytail: counts characters, JavaScript counts UTF-16 units; differs only past 140 with emoji.
+        let cut = String(clean.prefix(140))
+        r["note"] = cut.isEmpty ? nil : .string(cut)
+        var next = rows
+        next[start] = .object(r)
+        return next
+    }
+
+    static let notCopied = ["done", "at", "planSec", "weightOrigin", "type", "drops", "clusters", "media"]
+    static func bare(_ r: Object) -> Object { r.filter { !notCopied.contains($0.key) } }
+
+    /// "One more like this one": an unticked copy right below (copyRowAt).
+    public static func copy(_ rows: [JSONValue], _ i: Int) -> [JSONValue] {
+        guard rows.indices.contains(i) else { return rows }
+        let work = { (j: Int) -> String? in
+            guard let r = o(rows, j), !Recovery.isWarmupRow(r) else { return nil }
+            return r["side"]?.stringValue
+        }
+        let start = work(i) == "R" && work(i - 1) == "L" ? i - 1 : i
+        let end = work(start) == "L" && work(start + 1) == "R" ? start + 1 : start
+        let copies: [JSONValue] = rows[start...end].map { row in
+            let src = row.object ?? [:]
+            if Session.isSideSet(row), let sides = src["sides"]?.object {
+                func side(_ v: JSONValue?) -> JSONValue { var s = bare(v?.object ?? [:]); s["done"] = .bool(false); return .object(s) }
+                var out = bare(src)
+                out["sides"] = .object(["L": side(sides["L"]), "R": side(sides["R"])])
+                out["done"] = .bool(false)
+                return Session.syncSides(out)
+            }
+            var out = bare(src)
+            out["done"] = .bool(false)
+            return .object(out)
+        }
+        var next = rows
+        next.insert(contentsOf: copies, at: end + 1)
+        return next
+    }
+
+    /// The set (both rows of a timed per-side pair) out; the last set always stays (removeRowAt).
+    public static func remove(_ rows: [JSONValue], _ i: Int) -> [JSONValue] {
+        guard rows.indices.contains(i) else { return rows }
+        let s = span(rows, i)
+        guard rows.count > s.count else { return rows }
+        var next = rows
+        next.removeSubrange(s.start..<(s.start + s.count))
+        return next
+    }
+}

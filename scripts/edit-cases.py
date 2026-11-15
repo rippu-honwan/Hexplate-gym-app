@@ -31,4 +31,25 @@ cases = [
     {'name': 'swap, logged in a superset, after', 'active': active(e('A'), e('B', True, sg='s1'), e('C', sg='s1'), e('D')), 'ops': [['swap', 1, new, False]]},
     {'name': 'progression on and off', 'active': {**plain, 'noProg': True}, 'ops': [['noProg', 1, True], ['noProg', 2, True], ['noProg', 1, False]]},
 ]
+
+# One set's own menu: ops on an entry's rows.
+side = lambda w, l, r, done=False: {'w': w, 'r': l + r, 'done': done, 'sides': {'L': {'w': w, 'r': l, 'done': done}, 'R': {'w': w, 'r': r, 'done': done, 'rir': 2}}}
+rows = [{'w': 20, 'r': 10, 'done': True, 'phase': 'warmup', 'warmup': True},
+        {'w': 60, 'r': 8, 'done': True, 'at': 5000, 'weightOrigin': 'manual', 'rir': 2},
+        {'w': 60, 'r': 8, 'done': False, 'type': 'dropset', 'drops': [{'w': 45, 'r': 6}]},
+        {'w': 60, 'r': 8, 'done': False}]
+timed = [{'sec': 30, 'w': 0, 'done': True, 'side': 'L', 'planSec': 30}, {'sec': 30, 'w': 0, 'done': False, 'side': 'R', 'planSec': 30},
+         {'sec': 30, 'w': 0, 'done': False, 'side': 'L'}, {'sec': 30, 'w': 0, 'done': False, 'side': 'R'}]
+cases += [
+    {'name': 'set: failure on and off', 'rows': rows, 'ops': [['failure', 1], ['failure', 3], ['failure', 1], ['failure', 0]]},
+    {'name': 'set: failure on a timed pair', 'rows': timed, 'ops': [['failure', 1], ['failure', 0]]},
+    {'name': 'set: warm-up and back', 'rows': rows, 'ops': [['warmup', 3], ['warmup', 2], ['work', 1], ['work', 0], ['warmup', 0]]},
+    {'name': 'set: per side warm-up', 'rows': [side(10, 8, 8, True), side(10, 8, 7)], 'ops': [['warmup', 1], ['copy', 0], ['copy', 2]]},
+    {'name': 'set: own rest', 'rows': timed, 'ops': [['rest', 1, 75.4], ['rest', 2, 0], ['rest', 0, 2000], ['rest', 1, None], ['rest', 3, -5]]},
+    {'name': 'set: notes', 'rows': rows, 'ops': [['note', 1, '  felt easy\tgo up '], ['note', 1, '   '], ['note', 2, 'x' * 150]]},
+    {'name': 'set: copy', 'rows': rows, 'ops': [['copy', 1], ['copy', 3], ['copy', 0]]},
+    {'name': 'set: copy a timed pair', 'rows': timed, 'ops': [['copy', 1], ['copy', 2]]},
+    {'name': 'set: remove', 'rows': rows, 'ops': [['remove', 1], ['remove', 0], ['remove', 1], ['remove', 0]]},
+    {'name': 'set: remove a timed pair', 'rows': timed, 'ops': [['remove', 1], ['remove', 0]]},
+]
 print(json.dumps(cases, indent=1))

@@ -187,6 +187,7 @@ struct WorkoutView: View {
     @State private var picking = false
     @State private var summary: AppModel.Object?
     @State private var noteFor: Int?
+    @State private var setNoteFor: EntryAction?
     @State private var noteText = ""
     @State private var removeFor: Int?
     @State private var swapFor: EntryAction?
@@ -271,6 +272,13 @@ struct WorkoutView: View {
                 }
                 Button("Cancel", role: .cancel) {}
             }
+            .alert("Set note", isPresented: Binding(get: { setNoteFor != nil }, set: { if !$0 { setNoteFor = nil } }), presenting: setNoteFor) { action in
+                TextField("A word about this set", text: $noteText)
+                Button("Save") {
+                    if case .setNote(let e, let i) = action { model.changeSets(e) { $0 = SetEdit.setNote($0, i, noteText) } }
+                }
+                Button("Cancel", role: .cancel) {}
+            }
             .alert("Remove \(removeFor.flatMap(entry).map(name) ?? "exercise")?", isPresented: present($removeFor), presenting: removeFor) { i in
                 Button("Remove", role: .destructive) { model.changeActive { ActiveEdit.remove(&$0, i) } }
                 Button("Cancel", role: .cancel) {}
@@ -317,6 +325,9 @@ struct WorkoutView: View {
         case .remove(let i): removeFor = i
         case .swap: swapFor = a
         case .detail: detailFor = a
+        case .setNote(let e, let i):
+            noteText = SetEdit.note(entry(e)?["sets"]?.arrayValue?[safe: i])
+            setNoteFor = a
         }
     }
 
@@ -352,9 +363,10 @@ struct WorkoutView: View {
 
 /// What an exercise's ⋯ menu asks the workout screen to show.
 enum EntryAction: Identifiable {
-    case note(Int), swap(Int), remove(Int), detail(String)
+    case note(Int), swap(Int), remove(Int), detail(String), setNote(Int, Int)
     var id: String {
         switch self {
+        case .setNote(let e, let i): "setNote\(e)-\(i)"
         case .note(let i): "note\(i)"
         case .swap(let i): "swap\(i)"
         case .remove(let i): "remove\(i)"
@@ -398,7 +410,7 @@ private struct EntrySection: View {
             if let line = lastLine { Label(line, systemImage: "clock.arrow.circlepath").font(.subheadline).foregroundStyle(.secondary) }
             if let why = advice { Label(why.text, systemImage: why.symbol).font(.subheadline).foregroundStyle(.secondary) }
             ForEach(Array(sets.enumerated()), id: \.offset) { i, row in
-                SetRow(entry: index, index: i, number: number(of: i), row: row, mode: mode, step: step, onDone: { completed(set: i) })
+                SetRow(entry: index, index: i, number: number(of: i), row: row, mode: mode, step: step, rows: sets, onAction: onAction, onDone: { completed(set: i) })
                     .swipeActions(edge: .trailing) {
                         Button("Delete", systemImage: "trash", role: .destructive) { model.changeSets(index) { $0.remove(at: i) } }
                     }
@@ -500,7 +512,10 @@ private struct EntrySection: View {
 
     /// After a set: on to the superset partner, or rest.
     private func completed(set i: Int) {
-        if let rest = model.restSeconds(after: index), rest > 0 { timer.start(rest, alerts: alerts) }
+        // A set's own rest (its menu) wins over the exercise's; going on to a superset partner has none.
+        guard let exerciseRest = model.restSeconds(after: index) else { return }
+        let rest = SetEdit.ownRest(sets[SetEdit.span(sets, i).start]) ?? exerciseRest
+        if rest > 0 { timer.start(rest, alerts: alerts) }
     }
 
     private var lastLine: String? {
@@ -537,6 +552,8 @@ private struct SetRow: View {
     let row: JSONValue
     let mode: String
     let step: Double
+    let rows: [JSONValue]
+    let onAction: (EntryAction) -> Void
     let onDone: () -> Void
 
     private var o: AppModel.Object { row.object ?? [:] }
@@ -548,6 +565,9 @@ private struct SetRow: View {
             }
         } else {
             line(label: number, fields: o, side: nil)
+        }
+        if !SetEdit.note(row).isEmpty {
+            Label(SetEdit.note(row), systemImage: "note.text").font(.caption).foregroundStyle(.secondary).padding(.leading, 42)
         }
         ForEach(Array((o["drops"]?.arrayValue ?? []).enumerated()), id: \.offset) { k, drop in
             HStack {
@@ -571,11 +591,15 @@ private struct SetRow: View {
         let isDone = fields["done"] == .bool(true)
         let warm = Session.isWarmup(row)
         return HStack(spacing: 10) {
-            Text(label)
-                .font(.subheadline.weight(.semibold).monospacedDigit())
-                .foregroundStyle(warm ? Theme.warmup : .secondary)
-                .frame(width: 32, alignment: .leading)
-                .accessibilityLabel(warm ? "Warm-up" : "Set \(label)")
+            Menu { setMenu(warm: warm) } label: {
+                Text(label)
+                    .font(.subheadline.weight(.semibold).monospacedDigit())
+                    .foregroundStyle(warm ? Theme.warmup : .secondary)
+                    .frame(width: 32, alignment: .leading)
+                    .contentShape(.rect)
+            }
+            .buttonStyle(.borderless)
+            .accessibilityLabel(warm ? "Warm-up, options" : "Set \(label), options")
             switch mode {
             case "time":
                 field(fields["sec"], unit: "s") { v in set("sec", v, side) }
@@ -607,6 +631,55 @@ private struct SetRow: View {
             .buttonStyle(.borderless)
             .accessibilityLabel(isDone ? "Done" : "Mark done")
         }
+    }
+
+    /// The set's own menu (Workout.jsx openSetMenu).
+    @ViewBuilder private func setMenu(warm: Bool) -> some View {
+        let start = SetEdit.span(rows, index).start
+        let own = SetEdit.ownRest(rows[safe: start])
+        let rest = model.restSeconds(after: entry) ?? 0
+        Section(warm ? "Warm-up" : "Set \(number)") {
+            if !warm && mode != "cardio" {
+                Toggle("Taken to failure", systemImage: "gauge.with.dots.needle.100percent", isOn: Binding(
+                    get: { SetEdit.isFailure(row) }, set: { _ in change { SetEdit.toggleFailure($0, index) } }))
+            }
+            if !warm && mode == "reps" && o["type"] != .string("restpause") {
+                Button("Drop set", systemImage: "arrow.down.right") { change { var r = $0; r[index] = Session.addingDrop(r[index], step: step); return r } }
+            }
+            if !warm && mode == "reps" && o["type"] != .string("dropset") {
+                Button("Rest-pause burst", systemImage: "bolt") {
+                    let sec = model.root["restPauseSec"]?.numberValue ?? 15
+                    change { var r = $0; r[index] = Session.addingCluster(r[index], restSec: sec); return r }
+                    timer.start(sec, alerts: .init(sound: model.root["sound"] != .bool(false), flash: model.root["timerFlash"] == .bool(true)))
+                }
+            }
+            Button("Copy this set", systemImage: "plus.square.on.square") { change { SetEdit.copy($0, index) } }
+            Button(SetEdit.note(rows[safe: start]).isEmpty ? "Note" : "Edit note", systemImage: "note.text") { onAction(.setNote(entry, index)) }
+        }
+        Section {
+            if !warm && mode == "reps" && SetEdit.canBeWarmup(row) && rows.indices.contains(where: { $0 != index && !Session.isWarmup(rows[$0]) }) {
+                Button("Make it a warm-up set", systemImage: "sunrise") { change { SetEdit.makeWarmup($0, index) } }
+            }
+            if warm && mode == "reps" {
+                Button("Count it as a working set", systemImage: "dumbbell") { change { SetEdit.makeWork($0, index) } }
+            }
+            Picker(selection: Binding(get: { own ?? -1 }, set: { v in change { SetEdit.setRest($0, index, v < 0 ? nil : v) } })) {
+                Text("Default (\(Format.seconds(rest)))").tag(-1.0)
+                Text("No timer").tag(0.0)
+                ForEach([30.0, 45, 60, 90, 120, 150, 180, 240, 300], id: \.self) { Text(Format.seconds($0)).tag($0) }
+            } label: {
+                Label("Rest after this set", systemImage: "timer")
+            }
+            .pickerStyle(.menu)
+        }
+        Section {
+            Button("Remove this set", systemImage: "trash", role: .destructive) { change { SetEdit.remove($0, index) } }
+                .disabled(rows.count <= SetEdit.span(rows, index).count)
+        }
+    }
+
+    private func change(_ f: @escaping ([JSONValue]) -> [JSONValue]) {
+        model.changeSets(entry) { $0 = f($0) }
     }
 
     private func field(_ value: JSONValue?, unit: String, _ commit: @escaping (Double) -> Void) -> some View {

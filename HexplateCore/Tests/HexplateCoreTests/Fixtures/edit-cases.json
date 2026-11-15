@@ -1638,5 +1638,515 @@
     false
    ]
   ]
+ },
+ {
+  "name": "set: failure on and off",
+  "rows": [
+   {
+    "w": 20,
+    "r": 10,
+    "done": true,
+    "phase": "warmup",
+    "warmup": true
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": true,
+    "at": 5000,
+    "weightOrigin": "manual",
+    "rir": 2
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": false,
+    "type": "dropset",
+    "drops": [
+     {
+      "w": 45,
+      "r": 6
+     }
+    ]
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": false
+   }
+  ],
+  "ops": [
+   [
+    "failure",
+    1
+   ],
+   [
+    "failure",
+    3
+   ],
+   [
+    "failure",
+    1
+   ],
+   [
+    "failure",
+    0
+   ]
+  ]
+ },
+ {
+  "name": "set: failure on a timed pair",
+  "rows": [
+   {
+    "sec": 30,
+    "w": 0,
+    "done": true,
+    "side": "L",
+    "planSec": 30
+   },
+   {
+    "sec": 30,
+    "w": 0,
+    "done": false,
+    "side": "R",
+    "planSec": 30
+   },
+   {
+    "sec": 30,
+    "w": 0,
+    "done": false,
+    "side": "L"
+   },
+   {
+    "sec": 30,
+    "w": 0,
+    "done": false,
+    "side": "R"
+   }
+  ],
+  "ops": [
+   [
+    "failure",
+    1
+   ],
+   [
+    "failure",
+    0
+   ]
+  ]
+ },
+ {
+  "name": "set: warm-up and back",
+  "rows": [
+   {
+    "w": 20,
+    "r": 10,
+    "done": true,
+    "phase": "warmup",
+    "warmup": true
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": true,
+    "at": 5000,
+    "weightOrigin": "manual",
+    "rir": 2
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": false,
+    "type": "dropset",
+    "drops": [
+     {
+      "w": 45,
+      "r": 6
+     }
+    ]
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": false
+   }
+  ],
+  "ops": [
+   [
+    "warmup",
+    3
+   ],
+   [
+    "warmup",
+    2
+   ],
+   [
+    "work",
+    1
+   ],
+   [
+    "work",
+    0
+   ],
+   [
+    "warmup",
+    0
+   ]
+  ]
+ },
+ {
+  "name": "set: per side warm-up",
+  "rows": [
+   {
+    "w": 10,
+    "r": 16,
+    "done": true,
+    "sides": {
+     "L": {
+      "w": 10,
+      "r": 8,
+      "done": true
+     },
+     "R": {
+      "w": 10,
+      "r": 8,
+      "done": true,
+      "rir": 2
+     }
+    }
+   },
+   {
+    "w": 10,
+    "r": 15,
+    "done": false,
+    "sides": {
+     "L": {
+      "w": 10,
+      "r": 8,
+      "done": false
+     },
+     "R": {
+      "w": 10,
+      "r": 7,
+      "done": false,
+      "rir": 2
+     }
+    }
+   }
+  ],
+  "ops": [
+   [
+    "warmup",
+    1
+   ],
+   [
+    "copy",
+    0
+   ],
+   [
+    "copy",
+    2
+   ]
+  ]
+ },
+ {
+  "name": "set: own rest",
+  "rows": [
+   {
+    "sec": 30,
+    "w": 0,
+    "done": true,
+    "side": "L",
+    "planSec": 30
+   },
+   {
+    "sec": 30,
+    "w": 0,
+    "done": false,
+    "side": "R",
+    "planSec": 30
+   },
+   {
+    "sec": 30,
+    "w": 0,
+    "done": false,
+    "side": "L"
+   },
+   {
+    "sec": 30,
+    "w": 0,
+    "done": false,
+    "side": "R"
+   }
+  ],
+  "ops": [
+   [
+    "rest",
+    1,
+    75.4
+   ],
+   [
+    "rest",
+    2,
+    0
+   ],
+   [
+    "rest",
+    0,
+    2000
+   ],
+   [
+    "rest",
+    1,
+    null
+   ],
+   [
+    "rest",
+    3,
+    -5
+   ]
+  ]
+ },
+ {
+  "name": "set: notes",
+  "rows": [
+   {
+    "w": 20,
+    "r": 10,
+    "done": true,
+    "phase": "warmup",
+    "warmup": true
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": true,
+    "at": 5000,
+    "weightOrigin": "manual",
+    "rir": 2
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": false,
+    "type": "dropset",
+    "drops": [
+     {
+      "w": 45,
+      "r": 6
+     }
+    ]
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": false
+   }
+  ],
+  "ops": [
+   [
+    "note",
+    1,
+    "  felt easy\tgo up "
+   ],
+   [
+    "note",
+    1,
+    "   "
+   ],
+   [
+    "note",
+    2,
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   ]
+  ]
+ },
+ {
+  "name": "set: copy",
+  "rows": [
+   {
+    "w": 20,
+    "r": 10,
+    "done": true,
+    "phase": "warmup",
+    "warmup": true
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": true,
+    "at": 5000,
+    "weightOrigin": "manual",
+    "rir": 2
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": false,
+    "type": "dropset",
+    "drops": [
+     {
+      "w": 45,
+      "r": 6
+     }
+    ]
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": false
+   }
+  ],
+  "ops": [
+   [
+    "copy",
+    1
+   ],
+   [
+    "copy",
+    3
+   ],
+   [
+    "copy",
+    0
+   ]
+  ]
+ },
+ {
+  "name": "set: copy a timed pair",
+  "rows": [
+   {
+    "sec": 30,
+    "w": 0,
+    "done": true,
+    "side": "L",
+    "planSec": 30
+   },
+   {
+    "sec": 30,
+    "w": 0,
+    "done": false,
+    "side": "R",
+    "planSec": 30
+   },
+   {
+    "sec": 30,
+    "w": 0,
+    "done": false,
+    "side": "L"
+   },
+   {
+    "sec": 30,
+    "w": 0,
+    "done": false,
+    "side": "R"
+   }
+  ],
+  "ops": [
+   [
+    "copy",
+    1
+   ],
+   [
+    "copy",
+    2
+   ]
+  ]
+ },
+ {
+  "name": "set: remove",
+  "rows": [
+   {
+    "w": 20,
+    "r": 10,
+    "done": true,
+    "phase": "warmup",
+    "warmup": true
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": true,
+    "at": 5000,
+    "weightOrigin": "manual",
+    "rir": 2
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": false,
+    "type": "dropset",
+    "drops": [
+     {
+      "w": 45,
+      "r": 6
+     }
+    ]
+   },
+   {
+    "w": 60,
+    "r": 8,
+    "done": false
+   }
+  ],
+  "ops": [
+   [
+    "remove",
+    1
+   ],
+   [
+    "remove",
+    0
+   ],
+   [
+    "remove",
+    1
+   ],
+   [
+    "remove",
+    0
+   ]
+  ]
+ },
+ {
+  "name": "set: remove a timed pair",
+  "rows": [
+   {
+    "sec": 30,
+    "w": 0,
+    "done": true,
+    "side": "L",
+    "planSec": 30
+   },
+   {
+    "sec": 30,
+    "w": 0,
+    "done": false,
+    "side": "R",
+    "planSec": 30
+   },
+   {
+    "sec": 30,
+    "w": 0,
+    "done": false,
+    "side": "L"
+   },
+   {
+    "sec": 30,
+    "w": 0,
+    "done": false,
+    "side": "R"
+   }
+  ],
+  "ops": [
+   [
+    "remove",
+    1
+   ],
+   [
+    "remove",
+    0
+   ]
+  ]
  }
 ]
