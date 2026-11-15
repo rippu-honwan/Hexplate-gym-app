@@ -156,8 +156,18 @@ public enum Balance {
         return best
     }
 
+    public static func overrideKey(_ t: Template, _ role: Role) -> String { "\(t.id):\(role.id)" }
+
+    /// `balanceOverrides` with one role set to `exId`, or back on its default when nil. A clear stays a
+    /// stamped `{ id: null }` so a sync keeps whichever choice was made last (withOverride).
+    public static func withOverride(_ overrides: JSONValue?, _ key: String, _ exId: String?, now: Double) -> JSONValue {
+        var o = overrides?.object ?? [:]
+        o[key] = .object(["id": exId.map { .string($0) } ?? .null, "_ts": .number(now)])
+        return .object(o)
+    }
+
     static func override(_ s: Object, _ t: Template, _ role: Role) -> String? {
-        let v = s["balanceOverrides"]?.object?["\(t.id):\(role.id)"]
+        let v = s["balanceOverrides"]?.object?[overrideKey(t, role)]
         let id = v?.stringValue.flatMap { $0.isEmpty ? nil : $0 } ?? v?.object?["id"]?.stringValue.flatMap { $0.isEmpty ? nil : $0 }
         return id != nil && id != role.exerciseIds.first ? id : nil
     }

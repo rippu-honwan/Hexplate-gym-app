@@ -338,6 +338,7 @@ private struct MeasurementEntry: View {
 // ponytail: changing a role's exercise is not here yet; overrides set in the old app are honoured.
 private struct BalanceView: View {
     @Environment(AppModel.self) private var model
+    @State private var picking: String?
 
     var body: some View {
         let template = Balance.template(model.root)
@@ -350,7 +351,15 @@ private struct BalanceView: View {
             if let template {
                 Section {
                     ForEach(Balance.compute(model.root, template, catalog: model.catalog), id: \.roleId) { r in
-                        row(r, role: template.roles.first { $0.id == r.roleId })
+                        if let role = template.roles.first(where: { $0.id == r.roleId }) {
+                            Menu {
+                                Button("Change exercise", systemImage: "pencil") { picking = role.id }
+                                if r.isOverridden {
+                                    Button("Use default exercise", systemImage: "arrow.uturn.backward") { setOverride(template, role, nil) }
+                                }
+                            } label: { row(r, role: role) }
+                            .foregroundStyle(.primary)
+                        }
                     }
                 } footer: {
                     Text("Balanced: at the standard. Borderline: within 5 points of it. Estimated from your best logged sets.")
@@ -359,6 +368,16 @@ private struct BalanceView: View {
         }
         .navigationTitle("Structural balance")
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: Binding(get: { picking != nil }, set: { if !$0 { picking = nil } })) {
+            ExercisePicker(title: "Change exercise") { id in
+                if let template, let role = template.roles.first(where: { $0.id == picking }) { setOverride(template, role, id) }
+            }
+        }
+    }
+
+    private func setOverride(_ t: Balance.Template, _ role: Balance.Role, _ id: String?) {
+        let now = model.now
+        model.change { $0["balanceOverrides"] = Balance.withOverride($0["balanceOverrides"], Balance.overrideKey(t, role), id, now: now) }
     }
 
     private func row(_ r: Balance.Result, role: Balance.Role?) -> some View {

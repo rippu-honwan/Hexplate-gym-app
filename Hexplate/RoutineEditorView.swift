@@ -298,6 +298,7 @@ extension Array {
 struct ExercisePicker: View {
     @Environment(AppModel.self) private var model
     @Environment(\.dismiss) private var dismiss
+    var title = "Add exercise"
     let onPick: (String) -> Void
     @State private var query = ""
 
@@ -313,7 +314,7 @@ struct ExercisePicker: View {
             }
             .overlay { if results.isEmpty { ContentUnavailableView.search(text: query) } }
             .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search exercises")
-            .navigationTitle("Add exercise")
+            .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } } }
         }

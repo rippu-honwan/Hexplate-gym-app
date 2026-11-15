@@ -78,4 +78,19 @@ final class StatsGoldenTests: XCTestCase {
             XCTAssertEqual(text(result), text(g.result), g.name)
         }
     }
+
+    func testBalanceOverrideSetAndClear() throws {
+        let t = try XCTUnwrap(Balance.templates.first { $0.roles.count > 1 })
+        let role = t.roles[0]
+        let other = role.exerciseIds.first == "0025" ? "0043" : "0025"
+        let key = Balance.overrideKey(t, role)
+        var s: Balance.Object = ["balanceOverrides": .object(["keep": .string("x")])]
+        s["balanceOverrides"] = Balance.withOverride(s["balanceOverrides"], key, other, now: 5)
+        XCTAssertEqual(s["balanceOverrides"]?.object?[key], .object(["id": .string(other), "_ts": .number(5)]))
+        XCTAssertEqual(s["balanceOverrides"]?.object?["keep"], .string("x"))
+        XCTAssertTrue(Balance.compute(s, t, catalog: .builtIn)[0].isOverridden)
+        s["balanceOverrides"] = Balance.withOverride(s["balanceOverrides"], key, nil, now: 6)
+        XCTAssertEqual(s["balanceOverrides"]?.object?[key], .object(["id": .null, "_ts": .number(6)]))
+        XCTAssertFalse(Balance.compute(s, t, catalog: .builtIn)[0].isOverridden)
+    }
 }
