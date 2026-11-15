@@ -159,6 +159,8 @@ struct WorkoutView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var confirmFinish = false
     @State private var confirmDiscard = false
+    /// Discard was chosen in the first question; the second opens once that one has closed.
+    @State private var wantsDiscard = false
     @State private var picking = false
     @State private var summary: AppModel.Object?
 
@@ -181,6 +183,18 @@ struct WorkoutView: View {
                 }
             }
             .listSectionSpacing(.compact)
+            // The second question hangs on the list, not next to the first one: two alerts on
+            // one view share a presenter, and the second then ignored taps.
+            .alert("Really discard this workout?", isPresented: $confirmDiscard) {
+                Button("Discard", role: .destructive) {
+                    timer.stop()
+                    model.discardWorkout()
+                    dismiss()
+                }
+                Button("Keep", role: .cancel) {}
+            } message: {
+                Text("Nothing from this session is saved. This cannot be undone.")
+            }
             .navigationTitle(model.active?["name"]?.stringValue ?? "Workout")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -200,22 +214,24 @@ struct WorkoutView: View {
             }
             .safeAreaInset(edge: .bottom) { if timer.end != nil { RestBar() } }
             .overlay { if timer.flashing { Color.white.opacity(0.85).ignoresSafeArea().allowsHitTesting(false) } }
-            .confirmationDialog("Finish this workout?", isPresented: $confirmFinish, titleVisibility: .visible) {
-                Button("Finish workout") {
+            // Finish asks whether to keep the session: a practice run can be thrown away.
+            // Alerts, not a dialog: a dialog on the toolbar opens as a popover, and a second question
+            // shown as it closes stopped taking taps in the simulator.
+            .onChange(of: confirmFinish) {
+                if !confirmFinish && wantsDiscard { wantsDiscard = false; confirmDiscard = true }
+            }
+            .alert("Save this workout?", isPresented: $confirmFinish) {
+                Button("Save workout") {
                     timer.stop()
                     summary = model.finishWorkout()
                 }
+                Button("Discard workout", role: .destructive) {
+                    // The second question opens once this one has closed.
+                    wantsDiscard = true
+                }
+                Button("Cancel", role: .cancel) {}
             } message: {
                 Text(unfinished > 0 ? "\(unfinished) planned \(unfinished == 1 ? "set is" : "sets are") not done and will be left out." : "Every set is done.")
-            }
-            .confirmationDialog("Discard this workout?", isPresented: $confirmDiscard, titleVisibility: .visible) {
-                Button("Discard workout", role: .destructive) {
-                    timer.stop()
-                    model.discardWorkout()
-                    dismiss()
-                }
-            } message: {
-                Text("Nothing from this session is saved.")
             }
             .sheet(isPresented: $picking) { ExercisePicker { model.addExercise($0) } }
             .sheet(item: Binding(get: { summary.map(Summary.init) }, set: { if $0 == nil { summary = nil; dismiss() } })) { FinishSummary(summary: $0) }
