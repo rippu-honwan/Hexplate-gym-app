@@ -1,8 +1,8 @@
 import HexplateCore
 import SwiftUI
 
-/// One logged workout: its totals, then every exercise with the sets that were done. Read only,
-/// apart from deleting it.
+/// One logged workout: its totals, then every exercise with the sets that were done. Edit opens
+/// it in the workout screen (session-edit.js); delete removes it.
 struct WorkoutDetailView: View {
     @Environment(AppModel.self) private var model
     @Environment(\.dismiss) private var dismiss
@@ -34,7 +34,13 @@ struct WorkoutDetailView: View {
             }
 
             Section {
+                Button("Edit workout", systemImage: "pencil") {
+                    if model.editWorkout(key: workout.id) { model.showWorkout = true }
+                }
+                .disabled(model.active != nil)
                 Button("Delete workout", systemImage: "trash", role: .destructive) { confirmDelete = true }
+            } footer: {
+                if model.active != nil { Text("Finish the current workout first.") }
             }
         }
         .navigationTitle(workout.name ?? "Workout")

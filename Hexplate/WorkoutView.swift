@@ -20,6 +20,24 @@ extension AppModel {
         WatchBridge.shared.openOnWatch()
     }
 
+    var isEditingSaved: Bool { WorkoutEdit.isEditing(active) }
+
+    /// Opens a saved workout in the workout screen. False when it could not (another session runs).
+    func editWorkout(key: String) -> Bool {
+        var failure: Error?
+        change { s in do { try WorkoutEdit.begin(&s, key: key) } catch { failure = error } }
+        if let failure { errorMessage = failure.localizedDescription }
+        return failure == nil
+    }
+
+    /// Saves the edits over the record; the message when it could not.
+    func saveWorkoutEdit() -> String? {
+        var failure: Error?
+        let (c, t) = (catalog, now)
+        change { s in do { try WorkoutEdit.save(&s, now: t, catalog: c) } catch { failure = error } }
+        return failure?.localizedDescription
+    }
+
     func changeActive(_ mutate: (inout Object) -> Void) {
         change { s in
             guard var a = s["active"]?.object else { return }
@@ -193,6 +211,8 @@ struct WorkoutView: View {
     @State private var setNoteFor: EntryAction?
     @State private var editingSessionNote = false
     @State private var renaming = false
+    @State private var editError: String?
+    @State private var confirmDropEdits = false
     @State private var noteText = ""
     @State private var removeFor: Int?
     @State private var swapFor: EntryAction?
@@ -202,7 +222,7 @@ struct WorkoutView: View {
     var body: some View {
         NavigationStack {
             List {
-                if let a = model.active, let start = a["start"]?.numberValue {
+                if let a = model.active, !model.isEditingSaved, let start = a["start"]?.numberValue {
                     Section {
                         TimelineView(.periodic(from: .now, by: 1)) { _ in
                             LabeledContent("Elapsed", value: Format.seconds(Date.now.timeIntervalSince1970 - start / 1000))
@@ -244,9 +264,13 @@ struct WorkoutView: View {
                     Menu("More", systemImage: "ellipsis") { sessionMenu }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Finish") { confirmFinish = true }
-                        .buttonStyle(.borderedProminent)
-                        .foregroundStyle(Theme.ink)
+                    Button(model.isEditingSaved ? "Save" : "Finish") {
+                        if model.isEditingSaved {
+                            if let message = model.saveWorkoutEdit() { editError = message } else { dismiss() }
+                        } else { confirmFinish = true }
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .foregroundStyle(Theme.ink)
                 }
             }
             .safeAreaInset(edge: .bottom) { if timer.end != nil { RestBar() } }
@@ -278,6 +302,18 @@ struct WorkoutView: View {
                     model.changeEntry(i) { $0["note"] = text.isEmpty ? nil : .string(text) }
                 }
                 Button("Cancel", role: .cancel) {}
+            }
+            .alert("Could not save", isPresented: Binding(get: { editError != nil }, set: { if !$0 { editError = nil } }), presenting: editError) { _ in
+                Button("OK", role: .cancel) {}
+            } message: { Text($0) }
+            .alert("Discard your changes?", isPresented: $confirmDropEdits) {
+                Button("Discard changes", role: .destructive) {
+                    model.change { WorkoutEdit.discard(&$0) }
+                    dismiss()
+                }
+                Button("Keep editing", role: .cancel) {}
+            } message: {
+                Text("The saved workout stays as it was.")
             }
             .alert("Session note", isPresented: $editingSessionNote) {
                 TextField("How did it go?", text: $noteText)
@@ -351,14 +387,14 @@ struct WorkoutView: View {
             Button(a["note"] == nil ? "Add session note" : "Edit session note", systemImage: "note.text") {
                 noteText = a["note"]?.stringValue ?? ""; editingSessionNote = true
             }
-            Menu("Add routine", systemImage: "list.clipboard") {
+            if !model.isEditingSaved { Menu("Add routine", systemImage: "list.clipboard") {
                 ForEach(routines.indices, id: \.self) { i in
                     let r = routines[i], id = r["id"]?.stringValue ?? ""
                     let empty = (r["ex"]?.arrayValue ?? []).isEmpty
                     Button(r["name"]?.stringValue ?? "Routine") { model.changeActive { ActiveEdit.addRoutine(&$0, model.root, r, catalog: model.catalog) } }
                         .disabled(inSession.contains(id) || empty)
                 }
-            }
+            } }
             Button("Rename workout", systemImage: "pencil") { noteText = a["name"]?.stringValue ?? ""; renaming = true }
             Toggle("Don’t count for progression", systemImage: "chart.line.downtrend.xyaxis", isOn: Binding(
                 get: { a["noProg"] == .bool(true) },
@@ -368,7 +404,11 @@ struct WorkoutView: View {
                 }))
         }
         Section {
-            Button("Discard workout", systemImage: "trash", role: .destructive) { confirmDiscard = true }
+            if model.isEditingSaved {
+                Button("Discard changes", systemImage: "arrow.uturn.backward", role: .destructive) { confirmDropEdits = true }
+            } else {
+                Button("Discard workout", systemImage: "trash", role: .destructive) { confirmDiscard = true }
+            }
         }
     }
 
@@ -576,7 +616,7 @@ private struct EntrySection: View {
     /// After a set: on to the superset partner, or rest.
     private func completed(set i: Int) {
         // A set's own rest (its menu) wins over the exercise's; going on to a superset partner has none.
-        guard let exerciseRest = model.restSeconds(after: index) else { return }
+        guard !model.isEditingSaved, let exerciseRest = model.restSeconds(after: index) else { return }
         let rest = SetEdit.ownRest(sets[SetEdit.span(sets, i).start]) ?? exerciseRest
         if rest > 0 { timer.start(rest, alerts: alerts) }
     }

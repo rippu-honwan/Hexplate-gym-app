@@ -1,0 +1,2593 @@
+[
+ {
+  "name": "raise an old weight to a record",
+  "state": {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 1790000000000,
+     "end": 1790003600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 60
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 100
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-03",
+     "start": 1790086400000,
+     "end": 1790090000000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 65,
+       "note": "felt good"
+      }
+     ],
+     "prs": [
+      "0025"
+     ],
+     "vol": 0,
+     "note": " solid "
+    },
+    {
+     "id": "w2",
+     "d": "2026-10-05",
+     "start": 1790172800000,
+     "end": 1790176400000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 62
+      },
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 30
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w3",
+     "d": "2026-10-07",
+     "start": 1790259200000,
+     "end": 1790262800000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 25
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 90
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    }
+   ],
+   "exWeights": {
+    "0025": {
+     "w": 65,
+     "d": "2026-10-03"
+    },
+    "0043": {
+     "w": 100,
+     "d": "2026-10-01"
+    },
+    "0017": {
+     "w": 25,
+     "d": "2026-10-07"
+    }
+   }
+  },
+  "key": "w0",
+  "ops": [
+   [
+    "set",
+    [
+     "entries",
+     0,
+     "sets",
+     0,
+     "w"
+    ],
+    70
+   ]
+  ]
+ },
+ {
+  "name": "lower the record holder",
+  "state": {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 1790000000000,
+     "end": 1790003600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 60
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 100
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-03",
+     "start": 1790086400000,
+     "end": 1790090000000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 65,
+       "note": "felt good"
+      }
+     ],
+     "prs": [
+      "0025"
+     ],
+     "vol": 0,
+     "note": " solid "
+    },
+    {
+     "id": "w2",
+     "d": "2026-10-05",
+     "start": 1790172800000,
+     "end": 1790176400000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 62
+      },
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 30
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w3",
+     "d": "2026-10-07",
+     "start": 1790259200000,
+     "end": 1790262800000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 25
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 90
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    }
+   ],
+   "exWeights": {
+    "0025": {
+     "w": 65,
+     "d": "2026-10-03"
+    },
+    "0043": {
+     "w": 100,
+     "d": "2026-10-01"
+    },
+    "0017": {
+     "w": 25,
+     "d": "2026-10-07"
+    }
+   }
+  },
+  "key": "w1",
+  "ops": [
+   [
+    "set",
+    [
+     "entries",
+     0,
+     "sets",
+     0,
+     "w"
+    ],
+    55
+   ],
+   [
+    "set",
+    [
+     "entries",
+     0,
+     "sets",
+     1,
+     "w"
+    ],
+    55
+   ]
+  ]
+ },
+ {
+  "name": "nothing changed",
+  "state": {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 1790000000000,
+     "end": 1790003600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 60
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 100
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-03",
+     "start": 1790086400000,
+     "end": 1790090000000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 65,
+       "note": "felt good"
+      }
+     ],
+     "prs": [
+      "0025"
+     ],
+     "vol": 0,
+     "note": " solid "
+    },
+    {
+     "id": "w2",
+     "d": "2026-10-05",
+     "start": 1790172800000,
+     "end": 1790176400000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 62
+      },
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 30
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w3",
+     "d": "2026-10-07",
+     "start": 1790259200000,
+     "end": 1790262800000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 25
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 90
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    }
+   ],
+   "exWeights": {
+    "0025": {
+     "w": 65,
+     "d": "2026-10-03"
+    },
+    "0043": {
+     "w": 100,
+     "d": "2026-10-01"
+    },
+    "0017": {
+     "w": 25,
+     "d": "2026-10-07"
+    }
+   }
+  },
+  "key": "w2",
+  "ops": []
+ },
+ {
+  "name": "rename, note, drop an exercise",
+  "state": {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 1790000000000,
+     "end": 1790003600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 60
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 100
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-03",
+     "start": 1790086400000,
+     "end": 1790090000000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 65,
+       "note": "felt good"
+      }
+     ],
+     "prs": [
+      "0025"
+     ],
+     "vol": 0,
+     "note": " solid "
+    },
+    {
+     "id": "w2",
+     "d": "2026-10-05",
+     "start": 1790172800000,
+     "end": 1790176400000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 62
+      },
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 30
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w3",
+     "d": "2026-10-07",
+     "start": 1790259200000,
+     "end": 1790262800000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 25
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 90
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    }
+   ],
+   "exWeights": {
+    "0025": {
+     "w": 65,
+     "d": "2026-10-03"
+    },
+    "0043": {
+     "w": 100,
+     "d": "2026-10-01"
+    },
+    "0017": {
+     "w": 25,
+     "d": "2026-10-07"
+    }
+   }
+  },
+  "key": "w0",
+  "ops": [
+   [
+    "set",
+    [
+     "name"
+    ],
+    "Heavy day"
+   ],
+   [
+    "set",
+    [
+     "note"
+    ],
+    "  new note "
+   ],
+   [
+    "del",
+    [
+     "entries",
+     1
+    ]
+   ]
+  ]
+ },
+ {
+  "name": "untick everything",
+  "state": {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 1790000000000,
+     "end": 1790003600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 60
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 100
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-03",
+     "start": 1790086400000,
+     "end": 1790090000000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 65,
+       "note": "felt good"
+      }
+     ],
+     "prs": [
+      "0025"
+     ],
+     "vol": 0,
+     "note": " solid "
+    },
+    {
+     "id": "w2",
+     "d": "2026-10-05",
+     "start": 1790172800000,
+     "end": 1790176400000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 62
+      },
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 30
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w3",
+     "d": "2026-10-07",
+     "start": 1790259200000,
+     "end": 1790262800000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 25
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 90
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    }
+   ],
+   "exWeights": {
+    "0025": {
+     "w": 65,
+     "d": "2026-10-03"
+    },
+    "0043": {
+     "w": 100,
+     "d": "2026-10-01"
+    },
+    "0017": {
+     "w": 25,
+     "d": "2026-10-07"
+    }
+   }
+  },
+  "key": "w1",
+  "ops": [
+   [
+    "set",
+    [
+     "entries",
+     0,
+     "sets",
+     0,
+     "done"
+    ],
+    false
+   ],
+   [
+    "set",
+    [
+     "entries",
+     0,
+     "sets",
+     1,
+     "done"
+    ],
+    false
+   ]
+  ]
+ },
+ {
+  "name": "assisted gets easier",
+  "state": {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 1790000000000,
+     "end": 1790003600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 60
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 100
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-03",
+     "start": 1790086400000,
+     "end": 1790090000000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 65,
+       "note": "felt good"
+      }
+     ],
+     "prs": [
+      "0025"
+     ],
+     "vol": 0,
+     "note": " solid "
+    },
+    {
+     "id": "w2",
+     "d": "2026-10-05",
+     "start": 1790172800000,
+     "end": 1790176400000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 62
+      },
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 30
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w3",
+     "d": "2026-10-07",
+     "start": 1790259200000,
+     "end": 1790262800000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 25
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 90
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    }
+   ],
+   "exWeights": {
+    "0025": {
+     "w": 65,
+     "d": "2026-10-03"
+    },
+    "0043": {
+     "w": 100,
+     "d": "2026-10-01"
+    },
+    "0017": {
+     "w": 25,
+     "d": "2026-10-07"
+    }
+   }
+  },
+  "key": "w3",
+  "ops": [
+   [
+    "set",
+    [
+     "entries",
+     0,
+     "sets",
+     0,
+     "w"
+    ],
+    35
+   ],
+   [
+    "set",
+    [
+     "entries",
+     0,
+     "sets",
+     1,
+     "w"
+    ],
+    35
+   ]
+  ]
+ },
+ {
+  "name": "kept out of progression",
+  "state": {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 1790000000000,
+     "end": 1790003600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 60
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 100
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-03",
+     "start": 1790086400000,
+     "end": 1790090000000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 65,
+       "note": "felt good"
+      }
+     ],
+     "prs": [
+      "0025"
+     ],
+     "vol": 0,
+     "note": " solid "
+    },
+    {
+     "id": "w2",
+     "d": "2026-10-05",
+     "start": 1790172800000,
+     "end": 1790176400000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 62
+      },
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 30
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w3",
+     "d": "2026-10-07",
+     "start": 1790259200000,
+     "end": 1790262800000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 25
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 90
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0,
+     "excludeFromProgression": true
+    }
+   ],
+   "exWeights": {
+    "0025": {
+     "w": 65,
+     "d": "2026-10-03"
+    },
+    "0043": {
+     "w": 100,
+     "d": "2026-10-01"
+    },
+    "0017": {
+     "w": 25,
+     "d": "2026-10-07"
+    }
+   }
+  },
+  "key": "w3",
+  "ops": [
+   [
+    "set",
+    [
+     "entries",
+     1,
+     "sets",
+     0,
+     "r"
+    ],
+    10
+   ]
+  ]
+ },
+ {
+  "name": "old record without an id",
+  "state": {
+   "unit": "kg",
+   "workouts": [
+    {
+     "d": "2026-10-01",
+     "start": 1790000000000,
+     "end": 1790003600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 60
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 100
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-03",
+     "start": 1790086400000,
+     "end": 1790090000000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 65,
+       "note": "felt good"
+      }
+     ],
+     "prs": [
+      "0025"
+     ],
+     "vol": 0,
+     "note": " solid "
+    },
+    {
+     "id": "w2",
+     "d": "2026-10-05",
+     "start": 1790172800000,
+     "end": 1790176400000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 62
+      },
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 30
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w3",
+     "d": "2026-10-07",
+     "start": 1790259200000,
+     "end": 1790262800000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 25
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 90
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    }
+   ],
+   "exWeights": {
+    "0025": {
+     "w": 65,
+     "d": "2026-10-03"
+    },
+    "0043": {
+     "w": 100,
+     "d": "2026-10-01"
+    },
+    "0017": {
+     "w": 25,
+     "d": "2026-10-07"
+    }
+   }
+  },
+  "key": "2026-10-01|1790000000000",
+  "ops": [
+   [
+    "set",
+    [
+     "entries",
+     0,
+     "sets",
+     1,
+     "r"
+    ],
+    9
+   ]
+  ]
+ },
+ {
+  "name": "busy",
+  "state": {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 1790000000000,
+     "end": 1790003600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 60
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 100
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-03",
+     "start": 1790086400000,
+     "end": 1790090000000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 65,
+       "note": "felt good"
+      }
+     ],
+     "prs": [
+      "0025"
+     ],
+     "vol": 0,
+     "note": " solid "
+    },
+    {
+     "id": "w2",
+     "d": "2026-10-05",
+     "start": 1790172800000,
+     "end": 1790176400000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 62
+      },
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 30
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w3",
+     "d": "2026-10-07",
+     "start": 1790259200000,
+     "end": 1790262800000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 25
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 90
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    }
+   ],
+   "exWeights": {
+    "0025": {
+     "w": 65,
+     "d": "2026-10-03"
+    },
+    "0043": {
+     "w": 100,
+     "d": "2026-10-01"
+    },
+    "0017": {
+     "w": 25,
+     "d": "2026-10-07"
+    }
+   },
+   "active": {
+    "id": "live",
+    "entries": []
+   }
+  },
+  "key": "w0",
+  "ops": []
+ },
+ {
+  "name": "gone",
+  "state": {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 1790000000000,
+     "end": 1790003600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 60
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 100,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 100
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-03",
+     "start": 1790086400000,
+     "end": 1790090000000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 65,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 65,
+       "note": "felt good"
+      }
+     ],
+     "prs": [
+      "0025"
+     ],
+     "vol": 0,
+     "note": " solid "
+    },
+    {
+     "id": "w2",
+     "d": "2026-10-05",
+     "start": 1790172800000,
+     "end": 1790176400000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 62,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 62
+      },
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 30
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    },
+    {
+     "id": "w3",
+     "d": "2026-10-07",
+     "start": 1790259200000,
+     "end": 1790262800000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "name": "Push",
+     "bw": 80,
+     "entries": [
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 25,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 25
+      },
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 2,
+        "reps": 8
+       },
+       "sets": [
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 90,
+         "r": 8,
+         "done": true
+        }
+       ],
+       "topW": 90
+      }
+     ],
+     "prs": [
+      "0017"
+     ],
+     "vol": 0
+    }
+   ],
+   "exWeights": {
+    "0025": {
+     "w": 65,
+     "d": "2026-10-03"
+    },
+    "0043": {
+     "w": 100,
+     "d": "2026-10-01"
+    },
+    "0017": {
+     "w": 25,
+     "d": "2026-10-07"
+    }
+   }
+  },
+  "key": "nope",
+  "ops": []
+ }
+]

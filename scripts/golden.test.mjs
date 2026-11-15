@@ -351,6 +351,32 @@ it('writes the edit golden file', async () => {
   writeFileSync(process.env.EDIT_OUT, JSON.stringify(out, null, 1) + '\n')
 })
 
+// Editing a saved workout: open it, change the copy (path ops), save over the record.
+it('writes the workout edit golden file', async () => {
+  if (!process.env.WEDIT_IN) return
+  const E = await import('../../frontend/src/lib/session-edit.js')
+  const cases = JSON.parse(readFileSync(process.env.WEDIT_IN, 'utf8'))
+  setWeightDecimals(1)
+  const strip = v => JSON.parse(JSON.stringify(v, (k, x) => (k === '_ts' ? undefined : x)))
+  const out = []
+  for (const c of cases) {
+    const S = structuredClone(c.state)
+    let error = null
+    try {
+      E.editCompletedSession(S, c.key)
+      for (const [op, path, v] of c.ops) {
+        const parent = path.slice(0, -1).reduce((o, k) => o[k], S.active), last = path[path.length - 1]
+        if (op === 'set') parent[last] = v
+        else if (Array.isArray(parent)) parent.splice(last, 1)
+        else delete parent[last]
+      }
+      E.saveWorkoutEdit(S, 1_800_000_000_000)
+    } catch (e) { error = e.message }
+    out.push({ name: c.name, result: strip({ error, workouts: S.workouts, exWeights: S.exWeights, active: S.active ?? null }) })
+  }
+  writeFileSync(process.env.WEDIT_OUT, JSON.stringify(out, null, 1) + '\n')
+})
+
 // The workout CSV export of the history fixture.
 it('writes the CSV golden file', async () => {
   if (!process.env.CSV_OUT) return
