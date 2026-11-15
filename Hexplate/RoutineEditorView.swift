@@ -70,6 +70,18 @@ struct RoutineEditorView: View {
             .navigationTitle(routine.name.isEmpty ? "Routine" : routine.name)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { if routine.slots.count > 1 { EditButton() } }
+            .toolbar {
+                if model.active == nil && !routine.slots.isEmpty {
+                    ToolbarItem(placement: .bottomBar) {
+                        Button("Start workout") {
+                            model.startWorkout(routineIds: [routineId])
+                            model.showWorkout = true
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .foregroundStyle(Theme.ink)
+                    }
+                }
+            }
             .toolbar(.hidden, for: .tabBar)
             .onAppear { name = routine.name }
             .onDisappear { saveName() }

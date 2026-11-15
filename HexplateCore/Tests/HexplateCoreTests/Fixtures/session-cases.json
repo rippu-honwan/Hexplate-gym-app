@@ -1,0 +1,2479 @@
+[
+ {
+  "name": "first time",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60
+      }
+     ]
+    }
+   ],
+   "workouts": []
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "first time, remembered weight",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {
+    "0043": {
+     "w": 72.5,
+     "d": "2026-10-01"
+    }
+   },
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60
+      }
+     ]
+    }
+   ],
+   "workouts": []
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "linear: every rep, weight up",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "linear: one miss, hold",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 60,
+         "r": 4,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "linear: three misses, deload",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 60,
+         "r": 4,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 60,
+         "r": 3,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-02",
+     "start": 86400000,
+     "end": 90000000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 60,
+         "r": 4,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 60,
+         "r": 3,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-10-03",
+     "start": 172800000,
+     "end": 176400000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 60,
+         "r": 4,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 60,
+         "r": 3,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "linear: lighter lift steps 2.5",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 50
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 50
+       },
+       "sets": [
+        {
+         "w": 50,
+         "r": 8,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 50,
+         "r": 8,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 50,
+         "r": 8,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 8,
+        "weight": 50
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "linear: start from last",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "last",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 50
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 50
+       },
+       "sets": [
+        {
+         "w": 50,
+         "r": 9,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 50,
+         "r": 8,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 50,
+         "r": 8,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 8,
+        "weight": 50
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "double: climb reps",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 12,
+       "repsMin": 8,
+       "weight": 40,
+       "prog": "double"
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 12,
+        "repsMin": 8,
+        "weight": 40,
+        "prog": "double"
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 10,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 40,
+         "r": 10,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 40,
+         "r": 9,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 12,
+        "repsMin": 8,
+        "weight": 40
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "double: top of range, weight up",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 12,
+       "repsMin": 8,
+       "weight": 40,
+       "prog": "double"
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 12,
+        "repsMin": 8,
+        "weight": 40,
+        "prog": "double"
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 12,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 40,
+         "r": 12,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 40,
+         "r": 12,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 12,
+        "repsMin": 8,
+        "weight": 40
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "double: stuck, deload",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 12,
+       "repsMin": 8,
+       "weight": 40,
+       "prog": "double"
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 12,
+        "repsMin": 8,
+        "weight": 40,
+        "prog": "double"
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 40,
+         "r": 7,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 40,
+         "r": 6,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 12,
+        "repsMin": 8,
+        "weight": 40
+       }
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-02",
+     "start": 86400000,
+     "end": 90000000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 12,
+        "repsMin": 8,
+        "weight": 40,
+        "prog": "double"
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 40,
+         "r": 7,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 40,
+         "r": 6,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 12,
+        "repsMin": 8,
+        "weight": 40
+       }
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-10-03",
+     "start": 172800000,
+     "end": 176400000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 12,
+        "repsMin": 8,
+        "weight": 40,
+        "prog": "double"
+       },
+       "sets": [
+        {
+         "w": 40,
+         "r": 8,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 40,
+         "r": 7,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 40,
+         "r": 6,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 12,
+        "repsMin": 8,
+        "weight": 40
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "bodyweight: one more rep",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0662",
+       "sets": 3,
+       "reps": 10,
+       "repsMax": 12
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 3,
+        "reps": 10,
+        "repsMax": 12
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 10,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 0,
+         "r": 10,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 0,
+         "r": 10,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 10
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "bodyweight: top, add a set",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0662",
+       "sets": 3,
+       "reps": 10,
+       "repsMax": 12
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 3,
+        "reps": 12,
+        "repsMax": 12
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 12,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 0,
+         "r": 12,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 0,
+         "r": 12,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1"
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "time: held, add seconds",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 30,
+       "mode": "time",
+       "prog": "time"
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0463",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 30,
+        "mode": "time",
+        "prog": "time"
+       },
+       "sets": [
+        {
+         "sec": 30,
+         "w": 0,
+         "done": true
+        },
+        {
+         "sec": 30,
+         "w": 0,
+         "done": true
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 2,
+        "sec": 30
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "time: short three times, deload",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 30,
+       "mode": "time",
+       "prog": "time"
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0463",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 30,
+        "mode": "time",
+        "prog": "time"
+       },
+       "sets": [
+        {
+         "sec": 20,
+         "w": 0,
+         "done": true
+        },
+        {
+         "sec": 20,
+         "w": 0,
+         "done": true
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 2,
+        "sec": 30
+       }
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-02",
+     "start": 86400000,
+     "end": 90000000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0463",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 30,
+        "mode": "time",
+        "prog": "time"
+       },
+       "sets": [
+        {
+         "sec": 20,
+         "w": 0,
+         "done": true
+        },
+        {
+         "sec": 20,
+         "w": 0,
+         "done": true
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 2,
+        "sec": 30
+       }
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-10-03",
+     "start": 172800000,
+     "end": 176400000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0463",
+       "target": {
+        "id": "0463",
+        "sets": 2,
+        "sec": 30,
+        "mode": "time",
+        "prog": "time"
+       },
+       "sets": [
+        {
+         "sec": 20,
+         "w": 0,
+         "done": true
+        },
+        {
+         "sec": 20,
+         "w": 0,
+         "done": true
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 2,
+        "sec": 30
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "per side: weight up",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0334",
+       "target": {
+        "id": "0334",
+        "sets": 2,
+        "reps": 12,
+        "weight": 6,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        },
+        {
+         "w": 6,
+         "r": 12,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 6,
+           "r": 6,
+           "done": true
+          }
+         }
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 2,
+        "reps": 12,
+        "weight": 6
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "plan changed",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 3,
+       "weight": 60
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "assisted: less help",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0017",
+       "sets": 3,
+       "reps": 8,
+       "weight": 30
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0017",
+       "target": {
+        "id": "0017",
+        "sets": 3,
+        "reps": 8,
+        "weight": 30
+       },
+       "sets": [
+        {
+         "w": 30,
+         "r": 8,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 30,
+         "r": 8,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 30,
+         "r": 8,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 8,
+        "weight": 30
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "no progression",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60,
+       "prog": "off"
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 70,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 70,
+         "r": 5,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 70,
+         "r": 5,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "routine excluded from progression",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60
+      }
+     ],
+     "excludeFromProgression": true
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "greyskull double jump",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60,
+       "prog": "greyskull"
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 60,
+         "r": 10,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "superset pair",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 50,
+       "sg": "a"
+      },
+      {
+       "id": "0861",
+       "sets": 3,
+       "reps": 10,
+       "weight": 40,
+       "sg": "a"
+      }
+     ]
+    }
+   ],
+   "workouts": []
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "borrowed from another routine",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r2",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "borrowed, last across routines",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "any",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r2",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "cardio",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0685",
+       "sets": 1,
+       "min": 25,
+       "speed": 9
+      }
+     ]
+    }
+   ],
+   "workouts": []
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "warm-up rows are not history",
+  "op": "start",
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 8,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "lb unit",
+  "op": "start",
+  "state": {
+   "unit": "lb",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "routines": [
+    {
+     "id": "r1",
+     "name": "A",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 60
+      }
+     ]
+    }
+   ],
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-10-01",
+     "start": 0,
+     "end": 3600000,
+     "routineIds": [
+      "r1"
+     ],
+     "routineId": "r1",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 135,
+         "r": 5,
+         "done": true,
+         "at": 0
+        },
+        {
+         "w": 135,
+         "r": 5,
+         "done": true,
+         "at": 1000
+        },
+        {
+         "w": 135,
+         "r": 5,
+         "done": true,
+         "at": 2000
+        }
+       ],
+       "rid": "r1",
+       "planned": {
+        "sets": 3,
+        "reps": 5,
+        "weight": 60
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "routineId": "r1"
+ },
+ {
+  "name": "finish: on time",
+  "op": "finish",
+  "active": {
+   "id": "live",
+   "d": "2026-11-15",
+   "start": 1000,
+   "routineIds": [
+    "r1"
+   ],
+   "name": "A",
+   "bw": 70,
+   "cur": 0,
+   "note": "  good day ",
+   "entries": [
+    {
+     "id": "0043",
+     "rid": "r1",
+     "sg": "a",
+     "target": {
+      "id": "0043",
+      "sets": 3,
+      "reps": 5,
+      "weight": 60
+     },
+     "planned": {
+      "sets": 3,
+      "reps": 5,
+      "weight": 60
+     },
+     "plan": {
+      "policy": "linear",
+      "kind": "up",
+      "weight": 65
+     },
+     "note": " knees ",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": true,
+       "phase": "warmup",
+       "at": 60000
+      },
+      {
+       "w": 65,
+       "r": 5,
+       "done": true,
+       "at": 200000,
+       "weightOrigin": "manual",
+       "restSec": 120
+      },
+      {
+       "w": 65,
+       "r": 5,
+       "done": false
+      }
+     ]
+    },
+    {
+     "id": "0334",
+     "rid": "r1",
+     "sg": "a",
+     "target": {
+      "id": "0334",
+      "sets": 2,
+      "reps": 12,
+      "weight": 6,
+      "side": true
+     },
+     "sets": [
+      {
+       "w": 6,
+       "r": 12,
+       "done": true,
+       "sides": {
+        "L": {
+         "w": 6,
+         "r": 6,
+         "done": true,
+         "weightOrigin": "manual"
+        },
+        "R": {
+         "w": 6,
+         "r": 6,
+         "done": true
+        }
+       },
+       "at": 400000
+      },
+      {
+       "w": 6,
+       "r": 12,
+       "done": false,
+       "sides": {
+        "L": {
+         "w": 6,
+         "r": 6,
+         "done": false
+        },
+        "R": {
+         "w": 6,
+         "r": 6,
+         "done": false
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "0463",
+     "rid": "r1",
+     "target": {
+      "id": "0463",
+      "sets": 2,
+      "sec": 30,
+      "mode": "time",
+      "prog": "time"
+     },
+     "sets": [
+      {
+       "sec": 25,
+       "w": 0,
+       "done": true,
+       "at": 2000000,
+       "planSec": 30
+      },
+      {
+       "sec": 10,
+       "w": 0,
+       "done": false,
+       "planSec": 30
+      }
+     ]
+    },
+    {
+     "id": "0025",
+     "rid": "r1",
+     "target": {
+      "id": "0025",
+      "sets": 3,
+      "reps": 8,
+      "weight": 50
+     },
+     "sets": [
+      {
+       "w": 50,
+       "r": 8,
+       "done": false
+      }
+     ]
+    }
+   ]
+  },
+  "now": 2100000
+ },
+ {
+  "name": "finish: forgotten",
+  "op": "finish",
+  "active": {
+   "id": "live",
+   "d": "2026-11-15",
+   "start": 1000,
+   "routineIds": [
+    "r1"
+   ],
+   "name": "A",
+   "bw": 70,
+   "cur": 0,
+   "note": "  good day ",
+   "entries": [
+    {
+     "id": "0043",
+     "rid": "r1",
+     "sg": "a",
+     "target": {
+      "id": "0043",
+      "sets": 3,
+      "reps": 5,
+      "weight": 60
+     },
+     "planned": {
+      "sets": 3,
+      "reps": 5,
+      "weight": 60
+     },
+     "plan": {
+      "policy": "linear",
+      "kind": "up",
+      "weight": 65
+     },
+     "note": " knees ",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": true,
+       "phase": "warmup",
+       "at": 60000
+      },
+      {
+       "w": 65,
+       "r": 5,
+       "done": true,
+       "at": 200000,
+       "weightOrigin": "manual",
+       "restSec": 120
+      },
+      {
+       "w": 65,
+       "r": 5,
+       "done": false
+      }
+     ]
+    },
+    {
+     "id": "0334",
+     "rid": "r1",
+     "sg": "a",
+     "target": {
+      "id": "0334",
+      "sets": 2,
+      "reps": 12,
+      "weight": 6,
+      "side": true
+     },
+     "sets": [
+      {
+       "w": 6,
+       "r": 12,
+       "done": true,
+       "sides": {
+        "L": {
+         "w": 6,
+         "r": 6,
+         "done": true,
+         "weightOrigin": "manual"
+        },
+        "R": {
+         "w": 6,
+         "r": 6,
+         "done": true
+        }
+       },
+       "at": 400000
+      },
+      {
+       "w": 6,
+       "r": 12,
+       "done": false,
+       "sides": {
+        "L": {
+         "w": 6,
+         "r": 6,
+         "done": false
+        },
+        "R": {
+         "w": 6,
+         "r": 6,
+         "done": false
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "0463",
+     "rid": "r1",
+     "target": {
+      "id": "0463",
+      "sets": 2,
+      "sec": 30,
+      "mode": "time",
+      "prog": "time"
+     },
+     "sets": [
+      {
+       "sec": 25,
+       "w": 0,
+       "done": true,
+       "at": 2000000,
+       "planSec": 30
+      },
+      {
+       "sec": 10,
+       "w": 0,
+       "done": false,
+       "planSec": 30
+      }
+     ]
+    },
+    {
+     "id": "0025",
+     "rid": "r1",
+     "target": {
+      "id": "0025",
+      "sets": 3,
+      "reps": 8,
+      "weight": 50
+     },
+     "sets": [
+      {
+       "w": 50,
+       "r": 8,
+       "done": false
+      }
+     ]
+    }
+   ]
+  },
+  "now": 3530000
+ },
+ {
+  "name": "finish: nothing logged",
+  "op": "finish",
+  "active": {
+   "id": "live",
+   "d": "2026-11-15",
+   "start": 1000,
+   "routineIds": [
+    "r1"
+   ],
+   "name": "A",
+   "bw": 70,
+   "cur": 0,
+   "note": "",
+   "entries": [
+    {
+     "id": "0025",
+     "rid": "r1",
+     "target": {
+      "id": "0025",
+      "sets": 3,
+      "reps": 8,
+      "weight": 50
+     },
+     "sets": [
+      {
+       "w": 50,
+       "r": 8,
+       "done": false
+      }
+     ]
+    }
+   ]
+  },
+  "now": 5000
+ },
+ {
+  "name": "finish: all excluded",
+  "op": "finish",
+  "active": {
+   "id": "live",
+   "d": "2026-11-15",
+   "start": 1000,
+   "routineIds": [
+    "r1"
+   ],
+   "name": "A",
+   "bw": 70,
+   "cur": 0,
+   "note": "  good day ",
+   "entries": [
+    {
+     "id": "0043",
+     "rid": "r1",
+     "sg": "a",
+     "target": {
+      "id": "0043",
+      "sets": 3,
+      "reps": 5,
+      "weight": 60
+     },
+     "planned": {
+      "sets": 3,
+      "reps": 5,
+      "weight": 60
+     },
+     "plan": {
+      "policy": "linear",
+      "kind": "up",
+      "weight": 65
+     },
+     "note": " knees ",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": true,
+       "phase": "warmup",
+       "at": 60000
+      },
+      {
+       "w": 65,
+       "r": 5,
+       "done": true,
+       "at": 200000,
+       "weightOrigin": "manual",
+       "restSec": 120
+      },
+      {
+       "w": 65,
+       "r": 5,
+       "done": false
+      }
+     ],
+     "noProg": true
+    }
+   ]
+  },
+  "now": 300000
+ }
+]

@@ -32,6 +32,8 @@ final class AppModel {
 
     /// The device's day, refreshed when the app comes to the front.
     var today = Day.today()
+    /// The live workout screen is up (it can be minimised while the session runs).
+    var showWorkout = false
 
     init() {
         load(store.load())

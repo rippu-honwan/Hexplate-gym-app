@@ -42,6 +42,14 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Today")
+            .toolbar {
+                if model.active == nil {
+                    Button("Empty workout", systemImage: "plus") {
+                        model.startWorkout(routineIds: [])
+                        model.showWorkout = true
+                    }
+                }
+            }
             .workoutDestination()
         }
     }
@@ -72,9 +80,17 @@ struct HomeView: View {
                         Label("Done", systemImage: "checkmark.circle.fill")
                             .font(.subheadline.weight(.semibold))
                             .foregroundStyle(.tint)
+                    } else if model.active == nil {
+                        Button("Start") {
+                            model.startWorkout(routineIds: [id])
+                            model.showWorkout = true
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .foregroundStyle(Theme.ink)
+                        .accessibilityLabel("Start \(routine.name)")
                     }
                 }
-                .accessibilityElement(children: .combine)
+                .accessibilityElement(children: .contain)
             }
         }
         // Trained today on something the plan did not hold.

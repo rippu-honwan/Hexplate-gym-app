@@ -1,0 +1,1614 @@
+[
+ {
+  "name": "first time",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "first time, remembered weight",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 72.5,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 72.5,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 72.5,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "linear: every rep, weight up",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 65
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "up",
+     "weight": 65,
+     "why": [
+      "Every rep last time. {0} {1} more.",
+      5,
+      "kg"
+     ]
+    },
+    "sets": [
+     {
+      "w": 65,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 65,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 65,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "linear: one miss, hold",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "hold",
+     "weight": 60,
+     "why": [
+      "Missed reps last time. Same weight again ({0} of {1} to go).",
+      2,
+      3
+     ]
+    },
+    "sets": [
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "linear: three misses, deload",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 55
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "deload",
+     "weight": 55,
+     "reps": 5,
+     "sets": 3,
+     "target1RM": 63,
+     "deloadFactor": 0.9,
+     "why": [
+      "Stuck for {0} sessions. Epley deload to {1} {2} for {3} reps.",
+      3,
+      55,
+      "kg",
+      5
+     ]
+    },
+    "sets": [
+     {
+      "w": 55,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 55,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 55,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "linear: lighter lift steps 2.5",
+  "result": [
+   {
+    "id": "0025",
+    "target": {
+     "id": "0025",
+     "sets": 3,
+     "reps": 8,
+     "weight": 52.5
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "up",
+     "weight": 52.5,
+     "why": [
+      "Every rep last time. {0} {1} more.",
+      2.5,
+      "kg"
+     ]
+    },
+    "sets": [
+     {
+      "w": 52.5,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 52.5,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 52.5,
+      "r": 8,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 8,
+     "weight": 50
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "linear: start from last",
+  "result": [
+   {
+    "id": "0025",
+    "target": {
+     "id": "0025",
+     "sets": 3,
+     "reps": 8,
+     "weight": 52.5
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "up",
+     "weight": 52.5,
+     "why": [
+      "Every rep last time. {0} {1} more.",
+      2.5,
+      "kg"
+     ]
+    },
+    "sets": [
+     {
+      "w": 52.5,
+      "r": 9,
+      "done": false
+     },
+     {
+      "w": 52.5,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 52.5,
+      "r": 8,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 8,
+     "weight": 50
+    },
+    "carried": true,
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "double: climb reps",
+  "result": [
+   {
+    "id": "0025",
+    "target": {
+     "id": "0025",
+     "sets": 3,
+     "reps": 10,
+     "repsMin": 8,
+     "weight": 40,
+     "prog": "double"
+    },
+    "plan": {
+     "policy": "double",
+     "kind": "hold",
+     "weight": 40,
+     "reps": 10,
+     "why": [
+      "Same weight, aim for {0} reps this time.",
+      10
+     ]
+    },
+    "sets": [
+     {
+      "w": 40,
+      "r": 10,
+      "done": false
+     },
+     {
+      "w": 40,
+      "r": 10,
+      "done": false
+     },
+     {
+      "w": 40,
+      "r": 10,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 12,
+     "repsMin": 8,
+     "weight": 40
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "double: top of range, weight up",
+  "result": [
+   {
+    "id": "0025",
+    "target": {
+     "id": "0025",
+     "sets": 3,
+     "reps": 8,
+     "repsMin": 8,
+     "weight": 42.5,
+     "prog": "double"
+    },
+    "plan": {
+     "policy": "double",
+     "kind": "up",
+     "weight": 42.5,
+     "reps": 8,
+     "why": [
+      "Top of the rep range in every set. {0} {1} more, back to {2} reps.",
+      2.5,
+      "kg",
+      8
+     ]
+    },
+    "sets": [
+     {
+      "w": 42.5,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 42.5,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 42.5,
+      "r": 8,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 12,
+     "repsMin": 8,
+     "weight": 40
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "double: stuck, deload",
+  "result": [
+   {
+    "id": "0025",
+    "target": {
+     "id": "0025",
+     "sets": 3,
+     "reps": 8,
+     "repsMin": 8,
+     "weight": 40,
+     "prog": "double"
+    },
+    "plan": {
+     "policy": "double",
+     "kind": "deload",
+     "weight": 40,
+     "reps": 8,
+     "sets": 3,
+     "target1RM": 50.4,
+     "deloadFactor": 0.9,
+     "why": [
+      "Stuck for {0} sessions. Hold {1} {2} and use {3} reps.",
+      3,
+      40,
+      "kg",
+      8
+     ]
+    },
+    "sets": [
+     {
+      "w": 40,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 40,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 40,
+      "r": 8,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 12,
+     "repsMin": 8,
+     "weight": 40
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "bodyweight: one more rep",
+  "result": [
+   {
+    "id": "0662",
+    "target": {
+     "id": "0662",
+     "sets": 3,
+     "reps": 11,
+     "repsMax": 12,
+     "weight": 0
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "up",
+     "weight": 0,
+     "reps": 11,
+     "why": [
+      "Bodyweight: every rep last time, so go for {0} this time.",
+      11
+     ]
+    },
+    "sets": [
+     {
+      "w": 0,
+      "r": 11,
+      "done": false
+     },
+     {
+      "w": 0,
+      "r": 11,
+      "done": false
+     },
+     {
+      "w": 0,
+      "r": 11,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 10
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "bodyweight: top, add a set",
+  "result": [
+   {
+    "id": "0662",
+    "target": {
+     "id": "0662",
+     "sets": 4,
+     "reps": 10,
+     "repsMax": 12,
+     "weight": 0
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "up",
+     "weight": 0,
+     "reps": 10,
+     "sets": 4,
+     "why": [
+      "{0} reps in every set! Add a set and go back to {1}.",
+      12,
+      10
+     ]
+    },
+    "sets": [
+     {
+      "w": 0,
+      "r": 10,
+      "done": false
+     },
+     {
+      "w": 0,
+      "r": 10,
+      "done": false
+     },
+     {
+      "w": 0,
+      "r": 10,
+      "done": false
+     },
+     {
+      "w": 0,
+      "r": 10,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 10
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "time: held, add seconds",
+  "result": [
+   {
+    "id": "0463",
+    "target": {
+     "id": "0463",
+     "sets": 2,
+     "sec": 35,
+     "mode": "time",
+     "prog": "time"
+    },
+    "plan": {
+     "policy": "time",
+     "kind": "up",
+     "sec": 35,
+     "why": [
+      "Held every set for the full time. Target goes up by {0}s.",
+      5
+     ]
+    },
+    "sets": [
+     {
+      "sec": 35,
+      "w": 0,
+      "done": false
+     },
+     {
+      "sec": 35,
+      "w": 0,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 2,
+     "sec": 30
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "time: short three times, deload",
+  "result": [
+   {
+    "id": "0463",
+    "target": {
+     "id": "0463",
+     "sets": 2,
+     "sec": 25,
+     "mode": "time",
+     "prog": "time"
+    },
+    "plan": {
+     "policy": "time",
+     "kind": "deload",
+     "sec": 25,
+     "why": [
+      "Short {0} sessions in a row. Back off to {1}s and build up again.",
+      3,
+      25
+     ]
+    },
+    "sets": [
+     {
+      "sec": 25,
+      "w": 0,
+      "done": false
+     },
+     {
+      "sec": 25,
+      "w": 0,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 2,
+     "sec": 30
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "per side: weight up",
+  "result": [
+   {
+    "id": "0334",
+    "target": {
+     "id": "0334",
+     "sets": 2,
+     "reps": 12,
+     "weight": 8.5,
+     "side": true
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "up",
+     "weight": 8.5,
+     "why": [
+      "Every rep last time. {0} {1} more.",
+      2.5,
+      "kg"
+     ]
+    },
+    "sets": [
+     {
+      "w": 8.5,
+      "r": 12,
+      "done": false,
+      "sides": {
+       "L": {
+        "w": 8.5,
+        "r": 6,
+        "done": false
+       },
+       "R": {
+        "w": 8.5,
+        "r": 6,
+        "done": false
+       }
+      }
+     },
+     {
+      "w": 8.5,
+      "r": 12,
+      "done": false,
+      "sides": {
+       "L": {
+        "w": 8.5,
+        "r": 6,
+        "done": false
+       },
+       "R": {
+        "w": 8.5,
+        "r": 6,
+        "done": false
+       }
+      }
+     }
+    ],
+    "planned": {
+     "sets": 2,
+     "reps": 12,
+     "weight": 6
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "plan changed",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 3,
+     "weight": 60
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "hold",
+     "weight": 60,
+     "reps": 3,
+     "why": [
+      "Plan changed, so starting from your new target."
+     ]
+    },
+    "sets": [
+     {
+      "w": 60,
+      "r": 3,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 3,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 3,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 3,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "assisted: less help",
+  "result": [
+   {
+    "id": "0017",
+    "target": {
+     "id": "0017",
+     "sets": 3,
+     "reps": 8,
+     "weight": 25
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "up",
+     "weight": 25,
+     "why": [
+      "Every rep last time. {0} {1} less help.",
+      5,
+      "kg"
+     ]
+    },
+    "sets": [
+     {
+      "w": 25,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 25,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 25,
+      "r": 8,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 8,
+     "weight": 30
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "no progression",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 60,
+     "prog": "off"
+    },
+    "plan": {
+     "policy": "off",
+     "kind": "off"
+    },
+    "sets": [
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "routine excluded from progression",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "plan": {
+     "policy": "off",
+     "kind": "off"
+    },
+    "sets": [
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 60,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "noProg": true,
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "greyskull double jump",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 70,
+     "prog": "greyskull"
+    },
+    "plan": {
+     "policy": "greyskull",
+     "kind": "up",
+     "weight": 70,
+     "why": [
+      "Last set hit {0} reps, twice the target! Take a double jump of {1} {2}.",
+      10,
+      10,
+      "kg"
+     ]
+    },
+    "sets": [
+     {
+      "w": 70,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 70,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 70,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "superset pair",
+  "result": [
+   {
+    "id": "0025",
+    "sg": "a",
+    "target": {
+     "id": "0025",
+     "sets": 3,
+     "reps": 8,
+     "weight": 50,
+     "sg": "a"
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 50,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 50,
+      "r": 8,
+      "done": false
+     },
+     {
+      "w": 50,
+      "r": 8,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 8,
+     "weight": 50
+    },
+    "rid": "r1"
+   },
+   {
+    "id": "0861",
+    "sg": "a",
+    "target": {
+     "id": "0861",
+     "sets": 3,
+     "reps": 10,
+     "weight": 40,
+     "sg": "a"
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "first",
+     "why": [
+      "Nothing logged yet, so this session sets the baseline."
+     ]
+    },
+    "sets": [
+     {
+      "w": 40,
+      "r": 10,
+      "done": false
+     },
+     {
+      "w": 40,
+      "r": 10,
+      "done": false
+     },
+     {
+      "w": 40,
+      "r": 10,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 10,
+     "weight": 40
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "borrowed from another routine",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 65
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "up",
+     "weight": 65,
+     "why": [
+      "Every rep last time. {0} {1} more.",
+      5,
+      "kg"
+     ]
+    },
+    "sets": [
+     {
+      "w": 65,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 65,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 65,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "borrowed, last across routines",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 65
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "up",
+     "weight": 65,
+     "why": [
+      "Every rep last time. {0} {1} more.",
+      5,
+      "kg"
+     ]
+    },
+    "sets": [
+     {
+      "w": 65,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 65,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 65,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "cardio",
+  "result": [
+   {
+    "id": "0685",
+    "target": {
+     "id": "0685",
+     "sets": 1,
+     "min": 25,
+     "speed": 9
+    },
+    "plan": {
+     "policy": "off",
+     "kind": "off"
+    },
+    "sets": [
+     {
+      "min": 25,
+      "speed": 9,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 1
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "warm-up rows are not history",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 65
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "up",
+     "weight": 65,
+     "why": [
+      "Every rep last time. {0} {1} more.",
+      5,
+      "kg"
+     ]
+    },
+    "sets": [
+     {
+      "w": 65,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 65,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 65,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "lb unit",
+  "result": [
+   {
+    "id": "0043",
+    "target": {
+     "id": "0043",
+     "sets": 3,
+     "reps": 5,
+     "weight": 145
+    },
+    "plan": {
+     "policy": "linear",
+     "kind": "up",
+     "weight": 145,
+     "why": [
+      "Every rep last time. {0} {1} more.",
+      10,
+      "lb"
+     ]
+    },
+    "sets": [
+     {
+      "w": 145,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 145,
+      "r": 5,
+      "done": false
+     },
+     {
+      "w": 145,
+      "r": 5,
+      "done": false
+     }
+    ],
+    "planned": {
+     "sets": 3,
+     "reps": 5,
+     "weight": 60
+    },
+    "rid": "r1"
+   }
+  ]
+ },
+ {
+  "name": "finish: on time",
+  "result": {
+   "id": "live",
+   "d": "2026-11-15",
+   "start": 1000,
+   "end": 400000,
+   "routineIds": [
+    "r1"
+   ],
+   "routineId": "r1",
+   "name": "A",
+   "bw": 70,
+   "entries": [
+    {
+     "id": "0043",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": true,
+       "phase": "warmup",
+       "at": 60000
+      },
+      {
+       "w": 65,
+       "r": 5,
+       "done": true,
+       "at": 200000
+      },
+      {
+       "w": 65,
+       "r": 5,
+       "done": false
+      }
+     ],
+     "topW": 65,
+     "target": {
+      "id": "0043",
+      "sets": 3,
+      "reps": 5,
+      "weight": 60
+     },
+     "rid": "r1",
+     "planned": {
+      "sets": 3,
+      "reps": 5,
+      "weight": 60
+     },
+     "sg": "a",
+     "note": "knees"
+    },
+    {
+     "id": "0334",
+     "sets": [
+      {
+       "w": 6,
+       "r": 12,
+       "done": true,
+       "sides": {
+        "L": {
+         "w": 6,
+         "r": 6,
+         "done": true
+        },
+        "R": {
+         "w": 6,
+         "r": 6,
+         "done": true
+        }
+       },
+       "at": 400000
+      },
+      {
+       "w": 6,
+       "r": 12,
+       "done": false,
+       "sides": {
+        "L": {
+         "w": 6,
+         "r": 6,
+         "done": false
+        },
+        "R": {
+         "w": 6,
+         "r": 6,
+         "done": false
+        }
+       }
+      }
+     ],
+     "topW": 6,
+     "target": {
+      "id": "0334",
+      "sets": 2,
+      "reps": 12,
+      "weight": 6,
+      "side": true
+     },
+     "rid": "r1",
+     "sg": "a"
+    },
+    {
+     "id": "0463",
+     "sets": [
+      {
+       "sec": 25,
+       "w": 0,
+       "done": true,
+       "at": 2000000
+      },
+      {
+       "sec": 30,
+       "w": 0,
+       "done": false
+      }
+     ],
+     "topW": null,
+     "target": {
+      "id": "0463",
+      "sets": 2,
+      "sec": 30,
+      "mode": "time",
+      "prog": "time"
+     },
+     "rid": "r1"
+    }
+   ],
+   "prs": [],
+   "note": "good day",
+   "vol": 397
+  }
+ },
+ {
+  "name": "finish: forgotten",
+  "result": {
+   "id": "live",
+   "d": "2026-11-15",
+   "start": 1000,
+   "end": 400000,
+   "routineIds": [
+    "r1"
+   ],
+   "routineId": "r1",
+   "name": "A",
+   "bw": 70,
+   "entries": [
+    {
+     "id": "0043",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": true,
+       "phase": "warmup",
+       "at": 60000
+      },
+      {
+       "w": 65,
+       "r": 5,
+       "done": true,
+       "at": 200000
+      },
+      {
+       "w": 65,
+       "r": 5,
+       "done": false
+      }
+     ],
+     "topW": 65,
+     "target": {
+      "id": "0043",
+      "sets": 3,
+      "reps": 5,
+      "weight": 60
+     },
+     "rid": "r1",
+     "planned": {
+      "sets": 3,
+      "reps": 5,
+      "weight": 60
+     },
+     "sg": "a",
+     "note": "knees"
+    },
+    {
+     "id": "0334",
+     "sets": [
+      {
+       "w": 6,
+       "r": 12,
+       "done": true,
+       "sides": {
+        "L": {
+         "w": 6,
+         "r": 6,
+         "done": true
+        },
+        "R": {
+         "w": 6,
+         "r": 6,
+         "done": true
+        }
+       },
+       "at": 400000
+      },
+      {
+       "w": 6,
+       "r": 12,
+       "done": false,
+       "sides": {
+        "L": {
+         "w": 6,
+         "r": 6,
+         "done": false
+        },
+        "R": {
+         "w": 6,
+         "r": 6,
+         "done": false
+        }
+       }
+      }
+     ],
+     "topW": 6,
+     "target": {
+      "id": "0334",
+      "sets": 2,
+      "reps": 12,
+      "weight": 6,
+      "side": true
+     },
+     "rid": "r1",
+     "sg": "a"
+    },
+    {
+     "id": "0463",
+     "sets": [
+      {
+       "sec": 25,
+       "w": 0,
+       "done": true,
+       "at": 2000000
+      },
+      {
+       "sec": 30,
+       "w": 0,
+       "done": false
+      }
+     ],
+     "topW": null,
+     "target": {
+      "id": "0463",
+      "sets": 2,
+      "sec": 30,
+      "mode": "time",
+      "prog": "time"
+     },
+     "rid": "r1"
+    }
+   ],
+   "prs": [],
+   "note": "good day",
+   "vol": 397
+  }
+ },
+ {
+  "name": "finish: nothing logged",
+  "result": {
+   "id": "live",
+   "d": "2026-11-15",
+   "start": 1000,
+   "end": 5000,
+   "routineIds": [
+    "r1"
+   ],
+   "routineId": "r1",
+   "name": "A",
+   "bw": 70,
+   "entries": [],
+   "prs": [],
+   "vol": 0
+  }
+ },
+ {
+  "name": "finish: all excluded",
+  "result": {
+   "id": "live",
+   "d": "2026-11-15",
+   "start": 1000,
+   "end": 300000,
+   "routineIds": [
+    "r1"
+   ],
+   "routineId": "r1",
+   "name": "A",
+   "bw": 70,
+   "entries": [
+    {
+     "id": "0043",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": true,
+       "phase": "warmup",
+       "at": 60000
+      },
+      {
+       "w": 65,
+       "r": 5,
+       "done": true,
+       "at": 200000
+      },
+      {
+       "w": 65,
+       "r": 5,
+       "done": false
+      }
+     ],
+     "topW": 65,
+     "target": {
+      "id": "0043",
+      "sets": 3,
+      "reps": 5,
+      "weight": 60
+     },
+     "rid": "r1",
+     "noProg": true,
+     "planned": {
+      "sets": 3,
+      "reps": 5,
+      "weight": 60
+     },
+     "note": "knees"
+    }
+   ],
+   "prs": [],
+   "excludeFromProgression": true,
+   "note": "good day",
+   "vol": 325
+  }
+ }
+]

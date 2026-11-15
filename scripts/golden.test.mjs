@@ -170,3 +170,31 @@ it('writes the routine golden file', () => {
   })
   writeFileSync(process.env.ROUTINE_OUT, JSON.stringify(out, null, 1) + '\n')
 })
+
+// A workout: the entries a routine starts with (progression included) and the saved workout a
+// live session finishes as.
+it('writes the session golden file', async () => {
+  if (!process.env.SESSION_IN) return
+  const { buildSessionEntries } = await import('../../frontend/src/lib/session-start.js')
+  const { buildCompletedWorkout, sessionEnd } = await import('../../frontend/src/lib/finish-workout.js')
+  const { workoutVolume } = await import('../../frontend/src/lib/history.js')
+  const cases = JSON.parse(readFileSync(process.env.SESSION_IN, 'utf8'))
+  setWeightDecimals(1)
+  const out = cases.map(c => {
+    vi.useFakeTimers(); vi.setSystemTime(new Date('2026-11-15T12:00:00'))
+    let result
+    if (c.op === 'start') {
+      const S = structuredClone(c.state)
+      const r = S.routines.find(x => x.id === c.routineId)
+      result = buildSessionEntries(S, r).map(e => ({ ...e, rid: r.id }))
+    } else {
+      const end = sessionEnd(c.active, c.now)
+      const w = buildCompletedWorkout(structuredClone(c.active), { end, prs: [] })
+      w.vol = workoutVolume(w)
+      result = w
+    }
+    vi.useRealTimers()
+    return { name: c.name, result: JSON.parse(JSON.stringify(result)) }
+  })
+  writeFileSync(process.env.SESSION_OUT, JSON.stringify(out, null, 1) + '\n')
+})
