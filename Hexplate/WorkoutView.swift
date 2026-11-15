@@ -285,10 +285,16 @@ private struct EntrySection: View {
     private var target: AppModel.Object { entry["target"]?.object ?? [:] }
     private var mode: String { RoutineOps.mode(target.merging(["id": .string(id)]) { a, _ in a }, catalog: model.catalog) }
     private var sets: [JSONValue] { entry["sets"]?.arrayValue ?? [] }
+    private var gifSize: String { model.root["gifSize"]?.stringValue ?? "full" }
     private var step: Double { Session.increment(target, unit: model.settings.unit, catalog: model.catalog) }
 
     var body: some View {
         Section {
+            if gifSize == "full" {
+                WorkoutMedia(id: id, compact: entry["sg"]?.stringValue.map { !$0.isEmpty } ?? false)
+                    .listRowInsets(EdgeInsets())
+                    .id(id)
+            }
             if let line = lastLine { Label(line, systemImage: "clock.arrow.circlepath").font(.subheadline).foregroundStyle(.secondary) }
             if let why = advice { Label(why.text, systemImage: why.symbol).font(.subheadline).foregroundStyle(.secondary) }
             ForEach(Array(sets.enumerated()), id: \.offset) { i, row in
@@ -319,6 +325,7 @@ private struct EntrySection: View {
             .font(.subheadline)
         } header: {
             HStack {
+                if gifSize == "mini" { WorkoutThumb(id: id).textCase(nil) }
                 Text(model.catalog[id]?.displayName ?? id)
                 if let sg = entry["sg"]?.stringValue, !sg.isEmpty {
                     Text("Superset").font(.caption.bold()).foregroundStyle(Theme.superset)

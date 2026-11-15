@@ -96,6 +96,7 @@ struct SettingsView: View {
                     picker("One-rep max", "oneRmFormula", Stats.formulaNames, fallback: "epley")
                     picker("Effort", "effort", ["none": "Off", "rir": "Reps in reserve", "rpe": "RPE"], fallback: "none")
                     picker("Warm-up sets", "warmupAuto", ["off": "Off", "compounds": "Compound lifts", "all": "All lifts"], fallback: "off")
+                    picker("Exercise animations", "gifSize", ["full": "Full", "mini": "Small", "off": "Off"], fallback: "full")
                 } header: {
                     Text("Training")
                 }

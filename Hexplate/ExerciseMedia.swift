@@ -57,11 +57,80 @@ struct ExerciseClip: View {
     }
 }
 
+/// The animation at the top of an exercise in a workout, as openGym draws it: a white 320 pt tile
+/// (120 pt in a superset), tap to pause, and a Minimise pill that switches every exercise to a
+/// small picture beside its name (setting `gifSize`: "full", "mini" or "off").
+struct WorkoutMedia: View {
+    @Environment(AppModel.self) private var model
+    let id: String
+    var compact = false
+    @State private var playing = true
+
+    var body: some View {
+        let still = ExerciseMedia.stillURL(id).flatMap { UIImage(contentsOfFile: $0.path) }
+        // A screenshot build draws a grey stand-in of the same size, so the layout still shows.
+        if still != nil || ExerciseMedia.hidden {
+            let clip = ExerciseMedia.clipURL(id)
+            ZStack(alignment: .bottom) {
+                Group {
+                    if let clip { LoopingPlayer(url: clip, playing: playing) }
+                    else if let still { Image(uiImage: still).resizable().scaledToFit() }
+                    else { Image(systemName: "figure.strengthtraining.traditional").font(.largeTitle).foregroundStyle(.gray) }
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: compact ? 120 : 320)
+                .background(.white)
+                .contentShape(.rect)
+                .onTapGesture { playing.toggle() }
+                HStack {
+                    Button("Minimise", systemImage: "arrow.down.right.and.arrow.up.left") { model.set("gifSize", .string("mini")) }
+                    Spacer()
+                    if clip != nil || ExerciseMedia.hidden {
+                        Label(playing ? "tap to pause" : "tap to play", systemImage: playing ? "pause.fill" : "play.fill")
+                            .allowsHitTesting(false)
+                    }
+                }
+                .labelStyle(Pill())
+                .buttonStyle(.plain)
+                .padding(9)
+            }
+            .clipShape(.rect(cornerRadius: 16))
+            .accessibilityElement(children: .contain)
+            .accessibilityLabel("Animation of the exercise")
+        }
+    }
+
+    private struct Pill: LabelStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            HStack(spacing: 4) { configuration.icon.font(.caption2); configuration.title }
+                .font(.caption.weight(.medium))
+                .foregroundStyle(.white)
+                .padding(.vertical, 5).padding(.horizontal, 11)
+                .background(.black.opacity(0.45), in: .capsule)
+        }
+    }
+}
+
+/// Small mode: the still beside the name; a tap brings the full animation back.
+struct WorkoutThumb: View {
+    @Environment(AppModel.self) private var model
+    let id: String
+
+    var body: some View {
+        if ExerciseMedia.stillURL(id) != nil || ExerciseMedia.hidden {
+            Button { model.set("gifSize", .string("full")) } label: { ExerciseThumb(id: id) }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Expand")
+        }
+    }
+}
+
 private struct LoopingPlayer: UIViewRepresentable {
     let url: URL
+    var playing = true
 
     func makeUIView(context: Context) -> PlayerView { PlayerView(url: url) }
-    func updateUIView(_ view: PlayerView, context: Context) {}
+    func updateUIView(_ view: PlayerView, context: Context) { view.setPlaying(playing) }
 
     final class PlayerView: UIView {
         private let player = AVQueuePlayer()
@@ -79,6 +148,8 @@ private struct LoopingPlayer: UIViewRepresentable {
             (layer as? AVPlayerLayer)?.videoGravity = .resizeAspect
             player.play()
         }
+
+        func setPlaying(_ on: Bool) { on ? player.play() : player.pause() }
 
         required init?(coder: NSCoder) { fatalError("not used") }
     }
