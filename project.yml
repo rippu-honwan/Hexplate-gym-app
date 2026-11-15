@@ -14,7 +14,15 @@ targets:
   Hexplate:
     type: application
     platform: iOS
-    sources: [Hexplate]
+    sources:
+      - Hexplate
+      # Licensed 180 px exercise media (see catalogue/media/NOTICE.md), bundled as folders.
+      - path: ../catalogue/media/still
+        type: folder
+        buildPhase: resources
+      - path: ../catalogue/media/clip
+        type: folder
+        buildPhase: resources
     dependencies:
       - package: HexplateCore
     settings:

@@ -27,6 +27,7 @@ private struct RootView: View {
         TabView {
             Tab("Today", systemImage: "house.fill") { HomeView() }
             Tab("Plan", systemImage: "calendar") { PlanView() }
+            Tab("Exercises", systemImage: "dumbbell") { LibraryView() }
             Tab("History", systemImage: "clock.arrow.circlepath") { HistoryView() }
         }
         .alert("Something went wrong", isPresented: .init(get: { model.errorMessage != nil }, set: { if !$0 { model.errorMessage = nil } })) {

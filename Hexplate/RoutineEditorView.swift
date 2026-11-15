@@ -296,12 +296,7 @@ struct ExercisePicker: View {
                     onPick(ex.id)
                     dismiss()
                 } label: {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(ex.displayName).foregroundStyle(.primary)
-                        Text([ex.equipment, ex.target].compactMap { $0 }.map(Format.capWords).joined(separator: " · "))
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
-                    }
+                    ExerciseRow(exercise: ex, catalog: model.catalog)
                 }
             }
             .overlay { if results.isEmpty { ContentUnavailableView.search(text: query) } }
