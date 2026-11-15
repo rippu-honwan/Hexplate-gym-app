@@ -1,0 +1,6501 @@
+[
+ {
+  "name": "fatigue: alternating split",
+  "op": "fatigue",
+  "today": "2026-11-15",
+  "unit": "kg",
+  "bodyweightKg": 80,
+  "workouts": [
+   {
+    "id": "w0",
+    "d": "2026-11-03",
+    "entries": [
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0032",
+      "sets": [
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w1",
+    "d": "2026-11-05",
+    "entries": [
+     {
+      "id": "0025",
+      "sets": [
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0027",
+      "sets": [
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "sets": [
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       },
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       },
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w2",
+    "d": "2026-11-07",
+    "entries": [
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0032",
+      "sets": [
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w3",
+    "d": "2026-11-09",
+    "entries": [
+     {
+      "id": "0025",
+      "sets": [
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0027",
+      "sets": [
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "sets": [
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       },
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       },
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w4",
+    "d": "2026-11-12",
+    "entries": [
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0032",
+      "sets": [
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w5",
+    "d": "2026-11-13",
+    "entries": [
+     {
+      "id": "0025",
+      "sets": [
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0027",
+      "sets": [
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "sets": [
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       },
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       },
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "fatigue: hours later",
+  "op": "fatigue",
+  "today": "2026-11-15",
+  "hours": 30,
+  "unit": "kg",
+  "workouts": [
+   {
+    "id": "w0",
+    "d": "2026-11-03",
+    "entries": [
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0032",
+      "sets": [
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w1",
+    "d": "2026-11-05",
+    "entries": [
+     {
+      "id": "0025",
+      "sets": [
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0027",
+      "sets": [
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "sets": [
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       },
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       },
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w2",
+    "d": "2026-11-07",
+    "entries": [
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0032",
+      "sets": [
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w3",
+    "d": "2026-11-09",
+    "entries": [
+     {
+      "id": "0025",
+      "sets": [
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0027",
+      "sets": [
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "sets": [
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       },
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       },
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w4",
+    "d": "2026-11-12",
+    "entries": [
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 120,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0032",
+      "sets": [
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w5",
+    "d": "2026-11-13",
+    "entries": [
+     {
+      "id": "0025",
+      "sets": [
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0027",
+      "sets": [
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 70,
+        "r": 10,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "sets": [
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       },
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       },
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "fatigue: effort, warm-ups and drop sets",
+  "op": "fatigue",
+  "today": "2026-11-15",
+  "unit": "kg",
+  "workouts": [
+   {
+    "id": "w0",
+    "d": "2026-10-26",
+    "entries": [
+     {
+      "id": "0025",
+      "sets": [
+       {
+        "w": 100,
+        "r": 3,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w1",
+    "d": "2026-11-13",
+    "entries": [
+     {
+      "id": "0025",
+      "sets": [
+       {
+        "w": 80,
+        "r": 8,
+        "done": true,
+        "rir": 0
+       },
+       {
+        "w": 80,
+        "r": 8,
+        "done": true,
+        "rpe": 6
+       },
+       {
+        "w": 80,
+        "r": 6,
+        "done": true,
+        "failure": true
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 40,
+        "r": 10,
+        "done": true,
+        "failure": true,
+        "phase": "warmup"
+       },
+       {
+        "w": 82.5,
+        "r": 5,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w2",
+    "d": "2026-11-14",
+    "entries": [
+     {
+      "id": "0025",
+      "sets": [
+       {
+        "w": 30,
+        "r": 12,
+        "done": true,
+        "phase": " Warm-Up "
+       },
+       {
+        "w": 40,
+        "r": 10,
+        "done": true,
+        "warmup": true
+       },
+       {
+        "w": 50,
+        "r": 10,
+        "done": true,
+        "warmup": true,
+        "phase": "work"
+       },
+       {
+        "w": 70,
+        "r": 8,
+        "done": true,
+        "type": "dropset",
+        "drops": [
+         {
+          "w": 55,
+          "r": 6
+         },
+         {
+          "w": 40,
+          "r": 8,
+          "rir": 0
+         }
+        ]
+       },
+       {
+        "w": 70,
+        "r": 8,
+        "done": false,
+        "type": "dropset",
+        "drops": [
+         {
+          "w": 55,
+          "r": 6
+         }
+        ]
+       },
+       {
+        "w": 70,
+        "r": 8,
+        "done": true,
+        "drops": [
+         {
+          "w": 55,
+          "r": 6
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "fatigue: body weight and units",
+  "op": "fatigue",
+  "today": "2026-11-15",
+  "unit": "lb",
+  "bodyweightKg": 72,
+  "workouts": [
+   {
+    "id": "w0",
+    "d": "2026-11-06",
+    "entries": [
+     {
+      "id": "1326",
+      "sets": [
+       {
+        "w": 0,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 0,
+        "r": 8,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0662",
+      "sets": [
+       {
+        "w": 0,
+        "r": 20,
+        "done": true
+       },
+       {
+        "w": 0,
+        "r": 20,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w1",
+    "d": "2026-11-11",
+    "entries": [
+     {
+      "id": "1326",
+      "sets": [
+       {
+        "w": 20,
+        "r": 6,
+        "done": true
+       },
+       {
+        "w": 20,
+        "r": 6,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0662",
+      "sets": [
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       }
+      ]
+     }
+    ],
+    "bw": 176
+   },
+   {
+    "id": "w2",
+    "d": "2026-11-13",
+    "entries": [
+     {
+      "id": "1326",
+      "target": {
+       "bodyweight": false
+      },
+      "sets": [
+       {
+        "w": 0,
+        "r": 12,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0017",
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 30,
+        "r": 10,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0662",
+      "bodyweight": true,
+      "sets": [
+       {
+        "w": "5",
+        "r": "12",
+        "done": true,
+        "unit": "kg"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w3",
+    "d": "2026-11-14",
+    "entries": [
+     {
+      "id": "1326",
+      "sets": [
+       {
+        "w": 25,
+        "r": 5,
+        "done": true,
+        "unit": "lbs"
+       },
+       {
+        "w": 25,
+        "r": 5,
+        "done": true,
+        "unit": "lbs"
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": "225",
+        "r": 5,
+        "done": true,
+        "weightUnit": "Pounds"
+       },
+       {
+        "w": "225",
+        "r": 5,
+        "done": true,
+        "weightUnit": "Pounds"
+       }
+      ]
+     }
+    ],
+    "bodyweight": "80",
+    "bwUnit": "kg"
+   }
+  ]
+ },
+ {
+  "name": "fatigue: body weight, no profile weight",
+  "op": "fatigue",
+  "today": "2026-11-15",
+  "unit": "kg",
+  "workouts": [
+   {
+    "id": "w0",
+    "d": "2026-11-06",
+    "entries": [
+     {
+      "id": "1326",
+      "sets": [
+       {
+        "w": 0,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 0,
+        "r": 8,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0662",
+      "sets": [
+       {
+        "w": 0,
+        "r": 20,
+        "done": true
+       },
+       {
+        "w": 0,
+        "r": 20,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w1",
+    "d": "2026-11-11",
+    "entries": [
+     {
+      "id": "1326",
+      "sets": [
+       {
+        "w": 20,
+        "r": 6,
+        "done": true
+       },
+       {
+        "w": 20,
+        "r": 6,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0662",
+      "sets": [
+       {
+        "w": 10,
+        "r": 15,
+        "done": true
+       }
+      ]
+     }
+    ],
+    "bw": 176
+   },
+   {
+    "id": "w2",
+    "d": "2026-11-13",
+    "entries": [
+     {
+      "id": "1326",
+      "target": {
+       "bodyweight": false
+      },
+      "sets": [
+       {
+        "w": 0,
+        "r": 12,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0017",
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 30,
+        "r": 10,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0662",
+      "bodyweight": true,
+      "sets": [
+       {
+        "w": "5",
+        "r": "12",
+        "done": true,
+        "unit": "kg"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w3",
+    "d": "2026-11-14",
+    "entries": [
+     {
+      "id": "1326",
+      "sets": [
+       {
+        "w": 25,
+        "r": 5,
+        "done": true,
+        "unit": "lbs"
+       },
+       {
+        "w": 25,
+        "r": 5,
+        "done": true,
+        "unit": "lbs"
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": "225",
+        "r": 5,
+        "done": true,
+        "weightUnit": "Pounds"
+       },
+       {
+        "w": "225",
+        "r": 5,
+        "done": true,
+        "weightUnit": "Pounds"
+       }
+      ]
+     }
+    ],
+    "bodyweight": "80",
+    "bwUnit": "kg"
+   }
+  ]
+ },
+ {
+  "name": "fatigue: cardio, sides, custom",
+  "op": "fatigue",
+  "today": "2026-11-15",
+  "unit": "kg",
+  "workouts": [
+   {
+    "id": "w0",
+    "d": "2026-11-12",
+    "entries": [
+     {
+      "id": "0685",
+      "sets": [
+       {
+        "min": 45,
+        "done": true
+       },
+       {
+        "min": null,
+        "done": true
+       },
+       {
+        "done": true
+       },
+       {
+        "min": "15",
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w1",
+    "d": "2026-11-14",
+    "entries": [
+     {
+      "id": "0334",
+      "sets": [
+       {
+        "w": 10,
+        "r": 24,
+        "done": true,
+        "sides": {
+         "L": {
+          "w": 10,
+          "r": 12,
+          "done": true
+         },
+         "R": {
+          "w": 10,
+          "r": 12,
+          "done": false,
+          "rir": 1
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "custom-x",
+      "muscleWeights": {
+       "chest": 1,
+       "triceps": 0.5,
+       "nope": 1
+      },
+      "sets": [
+       {
+        "w": 20,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 20,
+        "r": 10,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "custom-y",
+      "sets": [
+       {
+        "w": 20,
+        "r": 10,
+        "done": true
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "fatigue: a sudden heavy week",
+  "op": "fatigue",
+  "today": "2026-11-15",
+  "unit": "kg",
+  "workouts": [
+   {
+    "id": "w0",
+    "d": "2026-10-19",
+    "entries": [
+     {
+      "id": "0031",
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 30,
+        "r": 10,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w1",
+    "d": "2026-10-22",
+    "entries": [
+     {
+      "id": "0031",
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 30,
+        "r": 10,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w2",
+    "d": "2026-10-25",
+    "entries": [
+     {
+      "id": "0031",
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 30,
+        "r": 10,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w3",
+    "d": "2026-10-28",
+    "entries": [
+     {
+      "id": "0031",
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 30,
+        "r": 10,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w10",
+    "d": "2026-11-09",
+    "entries": [
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0032",
+      "sets": [
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w11",
+    "d": "2026-11-10",
+    "entries": [
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0032",
+      "sets": [
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w12",
+    "d": "2026-11-11",
+    "entries": [
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0032",
+      "sets": [
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w13",
+    "d": "2026-11-12",
+    "entries": [
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0032",
+      "sets": [
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w14",
+    "d": "2026-11-13",
+    "entries": [
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0032",
+      "sets": [
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "w15",
+    "d": "2026-11-14",
+    "entries": [
+     {
+      "id": "0043",
+      "sets": [
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0032",
+      "sets": [
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 140,
+        "r": 5,
+        "done": true
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "fatigue: nothing",
+  "op": "fatigue",
+  "today": "2026-11-15",
+  "unit": "kg",
+  "workouts": []
+ },
+ {
+  "name": "hint: rest day, legs recovering",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": [
+     "rb"
+    ]
+   },
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-06",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "hint: rest day, nothing recovering",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": "ra"
+   },
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-03",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-08",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w4",
+     "d": "2026-11-12",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "hint: rest on the day plan",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {},
+   "dayPlan": {
+    "2026-11-15": "rest"
+   },
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-06",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "hint: lighter, legs today",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {
+    "0": "ra"
+   },
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-06",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "hint: lighter, two routines",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {
+    "0": [
+     "rb",
+     "ra",
+     "rc"
+    ]
+   },
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-12",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-13",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "hint: today light on the tired part",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {
+    "0": "rb"
+   },
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-06",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "hint: covered, chest is back",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {
+    "0": "rb"
+   },
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-03",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-08",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w4",
+     "d": "2026-11-12",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "hint: empty routine, nothing recovering",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {
+    "0": "rc"
+   },
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-03",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-08",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w4",
+     "d": "2026-11-12",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "hint: split, legs recovering",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {},
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-06",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "hint: both recovering",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {},
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-12",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-13",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "hint: neglect",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {},
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-03",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-08",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w4",
+     "d": "2026-11-12",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "hint: queue counts as a plan",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {},
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-06",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "queue": {
+    "ids": [
+     "rb"
+    ],
+    "at": 0
+   }
+  }
+ },
+ {
+  "name": "hint: off",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {},
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-06",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "recoveryHint": false
+  }
+ },
+ {
+  "name": "hint: hidden today",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {},
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-06",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "recoveryHintDay": "2026-11-15"
+  }
+ },
+ {
+  "name": "hint: during a workout",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {},
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-06",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "active": {
+    "id": "x"
+   }
+  }
+ },
+ {
+  "name": "hint: trained today",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {},
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-06",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-11-07",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-11-10",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w9",
+     "d": "2026-11-15",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "hint: too few recent",
+  "op": "hint",
+  "today": "2026-11-15",
+  "bodyweightKg": 80,
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 4,
+       "reps": 5,
+       "weight": 100
+      },
+      {
+       "id": "0031",
+       "sets": 2
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      },
+      {
+       "id": "0334"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Empty",
+     "ex": []
+    }
+   ],
+   "week": {},
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-11-14",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 120,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        },
+        {
+         "w": 140,
+         "r": 5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-10-06",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        },
+        {
+         "w": 80,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0027",
+       "sets": [
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 70,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0334",
+       "sets": [
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 15,
+         "done": true
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ }
+]

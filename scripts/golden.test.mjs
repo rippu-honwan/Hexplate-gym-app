@@ -249,6 +249,32 @@ it('writes the stats golden file', async () => {
   writeFileSync(process.env.STATS_OUT, JSON.stringify(out, null, 1) + '\n')
 })
 
+// The recovery model (fatigue per muscle) and the Home hint built on it.
+it('writes the recovery golden file', async () => {
+  if (!process.env.RECOVERY_IN) return
+  const { fatigueOf } = await import('../../frontend/src/lib/recovery.js')
+  const { recoveryHint, hintText } = await import('../../frontend/src/lib/recovery-hint.js')
+  const cases = JSON.parse(readFileSync(process.env.RECOVERY_IN, 'utf8'))
+  const r6 = m => Object.fromEntries(Object.entries(m).map(([k, v]) => [k, Math.round(v * 1e6) / 1e6]))
+  const out = []
+  for (const c of cases) {
+    const now = new Date(c.today + 'T12:00:00').getTime() + (c.hours || 0) * 3600000
+    vi.useFakeTimers(); vi.setSystemTime(now)
+    let result
+    if (c.op === 'fatigue') {
+      result = r6(fatigueOf(structuredClone(c.workouts), now, { unit: c.unit, bodyweightKg: c.bodyweightKg }))
+    } else {
+      const S = structuredClone(c.state)
+      const fatigue = fatigueOf(S.workouts, now, { unit: S.unit, bodyweightKg: c.bodyweightKg })
+      const hint = recoveryHint(S, { now, today: c.today, fatigue })
+      result = { hint, text: hintText(hint, c.today) }
+    }
+    vi.useRealTimers()
+    out.push({ name: c.name, result: JSON.parse(JSON.stringify(result)) })
+  }
+  writeFileSync(process.env.RECOVERY_OUT, JSON.stringify(out, null, 1) + '\n')
+})
+
 // The workout CSV export of the history fixture.
 it('writes the CSV golden file', async () => {
   if (!process.env.CSV_OUT) return

@@ -12,6 +12,7 @@ export SCHEDULE_IN="$FIX/schedule-cases.json" SCHEDULE_OUT="$FIX/schedule-golden
 export ROUTINE_IN="$FIX/routine-cases.json" ROUTINE_OUT="$FIX/routine-golden.json"
 export SESSION_IN="$FIX/session-cases.json" SESSION_OUT="$FIX/session-golden.json"
 export STATS_IN="$FIX/stats-cases.json" STATS_OUT="$FIX/stats-golden.json"
+export RECOVERY_IN="$FIX/recovery-cases.json" RECOVERY_OUT="$FIX/recovery-golden.json"
 export CSV_OUT="$FIX/history-golden.csv"
 export WATCH_IN="$FIX/watch-cases.json" WATCH_OUT="$FIX/watch-golden.json"
 export CATALOGUE_OUT="$ROOT/native/HexplateCore/Sources/HexplateCore/Resources/exercises.json"
