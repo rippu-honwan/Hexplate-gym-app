@@ -37,9 +37,10 @@ final class EditGoldenTests: XCTestCase {
                 continue
             }
             var a = try XCTUnwrap(k["active"]?.object)
+            let state = k["state"]?.object ?? [:]
             var steps: [JSONValue] = []
             for op in (k["ops"]?.arrayValue ?? []).compactMap(\.arrayValue) {
-                let x = Int(op[1].num), y = op.count > 2 ? op[2] : .null
+                let x = op[1].numberValue.map { Int($0) } ?? 0, y = op.count > 2 ? op[2] : .null
                 switch op[0].stringValue {
                 case "canMove": steps.append(.bool(ActiveEdit.canMove(a, x, Int(y.num)))); continue
                 case "move": ActiveEdit.move(&a, x, Int(y.num))
@@ -47,7 +48,16 @@ final class EditGoldenTests: XCTestCase {
                 case "unpair": ActiveEdit.unpair(&a, x)
                 case "remove": ActiveEdit.remove(&a, x)
                 case "swap": ActiveEdit.swap(&a, x, with: y.object ?? [:], keepGroup: op[3] == .bool(true))
-                default: ActiveEdit.setNoProg(&a, x, y == .bool(true))
+                case "noProg": ActiveEdit.setNoProg(&a, x, y == .bool(true))
+                case "note": ActiveEdit.setNote(&a, op[1].stringValue ?? "")
+                case "rename": ActiveEdit.rename(&a, op[1].stringValue ?? "")
+                case "addRoutine":
+                    let routine = try XCTUnwrap(state["routines"]?.arrayValue?.compactMap(\.object).first { $0["id"] == op[1] })
+                    ActiveEdit.addRoutine(&a, state, routine, catalog: .builtIn)
+                case "sessionNoProg":
+                    let out = Set((state["routines"]?.arrayValue ?? []).compactMap(\.object).filter { $0["excludeFromProgression"] == .bool(true) }.compactMap { $0["id"]?.stringValue })
+                    ActiveEdit.setSessionNoProg(&a, op[1] == .bool(true)) { out.contains($0["rid"]?.stringValue ?? "") }
+                default: ActiveEdit.setExerciseRest(&a, x, y.numberValue)
                 }
                 steps.append(.object(a))
             }

@@ -52,4 +52,20 @@ cases += [
     {'name': 'set: remove', 'rows': rows, 'ops': [['remove', 1], ['remove', 0], ['remove', 1], ['remove', 0]]},
     {'name': 'set: remove a timed pair', 'rows': timed, 'ops': [['remove', 1], ['remove', 0]]},
 ]
+
+# The session's own menu: note, name, another routine, progression, an exercise's rest.
+state = {'unit': 'kg', 'progDefault': 'linear', 'startFrom': 'plan', 'lastFrom': 'routine', 'exWeights': {}, 'workouts': [],
+         'routines': [{'id': 'r1', 'name': 'Push', 'ex': [{'id': '0025', 'sets': 3, 'reps': 8, 'weight': 50}]},
+                      {'id': 'r2', 'name': 'Rehab', 'excludeFromProgression': True, 'ex': [{'id': '0334', 'sets': 2, 'reps': 15, 'weight': 4}]},
+                      {'id': 'r3', 'name': 'Legs', 'ex': [{'id': '0043', 'sets': 3, 'reps': 5, 'weight': 80, 'sg': 'x'}, {'id': '0031', 'sets': 2, 'reps': 10, 'sg': 'x'}]},
+                      {'id': 'r4', 'name': 'Core', 'ex': [{'id': '0463', 'sets': 2, 'sec': 30, 'mode': 'time'}]}]}
+live = active(e('A'), e('B'), cur=0, routineIds=['r1'], name='Push')
+cases += [
+    {'name': 'session: note', 'active': live, 'state': state, 'ops': [['note', '  good day  '], ['note', 'y' * 600], ['note', '   ']]},
+    {'name': 'session: rename', 'active': live, 'state': state, 'ops': [['rename', '   '], ['rename', '  Monday heavy '], ['rename', 'z' * 80]]},
+    {'name': 'session: add routines', 'active': live, 'state': state, 'ops': [['addRoutine', 'r3'], ['addRoutine', 'r2'], ['addRoutine', 'r4'], ['addRoutine', 'r1']]},
+    {'name': 'session: add after a rename', 'active': {**live, 'customName': True, 'name': 'Mine'}, 'state': state, 'ops': [['addRoutine', 'r3']]},
+    {'name': 'session: progression', 'active': live, 'state': state, 'ops': [['addRoutine', 'r2'], ['sessionNoProg', True], ['addRoutine', 'r3'], ['sessionNoProg', False]]},
+    {'name': 'session: exercise rest', 'active': live, 'state': state, 'ops': [['exRest', 0, 150], ['exRest', 0, 0], ['exRest', 1, 0], ['exRest', 0, None]]},
+]
 print(json.dumps(cases, indent=1))

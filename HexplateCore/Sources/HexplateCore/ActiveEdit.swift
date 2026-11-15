@@ -124,6 +124,82 @@ public enum ActiveEdit {
     }
 }
 
+extension ActiveEdit {
+    public static let noteMax = 500
+
+    /// The session note: trimmed, at most 500 characters, blank removes it (SessionNote).
+    public static func setNote(_ a: inout Object, _ text: String) {
+        let t = String(text.trimmingCharacters(in: .whitespacesAndNewlines).prefix(noteMax))
+        a["note"] = t.isEmpty ? nil : .string(t)
+    }
+
+    /// A name of its own (RenameWorkout): trimmed, at most 60 characters; blank changes nothing.
+    public static func rename(_ a: inout Object, _ text: String) {
+        let t = String(text.trimmingCharacters(in: .whitespacesAndNewlines).prefix(60))
+        guard !t.isEmpty else { return }
+        a["name"] = .string(t)
+        a["customName"] = .bool(true)
+    }
+
+    /// "Push + Pull", or "A + B + 2 more" past three (session-merge.js deriveSessionName).
+    public static func sessionName(_ names: [String]) -> String? {
+        if names.isEmpty { return nil }
+        return names.count <= 3 ? names.joined(separator: " + ") : "\(names[0]) + \(names[1]) + \(names.count - 2) more"
+    }
+
+    /// Another routine's exercises at the end of the session (AddRoutineToSession).
+    public static func addRoutine(_ a: inout Object, _ s: Object, _ routine: Object, catalog c: ExerciseCatalog) {
+        let whole = a["noProg"] == .bool(true)
+        let added = Session.entries(s, routine: routine, catalog: c).map { e -> JSONValue in
+            guard whole, var o = e.object else { return e }
+            o["noProg"] = .bool(true)
+            return .object(o)
+        }
+        a["entries"] = .array(entries(a) + added)
+        let old = a["routineIds"] ?? .null
+        var ids = old.arrayValue ?? (old == .null ? [] : [old])
+        ids.append(routine["id"] ?? .null)
+        a["routineIds"] = .array(ids)
+        if a["customName"] != .bool(true) {
+            let routines = (s["routines"]?.arrayValue ?? []).compactMap(\.object)
+            let names = ids.compactMap { id in routines.first { $0["id"] == id }?["name"]?.stringValue }
+            a["name"] = sessionName(names).map(JSONValue.string) ?? .null
+        }
+    }
+
+    /// The whole session kept out of progression, or counted again except what a deload or rehab
+    /// routine keeps out itself (setSessionNoProg).
+    public static func setSessionNoProg(_ a: inout Object, _ on: Bool, routineOwns: (Object) -> Bool) {
+        var list = entries(a)
+        for i in list.indices {
+            guard var e = list[i].object else { continue }
+            if on { e["noProg"] = .bool(true) } else if !routineOwns(e) { e["noProg"] = nil }
+            list[i] = .object(e)
+        }
+        a["entries"] = .array(list)
+        a["noProg"] = on ? .bool(true) : nil
+    }
+
+    /// The exercise's own rest this session: nil the default, 0 no timer (openExerciseRest).
+    public static func setExerciseRest(_ a: inout Object, _ i: Int, _ sec: Double?) {
+        var list = entries(a)
+        guard list.indices.contains(i), var e = list[i].object else { return }
+        var t = e["target"]?.object ?? [:]
+        t["restSec"] = nil; t["restOff"] = nil
+        if let sec { if sec > 0 { t["restSec"] = .number(sec) } else { t["restOff"] = .bool(true) } }
+        e["target"] = .object(t)
+        list[i] = .object(e)
+        a["entries"] = .array(list)
+    }
+
+    /// ownExerciseRest: the exercise's own rest, 0 when switched off, nil for the default.
+    public static func exerciseRest(_ target: Object?) -> Double? {
+        let v = Session.jsRound(target?["restSec"]?.num ?? 0)
+        if v.isFinite && v > 0 { return v }
+        return target?["restOff"] == .bool(true) ? 0 : nil
+    }
+}
+
 /// One set's own menu in a live session (Workout.jsx openSetMenu): failure, copy, phase, its own
 /// rest, a note, remove. Rows as stored on the entry; each returns the new rows.
 public enum SetEdit {

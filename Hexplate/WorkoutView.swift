@@ -85,8 +85,11 @@ extension AppModel {
         let entry = entries[i], target = entry["target"]?.object ?? [:]
         let sg = entry["sg"]?.stringValue.flatMap { $0.isEmpty ? nil : $0 }
         if let sg, entries.indices.contains(where: { $0 > i && entries[$0]["sg"]?.stringValue == sg }) { return nil }
-        return (sg != nil ? target["sgRest"]?.numberValue : nil) ?? target["restSec"]?.numberValue ?? root["restSec"]?.numberValue ?? 90
+        return (sg != nil ? target["sgRest"]?.numberValue : nil) ?? ActiveEdit.exerciseRest(target) ?? defaultRest
     }
+
+    /// The profile's rest between sets (Settings → Rest timer).
+    var defaultRest: Double { root["restSec"]?.numberValue ?? 90 }
 
     /// "rir" or "rpe" when sets record how hard they were (history.js effortOf), else nil.
     var effortKind: String? {
@@ -188,6 +191,8 @@ struct WorkoutView: View {
     @State private var summary: AppModel.Object?
     @State private var noteFor: Int?
     @State private var setNoteFor: EntryAction?
+    @State private var editingSessionNote = false
+    @State private var renaming = false
     @State private var noteText = ""
     @State private var removeFor: Int?
     @State private var swapFor: EntryAction?
@@ -210,6 +215,10 @@ struct WorkoutView: View {
                 }
                 Section {
                     Button("Add exercise", systemImage: "plus") { picking = true }
+                    Button { noteText = model.active?["note"]?.stringValue ?? ""; editingSessionNote = true } label: {
+                        Label(model.active?["note"]?.stringValue ?? "Add session note", systemImage: "note.text")
+                            .foregroundStyle(model.active?["note"] == nil ? AnyShapeStyle(.tint) : AnyShapeStyle(.primary))
+                    }
                 }
             }
             .listSectionSpacing(.compact)
@@ -232,9 +241,7 @@ struct WorkoutView: View {
                     Button("Minimise", systemImage: "chevron.down") { dismiss() }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Menu("More", systemImage: "ellipsis") {
-                        Button("Discard workout", systemImage: "trash", role: .destructive) { confirmDiscard = true }
-                    }
+                    Menu("More", systemImage: "ellipsis") { sessionMenu }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Finish") { confirmFinish = true }
@@ -270,6 +277,16 @@ struct WorkoutView: View {
                     let text = noteText.trimmingCharacters(in: .whitespacesAndNewlines)
                     model.changeEntry(i) { $0["note"] = text.isEmpty ? nil : .string(text) }
                 }
+                Button("Cancel", role: .cancel) {}
+            }
+            .alert("Session note", isPresented: $editingSessionNote) {
+                TextField("How did it go?", text: $noteText)
+                Button("Save") { let t = noteText; model.changeActive { ActiveEdit.setNote(&$0, t) } }
+                Button("Cancel", role: .cancel) {}
+            }
+            .alert("Rename workout", isPresented: $renaming) {
+                TextField("Workout title", text: $noteText)
+                Button("Save") { let t = noteText; model.changeActive { ActiveEdit.rename(&$0, t) } }
                 Button("Cancel", role: .cancel) {}
             }
             .alert("Set note", isPresented: Binding(get: { setNoteFor != nil }, set: { if !$0 { setNoteFor = nil } }), presenting: setNoteFor) { action in
@@ -313,6 +330,46 @@ struct WorkoutView: View {
 
     private var unfinished: Int {
         model.activeEntries.flatMap { $0["sets"]?.arrayValue ?? [] }.filter { !Session.hasCompletedWork($0) && !Session.isWarmup($0) }.count
+    }
+
+    /// The workout's own ⋯ (Workout.jsx openViewMenu): the rest and sound used now, what to add,
+    /// the note and name, progression, and throwing the session away.
+    @ViewBuilder private var sessionMenu: some View {
+        let a = model.active ?? [:]
+        let inSession = Set((a["routineIds"]?.arrayValue ?? []).compactMap(\.stringValue))
+        let routines = (model.root["routines"]?.arrayValue ?? []).compactMap(\.object)
+        Section("Workout settings") {
+            Picker(selection: Binding(get: { model.defaultRest }, set: { model.set("restSec", .number($0)) })) {
+                Text("No timer").tag(0.0)
+                ForEach([30.0, 45, 60, 90, 120, 150, 180, 240, 300], id: \.self) { Text(Format.seconds($0)).tag($0) }
+            } label: { Label("Rest timer", systemImage: "timer") }
+            .pickerStyle(.menu)
+            Toggle("Sound", systemImage: "speaker.wave.2", isOn: Binding(get: { model.root["sound"] != .bool(false) }, set: { model.set("sound", .bool($0)) }))
+        }
+        Section {
+            Button("Add exercise", systemImage: "plus.circle") { picking = true }
+            Button(a["note"] == nil ? "Add session note" : "Edit session note", systemImage: "note.text") {
+                noteText = a["note"]?.stringValue ?? ""; editingSessionNote = true
+            }
+            Menu("Add routine", systemImage: "list.clipboard") {
+                ForEach(routines.indices, id: \.self) { i in
+                    let r = routines[i], id = r["id"]?.stringValue ?? ""
+                    let empty = (r["ex"]?.arrayValue ?? []).isEmpty
+                    Button(r["name"]?.stringValue ?? "Routine") { model.changeActive { ActiveEdit.addRoutine(&$0, model.root, r, catalog: model.catalog) } }
+                        .disabled(inSession.contains(id) || empty)
+                }
+            }
+            Button("Rename workout", systemImage: "pencil") { noteText = a["name"]?.stringValue ?? ""; renaming = true }
+            Toggle("Don’t count for progression", systemImage: "chart.line.downtrend.xyaxis", isOn: Binding(
+                get: { a["noProg"] == .bool(true) },
+                set: { on in
+                    let out = Set(routines.filter { $0["excludeFromProgression"] == .bool(true) }.compactMap { $0["id"]?.stringValue })
+                    model.changeActive { ActiveEdit.setSessionNoProg(&$0, on) { out.contains($0["rid"]?.stringValue ?? "") } }
+                }))
+        }
+        Section {
+            Button("Discard workout", systemImage: "trash", role: .destructive) { confirmDiscard = true }
+        }
     }
 
     private func entry(_ i: Int) -> AppModel.Object? { model.activeEntries.indices.contains(i) ? model.activeEntries[i] : nil }
@@ -467,6 +524,12 @@ private struct EntrySection: View {
                 Button(entry["note"] == nil ? "Add note" : "Edit note", systemImage: "note.text") { onAction(.note(index)) }
                 Button("Swap exercise", systemImage: "arrow.left.arrow.right") { onAction(.swap(index)) }
                 Button("How to do it and history", systemImage: "info.circle") { onAction(.detail(id)) }
+                Picker(selection: Binding(get: { ActiveEdit.exerciseRest(target) ?? -1 }, set: { v in model.changeActive { ActiveEdit.setExerciseRest(&$0, index, v < 0 ? nil : v) } })) {
+                    Text("Default (\(Format.seconds(model.defaultRest)))").tag(-1.0)
+                    Text("No timer").tag(0.0)
+                    ForEach([30.0, 45, 60, 90, 120, 150, 180, 240, 300], id: \.self) { Text(Format.seconds($0)).tag($0) }
+                } label: { Label("Rest timer", systemImage: "timer") }
+                .pickerStyle(.menu)
             }
             Section("Order and supersets") {
                 if unit.count == 1 {

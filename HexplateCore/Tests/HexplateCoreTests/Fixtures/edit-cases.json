@@ -2148,5 +2148,866 @@
     0
    ]
   ]
+ },
+ {
+  "name": "session: note",
+  "active": {
+   "id": "live",
+   "d": "2026-11-16",
+   "cur": 0,
+   "entries": [
+    {
+     "id": "A",
+     "target": {
+      "id": "A",
+      "sets": 2
+     },
+     "planned": {
+      "sets": 2
+     },
+     "plan": null,
+     "rid": "r1",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      },
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      }
+     ]
+    },
+    {
+     "id": "B",
+     "target": {
+      "id": "B",
+      "sets": 2
+     },
+     "planned": {
+      "sets": 2
+     },
+     "plan": null,
+     "rid": "r1",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      },
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      }
+     ]
+    }
+   ],
+   "routineIds": [
+    "r1"
+   ],
+   "name": "Push"
+  },
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "workouts": [],
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 50
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Rehab",
+     "excludeFromProgression": true,
+     "ex": [
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 80,
+       "sg": "x"
+      },
+      {
+       "id": "0031",
+       "sets": 2,
+       "reps": 10,
+       "sg": "x"
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Core",
+     "ex": [
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 30,
+       "mode": "time"
+      }
+     ]
+    }
+   ]
+  },
+  "ops": [
+   [
+    "note",
+    "  good day  "
+   ],
+   [
+    "note",
+    "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+   ],
+   [
+    "note",
+    "   "
+   ]
+  ]
+ },
+ {
+  "name": "session: rename",
+  "active": {
+   "id": "live",
+   "d": "2026-11-16",
+   "cur": 0,
+   "entries": [
+    {
+     "id": "A",
+     "target": {
+      "id": "A",
+      "sets": 2
+     },
+     "planned": {
+      "sets": 2
+     },
+     "plan": null,
+     "rid": "r1",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      },
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      }
+     ]
+    },
+    {
+     "id": "B",
+     "target": {
+      "id": "B",
+      "sets": 2
+     },
+     "planned": {
+      "sets": 2
+     },
+     "plan": null,
+     "rid": "r1",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      },
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      }
+     ]
+    }
+   ],
+   "routineIds": [
+    "r1"
+   ],
+   "name": "Push"
+  },
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "workouts": [],
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 50
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Rehab",
+     "excludeFromProgression": true,
+     "ex": [
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 80,
+       "sg": "x"
+      },
+      {
+       "id": "0031",
+       "sets": 2,
+       "reps": 10,
+       "sg": "x"
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Core",
+     "ex": [
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 30,
+       "mode": "time"
+      }
+     ]
+    }
+   ]
+  },
+  "ops": [
+   [
+    "rename",
+    "   "
+   ],
+   [
+    "rename",
+    "  Monday heavy "
+   ],
+   [
+    "rename",
+    "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+   ]
+  ]
+ },
+ {
+  "name": "session: add routines",
+  "active": {
+   "id": "live",
+   "d": "2026-11-16",
+   "cur": 0,
+   "entries": [
+    {
+     "id": "A",
+     "target": {
+      "id": "A",
+      "sets": 2
+     },
+     "planned": {
+      "sets": 2
+     },
+     "plan": null,
+     "rid": "r1",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      },
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      }
+     ]
+    },
+    {
+     "id": "B",
+     "target": {
+      "id": "B",
+      "sets": 2
+     },
+     "planned": {
+      "sets": 2
+     },
+     "plan": null,
+     "rid": "r1",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      },
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      }
+     ]
+    }
+   ],
+   "routineIds": [
+    "r1"
+   ],
+   "name": "Push"
+  },
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "workouts": [],
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 50
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Rehab",
+     "excludeFromProgression": true,
+     "ex": [
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 80,
+       "sg": "x"
+      },
+      {
+       "id": "0031",
+       "sets": 2,
+       "reps": 10,
+       "sg": "x"
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Core",
+     "ex": [
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 30,
+       "mode": "time"
+      }
+     ]
+    }
+   ]
+  },
+  "ops": [
+   [
+    "addRoutine",
+    "r3"
+   ],
+   [
+    "addRoutine",
+    "r2"
+   ],
+   [
+    "addRoutine",
+    "r4"
+   ],
+   [
+    "addRoutine",
+    "r1"
+   ]
+  ]
+ },
+ {
+  "name": "session: add after a rename",
+  "active": {
+   "id": "live",
+   "d": "2026-11-16",
+   "cur": 0,
+   "entries": [
+    {
+     "id": "A",
+     "target": {
+      "id": "A",
+      "sets": 2
+     },
+     "planned": {
+      "sets": 2
+     },
+     "plan": null,
+     "rid": "r1",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      },
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      }
+     ]
+    },
+    {
+     "id": "B",
+     "target": {
+      "id": "B",
+      "sets": 2
+     },
+     "planned": {
+      "sets": 2
+     },
+     "plan": null,
+     "rid": "r1",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      },
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      }
+     ]
+    }
+   ],
+   "routineIds": [
+    "r1"
+   ],
+   "name": "Mine",
+   "customName": true
+  },
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "workouts": [],
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 50
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Rehab",
+     "excludeFromProgression": true,
+     "ex": [
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 80,
+       "sg": "x"
+      },
+      {
+       "id": "0031",
+       "sets": 2,
+       "reps": 10,
+       "sg": "x"
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Core",
+     "ex": [
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 30,
+       "mode": "time"
+      }
+     ]
+    }
+   ]
+  },
+  "ops": [
+   [
+    "addRoutine",
+    "r3"
+   ]
+  ]
+ },
+ {
+  "name": "session: progression",
+  "active": {
+   "id": "live",
+   "d": "2026-11-16",
+   "cur": 0,
+   "entries": [
+    {
+     "id": "A",
+     "target": {
+      "id": "A",
+      "sets": 2
+     },
+     "planned": {
+      "sets": 2
+     },
+     "plan": null,
+     "rid": "r1",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      },
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      }
+     ]
+    },
+    {
+     "id": "B",
+     "target": {
+      "id": "B",
+      "sets": 2
+     },
+     "planned": {
+      "sets": 2
+     },
+     "plan": null,
+     "rid": "r1",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      },
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      }
+     ]
+    }
+   ],
+   "routineIds": [
+    "r1"
+   ],
+   "name": "Push"
+  },
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "workouts": [],
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 50
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Rehab",
+     "excludeFromProgression": true,
+     "ex": [
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 80,
+       "sg": "x"
+      },
+      {
+       "id": "0031",
+       "sets": 2,
+       "reps": 10,
+       "sg": "x"
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Core",
+     "ex": [
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 30,
+       "mode": "time"
+      }
+     ]
+    }
+   ]
+  },
+  "ops": [
+   [
+    "addRoutine",
+    "r2"
+   ],
+   [
+    "sessionNoProg",
+    true
+   ],
+   [
+    "addRoutine",
+    "r3"
+   ],
+   [
+    "sessionNoProg",
+    false
+   ]
+  ]
+ },
+ {
+  "name": "session: exercise rest",
+  "active": {
+   "id": "live",
+   "d": "2026-11-16",
+   "cur": 0,
+   "entries": [
+    {
+     "id": "A",
+     "target": {
+      "id": "A",
+      "sets": 2
+     },
+     "planned": {
+      "sets": 2
+     },
+     "plan": null,
+     "rid": "r1",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      },
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      }
+     ]
+    },
+    {
+     "id": "B",
+     "target": {
+      "id": "B",
+      "sets": 2
+     },
+     "planned": {
+      "sets": 2
+     },
+     "plan": null,
+     "rid": "r1",
+     "sets": [
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      },
+      {
+       "w": 20,
+       "r": 8,
+       "done": false
+      }
+     ]
+    }
+   ],
+   "routineIds": [
+    "r1"
+   ],
+   "name": "Push"
+  },
+  "state": {
+   "unit": "kg",
+   "progDefault": "linear",
+   "startFrom": "plan",
+   "lastFrom": "routine",
+   "exWeights": {},
+   "workouts": [],
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Push",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 50
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Rehab",
+     "excludeFromProgression": true,
+     "ex": [
+      {
+       "id": "0334",
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Legs",
+     "ex": [
+      {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 80,
+       "sg": "x"
+      },
+      {
+       "id": "0031",
+       "sets": 2,
+       "reps": 10,
+       "sg": "x"
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Core",
+     "ex": [
+      {
+       "id": "0463",
+       "sets": 2,
+       "sec": 30,
+       "mode": "time"
+      }
+     ]
+    }
+   ]
+  },
+  "ops": [
+   [
+    "exRest",
+    0,
+    150
+   ],
+   [
+    "exRest",
+    0,
+    0
+   ],
+   [
+    "exRest",
+    1,
+    0
+   ],
+   [
+    "exRest",
+    0,
+    null
+   ]
+  ]
  }
 ]

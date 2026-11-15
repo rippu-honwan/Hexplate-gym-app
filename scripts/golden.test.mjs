@@ -282,7 +282,10 @@ it('writes the edit golden file', async () => {
   const H = await import('../../frontend/src/lib/history.js')
   const O = await import('../../frontend/src/lib/active-workout-order.js')
   const { swapActiveExercise } = await import('../../frontend/src/lib/active-exercise-swap.js')
-  const { setEntryNoProg } = await import('../../frontend/src/lib/session-noprog.js')
+  const { setEntryNoProg, setSessionNoProg, joinSessionNoProg } = await import('../../frontend/src/lib/session-noprog.js')
+  const { buildSessionEntries } = await import('../../frontend/src/lib/session-start.js')
+  const { deriveSessionName } = await import('../../frontend/src/lib/session-merge.js')
+  setWeightDecimals(1)
   const W = await import('../../frontend/src/lib/workout-model.js')
   const { withSetNote } = await import('../../frontend/src/lib/set-notes.js')
   const cases = JSON.parse(readFileSync(process.env.EDIT_IN, 'utf8'))
@@ -312,6 +315,7 @@ it('writes the edit golden file', async () => {
     }
     const a = structuredClone(c.active)
     const steps = []
+    vi.useFakeTimers(); vi.setSystemTime(new Date('2026-11-15T12:00:00'))
     for (const [op, x, y, z] of c.ops) {
       if (op === 'canMove') { steps.push(O.canMoveActiveWorkoutEntry(a, x, y)); continue }
       if (op === 'move') O.moveActiveWorkoutEntry(a, x, y)
@@ -323,8 +327,25 @@ it('writes the edit golden file', async () => {
         if (a.cur >= a.entries.length) a.cur = Math.max(0, a.entries.length - 1)
       } else if (op === 'swap') swapActiveExercise(a, x, structuredClone(y), { loggedConfirmed: true, groupDisposition: z ? 'keep' : 'detach' })
       else if (op === 'noProg') setEntryNoProg(a, x, y)
+      else if (op === 'note') { const text = x.trim().slice(0, 500); if (text) a.note = text; else delete a.note }
+      else if (op === 'rename') { const n = x.trim().slice(0, 60); if (n) { a.name = n; a.customName = true } }
+      else if (op === 'addRoutine') {
+        const S = c.state, r = S.routines.find(q => q.id === x)
+        const added = buildSessionEntries(structuredClone(S), r).map(en => ({ ...en, rid: r.id }))
+        a.entries.push(...added.map(en => joinSessionNoProg(a, en)))
+        a.routineIds = [...[].concat(a.routineIds || []), r.id]
+        if (!a.customName) a.name = deriveSessionName(a.routineIds.map(id => S.routines.find(q => q.id === id)?.name).filter(Boolean))
+      } else if (op === 'sessionNoProg') {
+        const owns = en => !!en?.rid && c.state.routines.some(r => r.id === en.rid && r.excludeFromProgression === true)
+        setSessionNoProg(a, x, owns)
+      } else if (op === 'exRest') {
+        const en = a.entries[x]
+        const { restSec: _s, restOff: _o, ...target } = en.target || {}
+        en.target = y == null ? target : y > 0 ? { ...target, restSec: y } : { ...target, restOff: true }
+      }
       steps.push(structuredClone(a))
     }
+    vi.useRealTimers()
     out.push({ name: c.name, result: JSON.parse(JSON.stringify(steps)) })
   }
   writeFileSync(process.env.EDIT_OUT, JSON.stringify(out, null, 1) + '\n')
