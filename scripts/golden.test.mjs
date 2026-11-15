@@ -275,6 +275,37 @@ it('writes the recovery golden file', async () => {
   writeFileSync(process.env.RECOVERY_OUT, JSON.stringify(out, null, 1) + '\n')
 })
 
+// Live-session edits from an exercise's menu (Workout.jsx removeActiveExercise is inlined: it
+// lives in a React view).
+it('writes the edit golden file', async () => {
+  if (!process.env.EDIT_IN) return
+  const H = await import('../../frontend/src/lib/history.js')
+  const O = await import('../../frontend/src/lib/active-workout-order.js')
+  const { swapActiveExercise } = await import('../../frontend/src/lib/active-exercise-swap.js')
+  const { setEntryNoProg } = await import('../../frontend/src/lib/session-noprog.js')
+  const cases = JSON.parse(readFileSync(process.env.EDIT_IN, 'utf8'))
+  const out = []
+  for (const c of cases) {
+    const a = structuredClone(c.active)
+    const steps = []
+    for (const [op, x, y, z] of c.ops) {
+      if (op === 'canMove') { steps.push(O.canMoveActiveWorkoutEntry(a, x, y)); continue }
+      if (op === 'move') O.moveActiveWorkoutEntry(a, x, y)
+      else if (op === 'pair') a.entries = H.pairAdjacent(a.entries, x, y)
+      else if (op === 'unpair') a.entries = H.unpairSuperset(a.entries, x)
+      else if (op === 'remove') {
+        a.entries.splice(x, 1); H.cleanupSg(a.entries)
+        if (x < a.cur) a.cur--
+        if (a.cur >= a.entries.length) a.cur = Math.max(0, a.entries.length - 1)
+      } else if (op === 'swap') swapActiveExercise(a, x, structuredClone(y), { loggedConfirmed: true, groupDisposition: z ? 'keep' : 'detach' })
+      else if (op === 'noProg') setEntryNoProg(a, x, y)
+      steps.push(structuredClone(a))
+    }
+    out.push({ name: c.name, result: JSON.parse(JSON.stringify(steps)) })
+  }
+  writeFileSync(process.env.EDIT_OUT, JSON.stringify(out, null, 1) + '\n')
+})
+
 // The workout CSV export of the history fixture.
 it('writes the CSV golden file', async () => {
   if (!process.env.CSV_OUT) return

@@ -186,6 +186,12 @@ struct WorkoutView: View {
     @State private var wantsDiscard = false
     @State private var picking = false
     @State private var summary: AppModel.Object?
+    @State private var noteFor: Int?
+    @State private var noteText = ""
+    @State private var removeFor: Int?
+    @State private var swapFor: EntryAction?
+    @State private var detailFor: EntryAction?
+    @State private var pendingSwap: (index: Int, entry: AppModel.Object)?
 
     var body: some View {
         NavigationStack {
@@ -199,7 +205,7 @@ struct WorkoutView: View {
                     }
                 }
                 ForEach(Array(model.activeEntries.enumerated()), id: \.offset) { i, entry in
-                    EntrySection(index: i, entry: entry, next: next(after: i))
+                    EntrySection(index: i, entry: entry, next: next(after: i)) { act($0) }
                 }
                 Section {
                     Button("Add exercise", systemImage: "plus") { picking = true }
@@ -257,12 +263,82 @@ struct WorkoutView: View {
                 Text(unfinished > 0 ? "\(unfinished) planned \(unfinished == 1 ? "set is" : "sets are") not done and will be left out." : "Every set is done.")
             }
             .sheet(isPresented: $picking) { ExercisePicker { model.addExercise($0) } }
+            .alert(noteFor.flatMap { entry($0)?["note"] } == nil ? "Add note" : "Edit note", isPresented: present($noteFor), presenting: noteFor) { i in
+                TextField("Note", text: $noteText)
+                Button("Save") {
+                    let text = noteText.trimmingCharacters(in: .whitespacesAndNewlines)
+                    model.changeEntry(i) { $0["note"] = text.isEmpty ? nil : .string(text) }
+                }
+                Button("Cancel", role: .cancel) {}
+            }
+            .alert("Remove \(removeFor.flatMap(entry).map(name) ?? "exercise")?", isPresented: present($removeFor), presenting: removeFor) { i in
+                Button("Remove", role: .destructive) { model.changeActive { ActiveEdit.remove(&$0, i) } }
+                Button("Cancel", role: .cancel) {}
+            } message: { i in
+                Text(entry(i).map(ActiveEdit.hasLoggedSet) == true ? "The sets you logged for this exercise in this session will be lost." : "This removes the exercise from your current session.")
+            }
+            .confirmationDialog("Swap exercise?", isPresented: Binding(get: { pendingSwap != nil }, set: { if !$0 { pendingSwap = nil } }), titleVisibility: .visible) {
+                if let p = pendingSwap, entry(p.index)?["sg"]?.stringValue.map({ !$0.isEmpty }) == true {
+                    Button("Keep in the superset") { commitSwap(keepGroup: true) }
+                    Button("Put after the superset") { commitSwap(keepGroup: false) }
+                } else {
+                    Button("Continue") { commitSwap(keepGroup: false) }
+                }
+                Button("Cancel", role: .cancel) { pendingSwap = nil }
+            } message: {
+                Text("Logged sets stay with the original exercise. The replacement will be inserted afterward.")
+            }
+            .sheet(item: $swapFor) { action in
+                if case .swap(let i) = action { ExercisePicker(title: "Swap exercise") { swap(i, to: $0) } }
+            }
+            .sheet(item: $detailFor) { action in
+                if case .detail(let id) = action {
+                    NavigationStack {
+                        ExerciseDetailView(id: id)
+                            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { detailFor = nil } } }
+                    }
+                }
+            }
             .sheet(item: Binding(get: { summary.map(Summary.init) }, set: { if $0 == nil { summary = nil; dismiss() } })) { FinishSummary(summary: $0) }
         }
     }
 
     private var unfinished: Int {
         model.activeEntries.flatMap { $0["sets"]?.arrayValue ?? [] }.filter { !Session.hasCompletedWork($0) && !Session.isWarmup($0) }.count
+    }
+
+    private func entry(_ i: Int) -> AppModel.Object? { model.activeEntries.indices.contains(i) ? model.activeEntries[i] : nil }
+    private func name(_ e: AppModel.Object) -> String { e["id"]?.stringValue.map { model.catalog[$0]?.displayName ?? $0 } ?? "exercise" }
+    private func present(_ v: Binding<Int?>) -> Binding<Bool> { Binding(get: { v.wrappedValue != nil }, set: { if !$0 { v.wrappedValue = nil } }) }
+
+    private func act(_ a: EntryAction) {
+        switch a {
+        case .note(let i): noteText = entry(i)?["note"]?.stringValue ?? ""; noteFor = i
+        case .remove(let i): removeFor = i
+        case .swap: swapFor = a
+        case .detail: detailFor = a
+        }
+    }
+
+    /// The picked exercise takes the slot (sheets.jsx commitActiveSwap); with sets logged it asks first.
+    private func swap(_ i: Int, to id: String) {
+        guard let current = entry(i) else { return }
+        var cfg = RoutineOps.pickedConfig(id: id, catalog: model.catalog)
+        cfg["id"] = .string(id)
+        var replacement = Session.freestyleEntry(model.root, cfg: cfg, catalog: model.catalog).object ?? [:]
+        if let rid = current["rid"] { replacement["rid"] = rid }
+        if current["noProg"] == .bool(true) { replacement["noProg"] = .bool(true) }
+        if ActiveEdit.hasLoggedSet(current) { pendingSwap = (i, replacement) } else {
+            timer.stop()
+            model.changeActive { ActiveEdit.swap(&$0, i, with: replacement) }
+        }
+    }
+
+    private func commitSwap(keepGroup: Bool) {
+        guard let p = pendingSwap else { return }
+        pendingSwap = nil
+        timer.stop()
+        model.changeActive { ActiveEdit.swap(&$0, p.index, with: p.entry, keepGroup: keepGroup) }
     }
 
     /// The superset partner that comes next after entry `i`, if any.
@@ -274,12 +350,26 @@ struct WorkoutView: View {
     }
 }
 
+/// What an exercise's ⋯ menu asks the workout screen to show.
+enum EntryAction: Identifiable {
+    case note(Int), swap(Int), remove(Int), detail(String)
+    var id: String {
+        switch self {
+        case .note(let i): "note\(i)"
+        case .swap(let i): "swap\(i)"
+        case .remove(let i): "remove\(i)"
+        case .detail(let id): "detail\(id)"
+        }
+    }
+}
+
 private struct EntrySection: View {
     @Environment(AppModel.self) private var model
     @Environment(RestTimer.self) private var timer
     let index: Int
     let entry: AppModel.Object
     let next: Int?
+    let onAction: (EntryAction) -> Void
 
     private var id: String { entry["id"]?.stringValue ?? "" }
     private var target: AppModel.Object { entry["target"]?.object ?? [:] }
@@ -294,6 +384,16 @@ private struct EntrySection: View {
                 WorkoutMedia(id: id, compact: entry["sg"]?.stringValue.map { !$0.isEmpty } ?? false)
                     .listRowInsets(EdgeInsets())
                     .id(id)
+            }
+            if let note = entry["note"]?.stringValue, !note.isEmpty {
+                Label(note, systemImage: "note.text").font(.subheadline)
+            }
+            if entry["noProg"] == .bool(true) {
+                HStack {
+                    Label("Not counted for progression", systemImage: "chart.line.downtrend.xyaxis").font(.subheadline).foregroundStyle(.secondary)
+                    Spacer()
+                    if !routineKeepsOut { Button("Undo") { model.changeActive { ActiveEdit.setNoProg(&$0, index, false) } }.buttonStyle(.borderless).font(.subheadline) }
+                }
             }
             if let line = lastLine { Label(line, systemImage: "clock.arrow.circlepath").font(.subheadline).foregroundStyle(.secondary) }
             if let why = advice { Label(why.text, systemImage: why.symbol).font(.subheadline).foregroundStyle(.secondary) }
@@ -326,11 +426,60 @@ private struct EntrySection: View {
         } header: {
             HStack {
                 if gifSize == "mini" { WorkoutThumb(id: id).textCase(nil) }
-                Text(model.catalog[id]?.displayName ?? id)
+                Text(name)
                 if let sg = entry["sg"]?.stringValue, !sg.isEmpty {
                     Text("Superset").font(.caption.bold()).foregroundStyle(Theme.superset)
                 }
+                Spacer()
+                menu.textCase(nil)
             }
+        }
+    }
+
+    private var name: String { model.catalog[id]?.displayName ?? id }
+
+    /// A deload or rehab routine keeps its exercises out of progression itself.
+    private var routineKeepsOut: Bool {
+        guard let rid = entry["rid"]?.stringValue else { return false }
+        return model.root["routines"]?.arrayValue?.contains { $0.object?["id"]?.stringValue == rid && $0.object?["excludeFromProgression"] == .bool(true) } ?? false
+    }
+
+    /// The exercise's ⋯ menu (Workout.jsx openMore).
+    private var menu: some View {
+        let a = model.active ?? [:]
+        let count = model.activeEntries.count
+        let units = ActiveEdit.units(a["entries"]?.arrayValue ?? [])
+        let unit = units.first { $0.contains(index) } ?? [index]
+        return Menu {
+            Section {
+                Button(entry["note"] == nil ? "Add note" : "Edit note", systemImage: "note.text") { onAction(.note(index)) }
+                Button("Swap exercise", systemImage: "arrow.left.arrow.right") { onAction(.swap(index)) }
+                Button("How to do it and history", systemImage: "info.circle") { onAction(.detail(id)) }
+            }
+            Section("Order and supersets") {
+                if unit.count == 1 {
+                    if index > 0 { Button("Make superset with previous", systemImage: "link") { model.changeActive { ActiveEdit.pair(&$0, index - 1, index) } } }
+                    if index < count - 1 { Button("Make superset with next", systemImage: "link") { model.changeActive { ActiveEdit.pair(&$0, index, index + 1) } } }
+                } else {
+                    Button("Take out of the superset", systemImage: "personalhotspot.slash") { model.changeActive { ActiveEdit.unpair(&$0, index) } }
+                }
+                Button("Move up", systemImage: "chevron.up") { model.changeActive { ActiveEdit.move(&$0, index, -1) } }
+                    .disabled(!ActiveEdit.canMove(a, index, -1))
+                Button("Move down", systemImage: "chevron.down") { model.changeActive { ActiveEdit.move(&$0, index, 1) } }
+                    .disabled(!ActiveEdit.canMove(a, index, 1))
+            }
+            if !routineKeepsOut {
+                Section("This session") {
+                    Toggle("Don’t count for progression", systemImage: "chart.line.downtrend.xyaxis", isOn: Binding(
+                        get: { entry["noProg"] == .bool(true) },
+                        set: { on in model.changeActive { ActiveEdit.setNoProg(&$0, index, on) } }))
+                }
+            }
+            Section {
+                Button("Remove exercise", systemImage: "trash", role: .destructive) { onAction(.remove(index)) }
+            }
+        } label: {
+            Image(systemName: "ellipsis.circle").font(.title3).accessibilityLabel("More for \(name)")
         }
     }
 

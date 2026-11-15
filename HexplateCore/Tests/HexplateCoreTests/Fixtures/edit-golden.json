@@ -1,0 +1,2763 @@
+[
+ {
+  "name": "move down and up",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "move a superset as one",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "swap inside a superset",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "swap blocked across the marker",
+  "result": [
+   false,
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   false,
+   false
+  ]
+ },
+ {
+  "name": "pair and unpair",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "sg-0-1"
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "sg-0-1"
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "sg-0-1"
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "sg-0-1"
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "sg-0-1"
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "pair into a group",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "remove before, at and after the marker",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": []
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": []
+   }
+  ]
+ },
+ {
+  "name": "remove breaks a superset",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "swap, nothing logged",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "rid": "r1",
+      "sgName": "Arms",
+      "sgRest": 90,
+      "id": "0031",
+      "target": {
+       "id": "0031",
+       "sets": 3
+      },
+      "plan": null,
+      "planned": {
+       "sets": 3
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 3,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "rid": "r1",
+      "sgName": "Arms",
+      "sgRest": 90,
+      "id": "0031",
+      "target": {
+       "id": "0031",
+       "sets": 3
+      },
+      "plan": null,
+      "planned": {
+       "sets": 3
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "rid": "r1",
+      "id": "0031",
+      "target": {
+       "id": "0031",
+       "sets": 3
+      },
+      "plan": null,
+      "planned": {
+       "sets": 3
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "swap, logged",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0031",
+      "target": {
+       "id": "0031",
+       "sets": 3
+      },
+      "plan": null,
+      "planned": {
+       "sets": 3
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": false
+       }
+      ],
+      "rid": "r1"
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "noProg": true
+   }
+  ]
+ },
+ {
+  "name": "swap, logged in a superset, keep",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "0031",
+      "target": {
+       "id": "0031",
+       "sets": 3
+      },
+      "plan": null,
+      "planned": {
+       "sets": 3
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": false
+       }
+      ],
+      "rid": "r1",
+      "sg": "s1"
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "swap, logged in a superset, after",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 3,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "0031",
+      "target": {
+       "id": "0031",
+       "sets": 3
+      },
+      "plan": null,
+      "planned": {
+       "sets": 3
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": false
+       }
+      ],
+      "rid": "r1"
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "progression on and off",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "noProg": true
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "noProg": true
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "noProg": true
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "noProg": true
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "noProg": true
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "noProg": true
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+]
