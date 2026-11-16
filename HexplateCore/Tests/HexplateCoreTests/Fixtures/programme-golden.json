@@ -1,0 +1,1065 @@
+[
+ {
+  "name": "list and tidy",
+  "result": [
+   [
+    {
+     "id": "p2",
+     "name": "Loop",
+     "at": 5,
+     "sequence": [
+      "r1",
+      "rest",
+      "r3",
+      "gone"
+     ],
+     "weeks": [
+      {},
+      {
+       "deload": true,
+       "rpe": 7
+      }
+     ],
+     "extra": {
+      "kept": 1
+     }
+    },
+    {
+     "id": "p1",
+     "name": "Strength block",
+     "at": 2,
+     "days": {
+      "1": [
+       "r1"
+      ],
+      "4": [
+       "r2",
+       "gone"
+      ]
+     },
+     "weeks": [
+      {
+       "t": {
+        "0025": {
+         "pct": 80
+        },
+        "0043": {
+         "pct": 77.5
+        }
+       }
+      },
+      {
+       "rpe": 8,
+       "t": {
+        "r1:0025": {
+         "pct": 85,
+         "rpe": 9
+        }
+       }
+      },
+      {
+       "deload": true
+      },
+      {
+       "t": {
+        "0662": {
+         "rpe": 9
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "p3",
+     "name": "Empty",
+     "at": 1,
+     "weeks": [
+      {}
+     ],
+     "days": {}
+    }
+   ],
+   [
+    {
+     "t": {
+      "0025": {
+       "pct": 80
+      },
+      "0043": {
+       "pct": 77.5
+      }
+     }
+    },
+    {
+     "rpe": 8,
+     "t": {
+      "r1:0025": {
+       "pct": 85,
+       "rpe": 9
+      }
+     }
+    },
+    {
+     "deload": true
+    },
+    {
+     "t": {
+      "0662": {
+       "rpe": 9
+      }
+     }
+    },
+    {
+     "t": {
+      "0662": {
+       "rpe": 9
+      }
+     }
+    },
+    {
+     "t": {
+      "0662": {
+       "rpe": 9
+      }
+     }
+    }
+   ],
+   [
+    {
+     "t": {
+      "0025": {
+       "pct": 80
+      },
+      "0043": {
+       "pct": 77.5
+      }
+     }
+    },
+    {
+     "rpe": 8,
+     "t": {
+      "r1:0025": {
+       "pct": 85,
+       "rpe": 9
+      }
+     }
+    }
+   ],
+   {
+    "t": {
+     "0025": {
+      "pct": 82.5
+     },
+     "0043": {
+      "pct": 80
+     }
+    }
+   },
+   {
+    "rpe": 8,
+    "t": {
+     "r1:0025": {
+      "pct": 87.5,
+      "rpe": 9
+     }
+    }
+   },
+   {
+    "days": {
+     "1": [
+      "r1"
+     ],
+     "3": [
+      "r2"
+     ]
+    }
+   }
+  ]
+ },
+ {
+  "name": "weekdays, through the weeks",
+  "result": [
+   {
+    "ok": true,
+    "programme": {
+     "id": "p1",
+     "startedOn": "2026-11-16",
+     "cycle": 1,
+     "bump": 0,
+     "saved": {
+      "week": {
+       "1": [
+        "r1"
+       ],
+       "3": [
+        "r2"
+       ]
+      },
+      "scheduleMode": null,
+      "rotation": null,
+      "pass": false
+     }
+    },
+    "week": {
+     "1": [
+      "r1"
+     ],
+     "4": [
+      "r2"
+     ]
+    },
+    "scheduleMode": "week",
+    "rotation": null,
+    "queue": null
+   },
+   {
+    "week": 1,
+    "weeks": 4,
+    "done": false,
+    "paused": false,
+    "cycle": 1,
+    "current": {
+     "t": {
+      "0025": {
+       "pct": 80
+      },
+      "0043": {
+       "pct": 77.5
+      }
+     }
+    },
+    "chip": "Week 1 of 4"
+   },
+   {
+    "pct": 80,
+    "rpe": null,
+    "deload": false,
+    "week": 1,
+    "weeks": 4
+   },
+   [
+    {
+     "id": "0025",
+     "target": {
+      "id": "0025",
+      "sets": 3,
+      "reps": 5,
+      "weight": 92.5
+     },
+     "plan": {
+      "policy": "linear",
+      "kind": "programme",
+      "why": [
+       "Week {0} of {1}: {2}% of your best 1RM",
+       1,
+       4,
+       80
+      ],
+      "weight": 92.5,
+      "prog": {
+       "week": 1,
+       "weeks": 4,
+       "pct": 80
+      }
+     },
+     "sets": [
+      {
+       "w": 92.5,
+       "r": 5,
+       "done": false
+      },
+      {
+       "w": 92.5,
+       "r": 5,
+       "done": false
+      },
+      {
+       "w": 92.5,
+       "r": 5,
+       "done": false
+      }
+     ],
+     "planned": {
+      "sets": 3,
+      "reps": 5,
+      "weight": 80
+     },
+     "rid": "r1"
+    },
+    {
+     "id": "0662",
+     "target": {
+      "id": "0662",
+      "sets": 2,
+      "reps": 15
+     },
+     "plan": {
+      "policy": "linear",
+      "kind": "first",
+      "why": [
+       "Nothing logged yet, so this session sets the baseline."
+      ]
+     },
+     "sets": [
+      {
+       "r": 15,
+       "done": false
+      },
+      {
+       "r": 15,
+       "done": false
+      }
+     ],
+     "planned": {
+      "sets": 2,
+      "reps": 15
+     },
+     "rid": "r1"
+    }
+   ],
+   {
+    "pct": 85,
+    "rpe": 9,
+    "deload": false,
+    "week": 2,
+    "weeks": 4
+   },
+   [
+    {
+     "id": "0025",
+     "target": {
+      "id": "0025",
+      "sets": 3,
+      "reps": 5,
+      "weight": 100
+     },
+     "plan": {
+      "policy": "linear",
+      "kind": "programme",
+      "why": [
+       "Week {0} of {1}: {2}% of your best 1RM",
+       2,
+       4,
+       85
+      ],
+      "weight": 100,
+      "prog": {
+       "week": 2,
+       "weeks": 4,
+       "pct": 85,
+       "rpe": 9
+      }
+     },
+     "sets": [
+      {
+       "w": 100,
+       "r": 5,
+       "done": false
+      },
+      {
+       "w": 100,
+       "r": 5,
+       "done": false
+      },
+      {
+       "w": 100,
+       "r": 5,
+       "done": false
+      }
+     ],
+     "planned": {
+      "sets": 3,
+      "reps": 5,
+      "weight": 80
+     },
+     "rid": "r1"
+    },
+    {
+     "id": "0662",
+     "target": {
+      "id": "0662",
+      "sets": 2,
+      "reps": 15
+     },
+     "plan": {
+      "policy": "linear",
+      "kind": "programme",
+      "why": [
+       "Week {0} of {1}",
+       2,
+       4,
+       null
+      ],
+      "prog": {
+       "week": 2,
+       "weeks": 4,
+       "rpe": 8
+      }
+     },
+     "sets": [
+      {
+       "r": 15,
+       "done": false
+      },
+      {
+       "r": 15,
+       "done": false
+      }
+     ],
+     "planned": {
+      "sets": 2,
+      "reps": 15
+     },
+     "rid": "r1"
+    }
+   ],
+   null,
+   {
+    "week": 3,
+    "weeks": 4,
+    "done": false,
+    "paused": false,
+    "cycle": 1,
+    "current": {
+     "deload": true
+    },
+    "chip": "Week 3 of 4"
+   },
+   [
+    {
+     "id": "0025",
+     "target": {
+      "id": "0025",
+      "sets": 3,
+      "reps": 5,
+      "weight": 95
+     },
+     "plan": {
+      "policy": "linear",
+      "kind": "programme",
+      "why": [
+       "Week {0} of {1}: deload week",
+       3,
+       4,
+       null
+      ],
+      "weight": 95,
+      "prog": {
+       "week": 3,
+       "weeks": 4,
+       "deload": true
+      }
+     },
+     "sets": [
+      {
+       "w": 95,
+       "r": 5,
+       "done": false
+      },
+      {
+       "w": 95,
+       "r": 5,
+       "done": false
+      },
+      {
+       "w": 95,
+       "r": 5,
+       "done": false
+      }
+     ],
+     "planned": {
+      "sets": 3,
+      "reps": 5,
+      "weight": 80
+     },
+     "noProg": true,
+     "rid": "r1"
+    },
+    {
+     "id": "0662",
+     "target": {
+      "id": "0662",
+      "sets": 2,
+      "reps": 15
+     },
+     "plan": {
+      "policy": "linear",
+      "kind": "programme",
+      "why": [
+       "Week {0} of {1}: deload week",
+       3,
+       4,
+       null
+      ],
+      "prog": {
+       "week": 3,
+       "weeks": 4,
+       "deload": true
+      }
+     },
+     "sets": [
+      {
+       "r": 15,
+       "done": false
+      },
+      {
+       "r": 15,
+       "done": false
+      }
+     ],
+     "planned": {
+      "sets": 2,
+      "reps": 15
+     },
+     "noProg": true,
+     "rid": "r1"
+    }
+   ],
+   [
+    {
+     "id": "0043",
+     "target": {
+      "id": "0043",
+      "sets": 3,
+      "reps": 5,
+      "weight": 125
+     },
+     "plan": {
+      "policy": "linear",
+      "kind": "programme",
+      "why": [
+       "Week {0} of {1}: deload week",
+       3,
+       4,
+       null
+      ],
+      "weight": 125,
+      "prog": {
+       "week": 3,
+       "weeks": 4,
+       "deload": true
+      }
+     },
+     "sets": [
+      {
+       "w": 125,
+       "r": 5,
+       "done": false
+      },
+      {
+       "w": 125,
+       "r": 5,
+       "done": false
+      },
+      {
+       "w": 125,
+       "r": 5,
+       "done": false
+      }
+     ],
+     "planned": {
+      "sets": 3,
+      "reps": 5,
+      "weight": 100
+     },
+     "noProg": true,
+     "rid": "r2"
+    }
+   ],
+   {
+    "pct": null,
+    "rpe": 9,
+    "deload": false,
+    "week": 4,
+    "weeks": 4
+   },
+   {
+    "week": 4,
+    "weeks": 4,
+    "done": true,
+    "paused": false,
+    "cycle": 1,
+    "current": null,
+    "chip": "Programme done"
+   },
+   null
+  ]
+ },
+ {
+  "name": "pause, resume, again, end",
+  "result": [
+   {
+    "ok": true,
+    "programme": {
+     "id": "p1",
+     "startedOn": "2026-11-11",
+     "cycle": 1,
+     "bump": 0,
+     "saved": {
+      "week": {
+       "1": [
+        "r1"
+       ],
+       "3": [
+        "r2"
+       ]
+      },
+      "scheduleMode": null,
+      "rotation": null,
+      "pass": false
+     }
+    },
+    "week": {
+     "1": [
+      "r1"
+     ],
+     "4": [
+      "r2"
+     ]
+    },
+    "scheduleMode": "week",
+    "rotation": null,
+    "queue": null
+   },
+   {
+    "programme": {
+     "id": "p1",
+     "startedOn": "2026-11-11",
+     "cycle": 1,
+     "bump": 0,
+     "saved": {
+      "week": {
+       "1": [
+        "r1"
+       ],
+       "3": [
+        "r2"
+       ]
+      },
+      "scheduleMode": null,
+      "rotation": null,
+      "pass": false
+     },
+     "pausedOn": "2026-11-18"
+    },
+    "week": {
+     "1": [
+      "r1"
+     ],
+     "4": [
+      "r2"
+     ]
+    },
+    "scheduleMode": "week",
+    "rotation": null,
+    "queue": null
+   },
+   {
+    "week": 2,
+    "weeks": 4,
+    "done": false,
+    "paused": true,
+    "cycle": 1,
+    "current": null,
+    "chip": "Strength block, paused"
+   },
+   null,
+   {
+    "programme": {
+     "id": "p1",
+     "startedOn": "2026-11-25",
+     "cycle": 1,
+     "bump": 0,
+     "saved": {
+      "week": {
+       "1": [
+        "r1"
+       ],
+       "3": [
+        "r2"
+       ]
+      },
+      "scheduleMode": null,
+      "rotation": null,
+      "pass": false
+     }
+    },
+    "week": {
+     "1": [
+      "r1"
+     ],
+     "4": [
+      "r2"
+     ]
+    },
+    "scheduleMode": "week",
+    "rotation": null,
+    "queue": null
+   },
+   {
+    "week": 2,
+    "weeks": 4,
+    "done": false,
+    "paused": false,
+    "cycle": 1,
+    "current": {
+     "rpe": 8,
+     "t": {
+      "r1:0025": {
+       "pct": 85,
+       "rpe": 9
+      }
+     }
+    },
+    "chip": "Week 2 of 4"
+   },
+   {
+    "programme": {
+     "id": "p1",
+     "startedOn": "2026-12-03",
+     "cycle": 2,
+     "bump": 2.5,
+     "saved": {
+      "week": {
+       "1": [
+        "r1"
+       ],
+       "3": [
+        "r2"
+       ]
+      },
+      "scheduleMode": null,
+      "rotation": null,
+      "pass": false
+     }
+    },
+    "week": {
+     "1": [
+      "r1"
+     ],
+     "4": [
+      "r2"
+     ]
+    },
+    "scheduleMode": "week",
+    "rotation": null,
+    "queue": null
+   },
+   {
+    "pct": 82.5,
+    "rpe": null,
+    "deload": false,
+    "week": 1,
+    "weeks": 4
+   },
+   {
+    "programme": null,
+    "week": {
+     "1": [
+      "r1"
+     ],
+     "3": [
+      "r2"
+     ]
+    },
+    "scheduleMode": null,
+    "rotation": null,
+    "queue": null
+   }
+  ]
+ },
+ {
+  "name": "a loop over a loop",
+  "result": [
+   {
+    "sequence": [
+     "r2",
+     "r3"
+    ]
+   },
+   {
+    "ok": true,
+    "programme": {
+     "id": "p2",
+     "startedOn": "2026-11-16",
+     "cycle": 1,
+     "bump": 0,
+     "saved": {
+      "week": {
+       "1": [
+        "r1"
+       ],
+       "3": [
+        "r2"
+       ]
+      },
+      "scheduleMode": "rotation",
+      "rotation": {
+       "id": "rotA",
+       "sequence": [
+        "r2",
+        "r3"
+       ]
+      },
+      "pass": true
+     }
+    },
+    "week": {
+     "1": [
+      "r1"
+     ],
+     "3": [
+      "r2"
+     ]
+    },
+    "scheduleMode": "rotation",
+    "rotation": {
+     "id": "rot",
+     "sequence": [
+      "r1",
+      "rest",
+      "r3"
+     ],
+     "label": "Loop",
+     "at": 0
+    },
+    "queue": {
+     "ids": [
+      "r1"
+     ],
+     "since": 1800000000000,
+     "startsOn": "2026-11-16",
+     "label": "Loop",
+     "rotationId": "rot"
+    }
+   },
+   {
+    "week": 1,
+    "weeks": 2,
+    "done": false,
+    "paused": false,
+    "cycle": 1,
+    "current": {},
+    "chip": "Week 1 of 2"
+   },
+   {
+    "ok": true,
+    "programme": {
+     "id": "p1",
+     "startedOn": "2026-11-17",
+     "cycle": 1,
+     "bump": 0,
+     "saved": {
+      "week": {
+       "1": [
+        "r1"
+       ],
+       "3": [
+        "r2"
+       ]
+      },
+      "scheduleMode": "rotation",
+      "rotation": {
+       "id": "rotA",
+       "sequence": [
+        "r2",
+        "r3"
+       ]
+      },
+      "pass": true
+     }
+    },
+    "week": {
+     "1": [
+      "r1"
+     ],
+     "4": [
+      "r2"
+     ]
+    },
+    "scheduleMode": "week",
+    "rotation": {
+     "id": "rotA",
+     "sequence": [
+      "r2",
+      "r3"
+     ]
+    },
+    "queue": null
+   },
+   {
+    "programme": null,
+    "week": {
+     "1": [
+      "r1"
+     ],
+     "3": [
+      "r2"
+     ]
+    },
+    "scheduleMode": "rotation",
+    "rotation": {
+     "id": "rotA",
+     "sequence": [
+      "r2",
+      "r3"
+     ]
+    },
+    "queue": {
+     "ids": [
+      "r2",
+      "r3"
+     ],
+     "since": 1800000000000,
+     "startsOn": "2026-11-18",
+     "label": "",
+     "rotationId": "rotA"
+    }
+   }
+  ]
+ },
+ {
+  "name": "one with nothing to schedule",
+  "result": [
+   {
+    "ok": true,
+    "programme": {
+     "id": "p3",
+     "startedOn": "2026-11-16",
+     "cycle": 1,
+     "bump": 0,
+     "saved": {
+      "week": {
+       "1": [
+        "r1"
+       ],
+       "3": [
+        "r2"
+       ]
+      },
+      "scheduleMode": null,
+      "rotation": null,
+      "pass": false
+     }
+    },
+    "week": {},
+    "scheduleMode": "week",
+    "rotation": null,
+    "queue": null
+   },
+   {
+    "ok": false,
+    "programme": {
+     "id": "p3",
+     "startedOn": "2026-11-16",
+     "cycle": 1,
+     "bump": 0,
+     "saved": {
+      "week": {
+       "1": [
+        "r1"
+       ],
+       "3": [
+        "r2"
+       ]
+      },
+      "scheduleMode": null,
+      "rotation": null,
+      "pass": false
+     }
+    },
+    "week": {},
+    "scheduleMode": "week",
+    "rotation": null,
+    "queue": null
+   },
+   {
+    "programmes": [
+     "bad",
+     "p1",
+     "p2"
+    ],
+    "programme": null,
+    "week": {
+     "1": [
+      "r1"
+     ],
+     "3": [
+      "r2"
+     ]
+    },
+    "scheduleMode": null,
+    "rotation": null,
+    "queue": null
+   },
+   [
+    {
+     "id": "p2",
+     "name": "Loop",
+     "at": 5,
+     "sequence": [
+      "r1",
+      "rest",
+      "r3",
+      "gone"
+     ],
+     "weeks": [
+      {},
+      {
+       "deload": true,
+       "rpe": 7
+      }
+     ],
+     "extra": {
+      "kept": 1
+     }
+    },
+    {
+     "id": "p1",
+     "name": "Strength block",
+     "at": 2,
+     "days": {
+      "1": [
+       "r1"
+      ],
+      "4": [
+       "r2",
+       "gone"
+      ]
+     },
+     "weeks": [
+      {
+       "t": {
+        "0025": {
+         "pct": 80
+        },
+        "0043": {
+         "pct": 77.5
+        }
+       }
+      },
+      {
+       "rpe": 8,
+       "t": {
+        "r1:0025": {
+         "pct": 85,
+         "rpe": 9
+        }
+       }
+      },
+      {
+       "deload": true
+      },
+      {
+       "t": {
+        "0662": {
+         "rpe": 9
+        }
+       }
+      }
+     ]
+    }
+   ]
+  ]
+ }
+]

@@ -548,16 +548,25 @@ public enum Session {
 
     /// The entries one routine starts with (session-start.js buildSessionEntries, rid added as in
     /// session-merge.js).
-    public static func entries(_ s: Object, routine: Object, catalog c: ExerciseCatalog) -> [JSONValue] {
+    /// `today` is the day a running programme's week is read on (Day.today() when nil).
+    public static func entries(_ s: Object, routine: Object, catalog c: ExerciseCatalog, today: String? = nil) -> [JSONValue] {
         let noProg = routine["excludeFromProgression"] == .bool(true)
         let fromLastSetting = s["startFrom"] == .string("last")
         let rid = routine["id"]?.stringValue
+        let day = s["active"]?.object?["d"]?.stringValue ?? today ?? Day.today()
         return (routine["ex"]?.arrayValue ?? []).compactMap(\.object).map { cfg in
-            let plan: Object = noProg ? ["policy": .string("off"), "kind": .string("off")] : nextPrescription(s, cfg, routine, c)
+            var plan: Object = noProg ? ["policy": .string("off"), "kind": .string("off")] : nextPrescription(s, cfg, routine, c)
+            let policyKind = plan["kind"]?.stringValue
+            // A running programme's target replaces the policy's prescription (programmes.js).
+            let slot = noProg ? nil : Programmes.slot(s, rid: rid, exId: cfg["id"]?.stringValue ?? "", iso: day)
+            if let slot {
+                let step = mode(cfg, c) == "reps" ? weightIncrement(cfg, unit: s["unit"]?.stringValue ?? "kg", c) : defaultIncrement(cfg["id"]?.stringValue, unit: s["unit"]?.stringValue ?? "kg", c)
+                plan = Programmes.plan(s, cfg, plan, slot, step: step, catalog: c)
+            }
             let kind = plan["kind"]?.stringValue
-            let planReps = !fromLastSetting
-            let fromLast = !noProg && kind == "off" && fromLastSetting
-            let built = applyPrescription(buildSets(s, cfg, rid: rid, useTarget: kind == "off" && !fromLast, planReps: planReps, c), plan)
+            let planReps = !fromLastSetting || kind == "programme"
+            let fromLast = !noProg && policyKind == "off" && slot == nil && fromLastSetting
+            let built = applyPrescription(buildSets(s, cfg, rid: rid, useTarget: policyKind == "off" && !fromLast, planReps: planReps, c), plan)
             let rows = withWarmupBlock(s, cfg, built, c)
             var target = cfg
             for k in ["weight", "reps", "sec", "sets"] where plan[k] != nil { target[k] = plan[k] }
@@ -567,14 +576,15 @@ public enum Session {
             let m = mode(cfg, c)
             if !planReps && (kind != "off" || fromLast) && plan["reps"] == nil && m == "reps"
                 && built.contains(where: { !isWarmup($0) && ($0.object?["r"] ?? .null) != (cfg["reps"] ?? .null) }) { e["carried"] = .bool(true) }
-            if noProg { e["noProg"] = .bool(true) }
+            // A programme's deload week stays out of progression, as a deload routine does.
+            if noProg || slot?.deload == true { e["noProg"] = .bool(true) }
             if let rid { e["rid"] = .string(rid) }
             return .object(e)
         }
     }
 
     /// A new live session (`S.active`) for these routines, in order (sheets.jsx beginWorkout).
-    public static func begin(_ s: Object, routineIds: [String], bodyweight: Double?, id: String, now: Double, day: String, catalog: ExerciseCatalog) -> Object {
+    public static func begin(_ s: Object, routineIds: [String], bodyweight: Double?, id: String, now: Double, day: String, catalog: ExerciseCatalog, today: String? = nil) -> Object {
         let routines = (s["routines"]?.arrayValue ?? []).compactMap(\.object)
         var seen = Set<String>()
         let picked = routineIds.filter { seen.insert($0).inserted }.compactMap { rid in routines.first { $0["id"]?.stringValue == rid } }
@@ -582,7 +592,7 @@ public enum Session {
         let name = names.isEmpty ? "Freestyle" : names.count <= 3 ? names.joined(separator: " + ") : "\(names[0]) + \(names[1]) + \(names.count - 2) more"
         return ["id": .string(id), "d": .string(day), "start": .number(now), "routineIds": .array(picked.compactMap { $0["id"] }),
                 "name": .string(name), "bw": bodyweight.map(JSONValue.number) ?? .null, "cur": .number(0),
-                "entries": .array(picked.flatMap { entries(s, routine: $0, catalog: catalog) })]
+                "entries": .array(picked.flatMap { entries(s, routine: $0, catalog: catalog, today: today) })]
     }
 
     // MARK: Finishing (lib/finish-workout.js)

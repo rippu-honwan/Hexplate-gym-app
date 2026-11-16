@@ -705,7 +705,7 @@ private struct EntrySection: View {
             text = text.replacingOccurrences(of: "{\(k)}", with: v.stringValue ?? Format.number(v.numberValue ?? 0))
         }
         let kind = plan["kind"]?.stringValue
-        return (text, kind == "up" ? "arrow.up.right" : kind == "deload" ? "arrow.down.right" : "equal")
+        return (text, kind == "up" ? "arrow.up.right" : kind == "deload" ? "arrow.down.right" : kind == "programme" ? "calendar" : "equal")
     }
 }
 

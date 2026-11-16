@@ -28,6 +28,14 @@ struct PlanView: View {
                 if mode == "week" { weekSection } else { loopSection }
 
                 Section {
+                    NavigationLink { ProgrammesView() } label: {
+                        LabeledContent {
+                            if let chip = Programmes.chip(model.root, today: model.today) { Text(chip) }
+                        } label: { Label("Programmes", systemImage: "calendar.badge.clock") }
+                    }
+                }
+
+                Section {
                     ForEach(model.routines) { routine in
                         NavigationLink(value: RoutineLink(id: routine.id)) {
                             Label {

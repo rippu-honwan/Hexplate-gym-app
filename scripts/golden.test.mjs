@@ -441,6 +441,42 @@ it('writes the backfill golden file', async () => {
   writeFileSync(process.env.BACKFILL_OUT, JSON.stringify(out, null, 1) + '\n')
 })
 
+// Programmes: the list, a run through its weeks, and the targets a session starts with.
+it('writes the programme golden file', async () => {
+  if (!process.env.PROG_IN) return
+  const P = await import('../../frontend/src/lib/programmes.js')
+  const { buildSessionEntries } = await import('../../frontend/src/lib/session-start.js')
+  const cases = JSON.parse(readFileSync(process.env.PROG_IN, 'utf8'))
+  setWeightDecimals(1)
+  const out = cases.map(c => {
+    const S = structuredClone(c.state)
+    const plan = () => ({ programme: S.programme ?? null, week: S.week ?? null, scheduleMode: S.scheduleMode ?? null, rotation: S.rotation ?? null, queue: S.queue ?? null })
+    const steps = c.ops.map(([op, a, b, d]) => {
+      vi.useFakeTimers(); vi.setSystemTime(new Date((typeof b === 'string' && /^\d{4}/.test(b) ? b : typeof a === 'string' && /^\d{4}/.test(a) ? a : d || '2026-11-16') + 'T12:00:00'))
+      let r
+      if (op === 'list') r = P.programmesOf(S)
+      else if (op === 'resize') r = P.resizeWeeks(P.programmeById(S, a).weeks, b)
+      else if (op === 'step') r = P.stepWeek(P.programmeById(S, a).weeks[b])
+      else if (op === 'schedule') r = P.currentSchedule(S)
+      else if (op === 'start') r = { ok: P.startProgramme(S, a, b, 1_800_000_000_000), ...plan() }
+      else if (op === 'pause') { P.pauseProgramme(S, a); r = plan() }
+      else if (op === 'resume') { P.resumeProgramme(S, a); r = plan() }
+      else if (op === 'again') { P.repeatProgramme(S, a, b); r = plan() }
+      else if (op === 'end') { P.endProgramme(S, a, 1_800_000_000_000); r = plan() }
+      else if (op === 'delete') { P.deleteProgramme(S, a, b); r = { programmes: Object.keys(S.programmes).sort(), ...plan() } }
+      else if (op === 'status') { const st = P.programmeStatus(S, a); r = st && { week: st.week, weeks: st.weeks, done: st.done, paused: st.paused, cycle: st.cycle, current: st.current, chip: P.programmeChip(S, a) } }
+      else if (op === 'slot') { const x = P.programmeSlot(S, a, b, d); r = x && { pct: x.pct ?? null, rpe: x.rpe ?? null, deload: x.deload, week: x.week, weeks: x.weeks } }
+      else if (op === 'entries') r = buildSessionEntries(S, S.routines.find(x => x.id === a)).map(e => ({ ...e, rid: a }))
+      vi.useRealTimers()
+      return r ?? null
+    })
+    // A loop a programme writes gets a random id (format.js uid: 12 or 13 base-36 characters).
+    const text = JSON.stringify(steps).replace(/"[0-9a-z]{12,13}"/g, '"rot"')
+    return { name: c.name, result: JSON.parse(text) }
+  })
+  writeFileSync(process.env.PROG_OUT, JSON.stringify(out, null, 1) + '\n')
+})
+
 // The workout CSV export of the history fixture.
 it('writes the CSV golden file', async () => {
   if (!process.env.CSV_OUT) return

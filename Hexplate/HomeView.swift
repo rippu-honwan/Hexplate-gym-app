@@ -17,7 +17,10 @@ struct HomeView: View {
                         Text(date.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(Theme.locale)))
                     }
                 } footer: {
-                    if let next { Text(next) }
+                    VStack(alignment: .leading, spacing: 2) {
+                        if let chip = Programmes.chip(model.root, today: model.today) { Label(chip, systemImage: "calendar.badge.clock") }
+                        if let next { Text(next) }
+                    }
                 }
 
                 if let hint = Recovery.hint(model.root, now: model.now, today: model.today, catalog: model.catalog) {
