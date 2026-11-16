@@ -477,6 +477,22 @@ it('writes the programme golden file', async () => {
   writeFileSync(process.env.PROG_OUT, JSON.stringify(out, null, 1) + '\n')
 })
 
+// The widgets' snapshot: its numbers and structure (the words are the app's language, left out).
+it('writes the widget golden file', async () => {
+  if (!process.env.WIDGET_IN) return
+  const { buildWidgetSnapshot } = await import('../../frontend/src/lib/widgets.js')
+  const cases = JSON.parse(readFileSync(process.env.WIDGET_IN, 'utf8'))
+  setWeightDecimals(1)
+  const words = new Set(['weekday', 'labels', 'line', 'bestLine', 'monthLine', 'currentText', 'goalText', 'nowText', 'prevText', 'value', 'challenges', 'level', 'accent', 'ink'])
+  const out = cases.map(c => {
+    vi.useFakeTimers(); vi.setSystemTime(new Date(c.today + 'T12:00:00'))
+    const snap = buildWidgetSnapshot(structuredClone(c.state), { today: c.today })
+    vi.useRealTimers()
+    return { name: c.name, result: JSON.parse(JSON.stringify(snap, (k, x) => (words.has(k) ? undefined : x))) }
+  })
+  writeFileSync(process.env.WIDGET_OUT, JSON.stringify(out, null, 1) + '\n')
+})
+
 // The workout CSV export of the history fixture.
 it('writes the CSV golden file', async () => {
   if (!process.env.CSV_OUT) return

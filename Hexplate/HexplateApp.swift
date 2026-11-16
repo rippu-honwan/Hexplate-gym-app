@@ -25,9 +25,12 @@ struct HexplateApp: App {
                 .task {
                     model.backupIfDue()
                     WatchBridge.shared.start(model: model, timer: timer)
+                    WidgetSync.write(model)
                 }
                 // The watch follows every change of the document and of the rest timer.
-                .onChange(of: model.root) { WatchBridge.shared.send() }
+                .onChange(of: model.root) { WatchBridge.shared.send(); WidgetSync.write(model) }
+                .onChange(of: model.today) { WidgetSync.write(model) }
+                .onOpenURL { WidgetSync.open($0, model) }
                 .onChange(of: timer.end) { WatchBridge.shared.send() }
         }
     }

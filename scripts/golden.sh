@@ -18,6 +18,7 @@ export WEDIT_IN="$FIX/workout-edit-cases.json" WEDIT_OUT="$FIX/workout-edit-gold
 export COPY_IN="$FIX/copy-cases.json" COPY_OUT="$FIX/copy-golden.json"
 export BACKFILL_IN="$FIX/backfill-cases.json" BACKFILL_OUT="$FIX/backfill-golden.json"
 export PROG_IN="$FIX/programme-cases.json" PROG_OUT="$FIX/programme-golden.json"
+export WIDGET_IN="$FIX/widget-cases.json" WIDGET_OUT="$FIX/widget-golden.json"
 export CSV_OUT="$FIX/history-golden.csv"
 export WATCH_IN="$FIX/watch-cases.json" WATCH_OUT="$FIX/watch-golden.json"
 export CATALOGUE_OUT="$ROOT/native/HexplateCore/Sources/HexplateCore/Resources/exercises.json"
