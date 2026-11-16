@@ -50,11 +50,11 @@ public enum Backfill {
 
     /// The workouts once a backfilled one is filed, the one it replaces gone and that one's
     /// session note carried over (completeBackfill). `w` gets the carried note and a fresh stamp.
-    // ponytail: no media to move; the native app has no progress photos yet.
     public static func file(_ workouts: [JSONValue], _ active: Object, _ w: inout Object, now: Double) -> [JSONValue] {
         var list = workouts
         if let rid = replaceId(active) {
             if let replaced = list.first(where: { $0.object?["id"] == rid })?.object {
+                WorkoutPhotos.merge(into: &w, from: replaced)
                 let old = (replaced["note"]?.stringValue ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
                 let fresh = (w["note"]?.stringValue ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
                 if !old.isEmpty && old != fresh {

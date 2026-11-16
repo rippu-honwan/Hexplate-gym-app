@@ -39,6 +39,8 @@ struct WorkoutDetailView: View {
                 }
             }
 
+            WorkoutPhotosSection(key: workout.id, record: record)
+
             Section("Session") {
                 Button { noteText = record?["note"]?.stringValue ?? ""; editingNote = true } label: {
                     Label(record?["note"]?.stringValue ?? "Add session note", systemImage: "note.text")
