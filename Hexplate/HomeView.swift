@@ -5,6 +5,8 @@ import SwiftUI
 struct HomeView: View {
     @State private var settings = false
     @State private var swapping = false
+    @State private var choosingPlan = false
+    @State private var importing = false
     @Environment(AppModel.self) private var model
 
     var body: some View {
@@ -20,6 +22,21 @@ struct HomeView: View {
                     VStack(alignment: .leading, spacing: 2) {
                         if let chip = Programmes.chip(model.root, today: model.today) { Label(chip, systemImage: "calendar.badge.clock") }
                         if let next { Text(next) }
+                    }
+                }
+
+                // A new profile: a ready-made plan, your own, or your old app's data (Home.jsx Welcome).
+                if model.routines.isEmpty && model.active == nil {
+                    Section {
+                        Label {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Welcome!").font(.headline)
+                                Text("Set up your weekly routine to get going, or grab a ready-made starter plan.").font(.subheadline).foregroundStyle(.secondary)
+                            }
+                        } icon: { Image(systemName: "calendar").foregroundStyle(.tint) }
+                        Button("Load starter plan", systemImage: "list.clipboard") { choosingPlan = true }
+                        Button("Build my own plan", systemImage: "square.and.pencil") { model.tab = "plan" }
+                        Button("Import data", systemImage: "square.and.arrow.down") { importing = true }
                     }
                 }
 
@@ -51,6 +68,8 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Today")
+            .sheet(isPresented: $choosingPlan) { StarterPlanSheet() }
+            .sheet(isPresented: $importing) { ImportView() }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Settings", systemImage: "gearshape") { settings = true }
@@ -290,5 +309,40 @@ struct QueueRow: View {
             }
         }
         .accessibilityElement(children: .combine)
+    }
+}
+
+/// The four starter plans; a plan that would take over a planned weekday asks first.
+struct StarterPlanSheet: View {
+    @Environment(AppModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+    @State private var confirming: StarterPlans.Plan?
+
+    var body: some View {
+        NavigationStack {
+            List(StarterPlans.all) { plan in
+                Button { if StarterPlans.takesOverDays(model.root, plan) { confirming = plan } else { load(plan) } } label: {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(plan.name)
+                        Text("\(plan.days) days per week · \(plan.about)").font(.subheadline).foregroundStyle(.secondary)
+                    }
+                }
+                .tint(.primary)
+            }
+            .navigationTitle("Choose starter plan")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } } }
+            .alert("Load \(confirming?.name ?? "")?", isPresented: Binding(get: { confirming != nil }, set: { if !$0 { confirming = nil } }), presenting: confirming) { plan in
+                Button("Load plan") { load(plan) }
+                Button("Cancel", role: .cancel) {}
+            } message: { _ in Text("The new plan takes over its weekdays. Your existing routines stay.") }
+        }
+    }
+
+    private func load(_ plan: StarterPlans.Plan) {
+        let t = model.now
+        var n = 0
+        model.change { StarterPlans.load(&$0, plan) { n += 1; return RoutineOps.newId(now: t + Double(n)) } }
+        dismiss()
     }
 }

@@ -38,12 +38,12 @@ private struct RootView: View {
 
     var body: some View {
         @Bindable var model = model
-        TabView {
-            Tab("Today", systemImage: "house.fill") { HomeView() }
-            Tab("Plan", systemImage: "calendar") { PlanView() }
-            Tab("Exercises", systemImage: "dumbbell") { LibraryView() }
-            Tab("History", systemImage: "clock.arrow.circlepath") { HistoryView() }
-            Tab("Stats", systemImage: "chart.xyaxis.line") { StatsView() }
+        TabView(selection: $model.tab) {
+            Tab("Today", systemImage: "house.fill", value: "today") { HomeView() }
+            Tab("Plan", systemImage: "calendar", value: "plan") { PlanView() }
+            Tab("Exercises", systemImage: "dumbbell", value: "exercises") { LibraryView() }
+            Tab("History", systemImage: "clock.arrow.circlepath", value: "history") { HistoryView() }
+            Tab("Stats", systemImage: "chart.xyaxis.line", value: "stats") { StatsView() }
         }
         .modifier(WorkoutAccessory())
         .fullScreenCover(isPresented: $model.showWorkout) { WorkoutView().tint(Color.accentColor) }

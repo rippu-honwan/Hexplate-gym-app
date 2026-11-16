@@ -34,6 +34,8 @@ final class AppModel {
     var today = Day.today()
     /// The live workout screen is up (it can be minimised while the session runs).
     var showWorkout = false
+    /// The tab on screen.
+    var tab = "today"
 
     init() {
         load(store.load())
