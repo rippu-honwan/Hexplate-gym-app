@@ -1,0 +1,679 @@
+[
+ {
+  "name": "warm-ups, a superset, an unticked set",
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Push",
+     "prog": "double",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Pull",
+     "ex": []
+    }
+   ],
+   "workouts": []
+  },
+  "w": {
+   "id": "w1",
+   "d": "2026-10-05",
+   "start": 1790000000000,
+   "end": 1790003600000,
+   "name": "Push",
+   "routineIds": [
+    "r1"
+   ],
+   "entries": [
+    {
+     "id": "0025",
+     "target": {
+      "id": "0025",
+      "sets": 3,
+      "reps": 8,
+      "weight": 60,
+      "mode": "reps"
+     },
+     "sets": [
+      {
+       "w": 30,
+       "r": 8,
+       "done": true,
+       "phase": "warmup",
+       "warmup": true
+      },
+      {
+       "w": 45,
+       "r": 5,
+       "done": true,
+       "phase": "warmup",
+       "warmup": true
+      },
+      {
+       "w": 60,
+       "r": 8,
+       "done": true
+      },
+      {
+       "w": 60,
+       "r": 8,
+       "done": true
+      },
+      {
+       "w": 60,
+       "r": 7,
+       "done": true
+      },
+      {
+       "w": 60,
+       "r": 8,
+       "done": false
+      }
+     ]
+    },
+    {
+     "id": "0043",
+     "sg": "a",
+     "target": {
+      "id": "0043",
+      "sets": 2,
+      "reps": 5
+     },
+     "sets": [
+      {
+       "w": 100,
+       "r": 5,
+       "done": true
+      },
+      {
+       "w": 100,
+       "r": 5,
+       "done": true
+      }
+     ]
+    },
+    {
+     "id": "0027",
+     "sg": "a",
+     "target": {
+      "id": "0027",
+      "sets": 2,
+      "reps": 10,
+      "rid": "r1",
+      "noProg": true
+     },
+     "sets": [
+      {
+       "w": 70,
+       "r": 10,
+       "done": true
+      },
+      {
+       "w": 70,
+       "r": 9,
+       "done": true
+      }
+     ]
+    },
+    {
+     "id": "0031",
+     "target": {
+      "id": "0031"
+     },
+     "sets": []
+    }
+   ]
+  }
+ },
+ {
+  "name": "planned entry keeps the plan",
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Push",
+     "prog": "double",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Pull",
+     "ex": []
+    }
+   ],
+   "workouts": []
+  },
+  "w": {
+   "id": "w1",
+   "d": "2026-10-05",
+   "start": 1790000000000,
+   "end": 1790003600000,
+   "name": "Push",
+   "routineIds": [
+    "r1"
+   ],
+   "entries": [
+    {
+     "id": "0025",
+     "rid": "r1",
+     "planned": {
+      "sets": 4,
+      "reps": 12,
+      "repsMin": 8
+     },
+     "target": {
+      "id": "0025",
+      "sets": 5,
+      "reps": 9,
+      "repsMin": 9,
+      "weight": 62.5,
+      "rowReps": [
+       9,
+       9
+      ]
+     },
+     "sets": [
+      {
+       "w": 62.5,
+       "r": 9,
+       "done": true
+      },
+      {
+       "w": 62.5,
+       "r": 9,
+       "done": true
+      },
+      {
+       "w": 62.5,
+       "r": 9,
+       "done": true
+      },
+      {
+       "w": 62.5,
+       "r": 9,
+       "done": true
+      },
+      {
+       "w": 62.5,
+       "r": 8,
+       "done": true
+      }
+     ]
+    },
+    {
+     "id": "0043",
+     "rid": "r2",
+     "planned": {
+      "sets": 0,
+      "reps": 0
+     },
+     "target": {
+      "id": "0043",
+      "sets": 3,
+      "reps": 5
+     },
+     "sets": [
+      {
+       "w": 110,
+       "r": 5,
+       "done": true
+      },
+      {
+       "w": 110,
+       "r": 5,
+       "done": true
+      },
+      {
+       "w": 110,
+       "r": 5,
+       "done": true
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "per side reps, one side short",
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Push",
+     "prog": "double",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Pull",
+     "ex": []
+    }
+   ],
+   "workouts": []
+  },
+  "w": {
+   "id": "w1",
+   "d": "2026-10-05",
+   "start": 1790000000000,
+   "end": 1790003600000,
+   "name": "Push",
+   "routineIds": [
+    "r1"
+   ],
+   "entries": [
+    {
+     "id": "0031",
+     "target": {
+      "id": "0031",
+      "sets": 3,
+      "reps": 20,
+      "side": true
+     },
+     "sets": [
+      {
+       "w": 12,
+       "r": 19,
+       "done": true,
+       "sides": {
+        "L": {
+         "w": 12,
+         "r": 10,
+         "done": true
+        },
+        "R": {
+         "w": 12,
+         "r": 9,
+         "done": true
+        }
+       }
+      },
+      {
+       "w": 14,
+       "r": 16,
+       "done": true,
+       "sides": {
+        "L": {
+         "w": 12,
+         "r": 8,
+         "done": true
+        },
+        "R": {
+         "w": 14,
+         "r": 8,
+         "done": true
+        }
+       }
+      },
+      {
+       "w": 12,
+       "r": 7,
+       "done": false,
+       "sides": {
+        "L": {
+         "w": 12,
+         "r": 7,
+         "done": true
+        },
+        "R": {
+         "w": 12,
+         "r": 0,
+         "done": false
+        }
+       }
+      }
+     ]
+    },
+    {
+     "id": "0027",
+     "target": {
+      "id": "0027",
+      "sets": 2,
+      "reps": 15,
+      "side": true
+     },
+     "sets": [
+      {
+       "w": 20,
+       "r": 16,
+       "done": false,
+       "sides": {
+        "L": {
+         "w": 20,
+         "r": 8,
+         "done": false
+        },
+        "R": {
+         "w": 20,
+         "r": 8,
+         "done": false
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "timed per side, cardio, numeric groups",
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Push",
+     "prog": "double",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Pull",
+     "ex": []
+    }
+   ],
+   "workouts": []
+  },
+  "w": {
+   "id": "w1",
+   "d": "2026-10-05",
+   "start": 1790000000000,
+   "end": 1790003600000,
+   "name": "Push",
+   "routineIds": [
+    "r1"
+   ],
+   "entries": [
+    {
+     "id": "4170",
+     "sg": 3,
+     "target": {
+      "id": "4170",
+      "mode": "time",
+      "sets": 2,
+      "sec": 30,
+      "side": true
+     },
+     "sets": [
+      {
+       "sec": 40,
+       "w": 0,
+       "side": "L",
+       "done": true
+      },
+      {
+       "sec": 40,
+       "w": 0,
+       "side": "R",
+       "done": true
+      },
+      {
+       "sec": 40,
+       "w": 0,
+       "side": "L",
+       "done": true
+      },
+      {
+       "sec": 40,
+       "w": 0,
+       "side": "R",
+       "done": true
+      }
+     ]
+    },
+    {
+     "id": "0031",
+     "sg": 3,
+     "target": {
+      "id": "0031",
+      "sets": 1,
+      "reps": 10
+     },
+     "sets": [
+      {
+       "w": 10,
+       "r": 12,
+       "done": true
+      }
+     ]
+    },
+    {
+     "id": "0685",
+     "target": {
+      "id": "0685",
+      "min": 20,
+      "speed": 8
+     },
+     "sets": [
+      {
+       "min": 32,
+       "speed": 9.5,
+       "incline": 2,
+       "done": true
+      },
+      {
+       "min": 5,
+       "speed": 6,
+       "done": true,
+       "phase": "warmup"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "deleted half of a superset, assisted warm-up",
+  "state": {
+   "unit": "lb",
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Push",
+     "prog": "double",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Pull",
+     "ex": []
+    }
+   ],
+   "workouts": []
+  },
+  "w": {
+   "id": "w1",
+   "d": "2026-10-05",
+   "start": 1790000000000,
+   "end": 1790003600000,
+   "name": "  ",
+   "routineIds": [
+    "r1"
+   ],
+   "entries": [
+    {
+     "id": "custom-gone",
+     "sg": "x",
+     "target": {
+      "id": "custom-gone",
+      "sets": 2,
+      "reps": 10
+     },
+     "sets": [
+      {
+       "w": 20,
+       "r": 10,
+       "done": true
+      },
+      {
+       "w": 20,
+       "r": 10,
+       "done": true
+      }
+     ]
+    },
+    {
+     "id": "0017",
+     "sg": "x",
+     "target": {
+      "id": "0017",
+      "sets": 2,
+      "reps": 8
+     },
+     "sets": [
+      {
+       "w": 60,
+       "r": 8,
+       "done": true,
+       "phase": "warmup",
+       "warmup": true
+      },
+      {
+       "w": 40,
+       "r": 8,
+       "done": true
+      },
+      {
+       "w": 40,
+       "r": 8,
+       "done": true
+      }
+     ]
+    },
+    {
+     "id": "0043",
+     "target": {
+      "id": "0043",
+      "sets": 3,
+      "reps": 5
+     },
+     "sets": [
+      {
+       "w": 95,
+       "r": 5,
+       "done": true,
+       "phase": "warmup",
+       "warmup": true
+      },
+      {
+       "w": 135,
+       "r": 3,
+       "done": true,
+       "phase": "warmup",
+       "warmup": true
+      },
+      {
+       "w": 225,
+       "r": 5,
+       "done": true
+      },
+      {
+       "w": 225,
+       "r": 5,
+       "done": true
+      },
+      {
+       "w": 225,
+       "r": 5,
+       "done": true
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "name": "a workout that does not count",
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Push",
+     "prog": "double",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Pull",
+     "ex": []
+    }
+   ],
+   "workouts": []
+  },
+  "w": {
+   "id": "w1",
+   "d": "2026-10-05",
+   "start": 1790000000000,
+   "end": 1790003600000,
+   "name": "Push",
+   "routineIds": [
+    "r1"
+   ],
+   "entries": [
+    {
+     "id": "0025",
+     "target": {
+      "id": "0025",
+      "sets": 2,
+      "reps": 5,
+      "weight": 50
+     },
+     "sets": [
+      {
+       "w": 80,
+       "r": 5,
+       "done": true
+      },
+      {
+       "w": 80,
+       "r": 5,
+       "done": true
+      }
+     ]
+    }
+   ],
+   "excludeFromProgression": true
+  }
+ },
+ {
+  "name": "nothing logged",
+  "state": {
+   "unit": "kg",
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Push",
+     "prog": "double",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Pull",
+     "ex": []
+    }
+   ],
+   "workouts": []
+  },
+  "w": {
+   "id": "w1",
+   "d": "2026-10-05",
+   "start": 1790000000000,
+   "end": 1790003600000,
+   "name": "Push",
+   "routineIds": [
+    "r1"
+   ],
+   "entries": [
+    {
+     "id": "0025",
+     "sets": []
+    }
+   ]
+  }
+ }
+]

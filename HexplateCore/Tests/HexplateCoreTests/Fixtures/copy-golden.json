@@ -1,0 +1,678 @@
+[
+ {
+  "name": "warm-ups, a superset, an unticked set",
+  "result": {
+   "routine": {
+    "name": "Push",
+    "ex": [
+     {
+      "sets": 4,
+      "reps": 7,
+      "weight": 60,
+      "mode": "reps",
+      "id": "0025",
+      "warmupSets": 2,
+      "prog": "double"
+     },
+     {
+      "sets": 2,
+      "reps": 5,
+      "weight": 100,
+      "mode": "reps",
+      "id": "0043",
+      "warmupSets": 0,
+      "prog": "double",
+      "sg": "g0"
+     },
+     {
+      "sets": 2,
+      "reps": 9,
+      "weight": 70,
+      "mode": "reps",
+      "id": "0027",
+      "warmupSets": 0,
+      "prog": "double",
+      "sg": "g0"
+     }
+    ]
+   },
+   "repeat": {
+    "entries": [
+     {
+      "id": "0025",
+      "target": {
+       "sets": 3,
+       "reps": 7,
+       "weight": 60,
+       "mode": "reps",
+       "id": "0025",
+       "warmupSets": 2,
+       "prog": "double"
+      },
+      "plan": null,
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "done": false,
+        "phase": "warmup",
+        "warmup": true
+       },
+       {
+        "w": 45,
+        "r": 8,
+        "done": false,
+        "phase": "warmup",
+        "warmup": true
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 60,
+        "r": 7,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "sg": "g1",
+      "target": {
+       "sets": 2,
+       "reps": 5,
+       "weight": 100,
+       "mode": "reps",
+       "id": "0043",
+       "warmupSets": 0,
+       "prog": "double"
+      },
+      "plan": null,
+      "sets": [
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0027",
+      "sg": "g1",
+      "target": {
+       "sets": 2,
+       "reps": 9,
+       "weight": 70,
+       "mode": "reps",
+       "id": "0027",
+       "warmupSets": 0,
+       "prog": "double"
+      },
+      "plan": null,
+      "sets": [
+       {
+        "w": 70,
+        "r": 10,
+        "done": false
+       },
+       {
+        "w": 70,
+        "r": 9,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "skipped": 0
+   }
+  }
+ },
+ {
+  "name": "planned entry keeps the plan",
+  "result": {
+   "routine": {
+    "name": "Push",
+    "ex": [
+     {
+      "sets": 4,
+      "reps": 12,
+      "weight": 62.5,
+      "mode": "reps",
+      "id": "0025",
+      "repsMin": 8,
+      "warmupSets": 0,
+      "prog": "double"
+     },
+     {
+      "sets": 1,
+      "reps": 5,
+      "weight": 110,
+      "mode": "reps",
+      "id": "0043",
+      "warmupSets": 0
+     }
+    ]
+   },
+   "repeat": {
+    "entries": [
+     {
+      "id": "0025",
+      "target": {
+       "sets": 5,
+       "reps": 12,
+       "weight": 62.5,
+       "mode": "reps",
+       "id": "0025",
+       "repsMin": 8,
+       "warmupSets": 0,
+       "prog": "double"
+      },
+      "plan": null,
+      "sets": [
+       {
+        "w": 62.5,
+        "r": 9,
+        "done": false
+       },
+       {
+        "w": 62.5,
+        "r": 9,
+        "done": false
+       },
+       {
+        "w": 62.5,
+        "r": 9,
+        "done": false
+       },
+       {
+        "w": 62.5,
+        "r": 9,
+        "done": false
+       },
+       {
+        "w": 62.5,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "target": {
+       "sets": 3,
+       "reps": 5,
+       "weight": 110,
+       "mode": "reps",
+       "id": "0043",
+       "warmupSets": 0
+      },
+      "plan": null,
+      "sets": [
+       {
+        "w": 110,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 110,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 110,
+        "r": 5,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "skipped": 0
+   }
+  }
+ },
+ {
+  "name": "per side reps, one side short",
+  "result": {
+   "routine": {
+    "name": "Push",
+    "ex": [
+     {
+      "sets": 3,
+      "reps": 16,
+      "weight": 14,
+      "mode": "reps",
+      "id": "0031",
+      "side": true,
+      "warmupSets": 0,
+      "prog": "double"
+     },
+     {
+      "sets": 1,
+      "reps": 16,
+      "weight": 0,
+      "mode": "reps",
+      "id": "0027",
+      "side": true,
+      "warmupSets": 0,
+      "prog": "double"
+     }
+    ]
+   },
+   "repeat": {
+    "entries": [
+     {
+      "id": "0031",
+      "target": {
+       "sets": 2,
+       "reps": 16,
+       "weight": 14,
+       "mode": "reps",
+       "id": "0031",
+       "side": true,
+       "warmupSets": 0,
+       "prog": "double"
+      },
+      "plan": null,
+      "sets": [
+       {
+        "w": 12,
+        "r": 19,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 12,
+          "r": 10,
+          "done": false
+         },
+         "R": {
+          "w": 12,
+          "r": 9,
+          "done": false
+         }
+        }
+       },
+       {
+        "w": 14,
+        "r": 16,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 12,
+          "r": 8,
+          "done": false
+         },
+         "R": {
+          "w": 14,
+          "r": 8,
+          "done": false
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "0027",
+      "target": {
+       "sets": 1,
+       "reps": 16,
+       "weight": 0,
+       "mode": "reps",
+       "id": "0027",
+       "side": true,
+       "warmupSets": 0,
+       "prog": "double"
+      },
+      "plan": null,
+      "sets": [
+       {
+        "w": 0,
+        "r": 16,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 0,
+          "r": 8,
+          "done": false
+         },
+         "R": {
+          "w": 0,
+          "r": 8,
+          "done": false
+         }
+        }
+       }
+      ]
+     }
+    ],
+    "skipped": 0
+   }
+  }
+ },
+ {
+  "name": "timed per side, cardio, numeric groups",
+  "result": {
+   "routine": {
+    "name": "Push",
+    "ex": [
+     {
+      "sets": 2,
+      "sec": 40,
+      "weight": 0,
+      "mode": "time",
+      "bodyweight": true,
+      "id": "4170",
+      "side": true,
+      "warmupSets": 0,
+      "prog": "double",
+      "sg": "g0"
+     },
+     {
+      "sets": 1,
+      "reps": 12,
+      "weight": 10,
+      "mode": "reps",
+      "id": "0031",
+      "warmupSets": 0,
+      "prog": "double",
+      "sg": "g0"
+     },
+     {
+      "sets": 1,
+      "min": 32,
+      "speed": 9.5,
+      "id": "0685",
+      "warmupSets": 1,
+      "prog": "double"
+     }
+    ]
+   },
+   "repeat": {
+    "entries": [
+     {
+      "id": "4170",
+      "sg": "g1",
+      "target": {
+       "sets": 2,
+       "sec": 40,
+       "weight": 0,
+       "mode": "time",
+       "bodyweight": true,
+       "id": "4170",
+       "side": true,
+       "warmupSets": 0,
+       "prog": "double"
+      },
+      "plan": null,
+      "sets": [
+       {
+        "sec": 40,
+        "w": 0,
+        "done": false,
+        "side": "L"
+       },
+       {
+        "sec": 40,
+        "w": 0,
+        "done": false,
+        "side": "R"
+       },
+       {
+        "sec": 40,
+        "w": 0,
+        "done": false,
+        "side": "L"
+       },
+       {
+        "sec": 40,
+        "w": 0,
+        "done": false,
+        "side": "R"
+       }
+      ]
+     },
+     {
+      "id": "0031",
+      "sg": "g1",
+      "target": {
+       "sets": 1,
+       "reps": 12,
+       "weight": 10,
+       "mode": "reps",
+       "id": "0031",
+       "warmupSets": 0,
+       "prog": "double"
+      },
+      "plan": null,
+      "sets": [
+       {
+        "w": 10,
+        "r": 12,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0685",
+      "target": {
+       "sets": 1,
+       "min": 32,
+       "speed": 9.5,
+       "id": "0685",
+       "warmupSets": 1,
+       "prog": "double"
+      },
+      "plan": null,
+      "sets": [
+       {
+        "min": 32,
+        "speed": 9.5,
+        "incline": 2,
+        "done": false,
+        "phase": "warmup",
+        "warmup": true
+       },
+       {
+        "min": 32,
+        "speed": 9.5,
+        "incline": 2,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "skipped": 0
+   }
+  }
+ },
+ {
+  "name": "deleted half of a superset, assisted warm-up",
+  "result": {
+   "routine": {
+    "name": "Workout",
+    "ex": [
+     {
+      "sets": 2,
+      "reps": 10,
+      "weight": 20,
+      "mode": "reps",
+      "id": "custom-gone",
+      "warmupSets": 0,
+      "prog": "double",
+      "sg": "g0"
+     },
+     {
+      "sets": 2,
+      "reps": 8,
+      "weight": 40,
+      "mode": "reps",
+      "id": "0017",
+      "warmupSets": 1,
+      "prog": "double",
+      "sg": "g0"
+     },
+     {
+      "sets": 3,
+      "reps": 5,
+      "weight": 225,
+      "mode": "reps",
+      "id": "0043",
+      "warmupSets": 2,
+      "prog": "double"
+     }
+    ]
+   },
+   "repeat": {
+    "entries": [
+     {
+      "id": "0017",
+      "target": {
+       "sets": 2,
+       "reps": 8,
+       "weight": 40,
+       "mode": "reps",
+       "id": "0017",
+       "warmupSets": 1,
+       "prog": "double"
+      },
+      "plan": null,
+      "sets": [
+       {
+        "w": 60,
+        "r": 8,
+        "done": false,
+        "phase": "warmup",
+        "warmup": true
+       },
+       {
+        "w": 40,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 40,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "target": {
+       "sets": 3,
+       "reps": 5,
+       "weight": 225,
+       "mode": "reps",
+       "id": "0043",
+       "warmupSets": 2,
+       "prog": "double"
+      },
+      "plan": null,
+      "sets": [
+       {
+        "w": 110,
+        "r": 5,
+        "done": false,
+        "phase": "warmup",
+        "warmup": true
+       },
+       {
+        "w": 160,
+        "r": 5,
+        "done": false,
+        "phase": "warmup",
+        "warmup": true
+       },
+       {
+        "w": 225,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 225,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 225,
+        "r": 5,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "skipped": 1
+   }
+  }
+ },
+ {
+  "name": "a workout that does not count",
+  "result": {
+   "routine": {
+    "name": "Push",
+    "ex": [
+     {
+      "sets": 2,
+      "reps": 5,
+      "weight": 80,
+      "mode": "reps",
+      "id": "0025",
+      "warmupSets": 0,
+      "prog": "double"
+     }
+    ]
+   },
+   "repeat": {
+    "entries": [
+     {
+      "id": "0025",
+      "target": {
+       "sets": 2,
+       "reps": 5,
+       "weight": 80,
+       "mode": "reps",
+       "id": "0025",
+       "warmupSets": 0,
+       "prog": "double"
+      },
+      "plan": null,
+      "sets": [
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "skipped": 0
+   }
+  }
+ },
+ {
+  "name": "nothing logged",
+  "result": {
+   "routine": null,
+   "repeat": {
+    "entries": [],
+    "skipped": 0
+   }
+  }
+ }
+]

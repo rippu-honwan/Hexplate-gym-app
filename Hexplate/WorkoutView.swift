@@ -20,6 +20,33 @@ extension AppModel {
         WatchBridge.shared.openOnWatch()
     }
 
+    /// "Repeat today": a saved workout's exercises as a new freestyle session, each seeded from
+    /// what that workout logged (session-repeat.js). The saved record stays as it is.
+    // ponytail: no toast for exercises left out because they were deleted.
+    func repeatWorkout(_ w: Object) -> Bool {
+        guard active == nil else { errorMessage = "Finish the current workout first."; return false }
+        let c = catalog
+        let entries = SessionCopy.repeatEntries(root, w, catalog: c) { c[$0] != nil }.entries
+        guard !entries.isEmpty else { errorMessage = "Nothing to repeat. Its exercises no longer exist."; return false }
+        let name = w["name"]?.stringValue.flatMap { $0.isEmpty ? nil : $0 } ?? "Freestyle"
+        let session: Object = ["id": .string(RoutineOps.newId(now: now)), "d": .string(today), "start": .number(now), "routineIds": .array([]),
+                               "name": .string(name), "bw": history?.weighIns.last.map { .number($0.weight) } ?? .null, "cur": .number(0), "entries": .array(entries)]
+        change { $0["active"] = .object(session) }
+        WatchBridge.shared.send()
+        WatchBridge.shared.openOnWatch()
+        return true
+    }
+
+    /// "Save as routine": the workout's exercise setup as a new routine (session-routines.js). Its id.
+    func saveAsRoutine(_ w: Object) -> String? {
+        let routines = (root["routines"]?.arrayValue ?? []).compactMap(\.object)
+        guard let r = SessionCopy.routine(from: w, name: w["name"]?.stringValue, routines: routines, catalog: catalog) else {
+            errorMessage = "Nothing logged yet"; return nil
+        }
+        change { s in s["routines"] = .array((s["routines"]?.arrayValue ?? []) + [.object(r)]) }
+        return r["id"]?.stringValue
+    }
+
     var isEditingSaved: Bool { WorkoutEdit.isEditing(active) }
 
     /// Opens a saved workout in the workout screen. False when it could not (another session runs).

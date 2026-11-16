@@ -392,6 +392,23 @@ it('writes the workout edit golden file', async () => {
   writeFileSync(process.env.WEDIT_OUT, JSON.stringify(out, null, 1) + '\n')
 })
 
+// Save as routine and Repeat today: a saved workout copied forward. Superset tags and the routine
+// id are random, so they are renumbered by first appearance.
+it('writes the copy golden file', async () => {
+  if (!process.env.COPY_IN) return
+  const { routineFromSession } = await import('../../frontend/src/lib/session-routines.js')
+  const { repeatSessionEntries } = await import('../../frontend/src/lib/session-repeat.js')
+  const cases = JSON.parse(readFileSync(process.env.COPY_IN, 'utf8'))
+  const tidy = v => { const seen = new Map(); return JSON.parse(JSON.stringify(v, (k, x) => k === 'sg' && typeof x === 'string' ? (seen.has(x) || seen.set(x, 'g' + seen.size), seen.get(x)) : x)) }
+  const out = cases.map(c => {
+    let routine = null
+    try { const { id, ...r } = routineFromSession(c.w, c.w.name, c.state.routines); routine = r } catch {}
+    const S = { ...structuredClone(c.state), workouts: [c.w] }
+    return { name: c.name, result: tidy({ routine, repeat: repeatSessionEntries(S, c.w) }) }
+  })
+  writeFileSync(process.env.COPY_OUT, JSON.stringify(out, null, 1) + '\n')
+})
+
 // The workout CSV export of the history fixture.
 it('writes the CSV golden file', async () => {
   if (!process.env.CSV_OUT) return

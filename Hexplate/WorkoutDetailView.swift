@@ -11,6 +11,8 @@ struct WorkoutDetailView: View {
     @State private var noteText = ""
     @State private var changingDate = false
     @State private var changingDuration = false
+    @State private var savingRoutine = false
+    @State private var newRoutine: String?
     let workout: Workout
     let history: History
 
@@ -63,6 +65,11 @@ struct WorkoutDetailView: View {
                     if model.editWorkout(key: workout.id) { model.showWorkout = true }
                 }
                 .disabled(model.active != nil)
+                Button("Repeat today", systemImage: "arrow.counterclockwise") {
+                    if let record, model.repeatWorkout(record) { model.showWorkout = true }
+                }
+                .disabled(model.active != nil)
+                Button("Save as routine", systemImage: "plus.square.on.square") { savingRoutine = true }
                 Button("Delete workout", systemImage: "trash", role: .destructive) { confirmDelete = true }
             } footer: {
                 if model.active != nil { Text("Finish the current workout first.") }
@@ -85,6 +92,13 @@ struct WorkoutDetailView: View {
                 update { WorkoutEdit.setDuration($0, key: workout.id, minutes: Double(m), now: model.now) }
             }
         }
+        .alert("Save as routine?", isPresented: $savingRoutine) {
+            Button("Save") { if let record { newRoutine = model.saveAsRoutine(record) } }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Create an independent routine from these exercise targets. Your workout history is kept.")
+        }
+        .navigationDestination(item: $newRoutine) { RoutineEditorView(routineId: $0) }
         .alert("Delete this workout?", isPresented: $confirmDelete) {
             Button("Delete", role: .destructive) {
                 dismiss()
