@@ -36,6 +36,17 @@ final class WorkoutEditGoldenTests: XCTestCase {
         XCTAssertEqual(cases.count, golden.count)
         for (k, g) in zip(cases, golden) {
             var s = try XCTUnwrap(k["state"]?.object)
+            let strip = { (list: [JSONValue]) in list.map { w -> JSONValue in var o = w.object ?? [:]; o["_ts"] = nil; return .object(o) } }
+            if let d = k["detail"]?.arrayValue {
+                let list = s["workouts"]?.arrayValue ?? [], key = d[1].stringValue ?? ""
+                let next: [JSONValue]? = switch d[0].stringValue {
+                case "move": WorkoutEdit.move(list, key: key, to: d[2].stringValue ?? "", at: d[3].stringValue ?? "", now: 1_800_000_000_000, catalog: .builtIn)
+                case "duration": WorkoutEdit.setDuration(list, key: key, minutes: d[2].num, now: 1_800_000_000_000)
+                default: WorkoutEdit.setNote(list, key: key, d[2].stringValue ?? "", now: 1_800_000_000_000)
+                }
+                XCTAssertEqual(text(.object(["changed": .bool(next != nil), "workouts": .array(strip(next ?? list))])), text(g.result), g.name)
+                continue
+            }
             var failure: JSONValue = .null
             do {
                 try WorkoutEdit.begin(&s, key: k["key"]?.stringValue ?? "")

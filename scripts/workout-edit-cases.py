@@ -36,4 +36,20 @@ cases = [
     {'name': 'busy', 'state': {**state, 'active': {'id': 'live', 'entries': []}}, 'key': 'w0', 'ops': []},
     {'name': 'gone', 'state': state, 'key': 'nope', 'ops': []},
 ]
+
+# A saved workout's date and time, length and note, from its detail page.
+cases += [
+    {'name': 'move earlier: records follow', 'state': state, 'detail': ['move', 'w1', '2026-09-28', '07:30']},
+    {'name': 'move later, same day as another', 'state': state, 'detail': ['move', 'w0', '2026-10-05', '20:15']},
+    {'name': 'move an old record without an id', 'state': {**state, 'workouts': [{k: v for k, v in history[0].items() if k != 'id'}] + history[1:]},
+     'detail': ['move', '2026-10-01|1790000000000', '2026-10-04', '06:00']},
+    {'name': 'move a missing one', 'state': state, 'detail': ['move', 'nope', '2026-10-04', '06:00']},
+    {'name': 'duration', 'state': state, 'detail': ['duration', 'w2', 75.4]},
+    {'name': 'duration unchanged', 'state': state, 'detail': ['duration', 'w2', 60]},
+    {'name': 'duration bounds', 'state': state, 'detail': ['duration', 'w3', 5000]},
+    {'name': 'duration at least a minute', 'state': state, 'detail': ['duration', 'w3', 0]},
+    {'name': 'note', 'state': state, 'detail': ['note', 'w0', '  quick one  ']},
+    {'name': 'note cleared', 'state': state, 'detail': ['note', 'w1', '   ']},
+    {'name': 'note the same', 'state': state, 'detail': ['note', 'w1', 'solid']},
+]
 print(json.dumps(cases, indent=1))

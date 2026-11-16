@@ -7,6 +7,10 @@ struct WorkoutDetailView: View {
     @Environment(AppModel.self) private var model
     @Environment(\.dismiss) private var dismiss
     @State private var confirmDelete = false
+    @State private var editingNote = false
+    @State private var noteText = ""
+    @State private var changingDate = false
+    @State private var changingDuration = false
     let workout: Workout
     let history: History
 
@@ -33,6 +37,27 @@ struct WorkoutDetailView: View {
                 }
             }
 
+            Section("Session") {
+                Button { noteText = record?["note"]?.stringValue ?? ""; editingNote = true } label: {
+                    Label(record?["note"]?.stringValue ?? "Add session note", systemImage: "note.text")
+                        .foregroundStyle(record?["note"] == nil ? AnyShapeStyle(.tint) : AnyShapeStyle(.primary))
+                }
+                Button { changingDate = true } label: {
+                    LabeledContent {
+                        Text(workout.start.map { Date(timeIntervalSince1970: $0 / 1000).formatted(.dateTime.day().month().hour().minute().locale(Theme.locale)) } ?? workout.date)
+                    } label: { Label("Date & time", systemImage: "calendar") }
+                }
+                .foregroundStyle(.primary)
+                .disabled(workout.start == nil)
+                Button { changingDuration = true } label: {
+                    LabeledContent {
+                        Text("\(record.map(WorkoutEdit.durationMin) ?? 0) min")
+                    } label: { Label("Duration", systemImage: "clock") }
+                }
+                .foregroundStyle(.primary)
+                .disabled(workout.start == nil)
+            }
+
             Section {
                 Button("Edit workout", systemImage: "pencil") {
                     if model.editWorkout(key: workout.id) { model.showWorkout = true }
@@ -45,6 +70,21 @@ struct WorkoutDetailView: View {
         }
         .navigationTitle(workout.name ?? "Workout")
         .navigationBarTitleDisplayMode(.large)
+        .alert("Session note", isPresented: $editingNote) {
+            TextField("How the session went as a whole.", text: $noteText)
+            Button("Save") { let t = noteText; update { WorkoutEdit.setNote($0, key: workout.id, t, now: model.now) } }
+            Button("Cancel", role: .cancel) {}
+        }
+        .sheet(isPresented: $changingDate) {
+            WorkoutDateSheet(start: Date(timeIntervalSince1970: (workout.start ?? 0) / 1000), minutes: record.map(WorkoutEdit.durationMin) ?? 1) { iso, time in
+                update { WorkoutEdit.move($0, key: workout.id, to: iso, at: time, now: model.now, catalog: model.catalog) }
+            }
+        }
+        .sheet(isPresented: $changingDuration) {
+            WorkoutDurationSheet(minutes: record.map(WorkoutEdit.durationMin) ?? 60) { m in
+                update { WorkoutEdit.setDuration($0, key: workout.id, minutes: Double(m), now: model.now) }
+            }
+        }
         .alert("Delete this workout?", isPresented: $confirmDelete) {
             Button("Delete", role: .destructive) {
                 dismiss()
@@ -54,6 +94,74 @@ struct WorkoutDetailView: View {
         } message: {
             Text("It is removed from your history for good.")
         }
+    }
+}
+
+extension WorkoutDetailView {
+    /// The record as stored, for what the decoded workout leaves out (its note).
+    private var record: AppModel.Object? {
+        model.root["workouts"]?.arrayValue?.compactMap(\.object).first { $0["id"]?.stringValue == workout.id }
+    }
+
+    /// Writes the workouts list a WorkoutEdit function returned; nil means nothing changed.
+    private func update(_ f: ([JSONValue]) -> [JSONValue]?) {
+        model.change { s in if let next = f(s["workouts"]?.arrayValue ?? []) { s["workouts"] = .array(next) } }
+    }
+}
+
+/// Another day and start for a saved workout; it keeps its length (sheets.jsx workoutDateSheet).
+private struct WorkoutDateSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    @State var start: Date
+    let minutes: Int
+    let save: (String, String) -> Void
+
+    var body: some View {
+        let iso = Day.iso(start)
+        let time = start.formatted(.dateTime.hour(.twoDigits(amPM: .omitted)).minute(.twoDigits).locale(Locale(identifier: "en_GB")))
+        let future = WorkoutEdit.endsInFuture(iso, time, minutes: minutes, now: Date.now.timeIntervalSince1970 * 1000)
+        NavigationStack {
+            Form {
+                DatePicker("Date", selection: $start, in: ...Date.now, displayedComponents: .date)
+                DatePicker("Start time", selection: $start, displayedComponents: .hourAndMinute)
+                Section {} footer: {
+                    Text(future ? "That’s still in the future. Try an earlier start." : "The session keeps its length. Personal records are worked out again from the new order.")
+                        .foregroundStyle(future ? AnyShapeStyle(.red) : AnyShapeStyle(.secondary))
+                }
+            }
+            .navigationTitle("Change date & time")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) { Button("Save") { save(iso, time); dismiss() }.disabled(future) }
+            }
+        }
+        .presentationDetents([.medium])
+    }
+}
+
+/// How long a saved workout really took (sheets.jsx workoutDurationSheet).
+private struct WorkoutDurationSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    @State var minutes: Int
+    let save: (Int) -> Void
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Stepper(value: $minutes, in: 1...(24 * 60), step: 5) {
+                    LabeledContent("Duration", value: "\(minutes) min").monospacedDigit()
+                }
+                Section {} footer: { Text("Forgot to finish on time? Set how long the session really took. It keeps its start time and its sets.") }
+            }
+            .navigationTitle("Change duration")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) { Button("Save") { save(minutes); dismiss() } }
+            }
+        }
+        .presentationDetents([.medium])
     }
 }
 

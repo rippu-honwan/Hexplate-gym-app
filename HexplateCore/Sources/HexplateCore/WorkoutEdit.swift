@@ -187,6 +187,78 @@ public enum WorkoutEdit {
         return saved ?? record
     }
 
+    // MARK: A saved workout's date, length and note (workout-date.js, WorkoutDetail)
+
+    /// That day at "HH:mm", local time, in ms (backfillStart).
+    public static func start(_ iso: String, _ time: String) -> Double? {
+        let p = time.split(separator: ":").map { Int($0) ?? 0 }
+        guard let noon = Day.date(iso),
+              let d = Calendar(identifier: .gregorian).date(bySettingHour: p.first ?? 0, minute: p.count > 1 ? p[1] : 0, second: 0, of: noon) else { return nil }
+        return d.timeIntervalSince1970 * 1000
+    }
+
+    /// Whole minutes from start to end, at least 1 (durationMinOf).
+    public static func durationMin(_ w: Object) -> Int {
+        let start = w["start"]?.num ?? 0, end = w["end"]?.numberValue ?? start
+        return max(1, Int(Session.jsRound(max(0, end - start) / 60000)))
+    }
+
+    public static func endsInFuture(_ iso: String, _ time: String, minutes: Int, now: Double) -> Bool {
+        (start(iso, time) ?? 0) + Double(max(0, minutes)) * 60000 > now
+    }
+
+    static func index(_ list: [JSONValue], _ k: String) -> Int? { list.firstIndex { $0.object.map(key) == k } }
+
+    /// The workout on another day and start, keeping its length; filed in date order and PR flags
+    /// worked out again (moveWorkout).
+    public static func move(_ list: [JSONValue], key k: String, to iso: String, at time: String, now: Double, catalog c: ExerciseCatalog) -> [JSONValue]? {
+        guard let i = index(list, k), let current = list[i].object, let begin = start(iso, time) else { return nil }
+        let oldStart = current["start"]?.num ?? 0
+        let duration = max(0, (current["end"]?.numberValue ?? oldStart) - oldStart)
+        var moved = current
+        moved["d"] = .string(iso); moved["start"] = .number(begin); moved["end"] = .number(begin + duration)
+        if current["id"] == nil || current["id"] == .null { moved["id"] = .string(key(current)) }
+        moved["_ts"] = .number(now)
+        var rest = list
+        rest.remove(at: i)
+        // insertChronological: after everything on an earlier day, or the same day and start.
+        let sortKey = { (o: Object?) in (o?["d"]?.stringValue ?? "", o?["start"]?.num ?? 0) }
+        let (d, st) = sortKey(moved)
+        var at = rest.count
+        while at > 0 {
+            let (pd, ps) = sortKey(rest[at - 1].object)
+            if pd < d || (pd == d && ps <= st) { break }
+            at -= 1
+        }
+        rest.insert(.object(moved), at: at)
+        let ids = Set((current["entries"]?.arrayValue ?? []).compactMap { $0.object?["id"]?.stringValue })
+        return rebuildPrs(rest, ids, moved: at, c)
+    }
+
+    /// How long it really took, 1 minute to a day; nil when nothing changes (setWorkoutDuration).
+    public static func setDuration(_ list: [JSONValue], key k: String, minutes: Double, now: Double) -> [JSONValue]? {
+        guard let i = index(list, k), var w = list[i].object, case .number(let begin)? = w["start"], begin.isFinite else { return nil }
+        let min = Swift.min(24 * 60, Swift.max(1, Int(Session.jsRound(minutes.isFinite ? minutes : 0))))
+        if w["end"] != nil && w["end"] != .null && min == durationMin(w) { return nil }
+        w["end"] = .number(begin + Double(min) * 60000)
+        w["_ts"] = .number(now)
+        var next = list
+        next[i] = .object(w)
+        return next
+    }
+
+    /// The session note written on the saved record; nil when it is the same (WorkoutDetail saveNote).
+    public static func setNote(_ list: [JSONValue], key k: String, _ text: String, now: Double) -> [JSONValue]? {
+        guard let i = index(list, k), var w = list[i].object else { return nil }
+        let t = String(text.trimmingCharacters(in: .whitespacesAndNewlines).prefix(ActiveEdit.noteMax))
+        if t == (w["note"]?.stringValue ?? "") { return nil }
+        w["note"] = t.isEmpty ? nil : .string(t)
+        w["_ts"] = .number(now)
+        var next = list
+        next[i] = .object(w)
+        return next
+    }
+
     /// Drops the edits; the record stays as it was.
     public static func discard(_ s: inout Object) { s["active"] = nil }
 }

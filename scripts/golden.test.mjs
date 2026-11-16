@@ -355,12 +355,27 @@ it('writes the edit golden file', async () => {
 it('writes the workout edit golden file', async () => {
   if (!process.env.WEDIT_IN) return
   const E = await import('../../frontend/src/lib/session-edit.js')
+  const D = await import('../../frontend/src/lib/workout-date.js')
   const cases = JSON.parse(readFileSync(process.env.WEDIT_IN, 'utf8'))
   setWeightDecimals(1)
   const strip = v => JSON.parse(JSON.stringify(v, (k, x) => (k === '_ts' ? undefined : x)))
   const out = []
   for (const c of cases) {
     const S = structuredClone(c.state)
+    if (c.detail) {
+      const [op, key, a, b] = c.detail
+      const ref = S.workouts.find(w => (w.id != null ? w.id : D.legacySyncKey(w)) === key) || { id: key }
+      let next = null
+      if (op === 'move') next = D.moveWorkout(S.workouts, ref, a, b, 1_800_000_000_000)
+      else if (op === 'duration') next = D.setWorkoutDuration(S.workouts, ref, a, 1_800_000_000_000)
+      else {
+        const rec = S.workouts.find(x => D.sameWorkout(x, ref))
+        const text = a.trim().slice(0, 500)
+        if (rec && text !== (rec.note || '')) { if (text) rec.note = text; else delete rec.note; rec._ts = 1; next = S.workouts }
+      }
+      out.push({ name: c.name, result: strip({ changed: next != null, workouts: next || S.workouts }) })
+      continue
+    }
     let error = null
     try {
       E.editCompletedSession(S, c.key)
