@@ -48,6 +48,18 @@ extension AppModel {
     }
 
     var isEditingSaved: Bool { WorkoutEdit.isEditing(active) }
+    var isBackfill: Bool { Backfill.isBackfill(active) }
+    /// No clock and no rest timers: a saved workout open for editing, or one logged after the fact.
+    var isPastSession: Bool { isEditingSaved || isBackfill }
+
+    /// Starts logging a workout after the fact (sheets.jsx beginBackfill).
+    func beginBackfill(start: Date, minutes: Int, routineIds: [String], replaceId: String?) {
+        guard active == nil else { return }
+        let iso = Day.iso(start), at = start.timeIntervalSince1970 * 1000
+        let a = Backfill.begin(root, iso: iso, start: at, durationMin: max(1, minutes), routineIds: routineIds,
+                               replaceId: replaceId, id: RoutineOps.newId(now: now), catalog: catalog)
+        change { $0["active"] = .object(a) }
+    }
 
     /// Opens a saved workout in the workout screen. False when it could not (another session runs).
     func editWorkout(key: String) -> Bool {
@@ -99,6 +111,15 @@ extension AppModel {
     /// Saves the session as a workout. Returns it for the summary.
     func finishWorkout() -> Object? {
         guard let a = active else { return nil }
+        if isBackfill {
+            var filed: Object?
+            let (c, day, at) = (catalog, today, now)
+            change { s in
+                filed = Backfill.finish(&s, now: at, catalog: c)
+                if let filed { _ = Schedule.refillAfter(&s, workout: filed, today: day, now: at) }
+            }
+            return filed
+        }
         let prs = Session.records(a, in: root, catalog: catalog)
         let w = Session.completedWorkout(a, end: Session.sessionEnd(a, now: now), prs: prs, catalog: catalog)
         let (day, at) = (today, now)
@@ -249,7 +270,10 @@ struct WorkoutView: View {
     var body: some View {
         NavigationStack {
             List {
-                if let a = model.active, !model.isEditingSaved, let start = a["start"]?.numberValue {
+                if model.isBackfill {
+                    Text("Logging a past workout, so no rest timers.").font(.subheadline).foregroundStyle(.secondary)
+                }
+                if let a = model.active, !model.isPastSession, let start = a["start"]?.numberValue {
                     Section {
                         TimelineView(.periodic(from: .now, by: 1)) { _ in
                             LabeledContent("Elapsed", value: Format.seconds(Date.now.timeIntervalSince1970 - start / 1000))
@@ -406,6 +430,11 @@ struct WorkoutView: View {
         }
         Section {
             Button("Add exercise", systemImage: "plus.circle") { picking = true }
+            if model.isBackfill && !model.activeEntries.isEmpty {
+                Button("Mark all sets done", systemImage: "checkmark.circle") {
+                    model.changeActive { $0["entries"] = .array(Backfill.markAllDone($0["entries"]?.arrayValue ?? [])) }
+                }
+            }
             Button(a["note"] == nil ? "Add session note" : "Edit session note", systemImage: "note.text") {
                 noteText = a["note"]?.stringValue ?? ""; editingSessionNote = true
             }
@@ -650,7 +679,7 @@ private struct EntrySection: View {
     /// After a set: on to the superset partner, or rest.
     private func completed(set i: Int) {
         // A set's own rest (its menu) wins over the exercise's; going on to a superset partner has none.
-        guard !model.isEditingSaved, let exerciseRest = model.restSeconds(after: index) else { return }
+        guard !model.isPastSession, let exerciseRest = model.restSeconds(after: index) else { return }
         let rest = SetEdit.ownRest(sets[SetEdit.span(sets, i).start]) ?? exerciseRest
         if rest > 0 { timer.start(rest, alerts: alerts) }
     }

@@ -409,6 +409,38 @@ it('writes the copy golden file', async () => {
   writeFileSync(process.env.COPY_OUT, JSON.stringify(out, null, 1) + '\n')
 })
 
+// Logging a past workout: begin from the history before its day, tick everything, file it.
+it('writes the backfill golden file', async () => {
+  if (!process.env.BACKFILL_IN) return
+  const B = await import('../../frontend/src/lib/backfill.js')
+  const { buildCombinedEntries, deriveSessionName } = await import('../../frontend/src/lib/session-merge.js')
+  const { buildCompletedWorkout } = await import('../../frontend/src/lib/finish-workout.js')
+  const { workoutVolume } = await import('../../frontend/src/lib/history.js')
+  const { rebuildPrHistory } = await import('../../frontend/src/lib/workout-date.js')
+  const cases = JSON.parse(readFileSync(process.env.BACKFILL_IN, 'utf8'))
+  setWeightDecimals(1)
+  const strip = v => JSON.parse(JSON.stringify(v, (k, x) => (k === '_ts' || k === 'topW' && x === null ? undefined : x)))
+  const out = cases.map(c => {
+    vi.useFakeTimers(); vi.setSystemTime(new Date('2026-11-15T12:00:00'))
+    const S = structuredClone(c.state)
+    const past = B.historyAsOf(S, { d: c.iso, start: c.start, replaceId: c.replaceId })
+    const { entries, routineIds, routines } = buildCombinedEntries(past, c.routineIds)
+    const A = { id: 'new', d: c.iso, start: c.start, routineIds, name: routines.length ? deriveSessionName(routines.map(r => r.name)) : 'Freestyle',
+      bw: null, cur: 0, entries, backfill: { durationMin: Math.max(1, c.dur), replaceId: c.replaceId } }
+    const begun = structuredClone(A)
+    if (c.note) A.note = c.note
+    A.entries = B.markAllSetsDone(A.entries)
+    const w = buildCompletedWorkout(A, { end: B.backfillEnd(A), prs: [] })
+    w.vol = workoutVolume(w)
+    const replaced = c.replaceId ? S.workouts.find(x => x.id === c.replaceId) : null
+    const touched = [...new Set([...(replaced?.entries || []), ...w.entries].map(e => e?.id).filter(id => id != null))]
+    const workouts = rebuildPrHistory(B.completeBackfill(S.workouts, A, w), touched, w)
+    vi.useRealTimers()
+    return { name: c.name, result: strip({ begun, workouts }) }
+  })
+  writeFileSync(process.env.BACKFILL_OUT, JSON.stringify(out, null, 1) + '\n')
+})
+
 // The workout CSV export of the history fixture.
 it('writes the CSV golden file', async () => {
   if (!process.env.CSV_OUT) return

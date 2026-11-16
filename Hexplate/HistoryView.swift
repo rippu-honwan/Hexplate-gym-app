@@ -6,6 +6,7 @@ struct HistoryView: View {
     @Environment(AppModel.self) private var model
     @State private var importing = false
     @State private var deleting: AppModel.Item?
+    @State private var logging = false
 
     var body: some View {
         NavigationStack {
@@ -38,11 +39,14 @@ struct HistoryView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu("More", systemImage: "ellipsis") {
+                        Button("Log a past workout", systemImage: "calendar.badge.plus") { logging = true }
+                            .disabled(model.active != nil)
                         Button("Import data", systemImage: "square.and.arrow.down") { importing = true }
                     }
                 }
             }
             .sheet(isPresented: $importing) { ImportView() }
+            .sheet(isPresented: $logging, onDismiss: { if model.isBackfill { model.showWorkout = true } }) { LogPastWorkoutSheet() }
             .alert("Delete this workout?", isPresented: Binding(get: { deleting != nil }, set: { if !$0 { deleting = nil } }), presenting: deleting) { item in
                 Button("Delete", role: .destructive) { model.deleteWorkout(id: item.id) }
                 Button("Cancel", role: .cancel) {}
@@ -136,5 +140,69 @@ private struct WorkoutDestination: ViewModifier {
                 WorkoutDetailView(workout: workout, history: history)
             }
         }
+    }
+}
+
+/// When, how long and which routine for a workout logged after the fact (sheets.jsx LogPastWorkout).
+/// A day that already has a workout asks whether to replace it or add a second one.
+struct LogPastWorkoutSheet: View {
+    @Environment(AppModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+    @State private var start = Calendar.current.date(bySettingHour: 18, minute: 0, second: 0,
+                                                     of: Calendar.current.date(byAdding: .day, value: -1, to: .now) ?? .now) ?? .now
+    @State private var minutes = 60
+    @State private var routineId = ""
+    @State private var sameDay: [AppModel.Object] = []
+
+    var body: some View {
+        let future = start.addingTimeInterval(Double(minutes) * 60) > .now
+        NavigationStack {
+            Form {
+                Section {
+                    DatePicker("Date", selection: $start, in: ...Date.now, displayedComponents: .date)
+                    DatePicker("Start time", selection: $start, displayedComponents: .hourAndMinute)
+                    Stepper("Duration: \(minutes) min", value: $minutes, in: 1...Backfill.maxDurationMin, step: 5)
+                } footer: {
+                    Text(future ? "That’s still in the future. Try an earlier start." : "Logged on the usual workout screen, without timers.")
+                        .foregroundStyle(future ? AnyShapeStyle(Color.red) : AnyShapeStyle(.secondary))
+                }
+                Picker("Routine", selection: $routineId) {
+                    Text("Freestyle").tag("")
+                    ForEach(routines.indices, id: \.self) { i in
+                        Text(routines[i]["name"]?.stringValue ?? "Routine").tag(routines[i]["id"]?.stringValue ?? "")
+                    }
+                }
+            }
+            .navigationTitle("Log a past workout")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Continue") {
+                        sameDay = Backfill.workoutsOn(model.root, Day.iso(start))
+                        if sameDay.isEmpty { go(nil) }
+                    }
+                    .disabled(future)
+                }
+            }
+            .confirmationDialog("There is already a workout on that day.", isPresented: choosing, titleVisibility: .visible) {
+                ForEach(sameDay.indices, id: \.self) { i in
+                    Button(replaceLabel(sameDay[i]), role: .destructive) { go(sameDay[i]["id"]?.stringValue) }
+                }
+                Button("Add as second workout") { go(nil) }
+                Button("Cancel", role: .cancel) {}
+            }
+        }
+    }
+
+    private var routines: [AppModel.Object] { (model.root["routines"]?.arrayValue ?? []).compactMap(\.object) }
+    private var choosing: Binding<Bool> { Binding(get: { !sameDay.isEmpty }, set: { if !$0 { sameDay = [] } }) }
+    private func replaceLabel(_ w: AppModel.Object) -> String {
+        sameDay.count > 1 ? "Replace · " + (w["name"]?.stringValue ?? "") : "Replace"
+    }
+
+    private func go(_ replaceId: String?) {
+        model.beginBackfill(start: start, minutes: minutes, routineIds: routineId.isEmpty ? [] : [routineId], replaceId: replaceId)
+        dismiss()
     }
 }
