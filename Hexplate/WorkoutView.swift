@@ -322,13 +322,8 @@ struct WorkoutView: View {
                 Text(unfinished > 0 ? "\(unfinished) planned \(unfinished == 1 ? "set is" : "sets are") not done and will be left out." : "Every set is done.")
             }
             .sheet(isPresented: $picking) { ExercisePicker { model.addExercise($0) } }
-            .alert(noteFor.flatMap { entry($0)?["note"] } == nil ? "Add note" : "Edit note", isPresented: present($noteFor), presenting: noteFor) { i in
-                TextField("Note", text: $noteText)
-                Button("Save") {
-                    let text = noteText.trimmingCharacters(in: .whitespacesAndNewlines)
-                    model.changeEntry(i) { $0["note"] = text.isEmpty ? nil : .string(text) }
-                }
-                Button("Cancel", role: .cancel) {}
+            .sheet(isPresented: present($noteFor)) {
+                if let i = noteFor, let e = entry(i) { ExerciseNoteSheet(index: i, entry: e) }
             }
             .alert("Could not save", isPresented: Binding(get: { editError != nil }, set: { if !$0 { editError = nil } }), presenting: editError) { _ in
                 Button("OK", role: .cancel) {}
@@ -445,7 +440,7 @@ struct WorkoutView: View {
 
     private func act(_ a: EntryAction) {
         switch a {
-        case .note(let i): noteText = entry(i)?["note"]?.stringValue ?? ""; noteFor = i
+        case .note(let i): noteFor = i
         case .remove(let i): removeFor = i
         case .swap: swapFor = a
         case .detail: detailFor = a
@@ -520,6 +515,18 @@ private struct EntrySection: View {
                 WorkoutMedia(id: id, compact: entry["sg"]?.stringValue.map { !$0.isEmpty } ?? false)
                     .listRowInsets(EdgeInsets())
                     .id(id)
+            }
+            // The plan's instruction, the standing note, last time's pin, then today's note
+            // (Workout.jsx): four notes with four lifetimes, each on its own line.
+            if let plan = target["note"]?.stringValue, !plan.isEmpty {
+                Label(plan, systemImage: "list.clipboard").font(.subheadline)
+            }
+            if let standing = ActiveEdit.standingNote(model.root, id) {
+                Label(standing, systemImage: "info.circle").font(.subheadline)
+            }
+            if let pin = ActiveEdit.pinnedNote(model.root, id) {
+                Label("From \(Day.date(pin.day)?.formatted(.dateTime.day().month().locale(Theme.locale)) ?? pin.day): \(pin.note)", systemImage: "pin")
+                    .font(.subheadline).foregroundStyle(.tint)
             }
             if let note = entry["note"]?.stringValue, !note.isEmpty {
                 Label(note, systemImage: "note.text").font(.subheadline)
@@ -999,5 +1006,64 @@ private struct FinishSummary: View {
             .toolbar { Button("Done") { dismiss() }.fontWeight(.semibold) }
         }
         .presentationDetents([.medium])
+    }
+}
+
+/// Two notes for one exercise (sheets.jsx ExerciseNote): today's, saved on the entry and
+/// optionally pinned for next time, and the standing one in `S.exNotes`, shown every session.
+/// While a saved workout is edited only today's note is offered.
+struct ExerciseNoteSheet: View {
+    @Environment(AppModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+    let index: Int
+    let entry: AppModel.Object
+    @State private var note = ""
+    @State private var pin = false
+    @State private var standing = ""
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    TextField("How it went, what to change.", text: $note, axis: .vertical).lineLimit(3...6)
+                    Toggle("Show this next time", isOn: $pin).disabled(note.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                } header: { Text("This session") } footer: { Text("Brings it up again the next time you train this exercise.") }
+                if !model.isEditingSaved {
+                    Section("Always for this exercise") {
+                        TextField("Seat height, pin position, a form cue.", text: $standing, axis: .vertical).lineLimit(2...4)
+                    }
+                }
+            }
+            .navigationTitle(model.catalog[entry["id"]?.stringValue ?? ""]?.displayName ?? "Note")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) { Button("Save") { save(); dismiss() } }
+            }
+        }
+        .presentationDetents([.medium, .large])
+        .onAppear {
+            note = entry["note"]?.stringValue ?? ""
+            pin = entry["notePin"] == .bool(true)
+            standing = ActiveEdit.standingNote(model.root, entry["id"]?.stringValue ?? "") ?? ""
+        }
+    }
+
+    private func save() {
+        let today = String(note.trimmingCharacters(in: .whitespacesAndNewlines).prefix(ActiveEdit.noteMax))
+        let always = String(standing.trimmingCharacters(in: .whitespacesAndNewlines).prefix(ActiveEdit.noteMax))
+        let (i, id, keep, pinned) = (index, entry["id"]?.stringValue ?? "", !model.isEditingSaved, pin)
+        model.change { s in
+            if var a = s["active"]?.object, var list = a["entries"]?.arrayValue, list.indices.contains(i), var e = list[i].object {
+                e["note"] = today.isEmpty ? nil : .string(today)
+                e["notePin"] = !today.isEmpty && pinned ? .bool(true) : nil
+                list[i] = .object(e); a["entries"] = .array(list); s["active"] = .object(a)
+            }
+            if keep {
+                var notes = s["exNotes"]?.object ?? [:]
+                notes[id] = always.isEmpty ? nil : .string(always)
+                s["exNotes"] = .object(notes)
+            }
+        }
     }
 }

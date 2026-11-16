@@ -348,3 +348,28 @@ public enum SetEdit {
         return next
     }
 }
+
+// MARK: Exercise notes (history.js pinnedNoteFor, exNoteFor)
+
+extension ActiveEdit {
+    /// The standing note for an exercise, true every session (`S.exNotes`). A synced copy may
+    /// carry it as `{text, _ts}`.
+    public static func standingNote(_ s: [String: JSONValue], _ exId: String) -> String? {
+        let v = s["exNotes"]?.object?[exId]
+        let text = (v?.stringValue ?? v?.object?["text"]?.stringValue ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        return text.isEmpty ? nil : text
+    }
+
+    /// The newest session note pinned "for next time" on this exercise, and its day. A workout
+    /// being edited is skipped: its own note is already in the editor.
+    public static func pinnedNote(_ s: [String: JSONValue], _ exId: String) -> (note: String, day: String)? {
+        let editing = s["active"]?.object?["editingWorkoutId"]
+        for w in (s["workouts"]?.arrayValue ?? []).compactMap(\.object).reversed() {
+            if let editing, editing != .null, .string(WorkoutEdit.key(w)) == editing { continue }
+            guard let e = (w["entries"]?.arrayValue ?? []).compactMap(\.object).first(where: { $0["id"]?.stringValue == exId }) else { continue }
+            let note = (e["note"]?.stringValue ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+            if !note.isEmpty, Session.truthy(e["notePin"]) { return (note, w["d"]?.stringValue ?? "") }
+        }
+        return nil
+    }
+}
