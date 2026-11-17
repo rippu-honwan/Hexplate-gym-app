@@ -525,3 +525,19 @@ it('writes the watch golden file', async () => {
   }
   writeFileSync(process.env.WATCH_OUT, JSON.stringify(out, null, 1) + '\n')
 })
+
+// The Live Activity: the state the Lock Screen shows, and where its Next exercise goes.
+it('writes the live activity golden file', async () => {
+  if (!process.env.LIVE_IN) return
+  const L = await import('../../frontend/src/lib/live-activity.js')
+  const cases = JSON.parse(readFileSync(process.env.LIVE_IN, 'utf8'))
+  setWeightDecimals(1)
+  const out = cases.map(c => {
+    const S = structuredClone(c.state)
+    const result = c.op === 'next'
+      ? L.nextExerciseTarget(S.active, c.from)
+      : L.buildLiveActivity(S, c.timer ?? null, c.hold ?? {})?.state ?? null
+    return { name: c.name, result: JSON.parse(JSON.stringify(result ?? null)) }
+  })
+  writeFileSync(process.env.LIVE_OUT, JSON.stringify(out, null, 1) + '\n')
+})

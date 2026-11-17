@@ -16,6 +16,7 @@ struct HexplateWidgets: WidgetBundle {
         TodayWidget()
         StreakWidget()
         ConfigurableWidget()
+        WorkoutLiveActivity()
     }
 }
 

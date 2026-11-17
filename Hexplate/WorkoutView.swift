@@ -154,6 +154,14 @@ extension AppModel {
         return (sg != nil ? target["sgRest"]?.numberValue : nil) ?? ActiveEdit.exerciseRest(target) ?? defaultRest
     }
 
+    /// The rest a ticked set starts: the set's own (its menu) or the exercise's; nil going on to a
+    /// superset partner, or in a past session.
+    func restAfter(entry e: Int, set i: Int) -> Double? {
+        guard !isPastSession, let exerciseRest = restSeconds(after: e) else { return nil }
+        let sets = activeEntries[e]["sets"]?.arrayValue ?? []
+        return (sets.indices.contains(i) ? SetEdit.ownRest(sets[SetEdit.span(sets, i).start]) : nil) ?? exerciseRest
+    }
+
     /// The profile's rest between sets (Settings → Rest timer).
     var defaultRest: Double { root["restSec"]?.numberValue ?? 90 }
 
@@ -679,10 +687,7 @@ private struct EntrySection: View {
 
     /// After a set: on to the superset partner, or rest.
     private func completed(set i: Int) {
-        // A set's own rest (its menu) wins over the exercise's; going on to a superset partner has none.
-        guard !model.isPastSession, let exerciseRest = model.restSeconds(after: index) else { return }
-        let rest = SetEdit.ownRest(sets[SetEdit.span(sets, i).start]) ?? exerciseRest
-        if rest > 0 { timer.start(rest, alerts: alerts) }
+        if let rest = model.restAfter(entry: index, set: i), rest > 0 { timer.start(rest, alerts: alerts) }
     }
 
     private var lastLine: String? {
