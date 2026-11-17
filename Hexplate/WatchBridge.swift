@@ -89,7 +89,7 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
     func openOnWatch() {
         let wc = WCSession.default
         guard WCSession.isSupported(), wc.activationState == .activated, wc.isPaired, wc.isWatchAppInstalled, Health.available else {
-            log.notice("watch app not opened: activated \(wc.activationState == .activated), paired \(wc.isPaired), installed \(wc.isWatchAppInstalled), health \(Health.available)")
+            note("watch app not opened: activated \(wc.activationState == .activated) paired \(wc.isPaired) installed \(wc.isWatchAppInstalled) health \(Health.available)")
             return
         }
         let config = HKWorkoutConfiguration()
@@ -97,10 +97,12 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
         config.locationType = .indoor
         Task {
             try? await Health.store.requestAuthorization(toShare: [.workoutType()], read: [])
+            note("open on watch: share workouts \(Health.store.authorizationStatus(for: .workoutType()) == .sharingAuthorized ? "allowed" : "not allowed")")
             do {
                 try await Health.store.startWatchApp(toHandle: config)
+                note("open on watch: asked")
             } catch {
-                log.error("watch app not opened: \(error.localizedDescription, privacy: .public)")
+                note("watch app not opened: \(error.localizedDescription)")
             }
         }
     }
