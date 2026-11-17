@@ -44,3 +44,37 @@ extension View {
         .scrollDismissesKeyboard(.interactively)
     }
 }
+
+/// A tap anywhere outside a text field closes the keyboard, the way people expect when the number
+/// pad's Done above it goes unseen. One recogniser per window, which sheets and covers share; it
+/// lets every tap through, so the button tapped still works.
+@MainActor
+final class KeyboardDismisser: NSObject, UIGestureRecognizerDelegate {
+    static let shared = KeyboardDismisser()
+
+    static func install() {
+        for case let scene as UIWindowScene in UIApplication.shared.connectedScenes {
+            for window in scene.windows where !(window.gestureRecognizers ?? []).contains(where: { $0.delegate === shared }) {
+                let tap = UITapGestureRecognizer(target: shared, action: #selector(close))
+                tap.cancelsTouchesInView = false
+                tap.delegate = shared
+                window.addGestureRecognizer(tap)
+            }
+        }
+    }
+
+    @objc private func close() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+
+    func gestureRecognizer(_ g: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        var view = touch.view
+        while let v = view {
+            if v is UITextField || v is UITextView { return false }
+            view = v.superview
+        }
+        return true
+    }
+
+    func gestureRecognizer(_ g: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith other: UIGestureRecognizer) -> Bool { true }
+}

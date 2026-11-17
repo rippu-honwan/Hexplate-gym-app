@@ -24,6 +24,7 @@ struct HexplateApp: App {
                 }
                 .task {
                     model.backupIfDue()
+                    KeyboardDismisser.install()
                     WatchBridge.shared.start(model: model, timer: timer)
                     WidgetSync.write(model)
                 }
