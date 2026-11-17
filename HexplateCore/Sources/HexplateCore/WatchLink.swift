@@ -188,6 +188,14 @@ public enum WatchLink {
         return ok
     }
 
+    /// A watch start that is the phone's running workout: started on the phone (not from a watch),
+    /// same routines, same day, within half an hour of each other.
+    static func adopts(_ a: Object, start ev: Object, wid: String, at: Double) -> Bool {
+        guard wid.hasPrefix("watch-"), let id = a["id"]?.stringValue, !id.hasPrefix("watch-"), let begun = n(a["start"]) else { return false }
+        let ids = { (o: Object) in Set((o["routineIds"]?.arrayValue ?? []).compactMap(\.stringValue)) }
+        return !ids(a).isEmpty && ids(a) == ids(ev) && a["d"]?.stringValue == Day.iso(at) && abs(begun - at) <= 30 * 60_000
+    }
+
     /// Applies one watch event to the document; what the app must still do comes back.
     public static func apply(_ ev: Object, to s: inout Object, today: String, now: Double, newId: String, catalog c: ExerciseCatalog) -> Effect {
         let active = s["active"]?.object
@@ -202,6 +210,14 @@ public enum WatchLink {
             let bw = n(ev["bw"]).flatMap { $0 > 0 && $0 < 700 ? $0 : nil }
             let start = at ?? now
             s["active"] = .object(Session.begin(s, routineIds: ids, bodyweight: bw, id: wid ?? newId, now: start, day: wid != nil && at != nil ? Day.iso(start) : today, catalog: c))
+        case "start":
+            // The watch started a workout, the phone started the same one before that start reached it
+            // (the phone app was asleep): one workout, not two. The phone's takes the watch's id, so
+            // the watch's sets land in it and the watch takes the phone's snapshots as its own.
+            if let wid, var a = active, adopts(a, start: ev, wid: wid, at: at ?? now) {
+                a["id"] = .string(wid)
+                s["active"] = .object(a)
+            }
         case "setDone":
             var f: Object = ["done": .bool(true)]
             for k in ["w", "r", "sec", "at"] { if let v = n(ev[k]) { f[k] = .number(v) } }
