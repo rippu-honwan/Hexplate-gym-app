@@ -247,6 +247,7 @@ private struct SlotEditor: View {
                     }), axis: .vertical)
                 }
             }
+            .keyboardDone()
             .navigationTitle(model.catalog[cfg["id"]?.stringValue ?? ""]?.displayName ?? "Exercise")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

@@ -162,6 +162,7 @@ struct SettingsView: View {
                     Text("JSON is the openGym format and holds everything. A copy is also kept automatically once a day (the last seven days).")
                 }
             }
+            .keyboardDone()
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { Button("Done") { dismiss() }.fontWeight(.semibold) }
@@ -274,6 +275,7 @@ private struct PlateCalculator: View {
                 }
             }
         }
+        .keyboardDone()
         .navigationTitle("Plate calculator")
         .onAppear { bar = unit == "lb" ? 45 : 20 }
     }

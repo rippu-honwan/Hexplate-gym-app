@@ -243,6 +243,7 @@ struct WeekEditor: View {
                         }
                     }
                 }
+                .keyboardDone()
                 .navigationTitle("Week \(index + 1) of \(weeks.count)")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }

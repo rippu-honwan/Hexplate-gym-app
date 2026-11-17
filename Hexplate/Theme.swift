@@ -27,3 +27,20 @@ enum Theme {
         })
     }
 }
+
+extension View {
+    /// A Done button above the keyboard, and dragging the list down hides it: the number pad
+    /// has no return key, so without these it never closes.
+    func keyboardDone() -> some View {
+        toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("Done") {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
+                .fontWeight(.semibold)
+            }
+        }
+        .scrollDismissesKeyboard(.interactively)
+    }
+}
