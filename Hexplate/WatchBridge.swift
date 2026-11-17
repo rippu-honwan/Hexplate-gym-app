@@ -38,22 +38,48 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
 
     @MainActor
     func send() {
-        guard WCSession.isSupported(), let model, WCSession.default.activationState == .activated,
-              WCSession.default.isPaired, WCSession.default.isWatchAppInstalled else { return }
+        let wc = WCSession.default
+        guard WCSession.isSupported(), let model else { return }
+        guard wc.activationState == .activated, wc.isPaired, wc.isWatchAppInstalled else {
+            note("send skipped: activated \(wc.activationState == .activated) paired \(wc.isPaired) installed \(wc.isWatchAppInstalled)")
+            return
+        }
         let ends = timer?.end.flatMap { timer?.kind == .rest ? $0.timeIntervalSince1970 * 1000 : nil }
         let snap = WatchLink.snapshot(model.root, today: model.today, restEndsAt: ends, health: UserDefaults.standard.bool(forKey: "health"), catalog: model.catalog)
         guard let data = try? JSONEncoder().encode(JSONValue.object(snap)), let json = String(data: data, encoding: .utf8), json != lastSent else { return }
+        let a = snap["active"]?.object
+        let done = (a?["entries"]?.arrayValue ?? []).reduce(0) { $0 + ($1.object?["sets"]?.arrayValue ?? []).filter { $0.object?["done"] == .bool(true) }.count }
+        let what = a.map { "w=\($0["id"]?.stringValue ?? "-") done=\(done)" } ?? "no workout"
         let d = UserDefaults.standard
         d.set(model.active?["id"]?.stringValue, forKey: Self.activeKey)
         d.set(model.now, forKey: Self.activeAtKey)
         let payload: [String: Any] = ["snapshot": json, "at": Date().timeIntervalSince1970]
         do {
-            try WCSession.default.updateApplicationContext(payload)
+            try wc.updateApplicationContext(payload)
             lastSent = json
         } catch {
+            note("snap -> \(what) failed: \(error.localizedDescription) (\(json.utf8.count) bytes)")
             return
         }
-        if WCSession.default.isReachable { WCSession.default.sendMessage(payload, replyHandler: nil, errorHandler: nil) }
+        note("snap -> \(what) reachable=\(wc.isReachable) app=\(UIApplication.shared.applicationState == .active ? "open" : "background")")
+        if wc.isReachable {
+            wc.sendMessage(payload, replyHandler: nil) { [weak self] error in self?.note("snap message failed: \(error.localizedDescription)") }
+        }
+    }
+
+    // MARK: The link's own log
+
+    /// Last 500 lines of what went between phone and watch (Application Support/Hexplate/watch-link.log),
+    /// the phone's half of the watch's watchlog: when a snapshot went out or why not, each event that came in.
+    private static var linkLog: URL { URL.applicationSupportDirectory.appending(path: "Hexplate/watch-link.log") }
+    private nonisolated func note(_ line: String) {
+        let f = DateFormatter(); f.dateFormat = "MM-dd HH:mm:ss.SSS"
+        let stamped = "\(f.string(from: Date())) \(line)"
+        log.info("\(stamped, privacy: .public)")
+        queue.async {
+            let old = (try? String(contentsOf: Self.linkLog, encoding: .utf8))?.split(separator: "\n").suffix(499).map(String.init) ?? []
+            try? (old + [stamped]).joined(separator: "\n").appending("\n").write(to: Self.linkLog, atomically: true, encoding: .utf8)
+        }
     }
 
     /// A workout started on the phone opens the watch app (HealthKit launches it with a workout
@@ -91,6 +117,8 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
                 Self.writeEvents(events)
             }
         }
+        let o = ev.object ?? [:]
+        note("ev <- \(o["type"]?.stringValue ?? "?") w=\(o["wid"]?.stringValue ?? "-") e\(o["entryIdx"]?.numberValue.map { String(Int($0)) } ?? "-")s\(o["setIdx"]?.numberValue.map { String(Int($0)) } ?? "-")")
         Task { @MainActor in self.drain() }
     }
 
@@ -103,8 +131,12 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
         var applied = UserDefaults.standard.stringArray(forKey: Self.appliedKey) ?? []
         for ev in events.compactMap(\.object) {
             guard let id = ev["id"]?.stringValue, !applied.contains(id) else { continue }
-            log.info("watch event \(ev["type"]?.stringValue ?? "?", privacy: .public)")
+            let before = model.active?["id"]?.stringValue
             model.applyWatch(ev, timer: timer)
+            let wid = ev["wid"]?.stringValue
+            let after = model.active?["id"]?.stringValue
+            // A set for a workout the phone does not run is the case that lost a whole workout once.
+            note("applied \(ev["type"]?.stringValue ?? "?") w=\(wid ?? "-") phone=\(before ?? "none")\(after != before ? " -> \(after ?? "none")" : "")\(wid != nil && wid != before && wid != after ? " NOT OURS" : "")")
             applied.append(id)
         }
         UserDefaults.standard.set(Array(applied.suffix(300)), forKey: Self.appliedKey)
@@ -136,6 +168,7 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
     }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        note("activated \(activationState == .activated)\(error.map { " error: \($0.localizedDescription)" } ?? "")")
         Task { @MainActor in self.lastSent = nil; self.drain(); self.send() }
     }
     func sessionWatchStateDidChange(_ session: WCSession) {
