@@ -134,4 +134,18 @@ public enum LiveActivity {
         guard Session.mode(cfg, c) == "reps", !["upper legs", "lower legs"].contains(c[id]?.bodyPart ?? "") else { return nil }
         return view(s, entries, p, c, ProfileSettings(s), line).object
     }
+
+    /// MyGym: the exercises the Start set bar can switch to: each with an open set the watch
+    /// records (reps, not legs), as (entry index, name).
+    public static func watchChoices(_ s: Object, catalog c: ExerciseCatalog) -> [(entry: Int, name: String)] {
+        let entries = s["active"]?.object?["entries"]?.arrayValue ?? []
+        return entries.indices.compactMap { i in
+            guard let e = entries[i].object, let id = e["id"]?.stringValue,
+                  sets(entries[i]).contains(where: { !Session.truthy($0.object?["done"]) }) else { return nil }
+            var cfg = e["target"]?.object ?? [:]
+            cfg["id"] = .string(id)
+            guard Session.mode(cfg, c) == "reps", !["upper legs", "lower legs"].contains(c[id]?.bodyPart ?? "") else { return nil }
+            return (i, c[id]?.displayName ?? cfg["name"]?.stringValue ?? id)
+        }
+    }
 }

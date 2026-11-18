@@ -44,6 +44,8 @@ struct ActiveWorkout: Codable, Equatable {
     var rest: RestInfo?
     /// MyGym: the phone's Start set, while fresh.
     var startSet: StartSetInfo?
+    /// MyGym: the phone's Done for the set this watch records, while fresh.
+    var doneSet: StartSetInfo?
     var entries: [Entry]
     /// When it started (ms since 1970), for the summary's duration.
     var start: Double?

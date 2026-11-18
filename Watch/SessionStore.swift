@@ -113,8 +113,8 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
     /// The scale the phone's profile logs, when it logs one ("rpe" / "rir"): the set page offers it.
     // MyGym: RIR on every set unless the profile picked RPE (the rep counter's fatigue model needs
     // "how many were left" as its label, docs/dev/rep-counter.md).
-    // MyGym: no per-set effort on the watch any more; the whole workout is rated once at its end.
-    var effortKind: String? { nil }
+    // MyGym: asked after Done on every work set (RirView), RIR unless the profile picked RPE.
+    var effortKind: String? { Effort.notches(state.settings.effort) != nil ? state.settings.effort : "rir" }
     /// A hold running: when it ends, and when it started.
     @Published private(set) var holdEndsAt: Date?
     @Published private(set) var holdStartedAt: Date?
@@ -303,6 +303,26 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
     private var recordingSet: (Int, Int)?
     /// The last phone Start set acted on (ms), so one press starts one set.
     private var lastPhoneStart = 0.0
+    private var lastPhoneDone = 0.0
+
+    /// MyGym: Done was pressed (here or on the phone) at this time; the set is logged once its RIR
+    /// is answered (RirView), and the rest starts then. The numbers are held as they were at Done.
+    @Published private(set) var askRir: Date?
+    private var heldNumbers: (w: Double, r: Double)?
+
+    /// Whether Done on this set asks for RIR first: work sets of reps exercises, once per set (the
+    /// second side of a per-side set).
+    private func asksRir(_ e: Entry, _ si: Int) -> Bool {
+        effortKind != nil && !e.isCardio && !e.isTimed && !e.sets[si].warmup && e.sets[si].sideUp != "L"
+    }
+
+    /// The RIR answered: the set is logged as at Done, with it.
+    func answerRir(_ v: Double) {
+        guard let at = askRir else { return }
+        rate(v)
+        askRir = nil
+        completeSet(at: at, rated: true)
+    }
 
     func startSet() {
         guard recordingSince == nil, let e = entry, let si = setIndex, countsSet(e, si) else { return }
@@ -619,11 +639,22 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
                 self.lastPhoneStart = req.at
                 if Date().timeIntervalSince1970 * 1000 - req.at < 60_000, self.recordingSince == nil,
                    let w = next.workout, w.entries.indices.contains(req.entryIdx) {
-                    if self.entryIndex != req.entryIdx { self.open(entry: req.entryIdx) }
+                    self.open(entry: req.entryIdx)
                     if self.setIndex != req.setIdx, w.entries[req.entryIdx].sets.indices.contains(req.setIdx) {
                         self.pick(set: req.setIdx, in: req.entryIdx)
                     }
                     self.startSet()
+                }
+            }
+            // MyGym: Done pressed on the phone: Done here on that exercise's set, so the reps this
+            // watch counted (and the RIR asked next) are what the phone logs. The exercise only:
+            // when the two disagree on the set number, the watch's set (in its event) wins.
+            if let req = snap.active?.doneSet, next.workout?.id == snap.active?.id, req.at > self.lastPhoneDone {
+                self.lastPhoneDone = req.at
+                if Date().timeIntervalSince1970 * 1000 - req.at < 60_000, self.askRir == nil,
+                   let w = next.workout, w.entries.indices.contains(req.entryIdx) {
+                    self.open(entry: req.entryIdx)
+                    self.completeSet(auto: true)
                 }
             }
             if let rest = snap.active?.rest, next.workout?.id == snap.active?.id {
@@ -680,19 +711,29 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
 
     /// The set up next, done: the numbers on the screen (a hold's seconds as it lasted, one side of
     /// a per-side set, nothing for cardio), then where SessionCore.next says, with a rest when due.
-    func completeSet(sec heldFor: Double? = nil, auto: Bool = false) {
+    func completeSet(sec heldFor: Double? = nil, auto: Bool = false, at doneAt: Date? = nil, rated: Bool = false) {
         guard let w = workout, let e = entry, let si = setIndex else { return }
         // A double tap on Done (a sweaty finger) is one set, not this one and the next.
-        if heldFor == nil, let last = lastTick, Date().timeIntervalSince(last) < 0.7 { return }
+        if !rated, heldFor == nil, let last = lastTick, Date().timeIntervalSince(last) < 0.7 { return }
         let doneBefore = lastTick
         // In a superset the page flips to the partner: a slower second tap would log its set.
-        if heldFor == nil, !auto, !touchAllowed { return }
-        lastTick = Date()
+        if !rated, heldFor == nil, !auto, !touchAllowed { return }
+        // MyGym: RIR first; the numbers stay as they are now.
+        if !rated, heldFor == nil, asksRir(e, si) {
+            lastTick = Date()
+            heldNumbers = (weight, recordingSince != nil && reps == 0 ? (repGoal ?? reps) : reps)
+            askRir = Date()
+            Haptics.done()
+            return
+        }
+        if rated, let h = heldNumbers { weight = h.w; reps = h.r }
+        heldNumbers = nil
+        lastTick = doneAt ?? Date()
         if !auto { note("done") }
         restOverSince = nil
         ackRestOver()
         let ei = entryIndex
-        let now = Date()
+        let now = doneAt ?? Date()
         let setFrom = setStartedAt
         closeRest(at: now)
         let hr = health.stats(from: setFrom, to: now)
@@ -1349,6 +1390,9 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
         }
         // Queued by the system and delivered, in order, even when the phone app is not running.
         session.transferUserInfo(["event": json, "tries": tries])
+        // Also right away when the phone is in reach (the queue can take minutes); the phone
+        // applies each event id once, so the copy that comes second does nothing.
+        if session.isReachable { session.sendMessage(["event": json], replyHandler: nil, errorHandler: nil) }
         updateLink()
     }
 
@@ -1468,6 +1512,7 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
             switch screen {
             case "set", "weight", "rest", "offline", "edit-weight", "edit-reps": self.picked[0] = 2
             case "rate": self.rateWorkout = "demo"
+            case "rir": self.askRir = Date()
             case "hold": self.state.entryIndex = 1
             case "bodyweight": self.state.entryIndex = 2
             case "side": self.state.entryIndex = 3

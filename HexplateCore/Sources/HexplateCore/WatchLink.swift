@@ -92,7 +92,7 @@ public enum WatchLink {
 
     /// What the watch shows and runs (watch-sync.js buildSnapshot); `restEndsAt` in ms.
     /// `startSet`: MyGym's Start set pressed on the phone ({entryIdx, setIdx, at}), sent while fresh.
-    public static func snapshot(_ s: Object, today: String, restEndsAt: Double?, health: Bool, lang: String = "en", startSet: Object? = nil, catalog c: ExerciseCatalog) -> Object {
+    public static func snapshot(_ s: Object, today: String, restEndsAt: Double?, health: Bool, lang: String = "en", startSet: Object? = nil, doneSet: Object? = nil, catalog c: ExerciseCatalog) -> Object {
         let unit = s["unit"] == .string("lb") ? "lb" : "kg"
         let restSec = n(s["restSec"]) ?? 0
         var snap: Object = ["v": .number(1), "unit": .string(unit), "restSec": .number(restSec), "ready": ready(s, today: today, catalog: c), "active": .null]
@@ -113,6 +113,7 @@ public enum WatchLink {
         ]
         if let start = n(a["start"]), start != 0 { active["start"] = .number(start) }
         if let startSet { active["startSet"] = .object(startSet) }
+        if let doneSet { active["doneSet"] = .object(doneSet) }
         snap["active"] = .object(active)
         return snap
     }

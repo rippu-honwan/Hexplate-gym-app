@@ -128,6 +128,8 @@ struct RootView: View {
         Group {
             if store.rateWorkout != nil {
                 EffortRatingView()
+            } else if store.askRir != nil {
+                RirView()
             } else if store.weighInFor != nil {
                 WeighInView()
             } else if let summary = store.summary {
@@ -719,7 +721,12 @@ struct ExercisePage: View {
                 if current, SessionStore.demoScreen == "edit-reps" { editing = .reps }
             }
             // Counting: the crown is on the reps, to put the count right without a tap first.
-            .onChange(of: store.recordingSince != nil) { on in if on { crown = .reps } }
+            // ponytail: a short wait, as focus set while the page appears (phone Start) is dropped.
+            .task(id: store.recordingSince) {
+                guard current, store.recordingSince != nil else { return }
+                try? await Task.sleep(for: .milliseconds(400))
+                crown = .reps
+            }
             .sheet(item: $editing) { field in
                 ValueEditor(field: field, entry: entry, unit: entry.weightUnit(w.unit))
             }
@@ -818,14 +825,7 @@ struct ExercisePage: View {
     /// Done in the middle; with a profile that rates effort, the RPE / RIR button at its left (the
     /// same room again on the right keeps Done centred under the numbers).
     @ViewBuilder private func primaryButton(_ entry: Entry, current: Bool) -> some View {
-        if let kind = store.effortKind, !entry.isCardio, let si = store.setIndex(in: index), !entry.sets[si].warmup {
-            HStack(spacing: 6) {
-                EffortButton(kind: kind, value: current ? store.effort : nil) { if current { editing = .effort } }
-                    .disabled(!current)
-                doneButton(entry, current: current)
-                Color.clear.frame(width: Theme.tap, height: Theme.tap).accessibilityHidden(true)
-            }
-        } else if entry.isTimed || entry.isCardio {
+        if entry.isTimed || entry.isCardio {
             doneButton(entry, current: current)
         } else {
             // MyGym: − and + for the number the crown is on, either side of Start set / Done.
@@ -1643,5 +1643,53 @@ struct EffortRatingView: View {
         .accessibilityElement(children: .combine)
         .accessibilityValue(Text(Self.words[n - 1]))
         .accessibilityAdjustableAction { d in level = min(5, max(1, level + (d == .increment ? 1 : -1))) }
+    }
+}
+
+/// MyGym: after Done on a work set, how many more reps were left in it (RIR, or RPE when the
+/// profile logs that), on the crown at low sensitivity. Not skippable: the rest starts once the
+/// check is pressed.
+struct RirView: View {
+    @EnvironmentObject var store: SessionStore
+    @State private var position = 0.0
+
+    var body: some View {
+        let kind = store.effortKind ?? "rir"
+        let notches = Effort.notches(kind) ?? [5, 4, 3, 2, 1, 0]
+        let i = min(notches.count - 1, max(0, Int(position.rounded())))
+        let v = notches[i]
+        VStack(spacing: 6) {
+            HStack {
+                Text(kind == "rpe" ? "How hard was the set?" : "Reps left in the tank?").font(.headline).lineLimit(2)
+                Spacer()
+                Button { store.answerRir(v) } label: {
+                    Image(systemName: "checkmark").font(.headline).foregroundStyle(Theme.ink)
+                        .frame(width: 36, height: 36).background(Circle().fill(Theme.accent))
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(Text("Save"))
+            }
+            Spacer(minLength: 0)
+            Text(verbatim: kind == "rir" && v >= 5 ? "5+" : formatNumber(v))
+                .font(.system(size: 64, weight: .bold, design: .rounded)).monospacedDigit()
+                .foregroundStyle(Effort.color(kind, v))
+            Text(verbatim: Effort.name(kind)).font(.caption.weight(.semibold)).foregroundStyle(.secondary)
+            Spacer(minLength: 0)
+            HStack(spacing: 4) {
+                ForEach(notches.indices, id: \.self) { k in
+                    Capsule().fill(k == i ? Theme.accent : Color.white.opacity(0.2)).frame(height: 6)
+                        .contentShape(Rectangle().inset(by: -10))
+                        .onTapGesture { position = Double(k) }
+                }
+            }
+        }
+        .padding(.horizontal, 4)
+        .focusable()
+        .digitalCrownRotation($position, from: 0, through: Double(notches.count - 1), by: 1, sensitivity: .low,
+                              isContinuous: false, isHapticFeedbackEnabled: true)
+        .onAppear { position = Double(notches.firstIndex(of: Effort.start(kind)) ?? 0) }
+        .accessibilityElement(children: .combine)
+        .accessibilityValue(Text(verbatim: "\(Effort.name(kind)) \(formatNumber(v))"))
+        .accessibilityAdjustableAction { d in position = min(Double(notches.count - 1), max(0, position + (d == .increment ? 1 : -1))) }
     }
 }

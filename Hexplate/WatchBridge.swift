@@ -46,10 +46,12 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
         }
         let ends = timer?.end.flatMap { timer?.kind == .rest ? $0.timeIntervalSince1970 * 1000 : nil }
         // The phone's Start set, for a minute (the watch acts on it once).
-        let ask = model.watchStart.flatMap { model.now - $0.at < 60_000 ? $0 : nil }
-            .map { ["entryIdx": JSONValue.number(Double($0.entryIdx)), "setIdx": .number(Double($0.setIdx)), "at": .number($0.at)] }
+        let fresh = { (x: AppModel.WatchSet?) -> [String: JSONValue]? in
+            x.flatMap { model.now - $0.at < 60_000 ? $0 : nil }
+                .map { ["entryIdx": .number(Double($0.entryIdx)), "setIdx": .number(Double($0.setIdx)), "at": .number($0.at)] }
+        }
         let snap = WatchLink.snapshot(model.root, today: model.today, restEndsAt: ends, health: UserDefaults.standard.bool(forKey: "health"),
-                                      lang: "zh-TW", startSet: ask, catalog: model.catalog)
+                                      lang: "zh-TW", startSet: fresh(model.watchStart), doneSet: fresh(model.watchDone), catalog: model.catalog)
         guard let data = try? JSONEncoder().encode(JSONValue.object(snap)), let json = String(data: data, encoding: .utf8), json != lastSent else { return }
         let a = snap["active"]?.object
         let done = (a?["entries"]?.arrayValue ?? []).reduce(0) { $0 + ($1.object?["sets"]?.arrayValue ?? []).filter { $0.object?["done"] == .bool(true) }.count }
@@ -129,6 +131,11 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
         Task { @MainActor in self.drain() }
     }
 
+    /// The same event sent as a message when the phone was in reach (the user info copy follows).
+    func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
+        self.session(session, didReceiveUserInfo: message)
+    }
+
     /// Applies the queued events (each once) and empties the queue.
     @MainActor
     func drain() {
@@ -201,6 +208,7 @@ extension AppModel {
             let e = ev["entryIdx"]?.numberValue, i = ev["setIdx"]?.numberValue
             watchRecording = ev["on"] == .bool(true) && e != nil && i != nil ? WatchSet(entryIdx: Int(e!), setIdx: Int(i!), at: ev["at"]?.numberValue ?? now) : nil
             watchStart = nil
+            if ev["on"] != .bool(true) { watchDone = nil }
         }
         var effect = WatchLink.Effect.none
         let (day, at, id) = (today, now, RoutineOps.newId(now: now))

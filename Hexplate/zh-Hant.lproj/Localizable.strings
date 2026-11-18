@@ -437,3 +437,5 @@
 "Stuck for {0} sessions. Hold {1} {2} and use {3} reps." = "已停滯 {0} 次。維持 {1} {2}，改做 {3} 下。";
 "Last" = "上次";
 "best" = "最佳";
+"Waiting for the watch…" = "等緊手錶…";
+"Exercise for the watch" = "手錶要做嘅動作";

@@ -3,13 +3,13 @@ import SwiftUI
 import WatchConnectivity
 
 /// MyGym: the workout screen's bottom bar while an Apple Watch is paired (WatchStartBar.jsx).
-/// Start set asks the watch to record the next set (its motion for the rep counter), so the
-/// watch's own Start need not be pressed; while the watch records, Done ticks that set here.
+/// Start asks the watch to open the exercise and record its next set (motion for the rep
+/// counter); while it records, Done asks the watch to press its own Done, so the reps it counted
+/// and the RIR asked there are what gets logged. The exercise name is a menu to pick another one.
 /// Hidden during a rest or hold (the rest bar has the bottom) and for sets the watch does not
 /// record (timed, cardio, legs).
 struct WatchStartBar: View {
     @Environment(AppModel.self) private var model
-    @Environment(RestTimer.self) private var timer
 
     static var watchReady: Bool {
         // ponytail: -HexplateFakeWatch YES shows the bar in the simulator for screenshots.
@@ -19,32 +19,45 @@ struct WatchStartBar: View {
     }
 
     var body: some View {
-        if !model.isPastSession, Self.watchReady, let next = LiveActivity.watchSet(model.root, catalog: model.catalog, setLine: LiveActivitySync.setLine),
+        if !model.isPastSession, Self.watchReady,
+           let next = LiveActivity.watchSet(model.root, catalog: model.catalog, setLine: LiveActivitySync.setLine),
            let e = next["entryIdx"]?.numberValue.map(Int.init), let i = next["setIdx"]?.numberValue.map(Int.init) {
-            let name = next["exName"]?.stringValue ?? ""
             let line = next["setLine"]?.stringValue ?? ""
-            let rec = model.watchRecording.flatMap { $0.entryIdx == e && $0.setIdx == i && model.now - $0.at < 15 * 60_000 ? $0 : nil }
-            let waiting = model.watchStart.map { $0.entryIdx == e && $0.setIdx == i && model.now - $0.at < 5_000 } ?? false
+            let fresh = { (x: AppModel.WatchSet?, ms: Double) in x.map { $0.entryIdx == e && $0.setIdx == i && model.now - $0.at < ms } ?? false }
+            // ponytail: Start alone shows Done, so a late "recording" event from the watch never
+            // hides it; a Done the watch did not start is ignored there.
+            let recording = fresh(model.watchRecording, 15 * 60_000) || fresh(model.watchStart, 15 * 60_000)
+            let ending = fresh(model.watchDone, 30_000)
             HStack(spacing: 12) {
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(rec != nil ? "Recording on the watch" : waiting ? "Starting on the watch…" : "Next on the watch")
-                        .font(.caption.weight(.semibold)).foregroundStyle(rec != nil ? Color.accentColor : .secondary)
-                    Text(verbatim: "\(name) · \(line)").font(.subheadline).lineLimit(1)
+                    Text(ending ? "Waiting for the watch…" : recording ? "Recording on the watch" : "Next on the watch")
+                        .font(.caption.weight(.semibold)).foregroundStyle(recording ? Color.accentColor : .secondary)
+                    Menu {
+                        Picker("Exercise for the watch", selection: Binding(get: { e }, set: { to in model.changeActive { $0["cur"] = .number(Double(to)) } })) {
+                            ForEach(LiveActivity.watchChoices(model.root, catalog: model.catalog), id: \.entry) { Text($0.name).tag($0.entry) }
+                        }
+                    } label: {
+                        HStack(spacing: 4) {
+                            Text(verbatim: "\(next["exName"]?.stringValue ?? "") · \(line)").font(.subheadline).lineLimit(1)
+                            Image(systemName: "chevron.up.chevron.down").font(.caption2).foregroundStyle(.secondary)
+                        }
+                    }
+                    .disabled(recording)
                 }
                 Spacer(minLength: 8)
-                if rec != nil {
+                if recording {
                     Button("Done", systemImage: "checkmark") {
-                        model.watchRecording = nil
-                        model.tick(entry: e, set: i, at: model.now, timer: timer)
+                        model.watchDone = .init(entryIdx: e, setIdx: i, at: model.now)
+                        WatchBridge.shared.send()
                     }
                     .buttonStyle(.borderedProminent)
+                    .disabled(ending)
                 } else {
                     Button("Start", systemImage: "applewatch") {
                         model.watchStart = .init(entryIdx: e, setIdx: i, at: model.now)
                         WatchBridge.shared.send()
                     }
                     .buttonStyle(.borderedProminent)
-                    .disabled(waiting)
                 }
             }
             .foregroundStyle(.primary)

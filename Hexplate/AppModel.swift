@@ -38,6 +38,7 @@ final class AppModel {
     var tab = "today"
     /// MyGym: Start set pressed on the phone, and the set the watch says it records.
     var watchStart: WatchSet?
+    var watchDone: WatchSet?
     var watchRecording: WatchSet?
 
     struct WatchSet: Equatable {
