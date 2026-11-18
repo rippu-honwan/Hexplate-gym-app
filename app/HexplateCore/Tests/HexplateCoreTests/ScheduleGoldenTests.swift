@@ -3,7 +3,7 @@ import XCTest
 
 /// Holds Schedule to what the original JavaScript reads and does for the same plans
 /// (queue.js, rotation.js, week-left.js, history.js). The golden file is written by
-/// native/scripts/golden.sh; never edit it by hand.
+/// app/scripts/golden.sh; never edit it by hand.
 final class ScheduleGoldenTests: XCTestCase {
     typealias Object = [String: JSONValue]
     struct Case: Decodable { let name: String; let state: JSONValue; let today: String; let now: Double; let ops: [[JSONValue]] }

@@ -1,6 +1,6 @@
 // Writes HexplateCore's merge-cases.json: pairs of (local, server) copies made from the history
 // fixture with real stamped edits (stampChange), the way two devices drift apart.
-//   node native/scripts/merge-cases.mjs
+//   node app/scripts/merge-cases.mjs
 import fs from 'node:fs'
 import { stampChange } from '../../frontend/src/lib/sync-merge.js'
 const FIX = new URL('../HexplateCore/Tests/HexplateCoreTests/Fixtures/', import.meta.url)

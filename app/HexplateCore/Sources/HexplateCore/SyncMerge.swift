@@ -2,7 +2,7 @@ import Foundation
 import JavaScriptCore
 
 /// The openGym merge (frontend/src/lib/sync-merge.js mergeStates, sync-changes.js countChanges),
-/// run as it is in JavaScriptCore from the bundle native/scripts/bundle-sync.sh writes
+/// run as it is in JavaScriptCore from the bundle app/scripts/bundle-sync.sh writes
 /// (Resources/sync.js). A wrong merge overwrites the server's copy, so Hexplate runs the exact
 /// code every other openGym client runs; MergeGoldenTests checks the bundle against the JS.
 ///

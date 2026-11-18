@@ -1,7 +1,7 @@
 # Notices
 
-Hexplate is a native rewrite of the openGym app (https://github.com/duarte-santos/openGym is
-the upstream; this project grew out of the fork rippu-honwan/maxgym). Ported logic, the
+Hexplate is a native rewrite of the openGym app (upstream: https://github.com/DuarteSantos8/openGym;
+this project grew out of the fork rippu-honwan/mygym). Ported logic, the
 exercise catalogue, the body map geometry and the bundled merge script (`app/HexplateCore/
 Sources/HexplateCore/Resources/sync.js`) come from openGym, so the whole project is licensed
 under the **GNU AGPL v3.0** (see [LICENSE](LICENSE)). openGym's own notices follow.

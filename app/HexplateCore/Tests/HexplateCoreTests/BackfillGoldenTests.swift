@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// Holds Backfill to the original JavaScript (backfill.js and the past branch of doFinishWorkout).
-/// Cases: native/scripts/backfill-cases.py; golden: golden.sh.
+/// Cases: app/scripts/backfill-cases.py; golden: golden.sh.
 final class BackfillGoldenTests: XCTestCase {
     struct Golden: Decodable { let name: String; let result: JSONValue }
 

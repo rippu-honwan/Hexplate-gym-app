@@ -1,4 +1,4 @@
-// Bundled by native/scripts/bundle-sync.sh into HexplateCore's sync.js: the openGym merge, run
+// Bundled by app/scripts/bundle-sync.sh into HexplateCore's sync.js: the openGym merge, run
 // as it is inside JavaScriptCore (HexplateCore SyncMerge.swift).
 import { mergeStates } from '../../frontend/src/lib/sync-merge.js'
 import { countChanges, syncFingerprint } from '../../frontend/src/lib/sync-changes.js'

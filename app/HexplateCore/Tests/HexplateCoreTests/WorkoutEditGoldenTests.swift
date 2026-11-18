@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// Holds WorkoutEdit to the original JavaScript (session-edit.js). Cases:
-/// native/scripts/workout-edit-cases.py; golden: golden.sh.
+/// app/scripts/workout-edit-cases.py; golden: golden.sh.
 final class WorkoutEditGoldenTests: XCTestCase {
     struct Golden: Decodable { let name: String; let result: JSONValue }
 

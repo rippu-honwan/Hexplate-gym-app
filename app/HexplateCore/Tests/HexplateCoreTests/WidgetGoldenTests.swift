@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// Holds WidgetData to the original JavaScript (widgets.js buildWidgetSnapshot, streak.js), on its
-/// numbers and structure. Cases: native/scripts/widget-cases.py; golden: golden.sh.
+/// numbers and structure. Cases: app/scripts/widget-cases.py; golden: golden.sh.
 final class WidgetGoldenTests: XCTestCase {
     struct Golden: Decodable { let name: String; let result: JSONValue }
     static let words: Set<String> = ["weekday", "labels", "line", "bestLine", "monthLine", "currentText", "goalText", "nowText", "prevText", "value", "challenges", "level", "accent", "ink"]

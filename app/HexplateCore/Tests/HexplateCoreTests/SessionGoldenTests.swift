@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// Holds Session to the original JavaScript (session-start.js, progression.js, finish-workout.js).
-/// Cases come from native/scripts/session-cases.py, the golden file from golden.sh.
+/// Cases come from app/scripts/session-cases.py, the golden file from golden.sh.
 final class SessionGoldenTests: XCTestCase {
     struct Golden: Decodable { let name: String; let result: JSONValue }
 

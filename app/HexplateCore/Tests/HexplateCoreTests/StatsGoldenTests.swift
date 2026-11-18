@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// Holds Stats and Body to the original JavaScript (onerm.js, strength-level.js,
-/// muscle-targets.js, weigh-ins.js). Cases: native/scripts/stats-cases.py; golden: golden.sh.
+/// muscle-targets.js, weigh-ins.js). Cases: app/scripts/stats-cases.py; golden: golden.sh.
 final class StatsGoldenTests: XCTestCase {
     struct Golden: Decodable { let name: String; let result: JSONValue }
 

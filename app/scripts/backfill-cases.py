@@ -1,5 +1,5 @@
 # Writes HexplateCore's log-a-past-workout golden cases (synthetic, no personal data).
-# Run: python3 native/scripts/backfill-cases.py > native/HexplateCore/Tests/HexplateCoreTests/Fixtures/backfill-cases.json
+# Run: python3 app/scripts/backfill-cases.py > app/HexplateCore/Tests/HexplateCoreTests/Fixtures/backfill-cases.json
 # Each case: begin a session logged into the past, tick every set, finish it. Day starts are
 # given as epoch ms so the cases do not depend on the time zone.
 import json

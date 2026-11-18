@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// SyncMerge runs the bundled JS: this holds the bundle (and the trip through JavaScriptCore) to
-/// what frontend/src/lib/sync-merge.js gives under Node. Cases: native/scripts/merge-cases.mjs;
+/// what frontend/src/lib/sync-merge.js gives under Node. Cases: app/scripts/merge-cases.mjs;
 /// golden: golden.sh.
 final class MergeGoldenTests: XCTestCase {
     typealias Object = [String: JSONValue]

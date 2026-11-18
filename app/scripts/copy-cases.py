@@ -1,5 +1,5 @@
 # Writes HexplateCore's Save as routine / Repeat today golden cases (synthetic, no personal data).
-# Run: python3 native/scripts/copy-cases.py > native/HexplateCore/Tests/HexplateCoreTests/Fixtures/copy-cases.json
+# Run: python3 app/scripts/copy-cases.py > app/HexplateCore/Tests/HexplateCoreTests/Fixtures/copy-cases.json
 import json
 
 BENCH, SQUAT, ROW, CURL, ASSIST, RUN, PLANK = '0025', '0043', '0027', '0031', '0017', '0685', '4170'

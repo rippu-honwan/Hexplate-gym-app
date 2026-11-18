@@ -1,5 +1,5 @@
 # Writes HexplateCore's watch-link golden cases (synthetic, no personal data).
-# Run: python3 native/scripts/watch-cases.py > native/HexplateCore/Tests/HexplateCoreTests/Fixtures/watch-cases.json
+# Run: python3 app/scripts/watch-cases.py > app/HexplateCore/Tests/HexplateCoreTests/Fixtures/watch-cases.json
 import json
 
 SQUAT, BENCH, RAISE, PLANK, ROW, ASSIST, RUN = '0043', '0025', '0334', '0463', '0861', '0017', '0685'

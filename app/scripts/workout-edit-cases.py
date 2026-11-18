@@ -1,5 +1,5 @@
 # Writes HexplateCore's saved-workout edit golden cases (synthetic, no personal data).
-# Run: python3 native/scripts/workout-edit-cases.py > native/HexplateCore/Tests/HexplateCoreTests/Fixtures/workout-edit-cases.json
+# Run: python3 app/scripts/workout-edit-cases.py > app/HexplateCore/Tests/HexplateCoreTests/Fixtures/workout-edit-cases.json
 import json
 
 BENCH, SQUAT, ASSIST = '0025', '0043', '0017'

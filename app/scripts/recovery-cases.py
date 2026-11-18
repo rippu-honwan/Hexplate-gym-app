@@ -1,5 +1,5 @@
 # Writes HexplateCore's recovery golden cases (synthetic, no personal data).
-# Run: python3 native/scripts/recovery-cases.py > native/HexplateCore/Tests/HexplateCoreTests/Fixtures/recovery-cases.json
+# Run: python3 app/scripts/recovery-cases.py > app/HexplateCore/Tests/HexplateCoreTests/Fixtures/recovery-cases.json
 # Workouts carry only a day (read as local noon), so the cases do not depend on the time zone.
 import json
 

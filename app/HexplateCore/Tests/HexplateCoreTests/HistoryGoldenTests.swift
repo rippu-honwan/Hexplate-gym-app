@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// Holds the Swift port to what the original JavaScript produces for the same history.
-/// The golden file is written by native/scripts/golden.sh from frontend/src/lib; regenerate it
+/// The golden file is written by app/scripts/golden.sh from frontend/src/lib; regenerate it
 /// there, never edit it by hand.
 final class HistoryGoldenTests: XCTestCase {
     struct Golden: Decodable {

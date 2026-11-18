@@ -1,5 +1,5 @@
 # Writes HexplateCore's programme golden cases (synthetic, no personal data).
-# Run: python3 native/scripts/programme-cases.py > native/HexplateCore/Tests/HexplateCoreTests/Fixtures/programme-cases.json
+# Run: python3 app/scripts/programme-cases.py > app/HexplateCore/Tests/HexplateCoreTests/Fixtures/programme-cases.json
 # Each case runs ops on one state; every op's result is recorded.
 import json
 

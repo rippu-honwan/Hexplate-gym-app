@@ -1,5 +1,5 @@
 # Writes HexplateCore's stats and body golden cases (synthetic, no personal data).
-# Run: python3 native/scripts/stats-cases.py > native/HexplateCore/Tests/HexplateCoreTests/Fixtures/stats-cases.json
+# Run: python3 app/scripts/stats-cases.py > app/HexplateCore/Tests/HexplateCoreTests/Fixtures/stats-cases.json
 import json
 
 SQUAT, BENCH, DB_BENCH, ROW, CURL, PUSHUP, ASSIST, RAISE = '0043', '0025', '0289', '0027', '0031', '0662', '0017', '0334'

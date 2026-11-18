@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// Holds RoutineOps to the original JavaScript (routines.js, history.js, superset-meta.js).
-/// The golden file is written by native/scripts/golden.sh; never edit it by hand.
+/// The golden file is written by app/scripts/golden.sh; never edit it by hand.
 final class RoutineGoldenTests: XCTestCase {
     struct Golden: Decodable { let name: String; let result: JSONValue? }
 

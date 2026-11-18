@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// Holds WatchLink to lib/watch-sync.js (buildSnapshot, buildReady, patchSetIn).
-/// Cases: native/scripts/watch-cases.py; golden: golden.sh.
+/// Cases: app/scripts/watch-cases.py; golden: golden.sh.
 final class WatchLinkGoldenTests: XCTestCase {
     struct Golden: Decodable { let name: String; let result: JSONValue }
 

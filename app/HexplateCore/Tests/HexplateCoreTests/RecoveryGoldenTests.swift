@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// Holds Recovery to the original JavaScript (recovery.js, recovery-hint.js).
-/// Cases: native/scripts/recovery-cases.py; golden: golden.sh.
+/// Cases: app/scripts/recovery-cases.py; golden: golden.sh.
 final class RecoveryGoldenTests: XCTestCase {
     struct Golden: Decodable { let name: String; let result: JSONValue }
 

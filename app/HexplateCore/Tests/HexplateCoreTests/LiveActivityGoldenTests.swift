@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// Holds LiveActivity to lib/live-activity.js (buildLiveActivity's state, nextExerciseTarget).
-/// Cases: native/scripts/live-cases.py; golden: golden.sh.
+/// Cases: app/scripts/live-cases.py; golden: golden.sh.
 final class LiveActivityGoldenTests: XCTestCase {
     struct Golden: Decodable { let name: String; let result: JSONValue }
 

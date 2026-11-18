@@ -1,5 +1,5 @@
 # Writes HexplateCore's live-session edit golden cases (synthetic, no personal data).
-# Run: python3 native/scripts/edit-cases.py > native/HexplateCore/Tests/HexplateCoreTests/Fixtures/edit-cases.json
+# Run: python3 app/scripts/edit-cases.py > app/HexplateCore/Tests/HexplateCoreTests/Fixtures/edit-cases.json
 import json
 
 

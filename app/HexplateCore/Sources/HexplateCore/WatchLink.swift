@@ -1,7 +1,7 @@
 import Foundation
 
 /// The phone's side of the Apple Watch link (lib/watch-sync.js): the snapshot the watch runs a
-/// workout from, and the events it sends back. The watch app is native/Watch; its model of the
+/// workout from, and the events it sends back. The watch app is app/Watch; its model of the
 /// snapshot is WatchCore/Model.swift.
 ///
 /// ponytail: not sent yet: each exercise's best set, the Health workout type, per-exercise units,

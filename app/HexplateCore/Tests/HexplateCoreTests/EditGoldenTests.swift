@@ -1,7 +1,7 @@
 import XCTest
 @testable import HexplateCore
 
-/// Holds ActiveEdit to the original JavaScript. Cases: native/scripts/edit-cases.py; golden: golden.sh.
+/// Holds ActiveEdit to the original JavaScript. Cases: app/scripts/edit-cases.py; golden: golden.sh.
 final class EditGoldenTests: XCTestCase {
     struct Golden: Decodable { let name: String; let result: JSONValue }
 

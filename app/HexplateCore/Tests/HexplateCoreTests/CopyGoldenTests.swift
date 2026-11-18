@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// Holds SessionCopy to the original JavaScript (session-routines.js, session-repeat.js).
-/// Cases: native/scripts/copy-cases.py; golden: golden.sh.
+/// Cases: app/scripts/copy-cases.py; golden: golden.sh.
 final class CopyGoldenTests: XCTestCase {
     struct Golden: Decodable { let name: String; let result: JSONValue }
 

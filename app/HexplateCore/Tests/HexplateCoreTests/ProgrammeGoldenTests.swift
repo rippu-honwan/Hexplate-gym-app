@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// Holds Programmes to the original JavaScript (programmes.js, session-start.js programmePlan).
-/// Cases: native/scripts/programme-cases.py; golden: golden.sh.
+/// Cases: app/scripts/programme-cases.py; golden: golden.sh.
 final class ProgrammeGoldenTests: XCTestCase {
     struct Golden: Decodable { let name: String; let result: JSONValue }
 

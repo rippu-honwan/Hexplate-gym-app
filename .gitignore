@@ -13,3 +13,9 @@ __pycache__/
 .pytest_cache/
 .ipynb_checkpoints/
 .DS_Store
+# The openGym checkout's frontend/ (a symlink): only app/scripts/golden.sh and bundle-sync.sh read it
+/frontend
+# The openGym checkout's licensed exercise media (a symlink, see app/project.yml)
+/catalogue
+# SwiftPM build output
+.build/

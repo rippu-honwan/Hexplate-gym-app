@@ -1,5 +1,5 @@
 # Writes HexplateCore's session golden cases (synthetic histories, no personal data).
-# Run: python3 native/scripts/session-cases.py > native/HexplateCore/Tests/HexplateCoreTests/Fixtures/session-cases.json
+# Run: python3 app/scripts/session-cases.py > app/HexplateCore/Tests/HexplateCoreTests/Fixtures/session-cases.json
 import json
 
 SQUAT, BENCH, PUSHUP, PLANK, ASSIST, RAISE, ROW, RUN = '0043', '0025', '0662', '0463', '0017', '0334', '0861', '0685'

@@ -1,5 +1,5 @@
 # Writes HexplateCore's widget snapshot golden cases (synthetic, no personal data).
-# Run: python3 native/scripts/widget-cases.py > native/HexplateCore/Tests/HexplateCoreTests/Fixtures/widget-cases.json
+# Run: python3 app/scripts/widget-cases.py > app/HexplateCore/Tests/HexplateCoreTests/Fixtures/widget-cases.json
 import json
 
 BENCH, SQUAT, ROW, CURL = '0025', '0043', '0027', '0031'

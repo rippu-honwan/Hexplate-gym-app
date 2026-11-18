@@ -1,5 +1,5 @@
 # Writes HexplateCore's Live Activity golden cases (synthetic, no personal data).
-# Run: python3 native/scripts/live-cases.py > native/HexplateCore/Tests/HexplateCoreTests/Fixtures/live-cases.json
+# Run: python3 app/scripts/live-cases.py > app/HexplateCore/Tests/HexplateCoreTests/Fixtures/live-cases.json
 import json
 
 SQUAT, BENCH, RAISE, PLANK, ROW = '0043', '0025', '0334', '0463', '0861'

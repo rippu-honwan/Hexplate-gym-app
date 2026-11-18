@@ -21,13 +21,17 @@ targets:
       # The Live Activity's types and buttons, shared with the widget extension.
       - Widgets/WorkoutActivity.swift
       - Widgets/Group.swift
-      # Licensed 180 px exercise media (see catalogue/media/NOTICE.md), bundled as folders.
+      # Licensed 180 px exercise media from the openGym checkout (its catalogue/media/NOTICE.md),
+      # not in this repo: link it locally (`ln -s <openGym checkout>/catalogue catalogue`, git-ignored).
+      # ponytail: optional, so the app builds without it and shows no media.
       - path: ../catalogue/media/still
         type: folder
         buildPhase: resources
+        optional: true
       - path: ../catalogue/media/clip
         type: folder
         buildPhase: resources
+        optional: true
     dependencies:
       - package: HexplateCore
       - target: HexplateWatch

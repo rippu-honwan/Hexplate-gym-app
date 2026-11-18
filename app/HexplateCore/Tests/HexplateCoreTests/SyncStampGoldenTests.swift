@@ -2,7 +2,7 @@ import XCTest
 @testable import HexplateCore
 
 /// Holds SyncStamps to what the original store does to the same change (sync-merge.js
-/// stampChange). The golden file is written by native/scripts/golden.sh; never edit it by hand.
+/// stampChange). The golden file is written by app/scripts/golden.sh; never edit it by hand.
 final class SyncStampGoldenTests: XCTestCase {
     struct Case: Decodable { let name: String; let prev: JSONValue; let next: JSONValue; let wall: Double }
     struct Golden: Decodable { let name: String; let next: JSONValue }
