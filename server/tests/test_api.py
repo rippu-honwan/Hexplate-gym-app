@@ -106,3 +106,10 @@ def test_import_command(tmp_path, monkeypatch, capsys):
     store = create_app(data).state.store
     assert store.current()[0] == 1 and (data / "motion/20261118-120000_0025_s1.csv").exists()
     assert store.db.execute("SELECT COUNT(*) FROM motion_files").fetchone()[0] == 1
+
+
+def test_overview_page(client):
+    assert "No workouts yet" in client.get("/").text
+    client.app.state.store.put(state())
+    html = client.get("/").text
+    assert "Weekly volume" in html and "Upper" in html and "kg" in html

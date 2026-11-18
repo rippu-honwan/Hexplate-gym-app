@@ -13,6 +13,7 @@ from pathlib import Path
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
+from . import dashboard
 from .store import Conflict, Store
 
 USER = {"id": "me", "name": "Hexplate"}
@@ -96,4 +97,5 @@ def create_app(folder: Path | None = None) -> FastAPI:
             return err(400, "bad motion file")
         return {"ok": True}
 
+    dashboard.install(app, store)
     return app
