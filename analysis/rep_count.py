@@ -20,29 +20,52 @@ import argparse, csv, itertools, json, os, statistics
 from functools import cache
 
 import numpy as np
-from scipy.signal import butter, find_peaks, sosfiltfilt
+from scipy.signal import find_peaks, lfilter
 
 COLS = {"gravity": ["gx", "gy", "gz"], "accel": ["ax", "ay", "az"], "rotation": ["rx", "ry", "rz"]}
 LO, HI = 0.1, 1.2           # Hz: a rep takes 0.8-10 s
 PERIOD = (1.2, 10.0)        # s: rep periods the autocorrelation may pick
+PAD = 3.0                   # s of odd reflection the filter runs in on
 CLIP = 2.0                  # x the 90th percentile: what is left of a spike after clipping
 DATA = {}                   # file -> columns, filled by main()
 
 
 def load(path):
+    """(header JSON or {}, column -> array). The watch's files start with `# {json}`; fixtures do not."""
     with open(path) as f:
-        meta = json.loads(f.readline()[2:])
-        rows = list(csv.DictReader(f))
+        first = f.readline()
+        meta = json.loads(first[2:]) if first.startswith("# ") else {}
+        rows = list(csv.DictReader(f, fieldnames=None if meta else first.strip().split(",")))
     return meta, {k: np.array([float(r[k]) for r in rows]) for k in rows[0]}
+
+
+def zero_phase(x, hz, hi):
+    """2nd-order Butterworth high-pass at LO then low-pass at `hi` (bilinear, prewarped), run
+    forward then backward from rest. Plain biquads, so the watch's port gives the same numbers."""
+    k = [np.tan(np.pi * fc / hz) for fc in (LO, hi)]
+    n = [1 / (1 + np.sqrt(2) * v + v * v) for v in k]
+    a = [[1, 2 * (v * v - 1) * m, (1 - np.sqrt(2) * v + v * v) * m] for v, m in zip(k, n)]
+    b = [[n[0], -2 * n[0], n[0]], [k[1] ** 2 * n[1], 2 * k[1] ** 2 * n[1], k[1] ** 2 * n[1]]]
+    # Odd reflection at both ends (as scipy's filtfilt pads) so the filters start settled.
+    p = min(len(x) - 1, int(PAD * hz))
+    x = np.concatenate([2 * x[0] - x[p:0:-1], x, 2 * x[-1] - x[-2:-p - 2:-1]])
+    for _ in range(2):
+        for bb, aa in zip(b, a):
+            x = lfilter(bb, aa, x, axis=0)
+        x = x[::-1]
+    return x[p:len(x) - p]
 
 
 @cache
 def channel(f, signal, hi=HI):
+    return project(DATA[f], signal, hi)
+
+
+def project(d, signal, hi=HI):
     """The band-passed channel projected on its main axis: one number per sample, and the rate."""
-    d = DATA[f]
     hz = (len(d["t"]) - 1) / (d["t"][-1] - d["t"][0])
     x = np.column_stack([d[c] for c in COLS[signal]])
-    x = sosfiltfilt(butter(2, [LO, hi], btype="band", fs=hz, output="sos"), x - x.mean(0), axis=0)
+    x = zero_phase(x - x.mean(0), hz, hi)
     # Grabbing and letting go of the handle swing far more than a rep: clip them so they set
     # neither the main axis nor the scale.
     lim = CLIP * np.percentile(np.abs(x), 90, axis=0)
@@ -72,6 +95,24 @@ def period(s, hz):
     if top <= 0:
         return None, 0   # nothing repeats
     return p[ac[p] >= 0.8 * top][0] / hz, top
+
+
+def reps(d, prom=0.7):
+    """The chosen method, as WatchCore's SetRepCount runs it: userAccel, 0.1-0.8 Hz, prominence 0.7."""
+    s, hz = project(d, "accel", 0.8)
+    return peaks(s, prom, hz / 0.8)
+
+
+def golden(paths, out):
+    """Expected values for WatchCore's tests: the count, the rate and every 25th projected sample."""
+    cases = []
+    for p in paths:
+        d = load(p)[1]
+        s, hz = project(d, "accel", 0.8)
+        cases.append({"file": os.path.basename(p), "reps": reps(d), "hz": hz, "every25": [float(v) for v in s[::25]]})
+    with open(out, "w") as f:
+        json.dump(cases, f, indent=1)
+    print(f"{len(cases)} cases -> {out}")
 
 
 def m_peaks(f, signal, prom):
@@ -139,7 +180,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--labels", default="data/motion-labels.csv")
     ap.add_argument("--motion", default="server/data/motion")
+    ap.add_argument("--golden", nargs="+", metavar=("OUT", "CSV"), help="write expected values for these CSVs and stop")
     a = ap.parse_args()
+    if a.golden:
+        return golden(a.golden[1:], a.golden[0])
 
     sets = [r for r in csv.DictReader(open(a.labels)) if not r["flags"] and r["reps"]]
     DATA.update({r["file"]: load(os.path.join(a.motion, r["file"]))[1] for r in sets})
