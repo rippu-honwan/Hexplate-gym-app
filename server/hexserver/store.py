@@ -10,6 +10,7 @@ import re
 import secrets
 import sqlite3
 import time
+import unicodedata
 from pathlib import Path
 
 SCHEMA = """
@@ -72,7 +73,8 @@ class Store:
 
     def redeem(self, code: str):
         """The code's token, once; None when the code is wrong or older than five minutes."""
-        code = code.strip().upper()
+        # As typed on any keyboard: full-width letters (a Chinese or Japanese input method), spaces, dashes.
+        code = "".join(c for c in unicodedata.normalize("NFKC", code).upper() if c.isalnum())
         with self.db:
             row = self.db.execute("SELECT expires_at FROM pair_codes WHERE code = ?", (code,)).fetchone()
             self.db.execute("DELETE FROM pair_codes WHERE code = ?", (code,))

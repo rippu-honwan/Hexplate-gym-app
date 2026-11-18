@@ -146,3 +146,9 @@ def test_dashboard_is_local_only(tmp_path):
     other = TestClient(create_app(tmp_path), client=("192.168.1.20", 50000))
     assert other.get("/").status_code == 403 and other.get("/data/latest.json").status_code == 403
     assert other.get("/api/health").status_code == 200   # the phone's API stays reachable
+
+
+def test_code_typed_with_another_keyboard(client):
+    code = client.app.state.store.new_pair_code()
+    wide = "".join(chr(ord(c) + 0xFEE0) for c in code.lower())   # full-width, as a Chinese keyboard types it
+    assert client.post("/api/pair/redeem", json={"code": f" {wide[:4]}-{wide[4:]} "}).status_code == 200

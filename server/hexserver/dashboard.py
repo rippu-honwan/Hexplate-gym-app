@@ -69,6 +69,17 @@ def local_name():
         return socket.gethostname().removesuffix(".local")
 
 
+def wifi_address():
+    """This Mac's address on the local network (no packet is sent: a UDP connect only picks the route)."""
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+            s.connect(("192.168.0.1", 9))
+            ip = s.getsockname()[0]
+        return ip if not ip.startswith("127.") else None
+    except OSError:
+        return None
+
+
 def _num(n, d=0):
     return f"{n:,.{d}f}"
 
@@ -270,8 +281,10 @@ def install(app, store):
 
     def data_page(req: Request, code: str | None = None):
         address = f"http://{local_name()}.local:{req.url.port or 8765}"
+        ip = wifi_address()
+        fallback = f' If the phone cannot reach it, try <b style="color:var(--ink)">http://{ip}:{req.url.port or 8765}</b>.' if ip else ""
         pair = (f'<div class="code">{code}</div><div class="sub">Works once, for 5 minutes. On the phone: Settings › Server, '
-                f'address <b style="color:var(--ink)">{escape(address)}</b>, then this code.</div>') if code else \
+                f'address <b style="color:var(--ink)">{escape(address)}</b>, then this code.{fallback}</div>') if code else \
                '<form method="post" action="/data/pair"><button>New pairing code</button></form>'
         phones = "".join(f"""<tr><td>Paired {dt.datetime.fromtimestamp(at):%-d %b %Y %H:%M}</td><td class=n>
 <form method="post" action="/data/revoke" onsubmit="return confirm('Unpair this phone? It stops syncing until it is paired again.')">
