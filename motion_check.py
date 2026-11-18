@@ -101,8 +101,27 @@ def quality(meta, rows, logged):
     late = (meta["start"] - started) / 1000 if started and meta.get("start") else None
     if late is not None and late > 2:
         flags.append(f"starts {late:.0f} s late")
+    # Cut at an edge: moving in the first (last) second as much as during the set. A busy start
+    # alone is the walk to the machine; with a rep counted in the first 2 s, the window began
+    # mid-set. Thresholds from the 74 clean sets to 2026-11-18 (start median 0.36, end 0.04-0.25).
+    k = max(1, min(len(ua), int(hz / 2)))
+    c = [0.0]
+    for v in ua:
+        c.append(c[-1] + v)
+    sm = sorted((c[i + k] - c[i]) / k for i in range(len(ua) - k + 1))
+    act = sm[int(0.9 * (len(sm) - 1))] or 1e-9
+    edge = lambda sel: statistics.mean(u for u, x in zip(ua, t) if sel(x)) / act
+    head, tail = edge(lambda x: x < t[0] + 1), edge(lambda x: x > t[-1] - 1)
+    first_rep = next((e[0] for e in meta.get("helpers", {}).get("log", [])
+                      if isinstance(e[1], str) and e[1].startswith("rep 1 ")), None)
+    moving = rms >= STILL_G and dur >= 5  # a still or tiny file is "busy" at its edges too
+    if moving and head >= 0.6 and first_rep is not None and first_rep < 2:
+        flags.append("clipped start")
+    if moving and tail >= 0.6:
+        flags.append("clipped end")
     return {"rows": len(t), "dur_s": round(dur, 1), "hz": round(hz, 1), "max_gap_s": round(gap, 3),
-            "rms_g": round(rms, 3), "late_s": None if late is None else round(late, 1)}, flags
+            "rms_g": round(rms, 3), "late_s": None if late is None else round(late, 1),
+            "head": round(head, 2), "tail": round(tail, 2), "first_rep_s": first_rep}, flags
 
 
 def main():
