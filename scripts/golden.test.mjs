@@ -541,3 +541,17 @@ it('writes the live activity golden file', async () => {
   })
   writeFileSync(process.env.LIVE_OUT, JSON.stringify(out, null, 1) + '\n')
 })
+
+it('writes the merge golden file', async () => {
+  if (!process.env.MERGE_IN) return
+  const { mergeStates } = await import('../../frontend/src/lib/sync-merge.js')
+  const { countChanges, syncFingerprint } = await import('../../frontend/src/lib/sync-changes.js')
+  const cases = JSON.parse(readFileSync(process.env.MERGE_IN, 'utf8'))
+  const out = cases.map(c => {
+    // Keys sorted as SyncMerge sends them: countChanges hashes the JSON text.
+    const sorted = v => Array.isArray(v) ? v.map(sorted) : v && typeof v === 'object' ? Object.fromEntries(Object.keys(v).sort().map(k => [k, sorted(v[k])])) : v
+    const merged = sorted(JSON.parse(JSON.stringify(mergeStates(sorted(c.local), sorted(c.server)))))
+    return { name: c.name, merged, here: countChanges(merged, syncFingerprint(sorted(c.local))), there: countChanges(merged, syncFingerprint(sorted(c.server))) }
+  })
+  writeFileSync(process.env.MERGE_OUT, JSON.stringify(out))
+})

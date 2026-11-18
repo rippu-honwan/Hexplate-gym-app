@@ -178,6 +178,20 @@ final class AppModel {
         adopt(legacy)
     }
 
+    /// The server's copy taken as this device's own, stamps and all (not a change made here), with
+    /// the workout running here kept (ServerSync).
+    func takeServerCopy(_ server: [String: JSONValue]) {
+        var s = server
+        s["active"] = root["active"]
+        do {
+            let doc = try StateDocument(data: JSONEncoder().encode(JSONValue.object(s)))
+            try store.save(doc)
+            load(doc)
+        } catch {
+            errorMessage = "The server's copy could not be saved. Nothing was changed. \(error.localizedDescription)"
+        }
+    }
+
     private func adopt(_ new: StateDocument) {
         do {
             try store.replace(with: new)

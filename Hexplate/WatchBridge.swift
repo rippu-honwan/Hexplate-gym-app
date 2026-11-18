@@ -180,6 +180,8 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
         let to = dir.appending(path: name)
         try? FileManager.default.removeItem(at: to)
         try? FileManager.default.moveItem(at: file.fileURL, to: to)
+        // On to the paired server (ServerSync), the way the old app sent each new file.
+        Task { @MainActor in if let model = self.model { ServerSync.shared.run(model) } }
     }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {

@@ -1,4 +1,5 @@
 import HexplateCore
+import UIKit
 import SwiftUI
 
 @main
@@ -19,8 +20,13 @@ struct HexplateApp: App {
                 // The day may have changed while the app was in the background.
                 .preferredColorScheme(appearance == "light" ? .light : appearance == "dark" ? .dark : nil)
                 .onChange(of: phase) {
-                    if phase == .active { model.today = Day.today(); WatchBridge.shared.drain(); LiveActivitySync.drain(model, timer) }
-                    if phase == .background { model.backupIfDue() }
+                    if phase == .active { model.today = Day.today(); WatchBridge.shared.drain(); LiveActivitySync.drain(model, timer); ServerSync.shared.run(model) }
+                    if phase == .background {
+                        model.backupIfDue()
+                        // What is waiting goes to the server before iOS suspends the app.
+                        let id = UIApplication.shared.beginBackgroundTask()
+                        Task { await ServerSync.shared.run(model)?.value; UIApplication.shared.endBackgroundTask(id) }
+                    }
                 }
                 .task {
                     model.backupIfDue()
@@ -28,9 +34,10 @@ struct HexplateApp: App {
                     WatchBridge.shared.start(model: model, timer: timer)
                     WidgetSync.write(model)
                     LiveActivitySync.start(model: model, timer: timer)
+                    ServerSync.shared.start(model)
                 }
                 // The watch follows every change of the document and of the rest timer.
-                .onChange(of: model.root) { WatchBridge.shared.send(); WidgetSync.write(model); LiveActivitySync.update(model, timer) }
+                .onChange(of: model.root) { WatchBridge.shared.send(); WidgetSync.write(model); LiveActivitySync.update(model, timer); ServerSync.shared.changed(model) }
                 .onChange(of: model.today) { WidgetSync.write(model) }
                 .onOpenURL { WidgetSync.open($0, model) }
                 .onChange(of: timer.end) { WatchBridge.shared.send(); LiveActivitySync.update(model, timer) }

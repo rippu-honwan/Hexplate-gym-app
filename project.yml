@@ -62,6 +62,10 @@ targets:
           - CFBundleURLName: com.rippuhonwan.mygym
             CFBundleURLSchemes: [opengym]
         NSSupportsLiveActivities: true
+        # The paired openGym server may be plain http:// on the home network, as in the old app.
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        NSLocalNetworkUsageDescription: Used to reach your own openGym server on your home network, when you connect one.
 
   # The Apple Watch app, moved from frontend/ios/App/Watch (copied, same bundle id). WatchCore's
   # sources compile into it, as they did there.

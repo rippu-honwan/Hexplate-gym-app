@@ -161,6 +161,8 @@ struct SettingsView: View {
                 } footer: {
                     Text("JSON is the openGym format and holds everything. A copy is also kept automatically once a day (the last seven days).")
                 }
+
+                ServerSection()
             }
             .keyboardDone()
             .navigationTitle("Settings")
@@ -213,6 +215,55 @@ struct SettingsView: View {
         let new = samples.filter { !have.contains(Day.iso($0.date)) }
         for s in new { model.logWeight(s.weight, on: Day.iso(s.date), fromHealth: true) }
         healthNote = new.isEmpty ? "Nothing new in Health." : "\(new.count) \(new.count == 1 ? "weigh-in" : "weigh-ins") added."
+    }
+}
+
+/// MyGym: the paired openGym server (ServerSync).
+private struct ServerSection: View {
+    @Environment(AppModel.self) private var model
+    @State private var address = ""
+    @State private var code = ""
+    @State private var busy = false
+
+    var body: some View {
+        @Bindable var sync = ServerSync.shared
+        Section {
+            if sync.paired {
+                LabeledContent("Server", value: sync.host)
+                if !sync.status.isEmpty {
+                    LabeledContent("Last check") {
+                        VStack(alignment: .trailing) {
+                            Text(sync.status)
+                            if let at = sync.lastCheck { Text(at, style: .relative).foregroundStyle(.secondary) }
+                        }
+                        .multilineTextAlignment(.trailing)
+                    }
+                }
+                if sync.motionWaiting > 0 {
+                    LabeledContent("Motion files waiting", value: "\(sync.motionWaiting)")
+                }
+                Toggle("Write sync changes", isOn: $sync.writes)
+                Button("Sync now") { Task { busy = true; await sync.run(model)?.value; busy = false } }
+                    .disabled(busy)
+                Button("Disconnect", role: .destructive) { sync.disconnect() }
+            } else {
+                TextField("Server address", text: $address)
+                    .textContentType(.URL).keyboardType(.URL).textInputAutocapitalization(.never).autocorrectionDisabled()
+                TextField("Pairing code", text: $code)
+                    .textInputAutocapitalization(.characters).autocorrectionDisabled()
+                Button("Connect") { Task { busy = true; await sync.pair(address: address, code: code, model: model); busy = false } }
+                    .disabled(busy || address.isEmpty || code.isEmpty)
+                if !sync.status.isEmpty { Text(sync.status).foregroundStyle(.secondary) }
+            }
+        } header: {
+            Text("Server")
+        } footer: {
+            if sync.paired {
+                Text("Off: a sync only works out what it would change and writes it to sync-log.txt. Watch motion files are sent either way.")
+            } else {
+                Text("On the computer, open openGym, then Settings → Pair the mobile app, and enter the code it shows.")
+            }
+        }
     }
 }
 

@@ -439,3 +439,26 @@
 "best" = "最佳";
 "Waiting for the watch…" = "等緊手錶…";
 "Exercise for the watch" = "手錶要做嘅動作";
+
+/* Server sync (ServerSync.swift, SettingsView ServerSection) */
+"Server" = "伺服器";
+"Last check" = "上次檢查";
+"Motion files waiting" = "等待上傳的動作檔";
+"Write sync changes" = "寫入同步變更";
+"Sync now" = "立即同步";
+"Disconnect" = "中斷連線";
+"Server address" = "伺服器位址";
+"Pairing code" = "配對碼";
+"Connect" = "連線";
+"Off: a sync only works out what it would change and writes it to sync-log.txt. Watch motion files are sent either way." = "關閉時，同步只會計算將要變更的內容並寫入 sync-log.txt。手錶動作檔無論如何都會上傳。";
+"On the computer, open openGym, then Settings → Pair the mobile app, and enter the code it shows." = "在電腦打開 openGym，前往「設定 → 配對手機 App」，然後輸入顯示的代碼。";
+"Enter a valid server address." = "請輸入有效的伺服器位址。";
+"That code didn't work. Codes last 5 minutes and work once, so get a fresh one." = "代碼無效。代碼只限 5 分鐘內使用一次，請重新取得。";
+"Up to date" = "已是最新";
+"Synced" = "已同步";
+"Dry run: would change %lld here and %lld on the server" = "試行：會變更本機 %1$lld 項、伺服器 %2$lld 項";
+"Dry run: would take the server's copy" = "試行：會採用伺服器的資料";
+"Dry run: would send this phone's changes" = "試行：會上傳這部手機的變更";
+"The server refused this phone. Pair it again." = "伺服器拒絕了這部手機，請重新配對。";
+"The server answered with an error (%lld)." = "伺服器回應錯誤（%lld）。";
+"The server could not be reached." = "無法連線到伺服器。";
