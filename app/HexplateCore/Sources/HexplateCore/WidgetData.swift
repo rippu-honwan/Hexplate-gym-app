@@ -16,6 +16,13 @@ public enum WidgetData {
         public let current, best, freezes: Int
         public let thisWeekDone: Bool
         public let next: Int?
+        /// The weeks (their first day) a freeze covered in the running streak.
+        public var frozen: [String] = []
+        /// Trained weeks still needed for the next freeze, 0 with the bank full.
+        public var toNextFreeze = WidgetData.freezeEvery
+        public var weekKey = ""
+        /// The milestones the best run has reached.
+        public var badges: [Int] { WidgetData.badges.filter { best >= $0 } }
     }
 
     /// Weeks in a row with a workout; every fourth week earns a freeze (at most two) that covers a missed one.
@@ -27,22 +34,46 @@ public enum WidgetData {
             guard let d = w["d"]?.stringValue, Programmes.isISO(.string(d)), let k = Schedule.weekKey(d, weekStart: ws), k <= cur else { continue }
             trained.insert(k)
         }
-        guard var wk = trained.min() else { return Streak(current: 0, best: 0, freezes: 0, thisWeekDone: false, next: badges[0]) }
+        guard var wk = trained.min() else { return Streak(current: 0, best: 0, freezes: 0, thisWeekDone: false, next: badges[0], weekKey: cur) }
         let floor = Day.adding(-7 * 1500, to: cur) ?? wk
         if wk < floor { wk = floor }
         var run = 0, best = 0, freezes = 0, earned = 0
+        var frozen: [String] = []
         while wk <= cur {
             if trained.contains(wk) {
                 run += 1; earned += 1
                 if earned % freezeEvery == 0 && freezes < freezeMax { freezes += 1 }
             } else if wk != cur {
-                if freezes > 0 { freezes -= 1 } else { run = 0; earned = 0; freezes = 0 }
+                if freezes > 0 { freezes -= 1; frozen.append(wk) } else { run = 0; earned = 0; freezes = 0; frozen = [] }
             }
             best = max(best, run)
             guard let next = Day.adding(7, to: wk) else { break }
             wk = next
         }
-        return Streak(current: run, best: best, freezes: freezes, thisWeekDone: trained.contains(cur), next: badges.first { best < $0 })
+        return Streak(current: run, best: best, freezes: freezes, thisWeekDone: trained.contains(cur), next: badges.first { best < $0 },
+                      frozen: frozen, toNextFreeze: freezes >= freezeMax ? 0 : freezeEvery - earned % freezeEvery, weekKey: cur)
+    }
+
+    public struct Celebration: Equatable, Sendable {
+        public let kind: String   // "badge" or "week"
+        public let weeks: Int
+        /// What `streakSeen` becomes once it was shown.
+        public let seen: JSONValue
+    }
+
+    /// What Home celebrates now, once: a milestone reached since the last one shown, or this week
+    /// done (its plan all trained, or without a plan its first workout) (streak.js streakCelebration).
+    public static func celebration(_ s: Object, _ info: Streak, done: Int, planned: Int) -> Celebration? {
+        let seen = s["streakSeen"]?.object ?? [:]
+        let top = info.badges.last ?? 0
+        let weekDone = info.thisWeekDone && (planned > 0 ? done >= planned : true)
+        let seenBadge = Int(seen["badge"]?.numberValue ?? 0)
+        let wk: JSONValue = weekDone ? .string(info.weekKey) : (seen["wk"] ?? .null)
+        if top > seenBadge { return Celebration(kind: "badge", weeks: top, seen: .object(["badge": .number(Double(top)), "wk": wk])) }
+        if weekDone && seen["wk"] != .string(info.weekKey) {
+            return Celebration(kind: "week", weeks: info.current, seen: .object(["badge": .number(Double(seenBadge)), "wk": wk]))
+        }
+        return nil
     }
 
     // MARK: The snapshot

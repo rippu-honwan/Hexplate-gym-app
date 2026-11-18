@@ -584,3 +584,41 @@ it('writes the CSV range golden file', async () => {
   })
   writeFileSync(process.env.CSVR_OUT, JSON.stringify(out, null, 1) + '\n')
 })
+
+// The week streak and the monthly challenges: the level, the picks, the progress and its words,
+// what is stored, the shelf, and the streak's freezes, badges and celebration.
+it('writes the challenge golden file', async () => {
+  if (!process.env.CHAL_IN) return
+  const C = await import('../../frontend/src/lib/challenges.js')
+  const W = await import('../../frontend/src/lib/challenge-copy.js')
+  const { streakInfo, streakCelebration } = await import('../../frontend/src/lib/streak.js')
+  const cases = JSON.parse(readFileSync(process.env.CHAL_IN, 'utf8'))
+  setWeightDecimals(1)
+  const out = cases.map(c => {
+    vi.useFakeTimers(); vi.setSystemTime(new Date(c.today + 'T12:00:00'))
+    const S = structuredClone(c.state)
+    registerCustom(S.customEx || [])
+    const unit = S.unit === 'lb' ? 'lb' : 'kg'
+    const month = C.monthChallenges(S, c.month)
+    const progress = C.progressOf(S, month)
+    const s = structuredClone(S)
+    const wrote = C.markDone(s, c.month, C.newlyDone(month, progress), month.picked, 1000)
+    const info = streakInfo(S, c.today)
+    const r = {
+      name: c.name,
+      level: C.levelOf(S, c.month),
+      picked: C.pickChallenges(S, c.month),
+      month,
+      progress: progress.map(p => ({ ...p, title: W.challengeTitle(p, unit), count: W.challengeCount(p, unit) })),
+      newly: C.newlyDone(month, progress),
+      cleaned: C.cleanChallenges(S.challenges) ?? null,
+      saved: { wrote, challenges: s.challenges ?? null },
+      shelf: C.shelfOf(S),
+      on: C.challengesOn(S),
+      streak: { ...info, celebration: streakCelebration(S, info, { done: 1, planned: 2 }) ?? null, celebrationNoPlan: streakCelebration(S, info, {}) ?? null },
+    }
+    vi.useRealTimers()
+    return JSON.parse(JSON.stringify(r))
+  })
+  writeFileSync(process.env.CHAL_OUT, JSON.stringify(out, null, 1) + '\n')
+})

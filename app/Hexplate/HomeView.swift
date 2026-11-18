@@ -40,6 +40,9 @@ struct HomeView: View {
                     }
                 }
 
+                StreakPartySection()
+                ChallengesSection()
+
                 if let hint = Recovery.hint(model.root, now: model.now, today: model.today, catalog: model.catalog) {
                     Section { RecoveryCard(hint: hint) { swapping = true } }
                 }

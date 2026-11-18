@@ -1,0 +1,2275 @@
+[
+ {
+  "name": "fresh 2026-06",
+  "level": {
+   "fresh": true,
+   "months": 0,
+   "workouts": 0,
+   "perWeek": 0,
+   "weekRate": 0,
+   "volumeKg": 0,
+   "prs": 0,
+   "pullups": 0,
+   "pushups": 0,
+   "cardioMin": 0,
+   "weighDays": 0,
+   "groups": 0
+  },
+  "picked": [
+   {
+    "id": "weeks",
+    "n": 4
+   },
+   {
+    "id": "muscles",
+    "n": 6
+   },
+   {
+    "id": "newex",
+    "n": 3
+   }
+  ],
+  "month": {
+   "key": "2026-06",
+   "picked": [
+    {
+     "id": "weeks",
+     "n": 4
+    },
+    {
+     "id": "muscles",
+     "n": 6
+    },
+    {
+     "id": "newex",
+     "n": 3
+    }
+   ],
+   "done": [],
+   "stored": false
+  },
+  "progress": [
+   {
+    "id": "weeks",
+    "icon": "calendar",
+    "n": 4,
+    "have": 0,
+    "pct": 0,
+    "done": false,
+    "known": true,
+    "title": "Train every week this month",
+    "count": "0 / 4"
+   },
+   {
+    "id": "muscles",
+    "icon": "figureStrength",
+    "n": 6,
+    "have": 0,
+    "pct": 0,
+    "done": false,
+    "known": true,
+    "title": "Every muscle group at least once",
+    "count": "0 / 6"
+   },
+   {
+    "id": "newex",
+    "icon": "sparkles",
+    "n": 3,
+    "have": 0,
+    "pct": 0,
+    "done": false,
+    "known": true,
+    "title": "Try 3 exercises you have never done",
+    "count": "0 / 3"
+   }
+  ],
+  "newly": [],
+  "cleaned": null,
+  "saved": {
+   "wrote": false,
+   "challenges": {
+    "2026-06": {
+     "picked": [
+      {
+       "id": "weeks",
+       "n": 4
+      },
+      {
+       "id": "muscles",
+       "n": 6
+      },
+      {
+       "id": "newex",
+       "n": 3
+      }
+     ],
+     "done": [],
+     "at": 1000
+    }
+   }
+  },
+  "shelf": [],
+  "on": true,
+  "streak": {
+   "current": 0,
+   "best": 0,
+   "freezes": 0,
+   "frozen": [],
+   "thisWeekDone": false,
+   "badges": [],
+   "next": 4,
+   "toNextFreeze": 4,
+   "weekKey": "2026-06-15",
+   "celebration": null,
+   "celebrationNoPlan": null
+  }
+ },
+ {
+  "name": "fresh 2026-07",
+  "level": {
+   "fresh": true,
+   "months": 0,
+   "workouts": 0,
+   "perWeek": 0,
+   "weekRate": 0,
+   "volumeKg": 0,
+   "prs": 0,
+   "pullups": 0,
+   "pushups": 0,
+   "cardioMin": 0,
+   "weighDays": 0,
+   "groups": 0
+  },
+  "picked": [
+   {
+    "id": "workouts",
+    "n": 4
+   },
+   {
+    "id": "newex",
+    "n": 3
+   },
+   {
+    "id": "weeks",
+    "n": 5
+   }
+  ],
+  "month": {
+   "key": "2026-07",
+   "picked": [
+    {
+     "id": "workouts",
+     "n": 4
+    },
+    {
+     "id": "newex",
+     "n": 3
+    },
+    {
+     "id": "weeks",
+     "n": 5
+    }
+   ],
+   "done": [],
+   "stored": false
+  },
+  "progress": [
+   {
+    "id": "workouts",
+    "icon": "dumbbell",
+    "n": 4,
+    "have": 5,
+    "pct": 1,
+    "done": true,
+    "known": true,
+    "title": "4 workouts this month",
+    "count": "5 / 4"
+   },
+   {
+    "id": "newex",
+    "icon": "sparkles",
+    "n": 3,
+    "have": 8,
+    "pct": 1,
+    "done": true,
+    "known": true,
+    "title": "Try 3 exercises you have never done",
+    "count": "8 / 3"
+   },
+   {
+    "id": "weeks",
+    "icon": "calendar",
+    "n": 5,
+    "have": 5,
+    "pct": 1,
+    "done": true,
+    "known": true,
+    "title": "Train every week this month",
+    "count": "5 / 5"
+   }
+  ],
+  "newly": [
+   "workouts",
+   "newex",
+   "weeks"
+  ],
+  "cleaned": null,
+  "saved": {
+   "wrote": true,
+   "challenges": {
+    "2026-07": {
+     "picked": [
+      {
+       "id": "workouts",
+       "n": 4
+      },
+      {
+       "id": "newex",
+       "n": 3
+      },
+      {
+       "id": "weeks",
+       "n": 5
+      }
+     ],
+     "done": [
+      "newex",
+      "weeks",
+      "workouts"
+     ],
+     "at": 1000
+    }
+   }
+  },
+  "shelf": [],
+  "on": true,
+  "streak": {
+   "current": 3,
+   "best": 3,
+   "freezes": 0,
+   "frozen": [],
+   "thisWeekDone": true,
+   "badges": [],
+   "next": 4,
+   "toNextFreeze": 1,
+   "weekKey": "2026-07-13",
+   "celebration": null,
+   "celebrationNoPlan": {
+    "kind": "week",
+    "weeks": 3,
+    "seen": {
+     "badge": 0,
+     "wk": "2026-07-13"
+    }
+   }
+  }
+ },
+ {
+  "name": "fresh 2026-08",
+  "level": {
+   "fresh": false,
+   "months": 1,
+   "workouts": 5,
+   "perWeek": 1.1499540018399264,
+   "weekRate": 1,
+   "volumeKg": 11862,
+   "prs": 4,
+   "pullups": 63,
+   "pushups": 76,
+   "cardioMin": 36,
+   "weighDays": 0,
+   "groups": 5
+  },
+  "picked": [
+   {
+    "id": "workouts",
+    "n": 6
+   },
+   {
+    "id": "volume",
+    "n": 14000,
+    "u": "kg"
+   },
+   {
+    "id": "muscles",
+    "n": 6
+   }
+  ],
+  "month": {
+   "key": "2026-08",
+   "picked": [
+    {
+     "id": "workouts",
+     "n": 6
+    },
+    {
+     "id": "volume",
+     "n": 14000,
+     "u": "kg"
+    },
+    {
+     "id": "muscles",
+     "n": 6
+    }
+   ],
+   "done": [],
+   "stored": false
+  },
+  "progress": [
+   {
+    "id": "workouts",
+    "icon": "dumbbell",
+    "n": 6,
+    "have": 7,
+    "pct": 1,
+    "done": true,
+    "known": true,
+    "title": "6 workouts this month",
+    "count": "7 / 6"
+   },
+   {
+    "id": "volume",
+    "icon": "plate",
+    "n": 14000,
+    "u": "kg",
+    "have": 16528,
+    "pct": 1,
+    "done": true,
+    "known": true,
+    "title": "Lift 14 t this month",
+    "count": "16.5 / 14 t"
+   },
+   {
+    "id": "muscles",
+    "icon": "figureStrength",
+    "n": 6,
+    "have": 5,
+    "pct": 0.8333333333333334,
+    "done": false,
+    "known": true,
+    "title": "Every muscle group at least once",
+    "count": "5 / 6"
+   }
+  ],
+  "newly": [
+   "workouts",
+   "volume"
+  ],
+  "cleaned": null,
+  "saved": {
+   "wrote": true,
+   "challenges": {
+    "2026-08": {
+     "picked": [
+      {
+       "id": "workouts",
+       "n": 6
+      },
+      {
+       "id": "volume",
+       "n": 14000,
+       "u": "kg"
+      },
+      {
+       "id": "muscles",
+       "n": 6
+      }
+     ],
+     "done": [
+      "volume",
+      "workouts"
+     ],
+     "at": 1000
+    }
+   }
+  },
+  "shelf": [],
+  "on": true,
+  "streak": {
+   "current": 7,
+   "best": 7,
+   "freezes": 1,
+   "frozen": [],
+   "thisWeekDone": true,
+   "badges": [
+    4
+   ],
+   "next": 12,
+   "toNextFreeze": 1,
+   "weekKey": "2026-08-10",
+   "celebration": {
+    "kind": "badge",
+    "weeks": 4,
+    "seen": {
+     "badge": 4,
+     "wk": null
+    }
+   },
+   "celebrationNoPlan": {
+    "kind": "badge",
+    "weeks": 4,
+    "seen": {
+     "badge": 4,
+     "wk": "2026-08-10"
+    }
+   }
+  }
+ },
+ {
+  "name": "fresh 2026-09",
+  "level": {
+   "fresh": false,
+   "months": 2,
+   "workouts": 6,
+   "perWeek": 1.3799448022079117,
+   "weekRate": 1,
+   "volumeKg": 14195,
+   "prs": 4.5,
+   "pullups": 73.5,
+   "pushups": 95,
+   "cardioMin": 42,
+   "weighDays": 0,
+   "groups": 5
+  },
+  "picked": [
+   {
+    "id": "workouts",
+    "n": 7
+   },
+   {
+    "id": "prs",
+    "n": 6
+   },
+   {
+    "id": "newex",
+    "n": 2
+   }
+  ],
+  "month": {
+   "key": "2026-09",
+   "picked": [
+    {
+     "id": "workouts",
+     "n": 7
+    },
+    {
+     "id": "prs",
+     "n": 6
+    },
+    {
+     "id": "newex",
+     "n": 2
+    }
+   ],
+   "done": [],
+   "stored": false
+  },
+  "progress": [
+   {
+    "id": "workouts",
+    "icon": "dumbbell",
+    "n": 7,
+    "have": 6,
+    "pct": 0.8571428571428571,
+    "done": false,
+    "known": true,
+    "title": "7 workouts this month",
+    "count": "6 / 7"
+   },
+   {
+    "id": "prs",
+    "icon": "trophy",
+    "n": 6,
+    "have": 5,
+    "pct": 0.8333333333333334,
+    "done": false,
+    "known": true,
+    "title": "Hit 6 new PRs",
+    "count": "5 / 6"
+   },
+   {
+    "id": "newex",
+    "icon": "sparkles",
+    "n": 2,
+    "have": 0,
+    "pct": 0,
+    "done": false,
+    "known": true,
+    "title": "Try 2 exercises you have never done",
+    "count": "0 / 2"
+   }
+  ],
+  "newly": [],
+  "cleaned": null,
+  "saved": {
+   "wrote": false,
+   "challenges": {
+    "2026-09": {
+     "picked": [
+      {
+       "id": "workouts",
+       "n": 7
+      },
+      {
+       "id": "prs",
+       "n": 6
+      },
+      {
+       "id": "newex",
+       "n": 2
+      }
+     ],
+     "done": [],
+     "at": 1000
+    }
+   }
+  },
+  "shelf": [],
+  "on": true,
+  "streak": {
+   "current": 12,
+   "best": 12,
+   "freezes": 2,
+   "frozen": [],
+   "thisWeekDone": true,
+   "badges": [
+    4,
+    12
+   ],
+   "next": 26,
+   "toNextFreeze": 0,
+   "weekKey": "2026-09-14",
+   "celebration": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": null
+    }
+   },
+   "celebrationNoPlan": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": "2026-09-14"
+    }
+   }
+  }
+ },
+ {
+  "name": "fresh 2026-10",
+  "level": {
+   "fresh": false,
+   "months": 3,
+   "workouts": 6,
+   "perWeek": 1.3799448022079117,
+   "weekRate": 1,
+   "volumeKg": 14069.333333333334,
+   "prs": 4.666666666666667,
+   "pullups": 70,
+   "pushups": 101.33333333333333,
+   "cardioMin": 40,
+   "weighDays": 1,
+   "groups": 5
+  },
+  "picked": [
+   {
+    "id": "workouts",
+    "n": 7
+   },
+   {
+    "id": "pullups",
+    "n": 90
+   },
+   {
+    "id": "weighins",
+    "n": 4
+   }
+  ],
+  "month": {
+   "key": "2026-10",
+   "picked": [
+    {
+     "id": "workouts",
+     "n": 7
+    },
+    {
+     "id": "pullups",
+     "n": 90
+    },
+    {
+     "id": "weighins",
+     "n": 4
+    }
+   ],
+   "done": [],
+   "stored": false
+  },
+  "progress": [
+   {
+    "id": "workouts",
+    "icon": "dumbbell",
+    "n": 7,
+    "have": 7,
+    "pct": 1,
+    "done": true,
+    "known": true,
+    "title": "7 workouts this month",
+    "count": "7 / 7"
+   },
+   {
+    "id": "pullups",
+    "icon": "pullup",
+    "n": 90,
+    "have": 84,
+    "pct": 0.9333333333333333,
+    "done": false,
+    "known": true,
+    "title": "90 pull-ups this month",
+    "count": "84 / 90"
+   },
+   {
+    "id": "weighins",
+    "icon": "scale",
+    "n": 4,
+    "have": 3,
+    "pct": 0.75,
+    "done": false,
+    "known": true,
+    "title": "Log your weight on 4 days",
+    "count": "3 / 4"
+   }
+  ],
+  "newly": [
+   "workouts"
+  ],
+  "cleaned": null,
+  "saved": {
+   "wrote": true,
+   "challenges": {
+    "2026-10": {
+     "picked": [
+      {
+       "id": "workouts",
+       "n": 7
+      },
+      {
+       "id": "pullups",
+       "n": 90
+      },
+      {
+       "id": "weighins",
+       "n": 4
+      }
+     ],
+     "done": [
+      "workouts"
+     ],
+     "at": 1000
+    }
+   }
+  },
+  "shelf": [],
+  "on": true,
+  "streak": {
+   "current": 16,
+   "best": 16,
+   "freezes": 2,
+   "frozen": [],
+   "thisWeekDone": true,
+   "badges": [
+    4,
+    12
+   ],
+   "next": 26,
+   "toNextFreeze": 0,
+   "weekKey": "2026-10-12",
+   "celebration": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": null
+    }
+   },
+   "celebrationNoPlan": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": "2026-10-12"
+    }
+   }
+  }
+ },
+ {
+  "name": "fresh 2026-11",
+  "level": {
+   "fresh": false,
+   "months": 3,
+   "workouts": 6.666666666666667,
+   "perWeek": 1.5332720024532354,
+   "weekRate": 0.9333333333333332,
+   "volumeKg": 15624.666666666666,
+   "prs": 5,
+   "pullups": 77,
+   "pushups": 114,
+   "cardioMin": 44,
+   "weighDays": 2,
+   "groups": 5
+  },
+  "picked": [
+   {
+    "id": "workouts",
+    "n": 8
+   },
+   {
+    "id": "pushups",
+    "n": 140
+   },
+   {
+    "id": "newex",
+    "n": 2
+   }
+  ],
+  "month": {
+   "key": "2026-11",
+   "picked": [
+    {
+     "id": "workouts",
+     "n": 8
+    },
+    {
+     "id": "pushups",
+     "n": 140
+    },
+    {
+     "id": "newex",
+     "n": 2
+    }
+   ],
+   "done": [],
+   "stored": false
+  },
+  "progress": [
+   {
+    "id": "workouts",
+    "icon": "dumbbell",
+    "n": 8,
+    "have": 4,
+    "pct": 0.5,
+    "done": false,
+    "known": true,
+    "title": "8 workouts this month",
+    "count": "4 / 8"
+   },
+   {
+    "id": "pushups",
+    "icon": "arm",
+    "n": 140,
+    "have": 76,
+    "pct": 0.5428571428571428,
+    "done": false,
+    "known": true,
+    "title": "140 push-ups this month",
+    "count": "76 / 140"
+   },
+   {
+    "id": "newex",
+    "icon": "sparkles",
+    "n": 2,
+    "have": 1,
+    "pct": 0.5,
+    "done": false,
+    "known": true,
+    "title": "Try 2 exercises you have never done",
+    "count": "1 / 2"
+   }
+  ],
+  "newly": [],
+  "cleaned": null,
+  "saved": {
+   "wrote": false,
+   "challenges": {
+    "2026-11": {
+     "picked": [
+      {
+       "id": "workouts",
+       "n": 8
+      },
+      {
+       "id": "pushups",
+       "n": 140
+      },
+      {
+       "id": "newex",
+       "n": 2
+      }
+     ],
+     "done": [],
+     "at": 1000
+    }
+   }
+  },
+  "shelf": [],
+  "on": true,
+  "streak": {
+   "current": 20,
+   "best": 20,
+   "freezes": 2,
+   "frozen": [],
+   "thisWeekDone": true,
+   "badges": [
+    4,
+    12
+   ],
+   "next": 26,
+   "toNextFreeze": 0,
+   "weekKey": "2026-11-09",
+   "celebration": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": null
+    }
+   },
+   "celebrationNoPlan": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": "2026-11-09"
+    }
+   }
+  }
+ },
+ {
+  "name": "fresh 2026-12",
+  "level": {
+   "fresh": false,
+   "months": 3,
+   "workouts": 5.666666666666667,
+   "perWeek": 1.30328120208525,
+   "weekRate": 0.7666666666666666,
+   "volumeKg": 13176,
+   "prs": 4.333333333333333,
+   "pullups": 66.66666666666667,
+   "pushups": 101.33333333333333,
+   "cardioMin": 36,
+   "weighDays": 2.6666666666666665,
+   "groups": 5
+  },
+  "picked": [
+   {
+    "id": "weeks",
+    "n": 5
+   },
+   {
+    "id": "cardio",
+    "n": 60
+   },
+   {
+    "id": "muscles",
+    "n": 6
+   }
+  ],
+  "month": {
+   "key": "2026-12",
+   "picked": [
+    {
+     "id": "weeks",
+     "n": 5
+    },
+    {
+     "id": "cardio",
+     "n": 60
+    },
+    {
+     "id": "muscles",
+     "n": 6
+    }
+   ],
+   "done": [],
+   "stored": false
+  },
+  "progress": [
+   {
+    "id": "weeks",
+    "icon": "calendar",
+    "n": 5,
+    "have": 0,
+    "pct": 0,
+    "done": false,
+    "known": true,
+    "title": "Train every week this month",
+    "count": "0 / 5"
+   },
+   {
+    "id": "cardio",
+    "icon": "figureRun",
+    "n": 60,
+    "have": 0,
+    "pct": 0,
+    "done": false,
+    "known": true,
+    "title": "60 minutes of cardio",
+    "count": "0 / 60"
+   },
+   {
+    "id": "muscles",
+    "icon": "figureStrength",
+    "n": 6,
+    "have": 0,
+    "pct": 0,
+    "done": false,
+    "known": true,
+    "title": "Every muscle group at least once",
+    "count": "0 / 6"
+   }
+  ],
+  "newly": [],
+  "cleaned": null,
+  "saved": {
+   "wrote": false,
+   "challenges": {
+    "2026-12": {
+     "picked": [
+      {
+       "id": "weeks",
+       "n": 5
+      },
+      {
+       "id": "cardio",
+       "n": 60
+      },
+      {
+       "id": "muscles",
+       "n": 6
+      }
+     ],
+     "done": [],
+     "at": 1000
+    }
+   }
+  },
+  "shelf": [],
+  "on": true,
+  "streak": {
+   "current": 0,
+   "best": 20,
+   "freezes": 0,
+   "frozen": [],
+   "thisWeekDone": false,
+   "badges": [
+    4,
+    12
+   ],
+   "next": 26,
+   "toNextFreeze": 4,
+   "weekKey": "2026-12-14",
+   "celebration": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": null
+    }
+   },
+   "celebrationNoPlan": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": null
+    }
+   }
+  }
+ },
+ {
+  "name": "stored months",
+  "level": {
+   "fresh": false,
+   "months": 3,
+   "workouts": 6,
+   "perWeek": 1.3799448022079117,
+   "weekRate": 1,
+   "volumeKg": 14069.333333333334,
+   "prs": 4.666666666666667,
+   "pullups": 70,
+   "pushups": 101.33333333333333,
+   "cardioMin": 40,
+   "weighDays": 1,
+   "groups": 5
+  },
+  "picked": [
+   {
+    "id": "workouts",
+    "n": 7
+   },
+   {
+    "id": "pullups",
+    "n": 90
+   },
+   {
+    "id": "weighins",
+    "n": 4
+   }
+  ],
+  "month": {
+   "key": "2026-10",
+   "picked": [
+    {
+     "id": "workouts",
+     "n": 7
+    },
+    {
+     "id": "volume",
+     "n": 20000,
+     "u": "kg"
+    },
+    {
+     "id": "newex",
+     "n": 3
+    }
+   ],
+   "done": [
+    "workouts"
+   ],
+   "stored": true
+  },
+  "progress": [
+   {
+    "id": "workouts",
+    "icon": "dumbbell",
+    "n": 7,
+    "have": 7,
+    "pct": 1,
+    "done": true,
+    "known": true,
+    "title": "7 workouts this month",
+    "count": "7 / 7"
+   },
+   {
+    "id": "volume",
+    "icon": "plate",
+    "n": 20000,
+    "u": "kg",
+    "have": 16528,
+    "pct": 0.8264,
+    "done": false,
+    "known": true,
+    "title": "Lift 20 t this month",
+    "count": "16.5 / 20 t"
+   },
+   {
+    "id": "newex",
+    "icon": "sparkles",
+    "n": 3,
+    "have": 0,
+    "pct": 0,
+    "done": false,
+    "known": true,
+    "title": "Try 3 exercises you have never done",
+    "count": "0 / 3"
+   }
+  ],
+  "newly": [],
+  "cleaned": {
+   "2026-09": {
+    "picked": [
+     {
+      "id": "weeks",
+      "n": 4
+     },
+     {
+      "id": "prs",
+      "n": 2
+     },
+     {
+      "id": "weighins",
+      "n": 4
+     }
+    ],
+    "done": [
+     "prs",
+     "weeks",
+     "weighins"
+    ],
+    "at": 4
+   },
+   "2026-10": {
+    "picked": [
+     {
+      "id": "workouts",
+      "n": 7
+     },
+     {
+      "id": "volume",
+      "n": 20000,
+      "u": "kg"
+     },
+     {
+      "id": "newex",
+      "n": 3
+     }
+    ],
+    "done": [
+     "workouts"
+    ],
+    "at": 5
+   }
+  },
+  "saved": {
+   "wrote": false,
+   "challenges": {
+    "2026-09": {
+     "picked": [
+      {
+       "id": "weeks",
+       "n": 4
+      },
+      {
+       "id": "prs",
+       "n": 2
+      },
+      {
+       "id": "weighins",
+       "n": 4
+      }
+     ],
+     "done": [
+      "prs",
+      "weeks",
+      "weighins"
+     ],
+     "at": 4
+    },
+    "2026-10": {
+     "picked": [
+      {
+       "id": "workouts",
+       "n": 7
+      },
+      {
+       "id": "volume",
+       "n": 20000,
+       "u": "kg"
+      },
+      {
+       "id": "newex",
+       "n": 3
+      }
+     ],
+     "done": [
+      "workouts"
+     ],
+     "at": 5
+    }
+   }
+  },
+  "shelf": [
+   {
+    "key": "2026-10",
+    "done": 1,
+    "total": 3,
+    "gold": false
+   },
+   {
+    "key": "2026-09",
+    "done": 3,
+    "total": 3,
+    "gold": true
+   }
+  ],
+  "on": true,
+  "streak": {
+   "current": 18,
+   "best": 18,
+   "freezes": 2,
+   "frozen": [],
+   "thisWeekDone": true,
+   "badges": [
+    4,
+    12
+   ],
+   "next": 26,
+   "toNextFreeze": 0,
+   "weekKey": "2026-10-26",
+   "celebration": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": null
+    }
+   },
+   "celebrationNoPlan": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": "2026-10-26"
+    }
+   }
+  }
+ },
+ {
+  "name": "lb profile",
+  "level": {
+   "fresh": false,
+   "months": 3,
+   "workouts": 6.666666666666667,
+   "perWeek": 1.5332720024532354,
+   "weekRate": 0.9333333333333332,
+   "volumeKg": 7087.229583793333,
+   "prs": 5,
+   "pullups": 77,
+   "pushups": 114,
+   "cardioMin": 44,
+   "weighDays": 2,
+   "groups": 5
+  },
+  "picked": [
+   {
+    "id": "workouts",
+    "n": 8
+   },
+   {
+    "id": "pushups",
+    "n": 140
+   },
+   {
+    "id": "newex",
+    "n": 2
+   }
+  ],
+  "month": {
+   "key": "2026-11",
+   "picked": [
+    {
+     "id": "workouts",
+     "n": 8
+    },
+    {
+     "id": "pushups",
+     "n": 140
+    },
+    {
+     "id": "newex",
+     "n": 2
+    }
+   ],
+   "done": [],
+   "stored": false
+  },
+  "progress": [
+   {
+    "id": "workouts",
+    "icon": "dumbbell",
+    "n": 8,
+    "have": 4,
+    "pct": 0.5,
+    "done": false,
+    "known": true,
+    "title": "8 workouts this month",
+    "count": "4 / 8"
+   },
+   {
+    "id": "pushups",
+    "icon": "arm",
+    "n": 140,
+    "have": 76,
+    "pct": 0.5428571428571428,
+    "done": false,
+    "known": true,
+    "title": "140 push-ups this month",
+    "count": "76 / 140"
+   },
+   {
+    "id": "newex",
+    "icon": "sparkles",
+    "n": 2,
+    "have": 1,
+    "pct": 0.5,
+    "done": false,
+    "known": true,
+    "title": "Try 2 exercises you have never done",
+    "count": "1 / 2"
+   }
+  ],
+  "newly": [],
+  "cleaned": null,
+  "saved": {
+   "wrote": false,
+   "challenges": {
+    "2026-11": {
+     "picked": [
+      {
+       "id": "workouts",
+       "n": 8
+      },
+      {
+       "id": "pushups",
+       "n": 140
+      },
+      {
+       "id": "newex",
+       "n": 2
+      }
+     ],
+     "done": [],
+     "at": 1000
+    }
+   }
+  },
+  "shelf": [],
+  "on": true,
+  "streak": {
+   "current": 20,
+   "best": 20,
+   "freezes": 2,
+   "frozen": [],
+   "thisWeekDone": true,
+   "badges": [
+    4,
+    12
+   ],
+   "next": 26,
+   "toNextFreeze": 0,
+   "weekKey": "2026-11-09",
+   "celebration": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": null
+    }
+   },
+   "celebrationNoPlan": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": "2026-11-09"
+    }
+   }
+  }
+ },
+ {
+  "name": "lb profile, kg target",
+  "level": {
+   "fresh": false,
+   "months": 3,
+   "workouts": 6,
+   "perWeek": 1.3799448022079117,
+   "weekRate": 1,
+   "volumeKg": 6381.7422509866665,
+   "prs": 4.666666666666667,
+   "pullups": 70,
+   "pushups": 101.33333333333333,
+   "cardioMin": 40,
+   "weighDays": 1,
+   "groups": 5
+  },
+  "picked": [
+   {
+    "id": "workouts",
+    "n": 7
+   },
+   {
+    "id": "pullups",
+    "n": 90
+   },
+   {
+    "id": "weighins",
+    "n": 4
+   }
+  ],
+  "month": {
+   "key": "2026-10",
+   "picked": [
+    {
+     "id": "workouts",
+     "n": 7
+    },
+    {
+     "id": "volume",
+     "n": 20000,
+     "u": "kg"
+    },
+    {
+     "id": "newex",
+     "n": 3
+    }
+   ],
+   "done": [
+    "workouts"
+   ],
+   "stored": true
+  },
+  "progress": [
+   {
+    "id": "workouts",
+    "icon": "dumbbell",
+    "n": 7,
+    "have": 7,
+    "pct": 1,
+    "done": true,
+    "known": true,
+    "title": "7 workouts this month",
+    "count": "7 / 7"
+   },
+   {
+    "id": "volume",
+    "icon": "plate",
+    "n": 20000,
+    "u": "kg",
+    "have": 7496.97469136,
+    "pct": 0.374848734568,
+    "done": false,
+    "known": true,
+    "title": "Lift 44.1k lb this month",
+    "count": "16.5k / 44.1k lb"
+   },
+   {
+    "id": "newex",
+    "icon": "sparkles",
+    "n": 3,
+    "have": 0,
+    "pct": 0,
+    "done": false,
+    "known": true,
+    "title": "Try 3 exercises you have never done",
+    "count": "0 / 3"
+   }
+  ],
+  "newly": [],
+  "cleaned": {
+   "2026-09": {
+    "picked": [
+     {
+      "id": "weeks",
+      "n": 4
+     },
+     {
+      "id": "prs",
+      "n": 2
+     },
+     {
+      "id": "weighins",
+      "n": 4
+     }
+    ],
+    "done": [
+     "prs",
+     "weeks",
+     "weighins"
+    ],
+    "at": 4
+   },
+   "2026-10": {
+    "picked": [
+     {
+      "id": "workouts",
+      "n": 7
+     },
+     {
+      "id": "volume",
+      "n": 20000,
+      "u": "kg"
+     },
+     {
+      "id": "newex",
+      "n": 3
+     }
+    ],
+    "done": [
+     "workouts"
+    ],
+    "at": 5
+   }
+  },
+  "saved": {
+   "wrote": false,
+   "challenges": {
+    "2026-09": {
+     "picked": [
+      {
+       "id": "weeks",
+       "n": 4
+      },
+      {
+       "id": "prs",
+       "n": 2
+      },
+      {
+       "id": "weighins",
+       "n": 4
+      }
+     ],
+     "done": [
+      "prs",
+      "weeks",
+      "weighins"
+     ],
+     "at": 4
+    },
+    "2026-10": {
+     "picked": [
+      {
+       "id": "workouts",
+       "n": 7
+      },
+      {
+       "id": "volume",
+       "n": 20000,
+       "u": "kg"
+      },
+      {
+       "id": "newex",
+       "n": 3
+      }
+     ],
+     "done": [
+      "workouts"
+     ],
+     "at": 5
+    }
+   }
+  },
+  "shelf": [
+   {
+    "key": "2026-10",
+    "done": 1,
+    "total": 3,
+    "gold": false
+   },
+   {
+    "key": "2026-09",
+    "done": 3,
+    "total": 3,
+    "gold": true
+   }
+  ],
+  "on": true,
+  "streak": {
+   "current": 16,
+   "best": 16,
+   "freezes": 2,
+   "frozen": [],
+   "thisWeekDone": true,
+   "badges": [
+    4,
+    12
+   ],
+   "next": 26,
+   "toNextFreeze": 0,
+   "weekKey": "2026-10-12",
+   "celebration": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": null
+    }
+   },
+   "celebrationNoPlan": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": "2026-10-12"
+    }
+   }
+  }
+ },
+ {
+  "name": "sunday weeks",
+  "level": {
+   "fresh": false,
+   "months": 3,
+   "workouts": 6.666666666666667,
+   "perWeek": 1.5332720024532354,
+   "weekRate": 1,
+   "volumeKg": 15624.666666666666,
+   "prs": 5,
+   "pullups": 77,
+   "pushups": 114,
+   "cardioMin": 44,
+   "weighDays": 2,
+   "groups": 5
+  },
+  "picked": [
+   {
+    "id": "workouts",
+    "n": 8
+   },
+   {
+    "id": "pushups",
+    "n": 140
+   },
+   {
+    "id": "newex",
+    "n": 2
+   }
+  ],
+  "month": {
+   "key": "2026-11",
+   "picked": [
+    {
+     "id": "workouts",
+     "n": 8
+    },
+    {
+     "id": "pushups",
+     "n": 140
+    },
+    {
+     "id": "newex",
+     "n": 2
+    }
+   ],
+   "done": [],
+   "stored": false
+  },
+  "progress": [
+   {
+    "id": "workouts",
+    "icon": "dumbbell",
+    "n": 8,
+    "have": 4,
+    "pct": 0.5,
+    "done": false,
+    "known": true,
+    "title": "8 workouts this month",
+    "count": "4 / 8"
+   },
+   {
+    "id": "pushups",
+    "icon": "arm",
+    "n": 140,
+    "have": 76,
+    "pct": 0.5428571428571428,
+    "done": false,
+    "known": true,
+    "title": "140 push-ups this month",
+    "count": "76 / 140"
+   },
+   {
+    "id": "newex",
+    "icon": "sparkles",
+    "n": 2,
+    "have": 1,
+    "pct": 0.5,
+    "done": false,
+    "known": true,
+    "title": "Try 2 exercises you have never done",
+    "count": "1 / 2"
+   }
+  ],
+  "newly": [],
+  "cleaned": null,
+  "saved": {
+   "wrote": false,
+   "challenges": {
+    "2026-11": {
+     "picked": [
+      {
+       "id": "workouts",
+       "n": 8
+      },
+      {
+       "id": "pushups",
+       "n": 140
+      },
+      {
+       "id": "newex",
+       "n": 2
+      }
+     ],
+     "done": [],
+     "at": 1000
+    }
+   }
+  },
+  "shelf": [],
+  "on": true,
+  "streak": {
+   "current": 20,
+   "best": 20,
+   "freezes": 2,
+   "frozen": [],
+   "thisWeekDone": false,
+   "badges": [
+    4,
+    12
+   ],
+   "next": 26,
+   "toNextFreeze": 0,
+   "weekKey": "2026-11-15",
+   "celebration": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": null
+    }
+   },
+   "celebrationNoPlan": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": null
+    }
+   }
+  }
+ },
+ {
+  "name": "nothing at all",
+  "level": {
+   "fresh": true,
+   "months": 0,
+   "workouts": 0,
+   "perWeek": 0,
+   "weekRate": 0,
+   "volumeKg": 0,
+   "prs": 0,
+   "pullups": 0,
+   "pushups": 0,
+   "cardioMin": 0,
+   "weighDays": 0,
+   "groups": 0
+  },
+  "picked": [
+   {
+    "id": "workouts",
+    "n": 4
+   },
+   {
+    "id": "newex",
+    "n": 3
+   },
+   {
+    "id": "weeks",
+    "n": 4
+   }
+  ],
+  "month": {
+   "key": "2026-11",
+   "picked": [
+    {
+     "id": "workouts",
+     "n": 4
+    },
+    {
+     "id": "newex",
+     "n": 3
+    },
+    {
+     "id": "weeks",
+     "n": 4
+    }
+   ],
+   "done": [],
+   "stored": false
+  },
+  "progress": [
+   {
+    "id": "workouts",
+    "icon": "dumbbell",
+    "n": 4,
+    "have": 0,
+    "pct": 0,
+    "done": false,
+    "known": true,
+    "title": "4 workouts this month",
+    "count": "0 / 4"
+   },
+   {
+    "id": "newex",
+    "icon": "sparkles",
+    "n": 3,
+    "have": 0,
+    "pct": 0,
+    "done": false,
+    "known": true,
+    "title": "Try 3 exercises you have never done",
+    "count": "0 / 3"
+   },
+   {
+    "id": "weeks",
+    "icon": "calendar",
+    "n": 4,
+    "have": 0,
+    "pct": 0,
+    "done": false,
+    "known": true,
+    "title": "Train every week this month",
+    "count": "0 / 4"
+   }
+  ],
+  "newly": [],
+  "cleaned": null,
+  "saved": {
+   "wrote": false,
+   "challenges": {
+    "2026-11": {
+     "picked": [
+      {
+       "id": "workouts",
+       "n": 4
+      },
+      {
+       "id": "newex",
+       "n": 3
+      },
+      {
+       "id": "weeks",
+       "n": 4
+      }
+     ],
+     "done": [],
+     "at": 1000
+    }
+   }
+  },
+  "shelf": [],
+  "on": true,
+  "streak": {
+   "current": 0,
+   "best": 0,
+   "freezes": 0,
+   "frozen": [],
+   "thisWeekDone": false,
+   "badges": [],
+   "next": 4,
+   "toNextFreeze": 4,
+   "weekKey": "2026-11-09",
+   "celebration": null,
+   "celebrationNoPlan": null
+  }
+ },
+ {
+  "name": "streak with gaps",
+  "level": {
+   "fresh": false,
+   "months": 3,
+   "workouts": 4.666666666666667,
+   "perWeek": 1.0732904017172646,
+   "weekRate": 0.6,
+   "volumeKg": 11018.666666666666,
+   "prs": 3.3333333333333335,
+   "pullups": 56,
+   "pushups": 76,
+   "cardioMin": 32,
+   "weighDays": 2,
+   "groups": 3.3333333333333335
+  },
+  "picked": [
+   {
+    "id": "workouts",
+    "n": 6
+   },
+   {
+    "id": "pushups",
+    "n": 90
+   },
+   {
+    "id": "newex",
+    "n": 2
+   }
+  ],
+  "month": {
+   "key": "2026-11",
+   "picked": [
+    {
+     "id": "workouts",
+     "n": 6
+    },
+    {
+     "id": "pushups",
+     "n": 90
+    },
+    {
+     "id": "newex",
+     "n": 2
+    }
+   ],
+   "done": [],
+   "stored": false
+  },
+  "progress": [
+   {
+    "id": "workouts",
+    "icon": "dumbbell",
+    "n": 6,
+    "have": 4,
+    "pct": 0.6666666666666666,
+    "done": false,
+    "known": true,
+    "title": "6 workouts this month",
+    "count": "4 / 6"
+   },
+   {
+    "id": "pushups",
+    "icon": "arm",
+    "n": 90,
+    "have": 76,
+    "pct": 0.8444444444444444,
+    "done": false,
+    "known": true,
+    "title": "90 push-ups this month",
+    "count": "76 / 90"
+   },
+   {
+    "id": "newex",
+    "icon": "sparkles",
+    "n": 2,
+    "have": 1,
+    "pct": 0.5,
+    "done": false,
+    "known": true,
+    "title": "Try 2 exercises you have never done",
+    "count": "1 / 2"
+   }
+  ],
+  "newly": [],
+  "cleaned": null,
+  "saved": {
+   "wrote": false,
+   "challenges": {
+    "2026-11": {
+     "picked": [
+      {
+       "id": "workouts",
+       "n": 6
+      },
+      {
+       "id": "pushups",
+       "n": 90
+      },
+      {
+       "id": "newex",
+       "n": 2
+      }
+     ],
+     "done": [],
+     "at": 1000
+    }
+   }
+  },
+  "shelf": [],
+  "on": true,
+  "streak": {
+   "current": 6,
+   "best": 9,
+   "freezes": 1,
+   "frozen": [],
+   "thisWeekDone": true,
+   "badges": [
+    4
+   ],
+   "next": 12,
+   "toNextFreeze": 2,
+   "weekKey": "2026-11-09",
+   "celebration": {
+    "kind": "badge",
+    "weeks": 4,
+    "seen": {
+     "badge": 4,
+     "wk": null
+    }
+   },
+   "celebrationNoPlan": {
+    "kind": "badge",
+    "weeks": 4,
+    "seen": {
+     "badge": 4,
+     "wk": "2026-11-09"
+    }
+   }
+  }
+ },
+ {
+  "name": "streak, one week frozen",
+  "level": {
+   "fresh": false,
+   "months": 3,
+   "workouts": 6,
+   "perWeek": 1.3799448022079117,
+   "weekRate": 0.8666666666666667,
+   "volumeKg": 14089.333333333334,
+   "prs": 4.666666666666667,
+   "pullups": 70,
+   "pushups": 101.33333333333333,
+   "cardioMin": 40,
+   "weighDays": 2,
+   "groups": 5
+  },
+  "picked": [
+   {
+    "id": "workouts",
+    "n": 7
+   },
+   {
+    "id": "pushups",
+    "n": 120
+   },
+   {
+    "id": "newex",
+    "n": 2
+   }
+  ],
+  "month": {
+   "key": "2026-11",
+   "picked": [
+    {
+     "id": "workouts",
+     "n": 7
+    },
+    {
+     "id": "pushups",
+     "n": 120
+    },
+    {
+     "id": "newex",
+     "n": 2
+    }
+   ],
+   "done": [],
+   "stored": false
+  },
+  "progress": [
+   {
+    "id": "workouts",
+    "icon": "dumbbell",
+    "n": 7,
+    "have": 4,
+    "pct": 0.5714285714285714,
+    "done": false,
+    "known": true,
+    "title": "7 workouts this month",
+    "count": "4 / 7"
+   },
+   {
+    "id": "pushups",
+    "icon": "arm",
+    "n": 120,
+    "have": 76,
+    "pct": 0.6333333333333333,
+    "done": false,
+    "known": true,
+    "title": "120 push-ups this month",
+    "count": "76 / 120"
+   },
+   {
+    "id": "newex",
+    "icon": "sparkles",
+    "n": 2,
+    "have": 1,
+    "pct": 0.5,
+    "done": false,
+    "known": true,
+    "title": "Try 2 exercises you have never done",
+    "count": "1 / 2"
+   }
+  ],
+  "newly": [],
+  "cleaned": null,
+  "saved": {
+   "wrote": false,
+   "challenges": {
+    "2026-11": {
+     "picked": [
+      {
+       "id": "workouts",
+       "n": 7
+      },
+      {
+       "id": "pushups",
+       "n": 120
+      },
+      {
+       "id": "newex",
+       "n": 2
+      }
+     ],
+     "done": [],
+     "at": 1000
+    }
+   }
+  },
+  "shelf": [],
+  "on": true,
+  "streak": {
+   "current": 19,
+   "best": 19,
+   "freezes": 2,
+   "frozen": [
+    "2026-10-12"
+   ],
+   "thisWeekDone": true,
+   "badges": [
+    4,
+    12
+   ],
+   "next": 26,
+   "toNextFreeze": 0,
+   "weekKey": "2026-11-09",
+   "celebration": null,
+   "celebrationNoPlan": {
+    "kind": "week",
+    "weeks": 19,
+    "seen": {
+     "badge": 12,
+     "wk": "2026-11-09"
+    }
+   }
+  }
+ },
+ {
+  "name": "streak, this week open",
+  "level": {
+   "fresh": false,
+   "months": 3,
+   "workouts": 6.666666666666667,
+   "perWeek": 1.5332720024532354,
+   "weekRate": 0.9333333333333332,
+   "volumeKg": 15624.666666666666,
+   "prs": 5,
+   "pullups": 77,
+   "pushups": 114,
+   "cardioMin": 44,
+   "weighDays": 2,
+   "groups": 5
+  },
+  "picked": [
+   {
+    "id": "workouts",
+    "n": 8
+   },
+   {
+    "id": "pushups",
+    "n": 140
+   },
+   {
+    "id": "newex",
+    "n": 2
+   }
+  ],
+  "month": {
+   "key": "2026-11",
+   "picked": [
+    {
+     "id": "workouts",
+     "n": 8
+    },
+    {
+     "id": "pushups",
+     "n": 140
+    },
+    {
+     "id": "newex",
+     "n": 2
+    }
+   ],
+   "done": [],
+   "stored": false
+  },
+  "progress": [
+   {
+    "id": "workouts",
+    "icon": "dumbbell",
+    "n": 8,
+    "have": 4,
+    "pct": 0.5,
+    "done": false,
+    "known": true,
+    "title": "8 workouts this month",
+    "count": "4 / 8"
+   },
+   {
+    "id": "pushups",
+    "icon": "arm",
+    "n": 140,
+    "have": 76,
+    "pct": 0.5428571428571428,
+    "done": false,
+    "known": true,
+    "title": "140 push-ups this month",
+    "count": "76 / 140"
+   },
+   {
+    "id": "newex",
+    "icon": "sparkles",
+    "n": 2,
+    "have": 1,
+    "pct": 0.5,
+    "done": false,
+    "known": true,
+    "title": "Try 2 exercises you have never done",
+    "count": "1 / 2"
+   }
+  ],
+  "newly": [],
+  "cleaned": null,
+  "saved": {
+   "wrote": false,
+   "challenges": {
+    "2026-11": {
+     "picked": [
+      {
+       "id": "workouts",
+       "n": 8
+      },
+      {
+       "id": "pushups",
+       "n": 140
+      },
+      {
+       "id": "newex",
+       "n": 2
+      }
+     ],
+     "done": [],
+     "at": 1000
+    }
+   }
+  },
+  "shelf": [],
+  "on": true,
+  "streak": {
+   "current": 20,
+   "best": 20,
+   "freezes": 2,
+   "frozen": [],
+   "thisWeekDone": false,
+   "badges": [
+    4,
+    12
+   ],
+   "next": 26,
+   "toNextFreeze": 0,
+   "weekKey": "2026-11-16",
+   "celebration": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": null
+    }
+   },
+   "celebrationNoPlan": {
+    "kind": "badge",
+    "weeks": 12,
+    "seen": {
+     "badge": 12,
+     "wk": null
+    }
+   }
+  }
+ }
+]

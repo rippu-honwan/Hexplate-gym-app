@@ -27,11 +27,13 @@ struct StatsView: View {
     var body: some View {
         NavigationStack {
             List {
+                StreakSection()
                 bodySection
                 muscleSection
                 volumeSection
                 daysSection
                 strengthSection
+                TrophyShelfSection()
                 Section {
                     NavigationLink("Structural balance") { BalanceView() }
                 } footer: {
