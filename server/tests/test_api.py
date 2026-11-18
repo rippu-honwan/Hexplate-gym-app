@@ -113,3 +113,36 @@ def test_overview_page(client):
     client.app.state.store.put(state())
     html = client.get("/").text
     assert "Weekly volume" in html and "Upper" in html and "kg" in html
+
+
+def test_pages_and_data_actions(client, tmp_path):
+    store = client.app.state.store
+    store.put(state())
+    (tmp_path / "motion").mkdir(exist_ok=True)
+    head = '# {"auto":9,"reps":10,"checked":true,"exId":"0025","w":20,"end":1794984800412}\nt\n'
+    store.save_motion("20261118-120000_0025_s1.csv", head)
+    assert "Estimated 1RM per session" in client.get("/progress").text
+    reps = client.get("/reps").text
+    assert "0 of 1 counted right" in reps and "+0" not in reps and "-1" in reps
+    assert "New pairing code" in client.get("/data").text
+
+    same = {"Origin": "http://testserver"}
+    page = client.post("/data/pair", headers=same).text
+    code = page.split('<div class="code">')[1].split("<")[0]
+    assert client.post("/api/pair/redeem", json={"code": code}).status_code == 200
+    (h, _), = store.tokens()
+    assert client.post("/data/restore", data={"rev": "1"}, headers=same, follow_redirects=False).status_code == 303
+    assert store.current()[0] == 2 and store.document(2)["workouts"] == store.document(1)["workouts"]
+    client.post("/data/revoke", data={"h": h}, headers=same)
+    assert store.tokens() == []
+    assert client.get("/data/rev/1.json").json()["_rev"] == 1
+
+    # Another website open on this Mac cannot post to the dashboard.
+    assert client.post("/data/pair", headers={"Origin": "https://evil.example"}).status_code == 403
+    assert client.post("/data/pair", headers={"Sec-Fetch-Site": "cross-site"}).status_code == 403
+
+
+def test_dashboard_is_local_only(tmp_path):
+    other = TestClient(create_app(tmp_path), client=("192.168.1.20", 50000))
+    assert other.get("/").status_code == 403 and other.get("/data/latest.json").status_code == 403
+    assert other.get("/api/health").status_code == 200   # the phone's API stays reachable

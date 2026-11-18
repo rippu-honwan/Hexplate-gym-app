@@ -85,12 +85,35 @@ class Store:
     def token_ok(self, token: str) -> bool:
         return self.db.execute("SELECT 1 FROM tokens WHERE hash = ?", (_hash(token),)).fetchone() is not None
 
+    def tokens(self):
+        """Paired phones: (hash, created_at), newest first."""
+        return self.db.execute("SELECT hash, created_at FROM tokens ORDER BY created_at DESC").fetchall()
+
+    def revoke(self, token_hash: str):
+        with self.db:
+            self.db.execute("DELETE FROM tokens WHERE hash = ?", (token_hash,))
+
     # MARK: the document
 
     def current(self):
         """(rev, state) of the latest document; (0, None) before the first push."""
         row = self.db.execute("SELECT rev, body FROM documents ORDER BY rev DESC LIMIT 1").fetchone()
         return (row[0], json.loads(row[1])) if row else (0, None)
+
+    def versions(self, limit=30):
+        """(rev, received_at, workouts, bytes) of the latest `limit` documents, newest first."""
+        return self.db.execute("""SELECT rev, received_at, json_array_length(body, '$.workouts'), length(body)
+                                  FROM documents ORDER BY rev DESC LIMIT ?""", (limit,)).fetchall()
+
+    def document(self, rev: int):
+        row = self.db.execute("SELECT body FROM documents WHERE rev = ?", (rev,)).fetchone()
+        return json.loads(row[0]) if row else None
+
+    def restore(self, rev: int):
+        """An earlier document stored again as the newest revision (nothing is deleted). The phone
+        takes it on its next sync, and merges in anything it changed meanwhile."""
+        old = self.document(rev)
+        return self.put(old) if old else None
 
     def put(self, state: dict, base_rev=None, base_wid=None):
         """Stores `state` as the next revision. A `base_rev` (and `base_wid`) that is not the
@@ -136,6 +159,21 @@ class Store:
                 self.db.execute("INSERT OR REPLACE INTO bodyweight VALUES (?,?,?)", (b["d"], b.get("t") or "", _num(b.get("w"))))
 
     # MARK: motion
+
+    def motion_meta(self):
+        """Each set file's JSON header, newest first: the watch's own count `auto`, the final `reps`,
+        `checked`, `exId`, `w`, `end`. Set files carry no `kind`; the heart-rate, sync and watch logs
+        do. ponytail: reads every file's first line per call; store the header in motion_files if
+        the folder grows into the thousands."""
+        out = []
+        for (name,) in self.db.execute("SELECT name FROM motion_files WHERE kind IS NULL ORDER BY recorded_at DESC"):
+            try:
+                with open(self.motion_dir / name) as f:
+                    meta = json.loads(f.readline()[2:])
+            except (OSError, ValueError):
+                continue
+            out.append({**meta, "file": name})
+        return out
 
     def save_motion(self, name: str, csv: str, received_at: float | None = None) -> bool:
         m = MOTION_NAME.match(name)
