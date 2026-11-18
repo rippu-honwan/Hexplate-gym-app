@@ -2,7 +2,7 @@
 # folder; the generated Hexplate.xcodeproj is not committed.
 name: Hexplate
 options:
-  # Traditional Chinese only (zh-Hant.lproj in each target), whatever the device's language.
+  # Traditional Chinese by default; the phone app can switch to English (en.lproj, Settings → Units & language).
   developmentLanguage: zh-Hant
   deploymentTarget:
     iOS: "26.0"

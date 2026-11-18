@@ -77,94 +77,39 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @AppStorage("appearance") private var appearance = "system"
     @AppStorage("health") private var health = false
+    @AppStorage(Theme.languageKey) private var language = Theme.language
     @State private var importing = false
     @State private var healthNote: String?
 
+    /// The root is a short list of pages, grouped the way openGym's Settings groups them; each page
+    /// holds a few related rows.
     var body: some View {
         NavigationStack {
-            Form {
-                Section("Units") {
-                    picker("Weight", "unit", ["kg": "kg", "lb": "lb"], fallback: "kg")
-                    picker("Weight decimals", "wdec", [1: "1", 2: "2"], fallback: 1)
-                    picker("Week starts", "weekStart", [1: "Monday", 0: "Sunday"], fallback: 1)
-                }
-
+            List {
                 Section {
-                    picker("Progression", "progDefault", ["linear": "Linear", "double": "Double", "greyskull": "Greyskull LP", "off": "Off"], fallback: "linear")
-                    picker("Start sets from", "startFrom", ["plan": "The plan", "last": "Last time"], fallback: "plan")
-                    picker("Last time from", "lastFrom", ["routine": "Same routine", "any": "Any routine"], fallback: "routine")
-                    picker("One-rep max", "oneRmFormula", Stats.formulaNames, fallback: "epley")
-                    picker("Effort", "effort", ["none": "Off", "rir": "Reps in reserve", "rpe": "RPE"], fallback: "none")
-                    picker("Warm-up sets", "warmupAuto", ["off": "Off", "compounds": "Compound lifts", "all": "All lifts"], fallback: "off")
-                    picker("Exercise animations", "gifSize", ["full": "Full", "mini": "Small", "off": "Off"], fallback: "full")
-                } header: {
-                    Text("Training")
+                    page("Workout", "figure.strengthtraining.traditional", .accentColor) { workout }
+                    page("Timer alerts", "speaker.wave.2.fill", .orange) { alerts }
+                    page("Reminders", "bell.fill", .red) { ReminderSection() }
                 }
-
                 Section {
-                    stepper("Rest", "restSec", fallback: 90, range: 0...600, step: 15)
-                    stepper("Rest-pause", "restPauseSec", fallback: 15, range: 5...120, step: 5)
-                    toggle("Sound", "sound", fallback: true)
-                    toggle("Flash the screen", "timerFlash", fallback: false)
-                } header: {
-                    Text("Rest timer")
-                } footer: {
-                    Text("A notification also tells you when rest is over while Hexplate is in the background.")
-                }
-
-                Section {
-                    picker("Sex", "sex", ["": "Not set", "male": "Male", "female": "Female"], fallback: "")
-                    numberRow("Birth year", "birthYear", decimals: 0)
-                    numberRow("Goal weight (\(model.settings.unit))", "targetW", decimals: 1)
-                } header: {
-                    Text("Profile")
-                } footer: {
-                    Text("Sex and age set the strength level standards.")
-                }
-
-                ReminderSection()
-
-                Section("Tools") {
-                    NavigationLink("Plate calculator") { PlateCalculator() }
-                }
-
-                Section("Appearance") {
-                    Picker("Theme", selection: $appearance) {
-                        Text("System").tag("system")
-                        Text("Light").tag("light")
-                        Text("Dark").tag("dark")
+                    page("Plan & schedule", "calendar", .orange) { plan }
+                    page("Units & language", "globe", .blue, value: language == "en" ? "English" : "中文") { units }
+                    NavigationLink { PlateCalculator().navigationTitle("Plate calculator").navigationBarTitleDisplayMode(.inline) } label: {
+                        row("Plate calculator", "scalemass.fill", .indigo)
                     }
                 }
-
                 Section {
-                    Toggle("Apple Health", isOn: $health)
-                        .onChange(of: health) {
-                            guard health else { return }
-                            Task { if !(await Health.authorise()) { health = false; healthNote = "Apple Health is not available." } }
-                        }
-                    if health {
-                        Button("Import weights from Health") { Task { await importWeights() } }
-                    }
-                    if let healthNote { Text(healthNote).foregroundStyle(.secondary) }
-                } header: {
-                    Text("Apple Health")
-                } footer: {
-                    Text("Weigh-ins and finished workouts are written to Health.")
+                    page("Appearance", "paintpalette.fill", .purple, value: themeName) { look }
+                    page("Apple Health", "heart.fill", .pink, value: String(localized: health ? "On" : "Off")) { healthPage }
                 }
-
                 Section {
-                    ShareLink("Export JSON", item: model.stateFileURL)
-                    NavigationLink("Export as spreadsheet (CSV)") { CSVExportView() }
-                    Button("Import", systemImage: "square.and.arrow.down") { importing = true }
-                } header: {
-                    Text("Data")
+                    page("Data & backup", "folder.fill", .blue) { data }
+                    page("Server", "server.rack", .gray, value: String(localized: ServerSync.shared.paired ? "Connected" : "Off")) { ServerSection() }
                 } footer: {
-                    Text("JSON is the openGym format and holds everything. A copy is also kept automatically once a day (the last seven days).")
+                    Text(verbatim: "Hexplate \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")")
+                        .frame(maxWidth: .infinity).padding(.top, 12)
                 }
-
-                ServerSection()
             }
-            .keyboardDone()
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { Button("Done") { dismiss() }.fontWeight(.semibold) }
@@ -172,36 +117,184 @@ struct SettingsView: View {
         }
     }
 
+    private var themeName: String {
+        String(localized: appearance == "light" ? "Light" : appearance == "dark" ? "Dark" : "System")
+    }
+
+    // MARK: Pages
+
+    @ViewBuilder private var workout: some View {
+        Section("Logging") {
+            picker("Effort per set", "effort", [("none", "Off"), ("rir", "Reps in reserve"), ("rpe", "RPE")], fallback: "none")
+            picker("Planned sessions start from", "startFrom", [("plan", "The plan"), ("last", "Last time")], fallback: "plan")
+            picker("Last time means", "lastFrom", [("routine", "Same routine"), ("any", "Any routine")], fallback: "routine")
+        }
+        Section("Warm-ups") {
+            picker("Automatic warm-ups", "warmupAuto", [("off", "Off"), ("compounds", "Compound lifts"), ("all", "All lifts")], fallback: "off")
+        }
+        Section {
+            stepper("Rest timer", "restSec", fallback: 90, range: 0...600, step: 15)
+            stepper("Rest-pause rest", "restPauseSec", fallback: 15, range: 5...120, step: 5)
+        } header: {
+            Text("Rest")
+        } footer: {
+            Text("Each exercise can have its own rest too. Set it in the exercise settings of a routine.")
+        }
+        Section("Before and during") {
+            picker("Exercise animations", "gifSize", [("full", "Full"), ("mini", "Small"), ("off", "Off")], fallback: "full")
+        }
+        Section("Fine-tuning") {
+            picker("Default progression", "progDefault", [("linear", "Linear"), ("double", "Double"), ("greyskull", "Greyskull LP"), ("off", "Off")], fallback: "linear")
+        }
+    }
+
+    @ViewBuilder private var alerts: some View {
+        Section {
+            toggle("Play a sound", "sound", fallback: true)
+            toggle("Flash the screen", "timerFlash", fallback: false)
+        } header: {
+            Text("When a rest ends")
+        } footer: {
+            Text("A notification also tells you when rest is over while Hexplate is in the background.")
+        }
+    }
+
+    @ViewBuilder private var plan: some View {
+        Section {
+            picker("Week starts on", "weekStart", [(1, "Monday"), (0, "Sunday")], fallback: 1)
+        }
+    }
+
+    @ViewBuilder private var units: some View {
+        Section {
+            // ponytail: read at launch (Theme.language), so a switch shows after Hexplate is opened again.
+            Picker("Language", selection: $language) {
+                Text(verbatim: "中文").tag("zh")
+                Text(verbatim: "English").tag("en")
+            }
+            .onChange(of: language) { Theme.applyLanguage(language) }
+        } footer: {
+            if language != Theme.language {
+                Text("Close Hexplate and open it again to switch the language.").foregroundStyle(Color.accentColor)
+            }
+        }
+        Section {
+            picker("Weight unit", "unit", [("kg", "kg"), ("lb", "lb")], fallback: "kg")
+            picker("Weight decimals", "wdec", [(1, "1"), (2, "2")], fallback: 1)
+            picker("1RM formula", "oneRmFormula", Stats.formulaNames.sorted { $0.value < $1.value }.map { ($0.key, $0.value) }, fallback: "epley")
+        } footer: {
+            Text("How precisely weights are shown.")
+        }
+        Section {
+            picker("Sex", "sex", [("", "Not set"), ("male", "Male"), ("female", "Female")], fallback: "")
+            numberRow("Birth year", "birthYear", decimals: 0)
+            numberRow("Goal weight (\(model.settings.unit))", "targetW", decimals: 1)
+        } header: {
+            Text("About you")
+        } footer: {
+            Text("Sex and age set the strength level standards.")
+        }
+    }
+
+    @ViewBuilder private var look: some View {
+        Section {
+            Picker("Theme", selection: $appearance) {
+                Text("System").tag("system")
+                Text("Light").tag("light")
+                Text("Dark").tag("dark")
+            }
+            .pickerStyle(.inline)
+            .labelsHidden()
+        }
+    }
+
+    @ViewBuilder private var healthPage: some View {
+        Section {
+            Toggle("Apple Health", isOn: $health)
+                .onChange(of: health) {
+                    guard health else { return }
+                    Task { if !(await Health.authorise()) { health = false; healthNote = String(localized: "Apple Health is not available.") } }
+                }
+            if health {
+                Button("Import weights from Health") { Task { await importWeights() } }
+            }
+            if let healthNote { Text(healthNote).foregroundStyle(.secondary) }
+        } footer: {
+            Text("Weigh-ins and finished workouts are written to Health.")
+        }
+    }
+
+    @ViewBuilder private var data: some View {
+        Section {
+            ShareLink("Export backup (JSON)", item: model.stateFileURL)
+            NavigationLink("Export as spreadsheet (CSV)") { CSVExportView() }
+            Button("Import backup", systemImage: "square.and.arrow.down") { importing = true }
+        } footer: {
+            Text("JSON is the openGym format and holds everything. A copy is also kept automatically once a day (the last seven days).")
+        }
+    }
+
+    // MARK: Rows
+
+    private func row(_ title: LocalizedStringKey, _ icon: String, _ tint: Color, value: String? = nil) -> some View {
+        LabeledContent {
+            if let value { Text(value) }
+        } label: {
+            Label {
+                Text(title)
+            } icon: {
+                Image(systemName: icon)
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(.white)
+                    .frame(width: 29, height: 29)
+                    .background(tint, in: RoundedRectangle(cornerRadius: 7))
+            }
+        }
+    }
+
+    private func page<Content: View>(_ title: LocalizedStringKey, _ icon: String, _ tint: Color, value: String? = nil,
+                                     @ViewBuilder _ content: @escaping () -> Content) -> some View {
+        NavigationLink {
+            Form { content() }
+                .keyboardDone()
+                .navigationTitle(title)
+                .navigationBarTitleDisplayMode(.inline)
+        } label: {
+            row(title, icon, tint, value: value)
+        }
+    }
+
     // MARK: Rows bound to the document
 
-    private func picker<T: Hashable>(_ title: String, _ key: String, _ options: [T: String], fallback: T) -> some View {
-        Picker(title, selection: Binding<T>(
+    private func picker<T: Hashable>(_ title: LocalizedStringKey, _ key: String, _ options: [(T, String)], fallback: T) -> some View {
+        let has = { (v: T) in options.contains { $0.0 == v } }
+        return Picker(title, selection: Binding<T>(
             get: {
                 let v = model.root[key]
-                if let s = v?.stringValue as? T, options[s] != nil { return s }
-                if let n = v?.numberValue.map(Int.init) as? T, options[n] != nil { return n }
+                if let s = v?.stringValue as? T, has(s) { return s }
+                if let n = v?.numberValue.map(Int.init) as? T, has(n) { return n }
                 return fallback
             },
             set: { value in
                 if let s = value as? String { model.set(key, s.isEmpty ? nil : .string(s)) }
                 if let n = value as? Int { model.set(key, .number(Double(n))) }
             })) {
-            ForEach(options.sorted { $0.value < $1.value }, id: \.key) { Text($0.value).tag($0.key) }
+            ForEach(options, id: \.0) { Text(LocalizedStringKey($0.1)).tag($0.0) }
         }
     }
 
-    private func toggle(_ title: String, _ key: String, fallback: Bool) -> some View {
+    private func toggle(_ title: LocalizedStringKey, _ key: String, fallback: Bool) -> some View {
         Toggle(title, isOn: Binding(get: { model.root[key].map { $0 == .bool(true) } ?? fallback }, set: { model.set(key, .bool($0)) }))
     }
 
-    private func stepper(_ title: String, _ key: String, fallback: Double, range: ClosedRange<Double>, step: Double) -> some View {
+    private func stepper(_ title: LocalizedStringKey, _ key: String, fallback: Double, range: ClosedRange<Double>, step: Double) -> some View {
         let value = model.root[key]?.numberValue ?? fallback
         return Stepper(value: Binding(get: { value }, set: { model.set(key, .number($0)) }), in: range, step: step) {
             LabeledContent(title, value: Format.seconds(value))
         }
     }
 
-    private func numberRow(_ title: String, _ key: String, decimals: Int) -> some View {
+    private func numberRow(_ title: LocalizedStringKey, _ key: String, decimals: Int) -> some View {
         LabeledContent(title) {
             NumberText(value: model.root[key]?.numberValue) { model.set(key, $0.map(JSONValue.number)) }
         }
@@ -213,7 +306,7 @@ struct SettingsView: View {
         let have = Set(BodyData.weights(model.root).map(\.day))
         let new = samples.filter { !have.contains(Day.iso($0.date)) }
         for s in new { model.logWeight(s.weight, on: Day.iso(s.date), fromHealth: true) }
-        healthNote = new.isEmpty ? "Nothing new in Health." : "\(new.count) \(new.count == 1 ? "weigh-in" : "weigh-ins") added."
+        healthNote = new.isEmpty ? String(localized: "Nothing new in Health.") : new.count == 1 ? String(localized: "1 weigh-in added.") : String(localized: "\(new.count) weigh-ins added.")
     }
 }
 
@@ -329,8 +422,6 @@ private struct ReminderSection: View {
             if model.root["modules"]?.object?["motivation"] != .bool(false) {
                 Toggle("Your year in Hexplate", isOn: Binding(get: { Wrapped.notifyOn(model.root) }, set: { model.set("wrappedNotify", .bool($0)) }))
             }
-        } header: {
-            Text("Reminders")
         } footer: {
             if Reminders.truthy(r["on"]) {
                 Text("Reminds you at this time on days that have a routine planned.")
@@ -378,8 +469,6 @@ private struct ServerSection: View {
                     .disabled(busy || address.isEmpty || code.isEmpty)
                 if !sync.status.isEmpty { Text(sync.status).foregroundStyle(.secondary) }
             }
-        } header: {
-            Text("Server")
         } footer: {
             if sync.paired {
                 Text("Off: a sync only works out what it would change and writes it to sync-log.txt. Watch motion files are sent either way.")

@@ -9,6 +9,8 @@ struct HexplateApp: App {
     @AppStorage("appearance") private var appearance = "system"
     @Environment(\.scenePhase) private var phase
 
+    init() { Theme.applyLanguage(Theme.language) }
+
     var body: some Scene {
         WindowGroup {
             RootView()

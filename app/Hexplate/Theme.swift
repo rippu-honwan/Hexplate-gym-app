@@ -16,8 +16,17 @@ enum Theme {
     static let superset = adaptive(light: (0xc2, 0x1a, 0x9c), dark: (0xff, 0x4f, 0xd8))
     static let heart = Color.red
 
-    /// Traditional Chinese, like the rest of the app (zh-Hant.lproj); SwiftUI looks every Text up by it.
-    static let locale = Locale(identifier: "zh_Hant_HK")
+    /// The app's language, picked in Settings → Units & language: "zh" (Traditional Chinese, the
+    /// default) or "en". Read once at launch; `applyLanguage` makes the bundle follow it next launch.
+    static let languageKey = "language"
+    static let language = UserDefaults.standard.string(forKey: languageKey) == "en" ? "en" : "zh"
+    /// SwiftUI looks every Text up by it, and dates and numbers follow it.
+    static let locale = Locale(identifier: language == "en" ? "en_HK" : "zh_Hant_HK")
+
+    /// The bundle picks zh-Hant.lproj or en.lproj (the English keys) from this, whatever the device's language.
+    static func applyLanguage(_ lang: String) {
+        UserDefaults.standard.set([lang == "en" ? "en" : "zh-Hant"], forKey: "AppleLanguages")
+    }
 
     /// A darker shade in light mode, so the colour still reads as text on white.
     private static func adaptive(light: (Int, Int, Int), dark: (Int, Int, Int)) -> Color {
