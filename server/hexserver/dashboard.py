@@ -6,6 +6,7 @@ these pages (Sec-Fetch-Site / Origin), so another website open on this Mac canno
 """
 import datetime as dt
 import socket
+import subprocess
 from html import escape
 from urllib.parse import parse_qs
 
@@ -58,6 +59,15 @@ form { display:inline; }
 .code { font:700 40px/1 ui-monospace, "SF Mono", monospace; letter-spacing:.12em; color:var(--accent); margin:8px 0; }
 .warn { color:var(--warn); }
 """
+
+def local_name():
+    """The name the phone finds this Mac by on the Wi-Fi (Bonjour, `<name>.local`): macOS keeps it
+    apart from the host name, which can be anything ("Mac")."""
+    try:
+        return subprocess.run(["scutil", "--get", "LocalHostName"], capture_output=True, text=True, timeout=2).stdout.strip() or socket.gethostname()
+    except OSError:
+        return socket.gethostname().removesuffix(".local")
+
 
 def _num(n, d=0):
     return f"{n:,.{d}f}"
@@ -259,7 +269,7 @@ def install(app, store):
     # MARK: Data
 
     def data_page(req: Request, code: str | None = None):
-        address = f"http://{socket.gethostname().removesuffix('.local')}.local:{req.url.port or 8765}"
+        address = f"http://{local_name()}.local:{req.url.port or 8765}"
         pair = (f'<div class="code">{code}</div><div class="sub">Works once, for 5 minutes. On the phone: Settings › Server, '
                 f'address <b style="color:var(--ink)">{escape(address)}</b>, then this code.</div>') if code else \
                '<form method="post" action="/data/pair"><button>New pairing code</button></form>'

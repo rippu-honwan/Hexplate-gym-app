@@ -10,7 +10,13 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt -r requiremen
 .venv/bin/python -m hexserver pair             # one-time code for the app (Settings > Server)
 .venv/bin/python -m hexserver import state.json motion/   # JSON backups and folders of motion CSVs
 .venv/bin/python -m pytest -q
+./launchd.sh install                           # keep it running in the background from login on
 ```
+
+The dashboard is at http://127.0.0.1:8765 on the Mac only. The phone pairs from it (Data, New
+pairing code) with the address `http://<LocalHostName>.local:8765`. If macOS asks whether Python
+may accept incoming connections, allow it, or the phone cannot reach the server. While the Mac
+sleeps the phone cannot sync; it keeps its changes and motion files and sends them later.
 
 Data lives in `server/data/` (git-ignored; `HEXPLATE_DATA` moves it): `hexplate.sqlite3` keeps every
 pushed document (`documents`) and the latest one split into `workouts`, `sets` and `bodyweight`;
