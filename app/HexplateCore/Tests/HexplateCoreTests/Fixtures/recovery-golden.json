@@ -1,0 +1,356 @@
+[
+ {
+  "name": "fatigue: alternating split",
+  "result": {
+   "trapezius": 0.07024,
+   "deltoids": 0.324938,
+   "chest": 0.275138,
+   "upper-back": 0.275138,
+   "serratus": 0,
+   "biceps": 0.071483,
+   "triceps": 0.071483,
+   "forearm": 0.071483,
+   "abs": 0.080843,
+   "obliques": 0.080843,
+   "lower-back": 0.389843,
+   "gluteal": 0.578256,
+   "quadriceps": 0.471984,
+   "hamstring": 0.389843,
+   "adductors": 0.471984,
+   "hip-flexors": 0,
+   "calves": 0.248447,
+   "tibialis": 0
+  }
+ },
+ {
+  "name": "fatigue: hours later",
+  "result": {
+   "trapezius": 0.035759,
+   "deltoids": 0.152289,
+   "chest": 0.148612,
+   "upper-back": 0.148612,
+   "serratus": 0,
+   "biceps": 0.030702,
+   "triceps": 0.030702,
+   "forearm": 0.030702,
+   "abs": 0.034822,
+   "obliques": 0.034822,
+   "lower-back": 0.274101,
+   "gluteal": 0.428687,
+   "quadriceps": 0.339065,
+   "hamstring": 0.274101,
+   "adductors": 0.339065,
+   "hip-flexors": 0,
+   "calves": 0.16906,
+   "tibialis": 0
+  }
+ },
+ {
+  "name": "fatigue: effort, warm-ups and drop sets",
+  "result": {
+   "trapezius": 0,
+   "deltoids": 0.136436,
+   "chest": 0.425196,
+   "upper-back": 0,
+   "serratus": 0,
+   "biceps": 0,
+   "triceps": 0.136436,
+   "forearm": 0,
+   "abs": 0,
+   "obliques": 0,
+   "lower-back": 0,
+   "gluteal": 0,
+   "quadriceps": 0,
+   "hamstring": 0,
+   "adductors": 0,
+   "hip-flexors": 0,
+   "calves": 0,
+   "tibialis": 0
+  }
+ },
+ {
+  "name": "fatigue: body weight and units",
+  "result": {
+   "trapezius": 0,
+   "deltoids": 0.154741,
+   "chest": 0.084503,
+   "upper-back": 0.414424,
+   "serratus": 0,
+   "biceps": 0.123502,
+   "triceps": 0.019714,
+   "forearm": 0.123502,
+   "abs": 0.077604,
+   "obliques": 0.055541,
+   "lower-back": 0.077633,
+   "gluteal": 0.209984,
+   "quadriceps": 0.209984,
+   "hamstring": 0.077633,
+   "adductors": 0.209984,
+   "hip-flexors": 0,
+   "calves": 0.077633,
+   "tibialis": 0
+  }
+ },
+ {
+  "name": "fatigue: body weight, no profile weight",
+  "result": {
+   "trapezius": 0,
+   "deltoids": 0.110307,
+   "chest": 0.084503,
+   "upper-back": 0.297096,
+   "serratus": 0,
+   "biceps": 0.078817,
+   "triceps": 0.019714,
+   "forearm": 0.078817,
+   "abs": 0.077604,
+   "obliques": 0.055541,
+   "lower-back": 0.077633,
+   "gluteal": 0.209984,
+   "quadriceps": 0.209984,
+   "hamstring": 0.077633,
+   "adductors": 0.209984,
+   "hip-flexors": 0,
+   "calves": 0.077633,
+   "tibialis": 0
+  }
+ },
+ {
+  "name": "fatigue: cardio, sides, custom",
+  "result": {
+   "trapezius": 0.030349,
+   "deltoids": 0.070891,
+   "chest": 0.174239,
+   "upper-back": 0,
+   "serratus": 0,
+   "biceps": 0,
+   "triceps": 0.070891,
+   "forearm": 0,
+   "abs": 0,
+   "obliques": 0,
+   "lower-back": 0,
+   "gluteal": 0,
+   "quadriceps": 0.06212,
+   "hamstring": 0.06212,
+   "adductors": 0,
+   "hip-flexors": 0,
+   "calves": 0.06212,
+   "tibialis": 0
+  }
+ },
+ {
+  "name": "fatigue: a sudden heavy week",
+  "result": {
+   "trapezius": 0,
+   "deltoids": 0,
+   "chest": 0,
+   "upper-back": 0,
+   "serratus": 0,
+   "biceps": 0.000002,
+   "triceps": 0,
+   "forearm": 0.000001,
+   "abs": 0.542779,
+   "obliques": 0.542779,
+   "lower-back": 0.927068,
+   "gluteal": 0.985373,
+   "quadriceps": 0.961557,
+   "hamstring": 0.927068,
+   "adductors": 0.961557,
+   "hip-flexors": 0,
+   "calves": 0.808879,
+   "tibialis": 0
+  }
+ },
+ {
+  "name": "fatigue: nothing",
+  "result": {
+   "trapezius": 0,
+   "deltoids": 0,
+   "chest": 0,
+   "upper-back": 0,
+   "serratus": 0,
+   "biceps": 0,
+   "triceps": 0,
+   "forearm": 0,
+   "abs": 0,
+   "obliques": 0,
+   "lower-back": 0,
+   "gluteal": 0,
+   "quadriceps": 0,
+   "hamstring": 0,
+   "adductors": 0,
+   "hip-flexors": 0,
+   "calves": 0,
+   "tibialis": 0
+  }
+ },
+ {
+  "name": "hint: rest day, legs recovering",
+  "result": {
+   "hint": {
+    "kind": "rest",
+    "region": "legs",
+    "day": "2026-11-14"
+   },
+   "text": [
+    "Rest day, good timing.",
+    "Your legs are still recovering from yesterday."
+   ]
+  }
+ },
+ {
+  "name": "hint: rest day, nothing recovering",
+  "result": {
+   "hint": null,
+   "text": null
+  }
+ },
+ {
+  "name": "hint: rest on the day plan",
+  "result": {
+   "hint": {
+    "kind": "rest",
+    "region": "legs",
+    "day": "2026-11-14"
+   },
+   "text": [
+    "Rest day, good timing.",
+    "Your legs are still recovering from yesterday."
+   ]
+  }
+ },
+ {
+  "name": "hint: lighter, legs today",
+  "result": {
+   "hint": {
+    "kind": "lighter",
+    "region": "legs",
+    "day": "2026-11-14",
+    "routine": "Legs"
+   },
+   "text": [
+    "Your legs are still recovering from yesterday.",
+    "Go a bit lighter today, or swap the session."
+   ]
+  }
+ },
+ {
+  "name": "hint: lighter, two routines",
+  "result": {
+   "hint": {
+    "kind": "lighter",
+    "region": "legs",
+    "day": "2026-11-14",
+    "routine": "Push + Legs"
+   },
+   "text": [
+    "Your legs are still recovering from yesterday.",
+    "Go a bit lighter today, or swap the session."
+   ]
+  }
+ },
+ {
+  "name": "hint: today light on the tired part",
+  "result": {
+   "hint": null,
+   "text": null
+  }
+ },
+ {
+  "name": "hint: covered, chest is back",
+  "result": {
+   "hint": {
+    "kind": "covered",
+    "group": "chest",
+    "days": 12
+   },
+   "text": [
+    "Your chest hasn’t had any work in 12 days.",
+    "Today’s plan takes care of that."
+   ]
+  }
+ },
+ {
+  "name": "hint: empty routine, nothing recovering",
+  "result": {
+   "hint": null,
+   "text": null
+  }
+ },
+ {
+  "name": "hint: split, legs recovering",
+  "result": {
+   "hint": {
+    "kind": "split",
+    "region": "legs",
+    "day": "2026-11-14"
+   },
+   "text": [
+    "Your legs are still recovering from yesterday.",
+    "Upper body today?"
+   ]
+  }
+ },
+ {
+  "name": "hint: both recovering",
+  "result": {
+   "hint": null,
+   "text": null
+  }
+ },
+ {
+  "name": "hint: neglect",
+  "result": {
+   "hint": {
+    "kind": "neglect",
+    "group": "back",
+    "days": 12
+   },
+   "text": [
+    "Your back hasn’t had any work in 12 days.",
+    "A few sets today would be nice."
+   ]
+  }
+ },
+ {
+  "name": "hint: queue counts as a plan",
+  "result": {
+   "hint": null,
+   "text": null
+  }
+ },
+ {
+  "name": "hint: off",
+  "result": {
+   "hint": null,
+   "text": null
+  }
+ },
+ {
+  "name": "hint: hidden today",
+  "result": {
+   "hint": null,
+   "text": null
+  }
+ },
+ {
+  "name": "hint: during a workout",
+  "result": {
+   "hint": null,
+   "text": null
+  }
+ },
+ {
+  "name": "hint: trained today",
+  "result": {
+   "hint": null,
+   "text": null
+  }
+ },
+ {
+  "name": "hint: too few recent",
+  "result": {
+   "hint": null,
+   "text": null
+  }
+ }
+]

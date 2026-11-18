@@ -1,0 +1,4226 @@
+[
+ {
+  "name": "fixed week",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ]
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "fixed week: overrides",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {
+    "2026-03-11": "rest",
+    "2026-03-12": "r3",
+    "2026-03-13": "gone",
+    "2026-03-14": "r1"
+   },
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ]
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "fixed week: Sunday start",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 0,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ]
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "fixed week: nothing trainable",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "6": [
+     "r4"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ]
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "rotation: mid pass",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "PPL",
+    "rotationId": "rot1"
+   },
+   "weekTarget": 4
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "rotation: with pins",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {
+    "2026-03-13": "r3",
+    "2026-03-11": "r4",
+    "2026-03-01": "r1"
+   },
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2",
+     "r3",
+     "r4"
+    ],
+    "since": 1773104400000,
+    "startsOn": "2026-03-10",
+    "label": "PPL",
+    "rotationId": "rot1"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "rotation: pinned and done",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {
+    "2026-03-11": "r1",
+    "2026-03-12": "r3"
+   },
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "PPL",
+    "rotationId": "rot1"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "rotation: pass complete",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "PPL",
+    "rotationId": "rot1"
+   },
+   "weekTarget": 2
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "rotation: waiting for its start day",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "since": 1773234000000,
+    "startsOn": "2026-03-13",
+    "label": "PPL",
+    "rotationId": "rot1"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "rotation: no loop saved",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "weekTarget": 9
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "rotation: credited by name",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-03-11",
+     "start": 1773219600000,
+     "end": 1773223200000,
+     "name": "Arms + Lower",
+     "entries": [],
+     "routineIds": [
+      "r3",
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "since": 1773234000000,
+    "startsOn": "2026-03-09",
+    "label": "PPL",
+    "rotationId": "rot1"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "rotation: strict ignores names",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "since": 1773234000000,
+    "startsOn": "2026-03-09",
+    "label": "PPL",
+    "rotationId": "rot1",
+    "strict": true
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "coach queue over the fixed week",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "3": [
+     "r2",
+     "r1"
+    ],
+    "4": [
+     "r3"
+    ],
+    "5": [
+     "r1"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "queue": {
+    "ids": [
+     "r2",
+     "r3",
+     "r3",
+     "gone"
+    ],
+    "since": 1773104400000,
+    "label": "Week 3"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "queue that cannot be read",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "queue": {
+    "ids": [
+     "gone"
+    ],
+    "since": 1
+   },
+   "scheduleMode": "week"
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "loop with rest days",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "rest",
+     "r1",
+     "r3",
+     "rest",
+     "rest",
+     "gone"
+    ],
+    "label": "Loop",
+    "at": 3
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r3"
+    ],
+    "since": 1773190800000,
+    "startsOn": "2026-03-11",
+    "label": "Loop",
+    "rotationId": "rot1"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": []
+ },
+ {
+  "name": "choose rotation with a saved loop",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {
+    "2026-03-12": "r3"
+   },
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "chooseRotation"
+   ]
+  ]
+ },
+ {
+  "name": "choose rotation with nothing saved",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ]
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "chooseRotation"
+   ]
+  ]
+ },
+ {
+  "name": "choose rotation with a loop",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "rest",
+     "r1",
+     "r3",
+     "rest",
+     "rest",
+     "gone"
+    ],
+    "label": "Loop",
+    "at": 0
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "chooseRotation"
+   ],
+   [
+    "stopPass"
+   ],
+   [
+    "startPass"
+   ]
+  ]
+ },
+ {
+  "name": "back to a fixed week",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {
+    "2026-03-13": "r3",
+    "2026-03-01": "r3"
+   },
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "PPL",
+    "rotationId": "rot1"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "chooseFixedWeek"
+   ],
+   [
+    "chooseRotation"
+   ]
+  ]
+ },
+ {
+  "name": "back to a fixed week keeps a coach queue",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "queue": {
+    "ids": [
+     "r2",
+     "r3"
+    ],
+    "since": 1773104400000,
+    "label": "Week 3"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "chooseFixedWeek"
+   ]
+  ]
+ },
+ {
+  "name": "save a first rotation",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ]
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "saveRotation",
+    [
+     "r2",
+     "r3"
+    ],
+    "Mine"
+   ],
+   [
+    "saveRotation",
+    [
+     "r3"
+    ],
+    "Mine"
+   ],
+   [
+    "saveRotation",
+    [],
+    "x"
+   ]
+  ]
+ },
+ {
+  "name": "save: taking a pinned routine out",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {
+    "2026-03-13": "r3",
+    "2026-03-14": "r2"
+   },
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "PPL",
+    "rotationId": "rot1",
+    "strict": true
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "saveRotation",
+    [
+     "r1",
+     "r2"
+    ],
+    "PPL"
+   ]
+  ]
+ },
+ {
+  "name": "save: a finished pass refills",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "PPL",
+    "rotationId": "rot1"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "saveRotation",
+    [
+     "r2",
+     "r1"
+    ],
+    "Two"
+   ]
+  ]
+ },
+ {
+  "name": "save: a loop with rest days",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "PPL",
+    "rotationId": "rot1"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "saveRotation",
+    [
+     "r1",
+     "r2",
+     "rest",
+     "r3",
+     "r1"
+    ],
+    "Loop"
+   ],
+   [
+    "saveRotation",
+    [
+     "rest",
+     "r3",
+     "rest",
+     "r1",
+     "r2"
+    ],
+    "Loop"
+   ]
+  ]
+ },
+ {
+  "name": "save: a loop whose pass is finished moves on",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "rest",
+     "rest",
+     "r3",
+     "r1"
+    ],
+    "label": "Loop",
+    "at": 0
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "Loop",
+    "rotationId": "rot1"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "saveRotation",
+    [
+     "r1",
+     "r2",
+     "rest",
+     "rest",
+     "r3",
+     "r1"
+    ],
+    "Loop"
+   ]
+  ]
+ },
+ {
+  "name": "start the loop over",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {
+    "2026-03-13": "r3"
+   },
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "PPL",
+    "rotationId": "rot1"
+   },
+   "active": {
+    "id": "a",
+    "start": 1773230400000,
+    "routineIds": [
+     "r3"
+    ]
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "startNewPass"
+   ]
+  ]
+ },
+ {
+  "name": "start the loop over: nothing running",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "rest",
+     "r1",
+     "r3",
+     "rest",
+     "rest",
+     "gone"
+    ],
+    "label": "Loop",
+    "at": 3
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r3"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "Loop",
+    "rotationId": "rot1"
+   },
+   "active": {
+    "id": "a",
+    "start": 1773230400000,
+    "routineIds": [
+     "r3"
+    ],
+    "backfill": true
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "startNewPass"
+   ]
+  ]
+ },
+ {
+  "name": "refill after the last session",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "PPL",
+    "rotationId": "rot1"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "refillAfter",
+    "w2"
+   ]
+  ]
+ },
+ {
+  "name": "refill: a pass that began mid loop",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    },
+    {
+     "id": "w3",
+     "d": "2026-03-11",
+     "start": 1773219600000,
+     "end": 1773223200000,
+     "name": "Arms",
+     "entries": [],
+     "routineId": "r3",
+     "routineIds": [
+      "r3"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r2",
+     "r3",
+     "r1"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "PPL",
+    "rotationId": "rot1"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "refillIfComplete"
+   ]
+  ]
+ },
+ {
+  "name": "refill: not finished",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "PPL",
+    "rotationId": "rot1"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "refillAfter",
+    "w2"
+   ],
+   [
+    "refillIfComplete"
+   ]
+  ]
+ },
+ {
+  "name": "refill: someone else's queue",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "label": "PPL"
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2"
+    ],
+    "since": 1773018000000,
+    "label": "Coach"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "refillIfComplete"
+   ]
+  ]
+ },
+ {
+  "name": "refill: a loop rests before its next stretch",
+  "state": {
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r3",
+     "name": "Arms",
+     "emoji": "arms",
+     "ex": [
+      {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60
+      }
+     ]
+    },
+    {
+     "id": "r4",
+     "name": "Empty",
+     "emoji": "arms",
+     "ex": []
+    }
+   ],
+   "week": {
+    "1": [
+     "r1"
+    ],
+    "3": "r2",
+    "5": [
+     "r3",
+     "r1"
+    ],
+    "6": [
+     "r4"
+    ],
+    "2": [
+     "gone"
+    ]
+   },
+   "weekStart": 1,
+   "dayPlan": {},
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-03-02",
+     "start": 1772452800000,
+     "end": 1772456400000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w1",
+     "d": "2026-03-09",
+     "start": 1773057600000,
+     "end": 1773061200000,
+     "name": "Upper",
+     "entries": [],
+     "routineId": "r1",
+     "routineIds": [
+      "r1"
+     ]
+    },
+    {
+     "id": "w2",
+     "d": "2026-03-10",
+     "start": 1773144000000,
+     "end": 1773147600000,
+     "name": "Lower",
+     "entries": [],
+     "routineId": "r2",
+     "routineIds": [
+      "r2"
+     ]
+    }
+   ],
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot1",
+    "sequence": [
+     "r1",
+     "r2",
+     "rest",
+     "rest",
+     "r3",
+     "r1"
+    ],
+    "label": "Loop",
+    "at": 0
+   },
+   "queue": {
+    "ids": [
+     "r1",
+     "r2"
+    ],
+    "since": 1773018000000,
+    "startsOn": "2026-03-09",
+    "label": "Loop",
+    "rotationId": "rot1"
+   }
+  },
+  "today": "2026-03-11",
+  "now": 1773234000000,
+  "ops": [
+   [
+    "refillAfter",
+    "w2"
+   ]
+  ]
+ }
+]

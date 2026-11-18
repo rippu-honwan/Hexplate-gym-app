@@ -1,0 +1,167 @@
+# Hexplate: the native SwiftUI iPhone app. Generate the Xcode project with `xcodegen` in this
+# folder; the generated Hexplate.xcodeproj is not committed.
+name: Hexplate
+options:
+  # Traditional Chinese only (zh-Hant.lproj in each target), whatever the device's language.
+  developmentLanguage: zh-Hant
+  deploymentTarget:
+    iOS: "26.0"
+configFiles:
+  Debug: Config.xcconfig
+  Release: Config.xcconfig
+packages:
+  HexplateCore:
+    path: HexplateCore
+targets:
+  Hexplate:
+    type: application
+    platform: iOS
+    sources:
+      - Hexplate
+      # The Live Activity's types and buttons, shared with the widget extension.
+      - Widgets/WorkoutActivity.swift
+      - Widgets/Group.swift
+      # Licensed 180 px exercise media (see catalogue/media/NOTICE.md), bundled as folders.
+      - path: ../catalogue/media/still
+        type: folder
+        buildPhase: resources
+      - path: ../catalogue/media/clip
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - package: HexplateCore
+      - target: HexplateWatch
+      - target: HexplateWidgets
+    settings:
+      base:
+        # Same id as the Capacitor app on purpose: Hexplate installs over it.
+        PRODUCT_BUNDLE_IDENTIFIER: com.rippuhonwan.mygym
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "2"
+        SWIFT_VERSION: "6.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Hexplate
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        INFOPLIST_KEY_NSHealthShareUsageDescription: Hexplate reads your body weight from Apple Health when you import it.
+        INFOPLIST_KEY_NSHealthUpdateUsageDescription: Hexplate writes your weigh-ins and finished workouts to Apple Health.
+    entitlements:
+      path: Hexplate/Hexplate.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []
+        com.apple.security.application-groups: [group.com.rippuhonwan.mygym]
+    # The links the widgets open (opengym://…, the Capacitor app's scheme, kept so widgets
+    # already on a Home Screen keep working).
+    info:
+      path: Hexplate/Info.plist
+      properties:
+        CFBundleURLTypes:
+          - CFBundleURLName: com.rippuhonwan.mygym
+            CFBundleURLSchemes: [opengym]
+        NSSupportsLiveActivities: true
+        # The paired openGym server may be plain http:// on the home network, as in the old app.
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        NSLocalNetworkUsageDescription: Used to reach your own openGym server on your home network, when you connect one.
+
+  # The Apple Watch app, moved from frontend/ios/App/Watch (copied, same bundle id). WatchCore's
+  # sources compile into it, as they did there.
+  HexplateWatch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "10.0"
+    sources:
+      - Watch
+      - WatchCore/Sources/WatchCore
+    dependencies:
+      - target: HexplateWatchWidgets
+    info:
+      path: Watch/Info.plist
+      properties:
+        CFBundleDisplayName: Hexplate
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: com.rippuhonwan.mygym
+        WKRunsIndependentlyOfCompanionApp: false
+        WKBackgroundModes: [workout-processing]
+        # The complications' links (opengym-watch://start, open).
+        CFBundleURLTypes:
+          - CFBundleURLName: com.rippuhonwan.mygym.watchkitapp
+            CFBundleURLSchemes: [opengym-watch]
+        NSHealthShareUsageDescription: Hexplate shows your heart rate during a workout and next to each set.
+        NSHealthUpdateUsageDescription: Hexplate saves your workouts to Apple Health.
+    entitlements:
+      path: Watch/HexplateWatch.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []
+        # Shared with the complications (WidgetState).
+        com.apple.security.application-groups: [group.com.rippuhonwan.mygym]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.rippuhonwan.mygym.watchkitapp
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "2"
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "4"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+
+  # The Home Screen and Lock Screen widgets, moved from frontend/ios/App/OpenGymWidgets (same
+  # bundle id, so widgets already placed stay), and the workout's Live Activity.
+  HexplateWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - Widgets
+    info:
+      path: Widgets/Info.plist
+      properties:
+        CFBundleDisplayName: Hexplate
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: Widgets/HexplateWidgets.entitlements
+      properties:
+        com.apple.security.application-groups: [group.com.rippuhonwan.mygym]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.rippuhonwan.mygym.widgets
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "2"
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+
+  # The watch's complications and Smart Stack widget, moved from frontend/ios/App/WatchWidgets.
+  # They show what the watch app writes (Watch/WidgetState.swift) to the App Group.
+  HexplateWatchWidgets:
+    type: app-extension
+    platform: watchOS
+    deploymentTarget: "10.0"
+    sources:
+      - WatchWidgets
+      - Watch/WidgetState.swift
+    info:
+      path: WatchWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: Hexplate
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: WatchWidgets/HexplateWatchWidgets.entitlements
+      properties:
+        com.apple.security.application-groups: [group.com.rippuhonwan.mygym]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.rippuhonwan.mygym.watchkitapp.widgets
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "2"
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "4"

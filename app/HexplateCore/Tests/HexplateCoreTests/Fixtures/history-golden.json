@@ -1,0 +1,1342 @@
+{
+ "asStored": [
+  {
+   "id": "wA",
+   "setsDone": 27,
+   "durationMs": 3900000,
+   "durationText": "1h 5m",
+   "volume": 6610,
+   "volumeText": "6,610 kg",
+   "entries": [
+    {
+     "id": "0025",
+     "name": "Barbell Bench Press",
+     "sets": [
+      {
+       "label": "20×10",
+       "hr": "",
+       "warmup": true
+      },
+      {
+       "label": "40×5",
+       "hr": "",
+       "warmup": true
+      },
+      {
+       "label": "60×8 (RIR 2)",
+       "hr": " ♥ 118/131",
+       "warmup": false
+      },
+      {
+       "label": "62.5×7 (RPE 8.5)",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "62.5×7 ↘ 50×5 ↘ 40×6",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×7+3+2",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×6 F",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×5",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0025",
+     "name": "Barbell Bench Press",
+     "sets": [
+      {
+       "label": "60×6+3+2+1",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×14",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0652",
+     "name": "Pull-Up",
+     "sets": [
+      {
+       "label": "12",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "+10 × 8 (RIR 0)",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "1454",
+     "name": "Lever Seated Shoulder Press",
+     "sets": [
+      {
+       "label": "L 20×6 · R 17.5×6 (RIR 1)",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "L 20×6 · R –",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "L 20×6 ↘ 15×4 · R 20×5",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "cx-plank",
+     "name": "My Plank Hold",
+     "sets": [
+      {
+       "label": "0:45",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "1:35 · 10 F",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0289",
+     "name": "Dumbbell Bench Press",
+     "sets": [
+      {
+       "label": "20 each × 10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0313",
+     "name": "Dumbbell Hammer Curl",
+     "sets": [
+      {
+       "label": "24 total × 10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0292",
+     "name": "Dumbbell One Arm Bent-Over Row",
+     "sets": [
+      {
+       "label": "22×10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0009",
+     "name": "Assisted Chest Dip (Kneeling)",
+     "sets": [
+      {
+       "label": "20×8",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0662",
+     "name": "Push-Up",
+     "sets": [
+      {
+       "label": "20",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0662",
+     "name": "Push-Up",
+     "sets": [
+      {
+       "label": "5×20",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "2197",
+     "name": "Run On Treadmill",
+     "sets": [
+      {
+       "label": "20 min @ 9.5 km/h",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "10.5 min @ 8 km/h · 2.5% incline",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wB",
+   "setsDone": 5,
+   "durationMs": 1200000,
+   "durationText": "20 min",
+   "volume": 6186.75,
+   "volumeText": "6,186.8 kg",
+   "entries": [
+    {
+     "id": "0043",
+     "name": "Barbell Full Squat",
+     "sets": [
+      {
+       "label": "200×10",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "200×10",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "200×10",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "62.3×3",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0652",
+     "name": "Pull-Up",
+     "sets": [
+      {
+       "label": "10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wC",
+   "setsDone": 5,
+   "durationMs": 0,
+   "durationText": "",
+   "volume": 420,
+   "volumeText": "420 kg",
+   "entries": [
+    {
+     "id": "zz-gone",
+     "name": "Old machine",
+     "sets": [
+      {
+       "label": "30×10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "zz-gone2",
+     "name": "zz-gone2",
+     "sets": [
+      {
+       "label": "0:30",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "5 min @ 6 km/h",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0652",
+     "name": "Pull-Up",
+     "sets": [
+      {
+       "label": "5",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "1019",
+     "name": "Band Side Bend",
+     "sets": [
+      {
+       "label": "+12 × 10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0025",
+     "name": "Barbell Bench Press",
+     "sets": []
+    }
+   ]
+  },
+  {
+   "id": "wD",
+   "setsDone": 0,
+   "durationMs": 30000,
+   "durationText": "",
+   "volume": 0,
+   "volumeText": "0 kg",
+   "entries": [
+    {
+     "id": "0043",
+     "name": "Barbell Full Squat",
+     "sets": []
+    }
+   ]
+  }
+ ],
+ "countWarmups": [
+  {
+   "id": "wA",
+   "setsDone": 27,
+   "durationMs": 3900000,
+   "durationText": "1h 5m",
+   "volume": 7010,
+   "volumeText": "7,010 kg",
+   "entries": [
+    {
+     "id": "0025",
+     "name": "Barbell Bench Press",
+     "sets": [
+      {
+       "label": "20×10",
+       "hr": "",
+       "warmup": true
+      },
+      {
+       "label": "40×5",
+       "hr": "",
+       "warmup": true
+      },
+      {
+       "label": "60×8 (RIR 2)",
+       "hr": " ♥ 118/131",
+       "warmup": false
+      },
+      {
+       "label": "62.5×7 (RPE 8.5)",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "62.5×7 ↘ 50×5 ↘ 40×6",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×7+3+2",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×6 F",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×5",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0025",
+     "name": "Barbell Bench Press",
+     "sets": [
+      {
+       "label": "60×6+3+2+1",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×14",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0652",
+     "name": "Pull-Up",
+     "sets": [
+      {
+       "label": "12",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "+10 × 8 (RIR 0)",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "1454",
+     "name": "Lever Seated Shoulder Press",
+     "sets": [
+      {
+       "label": "L 20×6 · R 17.5×6 (RIR 1)",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "L 20×6 · R –",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "L 20×6 ↘ 15×4 · R 20×5",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "cx-plank",
+     "name": "My Plank Hold",
+     "sets": [
+      {
+       "label": "0:45",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "1:35 · 10 F",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0289",
+     "name": "Dumbbell Bench Press",
+     "sets": [
+      {
+       "label": "20 each × 10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0313",
+     "name": "Dumbbell Hammer Curl",
+     "sets": [
+      {
+       "label": "24 total × 10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0292",
+     "name": "Dumbbell One Arm Bent-Over Row",
+     "sets": [
+      {
+       "label": "22×10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0009",
+     "name": "Assisted Chest Dip (Kneeling)",
+     "sets": [
+      {
+       "label": "20×8",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0662",
+     "name": "Push-Up",
+     "sets": [
+      {
+       "label": "20",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0662",
+     "name": "Push-Up",
+     "sets": [
+      {
+       "label": "5×20",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "2197",
+     "name": "Run On Treadmill",
+     "sets": [
+      {
+       "label": "20 min @ 9.5 km/h",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "10.5 min @ 8 km/h · 2.5% incline",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wB",
+   "setsDone": 5,
+   "durationMs": 1200000,
+   "durationText": "20 min",
+   "volume": 6186.75,
+   "volumeText": "6,186.8 kg",
+   "entries": [
+    {
+     "id": "0043",
+     "name": "Barbell Full Squat",
+     "sets": [
+      {
+       "label": "200×10",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "200×10",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "200×10",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "62.3×3",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0652",
+     "name": "Pull-Up",
+     "sets": [
+      {
+       "label": "10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wC",
+   "setsDone": 5,
+   "durationMs": 0,
+   "durationText": "",
+   "volume": 420,
+   "volumeText": "420 kg",
+   "entries": [
+    {
+     "id": "zz-gone",
+     "name": "Old machine",
+     "sets": [
+      {
+       "label": "30×10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "zz-gone2",
+     "name": "zz-gone2",
+     "sets": [
+      {
+       "label": "0:30",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "5 min @ 6 km/h",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0652",
+     "name": "Pull-Up",
+     "sets": [
+      {
+       "label": "5",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "1019",
+     "name": "Band Side Bend",
+     "sets": [
+      {
+       "label": "+12 × 10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0025",
+     "name": "Barbell Bench Press",
+     "sets": []
+    }
+   ]
+  },
+  {
+   "id": "wD",
+   "setsDone": 0,
+   "durationMs": 30000,
+   "durationText": "",
+   "volume": 0,
+   "volumeText": "0 kg",
+   "entries": [
+    {
+     "id": "0043",
+     "name": "Barbell Full Squat",
+     "sets": []
+    }
+   ]
+  }
+ ],
+ "countBodyweight": [
+  {
+   "id": "wA",
+   "setsDone": 27,
+   "durationMs": 3900000,
+   "durationText": "1h 5m",
+   "volume": 10170.64,
+   "volumeText": "10,170.6 kg",
+   "entries": [
+    {
+     "id": "0025",
+     "name": "Barbell Bench Press",
+     "sets": [
+      {
+       "label": "20×10",
+       "hr": "",
+       "warmup": true
+      },
+      {
+       "label": "40×5",
+       "hr": "",
+       "warmup": true
+      },
+      {
+       "label": "60×8 (RIR 2)",
+       "hr": " ♥ 118/131",
+       "warmup": false
+      },
+      {
+       "label": "62.5×7 (RPE 8.5)",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "62.5×7 ↘ 50×5 ↘ 40×6",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×7+3+2",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×6 F",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×5",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0025",
+     "name": "Barbell Bench Press",
+     "sets": [
+      {
+       "label": "60×6+3+2+1",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×14",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0652",
+     "name": "Pull-Up",
+     "sets": [
+      {
+       "label": "12",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "+10 × 8 (RIR 0)",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "1454",
+     "name": "Lever Seated Shoulder Press",
+     "sets": [
+      {
+       "label": "L 20×6 · R 17.5×6 (RIR 1)",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "L 20×6 · R –",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "L 20×6 ↘ 15×4 · R 20×5",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "cx-plank",
+     "name": "My Plank Hold",
+     "sets": [
+      {
+       "label": "0:45",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "1:35 · 10 F",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0289",
+     "name": "Dumbbell Bench Press",
+     "sets": [
+      {
+       "label": "20 each × 10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0313",
+     "name": "Dumbbell Hammer Curl",
+     "sets": [
+      {
+       "label": "24 total × 10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0292",
+     "name": "Dumbbell One Arm Bent-Over Row",
+     "sets": [
+      {
+       "label": "22×10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0009",
+     "name": "Assisted Chest Dip (Kneeling)",
+     "sets": [
+      {
+       "label": "20×8",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0662",
+     "name": "Push-Up",
+     "sets": [
+      {
+       "label": "20",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0662",
+     "name": "Push-Up",
+     "sets": [
+      {
+       "label": "5×20",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "2197",
+     "name": "Run On Treadmill",
+     "sets": [
+      {
+       "label": "20 min @ 9.5 km/h",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "10.5 min @ 8 km/h · 2.5% incline",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wB",
+   "setsDone": 5,
+   "durationMs": 1200000,
+   "durationText": "20 min",
+   "volume": 6886.75,
+   "volumeText": "6,886.8 kg",
+   "entries": [
+    {
+     "id": "0043",
+     "name": "Barbell Full Squat",
+     "sets": [
+      {
+       "label": "200×10",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "200×10",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "200×10",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "62.3×3",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0652",
+     "name": "Pull-Up",
+     "sets": [
+      {
+       "label": "10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wC",
+   "setsDone": 5,
+   "durationMs": 0,
+   "durationText": "",
+   "volume": 790,
+   "volumeText": "790 kg",
+   "entries": [
+    {
+     "id": "zz-gone",
+     "name": "Old machine",
+     "sets": [
+      {
+       "label": "30×10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "zz-gone2",
+     "name": "zz-gone2",
+     "sets": [
+      {
+       "label": "0:30",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "5 min @ 6 km/h",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0652",
+     "name": "Pull-Up",
+     "sets": [
+      {
+       "label": "5",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "1019",
+     "name": "Band Side Bend",
+     "sets": [
+      {
+       "label": "+12 × 10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0025",
+     "name": "Barbell Bench Press",
+     "sets": []
+    }
+   ]
+  },
+  {
+   "id": "wD",
+   "setsDone": 0,
+   "durationMs": 30000,
+   "durationText": "",
+   "volume": 0,
+   "volumeText": "0 kg",
+   "entries": [
+    {
+     "id": "0043",
+     "name": "Barbell Full Squat",
+     "sets": []
+    }
+   ]
+  }
+ ],
+ "twoDecimals": [
+  {
+   "id": "wA",
+   "setsDone": 27,
+   "durationMs": 3900000,
+   "durationText": "1h 5m",
+   "volume": 6610,
+   "volumeText": "6,610 kg",
+   "entries": [
+    {
+     "id": "0025",
+     "name": "Barbell Bench Press",
+     "sets": [
+      {
+       "label": "20×10",
+       "hr": "",
+       "warmup": true
+      },
+      {
+       "label": "40×5",
+       "hr": "",
+       "warmup": true
+      },
+      {
+       "label": "60×8 (RIR 2)",
+       "hr": " ♥ 118/131",
+       "warmup": false
+      },
+      {
+       "label": "62.5×7 (RPE 8.5)",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "62.5×7 ↘ 50×5 ↘ 40×6",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×7+3+2",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×6 F",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×5",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0025",
+     "name": "Barbell Bench Press",
+     "sets": [
+      {
+       "label": "60×6+3+2+1",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "60×14",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0652",
+     "name": "Pull-Up",
+     "sets": [
+      {
+       "label": "12",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "+10 × 8 (RIR 0)",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "1454",
+     "name": "Lever Seated Shoulder Press",
+     "sets": [
+      {
+       "label": "L 20×6 · R 17.5×6 (RIR 1)",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "L 20×6 · R –",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "L 20×6 ↘ 15×4 · R 20×5",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "cx-plank",
+     "name": "My Plank Hold",
+     "sets": [
+      {
+       "label": "0:45",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "1:35 · 10 F",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0289",
+     "name": "Dumbbell Bench Press",
+     "sets": [
+      {
+       "label": "20 each × 10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0313",
+     "name": "Dumbbell Hammer Curl",
+     "sets": [
+      {
+       "label": "24 total × 10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0292",
+     "name": "Dumbbell One Arm Bent-Over Row",
+     "sets": [
+      {
+       "label": "22×10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0009",
+     "name": "Assisted Chest Dip (Kneeling)",
+     "sets": [
+      {
+       "label": "20×8",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0662",
+     "name": "Push-Up",
+     "sets": [
+      {
+       "label": "20",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0662",
+     "name": "Push-Up",
+     "sets": [
+      {
+       "label": "5×20",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "2197",
+     "name": "Run On Treadmill",
+     "sets": [
+      {
+       "label": "20 min @ 9.5 km/h",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "10.5 min @ 8 km/h · 2.5% incline",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wB",
+   "setsDone": 5,
+   "durationMs": 1200000,
+   "durationText": "20 min",
+   "volume": 6186.75,
+   "volumeText": "6,186.75 kg",
+   "entries": [
+    {
+     "id": "0043",
+     "name": "Barbell Full Squat",
+     "sets": [
+      {
+       "label": "200×10",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "200×10",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "200×10",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "62.25×3",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0652",
+     "name": "Pull-Up",
+     "sets": [
+      {
+       "label": "10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wC",
+   "setsDone": 5,
+   "durationMs": 0,
+   "durationText": "",
+   "volume": 420,
+   "volumeText": "420 kg",
+   "entries": [
+    {
+     "id": "zz-gone",
+     "name": "Old machine",
+     "sets": [
+      {
+       "label": "30×10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "zz-gone2",
+     "name": "zz-gone2",
+     "sets": [
+      {
+       "label": "0:30",
+       "hr": "",
+       "warmup": false
+      },
+      {
+       "label": "5 min @ 6 km/h",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0652",
+     "name": "Pull-Up",
+     "sets": [
+      {
+       "label": "5",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "1019",
+     "name": "Band Side Bend",
+     "sets": [
+      {
+       "label": "+12 × 10",
+       "hr": "",
+       "warmup": false
+      }
+     ]
+    },
+    {
+     "id": "0025",
+     "name": "Barbell Bench Press",
+     "sets": []
+    }
+   ]
+  },
+  {
+   "id": "wD",
+   "setsDone": 0,
+   "durationMs": 30000,
+   "durationText": "",
+   "volume": 0,
+   "volumeText": "0 kg",
+   "entries": [
+    {
+     "id": "0043",
+     "name": "Barbell Full Squat",
+     "sets": []
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,5969 @@
+[
+ {
+  "name": "move down and up",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "move a superset as one",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "swap inside a superset",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "swap blocked across the marker",
+  "result": [
+   false,
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   false,
+   false
+  ]
+ },
+ {
+  "name": "pair and unpair",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "sg-0-1"
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "sg-0-1"
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "sg-0-1"
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "sg-0-1"
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "sg-0-1"
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "pair into a group",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "remove before, at and after the marker",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": []
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": []
+   }
+  ]
+ },
+ {
+  "name": "remove breaks a superset",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "swap, nothing logged",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "rid": "r1",
+      "sgName": "Arms",
+      "sgRest": 90,
+      "id": "0031",
+      "target": {
+       "id": "0031",
+       "sets": 3
+      },
+      "plan": null,
+      "planned": {
+       "sets": 3
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 3,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "rid": "r1",
+      "sgName": "Arms",
+      "sgRest": 90,
+      "id": "0031",
+      "target": {
+       "id": "0031",
+       "sets": 3
+      },
+      "plan": null,
+      "planned": {
+       "sets": 3
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1",
+      "sgName": "Arms",
+      "sgRest": 90
+     },
+     {
+      "rid": "r1",
+      "id": "0031",
+      "target": {
+       "id": "0031",
+       "sets": 3
+      },
+      "plan": null,
+      "planned": {
+       "sets": 3
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "swap, logged",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0031",
+      "target": {
+       "id": "0031",
+       "sets": 3
+      },
+      "plan": null,
+      "planned": {
+       "sets": 3
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": false
+       }
+      ],
+      "rid": "r1"
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "noProg": true
+   }
+  ]
+ },
+ {
+  "name": "swap, logged in a superset, keep",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "0031",
+      "target": {
+       "id": "0031",
+       "sets": 3
+      },
+      "plan": null,
+      "planned": {
+       "sets": 3
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": false
+       }
+      ],
+      "rid": "r1",
+      "sg": "s1"
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "swap, logged in a superset, after",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 3,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "sg": "s1"
+     },
+     {
+      "id": "0031",
+      "target": {
+       "id": "0031",
+       "sets": 3
+      },
+      "plan": null,
+      "planned": {
+       "sets": 3
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 10,
+        "done": false
+       }
+      ],
+      "rid": "r1"
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "progression on and off",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "noProg": true
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "noProg": true
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "noProg": true
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "noProg": true
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "noProg": true
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 1,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "C",
+      "target": {
+       "id": "C",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "noProg": true
+     },
+     {
+      "id": "D",
+      "target": {
+       "id": "D",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "set: failure on and off",
+  "result": [
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2,
+     "failure": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2,
+     "failure": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "failure": true
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "failure": true
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true,
+     "failure": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "failure": true
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: failure on a timed pair",
+  "result": [
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30,
+     "failure": true
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30,
+     "failure": true
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: warm-up and back",
+  "result": [
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "at": 5000
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "at": 5000
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "at": 5000
+    },
+    {
+     "w": 20,
+     "r": 10,
+     "done": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "at": 5000
+    },
+    {
+     "w": 20,
+     "r": 10,
+     "done": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: per side warm-up",
+  "result": [
+   [
+    {
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": false
+      },
+      "R": {
+       "w": 10,
+       "r": 7,
+       "done": false
+      }
+     },
+     "r": 15,
+     "w": 10,
+     "done": false
+    },
+    {
+     "w": 10,
+     "r": 16,
+     "done": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": true
+      },
+      "R": {
+       "w": 10,
+       "r": 8,
+       "done": true,
+       "rir": 2
+      }
+     }
+    }
+   ],
+   [
+    {
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": false
+      },
+      "R": {
+       "w": 10,
+       "r": 7,
+       "done": false
+      }
+     },
+     "r": 15,
+     "w": 10,
+     "done": false
+    },
+    {
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": false
+      },
+      "R": {
+       "w": 10,
+       "r": 7,
+       "done": false
+      }
+     },
+     "r": 15,
+     "w": 10,
+     "done": false
+    },
+    {
+     "w": 10,
+     "r": 16,
+     "done": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": true
+      },
+      "R": {
+       "w": 10,
+       "r": 8,
+       "done": true,
+       "rir": 2
+      }
+     }
+    }
+   ],
+   [
+    {
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": false
+      },
+      "R": {
+       "w": 10,
+       "r": 7,
+       "done": false
+      }
+     },
+     "r": 15,
+     "w": 10,
+     "done": false
+    },
+    {
+     "phase": "warmup",
+     "warmup": true,
+     "edited": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": false
+      },
+      "R": {
+       "w": 10,
+       "r": 7,
+       "done": false
+      }
+     },
+     "r": 15,
+     "w": 10,
+     "done": false
+    },
+    {
+     "w": 10,
+     "r": 16,
+     "done": true,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": true
+      },
+      "R": {
+       "w": 10,
+       "r": 8,
+       "done": true,
+       "rir": 2
+      }
+     }
+    },
+    {
+     "w": 10,
+     "r": 16,
+     "sides": {
+      "L": {
+       "w": 10,
+       "r": 8,
+       "done": false
+      },
+      "R": {
+       "w": 10,
+       "r": 8,
+       "done": false,
+       "rir": 2
+      }
+     },
+     "done": false,
+     "rir": 2
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: own rest",
+  "result": [
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30,
+     "restSec": 75
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30,
+     "restSec": 75
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L",
+     "restSec": 0
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30,
+     "restSec": 900
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L",
+     "restSec": 0
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L",
+     "restSec": 0
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L",
+     "restSec": 0
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: notes",
+  "result": [
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2,
+     "note": "felt easy go up"
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ],
+     "note": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: copy",
+  "result": [
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "rir": 2,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "rir": 2,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 20,
+     "r": 10,
+     "phase": "warmup",
+     "warmup": true,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": true,
+     "at": 5000,
+     "weightOrigin": "manual",
+     "rir": 2
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "rir": 2,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: copy a timed pair",
+  "result": [
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "side": "L",
+     "done": false
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "side": "R",
+     "done": false
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": true,
+     "side": "L",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R",
+     "planSec": 30
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "side": "L",
+     "done": false
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "side": "R",
+     "done": false
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "side": "L",
+     "done": false
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "side": "R",
+     "done": false
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: remove",
+  "result": [
+   [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true,
+     "phase": "warmup",
+     "warmup": true
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    },
+    {
+     "w": 60,
+     "r": 8,
+     "done": false
+    }
+   ],
+   [
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ],
+   [
+    {
+     "w": 60,
+     "r": 8,
+     "done": false,
+     "type": "dropset",
+     "drops": [
+      {
+       "w": 45,
+       "r": 6
+      }
+     ]
+    }
+   ]
+  ]
+ },
+ {
+  "name": "set: remove a timed pair",
+  "result": [
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ],
+   [
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "L"
+    },
+    {
+     "sec": 30,
+     "w": 0,
+     "done": false,
+     "side": "R"
+    }
+   ]
+  ]
+ },
+ {
+  "name": "session: note",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Push",
+    "note": "good day"
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Push",
+    "note": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Push"
+   }
+  ]
+ },
+ {
+  "name": "session: rename",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Push"
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Monday heavy",
+    "customName": true
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "routineIds": [
+     "r1"
+    ],
+    "name": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "customName": true
+   }
+  ]
+ },
+ {
+  "name": "session: add routines",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "sg": "x",
+      "target": {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 80,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 3,
+       "reps": 5,
+       "weight": 80
+      },
+      "rid": "r3"
+     },
+     {
+      "id": "0031",
+      "sg": "x",
+      "target": {
+       "id": "0031",
+       "sets": 2,
+       "reps": 10,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "r": 10,
+        "done": false
+       },
+       {
+        "r": 10,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 10
+      },
+      "rid": "r3"
+     }
+    ],
+    "routineIds": [
+     "r1",
+     "r3"
+    ],
+    "name": "Push + Legs"
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "sg": "x",
+      "target": {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 80,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 3,
+       "reps": 5,
+       "weight": 80
+      },
+      "rid": "r3"
+     },
+     {
+      "id": "0031",
+      "sg": "x",
+      "target": {
+       "id": "0031",
+       "sets": 2,
+       "reps": 10,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "r": 10,
+        "done": false
+       },
+       {
+        "r": 10,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 10
+      },
+      "rid": "r3"
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "plan": {
+       "policy": "off",
+       "kind": "off"
+      },
+      "sets": [
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       },
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "noProg": true,
+      "rid": "r2"
+     }
+    ],
+    "routineIds": [
+     "r1",
+     "r3",
+     "r2"
+    ],
+    "name": "Push + Legs + Rehab"
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "sg": "x",
+      "target": {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 80,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 3,
+       "reps": 5,
+       "weight": 80
+      },
+      "rid": "r3"
+     },
+     {
+      "id": "0031",
+      "sg": "x",
+      "target": {
+       "id": "0031",
+       "sets": 2,
+       "reps": 10,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "r": 10,
+        "done": false
+       },
+       {
+        "r": 10,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 10
+      },
+      "rid": "r3"
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "plan": {
+       "policy": "off",
+       "kind": "off"
+      },
+      "sets": [
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       },
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "noProg": true,
+      "rid": "r2"
+     },
+     {
+      "id": "0463",
+      "target": {
+       "id": "0463",
+       "sets": 2,
+       "sec": 30,
+       "mode": "time"
+      },
+      "plan": {
+       "policy": "off",
+       "kind": "off"
+      },
+      "sets": [
+       {
+        "sec": 30,
+        "w": 0,
+        "done": false
+       },
+       {
+        "sec": 30,
+        "w": 0,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "sec": 30
+      },
+      "rid": "r4"
+     }
+    ],
+    "routineIds": [
+     "r1",
+     "r3",
+     "r2",
+     "r4"
+    ],
+    "name": "Push + Legs + 2 more"
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "sg": "x",
+      "target": {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 80,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 3,
+       "reps": 5,
+       "weight": 80
+      },
+      "rid": "r3"
+     },
+     {
+      "id": "0031",
+      "sg": "x",
+      "target": {
+       "id": "0031",
+       "sets": 2,
+       "reps": 10,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "r": 10,
+        "done": false
+       },
+       {
+        "r": 10,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 10
+      },
+      "rid": "r3"
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "plan": {
+       "policy": "off",
+       "kind": "off"
+      },
+      "sets": [
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       },
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "noProg": true,
+      "rid": "r2"
+     },
+     {
+      "id": "0463",
+      "target": {
+       "id": "0463",
+       "sets": 2,
+       "sec": 30,
+       "mode": "time"
+      },
+      "plan": {
+       "policy": "off",
+       "kind": "off"
+      },
+      "sets": [
+       {
+        "sec": 30,
+        "w": 0,
+        "done": false
+       },
+       {
+        "sec": 30,
+        "w": 0,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "sec": 30
+      },
+      "rid": "r4"
+     },
+     {
+      "id": "0025",
+      "target": {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 50
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "w": 50,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 50,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 50,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 3,
+       "reps": 8,
+       "weight": 50
+      },
+      "rid": "r1"
+     }
+    ],
+    "routineIds": [
+     "r1",
+     "r3",
+     "r2",
+     "r4",
+     "r1"
+    ],
+    "name": "Push + Legs + 3 more"
+   }
+  ]
+ },
+ {
+  "name": "session: add after a rename",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "sg": "x",
+      "target": {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 80,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 3,
+       "reps": 5,
+       "weight": 80
+      },
+      "rid": "r3"
+     },
+     {
+      "id": "0031",
+      "sg": "x",
+      "target": {
+       "id": "0031",
+       "sets": 2,
+       "reps": 10,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "r": 10,
+        "done": false
+       },
+       {
+        "r": 10,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 10
+      },
+      "rid": "r3"
+     }
+    ],
+    "routineIds": [
+     "r1",
+     "r3"
+    ],
+    "name": "Mine",
+    "customName": true
+   }
+  ]
+ },
+ {
+  "name": "session: progression",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "plan": {
+       "policy": "off",
+       "kind": "off"
+      },
+      "sets": [
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       },
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "noProg": true,
+      "rid": "r2"
+     }
+    ],
+    "routineIds": [
+     "r1",
+     "r2"
+    ],
+    "name": "Push + Rehab"
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "noProg": true
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "noProg": true
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "plan": {
+       "policy": "off",
+       "kind": "off"
+      },
+      "sets": [
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       },
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "noProg": true,
+      "rid": "r2"
+     }
+    ],
+    "routineIds": [
+     "r1",
+     "r2"
+    ],
+    "name": "Push + Rehab",
+    "noProg": true
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "noProg": true
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ],
+      "noProg": true
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "plan": {
+       "policy": "off",
+       "kind": "off"
+      },
+      "sets": [
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       },
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "noProg": true,
+      "rid": "r2"
+     },
+     {
+      "id": "0043",
+      "sg": "x",
+      "target": {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 80,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 3,
+       "reps": 5,
+       "weight": 80
+      },
+      "rid": "r3",
+      "noProg": true
+     },
+     {
+      "id": "0031",
+      "sg": "x",
+      "target": {
+       "id": "0031",
+       "sets": 2,
+       "reps": 10,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "r": 10,
+        "done": false
+       },
+       {
+        "r": 10,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 10
+      },
+      "rid": "r3",
+      "noProg": true
+     }
+    ],
+    "routineIds": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "name": "Push + Rehab + Legs",
+    "noProg": true
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "plan": {
+       "policy": "off",
+       "kind": "off"
+      },
+      "sets": [
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       },
+       {
+        "w": 4,
+        "r": 15,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 15,
+       "weight": 4
+      },
+      "noProg": true,
+      "rid": "r2"
+     },
+     {
+      "id": "0043",
+      "sg": "x",
+      "target": {
+       "id": "0043",
+       "sets": 3,
+       "reps": 5,
+       "weight": 80,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 80,
+        "r": 5,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 3,
+       "reps": 5,
+       "weight": 80
+      },
+      "rid": "r3"
+     },
+     {
+      "id": "0031",
+      "sg": "x",
+      "target": {
+       "id": "0031",
+       "sets": 2,
+       "reps": 10,
+       "sg": "x"
+      },
+      "plan": {
+       "policy": "linear",
+       "kind": "first",
+       "why": [
+        "Nothing logged yet, so this session sets the baseline."
+       ]
+      },
+      "sets": [
+       {
+        "r": 10,
+        "done": false
+       },
+       {
+        "r": 10,
+        "done": false
+       }
+      ],
+      "planned": {
+       "sets": 2,
+       "reps": 10
+      },
+      "rid": "r3"
+     }
+    ],
+    "routineIds": [
+     "r1",
+     "r2",
+     "r3"
+    ],
+    "name": "Push + Rehab + Legs"
+   }
+  ]
+ },
+ {
+  "name": "session: exercise rest",
+  "result": [
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2,
+       "restSec": 150
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Push"
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2,
+       "restOff": true
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Push"
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2,
+       "restOff": true
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2,
+       "restOff": true
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Push"
+   },
+   {
+    "id": "live",
+    "d": "2026-11-16",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "A",
+      "target": {
+       "id": "A",
+       "sets": 2
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "B",
+      "target": {
+       "id": "B",
+       "sets": 2,
+       "restOff": true
+      },
+      "planned": {
+       "sets": 2
+      },
+      "plan": null,
+      "rid": "r1",
+      "sets": [
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 20,
+        "r": 8,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Push"
+   }
+  ]
+ }
+]

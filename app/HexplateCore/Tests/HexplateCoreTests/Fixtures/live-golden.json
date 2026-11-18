@@ -1,0 +1,495 @@
+[
+ {
+  "name": "superset first, rest running",
+  "result": {
+   "name": "Upper",
+   "cur": {
+    "exId": "0861",
+    "entryIdx": 1,
+    "setIdx": 1,
+    "exName": "Cable Seated Row",
+    "setLine": "Set 2 of 2",
+    "target": "50×10",
+    "restAfter": 100,
+    "unit": 0
+   },
+   "ahead": [
+    {
+     "exId": "0025",
+     "entryIdx": 0,
+     "setIdx": 2,
+     "exName": "Barbell Bench Press",
+     "setLine": "Set 2 of 3",
+     "target": "60×8",
+     "restAfter": 100,
+     "unit": 0
+    },
+    {
+     "exId": "0025",
+     "entryIdx": 0,
+     "setIdx": 3,
+     "exName": "Barbell Bench Press",
+     "setLine": "Set 3 of 3",
+     "target": "60×8",
+     "restAfter": 100,
+     "unit": 0
+    },
+    {
+     "exId": "0334",
+     "entryIdx": 2,
+     "setIdx": 0,
+     "exName": "Dumbbell Lateral Raise",
+     "setLine": "Set 1 of 2",
+     "target": "L 6×6 · R 6×6",
+     "restAfter": 90,
+     "unit": 2
+    },
+    {
+     "exId": "0334",
+     "entryIdx": 2,
+     "setIdx": 1,
+     "exName": "Dumbbell Lateral Raise",
+     "setLine": "Set 2 of 2",
+     "target": "L 6×6 · R 6×6",
+     "restAfter": 90,
+     "unit": 2
+    },
+    {
+     "exId": "0043",
+     "entryIdx": 3,
+     "setIdx": 0,
+     "exName": "Barbell Full Squat",
+     "setLine": "Warm-up 1",
+     "target": "40×5",
+     "restAfter": 0,
+     "unit": 3
+    },
+    {
+     "exId": "0043",
+     "entryIdx": 3,
+     "setIdx": 1,
+     "exName": "Barbell Full Squat",
+     "setLine": "Set 1 of 2",
+     "target": "100×5",
+     "restAfter": 0,
+     "unit": 3
+    },
+    {
+     "exId": "0043",
+     "entryIdx": 3,
+     "setIdx": 2,
+     "exName": "Barbell Full Squat",
+     "setLine": "Set 2 of 2",
+     "target": "100×5",
+     "restAfter": 0,
+     "unit": 3
+    },
+    {
+     "exId": "0463",
+     "entryIdx": 4,
+     "setIdx": 0,
+     "exName": "Front Plank",
+     "setLine": "Set 1 of 2",
+     "target": "0:45",
+     "restAfter": 30,
+     "unit": 4
+    }
+   ],
+   "unitStarts": [
+    {
+     "exId": "0334",
+     "entryIdx": 2,
+     "setIdx": 0,
+     "exName": "Dumbbell Lateral Raise",
+     "setLine": "Set 1 of 2",
+     "target": "L 6×6 · R 6×6",
+     "restAfter": 90,
+     "unit": 2
+    },
+    {
+     "exId": "0043",
+     "entryIdx": 3,
+     "setIdx": 0,
+     "exName": "Barbell Full Squat",
+     "setLine": "Warm-up 1",
+     "target": "40×5",
+     "restAfter": 0,
+     "unit": 3
+    },
+    {
+     "exId": "0463",
+     "entryIdx": 4,
+     "setIdx": 0,
+     "exName": "Front Plank",
+     "setLine": "Set 1 of 2",
+     "target": "0:45",
+     "restAfter": 30,
+     "unit": 4
+    },
+    {
+     "exId": "gone",
+     "entryIdx": 5,
+     "setIdx": 0,
+     "exName": "Old thing",
+     "setLine": "Set 1 of 1",
+     "target": "10×10",
+     "restAfter": 90,
+     "unit": 5
+    }
+   ],
+   "restEndsAt": 1800000000000,
+   "restLeft": null,
+   "restTotal": 100,
+   "holdEndsAt": null,
+   "holdLeft": null,
+   "holdTotal": null,
+   "holdKind": null,
+   "auto": false,
+   "done": 3,
+   "total": 14
+  }
+ },
+ {
+  "name": "from the squat, hold running",
+  "result": {
+   "name": "Upper",
+   "cur": {
+    "exId": "0043",
+    "entryIdx": 3,
+    "setIdx": 0,
+    "exName": "Barbell Full Squat",
+    "setLine": "Warm-up 1",
+    "target": "40×5",
+    "restAfter": 0,
+    "unit": 3
+   },
+   "ahead": [
+    {
+     "exId": "0043",
+     "entryIdx": 3,
+     "setIdx": 1,
+     "exName": "Barbell Full Squat",
+     "setLine": "Set 1 of 2",
+     "target": "100×5",
+     "restAfter": 0,
+     "unit": 3
+    },
+    {
+     "exId": "0043",
+     "entryIdx": 3,
+     "setIdx": 2,
+     "exName": "Barbell Full Squat",
+     "setLine": "Set 2 of 2",
+     "target": "100×5",
+     "restAfter": 0,
+     "unit": 3
+    },
+    {
+     "exId": "0463",
+     "entryIdx": 4,
+     "setIdx": 0,
+     "exName": "Front Plank",
+     "setLine": "Set 1 of 2",
+     "target": "0:45",
+     "restAfter": 30,
+     "unit": 4
+    },
+    {
+     "exId": "0463",
+     "entryIdx": 4,
+     "setIdx": 1,
+     "exName": "Front Plank",
+     "setLine": "Set 2 of 2",
+     "target": "0:45",
+     "restAfter": 30,
+     "unit": 4
+    },
+    {
+     "exId": "gone",
+     "entryIdx": 5,
+     "setIdx": 0,
+     "exName": "Old thing",
+     "setLine": "Set 1 of 1",
+     "target": "10×10",
+     "restAfter": 90,
+     "unit": 5
+    },
+    {
+     "exId": "0861",
+     "entryIdx": 1,
+     "setIdx": 1,
+     "exName": "Cable Seated Row",
+     "setLine": "Set 2 of 2",
+     "target": "50×10",
+     "restAfter": 100,
+     "unit": 0
+    },
+    {
+     "exId": "0025",
+     "entryIdx": 0,
+     "setIdx": 2,
+     "exName": "Barbell Bench Press",
+     "setLine": "Set 2 of 3",
+     "target": "60×8",
+     "restAfter": 100,
+     "unit": 0
+    },
+    {
+     "exId": "0025",
+     "entryIdx": 0,
+     "setIdx": 3,
+     "exName": "Barbell Bench Press",
+     "setLine": "Set 3 of 3",
+     "target": "60×8",
+     "restAfter": 100,
+     "unit": 0
+    }
+   ],
+   "unitStarts": [
+    {
+     "exId": "0463",
+     "entryIdx": 4,
+     "setIdx": 0,
+     "exName": "Front Plank",
+     "setLine": "Set 1 of 2",
+     "target": "0:45",
+     "restAfter": 30,
+     "unit": 4
+    },
+    {
+     "exId": "gone",
+     "entryIdx": 5,
+     "setIdx": 0,
+     "exName": "Old thing",
+     "setLine": "Set 1 of 1",
+     "target": "10×10",
+     "restAfter": 90,
+     "unit": 5
+    },
+    {
+     "exId": "0861",
+     "entryIdx": 1,
+     "setIdx": 1,
+     "exName": "Cable Seated Row",
+     "setLine": "Set 2 of 2",
+     "target": "50×10",
+     "restAfter": 100,
+     "unit": 0
+    },
+    {
+     "exId": "0334",
+     "entryIdx": 2,
+     "setIdx": 0,
+     "exName": "Dumbbell Lateral Raise",
+     "setLine": "Set 1 of 2",
+     "target": "L 6×6 · R 6×6",
+     "restAfter": 90,
+     "unit": 2
+    }
+   ],
+   "restEndsAt": null,
+   "restLeft": null,
+   "restTotal": null,
+   "holdEndsAt": 1800000000000,
+   "holdLeft": null,
+   "holdTotal": 45,
+   "holdKind": "hold",
+   "auto": false,
+   "done": 3,
+   "total": 14
+  }
+ },
+ {
+  "name": "no default rest, lb",
+  "result": {
+   "name": "Upper",
+   "cur": {
+    "exId": "0334",
+    "entryIdx": 2,
+    "setIdx": 0,
+    "exName": "Dumbbell Lateral Raise",
+    "setLine": "Set 1 of 2",
+    "target": "L 6×6 · R 6×6",
+    "restAfter": 0,
+    "unit": 2
+   },
+   "ahead": [
+    {
+     "exId": "0334",
+     "entryIdx": 2,
+     "setIdx": 1,
+     "exName": "Dumbbell Lateral Raise",
+     "setLine": "Set 2 of 2",
+     "target": "L 6×6 · R 6×6",
+     "restAfter": 0,
+     "unit": 2
+    },
+    {
+     "exId": "0043",
+     "entryIdx": 3,
+     "setIdx": 0,
+     "exName": "Barbell Full Squat",
+     "setLine": "Warm-up 1",
+     "target": "40×5",
+     "restAfter": 0,
+     "unit": 3
+    },
+    {
+     "exId": "0043",
+     "entryIdx": 3,
+     "setIdx": 1,
+     "exName": "Barbell Full Squat",
+     "setLine": "Set 1 of 2",
+     "target": "100×5",
+     "restAfter": 0,
+     "unit": 3
+    },
+    {
+     "exId": "0043",
+     "entryIdx": 3,
+     "setIdx": 2,
+     "exName": "Barbell Full Squat",
+     "setLine": "Set 2 of 2",
+     "target": "100×5",
+     "restAfter": 0,
+     "unit": 3
+    },
+    {
+     "exId": "0463",
+     "entryIdx": 4,
+     "setIdx": 0,
+     "exName": "Front Plank",
+     "setLine": "Set 1 of 2",
+     "target": "0:45",
+     "restAfter": 30,
+     "unit": 4
+    },
+    {
+     "exId": "0463",
+     "entryIdx": 4,
+     "setIdx": 1,
+     "exName": "Front Plank",
+     "setLine": "Set 2 of 2",
+     "target": "0:45",
+     "restAfter": 30,
+     "unit": 4
+    },
+    {
+     "exId": "gone",
+     "entryIdx": 5,
+     "setIdx": 0,
+     "exName": "Old thing",
+     "setLine": "Set 1 of 1",
+     "target": "10×10",
+     "restAfter": 0,
+     "unit": 5
+    },
+    {
+     "exId": "0861",
+     "entryIdx": 1,
+     "setIdx": 1,
+     "exName": "Cable Seated Row",
+     "setLine": "Set 2 of 2",
+     "target": "50×10",
+     "restAfter": 100,
+     "unit": 0
+    }
+   ],
+   "unitStarts": [
+    {
+     "exId": "0043",
+     "entryIdx": 3,
+     "setIdx": 0,
+     "exName": "Barbell Full Squat",
+     "setLine": "Warm-up 1",
+     "target": "40×5",
+     "restAfter": 0,
+     "unit": 3
+    },
+    {
+     "exId": "0463",
+     "entryIdx": 4,
+     "setIdx": 0,
+     "exName": "Front Plank",
+     "setLine": "Set 1 of 2",
+     "target": "0:45",
+     "restAfter": 30,
+     "unit": 4
+    },
+    {
+     "exId": "gone",
+     "entryIdx": 5,
+     "setIdx": 0,
+     "exName": "Old thing",
+     "setLine": "Set 1 of 1",
+     "target": "10×10",
+     "restAfter": 0,
+     "unit": 5
+    },
+    {
+     "exId": "0861",
+     "entryIdx": 1,
+     "setIdx": 1,
+     "exName": "Cable Seated Row",
+     "setLine": "Set 2 of 2",
+     "target": "50×10",
+     "restAfter": 100,
+     "unit": 0
+    }
+   ],
+   "restEndsAt": null,
+   "restLeft": null,
+   "restTotal": null,
+   "holdEndsAt": null,
+   "holdLeft": null,
+   "holdTotal": null,
+   "holdKind": null,
+   "auto": false,
+   "done": 3,
+   "total": 14
+  }
+ },
+ {
+  "name": "all done",
+  "result": {
+   "name": "Upper",
+   "cur": null,
+   "ahead": [],
+   "unitStarts": [],
+   "restEndsAt": null,
+   "restLeft": null,
+   "restTotal": null,
+   "holdEndsAt": null,
+   "holdLeft": null,
+   "holdTotal": null,
+   "holdKind": null,
+   "auto": false,
+   "done": 14,
+   "total": 14
+  }
+ },
+ {
+  "name": "editing a saved workout",
+  "result": null
+ },
+ {
+  "name": "nothing running",
+  "result": null
+ },
+ {
+  "name": "next from the superset",
+  "result": 2
+ },
+ {
+  "name": "next wraps around",
+  "result": 0
+ },
+ {
+  "name": "next from a unit no longer current",
+  "result": null
+ },
+ {
+  "name": "next with nothing else open",
+  "result": null
+ }
+]

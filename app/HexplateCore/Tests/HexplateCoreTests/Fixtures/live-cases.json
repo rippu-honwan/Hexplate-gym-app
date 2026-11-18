@@ -1,0 +1,1705 @@
+[
+ {
+  "name": "superset first, rest running",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [],
+   "workouts": [],
+   "active": {
+    "id": "live",
+    "d": "2026-11-15",
+    "start": 50000,
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Upper",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "0025",
+      "sg": "a",
+      "target": {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sgRest": 100
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "done": true,
+        "phase": "warmup"
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0861",
+      "sg": "a",
+      "target": {
+       "id": "0861",
+       "sets": 2,
+       "reps": 10,
+       "weight": 50
+      },
+      "sets": [
+       {
+        "w": 50,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 50,
+        "r": 10,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      },
+      "sets": [
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       },
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "target": {
+       "id": "0043",
+       "sets": 2,
+       "reps": 5,
+       "weight": 100,
+       "restOff": true
+      },
+      "sets": [
+       {
+        "w": 40,
+        "r": 5,
+        "done": false,
+        "phase": "warmup"
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0463",
+      "target": {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time",
+       "restSec": 30
+      },
+      "sets": [
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       },
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "gone",
+      "name": "Old thing",
+      "target": {},
+      "sets": [
+       {
+        "w": 10,
+        "r": 10,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "timer": {
+   "endsAt": 1800000000000,
+   "total": 100
+  }
+ },
+ {
+  "name": "from the squat, hold running",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [],
+   "workouts": [],
+   "active": {
+    "id": "live",
+    "d": "2026-11-15",
+    "start": 50000,
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Upper",
+    "cur": 3,
+    "entries": [
+     {
+      "id": "0025",
+      "sg": "a",
+      "target": {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sgRest": 100
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "done": true,
+        "phase": "warmup"
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0861",
+      "sg": "a",
+      "target": {
+       "id": "0861",
+       "sets": 2,
+       "reps": 10,
+       "weight": 50
+      },
+      "sets": [
+       {
+        "w": 50,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 50,
+        "r": 10,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      },
+      "sets": [
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       },
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "target": {
+       "id": "0043",
+       "sets": 2,
+       "reps": 5,
+       "weight": 100,
+       "restOff": true
+      },
+      "sets": [
+       {
+        "w": 40,
+        "r": 5,
+        "done": false,
+        "phase": "warmup"
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0463",
+      "target": {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time",
+       "restSec": 30
+      },
+      "sets": [
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       },
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "gone",
+      "name": "Old thing",
+      "target": {},
+      "sets": [
+       {
+        "w": 10,
+        "r": 10,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "hold": {
+   "work": {
+    "endsAt": 1800000000000,
+    "total": 45
+   }
+  }
+ },
+ {
+  "name": "no default rest, lb",
+  "state": {
+   "unit": "lb",
+   "restSec": 0,
+   "routines": [],
+   "workouts": [],
+   "active": {
+    "id": "live",
+    "d": "2026-11-15",
+    "start": 50000,
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Upper",
+    "cur": 2,
+    "entries": [
+     {
+      "id": "0025",
+      "sg": "a",
+      "target": {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sgRest": 100
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "done": true,
+        "phase": "warmup"
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0861",
+      "sg": "a",
+      "target": {
+       "id": "0861",
+       "sets": 2,
+       "reps": 10,
+       "weight": 50
+      },
+      "sets": [
+       {
+        "w": 50,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 50,
+        "r": 10,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      },
+      "sets": [
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       },
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "target": {
+       "id": "0043",
+       "sets": 2,
+       "reps": 5,
+       "weight": 100,
+       "restOff": true
+      },
+      "sets": [
+       {
+        "w": 40,
+        "r": 5,
+        "done": false,
+        "phase": "warmup"
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0463",
+      "target": {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time",
+       "restSec": 30
+      },
+      "sets": [
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       },
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "gone",
+      "name": "Old thing",
+      "target": {},
+      "sets": [
+       {
+        "w": 10,
+        "r": 10,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  }
+ },
+ {
+  "name": "all done",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [],
+   "workouts": [],
+   "active": {
+    "id": "live",
+    "d": "2026-11-15",
+    "start": 50000,
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Upper",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "0025",
+      "sg": "a",
+      "target": {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sgRest": 100
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "done": true,
+        "phase": "warmup"
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0861",
+      "sg": "a",
+      "target": {
+       "id": "0861",
+       "sets": 2,
+       "reps": 10,
+       "weight": 50
+      },
+      "sets": [
+       {
+        "w": 50,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 50,
+        "r": 10,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      },
+      "sets": [
+       {
+        "w": 6,
+        "r": 12,
+        "done": true,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       },
+       {
+        "w": 6,
+        "r": 12,
+        "done": true,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "target": {
+       "id": "0043",
+       "sets": 2,
+       "reps": 5,
+       "weight": 100,
+       "restOff": true
+      },
+      "sets": [
+       {
+        "w": 40,
+        "r": 5,
+        "done": true,
+        "phase": "warmup"
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0463",
+      "target": {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time",
+       "restSec": 30
+      },
+      "sets": [
+       {
+        "sec": 45,
+        "w": 0,
+        "done": true
+       },
+       {
+        "sec": 45,
+        "w": 0,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "gone",
+      "name": "Old thing",
+      "target": {},
+      "sets": [
+       {
+        "w": 10,
+        "r": 10,
+        "done": true
+       }
+      ]
+     }
+    ]
+   }
+  }
+ },
+ {
+  "name": "editing a saved workout",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [],
+   "workouts": [],
+   "active": {
+    "id": "live",
+    "d": "2026-11-15",
+    "start": 50000,
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Upper",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "0025",
+      "sg": "a",
+      "target": {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sgRest": 100
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "done": true,
+        "phase": "warmup"
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0861",
+      "sg": "a",
+      "target": {
+       "id": "0861",
+       "sets": 2,
+       "reps": 10,
+       "weight": 50
+      },
+      "sets": [
+       {
+        "w": 50,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 50,
+        "r": 10,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      },
+      "sets": [
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       },
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "target": {
+       "id": "0043",
+       "sets": 2,
+       "reps": 5,
+       "weight": 100,
+       "restOff": true
+      },
+      "sets": [
+       {
+        "w": 40,
+        "r": 5,
+        "done": false,
+        "phase": "warmup"
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0463",
+      "target": {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time",
+       "restSec": 30
+      },
+      "sets": [
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       },
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "gone",
+      "name": "Old thing",
+      "target": {},
+      "sets": [
+       {
+        "w": 10,
+        "r": 10,
+        "done": false
+       }
+      ]
+     }
+    ],
+    "editingWorkoutId": "w1"
+   }
+  }
+ },
+ {
+  "name": "nothing running",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [],
+   "workouts": [],
+   "active": null
+  }
+ },
+ {
+  "name": "next from the superset",
+  "op": "next",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [],
+   "workouts": [],
+   "active": {
+    "id": "live",
+    "d": "2026-11-15",
+    "start": 50000,
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Upper",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "0025",
+      "sg": "a",
+      "target": {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sgRest": 100
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "done": true,
+        "phase": "warmup"
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0861",
+      "sg": "a",
+      "target": {
+       "id": "0861",
+       "sets": 2,
+       "reps": 10,
+       "weight": 50
+      },
+      "sets": [
+       {
+        "w": 50,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 50,
+        "r": 10,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      },
+      "sets": [
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       },
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "target": {
+       "id": "0043",
+       "sets": 2,
+       "reps": 5,
+       "weight": 100,
+       "restOff": true
+      },
+      "sets": [
+       {
+        "w": 40,
+        "r": 5,
+        "done": false,
+        "phase": "warmup"
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0463",
+      "target": {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time",
+       "restSec": 30
+      },
+      "sets": [
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       },
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "gone",
+      "name": "Old thing",
+      "target": {},
+      "sets": [
+       {
+        "w": 10,
+        "r": 10,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "from": 1
+ },
+ {
+  "name": "next wraps around",
+  "op": "next",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [],
+   "workouts": [],
+   "active": {
+    "id": "live",
+    "d": "2026-11-15",
+    "start": 50000,
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Upper",
+    "cur": 5,
+    "entries": [
+     {
+      "id": "0025",
+      "sg": "a",
+      "target": {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sgRest": 100
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "done": true,
+        "phase": "warmup"
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0861",
+      "sg": "a",
+      "target": {
+       "id": "0861",
+       "sets": 2,
+       "reps": 10,
+       "weight": 50
+      },
+      "sets": [
+       {
+        "w": 50,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 50,
+        "r": 10,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      },
+      "sets": [
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       },
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "target": {
+       "id": "0043",
+       "sets": 2,
+       "reps": 5,
+       "weight": 100,
+       "restOff": true
+      },
+      "sets": [
+       {
+        "w": 40,
+        "r": 5,
+        "done": false,
+        "phase": "warmup"
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0463",
+      "target": {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time",
+       "restSec": 30
+      },
+      "sets": [
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       },
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "gone",
+      "name": "Old thing",
+      "target": {},
+      "sets": [
+       {
+        "w": 10,
+        "r": 10,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "from": 5
+ },
+ {
+  "name": "next from a unit no longer current",
+  "op": "next",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [],
+   "workouts": [],
+   "active": {
+    "id": "live",
+    "d": "2026-11-15",
+    "start": 50000,
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Upper",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "0025",
+      "sg": "a",
+      "target": {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sgRest": 100
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "done": true,
+        "phase": "warmup"
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0861",
+      "sg": "a",
+      "target": {
+       "id": "0861",
+       "sets": 2,
+       "reps": 10,
+       "weight": 50
+      },
+      "sets": [
+       {
+        "w": 50,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 50,
+        "r": 10,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      },
+      "sets": [
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       },
+       {
+        "w": 6,
+        "r": 12,
+        "done": false,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "target": {
+       "id": "0043",
+       "sets": 2,
+       "reps": 5,
+       "weight": 100,
+       "restOff": true
+      },
+      "sets": [
+       {
+        "w": 40,
+        "r": 5,
+        "done": false,
+        "phase": "warmup"
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "0463",
+      "target": {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time",
+       "restSec": 30
+      },
+      "sets": [
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       },
+       {
+        "sec": 45,
+        "w": 0,
+        "done": false
+       }
+      ]
+     },
+     {
+      "id": "gone",
+      "name": "Old thing",
+      "target": {},
+      "sets": [
+       {
+        "w": 10,
+        "r": 10,
+        "done": false
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "from": 3
+ },
+ {
+  "name": "next with nothing else open",
+  "op": "next",
+  "state": {
+   "unit": "kg",
+   "restSec": 90,
+   "routines": [],
+   "workouts": [],
+   "active": {
+    "id": "live",
+    "d": "2026-11-15",
+    "start": 50000,
+    "routineIds": [
+     "r1"
+    ],
+    "name": "Upper",
+    "cur": 0,
+    "entries": [
+     {
+      "id": "0025",
+      "sg": "a",
+      "target": {
+       "id": "0025",
+       "sets": 3,
+       "reps": 8,
+       "weight": 60,
+       "restSec": 120,
+       "sgRest": 100
+      },
+      "sets": [
+       {
+        "w": 30,
+        "r": 8,
+        "done": true,
+        "phase": "warmup"
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       },
+       {
+        "w": 60,
+        "r": 8,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0861",
+      "sg": "a",
+      "target": {
+       "id": "0861",
+       "sets": 2,
+       "reps": 10,
+       "weight": 50
+      },
+      "sets": [
+       {
+        "w": 50,
+        "r": 10,
+        "done": true
+       },
+       {
+        "w": 50,
+        "r": 10,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0334",
+      "target": {
+       "id": "0334",
+       "sets": 2,
+       "reps": 12,
+       "weight": 6,
+       "side": true
+      },
+      "sets": [
+       {
+        "w": 6,
+        "r": 12,
+        "done": true,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       },
+       {
+        "w": 6,
+        "r": 12,
+        "done": true,
+        "sides": {
+         "L": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         },
+         "R": {
+          "w": 6,
+          "r": 6,
+          "done": false
+         }
+        }
+       }
+      ]
+     },
+     {
+      "id": "0043",
+      "target": {
+       "id": "0043",
+       "sets": 2,
+       "reps": 5,
+       "weight": 100,
+       "restOff": true
+      },
+      "sets": [
+       {
+        "w": 40,
+        "r": 5,
+        "done": true,
+        "phase": "warmup"
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       },
+       {
+        "w": 100,
+        "r": 5,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "0463",
+      "target": {
+       "id": "0463",
+       "sets": 2,
+       "sec": 45,
+       "mode": "time",
+       "restSec": 30
+      },
+      "sets": [
+       {
+        "sec": 45,
+        "w": 0,
+        "done": true
+       },
+       {
+        "sec": 45,
+        "w": 0,
+        "done": true
+       }
+      ]
+     },
+     {
+      "id": "gone",
+      "name": "Old thing",
+      "target": {},
+      "sets": [
+       {
+        "w": 10,
+        "r": 10,
+        "done": true
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "from": 0
+ }
+]

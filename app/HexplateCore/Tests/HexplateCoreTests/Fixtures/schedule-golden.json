@@ -1,0 +1,7690 @@
+[
+ {
+  "name": "fixed week",
+  "steps": [
+   {
+    "reads": {
+     "mode": "week",
+     "rotationIds": [],
+     "sequence": [],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": null,
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 2,
+      "of": 4,
+      "done": 2
+     }
+    }
+   }
+  ]
+ },
+ {
+  "name": "fixed week: overrides",
+  "steps": [
+   {
+    "reads": {
+     "mode": "week",
+     "rotationIds": [],
+     "sequence": [],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-12",
+      "ids": [
+       "r3"
+      ]
+     },
+     "view": null,
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 2,
+      "of": 4,
+      "done": 2
+     }
+    }
+   }
+  ]
+ },
+ {
+  "name": "fixed week: Sunday start",
+  "steps": [
+   {
+    "reads": {
+     "mode": "week",
+     "rotationIds": [],
+     "sequence": [],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": null,
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 2,
+      "of": 4,
+      "done": 2
+     }
+    }
+   }
+  ]
+ },
+ {
+  "name": "fixed week: nothing trainable",
+  "steps": [
+   {
+    "reads": {
+     "mode": "week",
+     "rotationIds": [],
+     "sequence": [],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": null,
+     "view": null,
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 1
+     },
+     "left": {
+      "left": 0,
+      "of": 1,
+      "done": 2
+     }
+    }
+   }
+  ]
+ },
+ {
+  "name": "rotation: mid pass",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 2,
+      "of": 4,
+      "done": 2
+     }
+    }
+   }
+  ]
+ },
+ {
+  "name": "rotation: with pins",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "later"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "pinned",
+        "on": "2026-03-13"
+       },
+       {
+        "id": "r4",
+        "name": "Empty",
+        "state": "next"
+       }
+      ],
+      "remaining": [
+       "r1",
+       "r3",
+       "r4"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-10",
+      "waiting": false
+     },
+     "done": [
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "rotation: pinned and done",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-12",
+      "ids": [
+       "r3"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "pinned",
+        "on": "2026-03-12"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "rotation: pass complete",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       }
+      ],
+      "remaining": [],
+      "complete": true,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 0,
+      "of": 2,
+      "done": 2
+     }
+    }
+   }
+  ]
+ },
+ {
+  "name": "rotation: waiting for its start day",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "next"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "later"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-13",
+      "waiting": true
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "rotation: no loop saved",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [],
+     "sequence": [],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": null,
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "rotation: credited by name",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "done"
+       }
+      ],
+      "remaining": [],
+      "complete": true,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "tally": {
+      "done": 3,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "rotation: strict ignores names",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "next"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "later"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "coach queue over the fixed week",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [],
+     "sequence": [],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": []
+      }
+     ],
+     "next": {
+      "iso": "2026-03-12",
+      "ids": [
+       "r3"
+      ]
+     },
+     "view": {
+      "label": "Week 3",
+      "items": [
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-10",
+      "waiting": false
+     },
+     "done": [
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 2,
+      "of": 4,
+      "done": 2
+     }
+    }
+   }
+  ]
+ },
+ {
+  "name": "queue that cannot be read",
+  "steps": [
+   {
+    "reads": {
+     "mode": "week",
+     "rotationIds": [],
+     "sequence": [],
+     "recovery": true,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": null,
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 2,
+      "of": 4,
+      "done": 2
+     }
+    }
+   }
+  ]
+ },
+ {
+  "name": "loop with rest days",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "rest",
+      "r1",
+      "r3",
+      "rest",
+      "rest"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r1",
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Loop",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "next"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r1",
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-11",
+      "waiting": false
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "choose rotation with a saved loop",
+  "steps": [
+   {
+    "reads": {
+     "mode": "week",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-12",
+      "ids": [
+       "r3"
+      ]
+     },
+     "view": null,
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 2,
+      "of": 4,
+      "done": 2
+     }
+    }
+   },
+   {
+    "op": "chooseRotation",
+    "result": true,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "label": "PPL"
+     },
+     "queue": {
+      "ids": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-11",
+      "label": "PPL",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {
+      "2026-03-12": "r3"
+     }
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-12",
+      "ids": [
+       "r3"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "next"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "later"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "pinned",
+        "on": "2026-03-12"
+       }
+      ],
+      "remaining": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-11",
+      "waiting": false
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "choose rotation with nothing saved",
+  "steps": [
+   {
+    "reads": {
+     "mode": "week",
+     "rotationIds": [],
+     "sequence": [],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": null,
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 2,
+      "of": 4,
+      "done": 2
+     }
+    }
+   },
+   {
+    "op": "chooseRotation",
+    "result": false,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": null,
+     "queue": null,
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [],
+     "sequence": [],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": null,
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "choose rotation with a loop",
+  "steps": [
+   {
+    "reads": {
+     "mode": "week",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "rest",
+      "r1",
+      "r3",
+      "rest",
+      "rest"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": null,
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 2,
+      "of": 4,
+      "done": 2
+     }
+    }
+   },
+   {
+    "op": "chooseRotation",
+    "result": true,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "rest",
+       "r1",
+       "r3",
+       "rest",
+       "rest",
+       "gone"
+      ],
+      "label": "Loop",
+      "at": 0
+     },
+     "queue": {
+      "ids": [
+       "r1",
+       "r2"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-11",
+      "label": "Loop",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "rest",
+      "r1",
+      "r3",
+      "rest",
+      "rest"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Loop",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "next"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r1",
+       "r2"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-11",
+      "waiting": false
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "stopPass",
+    "result": null,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "rest",
+       "r1",
+       "r3",
+       "rest",
+       "rest",
+       "gone"
+      ],
+      "label": "Loop",
+      "at": 0
+     },
+     "queue": null,
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "rest",
+      "r1",
+      "r3",
+      "rest",
+      "rest"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": null,
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "startPass",
+    "result": true,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "rest",
+       "r1",
+       "r3",
+       "rest",
+       "rest",
+       "gone"
+      ],
+      "label": "Loop",
+      "at": 0
+     },
+     "queue": {
+      "ids": [
+       "r1",
+       "r2"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-11",
+      "label": "Loop",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "rest",
+      "r1",
+      "r3",
+      "rest",
+      "rest"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Loop",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "next"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r1",
+       "r2"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-11",
+      "waiting": false
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "back to a fixed week",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "pinned",
+        "on": "2026-03-13"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "chooseFixedWeek",
+    "result": null,
+    "plan": {
+     "scheduleMode": "week",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "label": "PPL"
+     },
+     "queue": null,
+     "dayPlan": {
+      "2026-03-01": "r3"
+     }
+    },
+    "reads": {
+     "mode": "week",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": null,
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 2,
+      "of": 4,
+      "done": 2
+     }
+    }
+   },
+   {
+    "op": "chooseRotation",
+    "result": true,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "label": "PPL"
+     },
+     "queue": {
+      "ids": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-11",
+      "label": "PPL",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {
+      "2026-03-01": "r3"
+     }
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "next"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "later"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-11",
+      "waiting": false
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "back to a fixed week keeps a coach queue",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [],
+     "sequence": [],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Week 3",
+      "items": [
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-10",
+      "waiting": false
+     },
+     "done": [
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 5
+     },
+     "left": {
+      "left": 3,
+      "of": 5,
+      "done": 2
+     }
+    }
+   },
+   {
+    "op": "chooseFixedWeek",
+    "result": null,
+    "plan": {
+     "scheduleMode": "week",
+     "rotation": null,
+     "queue": {
+      "ids": [
+       "r2",
+       "r3"
+      ],
+      "since": 1773104400000,
+      "label": "Week 3"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [],
+     "sequence": [],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Week 3",
+      "items": [
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-10",
+      "waiting": false
+     },
+     "done": [
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 5
+     },
+     "left": {
+      "left": 3,
+      "of": 5,
+      "done": 2
+     }
+    }
+   }
+  ]
+ },
+ {
+  "name": "save a first rotation",
+  "steps": [
+   {
+    "reads": {
+     "mode": "week",
+     "rotationIds": [],
+     "sequence": [],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": null,
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 2,
+      "of": 4,
+      "done": 2
+     }
+    }
+   },
+   {
+    "op": "saveRotation",
+    "result": null,
+    "plan": {
+     "scheduleMode": null,
+     "rotation": {
+      "id": "mmlgb1c0i",
+      "sequence": [
+       "r2",
+       "r3"
+      ],
+      "label": "Mine"
+     },
+     "queue": {
+      "ids": [
+       "r2",
+       "r3"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-11",
+      "label": "Mine",
+      "rotationId": "mmlgb1c0i"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Mine",
+      "items": [
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "next"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r2",
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-11",
+      "waiting": false
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 5
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "saveRotation",
+    "result": null,
+    "plan": {
+     "scheduleMode": null,
+     "rotation": {
+      "id": "mmlgb1c0i",
+      "sequence": [
+       "r3"
+      ],
+      "label": "Mine"
+     },
+     "queue": {
+      "ids": [
+       "r3"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-11",
+      "label": "Mine",
+      "rotationId": "mmlgb1c0i"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r3"
+     ],
+     "sequence": [
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r3",
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Mine",
+      "items": [
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-11",
+      "waiting": false
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 5
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "saveRotation",
+    "result": null,
+    "plan": {
+     "scheduleMode": null,
+     "rotation": {
+      "id": "mmlgb1c0i",
+      "sequence": [
+       "r3"
+      ],
+      "label": "Mine"
+     },
+     "queue": {
+      "ids": [
+       "r3"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-11",
+      "label": "Mine",
+      "rotationId": "mmlgb1c0i"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r3"
+     ],
+     "sequence": [
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r3",
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Mine",
+      "items": [
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-11",
+      "waiting": false
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 5
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "save: taking a pinned routine out",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "pinned",
+        "on": "2026-03-13"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "saveRotation",
+    "result": null,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2"
+      ],
+      "label": "PPL"
+     },
+     "queue": {
+      "ids": [
+       "r1",
+       "r2"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-11",
+      "label": "PPL",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2"
+     ],
+     "sequence": [
+      "r1",
+      "r2"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "next"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r1",
+       "r2"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-11",
+      "waiting": false
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "save: a finished pass refills",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "saveRotation",
+    "result": null,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r2",
+       "r1"
+      ],
+      "label": "Two"
+     },
+     "queue": {
+      "ids": [
+       "r2",
+       "r1"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-11",
+      "label": "Two",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r2",
+      "r1"
+     ],
+     "sequence": [
+      "r2",
+      "r1"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Two",
+      "items": [
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "next"
+       },
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r2",
+       "r1"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-11",
+      "waiting": false
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "save: a loop with rest days",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "saveRotation",
+    "result": null,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "rest",
+       "r3",
+       "r1"
+      ],
+      "label": "Loop",
+      "at": 3
+     },
+     "queue": {
+      "ids": [
+       "r3",
+       "r1"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-12",
+      "label": "Loop",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "rest",
+      "r3",
+      "r1"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-12",
+      "ids": [
+       "r3"
+      ]
+     },
+     "view": {
+      "label": "Loop",
+      "items": [
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       },
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r3",
+       "r1"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-12",
+      "waiting": true
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "saveRotation",
+    "result": null,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "rest",
+       "r3",
+       "rest",
+       "r1",
+       "r2"
+      ],
+      "label": "Loop",
+      "at": 3
+     },
+     "queue": {
+      "ids": [
+       "r1",
+       "r2"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-12",
+      "label": "Loop",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r3",
+      "r1",
+      "r2"
+     ],
+     "sequence": [
+      "rest",
+      "r3",
+      "rest",
+      "r1",
+      "r2"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-12",
+      "ids": [
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Loop",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "next"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r1",
+       "r2"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-12",
+      "waiting": true
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "save: a loop whose pass is finished moves on",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "rest",
+      "rest",
+      "r3",
+      "r1"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Loop",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       }
+      ],
+      "remaining": [],
+      "complete": true,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "saveRotation",
+    "result": null,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "rest",
+       "rest",
+       "r3",
+       "r1"
+      ],
+      "label": "Loop",
+      "at": 4
+     },
+     "queue": {
+      "ids": [
+       "r3",
+       "r1"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-13",
+      "label": "Loop",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "rest",
+      "rest",
+      "r3",
+      "r1"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3"
+      ]
+     },
+     "view": {
+      "label": "Loop",
+      "items": [
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       },
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r3",
+       "r1"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-13",
+      "waiting": true
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "start the loop over",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "pinned",
+        "on": "2026-03-13"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "startNewPass",
+    "result": null,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "label": "PPL"
+     },
+     "queue": {
+      "ids": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "since": 1773230400000,
+      "startsOn": "2026-03-11",
+      "label": "PPL",
+      "rotationId": "rot1",
+      "strict": true
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "next"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "later"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-11",
+      "waiting": false
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "start the loop over: nothing running",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "rest",
+      "r1",
+      "r3",
+      "rest",
+      "rest"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r3",
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Loop",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "startNewPass",
+    "result": null,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "rest",
+       "r1",
+       "r3",
+       "rest",
+       "rest",
+       "gone"
+      ],
+      "label": "Loop",
+      "at": 0
+     },
+     "queue": {
+      "ids": [
+       "r1",
+       "r2"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-11",
+      "label": "Loop",
+      "rotationId": "rot1",
+      "strict": true
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "rest",
+      "r1",
+      "r3",
+      "rest",
+      "rest"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Loop",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "next"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r1",
+       "r2"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-11",
+      "waiting": false
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "refill after the last session",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       }
+      ],
+      "remaining": [],
+      "complete": true,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "refillAfter",
+    "result": false,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "label": "PPL"
+     },
+     "queue": {
+      "ids": [
+       "r1",
+       "r2"
+      ],
+      "since": 1773018000000,
+      "startsOn": "2026-03-09",
+      "label": "PPL",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       }
+      ],
+      "remaining": [],
+      "complete": true,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "refill: a pass that began mid loop",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "done"
+       },
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       }
+      ],
+      "remaining": [],
+      "complete": true,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r2",
+      "r3",
+      "r1"
+     ],
+     "tally": {
+      "done": 3,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "refillIfComplete",
+    "result": true,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "label": "PPL"
+     },
+     "queue": {
+      "ids": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-12",
+      "label": "PPL",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-12",
+      "ids": [
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "next"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "later"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-12",
+      "waiting": true
+     },
+     "done": [],
+     "tally": {
+      "done": 3,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "refill: not finished",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "refillAfter",
+    "result": false,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "label": "PPL"
+     },
+     "queue": {
+      "ids": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "since": 1773018000000,
+      "startsOn": "2026-03-09",
+      "label": "PPL",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "refillIfComplete",
+    "result": false,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "label": "PPL"
+     },
+     "queue": {
+      "ids": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "since": 1773018000000,
+      "startsOn": "2026-03-09",
+      "label": "PPL",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "PPL",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       },
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       }
+      ],
+      "remaining": [
+       "r3"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ },
+ {
+  "name": "refill: someone else's queue",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Coach",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       }
+      ],
+      "remaining": [],
+      "complete": true,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 2,
+      "of": 4,
+      "done": 2
+     }
+    }
+   },
+   {
+    "op": "refillIfComplete",
+    "result": false,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "r3"
+      ],
+      "label": "PPL"
+     },
+     "queue": {
+      "ids": [
+       "r1",
+       "r2"
+      ],
+      "since": 1773018000000,
+      "label": "Coach"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Coach",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       }
+      ],
+      "remaining": [],
+      "complete": true,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": {
+      "left": 2,
+      "of": 4,
+      "done": 2
+     }
+    }
+   }
+  ]
+ },
+ {
+  "name": "refill: a loop rests before its next stretch",
+  "steps": [
+   {
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "rest",
+      "rest",
+      "r3",
+      "r1"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3",
+       "r1"
+      ]
+     },
+     "view": {
+      "label": "Loop",
+      "items": [
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "done"
+       },
+       {
+        "id": "r2",
+        "name": "Lower",
+        "state": "done"
+       }
+      ],
+      "remaining": [],
+      "complete": true,
+      "startsOn": "2026-03-09",
+      "waiting": false
+     },
+     "done": [
+      "r1",
+      "r2"
+     ],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   },
+   {
+    "op": "refillAfter",
+    "result": true,
+    "plan": {
+     "scheduleMode": "rotation",
+     "rotation": {
+      "id": "rot1",
+      "sequence": [
+       "r1",
+       "r2",
+       "rest",
+       "rest",
+       "r3",
+       "r1"
+      ],
+      "label": "Loop",
+      "at": 4
+     },
+     "queue": {
+      "ids": [
+       "r3",
+       "r1"
+      ],
+      "since": 1773234000000,
+      "startsOn": "2026-03-13",
+      "label": "Loop",
+      "rotationId": "rot1"
+     },
+     "dayPlan": {}
+    },
+    "reads": {
+     "mode": "rotation",
+     "rotationIds": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "sequence": [
+      "r1",
+      "r2",
+      "rest",
+      "rest",
+      "r3",
+      "r1"
+     ],
+     "recovery": false,
+     "days": [
+      {
+       "iso": "2026-03-08",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-09",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-10",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-11",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-12",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-13",
+       "ids": [
+        "r3"
+       ]
+      },
+      {
+       "iso": "2026-03-14",
+       "ids": [
+        "r4"
+       ]
+      },
+      {
+       "iso": "2026-03-15",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-16",
+       "ids": [
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-17",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-18",
+       "ids": [
+        "r2"
+       ]
+      },
+      {
+       "iso": "2026-03-19",
+       "ids": []
+      },
+      {
+       "iso": "2026-03-20",
+       "ids": [
+        "r3",
+        "r1"
+       ]
+      },
+      {
+       "iso": "2026-03-21",
+       "ids": [
+        "r4"
+       ]
+      }
+     ],
+     "next": {
+      "iso": "2026-03-13",
+      "ids": [
+       "r3"
+      ]
+     },
+     "view": {
+      "label": "Loop",
+      "items": [
+       {
+        "id": "r3",
+        "name": "Arms",
+        "state": "next"
+       },
+       {
+        "id": "r1",
+        "name": "Upper",
+        "state": "later"
+       }
+      ],
+      "remaining": [
+       "r3",
+       "r1"
+      ],
+      "complete": false,
+      "startsOn": "2026-03-13",
+      "waiting": true
+     },
+     "done": [],
+     "tally": {
+      "done": 2,
+      "planned": 4
+     },
+     "left": null
+    }
+   }
+  ]
+ }
+]

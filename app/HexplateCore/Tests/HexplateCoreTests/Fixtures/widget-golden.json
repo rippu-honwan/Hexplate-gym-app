@@ -1,0 +1,594 @@
+[
+ {
+  "name": "a long run, three weeks missed",
+  "result": {
+   "v": 2,
+   "today": "2026-09-28",
+   "weekFrom": "2026-09-28",
+   "weekUntil": "2026-10-05",
+   "unit": "kg",
+   "days": [
+    {
+     "iso": "2026-09-28",
+     "name": "Push",
+     "ids": [
+      "ra"
+     ],
+     "count": 2,
+     "exercises": [
+      {
+       "name": "Barbell Bench Press"
+      },
+      {
+       "name": "Barbell Curl"
+      }
+     ],
+     "done": true
+    },
+    {
+     "iso": "2026-09-29",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-09-30",
+     "name": "Legs",
+     "ids": [
+      "rb"
+     ],
+     "count": 1
+    },
+    {
+     "iso": "2026-10-01",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-10-02",
+     "name": "Push + Legs",
+     "ids": [
+      "ra",
+      "rb"
+     ],
+     "count": 3
+    },
+    {
+     "iso": "2026-10-03",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-10-04",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-10-05",
+     "name": "Push",
+     "ids": [
+      "ra"
+     ],
+     "count": 2
+    }
+   ],
+   "week": {
+    "done": 1,
+    "planned": 3
+   },
+   "weekLeft": {
+    "left": 2,
+    "of": 3
+   },
+   "streak": 2,
+   "lastPR": null,
+   "active": null,
+   "streakInfo": {
+    "current": 2,
+    "best": 13,
+    "freezes": 0,
+    "weekDone": true,
+    "next": 26
+   },
+   "weight": {
+    "current": 79,
+    "goal": 78,
+    "toGo": 1,
+    "unit": "kg",
+    "trend": [
+     79.6,
+     79.5,
+     79.4,
+     79.3,
+     79.2,
+     79.1,
+     79
+    ]
+   },
+   "next": {
+    "name": "Legs",
+    "iso": "2026-09-30",
+    "today": false,
+    "ids": [
+     "rb"
+    ],
+    "count": 1
+   },
+   "records": {
+    "month": 0,
+    "last": null
+   },
+   "volume": {
+    "now": 250,
+    "prev": 250,
+    "unit": "kg",
+    "pct": 0
+   }
+  }
+ },
+ {
+  "name": "a trained week with a plan",
+  "result": {
+   "v": 2,
+   "today": "2026-11-16",
+   "weekFrom": "2026-11-16",
+   "weekUntil": "2026-11-23",
+   "unit": "kg",
+   "days": [
+    {
+     "iso": "2026-11-16",
+     "name": "Push",
+     "ids": [
+      "ra"
+     ],
+     "count": 2,
+     "exercises": [
+      {
+       "name": "Barbell Bench Press"
+      },
+      {
+       "name": "Barbell Curl"
+      }
+     ],
+     "done": true
+    },
+    {
+     "iso": "2026-11-17",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-18",
+     "name": "Legs",
+     "ids": [
+      "rb"
+     ],
+     "count": 1
+    },
+    {
+     "iso": "2026-11-19",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-20",
+     "name": "Push + Legs",
+     "ids": [
+      "ra",
+      "rb"
+     ],
+     "count": 3
+    },
+    {
+     "iso": "2026-11-21",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-22",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-23",
+     "name": "Push",
+     "ids": [
+      "ra"
+     ],
+     "count": 2
+    }
+   ],
+   "week": {
+    "done": 1,
+    "planned": 3
+   },
+   "weekLeft": {
+    "left": 2,
+    "of": 3
+   },
+   "streak": 3,
+   "lastPR": {
+    "name": "Barbell Bench Press",
+    "d": "2026-11-09"
+   },
+   "active": null,
+   "streakInfo": {
+    "current": 3,
+    "best": 6,
+    "freezes": 0,
+    "weekDone": true,
+    "next": 12
+   },
+   "weight": {
+    "current": 79,
+    "goal": 78,
+    "toGo": 1,
+    "unit": "kg",
+    "trend": [
+     79.6,
+     79.5,
+     79.4,
+     79.3,
+     79.2,
+     79.1,
+     79
+    ]
+   },
+   "next": {
+    "name": "Legs",
+    "iso": "2026-11-18",
+    "today": false,
+    "ids": [
+     "rb"
+    ],
+    "count": 1
+   },
+   "records": {
+    "month": 1,
+    "last": {
+     "name": "Barbell Bench Press",
+     "d": "2026-11-09"
+    }
+   },
+   "volume": {
+    "now": 1104,
+    "prev": 2152,
+    "unit": "kg",
+    "pct": -49
+   }
+  }
+ },
+ {
+  "name": "a running workout, no goal, lb",
+  "result": {
+   "v": 2,
+   "today": "2026-11-18",
+   "weekFrom": "2026-11-16",
+   "weekUntil": "2026-11-23",
+   "unit": "lb",
+   "days": [
+    {
+     "iso": "2026-11-18",
+     "name": "Legs",
+     "ids": [
+      "rb"
+     ],
+     "count": 1,
+     "exercises": [
+      {
+       "name": "Barbell Full Squat"
+      }
+     ],
+     "done": false
+    },
+    {
+     "iso": "2026-11-19",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-20",
+     "name": "Push + Legs",
+     "ids": [
+      "ra",
+      "rb"
+     ],
+     "count": 3
+    },
+    {
+     "iso": "2026-11-21",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-22",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-23",
+     "name": "Push",
+     "ids": [
+      "ra"
+     ],
+     "count": 2
+    },
+    {
+     "iso": "2026-11-24",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-25",
+     "name": "Legs",
+     "ids": [
+      "rb"
+     ],
+     "count": 1
+    }
+   ],
+   "week": {
+    "done": 1,
+    "planned": 3
+   },
+   "weekLeft": {
+    "left": 2,
+    "of": 3
+   },
+   "streak": 3,
+   "lastPR": {
+    "name": "Barbell Bench Press",
+    "d": "2026-11-09"
+   },
+   "active": {
+    "id": "a1",
+    "name": "Legs",
+    "start": 1790000000000,
+    "done": 1,
+    "total": 2
+   },
+   "streakInfo": {
+    "current": 3,
+    "best": 6,
+    "freezes": 0,
+    "weekDone": true,
+    "next": 12
+   },
+   "weight": {
+    "current": 79,
+    "goal": null,
+    "toGo": null,
+    "unit": "lb",
+    "trend": [
+     79.6,
+     79.5,
+     79.4,
+     79.3,
+     79.2,
+     79.1,
+     79
+    ]
+   },
+   "next": {
+    "name": "Legs",
+    "iso": "2026-11-18",
+    "today": true,
+    "ids": [
+     "rb"
+    ],
+    "count": 1
+   },
+   "records": {
+    "month": 1,
+    "last": {
+     "name": "Barbell Bench Press",
+     "d": "2026-11-09"
+    }
+   },
+   "volume": {
+    "now": 1104,
+    "prev": 2152,
+    "unit": "lb",
+    "pct": -49
+   }
+  }
+ },
+ {
+  "name": "a broken streak, day plan",
+  "result": {
+   "v": 2,
+   "today": "2026-12-20",
+   "weekFrom": "2026-12-14",
+   "weekUntil": "2026-12-21",
+   "unit": "kg",
+   "days": [
+    {
+     "iso": "2026-12-20",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-12-21",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-12-22",
+     "name": "Legs",
+     "ids": [
+      "rb"
+     ],
+     "count": 1
+    },
+    {
+     "iso": "2026-12-23",
+     "name": "Legs",
+     "ids": [
+      "rb"
+     ],
+     "count": 1
+    },
+    {
+     "iso": "2026-12-24",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-12-25",
+     "name": "Push + Legs",
+     "ids": [
+      "ra",
+      "rb"
+     ],
+     "count": 3
+    },
+    {
+     "iso": "2026-12-26",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-12-27",
+     "name": null,
+     "count": 0
+    }
+   ],
+   "week": {
+    "done": 0,
+    "planned": 3
+   },
+   "weekLeft": {
+    "left": 3,
+    "of": 3
+   },
+   "streak": 0,
+   "lastPR": {
+    "name": "Barbell Bench Press",
+    "d": "2026-11-09"
+   },
+   "active": null,
+   "streakInfo": {
+    "current": 0,
+    "best": 6,
+    "freezes": 0,
+    "weekDone": false,
+    "next": 12
+   },
+   "weight": {
+    "current": 79,
+    "goal": 78,
+    "toGo": 1,
+    "unit": "kg",
+    "trend": [
+     79.6,
+     79.5,
+     79.4,
+     79.3,
+     79.2,
+     79.1,
+     79
+    ]
+   },
+   "next": {
+    "name": "Legs",
+    "iso": "2026-12-22",
+    "today": false,
+    "ids": [
+     "rb"
+    ],
+    "count": 1
+   },
+   "records": {
+    "month": 0,
+    "last": {
+     "name": "Barbell Bench Press",
+     "d": "2026-11-09"
+    }
+   },
+   "volume": {
+    "now": 0,
+    "prev": 0,
+    "unit": "kg",
+    "pct": null
+   }
+  }
+ },
+ {
+  "name": "nothing at all",
+  "result": {
+   "v": 2,
+   "today": "2026-11-16",
+   "weekFrom": "2026-11-16",
+   "weekUntil": "2026-11-23",
+   "unit": "kg",
+   "days": [
+    {
+     "iso": "2026-11-16",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-17",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-18",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-19",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-20",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-21",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-22",
+     "name": null,
+     "count": 0
+    },
+    {
+     "iso": "2026-11-23",
+     "name": null,
+     "count": 0
+    }
+   ],
+   "week": {
+    "done": 0,
+    "planned": 0
+   },
+   "weekLeft": null,
+   "streak": 0,
+   "lastPR": null,
+   "active": null,
+   "streakInfo": {
+    "current": 0,
+    "best": 0,
+    "freezes": 0,
+    "weekDone": false,
+    "next": 4
+   },
+   "weight": null,
+   "next": null,
+   "records": {
+    "month": 0,
+    "last": null
+   },
+   "volume": {
+    "now": 0,
+    "prev": 0,
+    "unit": "kg",
+    "pct": null
+   }
+  }
+ }
+]

@@ -1,0 +1,1488 @@
+[
+ {
+  "name": "delete a routine and its pointers",
+  "result": {
+   "state": {
+    "routines": [
+     {
+      "id": "r1",
+      "name": "Upper",
+      "ex": []
+     },
+     {
+      "id": "r3",
+      "name": "Arms",
+      "ex": []
+     }
+    ],
+    "week": {
+     "1": [
+      "r1"
+     ],
+     "6": [
+      "r3"
+     ]
+    },
+    "dayPlan": {
+     "2026-03-12": "r1",
+     "2026-03-13": "rest"
+    },
+    "rotation": {
+     "id": "x",
+     "sequence": [
+      "r1",
+      "r2"
+     ]
+    },
+    "queue": {
+     "ids": [
+      "r2"
+     ],
+     "since": 1
+    }
+   },
+   "dropped": {
+    "2026-03-11": "r2"
+   }
+  }
+ },
+ {
+  "name": "delete one nothing points at",
+  "result": {
+   "state": {
+    "routines": [
+     {
+      "id": "r1",
+      "name": "Upper",
+      "ex": []
+     },
+     {
+      "id": "r2",
+      "name": "Lower",
+      "ex": []
+     },
+     {
+      "id": "r3",
+      "name": "Arms",
+      "ex": []
+     }
+    ],
+    "week": {
+     "1": "r1"
+    },
+    "dayPlan": {
+     "2026-03-11": "r2",
+     "2026-03-12": "r1",
+     "2026-03-13": "rest"
+    },
+    "rotation": {
+     "id": "x",
+     "sequence": [
+      "r1",
+      "r2"
+     ]
+    },
+    "queue": {
+     "ids": [
+      "r2"
+     ],
+     "since": 1
+    }
+   },
+   "dropped": {}
+  }
+ },
+ {
+  "name": "copy 'Push'",
+  "result": {
+   "id": null,
+   "name": "Push (Copy)",
+   "emoji": "arm",
+   "ex": [
+    {
+     "id": "0025",
+     "sets": 3
+    }
+   ],
+   "_ts": 5,
+   "_f": {
+    "name": 4
+   }
+  }
+ },
+ {
+  "name": "copy 'Push (Copy)'",
+  "result": {
+   "id": null,
+   "name": "Push (Copy 2)",
+   "emoji": "arm",
+   "ex": [
+    {
+     "id": "0025",
+     "sets": 3
+    }
+   ],
+   "_ts": 5,
+   "_f": {
+    "name": 4
+   }
+  }
+ },
+ {
+  "name": "copy 'Push (Copy 2)'",
+  "result": {
+   "id": null,
+   "name": "Push (Copy 3)",
+   "emoji": "arm",
+   "ex": [
+    {
+     "id": "0025",
+     "sets": 3
+    }
+   ],
+   "_ts": 5,
+   "_f": {
+    "name": 4
+   }
+  }
+ },
+ {
+  "name": "copy 'Push (Copy 9)'",
+  "result": {
+   "id": null,
+   "name": "Push (Copy 10)",
+   "emoji": "arm",
+   "ex": [
+    {
+     "id": "0025",
+     "sets": 3
+    }
+   ],
+   "_ts": 5,
+   "_f": {
+    "name": 4
+   }
+  }
+ },
+ {
+  "name": "copy 'A (b) (Copy)'",
+  "result": {
+   "id": null,
+   "name": "A (b) (Copy 2)",
+   "emoji": "arm",
+   "ex": [
+    {
+     "id": "0025",
+     "sets": 3
+    }
+   ],
+   "_ts": 5,
+   "_f": {
+    "name": 4
+   }
+  }
+ },
+ {
+  "name": "copy ''",
+  "result": {
+   "id": null,
+   "name": " (Copy)",
+   "emoji": "arm",
+   "ex": [
+    {
+     "id": "0025",
+     "sets": 3
+    }
+   ],
+   "_ts": 5,
+   "_f": {
+    "name": 4
+   }
+  }
+ },
+ {
+  "name": "pair 0 and 1",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "sg-0-1"
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "sg-0-1"
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ]
+ },
+ {
+  "name": "pair 1 and 0",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "sg-0-1"
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "sg-0-1"
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ]
+ },
+ {
+  "name": "pair 1 and 2",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x"
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ]
+ },
+ {
+  "name": "pair 3 and 4",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x"
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ]
+ },
+ {
+  "name": "pair 4 and 5",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ]
+ },
+ {
+  "name": "pair 2 and 3",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ]
+ },
+ {
+  "name": "pair 0 and 2",
+  "result": {
+   "error": true
+  }
+ },
+ {
+  "name": "pair 6 and 7",
+  "result": {
+   "error": true
+  }
+ },
+ {
+  "name": "pair 3 and 2",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ]
+ },
+ {
+  "name": "pair when the fresh id is taken",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "sg-0-1-2"
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "sg-0-1-2"
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "sg-0-1"
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "sg-0-1"
+   }
+  ]
+ },
+ {
+  "name": "unpair 0",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ]
+ },
+ {
+  "name": "unpair 2",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ]
+ },
+ {
+  "name": "unpair 3",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y"
+   }
+  ]
+ },
+ {
+  "name": "unpair 5",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   }
+  ]
+ },
+ {
+  "name": "unpair 6",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "x",
+    "sgName": "Arms",
+    "sgRest": 60
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "f",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "g",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   }
+  ]
+ },
+ {
+  "name": "unpair 9",
+  "result": {
+   "error": true
+  }
+ },
+ {
+  "name": "unpair the middle of three",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sgRest": 45
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sgRest": 45
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sgRest": 45
+   }
+  ]
+ },
+ {
+  "name": "cleanup: lonely tags and stray meta",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y",
+    "sgName": "Pair",
+    "sgRest": 90
+   },
+   {
+    "id": "d",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "y",
+    "sgRest": 90,
+    "sgName": "Pair"
+   },
+   {
+    "id": "e",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0
+   }
+  ]
+ },
+ {
+  "name": "cleanup: a member that joined takes the group's meta",
+  "result": [
+   {
+    "id": "a",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "z",
+    "sgName": "Tri",
+    "sgRest": 60
+   },
+   {
+    "id": "b",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "z",
+    "sgName": "Tri",
+    "sgRest": 60
+   },
+   {
+    "id": "c",
+    "sets": 3,
+    "reps": 10,
+    "weight": 0,
+    "sg": "z",
+    "sgName": "Tri",
+    "sgRest": 60
+   }
+  ]
+ },
+ {
+  "name": "picked 0025",
+  "result": {
+   "sets": 3,
+   "reps": 10,
+   "weight": 0,
+   "mode": "reps"
+  }
+ },
+ {
+  "name": "picked 0652",
+  "result": {
+   "sets": 3,
+   "reps": 10,
+   "weight": 0,
+   "mode": "reps",
+   "bodyweight": true
+  }
+ },
+ {
+  "name": "picked 2197",
+  "result": {
+   "sets": 1,
+   "min": 20,
+   "speed": 8
+  }
+ },
+ {
+  "name": "picked 0292",
+  "result": {
+   "sets": 3,
+   "reps": 20,
+   "weight": 0,
+   "mode": "reps",
+   "side": true
+  }
+ },
+ {
+  "name": "picked 4348",
+  "result": {
+   "sets": 3,
+   "sec": 45,
+   "weight": 0,
+   "mode": "time",
+   "bodyweight": true
+  }
+ },
+ {
+  "name": "picked 3983",
+  "result": {
+   "sets": 3,
+   "sec": 45,
+   "weight": 0,
+   "mode": "time",
+   "bodyweight": true,
+   "side": true
+  }
+ },
+ {
+  "name": "picked 0667",
+  "result": {
+   "sets": 3,
+   "reps": 10,
+   "weight": 0,
+   "mode": "reps",
+   "bodyweight": true
+  }
+ },
+ {
+  "name": "picked 10915",
+  "result": {
+   "sets": 3,
+   "sec": 45,
+   "weight": 0,
+   "mode": "time",
+   "bodyweight": true,
+   "side": true
+  }
+ },
+ {
+  "name": "picked 4087",
+  "result": {
+   "sets": 3,
+   "reps": 10,
+   "weight": 0,
+   "mode": "reps",
+   "bodyweight": true
+  }
+ },
+ {
+  "name": "picked cx-custom",
+  "result": {
+   "sets": 3,
+   "reps": 10,
+   "weight": 0,
+   "mode": "reps",
+   "bodyweight": true
+  }
+ },
+ {
+  "name": "picked nope",
+  "result": {
+   "sets": 3,
+   "reps": 10,
+   "weight": 0,
+   "mode": "reps"
+  }
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 60} kg",
+  "result": "3 × 10 · 60 kg"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 60} lb",
+  "result": "3 × 10 · 60 lb"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 62.25, \"repsMin\": 8} kg",
+  "result": "3 × 8–10 · 62.3 kg"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 62.25, \"repsMin\": 8} lb",
+  "result": "3 × 8–10 · 62.3 lb"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 0, \"repsMin\": 10} kg",
+  "result": "3 × 10"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 0, \"repsMin\": 10} lb",
+  "result": "3 × 10"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 40, \"setsMax\": 5} kg",
+  "result": "3–5 × 10 · 40 kg"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 3, \"reps\": 10, \"weight\": 40, \"setsMax\": 5} lb",
+  "result": "3–5 × 10 · 40 lb"
+ },
+ {
+  "name": "line {\"id\": \"0652\", \"sets\": 3, \"reps\": 10, \"weight\": 0} kg",
+  "result": "3 × 10"
+ },
+ {
+  "name": "line {\"id\": \"0652\", \"sets\": 3, \"reps\": 10, \"weight\": 0} lb",
+  "result": "3 × 10"
+ },
+ {
+  "name": "line {\"id\": \"0652\", \"sets\": 3, \"reps\": 10, \"weight\": 10} kg",
+  "result": "3 × 10 · +10 kg"
+ },
+ {
+  "name": "line {\"id\": \"0652\", \"sets\": 3, \"reps\": 10, \"weight\": 10} lb",
+  "result": "3 × 10 · +10 lb"
+ },
+ {
+  "name": "line {\"id\": \"0652\", \"sets\": 3, \"reps\": 10, \"weight\": 10, \"bodyweight\": false} kg",
+  "result": "3 × 10 · 10 kg"
+ },
+ {
+  "name": "line {\"id\": \"0652\", \"sets\": 3, \"reps\": 10, \"weight\": 10, \"bodyweight\": false} lb",
+  "result": "3 × 10 · 10 lb"
+ },
+ {
+  "name": "line {\"id\": \"1454\", \"sets\": 3, \"reps\": 16, \"weight\": 20, \"side\": true, \"repsMin\": 12} kg",
+  "result": "3 × 12–16 · 20 kg · 6–8/side"
+ },
+ {
+  "name": "line {\"id\": \"1454\", \"sets\": 3, \"reps\": 16, \"weight\": 20, \"side\": true, \"repsMin\": 12} lb",
+  "result": "3 × 12–16 · 20 lb · 6–8/side"
+ },
+ {
+  "name": "line {\"id\": \"1454\", \"sets\": 3, \"reps\": 15, \"weight\": 20, \"side\": true} kg",
+  "result": "3 × 15 · 20 kg · 7.5/side"
+ },
+ {
+  "name": "line {\"id\": \"1454\", \"sets\": 3, \"reps\": 15, \"weight\": 20, \"side\": true} lb",
+  "result": "3 × 15 · 20 lb · 7.5/side"
+ },
+ {
+  "name": "line {\"id\": \"4348\", \"sets\": 3, \"sec\": 45, \"weight\": 0, \"mode\": \"time\"} kg",
+  "result": "3 × 0:45"
+ },
+ {
+  "name": "line {\"id\": \"4348\", \"sets\": 3, \"sec\": 45, \"weight\": 0, \"mode\": \"time\"} lb",
+  "result": "3 × 0:45"
+ },
+ {
+  "name": "line {\"id\": \"3983\", \"sets\": 2, \"sec\": 95, \"weight\": 5, \"mode\": \"time\", \"side\": true} kg",
+  "result": "2 × 1:35 · +5 kg · per side"
+ },
+ {
+  "name": "line {\"id\": \"3983\", \"sets\": 2, \"sec\": 95, \"weight\": 5, \"mode\": \"time\", \"side\": true} lb",
+  "result": "2 × 1:35 · +5 lb · per side"
+ },
+ {
+  "name": "line {\"id\": \"2197\", \"sets\": 1, \"min\": 20, \"speed\": 8} kg",
+  "result": "1 × 20 min @ 8 km/h"
+ },
+ {
+  "name": "line {\"id\": \"2197\", \"sets\": 1, \"min\": 20, \"speed\": 8} lb",
+  "result": "1 × 20 min @ 5 mph"
+ },
+ {
+  "name": "line {\"id\": \"2197\", \"sets\": 2, \"incline\": 2.5} kg",
+  "result": "2 × 20 min @ 8 km/h · 2.5% incline"
+ },
+ {
+  "name": "line {\"id\": \"2197\", \"sets\": 2, \"incline\": 2.5} lb",
+  "result": "2 × 20 min @ 5 mph · 2.5% incline"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 0, \"reps\": 5, \"weight\": 6000} kg",
+  "result": "1 × 5 · 6,000 kg"
+ },
+ {
+  "name": "line {\"id\": \"0025\", \"sets\": 0, \"reps\": 5, \"weight\": 6000} lb",
+  "result": "1 × 5 · 6,000 lb"
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"abs\"}",
+  "result": {
+   "abs": 1
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"Pectorals\", \"mg\": \"delts\", \"sm\": [\"triceps\", \"hands\", \"rear deltoids\"]}",
+  "result": {
+   "chest": 1,
+   "deltoids": 0.4,
+   "triceps": 0.4
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"quads\", \"sm\": \"glutes\"}",
+  "result": {
+   "quadriceps": 1,
+   "gluteal": 0.4
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"bp\": \"upper legs\"}",
+  "result": {
+   "quadriceps": 0.4,
+   "hamstring": 0.35,
+   "gluteal": 0.25
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"bp\": \"cardio\"}",
+  "result": {}
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"nonsense\", \"bp\": \"waist\"}",
+  "result": {
+   "abs": 0.7,
+   "obliques": 0.3
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"chest\", \"muscleWeights\": {\"chest\": 1, \"triceps\": 0.25, \"biceps\": 7, \"abs\": 0}}",
+  "result": {
+   "chest": 1,
+   "triceps": 0.25,
+   "abs": 0
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"upper-back\"}",
+  "result": {
+   "upper-back": 1
+  }
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true}",
+  "result": {}
+ },
+ {
+  "name": "muscles {\"id\": \"cx\", \"n\": \"my thing\", \"custom\": true, \"tg\": \"cardiovascular system\"}",
+  "result": {
+   "cardiovascular system": 1
+  }
+ },
+ {
+  "name": "available [\"barbell\"]2 barbell bench press",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]2 pull-up",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]2 push-up",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]2 lever incline press",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]2 foam roll",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]2 odd",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]2 dumbbell curl",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]2 no kit",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 barbell bench press",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 pull-up",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 push-up",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 lever incline press",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 foam roll",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 odd",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 dumbbell curl",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\", \"bench\"]2 no kit",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]None barbell bench press",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]None pull-up",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]None push-up",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]None lever incline press",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]None foam roll",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]None odd",
+  "result": true
+ },
+ {
+  "name": "available [\"barbell\"]None dumbbell curl",
+  "result": false
+ },
+ {
+  "name": "available [\"barbell\"]None no kit",
+  "result": true
+ },
+ {
+  "name": "available [\"roller\"]1 barbell bench press",
+  "result": false
+ },
+ {
+  "name": "available [\"roller\"]1 pull-up",
+  "result": false
+ },
+ {
+  "name": "available [\"roller\"]1 push-up",
+  "result": true
+ },
+ {
+  "name": "available [\"roller\"]1 lever incline press",
+  "result": false
+ },
+ {
+  "name": "available [\"roller\"]1 foam roll",
+  "result": true
+ },
+ {
+  "name": "available [\"roller\"]1 odd",
+  "result": true
+ },
+ {
+  "name": "available [\"roller\"]1 dumbbell curl",
+  "result": false
+ },
+ {
+  "name": "available [\"roller\"]1 no kit",
+  "result": true
+ },
+ {
+  "name": "available []2 barbell bench press",
+  "result": false
+ },
+ {
+  "name": "available []2 pull-up",
+  "result": false
+ },
+ {
+  "name": "available []2 push-up",
+  "result": true
+ },
+ {
+  "name": "available []2 lever incline press",
+  "result": false
+ },
+ {
+  "name": "available []2 foam roll",
+  "result": false
+ },
+ {
+  "name": "available []2 odd",
+  "result": true
+ },
+ {
+  "name": "available []2 dumbbell curl",
+  "result": false
+ },
+ {
+  "name": "available []2 no kit",
+  "result": true
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 barbell bench press",
+  "result": false
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 pull-up",
+  "result": true
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 push-up",
+  "result": true
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 lever incline press",
+  "result": true
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 foam roll",
+  "result": false
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 odd",
+  "result": true
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 dumbbell curl",
+  "result": false
+ },
+ {
+  "name": "available [\"dumbbell\", \"pull-up bar\", \"leverage machine\"]2 no kit",
+  "result": true
+ }
+]
