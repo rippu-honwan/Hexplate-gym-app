@@ -50,8 +50,9 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
             x.flatMap { model.now - $0.at < 60_000 ? $0 : nil }
                 .map { ["entryIdx": .number(Double($0.entryIdx)), "setIdx": .number(Double($0.setIdx)), "at": .number($0.at)] }
         }
-        let snap = WatchLink.snapshot(model.root, today: model.today, restEndsAt: ends, health: UserDefaults.standard.bool(forKey: "health"),
+        var snap = WatchLink.snapshot(model.root, today: model.today, restEndsAt: ends, health: UserDefaults.standard.bool(forKey: "health"),
                                       lang: "zh-TW", startSet: fresh(model.watchStart), doneSet: fresh(model.watchDone), catalog: model.catalog)
+        if let gone = UserDefaults.standard.stringArray(forKey: "watchDiscarded") { snap["discarded"] = .array(gone.map { .string($0) }) }
         guard let data = try? JSONEncoder().encode(JSONValue.object(snap)), let json = String(data: data, encoding: .utf8), json != lastSent else { return }
         let a = snap["active"]?.object
         let done = (a?["entries"]?.arrayValue ?? []).reduce(0) { $0 + ($1.object?["sets"]?.arrayValue ?? []).filter { $0.object?["done"] == .bool(true) }.count }

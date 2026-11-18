@@ -175,7 +175,15 @@ extension AppModel {
         }
     }
 
-    func discardWorkout() { change { $0["active"] = nil } }
+    func discardWorkout() {
+        // MyGym: named to the watch (the snapshot's "discarded"), so it ends without a summary
+        // or the how-hard question.
+        if let id = active?["id"]?.stringValue {
+            let d = UserDefaults.standard
+            d.set(Array(((d.stringArray(forKey: "watchDiscarded") ?? []) + [id]).suffix(10)), forKey: "watchDiscarded")
+        }
+        change { $0["active"] = nil }
+    }
 }
 
 // MARK: - Rest and hold timer

@@ -1647,8 +1647,8 @@ struct EffortRatingView: View {
 }
 
 /// MyGym: after Done on a work set, how many more reps were left in it (RIR, or RPE when the
-/// profile logs that), on the crown at low sensitivity. Not skippable: the rest starts once the
-/// check is pressed.
+/// profile logs that), laid out like the workout's how-hard page: a bar per answer (taller is
+/// harder), the crown at low sensitivity or a tap. Not skippable: the rest starts at the check.
 struct RirView: View {
     @EnvironmentObject var store: SessionStore
     @State private var position = 0.0
@@ -1657,31 +1657,37 @@ struct RirView: View {
         let kind = store.effortKind ?? "rir"
         let notches = Effort.notches(kind) ?? [5, 4, 3, 2, 1, 0]
         let i = min(notches.count - 1, max(0, Int(position.rounded())))
-        let v = notches[i]
-        VStack(spacing: 6) {
+        let label = { (v: Double) in kind == "rir" && v >= 5 ? "5+" : formatNumber(v) }
+        VStack(spacing: 8) {
             HStack {
                 Text(kind == "rpe" ? "How hard was the set?" : "Reps left in the tank?").font(.headline).lineLimit(2)
                 Spacer()
-                Button { store.answerRir(v) } label: {
+                Button { store.answerRir(notches[i]) } label: {
                     Image(systemName: "checkmark").font(.headline).foregroundStyle(Theme.ink)
                         .frame(width: 36, height: 36).background(Circle().fill(Theme.accent))
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel(Text("Save"))
             }
-            Spacer(minLength: 0)
-            Text(verbatim: kind == "rir" && v >= 5 ? "5+" : formatNumber(v))
-                .font(.system(size: 64, weight: .bold, design: .rounded)).monospacedDigit()
-                .foregroundStyle(Effort.color(kind, v))
-            Text(verbatim: Effort.name(kind)).font(.caption.weight(.semibold)).foregroundStyle(.secondary)
-            Spacer(minLength: 0)
-            HStack(spacing: 4) {
+            HStack(alignment: .bottom, spacing: 4) {
                 ForEach(notches.indices, id: \.self) { k in
-                    Capsule().fill(k == i ? Theme.accent : Color.white.opacity(0.2)).frame(height: 6)
-                        .contentShape(Rectangle().inset(by: -10))
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(k == i ? Theme.accent : Color.white.opacity(k < i ? 0.35 : 0.15))
+                        .frame(height: 22 + CGFloat(k) * 12)
+                        .contentShape(Rectangle())
                         .onTapGesture { position = Double(k) }
                 }
             }
+            .frame(maxHeight: .infinity, alignment: .bottom)
+            .accessibilityHidden(true)
+            HStack(spacing: 10) {
+                Text(verbatim: label(notches[i])).font(.headline.monospacedDigit()).foregroundStyle(Theme.ink)
+                    .frame(width: 36, height: 30).background(Capsule().fill(Theme.accent))
+                Text(verbatim: Effort.name(kind)).font(.headline)
+                Spacer()
+            }
+            .padding(10)
+            .background(RoundedRectangle(cornerRadius: 14).fill(Color.white.opacity(0.12)))
         }
         .padding(.horizontal, 4)
         .focusable()
@@ -1689,7 +1695,7 @@ struct RirView: View {
                               isContinuous: false, isHapticFeedbackEnabled: true)
         .onAppear { position = Double(notches.firstIndex(of: Effort.start(kind)) ?? 0) }
         .accessibilityElement(children: .combine)
-        .accessibilityValue(Text(verbatim: "\(Effort.name(kind)) \(formatNumber(v))"))
+        .accessibilityValue(Text(verbatim: "\(Effort.name(kind)) \(label(notches[i]))"))
         .accessibilityAdjustableAction { d in position = min(Double(notches.count - 1), max(0, position + (d == .increment ? 1 : -1))) }
     }
 }
