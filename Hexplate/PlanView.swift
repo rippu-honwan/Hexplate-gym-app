@@ -184,7 +184,7 @@ struct PlanView: View {
                 Text("No rotation yet. Add routines in the order you want to train them. The first one you haven’t logged stays up next.")
             } else if let view = Schedule.queueView(model.root, today: model.today) {
                 Text(view.waiting && Day.date(view.startsOn) != nil
-                    ? "Next round starts \(Day.date(view.startsOn)!.formatted(.dateTime.weekday(.wide).day().month().locale(Theme.locale)))."
+                    ? String(localized: "Next round starts \(Day.date(view.startsOn)!.formatted(.dateTime.weekday(.wide).day().month().locale(Theme.locale))).")
                     : "\(view.items.count - view.remaining.count) of \(view.items.count) done this round. Swipe to take one out.")
             }
         }

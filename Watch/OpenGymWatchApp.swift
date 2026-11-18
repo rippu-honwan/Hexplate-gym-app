@@ -126,7 +126,9 @@ struct RootView: View {
 
     var body: some View {
         Group {
-            if store.weighInFor != nil {
+            if store.rateWorkout != nil {
+                EffortRatingView()
+            } else if store.weighInFor != nil {
                 WeighInView()
             } else if let summary = store.summary {
                 SummaryView(summary: summary)
@@ -1592,5 +1594,54 @@ struct DebugView: View {
                 }
             }
         }
+    }
+}
+
+/// MyGym: how hard the workout was, asked once at its end and not skippable. Five levels on
+/// the crown (low sensitivity, one detent each) or a tap on a bar, then the check.
+struct EffortRatingView: View {
+    @EnvironmentObject var store: SessionStore
+    @State private var level = 3.0
+    static let words: [LocalizedStringKey] = ["Very easy", "Easy", "Moderate", "Hard", "All out"]
+
+    var body: some View {
+        let n = min(5, max(1, Int(level.rounded())))
+        VStack(spacing: 8) {
+            HStack {
+                Text("How hard was it?").font(.headline)
+                Spacer()
+                Button { store.rateSession(n) } label: {
+                    Image(systemName: "checkmark").font(.headline).foregroundStyle(Theme.ink)
+                        .frame(width: 36, height: 36).background(Circle().fill(Theme.accent))
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(Text("Save"))
+            }
+            HStack(alignment: .bottom, spacing: 4) {
+                ForEach(1...5, id: \.self) { i in
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(i == n ? Theme.accent : Color.white.opacity(i < n ? 0.35 : 0.15))
+                        .frame(height: 22 + CGFloat(i) * 14)
+                        .contentShape(Rectangle())
+                        .onTapGesture { level = Double(i) }
+                }
+            }
+            .frame(maxHeight: .infinity, alignment: .bottom)
+            .accessibilityHidden(true)
+            HStack(spacing: 10) {
+                Text(verbatim: "\(n)").font(.headline.monospacedDigit()).foregroundStyle(Theme.ink)
+                    .frame(width: 30, height: 30).background(Circle().fill(Theme.accent))
+                Text(Self.words[n - 1]).font(.headline)
+                Spacer()
+            }
+            .padding(10)
+            .background(RoundedRectangle(cornerRadius: 14).fill(Color.white.opacity(0.12)))
+        }
+        .padding(.horizontal, 4)
+        .focusable()
+        .digitalCrownRotation($level, from: 1, through: 5, by: 1, sensitivity: .low, isContinuous: false, isHapticFeedbackEnabled: true)
+        .accessibilityElement(children: .combine)
+        .accessibilityValue(Text(Self.words[n - 1]))
+        .accessibilityAdjustableAction { d in level = min(5, max(1, level + (d == .increment ? 1 : -1))) }
     }
 }

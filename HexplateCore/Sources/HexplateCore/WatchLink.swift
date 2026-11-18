@@ -91,12 +91,13 @@ public enum WatchLink {
     }
 
     /// What the watch shows and runs (watch-sync.js buildSnapshot); `restEndsAt` in ms.
-    public static func snapshot(_ s: Object, today: String, restEndsAt: Double?, health: Bool, catalog c: ExerciseCatalog) -> Object {
+    /// `startSet`: MyGym's Start set pressed on the phone ({entryIdx, setIdx, at}), sent while fresh.
+    public static func snapshot(_ s: Object, today: String, restEndsAt: Double?, health: Bool, lang: String = "en", startSet: Object? = nil, catalog c: ExerciseCatalog) -> Object {
         let unit = s["unit"] == .string("lb") ? "lb" : "kg"
         let restSec = n(s["restSec"]) ?? 0
         var snap: Object = ["v": .number(1), "unit": .string(unit), "restSec": .number(restSec), "ready": ready(s, today: today, catalog: c), "active": .null]
         let bw = BodyData.weights(s).last?.weight
-        var settings: Object = ["health": .bool(health), "lang": .string("en"), "weighIn": .bool(s["weighIn"] != .bool(false))]
+        var settings: Object = ["health": .bool(health), "lang": .string(lang), "weighIn": .bool(s["weighIn"] != .bool(false))]
         if let bw { settings["lastBw"] = .number(bw) }
         if let e = s["effort"]?.stringValue, ["rir", "rpe"].contains(e) { settings["effort"] = .string(e) }
         if s["autoHolds"] == .bool(true) { settings["autoHolds"] = .bool(true) }
@@ -111,6 +112,7 @@ public enum WatchLink {
             "entries": .array(list.map { watchEntry($0, s, c, ps) }),
         ]
         if let start = n(a["start"]), start != 0 { active["start"] = .number(start) }
+        if let startSet { active["startSet"] = .object(startSet) }
         snap["active"] = .object(active)
         return snap
     }
@@ -196,6 +198,18 @@ public enum WatchLink {
         return !ids(a).isEmpty && ids(a) == ids(ev) && a["d"]?.stringValue == Day.iso(at) && abs(begun - at) <= 30 * 60_000
     }
 
+    /// `sessionEffort` on the saved workout `wid`, or on the running one when it is still that.
+    static func setEffort(_ s: inout Object, wid: String, _ v: Double) {
+        if var list = s["workouts"]?.arrayValue, let k = list.firstIndex(where: { $0.object?["id"]?.stringValue == wid }), var w = list[k].object {
+            w["sessionEffort"] = .number(v)
+            list[k] = .object(w)
+            s["workouts"] = .array(list)
+        } else if var a = s["active"]?.object, a["id"]?.stringValue == wid {
+            a["sessionEffort"] = .number(v)
+            s["active"] = .object(a)
+        }
+    }
+
     /// Applies one watch event to the document; what the app must still do comes back.
     public static func apply(_ ev: Object, to s: inout Object, today: String, now: Double, newId: String, catalog c: ExerciseCatalog) -> Effect {
         let active = s["active"]?.object
@@ -246,6 +260,9 @@ public enum WatchLink {
                 let when = at ?? now
                 BodyData.addWeighIn(&s, day: Day.iso(when), time: nil, weight: w, at: when, id: newId)
             }
+        case "effort":
+            // MyGym: how hard the whole workout was (1-5), asked on the watch once it ended.
+            if let wid, let v = n(ev["effort"]), (1...5).contains(v), v == v.rounded() { setEffort(&s, wid: wid, v) }
         case "rest" where ours: return .rest(endsAt: n(ev["endsAt"]))
         case "finish" where ours: return .finish
         case "discard" where ours: return .discard

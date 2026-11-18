@@ -14,14 +14,14 @@ import UserNotifications
  */
 struct WorkoutActivityAttributes: ActivityAttributes {
     struct Labels: Codable, Hashable {
-        var done = "Log set"
-        var rest = "Rest"
-        var hold = "Hold"
-        var allDone = "All sets done"
-        var restOver = "Rest is over"
-        var nextExercise = "Next exercise"
-        var skipRest = "Skip rest"
-        var openApp = "Open Hexplate for the next set"
+        var done = String(localized: "Log set")
+        var rest = String(localized: "Rest")
+        var hold = String(localized: "Hold")
+        var allDone = String(localized: "All sets done")
+        var restOver = String(localized: "Rest is over")
+        var nextExercise = String(localized: "Next exercise")
+        var skipRest = String(localized: "Skip rest")
+        var openApp = String(localized: "Open Hexplate for the next set")
     }
 
     /// One set as the activity shows it, with the rest that follows it.
@@ -277,7 +277,7 @@ enum LiveActivityTick {
     private static func bookRestOver(at: Date, title: String) {
         let content = UNMutableNotificationContent()
         content.title = title
-        content.body = "Next set."
+        content.body = String(localized: "Next set.")
         content.sound = .default
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: max(1, at.timeIntervalSinceNow), repeats: false)
         UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: restRequestId, content: content, trigger: trigger))

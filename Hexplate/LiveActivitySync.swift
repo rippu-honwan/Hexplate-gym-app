@@ -9,6 +9,11 @@ import SwiftUI
 enum LiveActivitySync {
     private static var restOver: Task<Void, Never>?
 
+    /// The set line in the app's language.
+    static let setLine: LiveActivity.SetLine = { warm, n, of in
+        warm ? String(localized: "Warm-up \(n)") : String(localized: "Set \(n) of \(of)")
+    }
+
     static func start(model: AppModel, timer: RestTimer) {
         // The intents run in this process and wait for this before they return.
         LiveActivityQueue.onEvent = { @MainActor in
@@ -22,7 +27,7 @@ enum LiveActivitySync {
     static func update(_ model: AppModel, _ timer: RestTimer) {
         let clock = timer.end.flatMap { $0 > .now ? LiveActivity.Clock(endsAt: $0.timeIntervalSince1970 * 1000, total: timer.total) : nil }
         let state = model.isPastSession ? nil
-            : LiveActivity.state(model.root, rest: timer.kind == .rest ? clock : nil, hold: timer.kind == .hold ? clock : nil, catalog: model.catalog)
+            : LiveActivity.state(model.root, rest: timer.kind == .rest ? clock : nil, hold: timer.kind == .hold ? clock : nil, catalog: model.catalog, setLine: Self.setLine)
                 .flatMap { try? JSONEncoder().encode(JSONValue.object($0)) }
                 .flatMap { try? JSONDecoder().decode(WorkoutActivityAttributes.ContentState.self, from: $0) }
         let wid = model.active?["id"]?.stringValue ?? ""
@@ -72,6 +77,18 @@ enum LiveActivitySync {
 }
 
 extension AppModel {
+    /// Ticks one set from outside its row (the Live Activity, the Start set bar) and starts the
+    /// rest a tick in the row would, counted from `at`. Nothing for a set already done.
+    func tick(entry i: Int, set s: Int, at: Double, timer: RestTimer) {
+        guard let row = activeEntries[safe: i]?["sets"]?.arrayValue?[safe: s], row.object?["done"] != .bool(true) else { return }
+        changeSets(i) { $0[s] = Session.settingDone($0[s], true, at: at) }
+        if let rest = restAfter(entry: i, set: s) {
+            let left = rest - max(0, (now - at) / 1000)
+            let alerts = RestTimer.Alerts(sound: root["sound"] != .bool(false), flash: root["timerFlash"] == .bool(true))
+            if left > 0 { timer.start(left, alerts: alerts) }
+        }
+    }
+
     /// One tap on the Live Activity, done as the workout screen does it (applyLiveEvents). Taps
     /// about another workout, a set already ticked or a rest already over do nothing.
     func applyLive(_ ev: [String: JSONValue], timer: RestTimer) {
@@ -82,14 +99,8 @@ extension AppModel {
         case "setDone":
             let exId = ev["exId"]?.stringValue, e = Int(ev["entryIdx"]?.numberValue ?? -1), s = Int(ev["setIdx"]?.numberValue ?? -1)
             let i = entries.indices.contains(e) && entries[e]["id"]?.stringValue == exId ? e : entries.firstIndex { $0["id"]?.stringValue == exId }
-            guard let i, let row = entries[i]["sets"]?.arrayValue?[safe: s], row.object?["done"] != .bool(true) else { return }
-            changeSets(i) { $0[s] = Session.settingDone($0[s], true, at: at) }
-            // The rest runs from the tap, not from when the app heard of it.
-            if let rest = restAfter(entry: i, set: s) {
-                let left = rest - max(0, (now - at) / 1000)
-                let alerts = RestTimer.Alerts(sound: root["sound"] != .bool(false), flash: root["timerFlash"] == .bool(true))
-                if left > 0 { timer.start(left, alerts: alerts) }
-            }
+            guard let i else { return }
+            tick(entry: i, set: s, at: at, timer: timer)
         case "next":
             if let to = LiveActivity.nextExerciseTarget(a, from: Int(ev["fromEntryIdx"]?.numberValue ?? -1)) {
                 changeActive { $0["cur"] = .number(Double(to)) }

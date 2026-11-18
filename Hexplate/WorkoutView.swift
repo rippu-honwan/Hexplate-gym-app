@@ -226,8 +226,8 @@ final class RestTimer {
             let center = UNUserNotificationCenter.current()
             guard (try? await center.requestAuthorization(options: [.alert, .sound])) == true else { return }
             let content = UNMutableNotificationContent()
-            content.title = kind == .rest ? "Rest is over" : "Time"
-            content.body = kind == .rest ? "Next set." : "Hold done."
+            content.title = kind == .rest ? String(localized: "Rest is over") : String(localized: "Time")
+            content.body = kind == .rest ? String(localized: "Next set.") : String(localized: "Hold done.")
             if alerts.sound { content.sound = .default }
             let wait = end.timeIntervalSinceNow
             guard wait > 1 else { return }
@@ -333,7 +333,7 @@ struct WorkoutView: View {
                     .foregroundStyle(Theme.ink)
                 }
             }
-            .safeAreaInset(edge: .bottom) { if timer.end != nil { RestBar() } }
+            .safeAreaInset(edge: .bottom) { if timer.end != nil { RestBar() } else { WatchStartBar() } }
             .overlay { if timer.flashing { Color.white.opacity(0.85).ignoresSafeArea().allowsHitTesting(false) } }
             // Finish asks whether to keep the session: a practice run can be thrown away.
             // Alerts, not a dialog: a dialog on the toolbar opens as a popover, and a second question
@@ -701,12 +701,14 @@ private struct EntrySection: View {
             return w > 0 ? "\(Format.number(w)) × \(Int(o["r"]?.numberValue ?? 0))" : "\(Int(o["r"]?.numberValue ?? 0))"
         }
         let best = Session.bestWeightFor(model.root, id, catalog: model.catalog)
-        return "Last " + parts.joined(separator: ", ") + (best > 0 && mode == "reps" ? " · best \(Format.number(best)) \(model.settings.unit)" : "")
+        return String(localized: "Last") + " " + parts.joined(separator: ", ") + (best > 0 && mode == "reps" ? " · " + String(localized: "best") + " \(Format.number(best)) \(model.settings.unit)" : "")
     }
 
     /// The progression note, with its placeholders filled in.
     private var advice: (text: String, symbol: String)? {
-        guard let plan = entry["plan"]?.object, let why = plan["why"]?.arrayValue, var text = why.first?.stringValue else { return nil }
+        guard let plan = entry["plan"]?.object, let why = plan["why"]?.arrayValue, let raw = why.first?.stringValue else { return nil }
+        // The note's template in the app's language (zh-Hant.lproj), placeholders kept.
+        var text = Bundle.main.localizedString(forKey: raw, value: nil, table: nil)
         for (k, v) in why.dropFirst().enumerated() {
             text = text.replacingOccurrences(of: "{\(k)}", with: v.stringValue ?? Format.number(v.numberValue ?? 0))
         }

@@ -674,6 +674,8 @@ public enum Session {
         if !entries.isEmpty && entries.allSatisfy({ $0.object?["noProg"] == .bool(true) }) { w["excludeFromProgression"] = .bool(true) }
         let note = (active["note"]?.stringValue ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
         if !note.isEmpty { w["note"] = .string(note) }
+        // MyGym: the watch's rating of the whole workout, when it came before the finish.
+        if case .number? = active["sessionEffort"] { w["sessionEffort"] = active["sessionEffort"] }
         w["vol"] = .number(volume(w, c))
         return w
     }

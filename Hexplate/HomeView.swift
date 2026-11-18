@@ -138,7 +138,7 @@ struct HomeView: View {
         guard let day = Schedule.nextTrainingDay(model.root, after: model.today, today: model.today),
               let date = Day.date(day.iso) else { return nil }
         let names = day.routineIds.compactMap { model.routine($0)?.name }.joined(separator: " + ")
-        return "Next session: \(date.formatted(.dateTime.weekday(.wide).locale(Theme.locale))), \(names)"
+        return String(localized: "Next session: \(date.formatted(.dateTime.weekday(.wide).locale(Theme.locale))), \(names)")
     }
 
     private var week: [WeekStrip.DayCell] {
@@ -149,7 +149,7 @@ struct HomeView: View {
             return WeekStrip.DayCell(
                 id: iso,
                 letter: date?.formatted(.dateTime.weekday(.narrow).locale(Theme.locale)) ?? "",
-                number: date?.formatted(.dateTime.day().locale(Theme.locale)) ?? "",
+                number: date.map { String(Calendar.current.component(.day, from: $0)) } ?? "",
                 spoken: date?.formatted(.dateTime.weekday(.wide).day().locale(Theme.locale)) ?? iso,
                 trained: trained.contains(iso),
                 planned: !Schedule.routineIds(model.root, on: iso, today: model.today).isEmpty,

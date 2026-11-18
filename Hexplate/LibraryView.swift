@@ -371,7 +371,7 @@ struct ExerciseDetailView: View {
                 ForEach(sessions, id: \.id) { workout in
                     NavigationLink(value: WorkoutLink(id: workout.id)) {
                         VStack(alignment: .leading, spacing: 3) {
-                            Text(Day.date(workout.date)?.formatted(.dateTime.weekday().day().month().year()) ?? workout.date)
+                            Text(Day.date(workout.date)?.formatted(.dateTime.weekday().day().month().year().locale(Theme.locale)) ?? workout.date)
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)
                             let sets = workout.entries

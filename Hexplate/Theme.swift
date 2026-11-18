@@ -16,8 +16,8 @@ enum Theme {
     static let superset = adaptive(light: (0xc2, 0x1a, 0x9c), dark: (0xff, 0x4f, 0xd8))
     static let heart = Color.red
 
-    /// Dates read in English like the rest of the app, day before month.
-    static let locale = Locale(identifier: "en_GB")
+    /// Traditional Chinese, like the rest of the app (zh-Hant.lproj); SwiftUI looks every Text up by it.
+    static let locale = Locale(identifier: "zh_Hant_HK")
 
     /// A darker shade in light mode, so the colour still reads as text on white.
     private static func adaptive(light: (Int, Int, Int), dark: (Int, Int, Int)) -> Color {

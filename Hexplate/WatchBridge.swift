@@ -45,7 +45,11 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
             return
         }
         let ends = timer?.end.flatMap { timer?.kind == .rest ? $0.timeIntervalSince1970 * 1000 : nil }
-        let snap = WatchLink.snapshot(model.root, today: model.today, restEndsAt: ends, health: UserDefaults.standard.bool(forKey: "health"), catalog: model.catalog)
+        // The phone's Start set, for a minute (the watch acts on it once).
+        let ask = model.watchStart.flatMap { model.now - $0.at < 60_000 ? $0 : nil }
+            .map { ["entryIdx": JSONValue.number(Double($0.entryIdx)), "setIdx": .number(Double($0.setIdx)), "at": .number($0.at)] }
+        let snap = WatchLink.snapshot(model.root, today: model.today, restEndsAt: ends, health: UserDefaults.standard.bool(forKey: "health"),
+                                      lang: "zh-TW", startSet: ask, catalog: model.catalog)
         guard let data = try? JSONEncoder().encode(JSONValue.object(snap)), let json = String(data: data, encoding: .utf8), json != lastSent else { return }
         let a = snap["active"]?.object
         let done = (a?["entries"]?.arrayValue ?? []).reduce(0) { $0 + ($1.object?["sets"]?.arrayValue ?? []).filter { $0.object?["done"] == .bool(true) }.count }
@@ -192,6 +196,12 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
 extension AppModel {
     /// One event from the watch: into the document, then what the phone must still do.
     func applyWatch(_ ev: [String: JSONValue], timer: RestTimer?) {
+        // MyGym: the watch started (on) or stopped recording a set: the Start set bar shows it.
+        if ev["type"] == .string("recording") {
+            let e = ev["entryIdx"]?.numberValue, i = ev["setIdx"]?.numberValue
+            watchRecording = ev["on"] == .bool(true) && e != nil && i != nil ? WatchSet(entryIdx: Int(e!), setIdx: Int(i!), at: ev["at"]?.numberValue ?? now) : nil
+            watchStart = nil
+        }
         var effect = WatchLink.Effect.none
         let (day, at, id) = (today, now, RoutineOps.newId(now: now))
         change { effect = WatchLink.apply(ev, to: &$0, today: day, now: at, newId: id, catalog: catalog) }

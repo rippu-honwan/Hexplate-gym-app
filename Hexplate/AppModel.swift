@@ -36,6 +36,15 @@ final class AppModel {
     var showWorkout = false
     /// The tab on screen.
     var tab = "today"
+    /// MyGym: Start set pressed on the phone, and the set the watch says it records.
+    var watchStart: WatchSet?
+    var watchRecording: WatchSet?
+
+    struct WatchSet: Equatable {
+        let entryIdx: Int
+        let setIdx: Int
+        let at: Double
+    }
 
     init() {
         load(store.load())
@@ -123,7 +132,7 @@ final class AppModel {
                 id: w.id,
                 workout: w,
                 weekday: date?.formatted(.dateTime.weekday(.abbreviated).locale(Theme.locale)).uppercased() ?? "",
-                day: date?.formatted(.dateTime.day().locale(Theme.locale)) ?? "?",
+                day: date.map { String(Calendar.current.component(.day, from: $0)) } ?? "?",
                 dateSpoken: date?.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(Theme.locale)) ?? w.date,
                 metrics: [history.durationText(w), Self.sets(history.setsDone(w)), history.volumeText(w)].compactMap { $0 }
             )
@@ -137,7 +146,7 @@ final class AppModel {
         }
     }
 
-    static func sets(_ n: Int) -> String { n == 1 ? "1 set" : "\(n) sets" }
+    static func sets(_ n: Int) -> String { n == 1 ? String(localized: "1 set") : String(localized: "\(n) sets") }
 
     func workout(id: String) -> Workout? { history?.workouts.first { $0.id == id } }
 

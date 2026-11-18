@@ -113,7 +113,8 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
     /// The scale the phone's profile logs, when it logs one ("rpe" / "rir"): the set page offers it.
     // MyGym: RIR on every set unless the profile picked RPE (the rep counter's fatigue model needs
     // "how many were left" as its label, docs/dev/rep-counter.md).
-    var effortKind: String? { Effort.notches(state.settings.effort) != nil ? state.settings.effort : "rir" }
+    // MyGym: no per-set effort on the watch any more; the whole workout is rated once at its end.
+    var effortKind: String? { nil }
     /// A hold running: when it ends, and when it started.
     @Published private(set) var holdEndsAt: Date?
     @Published private(set) var holdStartedAt: Date?
@@ -574,6 +575,7 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
                                                            startedAt: self.workoutSeenAt.map { $0.timeIntervalSince1970 * 1000 }, endedOnPhone: true)
                     }
                     self.ran(ended.id)
+                    if !self.isDemo { self.rateWorkout = ended.id }
                     self.health.end(save: true) { totals in self.addTotals(totals) }
                 }
                 self.dropClips()
@@ -1131,6 +1133,7 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
         dropClips()
         send(event: ev)
         state = next
+        if !idle, !isDemo { rateWorkout = ended?.id }
         Haptics.finished()
     }
 
@@ -1149,6 +1152,18 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
         state = next
         summary = nil
         Haptics.discarded()
+    }
+
+    /// MyGym: the workout that just ended (here or on the phone), waiting for how hard it was
+    /// (1-5). The page asking it cannot be skipped.
+    @Published private(set) var rateWorkout: String?
+
+    /// The answer goes to the phone, which keeps it on the saved workout (`sessionEffort`).
+    func rateSession(_ level: Int) {
+        guard let wid = rateWorkout else { return }
+        rateWorkout = nil
+        guard !isDemo else { return }
+        send(event: ["id": UUID().uuidString, "type": "effort", "wid": wid, "effort": level, "at": Date().timeIntervalSince1970 * 1000])
     }
 
     /// MyGym: the set whose Done here started the running rest (entry, set); nil for a rest the
@@ -1452,6 +1467,7 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
         DispatchQueue.main.async {
             switch screen {
             case "set", "weight", "rest", "offline", "edit-weight", "edit-reps": self.picked[0] = 2
+            case "rate": self.rateWorkout = "demo"
             case "hold": self.state.entryIndex = 1
             case "bodyweight": self.state.entryIndex = 2
             case "side": self.state.entryIndex = 3

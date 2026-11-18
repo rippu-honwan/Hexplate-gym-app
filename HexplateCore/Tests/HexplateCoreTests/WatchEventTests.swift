@@ -56,4 +56,17 @@ final class WatchEventTests: XCTestCase {
             XCTAssertEqual(o["active"]?.object?["id"], .string("mk1"))
         }
     }
+
+    /// MyGym: the watch's rating of the whole workout lands on the saved record; nonsense is dropped.
+    func testSessionEffort() throws {
+        var s = try object(#"{"workouts":[{"id":"w1","entries":[]}],"active":{"id":"w2","entries":[]}}"#)
+        let rate = { (json: String) throws in _ = WatchLink.apply(try self.object(json), to: &s, today: "2026-11-18", now: 0, newId: "n", catalog: .builtIn) }
+        try rate(#"{"id":"e1","type":"effort","wid":"w1","effort":4}"#)
+        try rate(#"{"id":"e2","type":"effort","wid":"w2","effort":2}"#)
+        try rate(#"{"id":"e3","type":"effort","wid":"w1","effort":9}"#)
+        XCTAssertEqual(s["workouts"]?.arrayValue?[0].object?["sessionEffort"], .number(4))
+        XCTAssertEqual(s["active"]?.object?["sessionEffort"], .number(2))
+        let w = Session.completedWorkout(try XCTUnwrap(s["active"]?.object), end: 1, prs: [], catalog: .builtIn)
+        XCTAssertEqual(w["sessionEffort"], .number(2))
+    }
 }

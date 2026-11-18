@@ -55,7 +55,11 @@ public enum LiveActivity {
         return out
     }
 
-    static func view(_ s: Object, _ entries: [JSONValue], _ p: Pick, _ c: ExerciseCatalog, _ settings: ProfileSettings) -> JSONValue {
+    /// "Warm-up 2" / "Set 1 of 3": (warm-up, number, work sets). The app passes its own language.
+    public typealias SetLine = @Sendable (Bool, Int, Int) -> String
+    public static let english: SetLine = { warm, n, of in warm ? "Warm-up \(n)" : "Set \(n) of \(of)" }
+
+    static func view(_ s: Object, _ entries: [JSONValue], _ p: Pick, _ c: ExerciseCatalog, _ settings: ProfileSettings, _ line: SetLine = english) -> JSONValue {
         let e = entries[p.entryIdx].object ?? [:]
         let id = e["id"]?.stringValue ?? ""
         let rows = sets(entries[p.entryIdx])
@@ -70,7 +74,7 @@ public enum LiveActivity {
         return .object([
             "exId": .string(id), "entryIdx": .number(Double(p.entryIdx)), "setIdx": .number(Double(p.setIdx)),
             "exName": .string(c[id]?.displayName ?? nonEmpty(target["name"]) ?? nonEmpty(e["name"]) ?? id),
-            "setLine": .string(warm ? "Warm-up \(nth)" : "Set \(nth) of \(work)"),
+            "setLine": .string(line(warm, nth, work)),
             "target": .string(label),
             "restAfter": .number(max(0, Session.jsRound(p.restAfter))),
             "unit": .number(Double(p.unit)),
@@ -78,7 +82,7 @@ public enum LiveActivity {
     }
 
     /// The activity's state, or nil when no workout runs (or a saved one is being edited).
-    public static func state(_ s: Object, rest: Clock?, hold: Clock?, catalog c: ExerciseCatalog) -> Object? {
+    public static func state(_ s: Object, rest: Clock?, hold: Clock?, catalog c: ExerciseCatalog, setLine line: @escaping SetLine = english) -> Object? {
         guard let a = s["active"]?.object, let entries = a["entries"]?.arrayValue, !entries.isEmpty,
               a["editingWorkoutId"] == nil || a["editingWorkoutId"] == .null else { return nil }
         let settings = ProfileSettings(s)
@@ -89,13 +93,13 @@ public enum LiveActivity {
             if starts.count >= unitCount { break }
             starts.append(x)
         }
-        let views = { (ps: ArraySlice<Pick>) in ps.map { view(s, entries, $0, c, settings) } }
+        let views = { (ps: ArraySlice<Pick>) in ps.map { view(s, entries, $0, c, settings, line) } }
         var ahead = views(next.dropFirst().prefix(Self.ahead))
         var unitStarts = views(starts[...])
         func out() -> Object {
             [
                 "name": .string(a["name"]?.stringValue ?? ""),
-                "cur": next.first.map { view(s, entries, $0, c, settings) } ?? .null,
+                "cur": next.first.map { view(s, entries, $0, c, settings, line) } ?? .null,
                 "ahead": .array(ahead), "unitStarts": .array(unitStarts),
                 "restEndsAt": rest.map { .number($0.endsAt) } ?? .null, "restLeft": .null, "restTotal": rest.map { .number($0.total) } ?? .null,
                 "holdEndsAt": hold.map { .number($0.endsAt) } ?? .null, "holdLeft": .null, "holdTotal": hold.map { .number($0.total) } ?? .null,
@@ -118,5 +122,16 @@ public enum LiveActivity {
         guard let i = units.firstIndex(where: { $0.contains(from) }), units[i].contains(Int(n(a?["cur"]) ?? 0)) else { return nil }
         let open = { (u: [Int]) in u.contains { sets(entries[$0]).contains { !Session.truthy($0.object?["done"]) } } }
         return (units[(i + 1)...] + units[..<i]).first(where: open)?.first
+    }
+
+    /// MyGym: the set the phone's "Start set on the watch" offers: the next open set, when the
+    /// watch records that exercise's motion (reps, not legs; WatchStartBar.jsx nextWatchSet).
+    public static func watchSet(_ s: Object, catalog c: ExerciseCatalog, setLine line: @escaping SetLine = english) -> Object? {
+        guard let entries = s["active"]?.object?["entries"]?.arrayValue, let p = upcoming(s).first else { return nil }
+        let id = entries[p.entryIdx].object?["id"]?.stringValue ?? ""
+        var cfg = entries[p.entryIdx].object?["target"]?.object ?? [:]
+        cfg["id"] = .string(id)
+        guard Session.mode(cfg, c) == "reps", !["upper legs", "lower legs"].contains(c[id]?.bodyPart ?? "") else { return nil }
+        return view(s, entries, p, c, ProfileSettings(s), line).object
     }
 }
