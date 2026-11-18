@@ -961,8 +961,9 @@ private struct NumberField: View {
             .padding(.vertical, 6)
             .background(.fill.tertiary, in: .rect(cornerRadius: 8))
             .accessibilityLabel(unit)
-            .onAppear { text = value.map { Format.number($0) } ?? "" }
-            .onChange(of: value) { if !focused { text = value.map { Format.number($0) } ?? "" } }
+            // Two decimals: one would show 15.25 as "15.3" and save that on leaving the field.
+            .onAppear { text = value.map { Format.number($0, decimals: 2) } ?? "" }
+            .onChange(of: value) { if !focused { text = value.map { Format.number($0, decimals: 2) } ?? "" } }
             .onChange(of: focused) {
                 guard !focused else { return }
                 if let v = Double(text.replacingOccurrences(of: ",", with: ".")), v != value { commit(v) }

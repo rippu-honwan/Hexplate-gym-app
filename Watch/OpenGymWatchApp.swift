@@ -118,7 +118,7 @@ struct GlassDisc: ViewModifier {
 }
 
 func formatNumber(_ v: Double) -> String {
-    v.rounded() == v ? String(Int(v)) : String(format: "%.1f", v)
+    v.rounded() == v ? String(Int(v)) : String(format: (v * 10).rounded() == v * 10 ? "%.1f" : "%.2f", v)
 }
 
 struct RootView: View {
@@ -1648,14 +1648,15 @@ struct EffortRatingView: View {
 
 /// MyGym: after Done on a work set, how many more reps were left in it (RIR, or RPE when the
 /// profile logs that), laid out like the workout's how-hard page: a bar per answer (taller is
-/// harder), the crown at low sensitivity or a tap. Not skippable: the rest starts at the check.
+/// the larger number), the crown at low sensitivity or a tap. Not skippable: the rest starts at the check.
 struct RirView: View {
     @EnvironmentObject var store: SessionStore
     @State private var position = 0.0
 
     var body: some View {
         let kind = store.effortKind ?? "rir"
-        let notches = Effort.notches(kind) ?? [5, 4, 3, 2, 1, 0]
+        // Smallest to largest, left to right: 5+ RIR is the tallest bar (as the user reads it).
+        let notches = (Effort.notches(kind) ?? [5, 4, 3, 2, 1, 0]).sorted()
         let i = min(notches.count - 1, max(0, Int(position.rounded())))
         let label = { (v: Double) in kind == "rir" && v >= 5 ? "5+" : formatNumber(v) }
         VStack(spacing: 8) {
