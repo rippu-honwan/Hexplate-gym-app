@@ -137,7 +137,7 @@ class Store:
 
     # MARK: motion
 
-    def save_motion(self, name: str, csv: str) -> bool:
+    def save_motion(self, name: str, csv: str, received_at: float | None = None) -> bool:
         m = MOTION_NAME.match(name)
         if not m or not csv.startswith("# {"):
             return False
@@ -151,5 +151,5 @@ class Store:
             kind = None
         with self.db:
             self.db.execute("INSERT OR REPLACE INTO motion_files VALUES (?,?,?,?,?,?,?)",
-                            (name, m.group(1), m.group(2), int(m.group(3)), kind, len(csv.encode()), time.time()))
+                            (name, m.group(1), m.group(2), int(m.group(3)), kind, len(csv.encode()), received_at or time.time()))
         return True

@@ -91,3 +91,18 @@ def test_motion_files(phone, tmp_path):
     assert row == ("20261118-120000", "0025", 1, "set")
     for name, body in [("../x.csv", csv), ("20261118-120000_0025_s1.txt", csv), ("20261118-120000_0025_s1.csv", "t,ax\n")]:
         assert phone.put("/api/motion", json={"name": name, "csv": body}).status_code == 400
+
+
+def test_import_command(tmp_path, monkeypatch, capsys):
+    from hexserver.__main__ import main
+    data, motion = tmp_path / "data", tmp_path / "old-motion"
+    motion.mkdir()
+    (motion / "20261118-120000_0025_s1.csv").write_text('# {"kind":"set"}\nt\n')
+    (motion / "notes.csv").write_text("not a motion file")
+    monkeypatch.setenv("HEXPLATE_DATA", str(data))
+    monkeypatch.setattr("sys.argv", ["hexserver", "import", str(FIXTURE), str(motion)])
+    main()
+    assert "rev 1, 4 workouts" in capsys.readouterr().out
+    store = create_app(data).state.store
+    assert store.current()[0] == 1 and (data / "motion/20261118-120000_0025_s1.csv").exists()
+    assert store.db.execute("SELECT COUNT(*) FROM motion_files").fetchone()[0] == 1

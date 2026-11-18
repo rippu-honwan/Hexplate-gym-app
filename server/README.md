@@ -8,7 +8,7 @@ cd server
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt -r requirements-dev.txt
 .venv/bin/python -m hexserver serve            # port 8765, reachable on your Wi-Fi
 .venv/bin/python -m hexserver pair             # one-time code for the app (Settings > Server)
-.venv/bin/python -m hexserver import backup.json
+.venv/bin/python -m hexserver import state.json motion/   # JSON backups and folders of motion CSVs
 .venv/bin/python -m pytest -q
 ```
 
