@@ -148,6 +148,8 @@ final class MotionRecorder {
         meta["start"] = (a * 1000).rounded()
         meta["end"] = (b * 1000).rounded()
         if let bp = e.bodyPart { meta["bodyPart"] = bp }
+        // MyGym: the wrist the watch is worn on, a label for the rep counter's training data.
+        meta["wrist"] = SessionStore.wristSide
         let url = MotionRecorder.outbox.appendingPathComponent(MotionLog.fileName(start: a, exId: e.id, set: si + 1))
         DispatchQueue.global(qos: .utility).async {
             do {
