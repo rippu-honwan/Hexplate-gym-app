@@ -1,0 +1,15 @@
+# Xcode (app/): generated project, build output, local signing
+app/Hexplate.xcodeproj/
+app/build/
+app/Local.xcconfig
+app/graphify-out/
+# Personal data: training data, motion files, the server's database
+data/
+server/data/
+*.sqlite3
+# Python
+__pycache__/
+.venv/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
