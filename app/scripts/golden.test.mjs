@@ -555,3 +555,19 @@ it('writes the merge golden file', async () => {
   })
   writeFileSync(process.env.MERGE_OUT, JSON.stringify(out))
 })
+
+// The workout-day reminder and the missed-workout nudge: what the phone schedules from a moment on.
+it('writes the reminder golden file', async () => {
+  if (!process.env.REMIND_IN) return
+  const { buildReminderNotifications, buildNudgeNotifications } = await import('../../frontend/src/lib/mobile.js')
+  const cases = JSON.parse(readFileSync(process.env.REMIND_IN, 'utf8'))
+  const pad = n => String(n).padStart(2, '0')
+  const local = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`
+  const out = cases.map(c => {
+    const [d, t] = c.now.split('T'), [y, m, dd] = d.split('-').map(Number), [h, mi] = t.split(':').map(Number)
+    const now = new Date(y, m - 1, dd, h, mi)
+    const notes = [...buildReminderNotifications(c.state, now), ...buildNudgeNotifications(c.state, now)]
+    return { name: c.name, notes: notes.map(n => ({ id: n.id, at: local(n.schedule.at), title: n.title, body: n.body })) }
+  })
+  writeFileSync(process.env.REMIND_OUT, JSON.stringify(out, null, 1) + '\n')
+})

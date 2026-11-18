@@ -1,0 +1,3534 @@
+[
+ {
+  "name": "off",
+  "notes": []
+ },
+ {
+  "name": "reminder only",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1002,
+    "at": "2026-11-11 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   }
+  ]
+ },
+ {
+  "name": "today passed",
+  "notes": [
+   {
+    "id": 1002,
+    "at": "2026-11-11 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   }
+  ]
+ },
+ {
+  "name": "logged and noted days",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   }
+  ]
+ },
+ {
+  "name": "day plan override and rest",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1001,
+    "at": "2026-11-10 08:00",
+    "title": "Workout day",
+    "body": "Arms is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   }
+  ]
+ },
+ {
+  "name": "odd time",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 08:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1002,
+    "at": "2026-11-11 08:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 08:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 08:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 08:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 08:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 08:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 08:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 08:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 08:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 08:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 08:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 08:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 08:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 08:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 08:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 08:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 08:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 08:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 08:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 08:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 08:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 08:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 08:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 08:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 08:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 08:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 08:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 08:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 08:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 08:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 08:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 08:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 08:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   }
+  ]
+ },
+ {
+  "name": "broken time",
+  "notes": []
+ },
+ {
+  "name": "truthy on",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 07:45",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1002,
+    "at": "2026-11-11 07:45",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 07:45",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 07:45",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 07:45",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 07:45",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 07:45",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 07:45",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 07:45",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 07:45",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 07:45",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 07:45",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 07:45",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 07:45",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 07:45",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 07:45",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 07:45",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 07:45",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 07:45",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 07:45",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 07:45",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 07:45",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 07:45",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 07:45",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 07:45",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 07:45",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 07:45",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 07:45",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 07:45",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 07:45",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 07:45",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 07:45",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 07:45",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 07:45",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 2000,
+    "at": "2026-11-09 20:00",
+    "title": "Everything okay?",
+    "body": "Rough day? Upper A will keep. Tomorrow is a fresh start."
+   }
+  ]
+ },
+ {
+  "name": "nudge friendly",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1002,
+    "at": "2026-11-11 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 2000,
+    "at": "2026-11-09 20:00",
+    "title": "Everything okay?",
+    "body": "Rough day? Upper A will keep. Tomorrow is a fresh start."
+   }
+  ]
+ },
+ {
+  "name": "nudge guilt",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1002,
+    "at": "2026-11-11 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 2000,
+    "at": "2026-11-09 20:00",
+    "title": "I miss you",
+    "body": "Was it something I said? Upper A misses you."
+   }
+  ]
+ },
+ {
+  "name": "nudge drill",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1002,
+    "at": "2026-11-11 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 2000,
+    "at": "2026-11-09 20:00",
+    "title": "Attention, recruit!",
+    "body": "Excuses don’t lift weights. Report for Upper A tomorrow!"
+   }
+  ]
+ },
+ {
+  "name": "nudge unknown",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1002,
+    "at": "2026-11-11 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 2000,
+    "at": "2026-11-09 20:00",
+    "title": "Everything okay?",
+    "body": "Rough day? Upper A will keep. Tomorrow is a fresh start."
+   }
+  ]
+ },
+ {
+  "name": "nudge after a late reminder",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 19:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1002,
+    "at": "2026-11-11 19:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 19:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 19:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 19:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 19:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 19:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 19:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 19:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 19:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 19:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 19:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 19:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 19:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 19:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 19:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 19:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 19:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 19:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 19:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 19:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 19:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 19:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 19:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 19:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 19:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 19:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 19:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 19:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 19:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 19:30",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 19:30",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 19:30",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 19:30",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 2000,
+    "at": "2026-11-09 21:30",
+    "title": "Everything okay?",
+    "body": "Rough day? Upper A will keep. Tomorrow is a fresh start."
+   }
+  ]
+ },
+ {
+  "name": "nudge too late",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 20:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1002,
+    "at": "2026-11-11 20:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 20:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 20:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 20:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 20:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 20:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 20:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 20:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 20:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 20:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 20:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 20:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 20:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 20:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 20:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 20:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 20:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 20:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 20:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 20:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 20:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 20:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 20:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 20:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 20:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 20:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 20:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 20:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 20:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 20:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 20:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 20:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 20:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   }
+  ]
+ },
+ {
+  "name": "nudge back-off after a break",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1002,
+    "at": "2026-11-11 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   }
+  ]
+ },
+ {
+  "name": "nudge, session running",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1002,
+    "at": "2026-11-11 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   }
+  ]
+ },
+ {
+  "name": "nudge, evening already",
+  "notes": [
+   {
+    "id": 1002,
+    "at": "2026-11-11 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 08:00",
+    "title": "Workout day",
+    "body": "3 routines is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 08:00",
+    "title": "Workout day",
+    "body": " is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 08:00",
+    "title": "Workout day",
+    "body": "Lower A is on the plan today. Let’s go!"
+   }
+  ]
+ },
+ {
+  "name": "queue: day after a workout is rest",
+  "notes": [
+   {
+    "id": 1000,
+    "at": "2026-11-09 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1001,
+    "at": "2026-11-10 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1002,
+    "at": "2026-11-11 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1003,
+    "at": "2026-11-12 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1004,
+    "at": "2026-11-13 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1005,
+    "at": "2026-11-14 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1006,
+    "at": "2026-11-15 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1007,
+    "at": "2026-11-16 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1008,
+    "at": "2026-11-17 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1009,
+    "at": "2026-11-18 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1010,
+    "at": "2026-11-19 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1011,
+    "at": "2026-11-20 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1012,
+    "at": "2026-11-21 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1013,
+    "at": "2026-11-22 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1014,
+    "at": "2026-11-23 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1015,
+    "at": "2026-11-24 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1016,
+    "at": "2026-11-25 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1017,
+    "at": "2026-11-26 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1018,
+    "at": "2026-11-27 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1019,
+    "at": "2026-11-28 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1020,
+    "at": "2026-11-29 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1021,
+    "at": "2026-11-30 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1022,
+    "at": "2026-12-01 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1023,
+    "at": "2026-12-02 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1024,
+    "at": "2026-12-03 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1025,
+    "at": "2026-12-04 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1026,
+    "at": "2026-12-05 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1027,
+    "at": "2026-12-06 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1028,
+    "at": "2026-12-07 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1029,
+    "at": "2026-12-08 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1030,
+    "at": "2026-12-09 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1031,
+    "at": "2026-12-10 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1032,
+    "at": "2026-12-11 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1033,
+    "at": "2026-12-12 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1034,
+    "at": "2026-12-13 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1035,
+    "at": "2026-12-14 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1036,
+    "at": "2026-12-15 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1037,
+    "at": "2026-12-16 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1038,
+    "at": "2026-12-17 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1039,
+    "at": "2026-12-18 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1040,
+    "at": "2026-12-19 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1041,
+    "at": "2026-12-20 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1042,
+    "at": "2026-12-21 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1043,
+    "at": "2026-12-22 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1044,
+    "at": "2026-12-23 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1045,
+    "at": "2026-12-24 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1046,
+    "at": "2026-12-25 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1047,
+    "at": "2026-12-26 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1048,
+    "at": "2026-12-27 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1049,
+    "at": "2026-12-28 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1050,
+    "at": "2026-12-29 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1051,
+    "at": "2026-12-30 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1052,
+    "at": "2026-12-31 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1053,
+    "at": "2027-01-01 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1054,
+    "at": "2027-01-02 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1055,
+    "at": "2027-01-03 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1056,
+    "at": "2027-01-04 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1057,
+    "at": "2027-01-05 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1058,
+    "at": "2027-01-06 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 1059,
+    "at": "2027-01-07 08:00",
+    "title": "Workout day",
+    "body": "Upper A is on the plan today. Let’s go!"
+   },
+   {
+    "id": 2001,
+    "at": "2026-11-10 20:00",
+    "title": "Everything okay?",
+    "body": "Hey, Upper A didn’t happen today. All good?"
+   },
+   {
+    "id": 2002,
+    "at": "2026-11-11 20:00",
+    "title": "Everything okay?",
+    "body": "Upper A is still waiting. What’s up?"
+   },
+   {
+    "id": 2003,
+    "at": "2026-11-12 20:00",
+    "title": "Everything okay?",
+    "body": "No Upper A today? Even a short session tomorrow counts."
+   }
+  ]
+ }
+]

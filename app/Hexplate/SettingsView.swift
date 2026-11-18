@@ -122,6 +122,8 @@ struct SettingsView: View {
                     Text("Sex and age set the strength level standards.")
                 }
 
+                ReminderSection()
+
                 Section("Tools") {
                     NavigationLink("Plate calculator") { PlateCalculator() }
                 }
@@ -215,6 +217,61 @@ struct SettingsView: View {
         let new = samples.filter { !have.contains(Day.iso($0.date)) }
         for s in new { model.logWeight(s.weight, on: Day.iso(s.date), fromHealth: true) }
         healthNote = new.isEmpty ? "Nothing new in Health." : "\(new.count) \(new.count == 1 ? "weigh-in" : "weigh-ins") added."
+    }
+}
+
+/// The workout-day reminder and the missed-workout nudge (ReminderSync), kept in the synced profile
+/// as openGym keeps them: `reminder = {on, time, tz, nudge, tone}`.
+private struct ReminderSection: View {
+    @Environment(AppModel.self) private var model
+
+    private var r: [String: JSONValue] { model.root["reminder"]?.object ?? [:] }
+    private func set(_ key: String, _ v: JSONValue) {
+        model.change { s in
+            var r = s["reminder"]?.object ?? ["on": .bool(false), "time": .string("08:00"), "nudge": .bool(false), "tone": .string("friendly")]
+            r[key] = v
+            r["tz"] = .string(TimeZone.current.identifier)
+            s["reminder"] = .object(r)
+        }
+    }
+    private func flag(_ key: String) -> Binding<Bool> {
+        Binding(get: { Reminders.truthy(r[key]) }, set: { set(key, .bool($0)) })
+    }
+    private var time: Binding<Date> {
+        Binding(get: {
+            let p = (r["time"]?.stringValue ?? "08:00").split(separator: ":").compactMap { Int($0) }
+            return Calendar.current.date(from: DateComponents(hour: p.first ?? 8, minute: p.count > 1 ? p[1] : 0)) ?? .now
+        }, set: { d in
+            let c = Calendar.current.dateComponents([.hour, .minute], from: d)
+            set("time", .string(String(format: "%02d:%02d", c.hour ?? 8, c.minute ?? 0)))
+        })
+    }
+
+    var body: some View {
+        Section {
+            Toggle("Workout day reminder", isOn: Binding(get: { Reminders.truthy(r["on"]) }, set: { on in
+                set("on", .bool(on))
+                if on { ReminderSync.sync(model, ask: true) }
+            }))
+            if Reminders.truthy(r["on"]) {
+                DatePicker("Reminder time", selection: time, displayedComponents: .hourAndMinute)
+                Toggle("Nudge me when I skip a planned workout", isOn: flag("nudge"))
+                if Reminders.truthy(r["nudge"]) {
+                    Picker("Nudge tone", selection: Binding(get: { Reminders.tone(r) }, set: { set("tone", .string($0)) })) {
+                        Text("Friendly").tag("friendly")
+                        Text("Guilt trip").tag("guilt")
+                        Text("Drill sergeant").tag("drill")
+                    }
+                }
+            }
+        } header: {
+            Text("Reminders")
+        } footer: {
+            if Reminders.truthy(r["on"]) {
+                Text("Reminds you at this time on days that have a routine planned.")
+                    + (Reminders.truthy(r["nudge"]) ? Text(verbatim: " ") + Text("One nudge in the evening of a planned day with nothing logged, between 20:00 and 21:30. After 3 missed days in a row it goes quiet until your next workout.") : Text(verbatim: ""))
+            }
+        }
     }
 }
 

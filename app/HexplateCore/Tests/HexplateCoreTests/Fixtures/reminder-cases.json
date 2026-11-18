@@ -1,0 +1,1337 @@
+[
+ {
+  "name": "off",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": false,
+    "time": "08:00"
+   }
+  }
+ },
+ {
+  "name": "reminder only",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "08:00"
+   }
+  }
+ },
+ {
+  "name": "today passed",
+  "now": "2026-11-09T09:00",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "08:00"
+   }
+  }
+ },
+ {
+  "name": "logged and noted days",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-11",
+     "d": "2026-11-11",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "08:00"
+   },
+   "dayNotes": {
+    "2026-11-13": {
+     "tag": "sick",
+     "_ts": 1
+    },
+    "2026-11-16": {
+     "text": "  ",
+     "_ts": 1
+    },
+    "2026-11-18": {
+     "text": "trip",
+     "_ts": 1
+    }
+   }
+  }
+ },
+ {
+  "name": "day plan override and rest",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "08:00"
+   },
+   "dayPlan": {
+    "2026-11-10": "rc",
+    "2026-11-11": "rest"
+   }
+  }
+ },
+ {
+  "name": "odd time",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "8:30"
+   }
+  }
+ },
+ {
+  "name": "broken time",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "later"
+   }
+  }
+ },
+ {
+  "name": "truthy on",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": 1,
+    "time": "07:45",
+    "nudge": "yes"
+   }
+  }
+ },
+ {
+  "name": "nudge friendly",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "08:00",
+    "nudge": true,
+    "tone": "friendly"
+   }
+  }
+ },
+ {
+  "name": "nudge guilt",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "08:00",
+    "nudge": true,
+    "tone": "guilt"
+   }
+  }
+ },
+ {
+  "name": "nudge drill",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "08:00",
+    "nudge": true,
+    "tone": "drill"
+   }
+  }
+ },
+ {
+  "name": "nudge unknown",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "08:00",
+    "nudge": true,
+    "tone": "unknown"
+   }
+  }
+ },
+ {
+  "name": "nudge after a late reminder",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "19:30",
+    "nudge": true
+   }
+  }
+ },
+ {
+  "name": "nudge too late",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "20:00",
+    "nudge": true
+   }
+  }
+ },
+ {
+  "name": "nudge back-off after a break",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-10-20",
+     "d": "2026-10-20",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "08:00",
+    "nudge": true
+   }
+  }
+ },
+ {
+  "name": "nudge, session running",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "08:00",
+    "nudge": true
+   },
+   "active": {
+    "id": "x",
+    "entries": []
+   }
+  }
+ },
+ {
+  "name": "nudge, evening already",
+  "now": "2026-11-09T20:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {
+    "1": "ra",
+    "3": "rb",
+    "5": [
+     "ra",
+     "rb",
+     "rc"
+    ],
+    "6": "rd"
+   },
+   "workouts": [
+    {
+     "id": "w2026-11-02",
+     "d": "2026-11-02",
+     "start": 0,
+     "entries": []
+    },
+    {
+     "id": "w2026-11-04",
+     "d": "2026-11-04",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "08:00",
+    "nudge": true
+   }
+  }
+ },
+ {
+  "name": "queue: day after a workout is rest",
+  "now": "2026-11-09T07:30",
+  "state": {
+   "routines": [
+    {
+     "id": "ra",
+     "name": "Upper A",
+     "ex": [
+      {
+       "id": "0025"
+      }
+     ]
+    },
+    {
+     "id": "rb",
+     "name": "Lower A",
+     "ex": [
+      {
+       "id": "0043"
+      }
+     ]
+    },
+    {
+     "id": "rc",
+     "name": "Arms",
+     "ex": [
+      {
+       "id": "0031"
+      }
+     ]
+    },
+    {
+     "id": "rd",
+     "name": "",
+     "ex": [
+      {
+       "id": "0334"
+      }
+     ]
+    }
+   ],
+   "week": {},
+   "workouts": [
+    {
+     "id": "w2026-11-08",
+     "d": "2026-11-08",
+     "start": 0,
+     "entries": []
+    }
+   ],
+   "reminder": {
+    "on": true,
+    "time": "08:00",
+    "nudge": true
+   },
+   "scheduleMode": "rotation",
+   "rotation": {
+    "id": "rot",
+    "sequence": [
+     "ra",
+     "rb"
+    ]
+   },
+   "queue": {
+    "ids": [
+     "ra",
+     "rb"
+    ],
+    "at": 0,
+    "rotationId": "rot",
+    "startsOn": "2026-11-08"
+   }
+  }
+ }
+]
