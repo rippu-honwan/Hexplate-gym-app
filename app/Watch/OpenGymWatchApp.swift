@@ -1670,6 +1670,15 @@ struct RirView: View {
                 .buttonStyle(.plain)
                 .accessibilityLabel(Text("Save"))
             }
+            // Stage E: the reps the set is logged with (the counter filled them in at Done), to correct here.
+            if let r = store.heldNumbers?.r {
+                HStack(spacing: 8) {
+                    StepButton(symbol: "minus", label: Text("Fewer reps")) { store.adjustHeldReps(by: -1) }
+                    (Text(verbatim: formatNumber(r)).font(.title3.monospacedDigit().bold()) + Text(verbatim: " ") + Text("Reps").font(.footnote))
+                        .frame(maxWidth: .infinity)
+                    StepButton(symbol: "plus", label: Text("More reps")) { store.adjustHeldReps(by: 1) }
+                }
+            }
             HStack(alignment: .bottom, spacing: 4) {
                 ForEach(notches.indices, id: \.self) { k in
                     RoundedRectangle(cornerRadius: 8)
@@ -1698,5 +1707,7 @@ struct RirView: View {
         .accessibilityElement(children: .combine)
         .accessibilityValue(Text(verbatim: "\(Effort.name(kind)) \(label(notches[i]))"))
         .accessibilityAdjustableAction { d in position = min(Double(notches.count - 1), max(0, position + (d == .increment ? 1 : -1))) }
+        .accessibilityAction(named: Text("Fewer reps")) { store.adjustHeldReps(by: -1) }
+        .accessibilityAction(named: Text("More reps")) { store.adjustHeldReps(by: 1) }
     }
 }

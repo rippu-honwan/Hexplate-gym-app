@@ -7,6 +7,10 @@ the set the app logged: same workout (`wid`), exercise and set number, preferrin
 own count (`reps`, `auto`) stays beside it. A CSV whose workout is not in the given states (a test,
 a discarded workout) gets no label and is left out of the label file.
 
+From Stage E (2026-11-18) the watch fills in an unchecked set's reps from its own whole-set count
+(`setCount`, WatchCore SetRepCount): such a label is the counter's guess, not the lifter's. Score a
+counter on `checked` sets, or on sets whose logged reps differ from `setCount` (corrected later).
+
 Quality flags per file: sample rate off 50 Hz, gaps, a recording that starts after the set did,
 accelerometer saturation, no movement at all.
 
@@ -168,7 +172,7 @@ def main():
             "set": meta.get("set"), "side": side or "", "wrist": meta.get("wrist", a.wrist),
             "reps": part.get("r", logged.get("r")), "w": part.get("w", logged.get("w")),
             "rir": part.get("rir", logged.get("rir")), "watch_reps": meta.get("reps"),
-            "watch_auto": meta.get("auto"), "checked": meta.get("checked"), "join": how,
+            "watch_auto": meta.get("auto"), "set_count": meta.get("setCount"), "checked": meta.get("checked"), "join": how,
             "flags": "; ".join(flags), **q,
         })
 

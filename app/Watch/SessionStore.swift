@@ -308,7 +308,17 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
     /// MyGym: Done was pressed (here or on the phone) at this time; the set is logged once its RIR
     /// is answered (RirView), and the rest starts then. The numbers are held as they were at Done.
     @Published private(set) var askRir: Date?
-    private var heldNumbers: (w: Double, r: Double)?
+    /// The numbers a set is logged with while its RIR is asked (RirView shows the reps, - and + change them).
+    @Published private(set) var heldNumbers: (w: Double, r: Double)?
+
+    /// The reps on the RIR page, changed by hand.
+    func adjustHeldReps(by d: Double) {
+        guard var h = heldNumbers else { return }
+        h.r = max(0, h.r + d)
+        heldNumbers = h
+        repsChecked = true
+        note("edit held \(formatReps(h.r))")
+    }
 
     /// Whether Done on this set asks for RIR first: work sets of reps exercises, once per set (the
     /// second side of a per-side set).
@@ -340,6 +350,7 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
         // The reps count up from 0 now; what was planned stays in sight as the goal.
         repGoal = reps
         autoReps = 0
+        setCount = nil
         repsChecked = false
         counting = true
         reps = 0
@@ -416,6 +427,8 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
     @Published private(set) var repGoal: Double?
     /// What the counter itself counted in this set (the crown may have corrected `reps`).
     private var autoReps = 0
+    /// Stage E: the whole set counted again at Done (WatchCore SetRepCount), nil before Done.
+    private var setCount: Int?
 
     /// The counter saw a rep (MotionRecorder.onRep): one more, and a tap on the wrist; a longer
     /// one when the goal is reached.
@@ -718,6 +731,22 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
         let doneBefore = lastTick
         // In a superset the page flips to the partner: a slower second tap would log its set.
         if !rated, heldFor == nil, !auto, !touchAllowed { return }
+        // Stage E: at Done the whole set is counted again (WatchCore SetRepCount: MAE 1.48 against the
+        // live count's 1.93, analysis/rep-count-results.md) and fills in the reps, unless the lifter
+        // set them by hand. The RIR page shows them to correct; the file keeps both counts.
+        if !rated, heldFor == nil, let since = recordingSince, !repsChecked, !e.isTimed, !e.isCardio {
+            let b = (doneAt ?? Date()).timeIntervalSince1970
+            let m = health.motion.window(from: max(since.timeIntervalSince1970, b - MotionLog.keepSec), to: b)
+            let n = SetRepCount.count(t: m.map(\.t), axes: [m.map(\.ax), m.map(\.ay), m.map(\.az)])
+            setCount = n
+            // ponytail: 0 means it saw nothing (an arm that stays still): the live count or the plan stays.
+            if n > 0, Double(n) != reps {
+                note("setCount \(n)")
+                counting = true
+                reps = Double(n)
+                counting = false
+            }
+        }
         // MyGym: RIR first; the numbers stay as they are now.
         if !rated, heldFor == nil, asksRir(e, si) {
             lastTick = Date()
@@ -770,6 +799,7 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
             if let id = event?["id"] { meta["id"] = id }
             // What the counter said, next to the reps logged: how good it is, set by set.
             meta["auto"] = autoReps
+            if let n = setCount { meta["setCount"] = n }
             if let v = vel { meta["vel"] = v }
             // what the helpers did, and with which settings (MyGym)
             meta["helpers"] = ["fatigue": state.settings.fatigue ?? 0, "autoEnd": state.settings.autoEnd ?? false, "log": setLog]
@@ -1512,7 +1542,7 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
             switch screen {
             case "set", "weight", "rest", "offline", "edit-weight", "edit-reps": self.picked[0] = 2
             case "rate": self.rateWorkout = "demo"
-            case "rir": self.askRir = Date()
+            case "rir": self.askRir = Date(); self.heldNumbers = (40, 10)
             case "hold": self.state.entryIndex = 1
             case "bodyweight": self.state.entryIndex = 2
             case "side": self.state.entryIndex = 3
