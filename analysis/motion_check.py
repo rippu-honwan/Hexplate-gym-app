@@ -101,6 +101,11 @@ def quality(meta, rows, logged):
     late = (meta["start"] - started) / 1000 if started and meta.get("start") else None
     if late is not None and late > 2:
         flags.append(f"starts {late:.0f} s late")
+    # Seconds per logged rep: clean sets to 2026-11-18 take 1.7-9.8 s (setup included). Under 1.5 s
+    # the window missed most of the set; over 12 s it ran on after the set (or the label is wrong).
+    reps = (logged or {}).get("r") or meta.get("reps")
+    if reps and dur > 0 and not 1.5 <= dur / reps <= 12:
+        flags.append(f"{dur / reps:.1f} s per rep")
     # Cut at an edge: moving in the first (last) second as much as during the set. A busy start
     # alone is the walk to the machine; with a rep counted in the first 2 s, the window began
     # mid-set. Thresholds from the 74 clean sets to 2026-11-18 (start median 0.36, end 0.04-0.25).
