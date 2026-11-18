@@ -571,3 +571,16 @@ it('writes the reminder golden file', async () => {
   })
   writeFileSync(process.env.REMIND_OUT, JSON.stringify(out, null, 1) + '\n')
 })
+
+// The CSV export over a stretch of days: the workouts file, the body file and the counts under them.
+it('writes the CSV range golden file', async () => {
+  if (!process.env.CSVR_IN) return
+  const { workoutsCSV, bodyCSV, csvCounts } = await import('../../frontend/src/lib/export-csv.js')
+  const cases = JSON.parse(readFileSync(process.env.CSVR_IN, 'utf8'))
+  const out = cases.map(c => {
+    registerCustom(c.state.customEx || [])
+    const r = { from: c.from, to: c.to }
+    return { name: c.name, workouts: workoutsCSV(c.state, r), body: bodyCSV(c.state, r), counts: csvCounts(c.state, r) }
+  })
+  writeFileSync(process.env.CSVR_OUT, JSON.stringify(out, null, 1) + '\n')
+})

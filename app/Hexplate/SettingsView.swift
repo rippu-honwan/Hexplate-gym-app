@@ -9,10 +9,11 @@ extension AppModel {
     /// The state file as it is, for "Export JSON".
     var stateFileURL: URL { URL.applicationSupportDirectory.appending(path: "Hexplate/state.json") }
 
-    func csvFile() -> URL? {
-        let url = URL.temporaryDirectory.appending(path: "hexplate-workouts-\(today).csv")
+    /// A CSV file in the temporary folder, for the share sheet.
+    func csvFile(_ name: String, _ text: String) -> URL? {
+        let url = URL.temporaryDirectory.appending(path: "hexplate-\(name)-\(today).csv")
         do {
-            try Export.workoutsCSV(root, catalog: catalog).write(to: url, atomically: true, encoding: .utf8)
+            try text.write(to: url, atomically: true, encoding: .utf8)
             return url
         } catch {
             errorMessage = "The CSV could not be written. \(error.localizedDescription)"
@@ -77,7 +78,6 @@ struct SettingsView: View {
     @AppStorage("appearance") private var appearance = "system"
     @AppStorage("health") private var health = false
     @State private var importing = false
-    @State private var csv: URL?
     @State private var healthNote: String?
 
     var body: some View {
@@ -154,9 +154,7 @@ struct SettingsView: View {
 
                 Section {
                     ShareLink("Export JSON", item: model.stateFileURL)
-                    if let csv {
-                        ShareLink("Export CSV", item: csv)
-                    }
+                    NavigationLink("Export as spreadsheet (CSV)") { CSVExportView() }
                     Button("Import", systemImage: "square.and.arrow.down") { importing = true }
                 } header: {
                     Text("Data")
@@ -171,7 +169,6 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { Button("Done") { dismiss() }.fontWeight(.semibold) }
             .sheet(isPresented: $importing) { ImportView() }
-            .onAppear { csv = model.csvFile() }
         }
     }
 
@@ -217,6 +214,71 @@ struct SettingsView: View {
         let new = samples.filter { !have.contains(Day.iso($0.date)) }
         for s in new { model.logWeight(s.weight, on: Day.iso(s.date), fromHealth: true) }
         healthNote = new.isEmpty ? "Nothing new in Health." : "\(new.count) \(new.count == 1 ? "weigh-in" : "weigh-ins") added."
+    }
+}
+
+/// "Export as spreadsheet (CSV)" (openGym CsvExportSheet): a stretch of days, then the workouts
+/// (one row per set) or body weight and measurements (one row per day) as a file to share.
+private struct CSVExportView: View {
+    @Environment(AppModel.self) private var model
+    @State private var range = "all"
+    @State private var from = Calendar.current.date(byAdding: .day, value: -27, to: .now) ?? .now
+    @State private var to = Date.now
+    @State private var files: (workouts: URL?, body: URL?) = (nil, nil)
+
+    /// openGym report.js reportRange: the last 4 weeks, 3 months, or the days picked (never past today).
+    private var bounds: (from: String?, to: String?) {
+        let today = model.today
+        switch range {
+        case "4w": return (Day.adding(-27, to: today), today)
+        case "3m":
+            let back = Day.date(today).flatMap { Calendar(identifier: .gregorian).date(byAdding: .month, value: -3, to: $0) }
+            return (back.flatMap { Day.adding(1, to: Day.iso($0)) }, today)
+        case "custom":
+            var (a, b) = (Day.iso(from), Day.iso(to))
+            if a > b { (a, b) = (b, a) }
+            b = min(b, today)
+            return (min(a, b), b)
+        default: return (nil, nil)
+        }
+    }
+
+    var body: some View {
+        let (a, b) = bounds
+        let n = Export.counts(model.root, catalog: model.catalog, from: a, to: b)
+        Form {
+            Section {
+                Picker("Days", selection: $range) {
+                    Text("All").tag("all")
+                    Text("3 months").tag("3m")
+                    Text("4 weeks").tag("4w")
+                    Text("Custom").tag("custom")
+                }
+                .pickerStyle(.segmented)
+                if range == "custom" {
+                    DatePicker("From", selection: $from, in: ...to, displayedComponents: .date)
+                    DatePicker("To", selection: $to, in: from...Date.now, displayedComponents: .date)
+                }
+            } footer: {
+                Text("One row per set, for Excel, Sheets, your coach or another app.")
+            }
+            Section {
+                if let url = files.workouts { ShareLink("Workouts (CSV)", item: url) }
+            } footer: {
+                Text("\(n.workouts) workouts · \(n.sets) sets")
+            }
+            Section {
+                if let url = files.body { ShareLink("Body weight & measurements (CSV)", item: url) }
+            } footer: {
+                Text("\(n.weighIns) weigh-ins · \(n.measurements) measurements")
+            }
+        }
+        .navigationTitle("Export as spreadsheet (CSV)")
+        .navigationBarTitleDisplayMode(.inline)
+        .task(id: "\(a ?? "")-\(b ?? "")-\(model.root.count)") {
+            files = (model.csvFile("workouts", Export.workoutsCSV(model.root, catalog: model.catalog, from: a, to: b)),
+                     model.csvFile("body", Export.bodyCSV(model.root, from: a, to: b)))
+        }
     }
 }
 

@@ -493,3 +493,16 @@
 "{0} doesn’t do itself, recruit. Move it!" = "{0} 不會自己完成，菜鳥。動起來！";
 "Excuses don’t lift weights. Report for {0} tomorrow!" = "藉口舉不起重量。明天準時報到練 {0}！";
 "Your muscles filed a missing-person report. Show up for {0}!" = "你的肌肉已經報案協尋你了。馬上來練 {0}！";
+
+/* CSV export (openGym zh-TW) */
+"Export as spreadsheet (CSV)" = "匯出為試算表 (CSV)";
+"One row per set, for Excel, Sheets, your coach or another app." = "每組一列，可用於 Excel、Sheets、你的教練或其他 App。";
+"Days" = "日子";
+"All" = "全部";
+"3 months" = "3 個月";
+"4 weeks" = "4 週";
+"Custom" = "自訂";
+"Workouts (CSV)" = "訓練 (CSV)";
+"Body weight & measurements (CSV)" = "體重和身體圍度 (CSV)";
+"%lld workouts · %lld sets" = "%1$lld 次訓練 · %2$lld 組";
+"%lld weigh-ins · %lld measurements" = "%1$lld 次體重紀錄 · %2$lld 次身體數據";

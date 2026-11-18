@@ -1,0 +1,4304 @@
+[
+ {
+  "name": "all",
+  "state": {
+   "unit": "kg",
+   "volumeWarmups": false,
+   "volumeBodyweight": false,
+   "bodyweight": [
+    {
+     "d": "2026-03-01",
+     "w": 70
+    },
+    {
+     "d": "2026-03-20",
+     "w": 74
+    },
+    {
+     "d": "2026-03-05",
+     "w": 71.2,
+     "ins": [
+      {
+       "id": "b",
+       "at": "21:10",
+       "w": 71.6,
+       "t": 5
+      },
+      {
+       "id": "a",
+       "at": "7:05",
+       "w": 71.2,
+       "t": 9
+      },
+      {
+       "id": "c",
+       "w": 71.4,
+       "t": 1
+      },
+      {
+       "id": null,
+       "w": 70
+      },
+      {
+       "id": "d",
+       "w": 0
+      }
+     ]
+    },
+    {
+     "d": "2026-03-12",
+     "w": 0
+    },
+    {
+     "d": "2026-03-25",
+     "w": 72.25,
+     "t": 1
+    }
+   ],
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "legs",
+     "ex": []
+    }
+   ],
+   "customEx": [
+    {
+     "id": "cx-plank",
+     "n": "my plank hold",
+     "custom": true,
+     "eq": "body weight",
+     "bp": "waist"
+    }
+   ],
+   "workouts": [
+    {
+     "id": "wA",
+     "d": "2026-03-02",
+     "start": 1772445600000,
+     "end": 1772449500000,
+     "routineId": "r1",
+     "name": "Upper",
+     "bw": 72.4,
+     "prs": [
+      "0025",
+      "0652"
+     ],
+     "vol": 1,
+     "entries": [
+      {
+       "id": "0025",
+       "note": "paused reps",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 40,
+         "r": 5,
+         "done": true,
+         "warmup": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true,
+         "rir": 2,
+         "hr": {
+          "avg": 118.4,
+          "max": 131
+         }
+        },
+        {
+         "w": 62.5,
+         "r": 7,
+         "done": true,
+         "rpe": 8.5,
+         "hr": {
+          "avg": 300,
+          "max": 310
+         }
+        },
+        {
+         "w": 62.5,
+         "r": 7,
+         "done": true,
+         "type": "dropset",
+         "drops": [
+          {
+           "w": 50,
+           "r": 5
+          },
+          {
+           "w": 40,
+           "r": 6
+          },
+          {
+           "w": 30,
+           "r": 0
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 12,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 6,
+         "done": true,
+         "failure": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": false
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "drops": [
+          {
+           "w": 50,
+           "r": 5
+          }
+         ],
+         "clusters": [
+          {
+           "r": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 12,
+        "weight": 60,
+        "intensifier": {
+         "type": "restpause"
+        }
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 12,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 6,
+           "restSec": 15
+          },
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          },
+          {
+           "r": 1,
+           "restSec": 15
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 14,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 6,
+           "restSec": 15
+          },
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          },
+          {
+           "r": 1,
+           "restSec": 15
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sg": "a",
+       "target": {
+        "id": "0652",
+        "sets": 2,
+        "reps": 12,
+        "weight": 0
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 12,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 8,
+         "done": true,
+         "rir": 0
+        }
+       ]
+      },
+      {
+       "id": "1454",
+       "sg": "a",
+       "target": {
+        "id": "1454",
+        "sets": 3,
+        "reps": 12,
+        "weight": 20,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 12,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 17.5,
+           "r": 6,
+           "done": true,
+           "rir": 1
+          }
+         }
+        },
+        {
+         "w": 20,
+         "r": 6,
+         "done": false,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 20,
+           "r": 0,
+           "done": false
+          }
+         }
+        },
+        {
+         "w": 20,
+         "r": 11,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true,
+           "type": "dropset",
+           "drops": [
+            {
+             "w": 15,
+             "r": 4
+            }
+           ]
+          },
+          "R": {
+           "w": 20,
+           "r": 5,
+           "done": true
+          }
+         }
+        }
+       ]
+      },
+      {
+       "id": "cx-plank",
+       "target": {
+        "id": "cx-plank",
+        "mode": "time",
+        "sets": 2
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        },
+        {
+         "sec": 95,
+         "w": 10,
+         "done": true,
+         "failure": true
+        }
+       ]
+      },
+      {
+       "id": "0289",
+       "target": {
+        "id": "0289",
+        "sets": 1,
+        "reps": 10,
+        "weight": 20,
+        "dbLoad": "each"
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0313",
+       "target": {
+        "id": "0313",
+        "sets": 1,
+        "reps": 10,
+        "weight": 24,
+        "dbLoad": {
+         "mode": "total"
+        }
+       },
+       "sets": [
+        {
+         "w": 24,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0292",
+       "target": {
+        "id": "0292",
+        "sets": 1,
+        "reps": 10,
+        "weight": 22,
+        "dbLoad": "each"
+       },
+       "sets": [
+        {
+         "w": 22,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0009",
+       "target": {
+        "id": "0009",
+        "sets": 1,
+        "reps": 8,
+        "weight": 20
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 1,
+        "reps": 20,
+        "weight": 0
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 20,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 1,
+        "reps": 20,
+        "weight": 0,
+        "bodyweight": false
+       },
+       "sets": [
+        {
+         "w": 5,
+         "r": 20,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "2197",
+       "target": {
+        "id": "2197",
+        "sets": 2
+       },
+       "sets": [
+        {
+         "min": 20,
+         "speed": 9.5,
+         "done": true
+        },
+        {
+         "min": 10.5,
+         "speed": 8,
+         "incline": 2.5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wB",
+     "d": "2026-03-02",
+     "start": 1772470800000,
+     "end": 1772472000000,
+     "routineId": "r2",
+     "name": "Lower",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 10,
+        "weight": 200
+       },
+       "sets": [
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 62.25,
+         "r": 3,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "w": 0,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wC",
+     "d": "2026-03-25",
+     "name": "Imported day",
+     "prs": [],
+     "entries": [
+      {
+       "id": "zz-gone",
+       "n": "Old machine",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "zz-gone2",
+       "sets": [
+        {
+         "sec": 30,
+         "done": true
+        },
+        {
+         "min": 5,
+         "speed": 6,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "w": 0,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "1019",
+       "sets": [
+        {
+         "w": 12,
+         "r": 10,
+         "done": true,
+         "unit": "sec"
+        }
+       ]
+      },
+      {
+       "id": "0025",
+       "sets": []
+      }
+     ]
+    },
+    {
+     "id": "wD",
+     "d": "2026-03-10",
+     "start": 1773136800000,
+     "end": 1773136830000,
+     "name": "Too short",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 100,
+         "r": 5,
+         "done": false
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "_ts": 1774000000000,
+   "measurements": [
+    {
+     "d": "2026-03-05",
+     "waist": 82.5,
+     "upperArmLeft": 35,
+     "bodyFat": 0,
+     "other": [
+      {
+       "id": "grip",
+       "value": 50,
+       "unit": "kg"
+      },
+      {
+       "id": "neckin",
+       "value": 38.1,
+       "unit": "in"
+      },
+      {
+       "id": "score",
+       "value": 7,
+       "unit": "none"
+      },
+      {
+       "id": "old",
+       "value": 12,
+       "name": "Old field"
+      },
+      {
+       "id": "gone",
+       "value": null
+      }
+     ]
+    },
+    {
+     "d": "2026-03-18",
+     "chest": 101.3,
+     "other": [
+      {
+       "id": "grip",
+       "value": 52.123
+      },
+      {
+       "id": "lbf",
+       "value": 10,
+       "unit": "lb"
+      }
+     ]
+    },
+    {
+     "d": "2026-03-18",
+     "chest": 101.4
+    },
+    {
+     "d": "2026-03-28",
+     "hips": 99,
+     "other": []
+    }
+   ],
+   "customMeasurements": [
+    {
+     "id": "grip",
+     "name": "Grip",
+     "unit": "kg"
+    },
+    {
+     "id": "neckin",
+     "name": "=Neck, in",
+     "unit": "in"
+    },
+    {
+     "id": "score",
+     "name": "Sleep score",
+     "unit": "none"
+    },
+    {
+     "id": "lbf",
+     "name": "",
+     "unit": "lb"
+    }
+   ]
+  },
+  "from": null,
+  "to": null
+ },
+ {
+  "name": "from only",
+  "state": {
+   "unit": "kg",
+   "volumeWarmups": false,
+   "volumeBodyweight": false,
+   "bodyweight": [
+    {
+     "d": "2026-03-01",
+     "w": 70
+    },
+    {
+     "d": "2026-03-20",
+     "w": 74
+    },
+    {
+     "d": "2026-03-05",
+     "w": 71.2,
+     "ins": [
+      {
+       "id": "b",
+       "at": "21:10",
+       "w": 71.6,
+       "t": 5
+      },
+      {
+       "id": "a",
+       "at": "7:05",
+       "w": 71.2,
+       "t": 9
+      },
+      {
+       "id": "c",
+       "w": 71.4,
+       "t": 1
+      },
+      {
+       "id": null,
+       "w": 70
+      },
+      {
+       "id": "d",
+       "w": 0
+      }
+     ]
+    },
+    {
+     "d": "2026-03-12",
+     "w": 0
+    },
+    {
+     "d": "2026-03-25",
+     "w": 72.25,
+     "t": 1
+    }
+   ],
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "legs",
+     "ex": []
+    }
+   ],
+   "customEx": [
+    {
+     "id": "cx-plank",
+     "n": "my plank hold",
+     "custom": true,
+     "eq": "body weight",
+     "bp": "waist"
+    }
+   ],
+   "workouts": [
+    {
+     "id": "wA",
+     "d": "2026-03-02",
+     "start": 1772445600000,
+     "end": 1772449500000,
+     "routineId": "r1",
+     "name": "Upper",
+     "bw": 72.4,
+     "prs": [
+      "0025",
+      "0652"
+     ],
+     "vol": 1,
+     "entries": [
+      {
+       "id": "0025",
+       "note": "paused reps",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 40,
+         "r": 5,
+         "done": true,
+         "warmup": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true,
+         "rir": 2,
+         "hr": {
+          "avg": 118.4,
+          "max": 131
+         }
+        },
+        {
+         "w": 62.5,
+         "r": 7,
+         "done": true,
+         "rpe": 8.5,
+         "hr": {
+          "avg": 300,
+          "max": 310
+         }
+        },
+        {
+         "w": 62.5,
+         "r": 7,
+         "done": true,
+         "type": "dropset",
+         "drops": [
+          {
+           "w": 50,
+           "r": 5
+          },
+          {
+           "w": 40,
+           "r": 6
+          },
+          {
+           "w": 30,
+           "r": 0
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 12,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 6,
+         "done": true,
+         "failure": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": false
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "drops": [
+          {
+           "w": 50,
+           "r": 5
+          }
+         ],
+         "clusters": [
+          {
+           "r": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 12,
+        "weight": 60,
+        "intensifier": {
+         "type": "restpause"
+        }
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 12,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 6,
+           "restSec": 15
+          },
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          },
+          {
+           "r": 1,
+           "restSec": 15
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 14,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 6,
+           "restSec": 15
+          },
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          },
+          {
+           "r": 1,
+           "restSec": 15
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sg": "a",
+       "target": {
+        "id": "0652",
+        "sets": 2,
+        "reps": 12,
+        "weight": 0
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 12,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 8,
+         "done": true,
+         "rir": 0
+        }
+       ]
+      },
+      {
+       "id": "1454",
+       "sg": "a",
+       "target": {
+        "id": "1454",
+        "sets": 3,
+        "reps": 12,
+        "weight": 20,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 12,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 17.5,
+           "r": 6,
+           "done": true,
+           "rir": 1
+          }
+         }
+        },
+        {
+         "w": 20,
+         "r": 6,
+         "done": false,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 20,
+           "r": 0,
+           "done": false
+          }
+         }
+        },
+        {
+         "w": 20,
+         "r": 11,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true,
+           "type": "dropset",
+           "drops": [
+            {
+             "w": 15,
+             "r": 4
+            }
+           ]
+          },
+          "R": {
+           "w": 20,
+           "r": 5,
+           "done": true
+          }
+         }
+        }
+       ]
+      },
+      {
+       "id": "cx-plank",
+       "target": {
+        "id": "cx-plank",
+        "mode": "time",
+        "sets": 2
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        },
+        {
+         "sec": 95,
+         "w": 10,
+         "done": true,
+         "failure": true
+        }
+       ]
+      },
+      {
+       "id": "0289",
+       "target": {
+        "id": "0289",
+        "sets": 1,
+        "reps": 10,
+        "weight": 20,
+        "dbLoad": "each"
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0313",
+       "target": {
+        "id": "0313",
+        "sets": 1,
+        "reps": 10,
+        "weight": 24,
+        "dbLoad": {
+         "mode": "total"
+        }
+       },
+       "sets": [
+        {
+         "w": 24,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0292",
+       "target": {
+        "id": "0292",
+        "sets": 1,
+        "reps": 10,
+        "weight": 22,
+        "dbLoad": "each"
+       },
+       "sets": [
+        {
+         "w": 22,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0009",
+       "target": {
+        "id": "0009",
+        "sets": 1,
+        "reps": 8,
+        "weight": 20
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 1,
+        "reps": 20,
+        "weight": 0
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 20,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 1,
+        "reps": 20,
+        "weight": 0,
+        "bodyweight": false
+       },
+       "sets": [
+        {
+         "w": 5,
+         "r": 20,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "2197",
+       "target": {
+        "id": "2197",
+        "sets": 2
+       },
+       "sets": [
+        {
+         "min": 20,
+         "speed": 9.5,
+         "done": true
+        },
+        {
+         "min": 10.5,
+         "speed": 8,
+         "incline": 2.5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wB",
+     "d": "2026-03-02",
+     "start": 1772470800000,
+     "end": 1772472000000,
+     "routineId": "r2",
+     "name": "Lower",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 10,
+        "weight": 200
+       },
+       "sets": [
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 62.25,
+         "r": 3,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "w": 0,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wC",
+     "d": "2026-03-25",
+     "name": "Imported day",
+     "prs": [],
+     "entries": [
+      {
+       "id": "zz-gone",
+       "n": "Old machine",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "zz-gone2",
+       "sets": [
+        {
+         "sec": 30,
+         "done": true
+        },
+        {
+         "min": 5,
+         "speed": 6,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "w": 0,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "1019",
+       "sets": [
+        {
+         "w": 12,
+         "r": 10,
+         "done": true,
+         "unit": "sec"
+        }
+       ]
+      },
+      {
+       "id": "0025",
+       "sets": []
+      }
+     ]
+    },
+    {
+     "id": "wD",
+     "d": "2026-03-10",
+     "start": 1773136800000,
+     "end": 1773136830000,
+     "name": "Too short",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 100,
+         "r": 5,
+         "done": false
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "_ts": 1774000000000,
+   "measurements": [
+    {
+     "d": "2026-03-05",
+     "waist": 82.5,
+     "upperArmLeft": 35,
+     "bodyFat": 0,
+     "other": [
+      {
+       "id": "grip",
+       "value": 50,
+       "unit": "kg"
+      },
+      {
+       "id": "neckin",
+       "value": 38.1,
+       "unit": "in"
+      },
+      {
+       "id": "score",
+       "value": 7,
+       "unit": "none"
+      },
+      {
+       "id": "old",
+       "value": 12,
+       "name": "Old field"
+      },
+      {
+       "id": "gone",
+       "value": null
+      }
+     ]
+    },
+    {
+     "d": "2026-03-18",
+     "chest": 101.3,
+     "other": [
+      {
+       "id": "grip",
+       "value": 52.123
+      },
+      {
+       "id": "lbf",
+       "value": 10,
+       "unit": "lb"
+      }
+     ]
+    },
+    {
+     "d": "2026-03-18",
+     "chest": 101.4
+    },
+    {
+     "d": "2026-03-28",
+     "hips": 99,
+     "other": []
+    }
+   ],
+   "customMeasurements": [
+    {
+     "id": "grip",
+     "name": "Grip",
+     "unit": "kg"
+    },
+    {
+     "id": "neckin",
+     "name": "=Neck, in",
+     "unit": "in"
+    },
+    {
+     "id": "score",
+     "name": "Sleep score",
+     "unit": "none"
+    },
+    {
+     "id": "lbf",
+     "name": "",
+     "unit": "lb"
+    }
+   ]
+  },
+  "from": "2026-03-10",
+  "to": null
+ },
+ {
+  "name": "to only",
+  "state": {
+   "unit": "kg",
+   "volumeWarmups": false,
+   "volumeBodyweight": false,
+   "bodyweight": [
+    {
+     "d": "2026-03-01",
+     "w": 70
+    },
+    {
+     "d": "2026-03-20",
+     "w": 74
+    },
+    {
+     "d": "2026-03-05",
+     "w": 71.2,
+     "ins": [
+      {
+       "id": "b",
+       "at": "21:10",
+       "w": 71.6,
+       "t": 5
+      },
+      {
+       "id": "a",
+       "at": "7:05",
+       "w": 71.2,
+       "t": 9
+      },
+      {
+       "id": "c",
+       "w": 71.4,
+       "t": 1
+      },
+      {
+       "id": null,
+       "w": 70
+      },
+      {
+       "id": "d",
+       "w": 0
+      }
+     ]
+    },
+    {
+     "d": "2026-03-12",
+     "w": 0
+    },
+    {
+     "d": "2026-03-25",
+     "w": 72.25,
+     "t": 1
+    }
+   ],
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "legs",
+     "ex": []
+    }
+   ],
+   "customEx": [
+    {
+     "id": "cx-plank",
+     "n": "my plank hold",
+     "custom": true,
+     "eq": "body weight",
+     "bp": "waist"
+    }
+   ],
+   "workouts": [
+    {
+     "id": "wA",
+     "d": "2026-03-02",
+     "start": 1772445600000,
+     "end": 1772449500000,
+     "routineId": "r1",
+     "name": "Upper",
+     "bw": 72.4,
+     "prs": [
+      "0025",
+      "0652"
+     ],
+     "vol": 1,
+     "entries": [
+      {
+       "id": "0025",
+       "note": "paused reps",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 40,
+         "r": 5,
+         "done": true,
+         "warmup": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true,
+         "rir": 2,
+         "hr": {
+          "avg": 118.4,
+          "max": 131
+         }
+        },
+        {
+         "w": 62.5,
+         "r": 7,
+         "done": true,
+         "rpe": 8.5,
+         "hr": {
+          "avg": 300,
+          "max": 310
+         }
+        },
+        {
+         "w": 62.5,
+         "r": 7,
+         "done": true,
+         "type": "dropset",
+         "drops": [
+          {
+           "w": 50,
+           "r": 5
+          },
+          {
+           "w": 40,
+           "r": 6
+          },
+          {
+           "w": 30,
+           "r": 0
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 12,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 6,
+         "done": true,
+         "failure": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": false
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "drops": [
+          {
+           "w": 50,
+           "r": 5
+          }
+         ],
+         "clusters": [
+          {
+           "r": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 12,
+        "weight": 60,
+        "intensifier": {
+         "type": "restpause"
+        }
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 12,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 6,
+           "restSec": 15
+          },
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          },
+          {
+           "r": 1,
+           "restSec": 15
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 14,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 6,
+           "restSec": 15
+          },
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          },
+          {
+           "r": 1,
+           "restSec": 15
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sg": "a",
+       "target": {
+        "id": "0652",
+        "sets": 2,
+        "reps": 12,
+        "weight": 0
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 12,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 8,
+         "done": true,
+         "rir": 0
+        }
+       ]
+      },
+      {
+       "id": "1454",
+       "sg": "a",
+       "target": {
+        "id": "1454",
+        "sets": 3,
+        "reps": 12,
+        "weight": 20,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 12,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 17.5,
+           "r": 6,
+           "done": true,
+           "rir": 1
+          }
+         }
+        },
+        {
+         "w": 20,
+         "r": 6,
+         "done": false,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 20,
+           "r": 0,
+           "done": false
+          }
+         }
+        },
+        {
+         "w": 20,
+         "r": 11,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true,
+           "type": "dropset",
+           "drops": [
+            {
+             "w": 15,
+             "r": 4
+            }
+           ]
+          },
+          "R": {
+           "w": 20,
+           "r": 5,
+           "done": true
+          }
+         }
+        }
+       ]
+      },
+      {
+       "id": "cx-plank",
+       "target": {
+        "id": "cx-plank",
+        "mode": "time",
+        "sets": 2
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        },
+        {
+         "sec": 95,
+         "w": 10,
+         "done": true,
+         "failure": true
+        }
+       ]
+      },
+      {
+       "id": "0289",
+       "target": {
+        "id": "0289",
+        "sets": 1,
+        "reps": 10,
+        "weight": 20,
+        "dbLoad": "each"
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0313",
+       "target": {
+        "id": "0313",
+        "sets": 1,
+        "reps": 10,
+        "weight": 24,
+        "dbLoad": {
+         "mode": "total"
+        }
+       },
+       "sets": [
+        {
+         "w": 24,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0292",
+       "target": {
+        "id": "0292",
+        "sets": 1,
+        "reps": 10,
+        "weight": 22,
+        "dbLoad": "each"
+       },
+       "sets": [
+        {
+         "w": 22,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0009",
+       "target": {
+        "id": "0009",
+        "sets": 1,
+        "reps": 8,
+        "weight": 20
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 1,
+        "reps": 20,
+        "weight": 0
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 20,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 1,
+        "reps": 20,
+        "weight": 0,
+        "bodyweight": false
+       },
+       "sets": [
+        {
+         "w": 5,
+         "r": 20,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "2197",
+       "target": {
+        "id": "2197",
+        "sets": 2
+       },
+       "sets": [
+        {
+         "min": 20,
+         "speed": 9.5,
+         "done": true
+        },
+        {
+         "min": 10.5,
+         "speed": 8,
+         "incline": 2.5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wB",
+     "d": "2026-03-02",
+     "start": 1772470800000,
+     "end": 1772472000000,
+     "routineId": "r2",
+     "name": "Lower",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 10,
+        "weight": 200
+       },
+       "sets": [
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 62.25,
+         "r": 3,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "w": 0,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wC",
+     "d": "2026-03-25",
+     "name": "Imported day",
+     "prs": [],
+     "entries": [
+      {
+       "id": "zz-gone",
+       "n": "Old machine",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "zz-gone2",
+       "sets": [
+        {
+         "sec": 30,
+         "done": true
+        },
+        {
+         "min": 5,
+         "speed": 6,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "w": 0,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "1019",
+       "sets": [
+        {
+         "w": 12,
+         "r": 10,
+         "done": true,
+         "unit": "sec"
+        }
+       ]
+      },
+      {
+       "id": "0025",
+       "sets": []
+      }
+     ]
+    },
+    {
+     "id": "wD",
+     "d": "2026-03-10",
+     "start": 1773136800000,
+     "end": 1773136830000,
+     "name": "Too short",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 100,
+         "r": 5,
+         "done": false
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "_ts": 1774000000000,
+   "measurements": [
+    {
+     "d": "2026-03-05",
+     "waist": 82.5,
+     "upperArmLeft": 35,
+     "bodyFat": 0,
+     "other": [
+      {
+       "id": "grip",
+       "value": 50,
+       "unit": "kg"
+      },
+      {
+       "id": "neckin",
+       "value": 38.1,
+       "unit": "in"
+      },
+      {
+       "id": "score",
+       "value": 7,
+       "unit": "none"
+      },
+      {
+       "id": "old",
+       "value": 12,
+       "name": "Old field"
+      },
+      {
+       "id": "gone",
+       "value": null
+      }
+     ]
+    },
+    {
+     "d": "2026-03-18",
+     "chest": 101.3,
+     "other": [
+      {
+       "id": "grip",
+       "value": 52.123
+      },
+      {
+       "id": "lbf",
+       "value": 10,
+       "unit": "lb"
+      }
+     ]
+    },
+    {
+     "d": "2026-03-18",
+     "chest": 101.4
+    },
+    {
+     "d": "2026-03-28",
+     "hips": 99,
+     "other": []
+    }
+   ],
+   "customMeasurements": [
+    {
+     "id": "grip",
+     "name": "Grip",
+     "unit": "kg"
+    },
+    {
+     "id": "neckin",
+     "name": "=Neck, in",
+     "unit": "in"
+    },
+    {
+     "id": "score",
+     "name": "Sleep score",
+     "unit": "none"
+    },
+    {
+     "id": "lbf",
+     "name": "",
+     "unit": "lb"
+    }
+   ]
+  },
+  "from": null,
+  "to": "2026-03-05"
+ },
+ {
+  "name": "one day",
+  "state": {
+   "unit": "kg",
+   "volumeWarmups": false,
+   "volumeBodyweight": false,
+   "bodyweight": [
+    {
+     "d": "2026-03-01",
+     "w": 70
+    },
+    {
+     "d": "2026-03-20",
+     "w": 74
+    },
+    {
+     "d": "2026-03-05",
+     "w": 71.2,
+     "ins": [
+      {
+       "id": "b",
+       "at": "21:10",
+       "w": 71.6,
+       "t": 5
+      },
+      {
+       "id": "a",
+       "at": "7:05",
+       "w": 71.2,
+       "t": 9
+      },
+      {
+       "id": "c",
+       "w": 71.4,
+       "t": 1
+      },
+      {
+       "id": null,
+       "w": 70
+      },
+      {
+       "id": "d",
+       "w": 0
+      }
+     ]
+    },
+    {
+     "d": "2026-03-12",
+     "w": 0
+    },
+    {
+     "d": "2026-03-25",
+     "w": 72.25,
+     "t": 1
+    }
+   ],
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "legs",
+     "ex": []
+    }
+   ],
+   "customEx": [
+    {
+     "id": "cx-plank",
+     "n": "my plank hold",
+     "custom": true,
+     "eq": "body weight",
+     "bp": "waist"
+    }
+   ],
+   "workouts": [
+    {
+     "id": "wA",
+     "d": "2026-03-02",
+     "start": 1772445600000,
+     "end": 1772449500000,
+     "routineId": "r1",
+     "name": "Upper",
+     "bw": 72.4,
+     "prs": [
+      "0025",
+      "0652"
+     ],
+     "vol": 1,
+     "entries": [
+      {
+       "id": "0025",
+       "note": "paused reps",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 40,
+         "r": 5,
+         "done": true,
+         "warmup": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true,
+         "rir": 2,
+         "hr": {
+          "avg": 118.4,
+          "max": 131
+         }
+        },
+        {
+         "w": 62.5,
+         "r": 7,
+         "done": true,
+         "rpe": 8.5,
+         "hr": {
+          "avg": 300,
+          "max": 310
+         }
+        },
+        {
+         "w": 62.5,
+         "r": 7,
+         "done": true,
+         "type": "dropset",
+         "drops": [
+          {
+           "w": 50,
+           "r": 5
+          },
+          {
+           "w": 40,
+           "r": 6
+          },
+          {
+           "w": 30,
+           "r": 0
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 12,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 6,
+         "done": true,
+         "failure": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": false
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "drops": [
+          {
+           "w": 50,
+           "r": 5
+          }
+         ],
+         "clusters": [
+          {
+           "r": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 12,
+        "weight": 60,
+        "intensifier": {
+         "type": "restpause"
+        }
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 12,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 6,
+           "restSec": 15
+          },
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          },
+          {
+           "r": 1,
+           "restSec": 15
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 14,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 6,
+           "restSec": 15
+          },
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          },
+          {
+           "r": 1,
+           "restSec": 15
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sg": "a",
+       "target": {
+        "id": "0652",
+        "sets": 2,
+        "reps": 12,
+        "weight": 0
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 12,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 8,
+         "done": true,
+         "rir": 0
+        }
+       ]
+      },
+      {
+       "id": "1454",
+       "sg": "a",
+       "target": {
+        "id": "1454",
+        "sets": 3,
+        "reps": 12,
+        "weight": 20,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 12,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 17.5,
+           "r": 6,
+           "done": true,
+           "rir": 1
+          }
+         }
+        },
+        {
+         "w": 20,
+         "r": 6,
+         "done": false,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 20,
+           "r": 0,
+           "done": false
+          }
+         }
+        },
+        {
+         "w": 20,
+         "r": 11,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true,
+           "type": "dropset",
+           "drops": [
+            {
+             "w": 15,
+             "r": 4
+            }
+           ]
+          },
+          "R": {
+           "w": 20,
+           "r": 5,
+           "done": true
+          }
+         }
+        }
+       ]
+      },
+      {
+       "id": "cx-plank",
+       "target": {
+        "id": "cx-plank",
+        "mode": "time",
+        "sets": 2
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        },
+        {
+         "sec": 95,
+         "w": 10,
+         "done": true,
+         "failure": true
+        }
+       ]
+      },
+      {
+       "id": "0289",
+       "target": {
+        "id": "0289",
+        "sets": 1,
+        "reps": 10,
+        "weight": 20,
+        "dbLoad": "each"
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0313",
+       "target": {
+        "id": "0313",
+        "sets": 1,
+        "reps": 10,
+        "weight": 24,
+        "dbLoad": {
+         "mode": "total"
+        }
+       },
+       "sets": [
+        {
+         "w": 24,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0292",
+       "target": {
+        "id": "0292",
+        "sets": 1,
+        "reps": 10,
+        "weight": 22,
+        "dbLoad": "each"
+       },
+       "sets": [
+        {
+         "w": 22,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0009",
+       "target": {
+        "id": "0009",
+        "sets": 1,
+        "reps": 8,
+        "weight": 20
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 1,
+        "reps": 20,
+        "weight": 0
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 20,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 1,
+        "reps": 20,
+        "weight": 0,
+        "bodyweight": false
+       },
+       "sets": [
+        {
+         "w": 5,
+         "r": 20,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "2197",
+       "target": {
+        "id": "2197",
+        "sets": 2
+       },
+       "sets": [
+        {
+         "min": 20,
+         "speed": 9.5,
+         "done": true
+        },
+        {
+         "min": 10.5,
+         "speed": 8,
+         "incline": 2.5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wB",
+     "d": "2026-03-02",
+     "start": 1772470800000,
+     "end": 1772472000000,
+     "routineId": "r2",
+     "name": "Lower",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 10,
+        "weight": 200
+       },
+       "sets": [
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 62.25,
+         "r": 3,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "w": 0,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wC",
+     "d": "2026-03-25",
+     "name": "Imported day",
+     "prs": [],
+     "entries": [
+      {
+       "id": "zz-gone",
+       "n": "Old machine",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "zz-gone2",
+       "sets": [
+        {
+         "sec": 30,
+         "done": true
+        },
+        {
+         "min": 5,
+         "speed": 6,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "w": 0,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "1019",
+       "sets": [
+        {
+         "w": 12,
+         "r": 10,
+         "done": true,
+         "unit": "sec"
+        }
+       ]
+      },
+      {
+       "id": "0025",
+       "sets": []
+      }
+     ]
+    },
+    {
+     "id": "wD",
+     "d": "2026-03-10",
+     "start": 1773136800000,
+     "end": 1773136830000,
+     "name": "Too short",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 100,
+         "r": 5,
+         "done": false
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "_ts": 1774000000000,
+   "measurements": [
+    {
+     "d": "2026-03-05",
+     "waist": 82.5,
+     "upperArmLeft": 35,
+     "bodyFat": 0,
+     "other": [
+      {
+       "id": "grip",
+       "value": 50,
+       "unit": "kg"
+      },
+      {
+       "id": "neckin",
+       "value": 38.1,
+       "unit": "in"
+      },
+      {
+       "id": "score",
+       "value": 7,
+       "unit": "none"
+      },
+      {
+       "id": "old",
+       "value": 12,
+       "name": "Old field"
+      },
+      {
+       "id": "gone",
+       "value": null
+      }
+     ]
+    },
+    {
+     "d": "2026-03-18",
+     "chest": 101.3,
+     "other": [
+      {
+       "id": "grip",
+       "value": 52.123
+      },
+      {
+       "id": "lbf",
+       "value": 10,
+       "unit": "lb"
+      }
+     ]
+    },
+    {
+     "d": "2026-03-18",
+     "chest": 101.4
+    },
+    {
+     "d": "2026-03-28",
+     "hips": 99,
+     "other": []
+    }
+   ],
+   "customMeasurements": [
+    {
+     "id": "grip",
+     "name": "Grip",
+     "unit": "kg"
+    },
+    {
+     "id": "neckin",
+     "name": "=Neck, in",
+     "unit": "in"
+    },
+    {
+     "id": "score",
+     "name": "Sleep score",
+     "unit": "none"
+    },
+    {
+     "id": "lbf",
+     "name": "",
+     "unit": "lb"
+    }
+   ]
+  },
+  "from": "2026-03-18",
+  "to": "2026-03-18"
+ },
+ {
+  "name": "nothing",
+  "state": {
+   "unit": "kg",
+   "volumeWarmups": false,
+   "volumeBodyweight": false,
+   "bodyweight": [
+    {
+     "d": "2026-03-01",
+     "w": 70
+    },
+    {
+     "d": "2026-03-20",
+     "w": 74
+    },
+    {
+     "d": "2026-03-05",
+     "w": 71.2,
+     "ins": [
+      {
+       "id": "b",
+       "at": "21:10",
+       "w": 71.6,
+       "t": 5
+      },
+      {
+       "id": "a",
+       "at": "7:05",
+       "w": 71.2,
+       "t": 9
+      },
+      {
+       "id": "c",
+       "w": 71.4,
+       "t": 1
+      },
+      {
+       "id": null,
+       "w": 70
+      },
+      {
+       "id": "d",
+       "w": 0
+      }
+     ]
+    },
+    {
+     "d": "2026-03-12",
+     "w": 0
+    },
+    {
+     "d": "2026-03-25",
+     "w": 72.25,
+     "t": 1
+    }
+   ],
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "legs",
+     "ex": []
+    }
+   ],
+   "customEx": [
+    {
+     "id": "cx-plank",
+     "n": "my plank hold",
+     "custom": true,
+     "eq": "body weight",
+     "bp": "waist"
+    }
+   ],
+   "workouts": [
+    {
+     "id": "wA",
+     "d": "2026-03-02",
+     "start": 1772445600000,
+     "end": 1772449500000,
+     "routineId": "r1",
+     "name": "Upper",
+     "bw": 72.4,
+     "prs": [
+      "0025",
+      "0652"
+     ],
+     "vol": 1,
+     "entries": [
+      {
+       "id": "0025",
+       "note": "paused reps",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 40,
+         "r": 5,
+         "done": true,
+         "warmup": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true,
+         "rir": 2,
+         "hr": {
+          "avg": 118.4,
+          "max": 131
+         }
+        },
+        {
+         "w": 62.5,
+         "r": 7,
+         "done": true,
+         "rpe": 8.5,
+         "hr": {
+          "avg": 300,
+          "max": 310
+         }
+        },
+        {
+         "w": 62.5,
+         "r": 7,
+         "done": true,
+         "type": "dropset",
+         "drops": [
+          {
+           "w": 50,
+           "r": 5
+          },
+          {
+           "w": 40,
+           "r": 6
+          },
+          {
+           "w": 30,
+           "r": 0
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 12,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 6,
+         "done": true,
+         "failure": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": false
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "drops": [
+          {
+           "w": 50,
+           "r": 5
+          }
+         ],
+         "clusters": [
+          {
+           "r": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 12,
+        "weight": 60,
+        "intensifier": {
+         "type": "restpause"
+        }
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 12,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 6,
+           "restSec": 15
+          },
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          },
+          {
+           "r": 1,
+           "restSec": 15
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 14,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 6,
+           "restSec": 15
+          },
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          },
+          {
+           "r": 1,
+           "restSec": 15
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sg": "a",
+       "target": {
+        "id": "0652",
+        "sets": 2,
+        "reps": 12,
+        "weight": 0
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 12,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 8,
+         "done": true,
+         "rir": 0
+        }
+       ]
+      },
+      {
+       "id": "1454",
+       "sg": "a",
+       "target": {
+        "id": "1454",
+        "sets": 3,
+        "reps": 12,
+        "weight": 20,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 12,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 17.5,
+           "r": 6,
+           "done": true,
+           "rir": 1
+          }
+         }
+        },
+        {
+         "w": 20,
+         "r": 6,
+         "done": false,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 20,
+           "r": 0,
+           "done": false
+          }
+         }
+        },
+        {
+         "w": 20,
+         "r": 11,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true,
+           "type": "dropset",
+           "drops": [
+            {
+             "w": 15,
+             "r": 4
+            }
+           ]
+          },
+          "R": {
+           "w": 20,
+           "r": 5,
+           "done": true
+          }
+         }
+        }
+       ]
+      },
+      {
+       "id": "cx-plank",
+       "target": {
+        "id": "cx-plank",
+        "mode": "time",
+        "sets": 2
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        },
+        {
+         "sec": 95,
+         "w": 10,
+         "done": true,
+         "failure": true
+        }
+       ]
+      },
+      {
+       "id": "0289",
+       "target": {
+        "id": "0289",
+        "sets": 1,
+        "reps": 10,
+        "weight": 20,
+        "dbLoad": "each"
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0313",
+       "target": {
+        "id": "0313",
+        "sets": 1,
+        "reps": 10,
+        "weight": 24,
+        "dbLoad": {
+         "mode": "total"
+        }
+       },
+       "sets": [
+        {
+         "w": 24,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0292",
+       "target": {
+        "id": "0292",
+        "sets": 1,
+        "reps": 10,
+        "weight": 22,
+        "dbLoad": "each"
+       },
+       "sets": [
+        {
+         "w": 22,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0009",
+       "target": {
+        "id": "0009",
+        "sets": 1,
+        "reps": 8,
+        "weight": 20
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 1,
+        "reps": 20,
+        "weight": 0
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 20,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 1,
+        "reps": 20,
+        "weight": 0,
+        "bodyweight": false
+       },
+       "sets": [
+        {
+         "w": 5,
+         "r": 20,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "2197",
+       "target": {
+        "id": "2197",
+        "sets": 2
+       },
+       "sets": [
+        {
+         "min": 20,
+         "speed": 9.5,
+         "done": true
+        },
+        {
+         "min": 10.5,
+         "speed": 8,
+         "incline": 2.5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wB",
+     "d": "2026-03-02",
+     "start": 1772470800000,
+     "end": 1772472000000,
+     "routineId": "r2",
+     "name": "Lower",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 10,
+        "weight": 200
+       },
+       "sets": [
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 62.25,
+         "r": 3,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "w": 0,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wC",
+     "d": "2026-03-25",
+     "name": "Imported day",
+     "prs": [],
+     "entries": [
+      {
+       "id": "zz-gone",
+       "n": "Old machine",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "zz-gone2",
+       "sets": [
+        {
+         "sec": 30,
+         "done": true
+        },
+        {
+         "min": 5,
+         "speed": 6,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "w": 0,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "1019",
+       "sets": [
+        {
+         "w": 12,
+         "r": 10,
+         "done": true,
+         "unit": "sec"
+        }
+       ]
+      },
+      {
+       "id": "0025",
+       "sets": []
+      }
+     ]
+    },
+    {
+     "id": "wD",
+     "d": "2026-03-10",
+     "start": 1773136800000,
+     "end": 1773136830000,
+     "name": "Too short",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 100,
+         "r": 5,
+         "done": false
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "_ts": 1774000000000,
+   "measurements": [
+    {
+     "d": "2026-03-05",
+     "waist": 82.5,
+     "upperArmLeft": 35,
+     "bodyFat": 0,
+     "other": [
+      {
+       "id": "grip",
+       "value": 50,
+       "unit": "kg"
+      },
+      {
+       "id": "neckin",
+       "value": 38.1,
+       "unit": "in"
+      },
+      {
+       "id": "score",
+       "value": 7,
+       "unit": "none"
+      },
+      {
+       "id": "old",
+       "value": 12,
+       "name": "Old field"
+      },
+      {
+       "id": "gone",
+       "value": null
+      }
+     ]
+    },
+    {
+     "d": "2026-03-18",
+     "chest": 101.3,
+     "other": [
+      {
+       "id": "grip",
+       "value": 52.123
+      },
+      {
+       "id": "lbf",
+       "value": 10,
+       "unit": "lb"
+      }
+     ]
+    },
+    {
+     "d": "2026-03-18",
+     "chest": 101.4
+    },
+    {
+     "d": "2026-03-28",
+     "hips": 99,
+     "other": []
+    }
+   ],
+   "customMeasurements": [
+    {
+     "id": "grip",
+     "name": "Grip",
+     "unit": "kg"
+    },
+    {
+     "id": "neckin",
+     "name": "=Neck, in",
+     "unit": "in"
+    },
+    {
+     "id": "score",
+     "name": "Sleep score",
+     "unit": "none"
+    },
+    {
+     "id": "lbf",
+     "name": "",
+     "unit": "lb"
+    }
+   ]
+  },
+  "from": "2027-01-01",
+  "to": "2027-01-31"
+ },
+ {
+  "name": "lb",
+  "state": {
+   "unit": "lb",
+   "volumeWarmups": false,
+   "volumeBodyweight": false,
+   "bodyweight": [
+    {
+     "d": "2026-03-01",
+     "w": 70
+    },
+    {
+     "d": "2026-03-20",
+     "w": 74
+    },
+    {
+     "d": "2026-03-05",
+     "w": 71.2,
+     "ins": [
+      {
+       "id": "b",
+       "at": "21:10",
+       "w": 71.6,
+       "t": 5
+      },
+      {
+       "id": "a",
+       "at": "7:05",
+       "w": 71.2,
+       "t": 9
+      },
+      {
+       "id": "c",
+       "w": 71.4,
+       "t": 1
+      },
+      {
+       "id": null,
+       "w": 70
+      },
+      {
+       "id": "d",
+       "w": 0
+      }
+     ]
+    },
+    {
+     "d": "2026-03-12",
+     "w": 0
+    },
+    {
+     "d": "2026-03-25",
+     "w": 72.25,
+     "t": 1
+    }
+   ],
+   "routines": [
+    {
+     "id": "r1",
+     "name": "Upper",
+     "emoji": "arms",
+     "ex": []
+    },
+    {
+     "id": "r2",
+     "name": "Lower",
+     "emoji": "legs",
+     "ex": []
+    }
+   ],
+   "customEx": [
+    {
+     "id": "cx-plank",
+     "n": "my plank hold",
+     "custom": true,
+     "eq": "body weight",
+     "bp": "waist"
+    }
+   ],
+   "workouts": [
+    {
+     "id": "wA",
+     "d": "2026-03-02",
+     "start": 1772445600000,
+     "end": 1772449500000,
+     "routineId": "r1",
+     "name": "Upper",
+     "bw": 72.4,
+     "prs": [
+      "0025",
+      "0652"
+     ],
+     "vol": 1,
+     "entries": [
+      {
+       "id": "0025",
+       "note": "paused reps",
+       "target": {
+        "id": "0025",
+        "sets": 3,
+        "reps": 8,
+        "weight": 60
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true,
+         "phase": "warmup"
+        },
+        {
+         "w": 40,
+         "r": 5,
+         "done": true,
+         "warmup": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": true,
+         "rir": 2,
+         "hr": {
+          "avg": 118.4,
+          "max": 131
+         }
+        },
+        {
+         "w": 62.5,
+         "r": 7,
+         "done": true,
+         "rpe": 8.5,
+         "hr": {
+          "avg": 300,
+          "max": 310
+         }
+        },
+        {
+         "w": 62.5,
+         "r": 7,
+         "done": true,
+         "type": "dropset",
+         "drops": [
+          {
+           "w": 50,
+           "r": 5
+          },
+          {
+           "w": 40,
+           "r": 6
+          },
+          {
+           "w": 30,
+           "r": 0
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 12,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 6,
+         "done": true,
+         "failure": true
+        },
+        {
+         "w": 60,
+         "r": 8,
+         "done": false
+        },
+        {
+         "w": 60,
+         "r": 5,
+         "done": true,
+         "drops": [
+          {
+           "w": 50,
+           "r": 5
+          }
+         ],
+         "clusters": [
+          {
+           "r": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "0025",
+       "target": {
+        "id": "0025",
+        "sets": 2,
+        "reps": 12,
+        "weight": 60,
+        "intensifier": {
+         "type": "restpause"
+        }
+       },
+       "sets": [
+        {
+         "w": 60,
+         "r": 12,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 6,
+           "restSec": 15
+          },
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          },
+          {
+           "r": 1,
+           "restSec": 15
+          }
+         ]
+        },
+        {
+         "w": 60,
+         "r": 14,
+         "done": true,
+         "type": "restpause",
+         "clusters": [
+          {
+           "r": 6,
+           "restSec": 15
+          },
+          {
+           "r": 3,
+           "restSec": 15
+          },
+          {
+           "r": 2,
+           "restSec": 15
+          },
+          {
+           "r": 1,
+           "restSec": 15
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sg": "a",
+       "target": {
+        "id": "0652",
+        "sets": 2,
+        "reps": 12,
+        "weight": 0
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 12,
+         "done": true
+        },
+        {
+         "w": 10,
+         "r": 8,
+         "done": true,
+         "rir": 0
+        }
+       ]
+      },
+      {
+       "id": "1454",
+       "sg": "a",
+       "target": {
+        "id": "1454",
+        "sets": 3,
+        "reps": 12,
+        "weight": 20,
+        "side": true
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 12,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 17.5,
+           "r": 6,
+           "done": true,
+           "rir": 1
+          }
+         }
+        },
+        {
+         "w": 20,
+         "r": 6,
+         "done": false,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true
+          },
+          "R": {
+           "w": 20,
+           "r": 0,
+           "done": false
+          }
+         }
+        },
+        {
+         "w": 20,
+         "r": 11,
+         "done": true,
+         "sides": {
+          "L": {
+           "w": 20,
+           "r": 6,
+           "done": true,
+           "type": "dropset",
+           "drops": [
+            {
+             "w": 15,
+             "r": 4
+            }
+           ]
+          },
+          "R": {
+           "w": 20,
+           "r": 5,
+           "done": true
+          }
+         }
+        }
+       ]
+      },
+      {
+       "id": "cx-plank",
+       "target": {
+        "id": "cx-plank",
+        "mode": "time",
+        "sets": 2
+       },
+       "sets": [
+        {
+         "sec": 45,
+         "w": 0,
+         "done": true
+        },
+        {
+         "sec": 95,
+         "w": 10,
+         "done": true,
+         "failure": true
+        }
+       ]
+      },
+      {
+       "id": "0289",
+       "target": {
+        "id": "0289",
+        "sets": 1,
+        "reps": 10,
+        "weight": 20,
+        "dbLoad": "each"
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0313",
+       "target": {
+        "id": "0313",
+        "sets": 1,
+        "reps": 10,
+        "weight": 24,
+        "dbLoad": {
+         "mode": "total"
+        }
+       },
+       "sets": [
+        {
+         "w": 24,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0292",
+       "target": {
+        "id": "0292",
+        "sets": 1,
+        "reps": 10,
+        "weight": 22,
+        "dbLoad": "each"
+       },
+       "sets": [
+        {
+         "w": 22,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0009",
+       "target": {
+        "id": "0009",
+        "sets": 1,
+        "reps": 8,
+        "weight": 20
+       },
+       "sets": [
+        {
+         "w": 20,
+         "r": 8,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 1,
+        "reps": 20,
+        "weight": 0
+       },
+       "sets": [
+        {
+         "w": 0,
+         "r": 20,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0662",
+       "target": {
+        "id": "0662",
+        "sets": 1,
+        "reps": 20,
+        "weight": 0,
+        "bodyweight": false
+       },
+       "sets": [
+        {
+         "w": 5,
+         "r": 20,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "2197",
+       "target": {
+        "id": "2197",
+        "sets": 2
+       },
+       "sets": [
+        {
+         "min": 20,
+         "speed": 9.5,
+         "done": true
+        },
+        {
+         "min": 10.5,
+         "speed": 8,
+         "incline": 2.5,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wB",
+     "d": "2026-03-02",
+     "start": 1772470800000,
+     "end": 1772472000000,
+     "routineId": "r2",
+     "name": "Lower",
+     "entries": [
+      {
+       "id": "0043",
+       "target": {
+        "id": "0043",
+        "sets": 3,
+        "reps": 10,
+        "weight": 200
+       },
+       "sets": [
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 200,
+         "r": 10,
+         "done": true
+        },
+        {
+         "w": 62.25,
+         "r": 3,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "w": 0,
+         "r": 10,
+         "done": true
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wC",
+     "d": "2026-03-25",
+     "name": "Imported day",
+     "prs": [],
+     "entries": [
+      {
+       "id": "zz-gone",
+       "n": "Old machine",
+       "sets": [
+        {
+         "w": 30,
+         "r": 10,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "zz-gone2",
+       "sets": [
+        {
+         "sec": 30,
+         "done": true
+        },
+        {
+         "min": 5,
+         "speed": 6,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "w": 0,
+         "r": 5,
+         "done": true
+        }
+       ]
+      },
+      {
+       "id": "1019",
+       "sets": [
+        {
+         "w": 12,
+         "r": 10,
+         "done": true,
+         "unit": "sec"
+        }
+       ]
+      },
+      {
+       "id": "0025",
+       "sets": []
+      }
+     ]
+    },
+    {
+     "id": "wD",
+     "d": "2026-03-10",
+     "start": 1773136800000,
+     "end": 1773136830000,
+     "name": "Too short",
+     "entries": [
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "w": 100,
+         "r": 5,
+         "done": false
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "_ts": 1774000000000,
+   "measurements": [
+    {
+     "d": "2026-03-05",
+     "waist": 82.5,
+     "upperArmLeft": 35,
+     "bodyFat": 0,
+     "other": [
+      {
+       "id": "grip",
+       "value": 50,
+       "unit": "kg"
+      },
+      {
+       "id": "neckin",
+       "value": 38.1,
+       "unit": "in"
+      },
+      {
+       "id": "score",
+       "value": 7,
+       "unit": "none"
+      },
+      {
+       "id": "old",
+       "value": 12,
+       "name": "Old field"
+      },
+      {
+       "id": "gone",
+       "value": null
+      }
+     ]
+    },
+    {
+     "d": "2026-03-18",
+     "chest": 101.3,
+     "other": [
+      {
+       "id": "grip",
+       "value": 52.123
+      },
+      {
+       "id": "lbf",
+       "value": 10,
+       "unit": "lb"
+      }
+     ]
+    },
+    {
+     "d": "2026-03-18",
+     "chest": 101.4
+    },
+    {
+     "d": "2026-03-28",
+     "hips": 99,
+     "other": []
+    }
+   ],
+   "customMeasurements": [
+    {
+     "id": "grip",
+     "name": "Grip",
+     "unit": "kg"
+    },
+    {
+     "id": "neckin",
+     "name": "=Neck, in",
+     "unit": "in"
+    },
+    {
+     "id": "score",
+     "name": "Sleep score",
+     "unit": "none"
+    },
+    {
+     "id": "lbf",
+     "name": "",
+     "unit": "lb"
+    }
+   ]
+  },
+  "from": null,
+  "to": null
+ }
+]
