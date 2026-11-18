@@ -63,7 +63,8 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
         }
         note("snap -> \(what) reachable=\(wc.isReachable) app=\(UIApplication.shared.applicationState == .active ? "open" : "background")")
         if wc.isReachable {
-            wc.sendMessage(payload, replyHandler: nil) { [weak self] error in self?.note("snap message failed: \(error.localizedDescription)") }
+            // @Sendable: WatchConnectivity calls this on its own queue; a main-actor closure traps there.
+            wc.sendMessage(payload, replyHandler: nil) { @Sendable [weak self] error in self?.note("snap message failed: \(error.localizedDescription)") }
         }
     }
 
