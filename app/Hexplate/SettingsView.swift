@@ -326,6 +326,9 @@ private struct ReminderSection: View {
                     }
                 }
             }
+            if model.root["modules"]?.object?["motivation"] != .bool(false) {
+                Toggle("Your year in Hexplate", isOn: Binding(get: { Wrapped.notifyOn(model.root) }, set: { model.set("wrappedNotify", .bool($0)) }))
+            }
         } header: {
             Text("Reminders")
         } footer: {
@@ -333,6 +336,7 @@ private struct ReminderSection: View {
                 Text("Reminds you at this time on days that have a routine planned.")
                     + (Reminders.truthy(r["nudge"]) ? Text(verbatim: " ") + Text("One nudge in the evening of a planned day with nothing logged, between 20:00 and 21:30. After 3 missed days in a row it goes quiet until your next workout.") : Text(verbatim: ""))
             }
+            Text("One notification on 1 December when your year is ready.")
         }
     }
 }

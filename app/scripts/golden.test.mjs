@@ -622,3 +622,30 @@ it('writes the challenge golden file', async () => {
   })
   writeFileSync(process.env.CHAL_OUT, JSON.stringify(out, null, 1) + '\n')
 })
+
+// "Your year": the year's numbers, its comparison and personality, the cards it makes, the years,
+// the season's Home card and the notification plan.
+it('writes the wrapped golden file', async () => {
+  if (!process.env.WRAP_IN) return
+  const Wr = await import('../../frontend/src/lib/wrapped.js')
+  const { wrappedCards } = await import('../../frontend/src/lib/wrapped-cards.js')
+  const cases = JSON.parse(readFileSync(process.env.WRAP_IN, 'utf8'))
+  setWeightDecimals(1)
+  const at = v => { const [d, t] = v.split('T'), [y, m, dd] = d.split('-').map(Number), [h, mi] = t.split(':').map(Number); return new Date(y, m - 1, dd, h, mi) }
+  const out = cases.map(c => {
+    const now = at(c.now)
+    vi.useFakeTimers(); vi.setSystemTime(now)
+    const S = structuredClone(c.state)
+    registerCustom(S.customEx || [])
+    const st = Wr.yearStats(S, c.year)
+    const plan = Wr.notificationPlan(S, now, { granted: true })
+    const r = {
+      name: c.name, stats: st, personality: Wr.personalityOf(st), comparison: st ? Wr.comparisonFor(st.volumeKg) : null,
+      cards: wrappedCards(st, S).map(k => k.id), years: Wr.wrappedYears(S), season: Wr.seasonYear(now), home: Wr.homeCardYear(S, now),
+      notify: plan.action === 'schedule' ? plan.at.getTime() : null, withOpened: Wr.withYear(S, 'opened', c.year),
+    }
+    vi.useRealTimers()
+    return JSON.parse(JSON.stringify(r))
+  })
+  writeFileSync(process.env.WRAP_OUT, JSON.stringify(out, null, 1) + '\n')
+})

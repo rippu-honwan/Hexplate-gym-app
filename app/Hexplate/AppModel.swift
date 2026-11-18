@@ -34,6 +34,8 @@ final class AppModel {
     var today = Day.today()
     /// The live workout screen is up (it can be minimised while the session runs).
     var showWorkout = false
+    /// The year "Your year" shows full screen (WrappedStory), nil when closed.
+    var wrappedYear: Int?
     /// The tab on screen.
     var tab = "today"
     /// MyGym: Start set pressed on the phone, and the set the watch says it records.

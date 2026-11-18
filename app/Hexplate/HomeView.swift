@@ -40,6 +40,7 @@ struct HomeView: View {
                     }
                 }
 
+                WrappedHomeSection()
                 StreakPartySection()
                 ChallengesSection()
 

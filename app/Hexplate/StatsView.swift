@@ -34,6 +34,7 @@ struct StatsView: View {
                 daysSection
                 strengthSection
                 TrophyShelfSection()
+                WrappedYearsSection()
                 Section {
                     NavigationLink("Structural balance") { BalanceView() }
                 } footer: {

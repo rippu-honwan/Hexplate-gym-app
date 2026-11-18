@@ -1,0 +1,1214 @@
+[
+ {
+  "name": "2026",
+  "stats": {
+   "year": 2026,
+   "unit": "kg",
+   "workouts": 18,
+   "days": 18,
+   "perWeek": 0.3673469387755102,
+   "ms": 45000000,
+   "timed": 12,
+   "avgMs": 3750000,
+   "volume": 40260,
+   "volumeKg": 40260,
+   "sets": 68,
+   "streak": {
+    "weeks": 6,
+    "from": "2026-01-05",
+    "to": "2026-02-09"
+   },
+   "topExercise": {
+    "id": "0043",
+    "sets": 15,
+    "name": null
+   },
+   "topMuscle": {
+    "id": "quadriceps",
+    "share": 0.13711340206185565
+   },
+   "load": {
+    "quadriceps": 26.599999999999998,
+    "gluteal": 25,
+    "adductors": 25,
+    "hamstring": 10,
+    "calves": 7.600000000000001,
+    "lower-back": 6.000000000000001,
+    "abs": 9.600000000000003,
+    "obliques": 6.000000000000001,
+    "deltoids": 18.000000000000004,
+    "chest": 15,
+    "triceps": 6.000000000000001,
+    "upper-back": 20,
+    "biceps": 8,
+    "forearm": 8,
+    "trapezius": 1.6,
+    "cardiovascular system": 4,
+    "hip-flexors": 1.6
+   },
+   "distinctExercises": 9,
+   "prs": 4,
+   "biggestPr": {
+    "id": "0025",
+    "w": 75,
+    "d": "2026-02-02",
+    "gain": 15,
+    "prev": 60
+   },
+   "favDay": {
+    "day": 1,
+    "n": 11
+   },
+   "daypart": {
+    "part": "morning",
+    "n": 6
+   },
+   "bestMonth": {
+    "month": 0,
+    "n": 5,
+    "vol": 13068
+   },
+   "months": [
+    5,
+    3,
+    3,
+    1,
+    2,
+    1,
+    0,
+    2,
+    0,
+    1,
+    0,
+    0
+   ],
+   "body": {
+    "from": 82,
+    "to": 79.9,
+    "delta": -2.0999999999999943,
+    "n": 4,
+    "fromDay": "2026-01-02",
+    "toDay": "2026-12-01"
+   },
+   "shares": {
+    "legs": 0.4855670103092783,
+    "upper": 0.39484536082474225,
+    "cardio": 0.058823529411764705,
+    "early": 0.5,
+    "late": 0,
+    "weekend": 0.2777777777777778
+   },
+   "first": "2026-01-05"
+  },
+  "personality": "early",
+  "comparison": {
+   "key": "trex",
+   "count": 5
+  },
+  "cards": [
+   "intro",
+   "workouts",
+   "time",
+   "volume",
+   "streak",
+   "top",
+   "records",
+   "rhythm",
+   "month",
+   "body",
+   "personality",
+   "summary"
+  ],
+  "years": [
+   2026,
+   2025
+  ],
+  "season": 2026,
+  "home": 2026,
+  "notify": null,
+  "withOpened": {
+   "opened": [
+    2026
+   ],
+   "dismissed": [],
+   "phone": null
+  }
+ },
+ {
+  "name": "2026 mid-year",
+  "stats": {
+   "year": 2026,
+   "unit": "kg",
+   "workouts": 18,
+   "days": 18,
+   "perWeek": 0.4,
+   "ms": 45000000,
+   "timed": 12,
+   "avgMs": 3750000,
+   "volume": 40260,
+   "volumeKg": 40260,
+   "sets": 68,
+   "streak": {
+    "weeks": 6,
+    "from": "2026-01-05",
+    "to": "2026-02-09"
+   },
+   "topExercise": {
+    "id": "0043",
+    "sets": 15,
+    "name": null
+   },
+   "topMuscle": {
+    "id": "quadriceps",
+    "share": 0.13711340206185565
+   },
+   "load": {
+    "quadriceps": 26.599999999999998,
+    "gluteal": 25,
+    "adductors": 25,
+    "hamstring": 10,
+    "calves": 7.600000000000001,
+    "lower-back": 6.000000000000001,
+    "abs": 9.600000000000003,
+    "obliques": 6.000000000000001,
+    "deltoids": 18.000000000000004,
+    "chest": 15,
+    "triceps": 6.000000000000001,
+    "upper-back": 20,
+    "biceps": 8,
+    "forearm": 8,
+    "trapezius": 1.6,
+    "cardiovascular system": 4,
+    "hip-flexors": 1.6
+   },
+   "distinctExercises": 9,
+   "prs": 4,
+   "biggestPr": {
+    "id": "0025",
+    "w": 75,
+    "d": "2026-02-02",
+    "gain": 15,
+    "prev": 60
+   },
+   "favDay": {
+    "day": 1,
+    "n": 11
+   },
+   "daypart": {
+    "part": "morning",
+    "n": 6
+   },
+   "bestMonth": {
+    "month": 0,
+    "n": 5,
+    "vol": 13068
+   },
+   "months": [
+    5,
+    3,
+    3,
+    1,
+    2,
+    1,
+    0,
+    2,
+    0,
+    1,
+    0,
+    0
+   ],
+   "body": {
+    "from": 82,
+    "to": 79.9,
+    "delta": -2.0999999999999943,
+    "n": 4,
+    "fromDay": "2026-01-02",
+    "toDay": "2026-12-01"
+   },
+   "shares": {
+    "legs": 0.4855670103092783,
+    "upper": 0.39484536082474225,
+    "cardio": 0.058823529411764705,
+    "early": 0.5,
+    "late": 0,
+    "weekend": 0.2777777777777778
+   },
+   "first": "2026-01-05"
+  },
+  "personality": "early",
+  "comparison": {
+   "key": "trex",
+   "count": 5
+  },
+  "cards": [
+   "intro",
+   "workouts",
+   "time",
+   "volume",
+   "streak",
+   "top",
+   "records",
+   "rhythm",
+   "month",
+   "body",
+   "personality",
+   "summary"
+  ],
+  "years": [
+   2026,
+   2025
+  ],
+  "season": null,
+  "home": null,
+  "notify": 1796115600000,
+  "withOpened": {
+   "opened": [
+    2026
+   ],
+   "dismissed": [],
+   "phone": null
+  }
+ },
+ {
+  "name": "2025",
+  "stats": {
+   "year": 2025,
+   "unit": "kg",
+   "workouts": 2,
+   "days": 2,
+   "perWeek": 0.2222222222222222,
+   "ms": 6600000,
+   "timed": 2,
+   "avgMs": 3300000,
+   "volume": 5850,
+   "volumeKg": 5850,
+   "sets": 7,
+   "streak": {
+    "weeks": 1,
+    "from": "2025-11-03",
+    "to": "2025-11-03"
+   },
+   "topExercise": {
+    "id": "0043",
+    "sets": 4,
+    "name": null
+   },
+   "topMuscle": {
+    "id": "gluteal",
+    "share": 0.2097902097902098
+   },
+   "load": {
+    "deltoids": 0.4,
+    "chest": 1,
+    "triceps": 0.4,
+    "quadriceps": 6,
+    "gluteal": 6,
+    "adductors": 6,
+    "hamstring": 2.4000000000000004,
+    "calves": 1.6,
+    "lower-back": 1.6,
+    "abs": 1.6,
+    "obliques": 1.6
+   },
+   "distinctExercises": 3,
+   "prs": 0,
+   "biggestPr": null,
+   "favDay": {
+    "day": 1,
+    "n": 2
+   },
+   "daypart": {
+    "part": "morning",
+    "n": 1
+   },
+   "bestMonth": {
+    "month": 11,
+    "n": 1,
+    "vol": 5100
+   },
+   "months": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1
+   ],
+   "body": null,
+   "shares": {
+    "legs": 0.7692307692307692,
+    "upper": 0.06293706293706293,
+    "cardio": 0,
+    "early": 0.5,
+    "late": 0,
+    "weekend": 0
+   },
+   "first": "2025-11-03"
+  },
+  "personality": "legs",
+  "comparison": {
+   "key": "car",
+   "count": 3.9
+  },
+  "cards": [
+   "intro",
+   "workouts",
+   "time",
+   "volume",
+   "streak",
+   "top",
+   "rhythm",
+   "personality",
+   "summary"
+  ],
+  "years": [
+   2026,
+   2025
+  ],
+  "season": 2025,
+  "home": 2025,
+  "notify": null,
+  "withOpened": {
+   "opened": [
+    2025
+   ],
+   "dismissed": [],
+   "phone": null
+  }
+ },
+ {
+  "name": "no workouts that year",
+  "stats": null,
+  "personality": "steady",
+  "comparison": null,
+  "cards": [],
+  "years": [
+   2026,
+   2025
+  ],
+  "season": 2026,
+  "home": 2026,
+  "notify": null,
+  "withOpened": {
+   "opened": [
+    2024
+   ],
+   "dismissed": [],
+   "phone": null
+  }
+ },
+ {
+  "name": "lb",
+  "stats": {
+   "year": 2026,
+   "unit": "lb",
+   "workouts": 18,
+   "days": 18,
+   "perWeek": 0.3673469387755102,
+   "ms": 45000000,
+   "timed": 12,
+   "avgMs": 3750000,
+   "volume": 40260,
+   "volumeKg": 18261.628816200002,
+   "sets": 68,
+   "streak": {
+    "weeks": 6,
+    "from": "2026-01-05",
+    "to": "2026-02-09"
+   },
+   "topExercise": {
+    "id": "0043",
+    "sets": 15,
+    "name": null
+   },
+   "topMuscle": {
+    "id": "quadriceps",
+    "share": 0.13711340206185565
+   },
+   "load": {
+    "quadriceps": 26.599999999999998,
+    "gluteal": 25,
+    "adductors": 25,
+    "hamstring": 10,
+    "calves": 7.600000000000001,
+    "lower-back": 6.000000000000001,
+    "abs": 9.600000000000003,
+    "obliques": 6.000000000000001,
+    "deltoids": 18.000000000000004,
+    "chest": 15,
+    "triceps": 6.000000000000001,
+    "upper-back": 20,
+    "biceps": 8,
+    "forearm": 8,
+    "trapezius": 1.6,
+    "cardiovascular system": 4,
+    "hip-flexors": 1.6
+   },
+   "distinctExercises": 9,
+   "prs": 4,
+   "biggestPr": {
+    "id": "0025",
+    "w": 75,
+    "d": "2026-02-02",
+    "gain": 15,
+    "prev": 60
+   },
+   "favDay": {
+    "day": 1,
+    "n": 11
+   },
+   "daypart": {
+    "part": "morning",
+    "n": 6
+   },
+   "bestMonth": {
+    "month": 0,
+    "n": 5,
+    "vol": 13068
+   },
+   "months": [
+    5,
+    3,
+    3,
+    1,
+    2,
+    1,
+    0,
+    2,
+    0,
+    1,
+    0,
+    0
+   ],
+   "body": {
+    "from": 82,
+    "to": 79.9,
+    "delta": -2.0999999999999943,
+    "n": 4,
+    "fromDay": "2026-01-02",
+    "toDay": "2026-12-01"
+   },
+   "shares": {
+    "legs": 0.4855670103092783,
+    "upper": 0.39484536082474225,
+    "cardio": 0.058823529411764705,
+    "early": 0.5,
+    "late": 0,
+    "weekend": 0.2777777777777778
+   },
+   "first": "2026-01-05"
+  },
+  "personality": "early",
+  "comparison": {
+   "key": "trex",
+   "count": 2.3
+  },
+  "cards": [
+   "intro",
+   "workouts",
+   "time",
+   "volume",
+   "streak",
+   "top",
+   "records",
+   "rhythm",
+   "month",
+   "body",
+   "personality",
+   "summary"
+  ],
+  "years": [
+   2026,
+   2025
+  ],
+  "season": 2026,
+  "home": 2026,
+  "notify": null,
+  "withOpened": {
+   "opened": [
+    2026
+   ],
+   "dismissed": [],
+   "phone": null
+  }
+ },
+ {
+  "name": "sunday weeks, body off",
+  "stats": {
+   "year": 2026,
+   "unit": "kg",
+   "workouts": 18,
+   "days": 18,
+   "perWeek": 0.3673469387755102,
+   "ms": 45000000,
+   "timed": 12,
+   "avgMs": 3750000,
+   "volume": 40260,
+   "volumeKg": 40260,
+   "sets": 68,
+   "streak": {
+    "weeks": 7,
+    "from": "2026-01-04",
+    "to": "2026-02-15"
+   },
+   "topExercise": {
+    "id": "0043",
+    "sets": 15,
+    "name": null
+   },
+   "topMuscle": {
+    "id": "quadriceps",
+    "share": 0.13711340206185565
+   },
+   "load": {
+    "quadriceps": 26.599999999999998,
+    "gluteal": 25,
+    "adductors": 25,
+    "hamstring": 10,
+    "calves": 7.600000000000001,
+    "lower-back": 6.000000000000001,
+    "abs": 9.600000000000003,
+    "obliques": 6.000000000000001,
+    "deltoids": 18.000000000000004,
+    "chest": 15,
+    "triceps": 6.000000000000001,
+    "upper-back": 20,
+    "biceps": 8,
+    "forearm": 8,
+    "trapezius": 1.6,
+    "cardiovascular system": 4,
+    "hip-flexors": 1.6
+   },
+   "distinctExercises": 9,
+   "prs": 4,
+   "biggestPr": {
+    "id": "0025",
+    "w": 75,
+    "d": "2026-02-02",
+    "gain": 15,
+    "prev": 60
+   },
+   "favDay": {
+    "day": 1,
+    "n": 11
+   },
+   "daypart": {
+    "part": "morning",
+    "n": 6
+   },
+   "bestMonth": {
+    "month": 0,
+    "n": 5,
+    "vol": 13068
+   },
+   "months": [
+    5,
+    3,
+    3,
+    1,
+    2,
+    1,
+    0,
+    2,
+    0,
+    1,
+    0,
+    0
+   ],
+   "body": null,
+   "shares": {
+    "legs": 0.4855670103092783,
+    "upper": 0.39484536082474225,
+    "cardio": 0.058823529411764705,
+    "early": 0.5,
+    "late": 0,
+    "weekend": 0.2777777777777778
+   },
+   "first": "2026-01-05"
+  },
+  "personality": "early",
+  "comparison": {
+   "key": "trex",
+   "count": 5
+  },
+  "cards": [
+   "intro",
+   "workouts",
+   "time",
+   "volume",
+   "streak",
+   "top",
+   "records",
+   "rhythm",
+   "month",
+   "personality",
+   "summary"
+  ],
+  "years": [
+   2026,
+   2025
+  ],
+  "season": 2026,
+  "home": 2026,
+  "notify": null,
+  "withOpened": {
+   "opened": [
+    2026
+   ],
+   "dismissed": [],
+   "phone": null
+  }
+ },
+ {
+  "name": "opened",
+  "stats": {
+   "year": 2026,
+   "unit": "kg",
+   "workouts": 18,
+   "days": 18,
+   "perWeek": 0.34615384615384615,
+   "ms": 45000000,
+   "timed": 12,
+   "avgMs": 3750000,
+   "volume": 40260,
+   "volumeKg": 40260,
+   "sets": 68,
+   "streak": {
+    "weeks": 6,
+    "from": "2026-01-05",
+    "to": "2026-02-09"
+   },
+   "topExercise": {
+    "id": "0043",
+    "sets": 15,
+    "name": null
+   },
+   "topMuscle": {
+    "id": "quadriceps",
+    "share": 0.13711340206185565
+   },
+   "load": {
+    "quadriceps": 26.599999999999998,
+    "gluteal": 25,
+    "adductors": 25,
+    "hamstring": 10,
+    "calves": 7.600000000000001,
+    "lower-back": 6.000000000000001,
+    "abs": 9.600000000000003,
+    "obliques": 6.000000000000001,
+    "deltoids": 18.000000000000004,
+    "chest": 15,
+    "triceps": 6.000000000000001,
+    "upper-back": 20,
+    "biceps": 8,
+    "forearm": 8,
+    "trapezius": 1.6,
+    "cardiovascular system": 4,
+    "hip-flexors": 1.6
+   },
+   "distinctExercises": 9,
+   "prs": 4,
+   "biggestPr": {
+    "id": "0025",
+    "w": 75,
+    "d": "2026-02-02",
+    "gain": 15,
+    "prev": 60
+   },
+   "favDay": {
+    "day": 1,
+    "n": 11
+   },
+   "daypart": {
+    "part": "morning",
+    "n": 6
+   },
+   "bestMonth": {
+    "month": 0,
+    "n": 5,
+    "vol": 13068
+   },
+   "months": [
+    5,
+    3,
+    3,
+    1,
+    2,
+    1,
+    0,
+    2,
+    0,
+    1,
+    0,
+    0
+   ],
+   "body": {
+    "from": 82,
+    "to": 79.9,
+    "delta": -2.0999999999999943,
+    "n": 4,
+    "fromDay": "2026-01-02",
+    "toDay": "2026-12-01"
+   },
+   "shares": {
+    "legs": 0.4855670103092783,
+    "upper": 0.39484536082474225,
+    "cardio": 0.058823529411764705,
+    "early": 0.5,
+    "late": 0,
+    "weekend": 0.2777777777777778
+   },
+   "first": "2026-01-05"
+  },
+  "personality": "early",
+  "comparison": {
+   "key": "trex",
+   "count": 5
+  },
+  "cards": [
+   "intro",
+   "workouts",
+   "time",
+   "volume",
+   "streak",
+   "top",
+   "records",
+   "rhythm",
+   "month",
+   "body",
+   "personality",
+   "summary"
+  ],
+  "years": [
+   2026,
+   2025
+  ],
+  "season": 2026,
+  "home": null,
+  "notify": null,
+  "withOpened": {
+   "opened": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2026
+   ],
+   "dismissed": [],
+   "phone": null
+  }
+ },
+ {
+  "name": "dismissed, notify off",
+  "stats": {
+   "year": 2026,
+   "unit": "kg",
+   "workouts": 18,
+   "days": 18,
+   "perWeek": 0.375,
+   "ms": 45000000,
+   "timed": 12,
+   "avgMs": 3750000,
+   "volume": 40260,
+   "volumeKg": 40260,
+   "sets": 68,
+   "streak": {
+    "weeks": 6,
+    "from": "2026-01-05",
+    "to": "2026-02-09"
+   },
+   "topExercise": {
+    "id": "0043",
+    "sets": 15,
+    "name": null
+   },
+   "topMuscle": {
+    "id": "quadriceps",
+    "share": 0.13711340206185565
+   },
+   "load": {
+    "quadriceps": 26.599999999999998,
+    "gluteal": 25,
+    "adductors": 25,
+    "hamstring": 10,
+    "calves": 7.600000000000001,
+    "lower-back": 6.000000000000001,
+    "abs": 9.600000000000003,
+    "obliques": 6.000000000000001,
+    "deltoids": 18.000000000000004,
+    "chest": 15,
+    "triceps": 6.000000000000001,
+    "upper-back": 20,
+    "biceps": 8,
+    "forearm": 8,
+    "trapezius": 1.6,
+    "cardiovascular system": 4,
+    "hip-flexors": 1.6
+   },
+   "distinctExercises": 9,
+   "prs": 4,
+   "biggestPr": {
+    "id": "0025",
+    "w": 75,
+    "d": "2026-02-02",
+    "gain": 15,
+    "prev": 60
+   },
+   "favDay": {
+    "day": 1,
+    "n": 11
+   },
+   "daypart": {
+    "part": "morning",
+    "n": 6
+   },
+   "bestMonth": {
+    "month": 0,
+    "n": 5,
+    "vol": 13068
+   },
+   "months": [
+    5,
+    3,
+    3,
+    1,
+    2,
+    1,
+    0,
+    2,
+    0,
+    1,
+    0,
+    0
+   ],
+   "body": {
+    "from": 82,
+    "to": 79.9,
+    "delta": -2.0999999999999943,
+    "n": 4,
+    "fromDay": "2026-01-02",
+    "toDay": "2026-12-01"
+   },
+   "shares": {
+    "legs": 0.4855670103092783,
+    "upper": 0.39484536082474225,
+    "cardio": 0.058823529411764705,
+    "early": 0.5,
+    "late": 0,
+    "weekend": 0.2777777777777778
+   },
+   "first": "2026-01-05"
+  },
+  "personality": "early",
+  "comparison": {
+   "key": "trex",
+   "count": 5
+  },
+  "cards": [
+   "intro",
+   "workouts",
+   "time",
+   "volume",
+   "streak",
+   "top",
+   "records",
+   "rhythm",
+   "month",
+   "body",
+   "personality",
+   "summary"
+  ],
+  "years": [
+   2026,
+   2025
+  ],
+  "season": 2026,
+  "home": null,
+  "notify": null,
+  "withOpened": {
+   "opened": [
+    2026
+   ],
+   "dismissed": [
+    2026
+   ],
+   "phone": null
+  }
+ },
+ {
+  "name": "out of season",
+  "stats": {
+   "year": 2026,
+   "unit": "kg",
+   "workouts": 18,
+   "days": 18,
+   "perWeek": 0.4090909090909091,
+   "ms": 45000000,
+   "timed": 12,
+   "avgMs": 3750000,
+   "volume": 40260,
+   "volumeKg": 40260,
+   "sets": 68,
+   "streak": {
+    "weeks": 6,
+    "from": "2026-01-05",
+    "to": "2026-02-09"
+   },
+   "topExercise": {
+    "id": "0043",
+    "sets": 15,
+    "name": null
+   },
+   "topMuscle": {
+    "id": "quadriceps",
+    "share": 0.13711340206185565
+   },
+   "load": {
+    "quadriceps": 26.599999999999998,
+    "gluteal": 25,
+    "adductors": 25,
+    "hamstring": 10,
+    "calves": 7.600000000000001,
+    "lower-back": 6.000000000000001,
+    "abs": 9.600000000000003,
+    "obliques": 6.000000000000001,
+    "deltoids": 18.000000000000004,
+    "chest": 15,
+    "triceps": 6.000000000000001,
+    "upper-back": 20,
+    "biceps": 8,
+    "forearm": 8,
+    "trapezius": 1.6,
+    "cardiovascular system": 4,
+    "hip-flexors": 1.6
+   },
+   "distinctExercises": 9,
+   "prs": 4,
+   "biggestPr": {
+    "id": "0025",
+    "w": 75,
+    "d": "2026-02-02",
+    "gain": 15,
+    "prev": 60
+   },
+   "favDay": {
+    "day": 1,
+    "n": 11
+   },
+   "daypart": {
+    "part": "morning",
+    "n": 6
+   },
+   "bestMonth": {
+    "month": 0,
+    "n": 5,
+    "vol": 13068
+   },
+   "months": [
+    5,
+    3,
+    3,
+    1,
+    2,
+    1,
+    0,
+    2,
+    0,
+    1,
+    0,
+    0
+   ],
+   "body": {
+    "from": 82,
+    "to": 79.9,
+    "delta": -2.0999999999999943,
+    "n": 4,
+    "fromDay": "2026-01-02",
+    "toDay": "2026-12-01"
+   },
+   "shares": {
+    "legs": 0.4855670103092783,
+    "upper": 0.39484536082474225,
+    "cardio": 0.058823529411764705,
+    "early": 0.5,
+    "late": 0,
+    "weekend": 0.2777777777777778
+   },
+   "first": "2026-01-05"
+  },
+  "personality": "early",
+  "comparison": {
+   "key": "trex",
+   "count": 5
+  },
+  "cards": [
+   "intro",
+   "workouts",
+   "time",
+   "volume",
+   "streak",
+   "top",
+   "records",
+   "rhythm",
+   "month",
+   "body",
+   "personality",
+   "summary"
+  ],
+  "years": [
+   2026,
+   2025
+  ],
+  "season": null,
+  "home": null,
+  "notify": null,
+  "withOpened": {
+   "opened": [
+    2026
+   ],
+   "dismissed": [],
+   "phone": null
+  }
+ },
+ {
+  "name": "notify planned",
+  "stats": {
+   "year": 2026,
+   "unit": "kg",
+   "workouts": 18,
+   "days": 18,
+   "perWeek": 0.375,
+   "ms": 45000000,
+   "timed": 12,
+   "avgMs": 3750000,
+   "volume": 40260,
+   "volumeKg": 40260,
+   "sets": 68,
+   "streak": {
+    "weeks": 6,
+    "from": "2026-01-05",
+    "to": "2026-02-09"
+   },
+   "topExercise": {
+    "id": "0043",
+    "sets": 15,
+    "name": null
+   },
+   "topMuscle": {
+    "id": "quadriceps",
+    "share": 0.13711340206185565
+   },
+   "load": {
+    "quadriceps": 26.599999999999998,
+    "gluteal": 25,
+    "adductors": 25,
+    "hamstring": 10,
+    "calves": 7.600000000000001,
+    "lower-back": 6.000000000000001,
+    "abs": 9.600000000000003,
+    "obliques": 6.000000000000001,
+    "deltoids": 18.000000000000004,
+    "chest": 15,
+    "triceps": 6.000000000000001,
+    "upper-back": 20,
+    "biceps": 8,
+    "forearm": 8,
+    "trapezius": 1.6,
+    "cardiovascular system": 4,
+    "hip-flexors": 1.6
+   },
+   "distinctExercises": 9,
+   "prs": 4,
+   "biggestPr": {
+    "id": "0025",
+    "w": 75,
+    "d": "2026-02-02",
+    "gain": 15,
+    "prev": 60
+   },
+   "favDay": {
+    "day": 1,
+    "n": 11
+   },
+   "daypart": {
+    "part": "morning",
+    "n": 6
+   },
+   "bestMonth": {
+    "month": 0,
+    "n": 5,
+    "vol": 13068
+   },
+   "months": [
+    5,
+    3,
+    3,
+    1,
+    2,
+    1,
+    0,
+    2,
+    0,
+    1,
+    0,
+    0
+   ],
+   "body": {
+    "from": 82,
+    "to": 79.9,
+    "delta": -2.0999999999999943,
+    "n": 4,
+    "fromDay": "2026-01-02",
+    "toDay": "2026-12-01"
+   },
+   "shares": {
+    "legs": 0.4855670103092783,
+    "upper": 0.39484536082474225,
+    "cardio": 0.058823529411764705,
+    "early": 0.5,
+    "late": 0,
+    "weekend": 0.2777777777777778
+   },
+   "first": "2026-01-05"
+  },
+  "personality": "early",
+  "comparison": {
+   "key": "trex",
+   "count": 5
+  },
+  "cards": [
+   "intro",
+   "workouts",
+   "time",
+   "volume",
+   "streak",
+   "top",
+   "records",
+   "rhythm",
+   "month",
+   "body",
+   "personality",
+   "summary"
+  ],
+  "years": [
+   2026,
+   2025
+  ],
+  "season": null,
+  "home": null,
+  "notify": 1796115600000,
+  "withOpened": {
+   "opened": [
+    2026
+   ],
+   "dismissed": [],
+   "phone": null
+  }
+ }
+]
