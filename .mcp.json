@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "hexplate": {
+      "command": "server/.venv/bin/python",
+      "args": ["-m", "hexserver", "mcp"],
+      "env": { "PYTHONPATH": "server" }
+    }
+  }
+}

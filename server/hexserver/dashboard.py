@@ -5,16 +5,15 @@ with your data are not. Forms that change something also need the browser to say
 these pages (Sec-Fetch-Site / Origin), so another website open on this Mac cannot post to them.
 """
 import datetime as dt
-import json
 import socket
 from html import escape
-from pathlib import Path
 from urllib.parse import parse_qs
 
 from fastapi import Request
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse, Response
 
-CATALOGUE = Path(__file__).resolve().parents[2] / "app/HexplateCore/Sources/HexplateCore/Resources/exercises.json"
+from .queries import WORK, name_of
+from .queries import sessions as _sessions
 TABS = [("Overview", "/"), ("Progress", "/progress"), ("Rep counter", "/reps"), ("Data", "/data")]
 
 CSS = """
@@ -60,10 +59,6 @@ form { display:inline; }
 .warn { color:var(--warn); }
 """
 
-# Done working sets with a weight and reps: what estimated 1RM and volume count.
-WORK = "s.done AND NOT s.warmup AND s.weight > 0 AND s.reps > 0"
-
-
 def _num(n, d=0):
     return f"{n:,.{d}f}"
 
@@ -73,7 +68,6 @@ def _kg(n):
 
 
 def install(app, store):
-    names = {e["id"]: e["n"] for e in json.loads(CATALOGUE.read_text())["exercises"]} if CATALOGUE.exists() else {}
     db = store.db
 
     @app.middleware("http")
@@ -87,11 +81,6 @@ def install(app, store):
                 if not same:
                     return PlainTextResponse("Refused: this form did not come from the dashboard.", status_code=403)
         return await call_next(req)
-
-    def name_of(ex_id, state):
-        custom = {str(c.get("id")): c.get("name") or c.get("n") for c in (state or {}).get("customEx") or [] if isinstance(c, dict)}
-        n = custom.get(ex_id) or names.get(ex_id) or ex_id
-        return " ".join(w[:1].upper() + w[1:] for w in str(n).split(" "))
 
     def page(tab, body):
         rev = db.execute("SELECT rev, received_at FROM documents ORDER BY rev DESC LIMIT 1").fetchone()
@@ -147,15 +136,7 @@ def install(app, store):
                 f'<circle cx="{lx:.1f}" cy="{ly:.1f}" r="4" fill="var(--accent)" stroke="var(--card)" stroke-width="2"/>{tips}</svg>')
 
     def sessions(ex):
-        """Each workout with this exercise, oldest first: (date, best e1RM, its weight, its reps, sets, volume)."""
-        out = []
-        for d, e1rm, n, vol, wid in db.execute(f"""SELECT w.date, MAX(s.weight * (1 + s.reps / 30.0)), COUNT(*), SUM(s.weight * s.reps), w.id
-                                                   FROM sets s JOIN workouts w ON w.id = s.workout_id
-                                                   WHERE s.exercise_id = ? AND {WORK} GROUP BY w.id ORDER BY w.date""", (ex,)).fetchall():
-            weight, reps = db.execute(f"""SELECT s.weight, s.reps FROM sets s WHERE s.workout_id = ? AND s.exercise_id = ? AND {WORK}
-                                          ORDER BY s.weight * (1 + s.reps / 30.0) DESC LIMIT 1""", (wid, ex)).fetchone()
-            out.append((dt.date.fromisoformat(d), e1rm, weight, reps, n, vol))
-        return out
+        return _sessions(db, ex)
 
     # MARK: Overview
 

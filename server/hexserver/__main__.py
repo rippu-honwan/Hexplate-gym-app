@@ -1,4 +1,4 @@
-"""python -m hexserver serve | pair | import <state.json>"""
+"""python -m hexserver serve | pair | import <paths> | mcp"""
 import argparse
 import json
 import os
@@ -16,7 +16,13 @@ def main():
     sub.add_parser("pair", help="print a one-time pairing code for the phone (5 minutes)")
     i = sub.add_parser("import", help="bring in JSON backups (each the next revision) and folders of motion CSVs")
     i.add_argument("paths", type=Path, nargs="+")
+    sub.add_parser("mcp", help="the read-only MCP server for an AI assistant (stdio)")
     a = p.parse_args()
+
+    if a.cmd == "mcp":   # opens the database read-only, so it never creates or changes anything
+        from .mcp_server import build
+        build(Path(os.environ.get("HEXPLATE_DATA", Path(__file__).resolve().parents[1] / "data"))).run("stdio")
+        return
 
     app = create_app()
     store = app.state.store

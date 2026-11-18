@@ -15,3 +15,16 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt -r requiremen
 Data lives in `server/data/` (git-ignored; `HEXPLATE_DATA` moves it): `hexplate.sqlite3` keeps every
 pushed document (`documents`) and the latest one split into `workouts`, `sets` and `bodyweight`;
 `motion/` holds the watch's CSV files.
+
+## MCP (for an AI assistant)
+
+`python -m hexserver mcp` is a read-only MCP server over stdio: `get_summary`,
+`get_exercise_history`, `get_schema` and `run_query` (one SQLite SELECT, 500 rows, 5 s, with
+`exname()` and `e1rm()`). The database is opened read-only and an authorizer refuses anything but
+reads. Claude Code picks it up from the repo's `.mcp.json` (run from the repo root, after the venv
+above exists). For Claude Desktop, add the same command with the absolute paths:
+
+```json
+{ "mcpServers": { "hexplate": { "command": "<repo>/server/.venv/bin/python", "args": ["-m", "hexserver", "mcp"],
+  "env": { "PYTHONPATH": "<repo>/server" } } } }
+```
