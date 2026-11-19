@@ -158,7 +158,9 @@ def test_backup_gates_the_phones_delete(phone, tmp_path):
     store.set_setting("backup", "on")
     copied, ok = backup.everything()
     assert ok and copied == 2 and store.setting("backup_error") is None
-    assert len(list((tmp_path / "backup").glob("hexplate-*.sqlite3"))) == 1
+    copy, = (tmp_path / "backup").glob("hexplate-*")   # one file, no -wal or -shm beside it
+    import sqlite3
+    assert sqlite3.connect(f"file:{copy}?mode=ro", uri=True).execute("PRAGMA journal_mode").fetchone()[0] == "delete"
     assert backup.status()["motion"] == 2
 
 

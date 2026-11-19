@@ -96,9 +96,12 @@ class Backup:
             src, out = sqlite3.connect(self.store.folder / "hexplate.sqlite3"), sqlite3.connect(part)
             try:
                 src.backup(out)
+                out.execute("PRAGMA journal_mode=DELETE")   # one self-contained file, readable as it is
             finally:
                 out.close()
                 src.close()
+                for extra in ("-wal", "-shm"):   # left by the source's WAL header before the switch
+                    part.with_name(part.name + extra).unlink(missing_ok=True)
             part.replace(dst)
             for old in sorted(self.folder.glob("hexplate-*.sqlite3"))[:-KEEP]:
                 old.unlink()
