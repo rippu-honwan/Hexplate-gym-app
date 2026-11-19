@@ -1,0 +1,970 @@
+[
+ {
+  "name": "no gyms",
+  "result": null,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "10": 2,
+     "20": 2,
+     "_ts": 100
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 200
+    }
+   }
+  }
+ },
+ {
+  "name": "no gyms, running session",
+  "result": null,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "10": 2,
+     "20": 2,
+     "_ts": 100
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 200
+    }
+   },
+   "active": {
+    "start": 1
+   }
+  }
+ },
+ {
+  "name": "migration copies the lists",
+  "result": null,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "10": 2,
+     "20": 2,
+     "_ts": 100
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 200
+    }
+   },
+   "equipProfiles": [
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "10": 2,
+       "20": 2,
+       "_ts": 100
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 200
+      }
+     },
+     "barDefaults": {},
+     "stackWeights": {}
+    },
+    {
+     "id": "big",
+     "name": "Big gym",
+     "equipment": [
+      "barbell",
+      "dumbbell",
+      "cable"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "20": 4,
+       "25": 4,
+       "_ts": 50
+      }
+     },
+     "dumbbells": {},
+     "barDefaults": {
+      "barbell": 15
+     },
+     "stackWeights": {}
+    }
+   ],
+   "activeEquipId": "home",
+   "invGym": "home"
+  }
+ },
+ {
+  "name": "migration uses the lists before this change",
+  "result": null,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "lb": {
+     "45": 4,
+     "_ts": 300
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 200
+    }
+   },
+   "equipProfiles": [
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {
+      "lb": {
+       "45": 4,
+       "_ts": 300
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 200
+      }
+     },
+     "barDefaults": {},
+     "stackWeights": {}
+    }
+   ],
+   "activeEquipId": "home",
+   "invGym": "home"
+  }
+ },
+ {
+  "name": "edit goes to the active gym",
+  "result": null,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "20": 3,
+     "_ts": 900
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 200
+    }
+   },
+   "equipProfiles": [
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "20": 3,
+       "_ts": 900
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 200
+      }
+     },
+     "barDefaults": {},
+     "stackWeights": {}
+    }
+   ],
+   "activeEquipId": "home",
+   "invGym": "home"
+  }
+ },
+ {
+  "name": "a sync brought a newer gym copy",
+  "result": null,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "20": 6,
+     "_ts": 500
+    },
+    "lb": {
+     "45": 4,
+     "_ts": 300
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 200
+    }
+   },
+   "equipProfiles": [
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "20": 6,
+       "_ts": 500
+      },
+      "lb": {
+       "45": 4,
+       "_ts": 300
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 200
+      }
+     },
+     "barDefaults": {},
+     "stackWeights": {}
+    }
+   ],
+   "activeEquipId": "home",
+   "invGym": "home"
+  }
+ },
+ {
+  "name": "bars by edit stamps, gym newer",
+  "result": null,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "10": 2,
+     "20": 2,
+     "_ts": 100
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 200
+    }
+   },
+   "equipProfiles": [
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "10": 2,
+       "20": 2,
+       "_ts": 100
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 200
+      }
+     },
+     "barDefaults": {
+      "barbell": 15
+     },
+     "stackWeights": {},
+     "_f": {
+      "barDefaults": 800
+     }
+    }
+   ],
+   "activeEquipId": "home",
+   "invGym": "home",
+   "barDefaults": {
+    "barbell": 15
+   },
+   "edited": {
+    "barDefaults": 700
+   }
+  }
+ },
+ {
+  "name": "bars by edit stamps, top newer",
+  "result": null,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "10": 2,
+     "20": 2,
+     "_ts": 100
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 200
+    }
+   },
+   "equipProfiles": [
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "10": 2,
+       "20": 2,
+       "_ts": 100
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 200
+      }
+     },
+     "barDefaults": {
+      "barbell": 20
+     },
+     "stackWeights": {},
+     "_f": {
+      "barDefaults": 600
+     }
+    }
+   ],
+   "activeEquipId": "home",
+   "invGym": "home",
+   "barDefaults": {
+    "barbell": 20
+   },
+   "edited": {
+    "barDefaults": 700
+   }
+  }
+ },
+ {
+  "name": "an older app switched the gym",
+  "result": null,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "20": 4,
+     "25": 4,
+     "_ts": 1780000000000
+    }
+   },
+   "dumbbells": {},
+   "equipProfiles": [
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "10": 2,
+       "20": 2,
+       "_ts": 100
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 200
+      }
+     },
+     "barDefaults": {},
+     "stackWeights": {}
+    },
+    {
+     "id": "big",
+     "name": "Big gym",
+     "equipment": [
+      "barbell",
+      "dumbbell",
+      "cable"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "20": 4,
+       "25": 4,
+       "_ts": 1780000000000
+      }
+     },
+     "dumbbells": {},
+     "barDefaults": {
+      "barbell": 15
+     },
+     "stackWeights": {}
+    }
+   ],
+   "activeEquipId": "big",
+   "invGym": "big",
+   "barDefaults": {
+    "barbell": 15
+   },
+   "stackWeights": {}
+  }
+ },
+ {
+  "name": "active gym gone, owner settles",
+  "result": null,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "20": 9,
+     "_ts": 999
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 200
+    }
+   },
+   "equipProfiles": [
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "20": 9,
+       "_ts": 999
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 200
+      }
+     },
+     "barDefaults": {},
+     "stackWeights": {}
+    }
+   ],
+   "activeEquipId": "zzz",
+   "invGym": "home"
+  }
+ },
+ {
+  "name": "session gets its gym",
+  "result": null,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "10": 2,
+     "20": 2,
+     "_ts": 100
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 200
+    }
+   },
+   "equipProfiles": [
+    {
+     "id": "x",
+     "name": " ",
+     "equipment": [],
+     "plates": {
+      "kg": {
+       "10": 2,
+       "20": 2,
+       "_ts": 100
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 200
+      }
+     },
+     "barDefaults": {},
+     "stackWeights": {}
+    }
+   ],
+   "activeEquipId": "x",
+   "invGym": "x",
+   "active": {
+    "start": 1,
+    "gym": {
+     "id": "x",
+     "name": "My gym"
+    }
+   }
+  }
+ },
+ {
+  "name": "an edited workout keeps its gym",
+  "result": null,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "10": 2,
+     "20": 2,
+     "_ts": 100
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 200
+    }
+   },
+   "equipProfiles": [
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "10": 2,
+       "20": 2,
+       "_ts": 100
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 200
+      }
+     },
+     "barDefaults": {},
+     "stackWeights": {}
+    }
+   ],
+   "activeEquipId": "home",
+   "invGym": "home",
+   "active": {
+    "editingWorkoutId": "w1"
+   }
+  }
+ },
+ {
+  "name": "switch",
+  "result": true,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "20": 4,
+     "25": 4,
+     "_ts": 1780000000000
+    }
+   },
+   "dumbbells": {},
+   "equipProfiles": [
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "20": 5,
+       "_ts": 950
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 200
+      }
+     },
+     "barDefaults": {},
+     "stackWeights": {}
+    },
+    {
+     "id": "big",
+     "name": "Big gym",
+     "equipment": [
+      "barbell",
+      "dumbbell",
+      "cable"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "20": 4,
+       "25": 4,
+       "_ts": 1780000000000
+      }
+     },
+     "dumbbells": {},
+     "barDefaults": {
+      "barbell": 15
+     },
+     "stackWeights": {}
+    }
+   ],
+   "activeEquipId": "big",
+   "invGym": "big",
+   "active": {
+    "start": 1,
+    "gym": {
+     "id": "big",
+     "name": "Big gym"
+    }
+   },
+   "barDefaults": {
+    "barbell": 15
+   },
+   "stackWeights": {}
+  }
+ },
+ {
+  "name": "switch to a gym without lists",
+  "result": true,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "10": 2,
+     "20": 2,
+     "_ts": 1780000000000
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 1780000000000
+    }
+   },
+   "equipProfiles": [
+    {
+     "id": "big",
+     "name": "Big gym",
+     "equipment": [
+      "barbell",
+      "dumbbell",
+      "cable"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "10": 2,
+       "20": 2,
+       "_ts": 100
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 200
+      }
+     },
+     "barDefaults": {},
+     "stackWeights": {}
+    },
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "10": 2,
+       "20": 2,
+       "_ts": 1780000000000
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 1780000000000
+      }
+     },
+     "barDefaults": {},
+     "stackWeights": {}
+    }
+   ],
+   "activeEquipId": "home",
+   "invGym": "home",
+   "stackWeights": {}
+  }
+ },
+ {
+  "name": "switch to the active one",
+  "result": false,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "10": 2,
+     "20": 2,
+     "_ts": 100
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 200
+    }
+   },
+   "equipProfiles": [
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {},
+     "dumbbells": {},
+     "barDefaults": {},
+     "stackWeights": {}
+    }
+   ],
+   "activeEquipId": "home",
+   "invGym": "home"
+  }
+ },
+ {
+  "name": "switch to no such gym",
+  "result": false,
+  "state": {
+   "unit": "kg",
+   "plates": {
+    "kg": {
+     "10": 2,
+     "20": 2,
+     "_ts": 100
+    }
+   },
+   "dumbbells": {
+    "kg": {
+     "weights": [
+      10,
+      12.5,
+      15
+     ],
+     "_ts": 200
+    }
+   },
+   "equipProfiles": [
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {},
+     "dumbbells": {},
+     "barDefaults": {},
+     "stackWeights": {}
+    }
+   ],
+   "activeEquipId": "home"
+  }
+ },
+ {
+  "name": "switch with no bars left",
+  "result": true,
+  "state": {
+   "unit": "kg",
+   "plates": {},
+   "dumbbells": {},
+   "equipProfiles": [
+    {
+     "id": "home",
+     "name": "Home",
+     "equipment": [
+      "dumbbell"
+     ],
+     "accV": 2,
+     "plates": {
+      "kg": {
+       "10": 2,
+       "20": 2,
+       "_ts": 100
+      }
+     },
+     "dumbbells": {
+      "kg": {
+       "weights": [
+        10,
+        12.5,
+        15
+       ],
+       "_ts": 200
+      }
+     },
+     "barDefaults": {
+      "barbell": 15
+     },
+     "stackWeights": {}
+    },
+    {
+     "id": "big",
+     "name": "Big gym",
+     "equipment": [
+      "barbell",
+      "dumbbell",
+      "cable"
+     ],
+     "accV": 2,
+     "plates": {},
+     "dumbbells": {},
+     "barDefaults": {},
+     "stackWeights": {}
+    }
+   ],
+   "activeEquipId": "big",
+   "invGym": "big",
+   "stackWeights": {}
+  }
+ }
+]

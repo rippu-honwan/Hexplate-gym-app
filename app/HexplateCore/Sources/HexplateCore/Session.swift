@@ -682,6 +682,8 @@ public enum Session {
         if !note.isEmpty { w["note"] = .string(note) }
         // MyGym: the watch's rating of the whole workout, when it came before the finish.
         if case .number? = active["sessionEffort"] { w["sessionEffort"] = active["sessionEffort"] }
+        // The gym it was done at (Gyms), so History can say where.
+        if let g = active["gym"]?.object, let id = g["id"], id != .null { w["gym"] = .object(["id": id, "name": .string(g["name"]?.stringValue ?? "")]) }
         w["vol"] = .number(volume(w, c))
         return w
     }

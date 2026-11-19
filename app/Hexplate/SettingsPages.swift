@@ -112,9 +112,27 @@ struct AlertsPage: View {
 
 struct EquipmentPage: View {
     @Environment(AppModel.self) private var model
+    @State private var removing: [String: JSONValue]?
 
     var body: some View {
+        let gyms = Gyms.all(model.root), gym = Gyms.active(model.root)
         Form {
+            if !gyms.isEmpty {
+                Section {
+                    Picker("Active gym", selection: Binding(get: { gyms.firstIndex { $0["id"] == gym?["id"] } ?? -1 }, set: { i in
+                        guard gyms.indices.contains(i), let id = gyms[i]["id"] else { return }
+                        let now = model.now
+                        model.change { Gyms.switchTo(&$0, id, now: now) }
+                    })) {
+                        if gym == nil { Text("Pick a gym").tag(-1) }
+                        ForEach(gyms.indices, id: \.self) { i in Text(verbatim: Gyms.label(gyms[i])).tag(i) }
+                    }
+                } header: {
+                    Text("Your gym")
+                } footer: {
+                    Text("Plates, dumbbells and bars are kept per gym. Switch gyms and all of it switches.")
+                }
+            }
             Section {
                 NavigationLink { PlatesEditor() } label: {
                     LabeledContent("Plates", value: Equipment.ownsPlates(model.root) ? String(localized: "Your own") : String(localized: "Standard set"))
@@ -124,8 +142,27 @@ struct EquipmentPage: View {
                                    : Equipment.dumbbells(model.root).isEmpty ? String(localized: "Any weight") : tr("{0} weights", Equipment.dumbbells(model.root).count))
                 }
                 NavigationLink("Your bars") { BarsEditor() }
+            } header: {
+                if let gym { Text("Equipment at \(Gyms.label(gym))") }
             } footer: {
                 Text("What your gym has. Warm-ups and the plate calculator load from it.")
+            }
+            Section {
+                if !gyms.isEmpty {
+                    ProfileToggle(title: "Filter by equipment", key: "equipFilterOn",
+                                  subtitle: "The exercise library and picker show only what the active gym can do.")
+                }
+                ForEach(gyms.indices, id: \.self) { i in
+                    NavigationLink { GymEditor(id: gyms[i]["id"]) } label: {
+                        LabeledContent(Gyms.label(gyms[i]), value: tr("{0} equipment types", ExerciseCatalog.equipment(of: gyms[i]).count))
+                    }
+                    .swipeActions { Button("Delete", role: .destructive) { removing = gyms[i] } }
+                }
+                NavigationLink { GymEditor(id: nil) } label: { Label("Add a gym", systemImage: "plus") }
+            } header: {
+                Text("Gyms")
+            } footer: {
+                if gyms.isEmpty { Text("Train in more than one place? Add a gym for each, and each keeps its own plates, dumbbells and bars.") }
             }
             Section {
                 NavigationLink("Plate calculator") { PlateCalculator().navigationTitle("Plate calculator").navigationBarTitleDisplayMode(.inline) }
@@ -133,6 +170,72 @@ struct EquipmentPage: View {
         }
         .navigationTitle("Equipment")
         .navigationBarTitleDisplayMode(.inline)
+        .confirmationDialog("Delete this gym?", isPresented: Binding(get: { removing != nil }, set: { if !$0 { removing = nil } }), titleVisibility: .visible) {
+            Button("Delete", role: .destructive) {
+                if let id = removing?["id"] { let now = model.now; model.change { Gyms.remove(&$0, id, now: now) } }
+                removing = nil
+            }
+        } message: {
+            Text("\(Gyms.label(removing)) and its equipment lists will be removed.")
+        }
+    }
+}
+
+/// A gym's name and what it has (openGym EquipmentProfileSheet). A new one starts with the plates,
+/// dumbbells and bars set now.
+private struct GymEditor: View {
+    @Environment(AppModel.self) private var model
+    @Environment(\.dismiss) private var dismiss
+    let id: JSONValue?
+    @State private var name = ""
+    @State private var have: Set<String> = []
+    @State private var loaded = false
+
+    var body: some View {
+        Form {
+            Section {
+                TextField("Name, like Home or Gym", text: $name)
+            } footer: {
+                Text(id == nil ? "It starts with the plates, dumbbells and bars you have set now. Change them once it is the active gym."
+                     : "Name it after where you train, then tick what you have there.")
+            }
+            Section {
+                ForEach(model.catalog.meta.equipment, id: \.self) { eq in
+                    Button { if have.contains(eq) { have.remove(eq) } else { have.insert(eq) } } label: {
+                        HStack {
+                            Text(verbatim: Format.capWords(tr(eq)))
+                            Spacer()
+                            if have.contains(eq) { Image(systemName: "checkmark").foregroundStyle(Theme.accent) }
+                        }
+                        .contentShape(.rect)
+                    }
+                    .buttonStyle(.plain)
+                }
+            } header: {
+                Text("Equipment")
+            } footer: {
+                Text("Body-weight exercises are always available, unless they need a pull-up bar or a bench.")
+            }
+        }
+        .navigationTitle(id == nil ? "Add a gym" : "Edit gym")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            Button("Save") {
+                let n = name.trimmingCharacters(in: .whitespaces), eq = model.catalog.meta.equipment.filter(have.contains), now = model.now
+                model.change { s in
+                    if let id { Gyms.edit(&s, id, name: n, equipment: eq) } else { Gyms.add(&s, name: n, equipment: eq, now: now) }
+                }
+                dismiss()
+            }
+            .disabled(name.trimmingCharacters(in: .whitespaces).isEmpty)
+        }
+        .onAppear {
+            guard !loaded else { return }
+            loaded = true
+            let p = Gyms.all(model.root).first { $0["id"] == id }
+            name = p?["name"]?.stringValue ?? ""
+            have = Set(p.map { ExerciseCatalog.equipment(of: $0) } ?? [])
+        }
     }
 }
 

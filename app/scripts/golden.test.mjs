@@ -685,3 +685,16 @@ it('writes the report golden file', async () => {
   vi.useRealTimers()
   writeFileSync(process.env.REPORT_OUT, JSON.stringify(out, null, 1) + '\n')
 })
+
+// Equipment per gym (lib/gym-inventory.js): the settle on every change, and switching gyms.
+it('writes the gym inventory golden file', async () => {
+  if (!process.env.GYM_IN) return
+  const { syncGymInventory, switchGym } = await import('../../frontend/src/lib/gym-inventory.js')
+  const cases = JSON.parse(readFileSync(process.env.GYM_IN, 'utf8'))
+  const out = cases.map(c => {
+    const S = structuredClone(c.state)
+    const result = c.op === 'switch' ? switchGym(S, c.id, c.now) : (syncGymInventory(S, c.prev, c.now), null)
+    return { name: c.name, result, state: S }
+  })
+  writeFileSync(process.env.GYM_OUT, JSON.stringify(out, null, 1) + '\n')
+})

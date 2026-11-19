@@ -33,6 +33,7 @@ public struct StateDocument: Equatable, Sendable {
     public mutating func change(at wall: Double = (Date().timeIntervalSince1970 * 1000).rounded(), _ mutate: (inout [String: JSONValue]) -> Void) {
         let prev = root
         mutate(&root)
+        Gyms.sync(&root, prev: prev, now: wall)   // the active gym's inventory and its copy in step
         guard root != prev else { return }
         root["_ts"] = .number(SyncStamps.stampChange(prev: prev, next: &root, wall: wall))
     }
