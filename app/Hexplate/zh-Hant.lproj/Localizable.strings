@@ -438,7 +438,6 @@
 "Last" = "上次";
 "best" = "最佳";
 "Waiting for the watch…" = "等緊手錶…";
-"Exercise for the watch" = "手錶要做嘅動作";
 
 /* Server sync (ServerSync.swift, SettingsView ServerSection) */
 "Server" = "伺服器";

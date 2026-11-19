@@ -179,7 +179,7 @@ struct ExerciseCards: View {
                 ToolbarItem(placement: .topBarTrailing) { EntryMenu(index: index, entry: entries[index], onAction: onAction) }
             }
         }
-        .safeAreaInset(edge: .bottom) { if timer.end != nil { RestBar() } else { WatchStartBar() } }
+        .safeAreaInset(edge: .bottom) { if timer.end != nil { RestBar() } else { WatchStartBar(card: index) } }
         .onAppear { follow(index) }
         .onChange(of: index) { _, i in follow(i) }
     }
