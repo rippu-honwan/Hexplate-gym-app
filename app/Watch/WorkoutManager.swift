@@ -434,7 +434,9 @@ final class WorkoutManager: NSObject, ObservableObject, HKWorkoutSessionDelegate
     func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {}
 
     /// Active calories so far, for the workout screen when it shows them (at most every 10 s).
-    @Published private(set) var calories: Double?
+    @Published private(set) var calories: Double? { didSet { if let c = calories, c != oldValue { onCalories?(c) } } }
+    /// Each new reading, for the phone's workout screen.
+    var onCalories: ((Double) -> Void)?
     private var caloriesAt = Date.distantPast
 
     func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {

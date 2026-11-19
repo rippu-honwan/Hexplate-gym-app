@@ -134,6 +134,11 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
 
     /// The same event sent as a message when the phone was in reach (the user info copy follows).
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
+        // Live calories: a passing reading for the workout screen, not an event to keep.
+        if let kcal = message["kcal"] as? Double, let wid = message["wid"] as? String {
+            Task { @MainActor in self.model?.watchKcal = (wid, kcal) }
+            return
+        }
         self.session(session, didReceiveUserInfo: message)
     }
 

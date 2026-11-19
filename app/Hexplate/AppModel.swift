@@ -43,6 +43,9 @@ final class AppModel {
     var watchDone: WatchSet?
     var watchRecording: WatchSet?
 
+    /// The watch's active calories so far for the running workout (its id), from Apple Health.
+    var watchKcal: (wid: String, kcal: Double)?
+
     struct WatchSet: Equatable {
         let entryIdx: Int
         let setIdx: Int

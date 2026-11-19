@@ -958,3 +958,42 @@
 
 /* server backup */
 "Watch recordings leave this phone once the server has saved and backed them up." = "伺服器儲存並備份後，手錶紀錄就會從這部手機移除。";
+
+/* workout list and cards */
+"done" = "完成";
+"Lifted" = "已舉重量";
+"Calories" = "卡路里";
+"Sets done" = "已完成組數";
+"{0} of {1}" = "{0} / {1}";
+"No muscles yet" = "尚未訓練任何肌肉";
+"Trains most: {0}" = "主要訓練：{0}";
+"Opens the exercise" = "打開動作";
+"Heaviest weight" = "最重重量";
+"Best 1RM" = "最佳 1RM";
+"Best set volume" = "最佳單組訓練量";
+"Session volume" = "本次訓練量";
+"1RM" = "1RM";
+"Set vol." = "單組量";
+"1M" = "1 個月";
+"3M" = "3 個月";
+"6M" = "半年";
+"1Y" = "1 年";
+"Number" = "數值";
+"Best {0} on {1} · {2} sessions" = "最佳 {0}（{1}）· 共 {2} 次";
+"Records so far" = "歷來紀錄";
+"No earlier sessions yet." = "還沒有之前的紀錄。";
+"Last 14 sessions" = "最近 14 次";
+"PR" = "PR";
+"Best before {0}" = "之前最佳 {0}";
+"First time" = "第一次";
+"No sessions in this time." = "這段時間沒有紀錄。";
+"One session so far." = "目前只有一次紀錄。";
+"Value" = "數值";
+
+/* workout cards */
+"Session vol." = "本次總量";
+"This session’s numbers" = "本次紀錄";
+
+/* set counts */
+"{0} set" = "{0} 組";
+"{0} sets" = "{0} 組";

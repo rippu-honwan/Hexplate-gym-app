@@ -197,6 +197,7 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
             }
         }
         health.onStatus = { [weak self] in self?.sendStatus() }
+        health.onCalories = { [weak self] in self?.sendCalories($0) }
         health.motion.onCount = { [weak self] delta, t, source in
             guard let self = self else { return }
             if delta > 0 { for _ in 0..<delta { self.countRep(at: t, source: source) } } else { self.uncount(-delta, at: t) }
@@ -1390,6 +1391,14 @@ final class SessionStore: NSObject, ObservableObject, WCSessionDelegate, UNUserN
             do { try text.write(to: url, atomically: true, encoding: .utf8) } catch { return }
             MotionRecorder.transfer(url)
         }
+    }
+
+    /// The calories so far, to the phone's workout screen when it is in reach: a message only, as
+    /// a queued copy would be stale by the time it arrived (at most every 10 s, WorkoutManager).
+    private func sendCalories(_ kcal: Double) {
+        guard !isDemo, let wid = workout?.id, WCSession.isSupported(), WCSession.default.activationState == .activated,
+              WCSession.default.isReachable else { return }
+        WCSession.default.sendMessage(["kcal": kcal, "wid": wid], replyHandler: nil, errorHandler: nil)
     }
 
     private func send(event: [String: Any]) {

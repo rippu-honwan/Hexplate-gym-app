@@ -64,6 +64,8 @@ struct WorkoutMedia: View {
     @Environment(AppModel.self) private var model
     let id: String
     var compact = false
+    /// The exercise card always shows the full picture: no Minimise there.
+    var minimisable = true
     @State private var playing = true
 
     var body: some View {
@@ -83,7 +85,7 @@ struct WorkoutMedia: View {
                 .contentShape(.rect)
                 .onTapGesture { playing.toggle() }
                 HStack {
-                    Button("Minimise", systemImage: "arrow.down.right.and.arrow.up.left") { model.set("gifSize", .string("mini")) }
+                    if minimisable { Button("Minimise", systemImage: "arrow.down.right.and.arrow.up.left") { model.set("gifSize", .string("mini")) } }
                     Spacer()
                     if clip != nil || ExerciseMedia.hidden {
                         Label(playing ? "tap to pause" : "tap to play", systemImage: playing ? "pause.fill" : "play.fill")

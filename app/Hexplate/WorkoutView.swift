@@ -353,6 +353,8 @@ struct WorkoutView: View {
     @State private var swapFor: EntryAction?
     @State private var detailFor: EntryAction?
     @State private var pendingSwap: (index: Int, entry: AppModel.Object)?
+    /// The exercise card open over the list (its entry index), if any.
+    @State private var path: [Int] = []
 
     @State private var skippedWeighIn = false
 
@@ -364,7 +366,7 @@ struct WorkoutView: View {
     }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 if model.isBackfill {
                     Text("Logging a past workout, so no rest timers.").font(.subheadline).foregroundStyle(.secondary)
@@ -382,16 +384,11 @@ struct WorkoutView: View {
                         Text("Weigh in")
                     }
                 }
-                if let a = model.active, !model.isPastSession, let start = a["start"]?.numberValue {
-                    Section {
-                        TimelineView(.periodic(from: .now, by: 1)) { _ in
-                            LabeledContent("Elapsed", value: Format.seconds(Date.now.timeIntervalSince1970 - start / 1000))
-                                .monospacedDigit()
-                        }
+                Section { WorkoutHeader() }
+                Section {
+                    ForEach(Array(model.activeEntries.enumerated()), id: \.offset) { i, entry in
+                        WorkoutEntryRow(index: i, entry: entry, open: { path.append(i) }) { act($0) }
                     }
-                }
-                ForEach(Array(model.activeEntries.enumerated()), id: \.offset) { i, entry in
-                    EntrySection(index: i, entry: entry, next: next(after: i)) { act($0) }
                 }
                 Section {
                     Button("Add exercise", systemImage: "plus") { picking = true }
@@ -434,8 +431,10 @@ struct WorkoutView: View {
                     .foregroundStyle(Theme.ink)
                 }
             }
-            .safeAreaInset(edge: .bottom) { if timer.end != nil { RestBar() } else { WatchStartBar() } }
+            // The watch's next set lives on the exercise card; the list keeps the rest timer.
+            .safeAreaInset(edge: .bottom) { if timer.end != nil { RestBar() } }
             .overlay { if timer.flashing { Color.white.opacity(0.85).ignoresSafeArea().allowsHitTesting(false) } }
+            .navigationDestination(for: Int.self) { ExerciseCards(start: $0) { act($0) } }
             // Finish asks whether to keep the session: a practice run can be thrown away.
             // Alerts, not a dialog: a dialog on the toolbar opens as a popover, and a second question
             // shown as it closes stopped taking taps in the simulator.
@@ -456,6 +455,8 @@ struct WorkoutView: View {
                 Text(unfinished > 0 ? "\(unfinished) planned \(unfinished == 1 ? "set is" : "sets are") not done and will be left out." : "Every set is done.")
             }
             .sheet(isPresented: $picking) { ExercisePicker { model.addExercise($0) } }
+        }
+        // Asked from the list or from an exercise card: on the stack, so either page can show them.
             .sheet(isPresented: present($noteFor)) {
                 if let i = noteFor, let e = entry(i) { ExerciseNoteSheet(index: i, entry: e) }
             }
@@ -517,7 +518,8 @@ struct WorkoutView: View {
                 }
             }
             .sheet(item: Binding(get: { summary.map(Summary.init) }, set: { if $0 == nil { summary = nil; dismiss() } })) { FinishSummary(summary: $0) }
-        }
+            // A removed exercise takes its card with it.
+            .onChange(of: model.activeEntries.count) { _, n in path.removeAll { $0 >= n } }
     }
 
     private var unfinished: Int {
@@ -610,13 +612,13 @@ struct WorkoutView: View {
         model.changeActive { ActiveEdit.swap(&$0, p.index, with: p.entry, keepGroup: keepGroup) }
     }
 
-    /// The superset partner that comes next after entry `i`, if any.
-    private func next(after i: Int) -> Int? {
-        let entries = model.activeEntries
-        // SwiftUI can still ask for a row of a session that just finished.
-        guard entries.indices.contains(i), let sg = entries[i]["sg"]?.stringValue, !sg.isEmpty else { return nil }
-        return entries.indices.first { $0 > i && entries[$0]["sg"]?.stringValue == sg }
-    }
+}
+
+/// The superset partner that comes next after entry `i`, if any.
+func supersetNext(after i: Int, in entries: [AppModel.Object]) -> Int? {
+    // SwiftUI can still ask for a row of a session that just finished.
+    guard entries.indices.contains(i), let sg = entries[i]["sg"]?.stringValue, !sg.isEmpty else { return nil }
+    return entries.indices.first { $0 > i && entries[$0]["sg"]?.stringValue == sg }
 }
 
 /// What an exercise's ⋯ menu asks the workout screen to show.
@@ -633,12 +635,14 @@ enum EntryAction: Identifiable {
     }
 }
 
-private struct EntrySection: View {
+struct EntrySection: View {
     @Environment(AppModel.self) private var model
     @Environment(RestTimer.self) private var timer
     let index: Int
     let entry: AppModel.Object
     let next: Int?
+    /// On the exercise card: the big picture always, never folded.
+    var card = false
     let onAction: (EntryAction) -> Void
 
     private var id: String { entry["id"]?.stringValue ?? "" }
@@ -653,7 +657,7 @@ private struct EntrySection: View {
     /// Settings → Collapse completed exercises: a finished exercise folds into one line.
     private var folded: Bool {
         let on = model.active?["collapseCompleted"].flatMap { $0 == .null ? nil : $0 == .bool(true) } ?? (model.root["collapseCompleted"] == .bool(true))
-        return on && !expanded && !sets.isEmpty && sets.allSatisfy(SetTrend.isDone)
+        return !card && on && !expanded && !sets.isEmpty && sets.allSatisfy(SetTrend.isDone)
     }
 
     /// Each finished set against last time (Settings → Compare sets with last time).
@@ -684,8 +688,8 @@ private struct EntrySection: View {
     private var full: some View {
         let trends = trends
         return Section {
-            if gifSize == "full" {
-                WorkoutMedia(id: id, compact: entry["sg"]?.stringValue.map { !$0.isEmpty } ?? false)
+            if gifSize == "full" || card {
+                WorkoutMedia(id: id, compact: !card && (entry["sg"]?.stringValue.map { !$0.isEmpty } ?? false), minimisable: !card)
                     .listRowInsets(EdgeInsets())
                     .id(id)
             }
@@ -716,19 +720,10 @@ private struct EntrySection: View {
             ForEach(Array(sets.enumerated()), id: \.offset) { i, row in
                 SetRow(entry: index, index: i, number: number(of: i), row: row, mode: mode, step: step, rows: sets,
                        trend: trends.indices.contains(i) ? trends[i] : nil, onAction: onAction, onDone: { completed(set: i) })
-                    .swipeActions(edge: .trailing) {
-                        Button("Delete", systemImage: "trash", role: .destructive) { model.changeSets(index) { $0.remove(at: i) } }
-                    }
-                    .swipeActions(edge: .leading) {
-                        if mode == "reps" && !Session.isWarmup(row) {
-                            Button("Drop set", systemImage: "arrow.down.right") { model.changeSets(index) { $0[i] = Session.addingDrop($0[i], step: step) } }
-                            Button("Rest-pause", systemImage: "pause") {
-                                let rest = model.root["restPauseSec"]?.numberValue ?? 15
-                                model.changeSets(index) { $0[i] = Session.addingCluster($0[i], restSec: rest) }
-                                timer.start(rest, alerts: alerts)
-                            }
-                        }
-                    }
+                    .swipeActions(edge: .trailing) { deleteButton(i) }
+                    .swipeActions(edge: .leading) { setButtons(i, row) }
+                    // The card pager takes horizontal drags, so a long press offers the same actions there.
+                    .contextMenu { if card { setButtons(i, row); deleteButton(i) } }
             }
             HStack {
                 Button("Add set", systemImage: "plus") { model.changeSets(index) { sets in addSet(&sets) } }
@@ -741,14 +736,16 @@ private struct EntrySection: View {
             .buttonStyle(.borderless)
             .font(.subheadline)
         } header: {
-            HStack {
-                if gifSize == "mini" { WorkoutThumb(id: id).textCase(nil) }
-                Text(name)
-                if let sg = entry["sg"]?.stringValue, !sg.isEmpty {
-                    Text("Superset").font(.caption.bold()).foregroundStyle(Theme.superset)
+            let superset = entry["sg"]?.stringValue.map { !$0.isEmpty } ?? false
+            // On the card the name is the page's title and the ⋯ menu sits in the top bar.
+            if !card || superset {
+                HStack {
+                    if gifSize == "mini" && !card { WorkoutThumb(id: id).textCase(nil) }
+                    if !card { Text(name) }
+                    if superset { Text("Superset").font(.caption.bold()).foregroundStyle(Theme.superset) }
+                    Spacer()
+                    if !card { EntryMenu(index: index, entry: entry, onAction: onAction).textCase(nil) }
                 }
-                Spacer()
-                menu.textCase(nil)
             }
         }
     }
@@ -761,52 +758,22 @@ private struct EntrySection: View {
         return model.root["routines"]?.arrayValue?.contains { $0.object?["id"]?.stringValue == rid && $0.object?["excludeFromProgression"] == .bool(true) } ?? false
     }
 
-    /// The exercise's ⋯ menu (Workout.jsx openMore).
-    private var menu: some View {
-        let a = model.active ?? [:]
-        let count = model.activeEntries.count
-        let units = ActiveEdit.units(a["entries"]?.arrayValue ?? [])
-        let unit = units.first { $0.contains(index) } ?? [index]
-        return Menu {
-            Section {
-                Button(entry["note"] == nil ? "Add note" : "Edit note", systemImage: "note.text") { onAction(.note(index)) }
-                Button("Swap exercise", systemImage: "arrow.left.arrow.right") { onAction(.swap(index)) }
-                Button("How to do it and history", systemImage: "info.circle") { onAction(.detail(id)) }
-                Picker(selection: Binding(get: { ActiveEdit.exerciseRest(target) ?? -1 }, set: { v in model.changeActive { ActiveEdit.setExerciseRest(&$0, index, v < 0 ? nil : v) } })) {
-                    Text("Default (\(Format.seconds(model.defaultRest)))").tag(-1.0)
-                    Text("No timer").tag(0.0)
-                    ForEach([30.0, 45, 60, 90, 120, 150, 180, 240, 300], id: \.self) { Text(Format.seconds($0)).tag($0) }
-                } label: { Label("Rest timer", systemImage: "timer") }
-                .pickerStyle(.menu)
-            }
-            Section("Order and supersets") {
-                if unit.count == 1 {
-                    if index > 0 { Button("Make superset with previous", systemImage: "link") { model.changeActive { ActiveEdit.pair(&$0, index - 1, index) } } }
-                    if index < count - 1 { Button("Make superset with next", systemImage: "link") { model.changeActive { ActiveEdit.pair(&$0, index, index + 1) } } }
-                } else {
-                    Button("Take out of the superset", systemImage: "personalhotspot.slash") { model.changeActive { ActiveEdit.unpair(&$0, index) } }
-                }
-                Button("Move up", systemImage: "chevron.up") { model.changeActive { ActiveEdit.move(&$0, index, -1) } }
-                    .disabled(!ActiveEdit.canMove(a, index, -1))
-                Button("Move down", systemImage: "chevron.down") { model.changeActive { ActiveEdit.move(&$0, index, 1) } }
-                    .disabled(!ActiveEdit.canMove(a, index, 1))
-            }
-            if !routineKeepsOut {
-                Section("This session") {
-                    Toggle("Don’t count for progression", systemImage: "chart.line.downtrend.xyaxis", isOn: Binding(
-                        get: { entry["noProg"] == .bool(true) },
-                        set: { on in model.changeActive { ActiveEdit.setNoProg(&$0, index, on) } }))
-                }
-            }
-            Section {
-                Button("Remove exercise", systemImage: "trash", role: .destructive) { onAction(.remove(index)) }
-            }
-        } label: {
-            Image(systemName: "ellipsis.circle").font(.title3).accessibilityLabel("More for \(name)")
-        }
+    private var alerts: RestTimer.Alerts { .init(model.root) }
+
+    private func deleteButton(_ i: Int) -> some View {
+        Button("Delete", systemImage: "trash", role: .destructive) { model.changeSets(index) { $0.remove(at: i) } }
     }
 
-    private var alerts: RestTimer.Alerts { .init(model.root) }
+    @ViewBuilder private func setButtons(_ i: Int, _ row: JSONValue) -> some View {
+        if mode == "reps" && !Session.isWarmup(row) {
+            Button("Drop set", systemImage: "arrow.down.right") { model.changeSets(index) { $0[i] = Session.addingDrop($0[i], step: step) } }
+            Button("Rest-pause", systemImage: "pause") {
+                let rest = model.root["restPauseSec"]?.numberValue ?? 15
+                model.changeSets(index) { $0[i] = Session.addingCluster($0[i], restSec: rest) }
+                timer.start(rest, alerts: alerts)
+            }
+        }
+    }
 
     private func number(of i: Int) -> String {
         if Session.isWarmup(sets[i]) { return "W" }
@@ -851,6 +818,69 @@ private struct EntrySection: View {
         let kind = plan["kind"]?.stringValue
         return (text, kind == "up" ? "arrow.up.right" : kind == "deload" ? "arrow.down.right" : kind == "programme" ? "calendar" : "equal")
     }
+}
+
+/// An exercise's ⋯ menu (Workout.jsx openMore), on its list row and on its card.
+struct EntryMenu: View {
+    @Environment(AppModel.self) private var model
+    let index: Int
+    let entry: AppModel.Object
+    let onAction: (EntryAction) -> Void
+
+    private var id: String { entry["id"]?.stringValue ?? "" }
+    private var target: AppModel.Object { entry["target"]?.object ?? [:] }
+    private var name: String { model.catalog[id]?.displayName ?? id }
+
+    /// A deload or rehab routine keeps its exercises out of progression itself.
+    private var routineKeepsOut: Bool {
+        guard let rid = entry["rid"]?.stringValue else { return false }
+        return model.root["routines"]?.arrayValue?.contains { $0.object?["id"]?.stringValue == rid && $0.object?["excludeFromProgression"] == .bool(true) } ?? false
+    }
+
+    var body: some View {
+        let a = model.active ?? [:]
+        let count = model.activeEntries.count
+        let units = ActiveEdit.units(a["entries"]?.arrayValue ?? [])
+        let unit = units.first { $0.contains(index) } ?? [index]
+        return Menu {
+            Section {
+                Button(entry["note"] == nil ? "Add note" : "Edit note", systemImage: "note.text") { onAction(.note(index)) }
+                Button("Swap exercise", systemImage: "arrow.left.arrow.right") { onAction(.swap(index)) }
+                Button("How to do it and history", systemImage: "info.circle") { onAction(.detail(id)) }
+                Picker(selection: Binding(get: { ActiveEdit.exerciseRest(target) ?? -1 }, set: { v in model.changeActive { ActiveEdit.setExerciseRest(&$0, index, v < 0 ? nil : v) } })) {
+                    Text("Default (\(Format.seconds(model.defaultRest)))").tag(-1.0)
+                    Text("No timer").tag(0.0)
+                    ForEach([30.0, 45, 60, 90, 120, 150, 180, 240, 300], id: \.self) { Text(Format.seconds($0)).tag($0) }
+                } label: { Label("Rest timer", systemImage: "timer") }
+                .pickerStyle(.menu)
+            }
+            Section("Order and supersets") {
+                if unit.count == 1 {
+                    if index > 0 { Button("Make superset with previous", systemImage: "link") { model.changeActive { ActiveEdit.pair(&$0, index - 1, index) } } }
+                    if index < count - 1 { Button("Make superset with next", systemImage: "link") { model.changeActive { ActiveEdit.pair(&$0, index, index + 1) } } }
+                } else {
+                    Button("Take out of the superset", systemImage: "personalhotspot.slash") { model.changeActive { ActiveEdit.unpair(&$0, index) } }
+                }
+                Button("Move up", systemImage: "chevron.up") { model.changeActive { ActiveEdit.move(&$0, index, -1) } }
+                    .disabled(!ActiveEdit.canMove(a, index, -1))
+                Button("Move down", systemImage: "chevron.down") { model.changeActive { ActiveEdit.move(&$0, index, 1) } }
+                    .disabled(!ActiveEdit.canMove(a, index, 1))
+            }
+            if !routineKeepsOut {
+                Section("This session") {
+                    Toggle("Don’t count for progression", systemImage: "chart.line.downtrend.xyaxis", isOn: Binding(
+                        get: { entry["noProg"] == .bool(true) },
+                        set: { on in model.changeActive { ActiveEdit.setNoProg(&$0, index, on) } }))
+                }
+            }
+            Section {
+                Button("Remove exercise", systemImage: "trash", role: .destructive) { onAction(.remove(index)) }
+            }
+        } label: {
+            Image(systemName: "ellipsis.circle").font(.title3).accessibilityLabel("More for \(name)")
+        }
+    }
+
 }
 
 private struct SetRow: View {
@@ -1106,7 +1136,7 @@ private struct NumberField: View {
     }
 }
 
-private struct RestBar: View {
+struct RestBar: View {
     @Environment(AppModel.self) private var model
     @Environment(RestTimer.self) private var timer
 
