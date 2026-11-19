@@ -84,7 +84,7 @@ extension AppModel {
         changeSets(i) { $0[s] = Session.settingDone($0[s], true, at: at) }
         if let rest = restAfter(entry: i, set: s) {
             let left = rest - max(0, (now - at) / 1000)
-            let alerts = RestTimer.Alerts(sound: root["sound"] != .bool(false), flash: root["timerFlash"] == .bool(true))
+            let alerts = RestTimer.Alerts(root)
             if left > 0 { timer.start(left, alerts: alerts) }
         }
     }

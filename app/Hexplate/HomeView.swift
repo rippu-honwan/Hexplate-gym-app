@@ -7,6 +7,7 @@ struct HomeView: View {
     @State private var swapping = false
     @State private var choosingPlan = false
     @State private var importing = false
+    @State private var loggingWeight = false
     @Environment(AppModel.self) private var model
 
     var body: some View {
@@ -40,13 +41,30 @@ struct HomeView: View {
                     }
                 }
 
-                WrappedHomeSection()
-                StreakPartySection()
-                ChallengesSection()
+                if Modules.isOn(model.root, "motivation") {
+                    WrappedHomeSection()
+                    StreakPartySection()
+                    ChallengesSection()
+                }
 
-                if let hint = Recovery.hint(model.root, now: model.now, today: model.today, catalog: model.catalog) {
+                // Look & Home → Recovery tips (openGym S.recoveryHint, Health module).
+                if Modules.isOn(model.root, "health"), model.root["recoveryHint"] != .bool(false),
+                   let hint = Recovery.hint(model.root, now: model.now, today: model.today, catalog: model.catalog) {
                     Section { RecoveryCard(hint: hint) { swapping = true } }
                 }
+
+                // Look & Home → Body weight (S.showWeightCard, Body module): the last weigh-in, logged in one tap.
+                if Modules.isOn(model.root, "body"), model.root["showWeightCard"] != .bool(false) {
+                    Section {
+                        let last = BodyData.weights(model.root).last
+                        LabeledContent("Body weight") {
+                            Text(last.map { "\(Format.number($0.weight)) \(model.settings.unit)" } ?? "–").monospacedDigit()
+                        }
+                        Button(last?.day == model.today ? "Change today’s weight" : "Log weight", systemImage: "scalemass") { loggingWeight = true }
+                    }
+                }
+
+                if model.root["homeMuscleSets"] == .bool(true) { MuscleSetsSection() }
 
                 Section {
                     WeekStrip(days: week)
@@ -73,6 +91,7 @@ struct HomeView: View {
             }
             .navigationTitle("Today")
             .sheet(isPresented: $choosingPlan) { StarterPlanSheet() }
+            .sheet(isPresented: $loggingWeight) { WeightEntry() }
             .sheet(isPresented: $importing) { ImportView() }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {

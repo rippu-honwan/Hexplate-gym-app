@@ -153,7 +153,7 @@ struct ProgrammeEditor: View {
                             }
                         }
                         .tint(.primary)
-                        .listRowBackground(running && st?.week == i + 1 && st?.done == false ? Color.accentColor.opacity(0.15) : nil)
+                        .listRowBackground(running && st?.week == i + 1 && st?.done == false ? Theme.accent.opacity(0.15) : nil)
                     }
                 } header: { Text("Weeks") } footer: {
                     Text("The week is the calendar week: week 1 is the one you start in. A pause holds it.")

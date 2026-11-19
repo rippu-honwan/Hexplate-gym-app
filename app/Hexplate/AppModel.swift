@@ -125,6 +125,8 @@ final class AppModel {
     var now: Double { (Date().timeIntervalSince1970 * 1000).rounded() }
 
     private func load(_ new: StateDocument?) {
+        // Before the screens read the names (Settings → Units & language → English exercise names).
+        ExerciseNames.style = ExerciseNames.style(language: Theme.language, profile: new?.root ?? [:])
         document = new
         history = new.map { History(document: $0) }
         months = []

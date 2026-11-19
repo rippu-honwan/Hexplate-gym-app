@@ -23,6 +23,20 @@ enum Theme {
     /// SwiftUI looks every Text up by it, and dates and numbers follow it.
     static let locale = Locale(identifier: language == "en" ? "en_HK" : "zh_Hant_HK")
 
+    /// The accent (Settings → Look & Home), per phone and read at launch like the language. Not
+    /// the synced `accent`: openGym's default there is green, and Hexplate is black and cyan.
+    static let accentKey = "accentColor"
+    static let accents: [(id: String, name: LocalizedStringResource, rgb: UInt32)] = [
+        ("teal", "Teal", 0x40C8E0), ("sky", "Blue", 0x0A84FF), ("violet", "Purple", 0xBF5AF2), ("pink", "Pink", 0xFF375F),
+        ("red", "Red", 0xFF453A), ("orange", "Orange", 0xFF9F0A), ("gold", "Yellow", 0xFFD60A), ("lime", "Green", 0x30D158),
+    ]
+    static let accentId = UserDefaults.standard.string(forKey: accentKey) ?? "teal"
+    /// Teal is the asset's colour, darker in light mode; the others are openGym's swatches.
+    static let accent: Color = accents.first { $0.id == accentId && $0.id != "teal" }.map { rgb($0.rgb) } ?? .accentColor
+    static func rgb(_ v: UInt32) -> Color {
+        Color(red: Double(v >> 16 & 0xFF) / 255, green: Double(v >> 8 & 0xFF) / 255, blue: Double(v & 0xFF) / 255)
+    }
+
     /// The bundle picks zh-Hant.lproj or en.lproj (the English keys) from this, whatever the device's language.
     static func applyLanguage(_ lang: String) {
         UserDefaults.standard.set([lang == "en" ? "en" : "zh-Hant"], forKey: "AppleLanguages")

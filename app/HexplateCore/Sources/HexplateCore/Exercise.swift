@@ -61,7 +61,18 @@ public struct Exercise: Decodable, Equatable, Sendable {
         return need
     }
 
-    public var displayName: String { Format.capWords(name) }
+    /// The name a screen shows: the Traditional Chinese one when the app is in Chinese and the
+    /// catalogue has it, with the English one in brackets unless switched off (openGym
+    /// i18n-core.js exerciseNameFor); custom exercises keep their own name.
+    public var displayName: String {
+        let en = englishName
+        guard case .chinese(let brackets) = ExerciseNames.style, let zh = translatedName else { return en }
+        return brackets && zh.lowercased() != name.lowercased() ? "\(zh) (\(en))" : zh
+    }
+    /// The catalogue's English name, capitalised.
+    public var englishName: String { Format.capWords(name) }
+    /// The Traditional Chinese name, nil for a custom exercise or one without it.
+    public var translatedName: String? { isCustom ? nil : ExerciseNames.zh[id] }
 
     public var isCardio: Bool { bodyPart == "cardio" }
 
@@ -128,7 +139,7 @@ public struct ExerciseCatalog: Sendable {
         let words = query.lowercased().split(separator: " ")
         guard !words.isEmpty else { return Array(all.prefix(limit)) }
         var out: [Exercise] = []
-        for ex in all where words.allSatisfy({ ex.name.localizedCaseInsensitiveContains($0) }) {
+        for ex in all where words.allSatisfy({ ex.name.localizedCaseInsensitiveContains($0) || (ex.translatedName?.contains($0) ?? false) }) {
             out.append(ex)
             if out.count == limit { break }
         }
@@ -229,4 +240,23 @@ public struct ExerciseCatalog: Sendable {
 
     /// The body map's outlines (frontend/src/lib/body-paths.js, from MuscleMap by Melih Colpan, MIT).
     public static let bodyPathsURL = Bundle.module.url(forResource: "body-paths", withExtension: "json")
+}
+
+/// How exercise names are shown (Settings → Units & language). The app sets it at launch and
+/// whenever the profile's choice changes; the names themselves are openGym's zh-TW pack.
+public enum ExerciseNames {
+    public enum Style: Equatable, Sendable { case english, chinese(brackets: Bool) }
+    nonisolated(unsafe) public static var style = Style.english
+
+    /// The style for the app's language and the profile (`enParens` / `enOnly`, keyed by "zh-TW").
+    public static func style(language: String, profile s: [String: JSONValue]) -> Style {
+        guard language == "zh", s["enOnly"]?.object?["zh-TW"] != .bool(true) else { return .english }
+        return .chinese(brackets: s["enParens"]?.object?["zh-TW"] != .bool(false))
+    }
+
+    static let zh: [String: String] = {
+        guard let url = Bundle.module.url(forResource: "exercise-names-zh-TW", withExtension: "json"),
+              let data = try? Data(contentsOf: url) else { return [:] }
+        return (try? JSONDecoder().decode([String: String].self, from: data)) ?? [:]
+    }()
 }

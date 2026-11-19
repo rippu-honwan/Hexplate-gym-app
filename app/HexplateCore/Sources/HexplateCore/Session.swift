@@ -162,11 +162,17 @@ public enum Session {
 
     /// The last logged work rows of an exercise (history.js lastEntryFor).
     static func lastSets(_ s: Object, _ exId: String, _ rid: String?) -> [JSONValue]? {
-        func lastIn(_ rid: String?) -> [JSONValue]? {
+        lastEntry(s, exId, rid)?["sets"]?.arrayValue
+    }
+
+    /// Last time's entry of an exercise (history.js lastEntryFor): the same routine first unless
+    /// "Last time means: Any workout", with `sets` cut to its done work sets.
+    public static func lastEntry(_ s: Object, _ exId: String, _ rid: String?) -> Object? {
+        func lastIn(_ rid: String?) -> Object? {
             for w in workouts(s).reversed() {
-                guard let e = entry(in: w, exId, rid), !excluded(w, e) else { continue }
+                guard var e = entry(in: w, exId, rid), !excluded(w, e) else { continue }
                 let rows = (e["sets"]?.arrayValue ?? []).filter { done($0) && !isWarmup($0) }
-                if !rows.isEmpty { return rows }
+                if !rows.isEmpty { e["sets"] = .array(rows); return e }
             }
             return nil
         }
@@ -798,12 +804,20 @@ public enum Session {
         return compoundName.firstMatch(in: ex.name, range: r) != nil && isolationName.firstMatch(in: ex.name, range: r) == nil
     }
 
+    /// Your own weight for a bar type (bar.js ownBarDefault): `barDefaults = {kg: {eq: w}, lb: {…}}`.
+    static func barDefault(_ s: Object, _ eq: String) -> Double? {
+        guard barEquipment[eq] != nil, let v = s["barDefaults"]?.object?[s["unit"] == .string("lb") ? "lb" : "kg"]?.object?[eq]?.numberValue,
+              v.isFinite, v > 0 else { return nil }
+        return v
+    }
+
     static let barEquipment: [String: (kg: Double, lb: Double)] = ["barbell": (20, 45), "olympic barbell": (20, 45), "ez barbell": (10, 25), "smith machine": (9, 20), "trap bar": (25, 55)]
 
     /// The bar a lift is loaded on: the exercise's own setting, else the usual bar for its equipment.
     public static func barFloor(_ s: Object, _ id: String?, _ c: ExerciseCatalog) -> Double {
         guard let id, let eq = c[id]?.equipment, let bar = barEquipment[eq] else { return 0 }
         if let own = s["barWeights"]?.object?[id]?.numberValue, own >= 0 { return own }
+        if let own = barDefault(s, eq) { return own }
         return s["unit"] == .string("lb") ? bar.lb : bar.kg
     }
 

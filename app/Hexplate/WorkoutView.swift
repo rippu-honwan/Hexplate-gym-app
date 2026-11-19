@@ -137,7 +137,7 @@ extension AppModel {
             s["active"] = nil
             _ = Schedule.refillAfter(&s, workout: w, today: day, now: at)
         }
-        if UserDefaults.standard.bool(forKey: "health"), let start = w["start"]?.numberValue, let end = w["end"]?.numberValue {
+        if UserDefaults.standard.bool(forKey: "health"), Modules.isOn(root, "health"), let start = w["start"]?.numberValue, let end = w["end"]?.numberValue {
             Task { await Health.save(workout: Date(timeIntervalSince1970: start / 1000), end: Date(timeIntervalSince1970: end / 1000)) }
         }
         return w
@@ -159,6 +159,16 @@ extension AppModel {
     func restAfter(entry e: Int, set i: Int) -> Double? {
         guard !isPastSession, let exerciseRest = restSeconds(after: e) else { return nil }
         let sets = activeEntries[e]["sets"]?.arrayValue ?? []
+        // Between warm-ups, Settings → Rest between warm-ups (absent: like the work sets, 0: no
+        // timer); the last warm-up still gets the full rest before the first work set.
+        // (supersetFlow.js warmupRestSecFor: the exercise's own choice first).
+        if sets.indices.contains(i), Session.isWarmup(sets[i]),
+           let next = sets[(i + 1)...].first(where: { $0.object?["done"] != .bool(true) }), Session.isWarmup(next) {
+            let target = activeEntries[e]["target"]?.object ?? [:]
+            if target["warmupRestOff"] == .bool(true) { return 0 }
+            if let own = target["warmupRestSec"]?.numberValue, own > 0 { return own }
+            if let all = root["warmupRestSec"]?.numberValue, all.isFinite { return all.rounded() }
+        }
         return (sets.indices.contains(i) ? SetEdit.ownRest(sets[SetEdit.span(sets, i).start]) : nil) ?? exerciseRest
     }
 
@@ -167,7 +177,8 @@ extension AppModel {
 
     /// "rir" or "rpe" when sets record how hard they were (history.js effortOf), else nil.
     var effortKind: String? {
-        switch root["effort"]?.stringValue {
+        guard Modules.isOn(root, "effort") else { return nil }
+        return switch root["effort"]?.stringValue {
         case "rir": "rir"
         case "rpe": "rpe"
         case "none": nil
@@ -194,15 +205,24 @@ final class RestTimer {
     private(set) var end: Date?
     private(set) var total: Double = 0
     private(set) var kind = Kind.rest
+    /// A hold past its target that keeps timing (Settings → Keep timing after target) until Done.
+    private(set) var overtime = false
     var flashing = false
     private var task: Task<Void, Never>?
-    private var onEnd: (() -> Void)?
+    private var cues: Task<Void, Never>?
+    private var onEnd: ((Double) -> Void)?
+    private var keepsTiming = false
 
-    func start(_ seconds: Double, kind: Kind = .rest, alerts: Alerts, onEnd: (() -> Void)? = nil) {
+    /// The longest a hold keeps timing past its target (Timed sets continue up to 15 extra minutes).
+    static let overtimeCap: Double = 900
+
+    /// `onEnd` gets the seconds actually held: the target, or more with `keepTiming`.
+    func start(_ seconds: Double, kind: Kind = .rest, alerts: Alerts, keepTiming: Bool = false, onEnd: ((Double) -> Void)? = nil) {
         stop()
         total = seconds
         self.kind = kind
         self.onEnd = onEnd
+        keepsTiming = kind == .hold && keepTiming
         let end = Date.now.addingTimeInterval(seconds)
         self.end = end
         schedule(at: end, alerts: alerts)
@@ -218,16 +238,42 @@ final class RestTimer {
 
     func stop() {
         task?.cancel()
+        cues?.cancel()
         task = nil
+        cues = nil
         end = nil
         onEnd = nil
+        overtime = false
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["rest"])
     }
 
-    struct Alerts { var sound: Bool; var flash: Bool }
+    /// Done on a hold that kept timing: logs what was held.
+    func finishHold() {
+        guard kind == .hold, let end else { return }
+        let held = min(total + Self.overtimeCap, total + max(0, Date.now.timeIntervalSince(end)))
+        let done = onEnd
+        stop()
+        done?(held.rounded())
+    }
+
+    /// What a rest or hold does when it ends, read from the profile (Settings → Timer alerts).
+    struct Alerts {
+        var sound = true, kind = "chime", onSilent = false, vibrate = true, flash = false, speak = false, rate = 1.0
+
+        init(_ s: [String: JSONValue]) {
+            sound = s["sound"] != .bool(false)
+            kind = s["classicChime"] == .bool(true) ? "classic" : RestTone.normalised(s["restSound"]?.stringValue)
+            onSilent = s["soundOnSilent"] == .bool(true)
+            vibrate = s["vibrate"] != .bool(false)
+            flash = s["timerFlash"] == .bool(true)
+            speak = s["spokenCues"] == .bool(true)
+            rate = AlertAudio.rate(s)
+        }
+    }
 
     private func schedule(at end: Date, alerts: Alerts) {
         task?.cancel()
+        cues?.cancel()
         let kind = kind
         // The app may be in the background when the rest ends: a local notification covers that.
         Task {
@@ -236,25 +282,50 @@ final class RestTimer {
             let content = UNMutableNotificationContent()
             content.title = kind == .rest ? String(localized: "Rest is over") : String(localized: "Time")
             content.body = kind == .rest ? String(localized: "Next set.") : String(localized: "Hold done.")
-            if alerts.sound { content.sound = .default }
+            if alerts.sound {
+                content.sound = RestTone.soundFile(alerts.kind) != nil ? UNNotificationSound(named: UNNotificationSoundName(RestTone.soundName(alerts.kind))) : .default
+            }
             let wait = end.timeIntervalSinceNow
             guard wait > 1 else { return }
             try? await center.add(UNNotificationRequest(identifier: "rest", content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: wait, repeats: false)))
         }
+        // Spoken cues (lib/spoken-cues.js): "10 seconds" before a rest of 20 s or more ends, and
+        // 3, 2, 1 at the end of a hold.
+        if alerts.speak {
+            let marks: [(Double, String)] = kind == .rest
+                ? (total >= 20 ? [(10, String(localized: "10 seconds"))] : [])
+                : (total >= 5 ? [(3, "3"), (2, "2"), (1, "1")] : [])
+            cues = Task {
+                for (before, text) in marks {
+                    try? await Task.sleep(for: .seconds(max(0, end.timeIntervalSinceNow - before)))
+                    guard !Task.isCancelled else { return }
+                    AlertAudio.say(text, rate: alerts.rate, onSilent: alerts.onSilent, flush: kind == .hold)
+                }
+            }
+        }
         task = Task { [weak self] in
             try? await Task.sleep(for: .seconds(max(0, end.timeIntervalSinceNow)))
             guard !Task.isCancelled, let self else { return }
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
-            if alerts.sound { AudioServicesPlaySystemSound(1007) }
+            if alerts.vibrate { AlertAudio.buzz() }
+            if alerts.sound { AlertAudio.tone(alerts.kind, onSilent: alerts.onSilent) }
+            if alerts.speak && kind == .rest { AlertAudio.say(String(localized: "Rest is over"), rate: alerts.rate, onSilent: alerts.onSilent) }
             if alerts.flash {
                 withAnimation(.easeOut(duration: 0.15)) { self.flashing = true }
                 try? await Task.sleep(for: .milliseconds(350))
                 withAnimation(.easeIn(duration: 0.3)) { self.flashing = false }
             }
+            if self.kind == .hold && self.keepsTiming {
+                // Past the target: the bar counts on until Done, at most 15 minutes more.
+                self.overtime = true
+                try? await Task.sleep(for: .seconds(Self.overtimeCap))
+                guard !Task.isCancelled else { return }
+                self.finishHold()
+                return
+            }
             let done = self.onEnd
             self.onEnd = nil
             if self.kind == .hold { self.end = nil }
-            done?()
+            done?(self.total)
         }
     }
 }
@@ -283,11 +354,33 @@ struct WorkoutView: View {
     @State private var detailFor: EntryAction?
     @State private var pendingSwap: (index: Int, entry: AppModel.Object)?
 
+    @State private var skippedWeighIn = false
+
+    /// Settings → Weigh in before workouts: asked once at the top until a set is done.
+    private var asksWeight: Bool {
+        guard !skippedWeighIn, !model.isPastSession, !model.isBackfill, model.root["weighIn"] != .bool(false), Modules.isOn(model.root, "body") else { return false }
+        if model.activeEntries.contains(where: { ($0["sets"]?.arrayValue ?? []).contains(where: Session.hasCompletedWork) }) { return false }
+        return !BodyData.weights(model.root).contains { $0.day == model.today }
+    }
+
     var body: some View {
         NavigationStack {
             List {
                 if model.isBackfill {
                     Text("Logging a past workout, so no rest timers.").font(.subheadline).foregroundStyle(.secondary)
+                }
+                if asksWeight {
+                    Section {
+                        WeighInRow { w in
+                            if let w {
+                                model.logWeight(w, on: model.today)
+                                model.changeActive { $0["bw"] = .number(w) }
+                            }
+                            skippedWeighIn = true
+                        }
+                    } header: {
+                        Text("Weigh in")
+                    }
                 }
                 if let a = model.active, !model.isPastSession, let start = a["start"]?.numberValue {
                     Section {
@@ -555,8 +648,42 @@ private struct EntrySection: View {
     private var gifSize: String { model.root["gifSize"]?.stringValue ?? "full" }
     private var step: Double { Session.increment(target, unit: model.settings.unit, catalog: model.catalog) }
 
+    @State private var expanded = false
+
+    /// Settings → Collapse completed exercises: a finished exercise folds into one line.
+    private var folded: Bool {
+        let on = model.active?["collapseCompleted"].flatMap { $0 == .null ? nil : $0 == .bool(true) } ?? (model.root["collapseCompleted"] == .bool(true))
+        return on && !expanded && !sets.isEmpty && sets.allSatisfy(SetTrend.isDone)
+    }
+
+    /// Each finished set against last time (Settings → Compare sets with last time).
+    private var trends: [SetTrend.Trend?] {
+        guard SetTrend.on(model.root), !model.isPastSession else { return [] }
+        return SetTrend.trends(entry, last: Session.lastEntry(model.root, id, entry["rid"]?.stringValue),
+                               catalog: model.catalog, formula: model.root["oneRmFormula"]?.stringValue ?? "epley")
+    }
+
     var body: some View {
-        Section {
+        if folded {
+            Section {
+                Button { withAnimation { expanded = true } } label: {
+                    HStack {
+                        Image(systemName: "checkmark.circle.fill").foregroundStyle(.tint)
+                        Text(name).foregroundStyle(.primary)
+                        Spacer()
+                        Text(tr(sets.count == 1 ? "{0} set" : "{0} sets", sets.count)).foregroundStyle(.secondary)
+                    }
+                }
+                .accessibilityHint(Text("Shows the sets again"))
+            }
+        } else {
+            full
+        }
+    }
+
+    private var full: some View {
+        let trends = trends
+        return Section {
             if gifSize == "full" {
                 WorkoutMedia(id: id, compact: entry["sg"]?.stringValue.map { !$0.isEmpty } ?? false)
                     .listRowInsets(EdgeInsets())
@@ -587,7 +714,8 @@ private struct EntrySection: View {
             if let line = lastLine { Label(line, systemImage: "clock.arrow.circlepath").font(.subheadline).foregroundStyle(.secondary) }
             if let why = advice { Label(why.text, systemImage: why.symbol).font(.subheadline).foregroundStyle(.secondary) }
             ForEach(Array(sets.enumerated()), id: \.offset) { i, row in
-                SetRow(entry: index, index: i, number: number(of: i), row: row, mode: mode, step: step, rows: sets, onAction: onAction, onDone: { completed(set: i) })
+                SetRow(entry: index, index: i, number: number(of: i), row: row, mode: mode, step: step, rows: sets,
+                       trend: trends.indices.contains(i) ? trends[i] : nil, onAction: onAction, onDone: { completed(set: i) })
                     .swipeActions(edge: .trailing) {
                         Button("Delete", systemImage: "trash", role: .destructive) { model.changeSets(index) { $0.remove(at: i) } }
                     }
@@ -678,9 +806,7 @@ private struct EntrySection: View {
         }
     }
 
-    private var alerts: RestTimer.Alerts {
-        .init(sound: model.root["sound"] != .bool(false), flash: model.root["timerFlash"] == .bool(true))
-    }
+    private var alerts: RestTimer.Alerts { .init(model.root) }
 
     private func number(of i: Int) -> String {
         if Session.isWarmup(sets[i]) { return "W" }
@@ -695,7 +821,9 @@ private struct EntrySection: View {
 
     /// After a set: on to the superset partner, or rest.
     private func completed(set i: Int) {
-        if let rest = model.restAfter(entry: index, set: i), rest > 0 { timer.start(rest, alerts: alerts) }
+        guard let rest = model.restAfter(entry: index, set: i), rest > 0 else { return }
+        timer.start(rest, alerts: alerts)
+        if alerts.speak { AlertAudio.say(Cues.restStart(model, after: index), rate: alerts.rate, onSilent: alerts.onSilent) }
     }
 
     private var lastLine: String? {
@@ -735,6 +863,7 @@ private struct SetRow: View {
     let mode: String
     let step: Double
     let rows: [JSONValue]
+    var trend: SetTrend.Trend?
     let onAction: (EntryAction) -> Void
     let onDone: () -> Void
 
@@ -798,13 +927,19 @@ private struct SetRow: View {
                 field(fields["r"], unit: "reps") { v in set("r", v, side) }
             }
             Spacer(minLength: 0)
+            if let trend, side != "L" {
+                Text(SetTrend.glyph(trend))
+                    .font(.subheadline.bold())
+                    .foregroundStyle(trend.dir > 0 ? AnyShapeStyle(.tint) : trend.dir < 0 ? AnyShapeStyle(.orange) : AnyShapeStyle(.secondary))
+                    .accessibilityLabel(Text(trend.dir > 0 ? "Better than last time" : trend.dir < 0 ? "Not as good as last time" : "Same as last time"))
+            }
             if mode == "reps" && !warm, let kind = model.effortKind {
                 EffortMenu(kind: kind, value: fields[kind]?.numberValue) { v in set(kind, v, side) }
             }
             Button {
                 let now = model.now
                 model.changeSets(entry) { $0[index] = Session.settingDone($0[index], !isDone, side: side, at: now) }
-                if !isDone && !warm && (side == nil || side == "R") { onDone() }
+                if !isDone && (side == nil || side == "R") { onDone() }
             } label: {
                 Image(systemName: isDone ? "checkmark.circle.fill" : "circle")
                     .font(.title2)
@@ -832,7 +967,7 @@ private struct SetRow: View {
                 Button("Rest-pause burst", systemImage: "bolt") {
                     let sec = model.root["restPauseSec"]?.numberValue ?? 15
                     change { var r = $0; r[index] = Session.addingCluster(r[index], restSec: sec); return r }
-                    timer.start(sec, alerts: .init(sound: model.root["sound"] != .bool(false), flash: model.root["timerFlash"] == .bool(true)))
+                    timer.start(sec, alerts: .init(model.root))
                 }
             }
             Button("Copy this set", systemImage: "plus.square.on.square") { change { SetEdit.copy($0, index) } }
@@ -892,9 +1027,9 @@ private struct SetRow: View {
 
     /// A timed set: counts down, then logs the hold and starts the rest.
     private func hold(_ seconds: Double, _ side: String?) {
-        let alerts = RestTimer.Alerts(sound: model.root["sound"] != .bool(false), flash: model.root["timerFlash"] == .bool(true))
-        timer.start(seconds, kind: .hold, alerts: alerts) { [model, entry, index] in
+        timer.start(seconds, kind: .hold, alerts: RestTimer.Alerts(model.root), keepTiming: model.root["timedSetOvertime"] == .bool(true)) { [model, entry, index] held in
             let now = model.now
+            if held != seconds { set("sec", held, side) }
             model.changeSets(entry) { $0[index] = Session.settingDone($0[index], true, side: side, at: now) }
             if side == nil || side == "R" { onDone() }
         }
@@ -981,10 +1116,10 @@ private struct RestBar: View {
                 let left = end.timeIntervalSince(context.date)
                 let over = -left
                 // Green: the rest can end. Red: a minute past it.
-                let colour: Color = left > 0 ? .accentColor : over < 60 ? .green : .red
+                let colour: Color = left > 0 ? Theme.accent : over < 60 ? .green : .red
                 HStack(spacing: 16) {
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(timer.kind == .hold ? "Hold" : left > 0 ? "Rest" : "Rest over")
+                        Text(timer.kind == .hold ? (timer.overtime ? "Past the target" : "Hold") : left > 0 ? "Rest" : "Rest over")
                             .font(.caption.weight(.semibold))
                             .foregroundStyle(colour)
                         Text((left < 0 ? "+" : "") + Format.seconds(abs(left.rounded(.up))))
@@ -996,8 +1131,12 @@ private struct RestBar: View {
                         Button("−15 s") { timer.add(-15, alerts: alerts) }
                         Button("+15 s") { timer.add(15, alerts: alerts) }
                     }
-                    Button(timer.kind == .hold ? "Stop" : "Skip") { timer.stop() }
-                        .fontWeight(.semibold)
+                    if timer.overtime {
+                        Button("Done") { timer.finishHold() }.fontWeight(.semibold)
+                    } else {
+                        Button(timer.kind == .hold ? "Stop" : "Skip") { timer.stop() }
+                            .fontWeight(.semibold)
+                    }
                 }
                 .buttonStyle(.bordered)
                 .padding(.horizontal, 20)
@@ -1009,9 +1148,7 @@ private struct RestBar: View {
         }
     }
 
-    private var alerts: RestTimer.Alerts {
-        .init(sound: model.root["sound"] != .bool(false), flash: model.root["timerFlash"] == .bool(true))
-    }
+    private var alerts: RestTimer.Alerts { .init(model.root) }
 }
 
 // MARK: - After finishing
@@ -1110,6 +1247,26 @@ struct ExerciseNoteSheet: View {
                 notes[id] = always.isEmpty ? nil : .string(always)
                 s["exNotes"] = .object(notes)
             }
+        }
+    }
+}
+
+/// The weigh-in before a workout: today's body weight, or skip.
+private struct WeighInRow: View {
+    @Environment(AppModel.self) private var model
+    let done: (Double?) -> Void
+    @State private var text = ""
+
+    var body: some View {
+        HStack {
+            TextField(BodyData.weights(model.root).last.map { Format.number($0.weight) } ?? "–", text: $text)
+                .keyboardType(.decimalPad)
+                .font(.title3.monospacedDigit())
+            Text(model.settings.unit).foregroundStyle(.secondary)
+            Button("Skip") { done(nil) }.buttonStyle(.bordered)
+            Button("Save") { done(Double(text.replacingOccurrences(of: ",", with: "."))) }
+                .buttonStyle(.borderedProminent)
+                .disabled(Double(text.replacingOccurrences(of: ",", with: ".")).map { $0 <= 0 } ?? true)
         }
     }
 }

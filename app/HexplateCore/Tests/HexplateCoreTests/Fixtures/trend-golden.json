@@ -1,0 +1,404 @@
+[
+ {
+  "name": "heavier same reps",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "w",
+    "delta": 2.5
+   },
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   },
+   {
+    "dir": -1,
+    "by": "w",
+    "delta": -2.5
+   }
+  ]
+ },
+ {
+  "name": "heavier same reps",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "w",
+    "delta": 2.5
+   },
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   },
+   {
+    "dir": -1,
+    "by": "w",
+    "delta": -2.5
+   }
+  ]
+ },
+ {
+  "name": "more reps",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "r",
+    "delta": 1
+   },
+   {
+    "dir": -1,
+    "by": "r",
+    "delta": -1
+   },
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   }
+  ]
+ },
+ {
+  "name": "more reps",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "r",
+    "delta": 1
+   },
+   {
+    "dir": -1,
+    "by": "r",
+    "delta": -1
+   },
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   }
+  ]
+ },
+ {
+  "name": "heavier fewer reps e1rm",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "e1rm",
+    "delta": 8
+   },
+   {
+    "dir": -1,
+    "by": "e1rm",
+    "delta": -2.700000000000003
+   },
+   {
+    "dir": 1,
+    "by": "e1rm",
+    "delta": 2.299999999999997
+   }
+  ]
+ },
+ {
+  "name": "heavier fewer reps e1rm",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "e1rm",
+    "delta": 7.5
+   },
+   {
+    "dir": -1,
+    "by": "e1rm",
+    "delta": -0.7999999999999972
+   },
+   {
+    "dir": 1,
+    "by": "e1rm",
+    "delta": 2
+   }
+  ]
+ },
+ {
+  "name": "warmups skipped and not done",
+  "trends": [
+   null,
+   {
+    "dir": 1,
+    "by": "r",
+    "delta": 1
+   },
+   null,
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   }
+  ]
+ },
+ {
+  "name": "warmups skipped and not done",
+  "trends": [
+   null,
+   {
+    "dir": 1,
+    "by": "r",
+    "delta": 1
+   },
+   null,
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   }
+  ]
+ },
+ {
+  "name": "extra set has no counterpart",
+  "trends": [
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   },
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   },
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   },
+   null
+  ]
+ },
+ {
+  "name": "extra set has no counterpart",
+  "trends": [
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   },
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   },
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   },
+   null
+  ]
+ },
+ {
+  "name": "bodyweight reps",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "r",
+    "delta": 2
+   },
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   }
+  ]
+ },
+ {
+  "name": "bodyweight reps",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "r",
+    "delta": 2
+   },
+   {
+    "dir": 0,
+    "by": "w",
+    "delta": 0
+   }
+  ]
+ },
+ {
+  "name": "assisted less help",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "w",
+    "delta": -5
+   },
+   {
+    "dir": -1,
+    "by": "w",
+    "delta": 5
+   },
+   {
+    "dir": 1,
+    "by": "w",
+    "delta": -5
+   }
+  ]
+ },
+ {
+  "name": "assisted less help",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "w",
+    "delta": -5
+   },
+   {
+    "dir": -1,
+    "by": "w",
+    "delta": 5
+   },
+   {
+    "dir": 1,
+    "by": "w",
+    "delta": -5
+   }
+  ]
+ },
+ {
+  "name": "timed holds",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "sec",
+    "delta": 5
+   },
+   {
+    "dir": -1,
+    "by": "sec",
+    "delta": -10
+   },
+   {
+    "dir": 0,
+    "by": "sec",
+    "delta": 0
+   }
+  ]
+ },
+ {
+  "name": "timed holds",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "sec",
+    "delta": 5
+   },
+   {
+    "dir": -1,
+    "by": "sec",
+    "delta": -10
+   },
+   {
+    "dir": 0,
+    "by": "sec",
+    "delta": 0
+   }
+  ]
+ },
+ {
+  "name": "cardio",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "speed",
+    "delta": 0.5
+   },
+   {
+    "dir": -1,
+    "by": "speed",
+    "delta": -0.5
+   },
+   {
+    "dir": 0,
+    "by": "min",
+    "delta": 0
+   }
+  ]
+ },
+ {
+  "name": "cardio",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "speed",
+    "delta": 0.5
+   },
+   {
+    "dir": -1,
+    "by": "speed",
+    "delta": -0.5
+   },
+   {
+    "dir": 0,
+    "by": "min",
+    "delta": 0
+   }
+  ]
+ },
+ {
+  "name": "mode changed",
+  "trends": [
+   null
+  ]
+ },
+ {
+  "name": "mode changed",
+  "trends": [
+   null
+  ]
+ },
+ {
+  "name": "no last time",
+  "trends": [
+   null
+  ]
+ },
+ {
+  "name": "no last time",
+  "trends": [
+   null
+  ]
+ },
+ {
+  "name": "side set",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "w",
+    "delta": 2
+   }
+  ]
+ },
+ {
+  "name": "side set",
+  "trends": [
+   {
+    "dir": 1,
+    "by": "w",
+    "delta": 2
+   }
+  ]
+ },
+ {
+  "name": "side set half done",
+  "trends": [
+   null
+  ]
+ },
+ {
+  "name": "side set half done",
+  "trends": [
+   null
+  ]
+ }
+]

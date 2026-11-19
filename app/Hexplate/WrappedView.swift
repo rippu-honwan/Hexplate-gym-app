@@ -161,7 +161,7 @@ struct WrappedCardFace: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Text(card.kicker).font(.headline).foregroundStyle(Color.accentColor).lineLimit(1)
+                Text(card.kicker).font(.headline).foregroundStyle(Theme.accent).lineLimit(1)
                 Spacer()
                 if card.id != "intro" {
                     Text(verbatim: String(year)).font(.subheadline.bold()).padding(.horizontal, 12).padding(.vertical, 4)
@@ -172,9 +172,9 @@ struct WrappedCardFace: View {
             VStack(alignment: .leading, spacing: 12) {
                 if !card.big.isEmpty {
                     if card.bigIsText {
-                        Text(card.big).font(.system(size: 46, weight: .heavy)).foregroundStyle(Color.accentColor).lineLimit(3).minimumScaleFactor(0.5)
+                        Text(card.big).font(.system(size: 46, weight: .heavy)).foregroundStyle(Theme.accent).lineLimit(3).minimumScaleFactor(0.5)
                     } else {
-                        (Text(card.big).font(.system(size: 96, weight: .heavy).monospacedDigit()).foregroundStyle(Color.accentColor)
+                        (Text(card.big).font(.system(size: 96, weight: .heavy).monospacedDigit()).foregroundStyle(Theme.accent)
                             + Text(card.unit.isEmpty ? "" : " " + card.unit).font(.system(size: 36, weight: .bold)).foregroundStyle(.secondary))
                             .lineLimit(1).minimumScaleFactor(0.4)
                     }
@@ -197,8 +197,8 @@ struct WrappedCardFace: View {
         .background {
             ZStack {
                 Color.black
-                Circle().fill(Color.accentColor.opacity(0.22)).frame(width: 420).offset(x: 180, y: -320).blur(radius: 40)
-                Circle().fill(Color.accentColor.opacity(0.1)).frame(width: 260).offset(x: -160, y: 260).blur(radius: 40)
+                Circle().fill(Theme.accent.opacity(0.22)).frame(width: 420).offset(x: 180, y: -320).blur(radius: 40)
+                Circle().fill(Theme.accent.opacity(0.1)).frame(width: 260).offset(x: -160, y: 260).blur(radius: 40)
             }
         }
         .clipped()
@@ -215,11 +215,11 @@ struct WrappedCardFace: View {
                     VStack(spacing: 6) {
                         GeometryReader { g in
                             VStack { Spacer(minLength: 0)
-                                RoundedRectangle(cornerRadius: 4).fill(i == peak ? Color.accentColor : Color.accentColor.opacity(0.35))
+                                RoundedRectangle(cornerRadius: 4).fill(i == peak ? Theme.accent : Theme.accent.opacity(0.35))
                                     .frame(height: max(6, g.size.height * Double(bars[i]) / Double(top)))
                             }
                         }
-                        Text(letters[i % 12]).font(.caption2.weight(i == peak ? .bold : .regular)).foregroundStyle(i == peak ? Color.accentColor : .secondary)
+                        Text(letters[i % 12]).font(.caption2.weight(i == peak ? .bold : .regular)).foregroundStyle(i == peak ? Theme.accent : .secondary)
                     }
                 }
             }

@@ -81,28 +81,35 @@ struct SettingsView: View {
     @State private var importing = false
     @State private var healthNote: String?
 
-    /// The root is a short list of pages, grouped the way openGym's Settings groups them; each page
-    /// holds a few related rows.
+    @State private var choosingPlan = false
+
+    /// The root is a short list of pages, grouped the way openGym's Settings groups them (Modules;
+    /// Workout, Timer alerts, Reminders; Plan, Units, Equipment; Look; Health, Data, Server).
     var body: some View {
         NavigationStack {
             List {
                 Section {
-                    page("Workout", "figure.strengthtraining.traditional", .accentColor) { workout }
-                    page("Timer alerts", "speaker.wave.2.fill", .orange) { alerts }
-                    page("Reminders", "bell.fill", .red) { ReminderSection() }
+                    NavigationLink { ModulesPage() } label: {
+                        row("Modules", "square.grid.2x2.fill", .blue, value: "\(Modules.ids.filter { Modules.isOn(model.root, $0) }.count) / \(Modules.ids.count)")
+                    }
+                }
+                Section {
+                    page("Workout", "figure.strengthtraining.traditional", Theme.accent) { workout }
+                    NavigationLink { AlertsPage() } label: { row("Timer alerts", "speaker.wave.2.fill", .orange) }
+                    page("Reminders", "bell.fill", .red) { reminders }
                 }
                 Section {
                     page("Plan & schedule", "calendar", .orange) { plan }
                     page("Units & language", "globe", .blue, value: language == "en" ? "English" : "中文") { units }
-                    NavigationLink { PlateCalculator().navigationTitle("Plate calculator").navigationBarTitleDisplayMode(.inline) } label: {
-                        row("Plate calculator", "scalemass.fill", .indigo)
+                    NavigationLink { EquipmentPage() } label: { row("Equipment", "scalemass.fill", .indigo) }
+                }
+                Section {
+                    NavigationLink { LookPage() } label: { row("Look & Home", "paintpalette.fill", .purple, value: themeName) }
+                }
+                Section {
+                    if Modules.isOn(model.root, "health") {
+                        page("Apple Health", "heart.fill", .pink, value: String(localized: health ? "On" : "Off")) { healthPage }
                     }
-                }
-                Section {
-                    page("Appearance", "paintpalette.fill", .purple, value: themeName) { look }
-                    page("Apple Health", "heart.fill", .pink, value: String(localized: health ? "On" : "Off")) { healthPage }
-                }
-                Section {
                     page("Data & backup", "folder.fill", .blue) { data }
                     page("Server", "server.rack", .gray, value: String(localized: ServerSync.shared.paired ? "Connected" : "Off")) { ServerSection() }
                 } footer: {
@@ -114,6 +121,7 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { Button("Done") { dismiss() }.fontWeight(.semibold) }
             .sheet(isPresented: $importing) { ImportView() }
+            .sheet(isPresented: $choosingPlan) { StarterPlanSheet() }
         }
     }
 
@@ -125,43 +133,78 @@ struct SettingsView: View {
 
     @ViewBuilder private var workout: some View {
         Section("Logging") {
-            picker("Effort per set", "effort", [("none", "Off"), ("rir", "Reps in reserve"), ("rpe", "RPE")], fallback: "none")
-            picker("Planned sessions start from", "startFrom", [("plan", "The plan"), ("last", "Last time")], fallback: "plan")
-            picker("Last time means", "lastFrom", [("routine", "Same routine"), ("any", "Any routine")], fallback: "routine")
+            if Modules.isOn(model.root, "effort") {
+                picker("Effort per set", "effort", [("none", "Off"), ("rir", "Reps in reserve"), ("rpe", "RPE")], fallback: "none")
+            }
+            ProfileToggle(title: "Compare sets with last time", key: "setTrend", fallback: true,
+                          subtitle: "A small ↑, = or ↓ on each set you finish, against the same set last time.")
+            ProfileToggle(title: "Collapse completed exercises", key: "collapseCompleted", subtitle: "A finished exercise folds into one line.")
         }
-        Section("Warm-ups") {
-            picker("Automatic warm-ups", "warmupAuto", [("off", "Off"), ("compounds", "Compound lifts"), ("all", "All lifts")], fallback: "off")
+        if Modules.isOn(model.root, "plates") {
+            Section("Warm-ups") {
+                picker("Automatic warm-ups", "warmupAuto", [("off", "Off"), ("compounds", "Compound lifts"), ("all", "All lifts")], fallback: "off")
+            }
         }
         Section {
             stepper("Rest timer", "restSec", fallback: 90, range: 0...600, step: 15)
             stepper("Rest-pause rest", "restPauseSec", fallback: 15, range: 5...120, step: 5)
+            Picker(selection: Binding(get: { model.root["warmupRestSec"]?.numberValue ?? -1 }, set: { model.set("warmupRestSec", $0 < 0 ? nil : .number($0)) })) {
+                Text("Like the work sets").tag(-1.0)
+                Text("No timer").tag(0.0)
+                ForEach([15.0, 30, 45, 60, 90, 120], id: \.self) { Text(Format.seconds($0)).tag($0) }
+            } label: {
+                Text("Rest between warm-ups")
+                Text("The last warm-up still gets the full rest before your first work set.")
+            }
         } header: {
             Text("Rest")
         } footer: {
             Text("Each exercise can have its own rest too. Set it in the exercise settings of a routine.")
         }
         Section("Before and during") {
+            if Modules.isOn(model.root, "body") {
+                ProfileToggle(title: "Weigh in before workouts", key: "weighIn", fallback: true,
+                              subtitle: "Asks for your body weight when a workout starts. Off starts the session straight away.")
+            }
+            ProfileToggle(title: "Keep screen awake", key: "keepAwake", fallback: true,
+                          subtitle: "The screen stays on while a workout is running, so you don’t have to unlock your phone between sets.")
             picker("Exercise animations", "gifSize", [("full", "Full"), ("mini", "Small"), ("off", "Off")], fallback: "full")
         }
         Section("Fine-tuning") {
             picker("Default progression", "progDefault", [("linear", "Linear"), ("double", "Double"), ("greyskull", "Greyskull LP"), ("off", "Off")], fallback: "linear")
+            ProfileToggle(title: "Keep timing after target", key: "timedSetOvertime",
+                          subtitle: "Timed sets continue up to 15 extra minutes. Tap Done to log the actual duration.")
         }
     }
 
-    @ViewBuilder private var alerts: some View {
+    @ViewBuilder private var reminders: some View {
+        ReminderSection()
         Section {
-            toggle("Play a sound", "sound", fallback: true)
-            toggle("Flash the screen", "timerFlash", fallback: false)
-        } header: {
-            Text("When a rest ends")
+            NavigationLink { GymReminderPage() } label: {
+                LabeledContent("Gym reminder", value: String(localized: GymReminder.shared.on ? "On" : "Off"))
+            }
         } footer: {
-            Text("A notification also tells you when rest is over while Hexplate is in the background.")
+            Text("A nudge when you walk into your gym.")
+        }
+        Section {
+            Button("Send test notification", systemImage: "bell.badge") { sendTestNotification() }
+        } footer: {
+            Text("Arrives in five seconds, so you can lock the phone and see how it looks.")
         }
     }
 
     @ViewBuilder private var plan: some View {
         Section {
             picker("Week starts on", "weekStart", [(1, "Monday"), (0, "Sunday")], fallback: 1)
+            if Schedule.scheduleMode(model.root) == "rotation" {
+                picker("Workouts per week", "weekTarget", [(0, "Off")] + (1...7).map { ($0, "\($0)") }, fallback: 0, zeroIsNil: true)
+            }
+        } footer: {
+            if Schedule.scheduleMode(model.root) == "rotation" { Text("A countdown of the week’s workouts on Home. Off says nothing.") }
+        }
+        Section {
+            NavigationLink("Weekly sets per muscle") { MuscleTargetsEditor() }
+            Button("Load starter plan", systemImage: "list.clipboard") { choosingPlan = true }
         }
     }
 
@@ -173,38 +216,56 @@ struct SettingsView: View {
                 Text(verbatim: "English").tag("en")
             }
             .onChange(of: language) { Theme.applyLanguage(language) }
+            if language == "zh" {
+                Toggle(isOn: Binding(get: { model.root["enParens"]?.object?["zh-TW"] != .bool(false) }, set: { v in setNameChoice("enParens", v) })) {
+                    Text("English exercise names")
+                    Text("Show the English name in parentheses next to the translated one.")
+                }
+                .disabled(model.root["enOnly"]?.object?["zh-TW"] == .bool(true))
+                Toggle(isOn: Binding(get: { model.root["enOnly"]?.object?["zh-TW"] == .bool(true) }, set: { v in setNameChoice("enOnly", v) })) {
+                    Text("English names only")
+                    Text("Replace the translated names with the original English ones.")
+                }
+            }
         } footer: {
             if language != Theme.language {
-                Text("Close Hexplate and open it again to switch the language.").foregroundStyle(Color.accentColor)
+                Text("Close Hexplate and open it again to switch the language.").foregroundStyle(Theme.accent)
             }
         }
         Section {
             picker("Weight unit", "unit", [("kg", "kg"), ("lb", "lb")], fallback: "kg")
             picker("Weight decimals", "wdec", [(1, "1"), (2, "2")], fallback: 1)
+            picker("Speed unit", "speedUnit", [("kmh", "km/h"), ("mph", "mph")], fallback: model.settings.speedUnit)
             picker("1RM formula", "oneRmFormula", Stats.formulaNames.sorted { $0.value < $1.value }.map { ($0.key, $0.value) }, fallback: "epley")
         } footer: {
             Text("How precisely weights are shown.")
         }
         Section {
-            picker("Sex", "sex", [("", "Not set"), ("male", "Male"), ("female", "Female")], fallback: "")
-            numberRow("Birth year", "birthYear", decimals: 0)
-            numberRow("Goal weight (\(model.settings.unit))", "targetW", decimals: 1)
-        } header: {
-            Text("About you")
-        } footer: {
-            Text("Sex and age set the strength level standards.")
+            ProfileToggle(title: "Count warm-ups in volume", key: "volumeWarmups",
+                          subtitle: "Handy when you compare with another app. Records ignore warm-ups either way.")
+            ProfileToggle(title: "Count body weight in bodyweight lifts", key: "volumeBodyweight",
+                          subtitle: "Pull-ups, dips and push-ups add your nearest weigh-in to their volume. Records stay as logged.")
+        }
+        if Modules.isOn(model.root, "strength") {
+            Section {
+                picker("Sex", "sex", [("", "Not set"), ("male", "Male"), ("female", "Female")], fallback: "")
+                numberRow("Birth year", "birthYear", decimals: 0)
+                numberRow("Goal weight (\(model.settings.unit))", "targetW", decimals: 1)
+            } header: {
+                Text("About you")
+            } footer: {
+                Text("Sex and age set the strength level standards.")
+            }
         }
     }
 
-    @ViewBuilder private var look: some View {
-        Section {
-            Picker("Theme", selection: $appearance) {
-                Text("System").tag("system")
-                Text("Light").tag("light")
-                Text("Dark").tag("dark")
-            }
-            .pickerStyle(.inline)
-            .labelsHidden()
+    /// `enParens` / `enOnly` are kept per language, as openGym keeps them; Hexplate's is "zh-TW".
+    private func setNameChoice(_ key: String, _ on: Bool) {
+        model.change { s in
+            var m = s[key]?.object ?? [:]
+            m["zh-TW"] = .bool(on)
+            s[key] = .object(m)
+            ExerciseNames.style = ExerciseNames.style(language: Theme.language, profile: s)
         }
     }
 
@@ -266,7 +327,7 @@ struct SettingsView: View {
 
     // MARK: Rows bound to the document
 
-    private func picker<T: Hashable>(_ title: LocalizedStringKey, _ key: String, _ options: [(T, String)], fallback: T) -> some View {
+    private func picker<T: Hashable>(_ title: LocalizedStringKey, _ key: String, _ options: [(T, String)], fallback: T, zeroIsNil: Bool = false) -> some View {
         let has = { (v: T) in options.contains { $0.0 == v } }
         return Picker(title, selection: Binding<T>(
             get: {
@@ -277,14 +338,10 @@ struct SettingsView: View {
             },
             set: { value in
                 if let s = value as? String { model.set(key, s.isEmpty ? nil : .string(s)) }
-                if let n = value as? Int { model.set(key, .number(Double(n))) }
+                if let n = value as? Int { model.set(key, zeroIsNil && n == 0 ? nil : .number(Double(n))) }
             })) {
             ForEach(options, id: \.0) { Text(LocalizedStringKey($0.1)).tag($0.0) }
         }
-    }
-
-    private func toggle(_ title: LocalizedStringKey, _ key: String, fallback: Bool) -> some View {
-        Toggle(title, isOn: Binding(get: { model.root[key].map { $0 == .bool(true) } ?? fallback }, set: { model.set(key, .bool($0)) }))
     }
 
     private func stepper(_ title: LocalizedStringKey, _ key: String, fallback: Double, range: ClosedRange<Double>, step: Double) -> some View {
@@ -377,7 +434,7 @@ private struct CSVExportView: View {
 
 /// The workout-day reminder and the missed-workout nudge (ReminderSync), kept in the synced profile
 /// as openGym keeps them: `reminder = {on, time, tz, nudge, tone}`.
-private struct ReminderSection: View {
+struct ReminderSection: View {
     @Environment(AppModel.self) private var model
 
     private var r: [String: JSONValue] { model.root["reminder"]?.object ?? [:] }
@@ -433,7 +490,7 @@ private struct ReminderSection: View {
 }
 
 /// MyGym: the paired openGym server (ServerSync).
-private struct ServerSection: View {
+struct ServerSection: View {
     @Environment(AppModel.self) private var model
     @State private var address = ""
     @State private var code = ""
@@ -501,7 +558,7 @@ private struct NumberText: View {
 }
 
 /// Which plates go on each side of the bar.
-private struct PlateCalculator: View {
+struct PlateCalculator: View {
     @Environment(AppModel.self) private var model
     @State private var target = ""
     @State private var bar: Double = 20
@@ -518,7 +575,10 @@ private struct PlateCalculator: View {
                     TextField("–", text: $target).keyboardType(.decimalPad).multilineTextAlignment(.trailing).font(.title3.monospacedDigit())
                 }
                 Picker("Bar", selection: $bar) {
-                    ForEach(unit == "lb" ? [45.0, 35, 0] : [20.0, 15, 10, 0], id: \.self) { Text($0 == 0 ? "No bar" : "\(Format.number($0)) \(unit)").tag($0) }
+                    // Your barbell first (Equipment → Your bars), then the usual others.
+                    ForEach(Array(Set([Equipment.barWeight(model.root, "barbell")] + (unit == "lb" ? [45.0, 35, 0] : [20.0, 15, 10, 0]))).sorted(by: >), id: \.self) {
+                        Text($0 == 0 ? "No bar" : "\(Format.number($0)) \(unit)").tag($0)
+                    }
                 }
             }
             if total > 0 {
@@ -540,6 +600,6 @@ private struct PlateCalculator: View {
         }
         .keyboardDone()
         .navigationTitle("Plate calculator")
-        .onAppear { bar = unit == "lb" ? 45 : 20 }
+        .onAppear { bar = Equipment.barWeight(model.root, "barbell") }
     }
 }

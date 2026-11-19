@@ -1,0 +1,1068 @@
+[
+ {
+  "name": "heavier same reps",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 102.5,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 97.5,
+     "r": 5
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ],
+   "target": {}
+  },
+  "formula": "epley"
+ },
+ {
+  "name": "heavier same reps",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 102.5,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 97.5,
+     "r": 5
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ],
+   "target": {}
+  },
+  "formula": "brzycki"
+ },
+ {
+  "name": "more reps",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 6
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 4
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ],
+   "target": {}
+  },
+  "formula": "epley"
+ },
+ {
+  "name": "more reps",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 6
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 4
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ],
+   "target": {}
+  },
+  "formula": "brzycki"
+ },
+ {
+  "name": "heavier fewer reps e1rm",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 110,
+     "r": 4
+    },
+    {
+     "done": true,
+     "w": 90,
+     "r": 8
+    },
+    {
+     "done": true,
+     "w": 105,
+     "r": 4
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ],
+   "target": {}
+  },
+  "formula": "epley"
+ },
+ {
+  "name": "heavier fewer reps e1rm",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 110,
+     "r": 4
+    },
+    {
+     "done": true,
+     "w": 90,
+     "r": 8
+    },
+    {
+     "done": true,
+     "w": 105,
+     "r": 4
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ],
+   "target": {}
+  },
+  "formula": "brzycki"
+ },
+ {
+  "name": "warmups skipped and not done",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 40,
+     "r": 10,
+     "warmup": true
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 6
+    },
+    {
+     "done": false,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ],
+   "target": {}
+  },
+  "formula": "epley"
+ },
+ {
+  "name": "warmups skipped and not done",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 40,
+     "r": 10,
+     "warmup": true
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 6
+    },
+    {
+     "done": false,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ],
+   "target": {}
+  },
+  "formula": "brzycki"
+ },
+ {
+  "name": "extra set has no counterpart",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ],
+   "target": {}
+  },
+  "formula": "epley"
+ },
+ {
+  "name": "extra set has no counterpart",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ],
+   "target": {}
+  },
+  "formula": "brzycki"
+ },
+ {
+  "name": "bodyweight reps",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 0,
+     "r": 12
+    },
+    {
+     "done": true,
+     "w": 0,
+     "r": 10
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 0,
+     "r": 10
+    },
+    {
+     "done": true,
+     "w": 0,
+     "r": 10
+    }
+   ],
+   "target": {}
+  },
+  "formula": "epley"
+ },
+ {
+  "name": "bodyweight reps",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 0,
+     "r": 12
+    },
+    {
+     "done": true,
+     "w": 0,
+     "r": 10
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 0,
+     "r": 10
+    },
+    {
+     "done": true,
+     "w": 0,
+     "r": 10
+    }
+   ],
+   "target": {}
+  },
+  "formula": "brzycki"
+ },
+ {
+  "name": "assisted less help",
+  "entry": {
+   "id": "0043",
+   "target": {
+    "assisted": true
+   },
+   "sets": [
+    {
+     "done": true,
+     "w": 20,
+     "r": 8
+    },
+    {
+     "done": true,
+     "w": 30,
+     "r": 8
+    },
+    {
+     "done": true,
+     "w": 20,
+     "r": 6
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 25,
+     "r": 8
+    },
+    {
+     "done": true,
+     "w": 25,
+     "r": 8
+    },
+    {
+     "done": true,
+     "w": 25,
+     "r": 8
+    }
+   ],
+   "target": {
+    "assisted": true
+   }
+  },
+  "formula": "epley"
+ },
+ {
+  "name": "assisted less help",
+  "entry": {
+   "id": "0043",
+   "target": {
+    "assisted": true
+   },
+   "sets": [
+    {
+     "done": true,
+     "w": 20,
+     "r": 8
+    },
+    {
+     "done": true,
+     "w": 30,
+     "r": 8
+    },
+    {
+     "done": true,
+     "w": 20,
+     "r": 6
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 25,
+     "r": 8
+    },
+    {
+     "done": true,
+     "w": 25,
+     "r": 8
+    },
+    {
+     "done": true,
+     "w": 25,
+     "r": 8
+    }
+   ],
+   "target": {
+    "assisted": true
+   }
+  },
+  "formula": "brzycki"
+ },
+ {
+  "name": "timed holds",
+  "entry": {
+   "id": "0043",
+   "target": {
+    "mode": "time"
+   },
+   "sets": [
+    {
+     "done": true,
+     "sec": 45
+    },
+    {
+     "done": true,
+     "sec": 30
+    },
+    {
+     "done": true,
+     "sec": 40
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "sec": 40
+    },
+    {
+     "done": true,
+     "sec": 40
+    },
+    {
+     "done": true,
+     "sec": 40
+    }
+   ],
+   "target": {
+    "mode": "time"
+   }
+  },
+  "formula": "epley"
+ },
+ {
+  "name": "timed holds",
+  "entry": {
+   "id": "0043",
+   "target": {
+    "mode": "time"
+   },
+   "sets": [
+    {
+     "done": true,
+     "sec": 45
+    },
+    {
+     "done": true,
+     "sec": 30
+    },
+    {
+     "done": true,
+     "sec": 40
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "sec": 40
+    },
+    {
+     "done": true,
+     "sec": 40
+    },
+    {
+     "done": true,
+     "sec": 40
+    }
+   ],
+   "target": {
+    "mode": "time"
+   }
+  },
+  "formula": "brzycki"
+ },
+ {
+  "name": "cardio",
+  "entry": {
+   "id": "0043",
+   "target": {
+    "mode": "cardio"
+   },
+   "sets": [
+    {
+     "done": true,
+     "min": 20,
+     "speed": 10
+    },
+    {
+     "done": true,
+     "min": 20,
+     "speed": 9
+    },
+    {
+     "done": true,
+     "min": 20
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "min": 20,
+     "speed": 9.5
+    },
+    {
+     "done": true,
+     "min": 20,
+     "speed": 9.5
+    },
+    {
+     "done": true,
+     "min": 20
+    }
+   ],
+   "target": {
+    "mode": "cardio"
+   }
+  },
+  "formula": "epley"
+ },
+ {
+  "name": "cardio",
+  "entry": {
+   "id": "0043",
+   "target": {
+    "mode": "cardio"
+   },
+   "sets": [
+    {
+     "done": true,
+     "min": 20,
+     "speed": 10
+    },
+    {
+     "done": true,
+     "min": 20,
+     "speed": 9
+    },
+    {
+     "done": true,
+     "min": 20
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "min": 20,
+     "speed": 9.5
+    },
+    {
+     "done": true,
+     "min": 20,
+     "speed": 9.5
+    },
+    {
+     "done": true,
+     "min": 20
+    }
+   ],
+   "target": {
+    "mode": "cardio"
+   }
+  },
+  "formula": "brzycki"
+ },
+ {
+  "name": "mode changed",
+  "entry": {
+   "id": "0043",
+   "target": {
+    "mode": "time"
+   },
+   "sets": [
+    {
+     "done": true,
+     "sec": 45
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ],
+   "target": {}
+  },
+  "formula": "epley"
+ },
+ {
+  "name": "mode changed",
+  "entry": {
+   "id": "0043",
+   "target": {
+    "mode": "time"
+   },
+   "sets": [
+    {
+     "done": true,
+     "sec": 45
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    },
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ],
+   "target": {}
+  },
+  "formula": "brzycki"
+ },
+ {
+  "name": "no last time",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ]
+  },
+  "last": null,
+  "formula": "epley"
+ },
+ {
+  "name": "no last time",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "done": true,
+     "w": 100,
+     "r": 5
+    }
+   ]
+  },
+  "last": null,
+  "formula": "brzycki"
+ },
+ {
+  "name": "side set",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "sides": {
+      "L": {
+       "w": 20,
+       "r": 10,
+       "done": true
+      },
+      "R": {
+       "w": 20,
+       "r": 10,
+       "done": true
+      }
+     },
+     "w": 22,
+     "r": 10
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true
+    }
+   ],
+   "target": {}
+  },
+  "formula": "epley"
+ },
+ {
+  "name": "side set",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "sides": {
+      "L": {
+       "w": 20,
+       "r": 10,
+       "done": true
+      },
+      "R": {
+       "w": 20,
+       "r": 10,
+       "done": true
+      }
+     },
+     "w": 22,
+     "r": 10
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true
+    }
+   ],
+   "target": {}
+  },
+  "formula": "brzycki"
+ },
+ {
+  "name": "side set half done",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "sides": {
+      "L": {
+       "w": 20,
+       "r": 10,
+       "done": true
+      },
+      "R": {
+       "w": 20,
+       "r": 10
+      }
+     },
+     "w": 22,
+     "r": 10
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true
+    }
+   ],
+   "target": {}
+  },
+  "formula": "epley"
+ },
+ {
+  "name": "side set half done",
+  "entry": {
+   "id": "0043",
+   "target": {},
+   "sets": [
+    {
+     "sides": {
+      "L": {
+       "w": 20,
+       "r": 10,
+       "done": true
+      },
+      "R": {
+       "w": 20,
+       "r": 10
+      }
+     },
+     "w": 22,
+     "r": 10
+    }
+   ]
+  },
+  "last": {
+   "sets": [
+    {
+     "w": 20,
+     "r": 10,
+     "done": true
+    }
+   ],
+   "target": {}
+  },
+  "formula": "brzycki"
+ }
+]

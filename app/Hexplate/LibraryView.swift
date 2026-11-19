@@ -138,7 +138,7 @@ struct LibraryView: View {
             if let equipment, ex.equipment != equipment { return false }
             if let muscle, catalog.primaryMuscle(of: ex) != muscle { return false }
             if !words.isEmpty {
-                let text = ([ex.name] + (aliases[ex.id]?.arrayValue ?? []).compactMap(\.stringValue)).joined(separator: " ").lowercased()
+                let text = ([ex.name, ex.translatedName ?? ""] + (aliases[ex.id]?.arrayValue ?? []).compactMap(\.stringValue)).joined(separator: " ").lowercased()
                 if !words.allSatisfy({ text.contains($0) }) { return false }
             }
             if let have, !catalog.isAvailable(ex, with: have) { return false }
@@ -464,7 +464,7 @@ struct CustomExerciseEditor: View {
 
     private func load() {
         guard let id, let ex = model.catalog[id] else { return }
-        name = ex.displayName
+        name = ex.englishName
         bodyPart = ex.bodyPart ?? ""
         equipment = ex.equipment ?? "body weight"
         target = model.catalog.muscle(ex.target) ?? ""

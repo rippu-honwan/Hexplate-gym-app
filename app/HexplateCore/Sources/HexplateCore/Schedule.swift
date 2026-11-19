@@ -14,7 +14,7 @@ public enum Schedule {
 
     static func strings(_ v: JSONValue?) -> [String] { (v?.arrayValue ?? []).compactMap(\.stringValue) }
     static func routines(_ s: Object) -> [Object] { (s["routines"]?.arrayValue ?? []).compactMap(\.object) }
-    static func workouts(_ s: Object) -> [Object] { (s["workouts"]?.arrayValue ?? []).compactMap(\.object) }
+    public static func workouts(_ s: Object) -> [Object] { (s["workouts"]?.arrayValue ?? []).compactMap(\.object) }
     static func hasRoutine(_ s: Object, _ id: String) -> Bool { routines(s).contains { $0["id"] == .string(id) } }
     static func routineIds(of w: Object) -> [String] {
         if let ids = w["routineIds"]?.arrayValue { return ids.compactMap(\.stringValue) }

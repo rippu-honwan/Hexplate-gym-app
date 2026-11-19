@@ -5,7 +5,7 @@ import SwiftUI
 extension AppModel {
     func logWeight(_ w: Double, on day: String, fromHealth: Bool = false) {
         let at = now
-        if !fromHealth && UserDefaults.standard.bool(forKey: "health") {
+        if !fromHealth && UserDefaults.standard.bool(forKey: "health") && Modules.isOn(root, "health") {
             Health.save(weight: w, unit: settings.unit, at: day == today ? .now : Day.date(day) ?? .now)
         }
         let time = Date.now.formatted(.dateTime.hour(.twoDigits(amPM: .omitted)).minute(.twoDigits).locale(Locale(identifier: "en_GB")))
@@ -27,14 +27,16 @@ struct StatsView: View {
     var body: some View {
         NavigationStack {
             List {
-                StreakSection()
-                bodySection
-                muscleSection
+                if Modules.isOn(model.root, "motivation") { StreakSection() }
+                if Modules.isOn(model.root, "body") { bodySection }
+                MuscleSetsSection()
                 volumeSection
                 daysSection
-                strengthSection
-                TrophyShelfSection()
-                WrappedYearsSection()
+                if Modules.isOn(model.root, "strength") { strengthSection }
+                if Modules.isOn(model.root, "motivation") {
+                    TrophyShelfSection()
+                    WrappedYearsSection()
+                }
                 Section {
                     NavigationLink("Structural balance") { BalanceView() }
                 } footer: {
@@ -92,32 +94,6 @@ struct StatsView: View {
     }
 
     // MARK: Training
-
-    @ViewBuilder private var muscleSection: some View {
-        let rows = Stats.weeklyMuscleSets(model.root, today: model.today, catalog: model.catalog)
-        Section {
-            ForEach(rows, id: \.slug) { row in
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(model.catalog.muscleName(row.slug))
-                        Spacer()
-                        Text("\(Format.number(row.sets)) / \(Int(row.low))–\(Int(row.high))")
-                            .monospacedDigit()
-                            .foregroundStyle(.secondary)
-                    }
-                    .font(.subheadline)
-                    Gauge(value: min(row.sets, row.high), in: 0...max(row.high, 1)) {}
-                        .gaugeStyle(.linearCapacity)
-                        .tint(row.status == "below" ? Color.secondary : Color.accentColor)
-                }
-                .accessibilityElement(children: .combine)
-            }
-        } header: {
-            Text("Sets per muscle this week")
-        } footer: {
-            Text("Ticked-off work sets, shared out by how much each exercise works a muscle.")
-        }
-    }
 
     @ViewBuilder private var volumeSection: some View {
         let weeks = Stats.weeklyVolume(model.root, today: model.today)
@@ -236,7 +212,7 @@ private struct OneRepMaxView: View {
     }
 }
 
-private struct WeightEntry: View {
+struct WeightEntry: View {
     @Environment(AppModel.self) private var model
     @Environment(\.dismiss) private var dismiss
     @State private var text = ""
@@ -411,5 +387,36 @@ private struct BalanceView: View {
             }
         }
         .accessibilityElement(children: .combine)
+    }
+}
+
+/// Sets per muscle this week against each muscle's range (Stats, and Home with Weekly sets on Home).
+struct MuscleSetsSection: View {
+    @Environment(AppModel.self) private var model
+
+    var body: some View {
+        let rows = Stats.weeklyMuscleSets(model.root, today: model.today, catalog: model.catalog)
+        Section {
+            ForEach(rows, id: \.slug) { row in
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack {
+                        Text(LocalizedStringKey(model.catalog.muscleName(row.slug)))
+                        Spacer()
+                        Text("\(Format.number(row.sets)) / \(Int(row.low))–\(Int(row.high))")
+                            .monospacedDigit()
+                            .foregroundStyle(.secondary)
+                    }
+                    .font(.subheadline)
+                    Gauge(value: min(row.sets, row.high), in: 0...max(row.high, 1)) {}
+                        .gaugeStyle(.linearCapacity)
+                        .tint(row.status == "below" ? Color.secondary : Theme.accent)
+                }
+                .accessibilityElement(children: .combine)
+            }
+        } header: {
+            Text("Sets per muscle this week")
+        } footer: {
+            Text("Ticked-off work sets, shared out by how much each exercise works a muscle.")
+        }
     }
 }

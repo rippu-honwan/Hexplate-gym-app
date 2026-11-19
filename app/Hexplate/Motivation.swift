@@ -159,7 +159,7 @@ private struct ChallengeRow: View {
         let title = tr(t.key, t.arg ?? t.count.map(num) ?? "")
         HStack(spacing: 12) {
             Image(systemName: p.done ? "checkmark.circle.fill" : p.icon)
-                .foregroundStyle(p.done ? Color.accentColor : Color.secondary)
+                .foregroundStyle(p.done ? Theme.accent : Color.secondary)
                 .frame(width: 28)
             VStack(alignment: .leading, spacing: 6) {
                 HStack {
@@ -167,7 +167,7 @@ private struct ChallengeRow: View {
                     Spacer()
                     Text(Challenges.count(p, unit: unit, num: num)).font(.subheadline.monospacedDigit()).foregroundStyle(.secondary)
                 }
-                ProgressView(value: min(1, max(0, p.pct))).tint(p.done ? Color.accentColor : nil)
+                ProgressView(value: min(1, max(0, p.pct))).tint(p.done ? Theme.accent : nil)
             }
         }
         .accessibilityElement(children: .combine)

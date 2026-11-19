@@ -31,7 +31,7 @@ struct WatchStartBar: View {
             HStack(spacing: 12) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(ending ? "Waiting for the watch…" : recording ? "Recording on the watch" : "Next on the watch")
-                        .font(.caption.weight(.semibold)).foregroundStyle(recording ? Color.accentColor : .secondary)
+                        .font(.caption.weight(.semibold)).foregroundStyle(recording ? Theme.accent : .secondary)
                     Menu {
                         Picker("Exercise for the watch", selection: Binding(get: { e }, set: { to in model.changeActive { $0["cur"] = .number(Double(to)) } })) {
                             ForEach(LiveActivity.watchChoices(model.root, catalog: model.catalog), id: \.entry) { Text($0.name).tag($0.entry) }

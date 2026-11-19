@@ -9,13 +9,28 @@ struct HexplateApp: App {
     @AppStorage("appearance") private var appearance = "system"
     @Environment(\.scenePhase) private var phase
 
-    init() { Theme.applyLanguage(Theme.language) }
+    init() {
+        Theme.applyLanguage(Theme.language)
+        // Made at launch: a gym region entered with the app closed relaunches it in the background.
+        _ = GymReminder.shared
+    }
+
+    /// What follows the profile: exercise names (English names), the gym reminder's rules.
+    private func followProfile() {
+        ExerciseNames.style = ExerciseNames.style(language: Theme.language, profile: model.root)
+        GymReminder.remember(model.root, today: model.today)
+    }
+
+    /// Settings → Keep screen awake: the screen stays on while a workout runs.
+    private func keepAwake() {
+        UIApplication.shared.isIdleTimerDisabled = model.active != nil && model.root["keepAwake"] != .bool(false)
+    }
 
     var body: some Scene {
         WindowGroup {
             RootView()
                 // One accent everywhere, switches included (their default is green).
-                .tint(Color.accentColor)
+                .tint(Theme.accent)
                 .environment(model)
                 .environment(timer)
                 .environment(\.locale, Theme.locale)
@@ -36,12 +51,15 @@ struct HexplateApp: App {
                     WatchBridge.shared.start(model: model, timer: timer)
                     WidgetSync.write(model)
                     ReminderSync.sync(model); WrappedNotify.sync(model)
+                    keepAwake()
+                    followProfile()
+                    GymReminder.shared.register()
                     LiveActivitySync.start(model: model, timer: timer)
                     ServerSync.shared.start(model)
                 }
                 // The watch follows every change of the document and of the rest timer.
-                .onChange(of: model.root) { WatchBridge.shared.send(); WidgetSync.write(model); LiveActivitySync.update(model, timer); ServerSync.shared.changed(model); ReminderSync.sync(model); WrappedNotify.sync(model) }
-                .onChange(of: model.today) { WidgetSync.write(model); ReminderSync.sync(model); WrappedNotify.sync(model) }
+                .onChange(of: model.root) { keepAwake(); followProfile(); WatchBridge.shared.send(); WidgetSync.write(model); LiveActivitySync.update(model, timer); ServerSync.shared.changed(model); ReminderSync.sync(model); WrappedNotify.sync(model) }
+                .onChange(of: model.today) { followProfile(); WidgetSync.write(model); ReminderSync.sync(model); WrappedNotify.sync(model) }
                 .onOpenURL { WidgetSync.open($0, model) }
                 .onChange(of: timer.end) { WatchBridge.shared.send(); LiveActivitySync.update(model, timer) }
         }
@@ -61,8 +79,8 @@ private struct RootView: View {
             Tab("Stats", systemImage: "chart.xyaxis.line", value: "stats") { StatsView() }
         }
         .modifier(WorkoutAccessory())
-        .fullScreenCover(isPresented: $model.showWorkout) { WorkoutView().tint(Color.accentColor) }
-        .fullScreenCover(item: $model.wrappedYear) { WrappedStory(year: $0).tint(Color.accentColor) }
+        .fullScreenCover(isPresented: $model.showWorkout) { WorkoutView().tint(Theme.accent) }
+        .fullScreenCover(item: $model.wrappedYear) { WrappedStory(year: $0).tint(Theme.accent) }
         .alert("Something went wrong", isPresented: .init(get: { model.errorMessage != nil }, set: { if !$0 { model.errorMessage = nil } })) {
             Button("OK", role: .cancel) {}
         } message: {

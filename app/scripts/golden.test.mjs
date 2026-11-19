@@ -649,3 +649,12 @@ it('writes the wrapped golden file', async () => {
   })
   writeFileSync(process.env.WRAP_OUT, JSON.stringify(out, null, 1) + '\n')
 })
+
+// Each set against the same set last time (lib/set-trend.js), every branch.
+it('writes the set trend golden file', async () => {
+  if (!process.env.TREND_IN) return
+  const { setTrendsFor } = await import('../../frontend/src/lib/set-trend.js')
+  const cases = JSON.parse(readFileSync(process.env.TREND_IN, 'utf8'))
+  const out = cases.map(c => ({ name: c.name, trends: setTrendsFor(c.entry, c.last, { formula: c.formula }) }))
+  writeFileSync(process.env.TREND_OUT, JSON.stringify(out, null, 1) + '\n')
+})

@@ -227,7 +227,7 @@ extension AppModel {
             showWorkout = false
         case .rest(let endsAt):
             guard let timer, timer.end != nil, timer.kind == .rest else { return }
-            let alerts = RestTimer.Alerts(sound: root["sound"] != .bool(false), flash: root["timerFlash"] == .bool(true))
+            let alerts = RestTimer.Alerts(root)
             if let endsAt, let end = timer.end {
                 let sec = ((endsAt / 1000 - end.timeIntervalSince1970)).rounded()
                 if sec != 0 && endsAt / 1000 > Date.now.timeIntervalSince1970 { timer.add(sec, alerts: alerts) }
@@ -238,7 +238,7 @@ extension AppModel {
             // The rest runs from when the set was done on the watch.
             guard let timer, let rest = restSeconds(after: i) else { return }
             let left = rest - max(0, (now - (at ?? now)) / 1000)
-            let alerts = RestTimer.Alerts(sound: root["sound"] != .bool(false), flash: root["timerFlash"] == .bool(true))
+            let alerts = RestTimer.Alerts(root)
             if left > 0 { timer.start(left, alerts: alerts) }
         case .none:
             break
