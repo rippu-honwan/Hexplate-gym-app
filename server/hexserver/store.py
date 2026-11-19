@@ -13,6 +13,8 @@ import time
 import unicodedata
 from pathlib import Path
 
+from .stats import is_warmup
+
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS documents (
     rev INTEGER PRIMARY KEY, wid TEXT NOT NULL, ts REAL, received_at REAL NOT NULL, body TEXT NOT NULL);
@@ -153,7 +155,7 @@ class Store:
                         continue
                     self.db.execute("INSERT OR REPLACE INTO sets VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (
                         wid, i, j, str(e.get("id")), _num(x.get("w")), _num(x.get("r")), int(bool(x.get("done"))),
-                        int(x.get("phase") == "warmup" or x.get("type") == "warmup"), _num(x.get("rir")),
+                        int(is_warmup(x)), _num(x.get("rir")),
                         _num(x.get("hr")), _num(x.get("at")), _num(x.get("startedAt")), int(bool(x.get("checked"))),
                         json.dumps(x)))
         for b in s.get("bodyweight") or []:

@@ -106,7 +106,13 @@ def test_pages_and_data_actions(client, tmp_path):
     (tmp_path / "motion").mkdir(exist_ok=True)
     head = '# {"auto":9,"reps":10,"checked":true,"exId":"0025","w":20,"end":1794984800412}\nt\n'
     store.save_motion("20261118-120000_0025_s1.csv", head)
-    assert "Estimated 1RM per session" in client.get("/progress").text
+    for path in ("/history", "/plan", "/exercises", "/body", "/stats", "/report", "/connect", "/stats?range=1y", "/report?range=3m"):
+        assert client.get(path).status_code == 200, path
+    wid = state()["workouts"][0]["id"]
+    assert "Working sets" in client.get(f"/history/{wid}").text
+    ex = client.get("/exercises").text.split('href="/exercises/')[1].split('"')[0]
+    assert "Estimated 1RM per session" in client.get(f"/progress?ex={ex}").text   # old links still land
+    assert client.get("/data/sets.csv").text.startswith("date,workout,exercise_id")
     reps = client.get("/reps").text
     assert "0 of 1 counted right" in reps and "+0" not in reps and "-1" in reps
     assert "New pairing code" in client.get("/data").text
