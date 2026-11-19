@@ -295,25 +295,39 @@ extension Array {
     subscript(safe index: Int) -> Element? { indices.contains(index) ? self[index] : nil }
 }
 
-/// Search the catalogue and pick one exercise.
+/// Search the catalogue, filter it by equipment and muscle group, and pick one exercise.
 struct ExercisePicker: View {
     @Environment(AppModel.self) private var model
     @Environment(\.dismiss) private var dismiss
-    var title = "Add exercise"
+    var title: LocalizedStringKey = "Add exercise"
     let onPick: (String) -> Void
     @State private var query = ""
+    @State private var filter = ExerciseFilter()
 
     var body: some View {
         NavigationStack {
-            List(results, id: \.id) { ex in
-                Button {
-                    onPick(ex.id)
-                    dismiss()
-                } label: {
-                    ExerciseRow(exercise: ex, catalog: model.catalog)
+            let results = results
+            List {
+                ExerciseSections(results: results) { ex in
+                    Button {
+                        onPick(ex.id)
+                        dismiss()
+                    } label: {
+                        ExerciseRow(exercise: ex, catalog: model.catalog)
+                    }
+                    .tint(.primary)
                 }
             }
-            .overlay { if results.isEmpty { ContentUnavailableView.search(text: query) } }
+            .safeAreaBar(edge: .top) { ExerciseFilterBar(filter: $filter) }
+            .overlay {
+                if results.isEmpty {
+                    if query.isEmpty {
+                        ContentUnavailableView("No exercises", systemImage: "line.3.horizontal.decrease", description: Text("Nothing matches these filters."))
+                    } else {
+                        ContentUnavailableView.search(text: query)
+                    }
+                }
+            }
             .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search exercises")
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
@@ -321,14 +335,9 @@ struct ExercisePicker: View {
         }
     }
 
-    /// With nothing typed: the exercises already in your plan and history first, then the catalogue.
+    // ponytail: the whole catalogue on every render, like the library; cache if typing lags.
     private var results: [Exercise] {
-        guard query.trimmingCharacters(in: .whitespaces).isEmpty else { return model.catalog.search(query) }
-        var seen = Set<String>()
-        let used = (model.routines.flatMap { $0.slots.compactMap { $0["id"]?.stringValue } }
-            + (model.history?.workouts.flatMap { $0.entries.map(\.exerciseId) } ?? []))
-            .filter { seen.insert($0).inserted }
-            .compactMap { model.catalog[$0] }
-        return used + model.catalog.search("", limit: 100).filter { !seen.contains($0.id) }
+        let c = model.catalog
+        return c.search(query, limit: .max).filter { filter.keeps($0, c) }
     }
 }

@@ -11,16 +11,19 @@ struct BodyMap: View {
     var levels: [String: Double] = [:]
     var female = false
     var onTap: ((String) -> Void)?
+    /// Muscles to frame, close up, instead of the whole figure (a filter option's picture).
+    var zoom: [String] = []
 
     var body: some View {
         if let figure = BodyFigure.all[female ? "female" : "male"]?[side.rawValue] {
+            let box = frame(figure)
             GeometryReader { geo in
-                let scale = min(geo.size.width / figure.box.width, geo.size.height / figure.box.height)
-                let move = CGAffineTransform(translationX: -figure.box.minX, y: -figure.box.minY)
+                let scale = min(geo.size.width / box.width, geo.size.height / box.height)
+                let move = CGAffineTransform(translationX: -box.minX, y: -box.minY)
                     .concatenating(CGAffineTransform(scaleX: scale, y: scale))
                     .concatenating(CGAffineTransform(
-                        translationX: (geo.size.width - figure.box.width * scale) / 2,
-                        y: (geo.size.height - figure.box.height * scale) / 2))
+                        translationX: (geo.size.width - box.width * scale) / 2,
+                        y: (geo.size.height - box.height * scale) / 2))
                 ZStack {
                     ForEach(figure.parts, id: \.slug) { part in
                         let path = part.path.applying(move)
@@ -38,9 +41,18 @@ struct BodyMap: View {
                     }
                 }
             }
-            .aspectRatio(figure.box.width / figure.box.height, contentMode: .fit)
+            .aspectRatio(box.width / box.height, contentMode: .fit)
+            .clipped()
             .accessibilityElement(children: onTap == nil ? .ignore : .contain)
         }
+    }
+
+    /// The whole figure, or a square around the `zoom` muscles with room to see where they sit.
+    private func frame(_ figure: BodyFigure) -> CGRect {
+        let around = figure.parts.filter { zoom.contains($0.slug) }.map(\.path.boundingRect).reduce(CGRect.null) { $0.union($1) }
+        guard !around.isNull else { return figure.box }
+        let side = max(around.width, around.height) * 1.6
+        return CGRect(x: around.midX - side / 2, y: around.midY - side / 2, width: side, height: side)
     }
 }
 

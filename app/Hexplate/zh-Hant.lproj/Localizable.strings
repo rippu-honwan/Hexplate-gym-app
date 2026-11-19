@@ -996,3 +996,32 @@
 /* set counts */
 "{0} set" = "{0} 組";
 "{0} sets" = "{0} 組";
+
+/* Exercise filters */
+"Muscle group" = "肌肉群";
+"All equipment" = "全部器材";
+"All muscles" = "全部肌肉";
+"Popular" = "常用動作";
+"All exercises" = "所有動作";
+"Upper Body" = "上半身";
+"Lower Body" = "下半身";
+"Barbell" = "槓鈴";
+"Dumbbell" = "啞鈴";
+"Kettlebell" = "壺鈴";
+"Machine" = "器械";
+"Plate" = "槓片";
+"Resistance Band" = "彈力帶";
+"Suspension Band" = "懸吊帶";
+"Other" = "其他";
+"Abdominals" = "腹肌";
+"Lats" = "背闊肌";
+"Lower Back" = "下背";
+"Neck" = "頸";
+"Upper Back" = "上背";
+"Abductors" = "髖外展肌";
+"Quadriceps" = "股四頭肌";
+"Cardio" = "有氧";
+"Full Body" = "全身";
+
+/* Exercise filters */
+"No equipment" = "無器材";

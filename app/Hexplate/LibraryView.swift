@@ -44,16 +44,14 @@ extension AppModel {
     }
 }
 
-/// The Exercises tab: the catalogue and your own exercises, searched and filtered.
+/// The Exercises tab: the catalogue and your own exercises, searched and filtered, staples first.
 struct LibraryView: View {
     @Environment(AppModel.self) private var model
     @State private var query = ""
-    @State private var muscle: String?
-    @State private var equipment: String?
+    @State private var filter = ExerciseFilter()
     @State private var favouritesOnly = false
     @State private var customOnly = false
     @State private var mineOnly = true
-    @State private var browsing = false
     @State private var creating = false
 
     var body: some View {
@@ -61,20 +59,13 @@ struct LibraryView: View {
             let results = results
             let favourites = model.favourites
             List {
-                Section {
-                    ForEach(results, id: \.id) { ex in
-                        NavigationLink(value: ExerciseLink(id: ex.id)) {
-                            ExerciseRow(exercise: ex, catalog: model.catalog, favourite: favourites.contains(ex.id))
-                        }
-                    }
-                } header: {
-                    HStack {
-                        Text(([results.count.formatted() + (results.count == 1 ? " exercise" : " exercises")] + filterNames).joined(separator: " · "))
-                        Spacer()
-                        if isFiltered { Button("Clear") { clear() }.font(.footnote) }
+                ExerciseSections(results: results) { ex in
+                    NavigationLink(value: ExerciseLink(id: ex.id)) {
+                        ExerciseRow(exercise: ex, catalog: model.catalog, favourite: favourites.contains(ex.id))
                     }
                 }
             }
+            .safeAreaBar(edge: .top) { ExerciseFilterBar(filter: $filter) }
             .overlay {
                 if results.isEmpty {
                     if query.isEmpty {
@@ -85,45 +76,30 @@ struct LibraryView: View {
                 }
             }
             .navigationTitle("Exercises")
-            .searchable(text: $query, prompt: "Search exercises")
+            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search exercises")
             .exerciseDestination()
             .workoutDestination()
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Muscles", systemImage: "figure.arms.open") { browsing = true }
-                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu("Filter", systemImage: isFiltered ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease") {
                         Toggle("Favourites", systemImage: "star", isOn: $favouritesOnly)
                         Toggle("My exercises", systemImage: "person", isOn: $customOnly)
                         if profile != nil { Toggle("My equipment only", systemImage: "dumbbell", isOn: $mineOnly) }
-                        Picker("Equipment", selection: $equipment) {
-                            Text("Any equipment").tag(String?.none)
-                            ForEach(model.catalog.meta.equipment, id: \.self) { Text(Format.capWords($0)).tag(Optional($0)) }
+                        if isFiltered || filter.isOn {
+                            Button("Clear", systemImage: "xmark") { filter = ExerciseFilter(); favouritesOnly = false; customOnly = false }
                         }
-                        .pickerStyle(.menu)
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("New exercise", systemImage: "plus") { creating = true }
                 }
             }
-            .sheet(isPresented: $browsing) { MuscleBrowser(muscle: $muscle) }
             .sheet(isPresented: $creating) { CustomExerciseEditor() }
         }
     }
 
     private var profile: [String: JSONValue]? { ExerciseCatalog.activeProfile(model.root) }
-    private var isFiltered: Bool { muscle != nil || equipment != nil || favouritesOnly || customOnly }
-
-    private var filterNames: [String] {
-        [muscle.map(model.catalog.muscleName), equipment.map(Format.capWords),
-         favouritesOnly ? "Favourites" : nil, customOnly ? "Mine" : nil].compactMap { $0 }
-    }
-
-    private func clear() {
-        muscle = nil; equipment = nil; favouritesOnly = false; customOnly = false
-    }
+    private var isFiltered: Bool { favouritesOnly || customOnly }
 
     // ponytail: filters all 5,600 exercises on every render; cache per (query, filters) if typing lags.
     private var results: [Exercise] {
@@ -135,8 +111,7 @@ struct LibraryView: View {
         return catalog.all.filter { ex in
             if favouritesOnly && !favourites.contains(ex.id) { return false }
             if customOnly && !ex.isCustom { return false }
-            if let equipment, ex.equipment != equipment { return false }
-            if let muscle, catalog.primaryMuscle(of: ex) != muscle { return false }
+            if !filter.keeps(ex, catalog) { return false }
             if !words.isEmpty {
                 let text = ([ex.name, ex.translatedName ?? ""] + (aliases[ex.id]?.arrayValue ?? []).compactMap(\.stringValue)).joined(separator: " ").lowercased()
                 if !words.allSatisfy({ text.contains($0) }) { return false }
@@ -160,8 +135,8 @@ struct ExerciseRow: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(exercise.displayName)
                     .foregroundStyle(.primary)
-                Text([exercise.equipment.map(Format.capWords), catalog.primaryMuscle(of: exercise).map(catalog.muscleName)]
-                    .compactMap { $0 }.joined(separator: " · "))
+                // The filters' groups, so the line reads in the app's language.
+                Text("\(Text(ExerciseFilter.label(ExerciseGroups.equipment(of: exercise)))) · \(Text(LocalizedStringKey(ExerciseGroups.muscle(of: exercise, catalog: catalog))))")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
@@ -174,54 +149,6 @@ struct ExerciseRow: View {
             }
         }
         .accessibilityElement(children: .combine)
-    }
-}
-
-/// Pick a muscle on the body or from the list to filter the library by it.
-struct MuscleBrowser: View {
-    @Environment(AppModel.self) private var model
-    @Environment(\.dismiss) private var dismiss
-    @Binding var muscle: String?
-
-    var body: some View {
-        NavigationStack {
-            List {
-                Section {
-                    HStack(spacing: 0) {
-                        BodyMap(side: .front, levels: levels, onTap: pick)
-                        BodyMap(side: .back, levels: levels, onTap: pick)
-                    }
-                    .frame(maxWidth: .infinity).frame(height: 320)
-                    .listRowBackground(Color.clear)
-                }
-                Section {
-                    ForEach(model.catalog.meta.muscles, id: \.self) { slug in
-                        Button { pick(slug) } label: {
-                            HStack {
-                                Text(model.catalog.muscleName(slug)).foregroundStyle(.primary)
-                                Spacer()
-                                if slug == muscle { Image(systemName: "checkmark").accessibilityLabel("Selected") }
-                            }
-                        }
-                    }
-                }
-            }
-            .navigationTitle("Muscles")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
-                if muscle != nil {
-                    ToolbarItem(placement: .confirmationAction) { Button("Show all") { muscle = nil; dismiss() } }
-                }
-            }
-        }
-    }
-
-    private var levels: [String: Double] { muscle.map { [$0: 1] } ?? [:] }
-
-    private func pick(_ slug: String) {
-        muscle = slug
-        dismiss()
     }
 }
 
