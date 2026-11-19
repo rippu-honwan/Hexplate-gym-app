@@ -1,0 +1,1523 @@
+{
+ "now": 1780164000000,
+ "cases": [
+  {
+   "name": "first sync",
+   "prev": null,
+   "next": {
+    "unit": "kg",
+    "customEx": [
+     {
+      "id": "c1",
+      "name": "My cable fly"
+     }
+    ],
+    "workouts": [
+     {
+      "id": "w0",
+      "d": "2026-04-01",
+      "entries": [
+       {
+        "id": "0043",
+        "sets": [
+         {
+          "w": 90,
+          "r": 5,
+          "done": true
+         }
+        ]
+       }
+      ],
+      "prs": [
+       "0043"
+      ]
+     },
+     {
+      "id": "w2",
+      "d": "2026-05-29",
+      "name": "Lower",
+      "start": 1780056000000,
+      "end": 1780059600000,
+      "entries": [
+       {
+        "id": "0043",
+        "sets": [
+         {
+          "w": 100,
+          "r": 5,
+          "done": true
+         },
+         {
+          "w": 102.5,
+          "r": 5,
+          "done": true
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "id": "w1",
+      "d": "2026-05-30",
+      "name": "Upper A",
+      "start": 1780156800000,
+      "end": 1780160400000,
+      "bw": 71.2,
+      "note": "Felt strong",
+      "entries": [
+       {
+        "id": "0025",
+        "sets": [
+         {
+          "w": 40,
+          "r": 10,
+          "done": true,
+          "warmup": true
+         },
+         {
+          "w": 60,
+          "r": 8,
+          "done": true,
+          "rir": 2
+         },
+         {
+          "w": 60,
+          "r": 7,
+          "done": true
+         },
+         {
+          "w": 60,
+          "r": 6
+         }
+        ]
+       },
+       {
+        "id": "0336",
+        "sets": [
+         {
+          "sides": {
+           "L": {
+            "w": 12,
+            "r": 10,
+            "done": true
+           },
+           "R": {
+            "w": 12,
+            "r": 9,
+            "done": true
+           }
+          },
+          "w": 12,
+          "r": 10
+         }
+        ]
+       },
+       {
+        "id": "c1",
+        "sets": [
+         {
+          "w": 20,
+          "r": 12,
+          "done": true,
+          "phase": "work"
+         },
+         {
+          "w": 10,
+          "r": 15,
+          "done": true,
+          "phase": "warmup"
+         }
+        ]
+       },
+       {
+        "id": "0685",
+        "sets": [
+         {
+          "min": 20,
+          "speed": 9.5,
+          "incline": 2,
+          "done": true
+         }
+        ]
+       },
+       {
+        "id": "0001",
+        "sets": [
+         {
+          "sec": 45,
+          "done": true,
+          "rpe": 8
+         }
+        ]
+       }
+      ],
+      "prs": [
+       "0025",
+       "c1"
+      ]
+     }
+    ],
+    "bodyweight": [
+     {
+      "d": "2026-05-30",
+      "w": 71.2,
+      "t": 1780146000000
+     }
+    ]
+   },
+   "events": [
+    {
+     "type": "workout.finished",
+     "entity": "w2",
+     "at": 1780059600000,
+     "data": {
+      "workout": {
+       "id": "w2",
+       "name": "Lower",
+       "date": "2026-05-29",
+       "startedAt": "2026-05-29T12:00:00.000Z",
+       "endedAt": "2026-05-29T13:00:00.000Z",
+       "durationMin": 60,
+       "unit": "kg",
+       "bodyweight": null,
+       "totals": {
+        "exercises": 1,
+        "sets": 2,
+        "reps": 10,
+        "volume": 1012.5
+       },
+       "exercises": [
+        {
+         "id": "0043",
+         "name": "barbell full squat",
+         "sets": [
+          {
+           "weight": 100,
+           "reps": 5
+          },
+          {
+           "weight": 102.5,
+           "reps": 5
+          }
+         ]
+        }
+       ],
+       "records": []
+      }
+     }
+    },
+    {
+     "type": "weighin.logged",
+     "entity": "2026-05-30:71.2",
+     "at": 1780146000000,
+     "data": {
+      "weighin": {
+       "date": "2026-05-30",
+       "weight": 71.2,
+       "unit": "kg"
+      }
+     }
+    },
+    {
+     "type": "workout.finished",
+     "entity": "w1",
+     "at": 1780160400000,
+     "data": {
+      "workout": {
+       "id": "w1",
+       "name": "Upper A",
+       "date": "2026-05-30",
+       "startedAt": "2026-05-30T16:00:00.000Z",
+       "endedAt": "2026-05-30T17:00:00.000Z",
+       "durationMin": 60,
+       "unit": "kg",
+       "bodyweight": 71.2,
+       "totals": {
+        "exercises": 5,
+        "sets": 6,
+        "reps": 46,
+        "volume": 1368
+       },
+       "exercises": [
+        {
+         "id": "0025",
+         "name": "barbell bench press",
+         "sets": [
+          {
+           "weight": 40,
+           "reps": 10,
+           "warmup": true
+          },
+          {
+           "weight": 60,
+           "reps": 8,
+           "rir": 2
+          },
+          {
+           "weight": 60,
+           "reps": 7
+          }
+         ]
+        },
+        {
+         "id": "0336",
+         "name": "dumbbell lunge",
+         "sets": [
+          {
+           "sides": {
+            "left": {
+             "weight": 12,
+             "reps": 10
+            },
+            "right": {
+             "weight": 12,
+             "reps": 9
+            }
+           }
+          }
+         ]
+        },
+        {
+         "id": "c1",
+         "name": "My cable fly",
+         "sets": [
+          {
+           "weight": 20,
+           "reps": 12
+          },
+          {
+           "weight": 10,
+           "reps": 15,
+           "warmup": true
+          }
+         ]
+        },
+        {
+         "id": "0685",
+         "name": "run",
+         "sets": [
+          {
+           "minutes": 20,
+           "speedKmh": 9.5,
+           "incline": 2
+          }
+         ]
+        },
+        {
+         "id": "0001",
+         "name": "3/4 sit-up",
+         "sets": [
+          {
+           "seconds": 45,
+           "rpe": 8
+          }
+         ]
+        }
+       ],
+       "records": [
+        {
+         "id": "0025",
+         "name": "barbell bench press"
+        },
+        {
+         "id": "c1",
+         "name": "My cable fly"
+        }
+       ],
+       "note": "Felt strong"
+      }
+     }
+    },
+    {
+     "type": "workout.pr",
+     "entity": "w1",
+     "at": 1780160400000,
+     "data": {
+      "workout": {
+       "id": "w1",
+       "name": "Upper A",
+       "date": "2026-05-30"
+      },
+      "unit": "kg",
+      "records": [
+       {
+        "id": "0025",
+        "name": "barbell bench press",
+        "weight": 60,
+        "reps": 8
+       },
+       {
+        "id": "c1",
+        "name": "My cable fly",
+        "weight": 20,
+        "reps": 12
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "one new workout",
+   "prev": {
+    "unit": "kg",
+    "customEx": [
+     {
+      "id": "c1",
+      "name": "My cable fly"
+     }
+    ],
+    "workouts": [
+     {
+      "id": "w0",
+      "d": "2026-04-01",
+      "entries": [
+       {
+        "id": "0043",
+        "sets": [
+         {
+          "w": 90,
+          "r": 5,
+          "done": true
+         }
+        ]
+       }
+      ],
+      "prs": [
+       "0043"
+      ]
+     },
+     {
+      "id": "w2",
+      "d": "2026-05-29",
+      "name": "Lower",
+      "start": 1780056000000,
+      "end": 1780059600000,
+      "entries": [
+       {
+        "id": "0043",
+        "sets": [
+         {
+          "w": 100,
+          "r": 5,
+          "done": true
+         },
+         {
+          "w": 102.5,
+          "r": 5,
+          "done": true
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "bodyweight": []
+   },
+   "next": {
+    "unit": "kg",
+    "customEx": [
+     {
+      "id": "c1",
+      "name": "My cable fly"
+     }
+    ],
+    "workouts": [
+     {
+      "id": "w0",
+      "d": "2026-04-01",
+      "entries": [
+       {
+        "id": "0043",
+        "sets": [
+         {
+          "w": 90,
+          "r": 5,
+          "done": true
+         }
+        ]
+       }
+      ],
+      "prs": [
+       "0043"
+      ]
+     },
+     {
+      "id": "w2",
+      "d": "2026-05-29",
+      "name": "Lower",
+      "start": 1780056000000,
+      "end": 1780059600000,
+      "entries": [
+       {
+        "id": "0043",
+        "sets": [
+         {
+          "w": 100,
+          "r": 5,
+          "done": true
+         },
+         {
+          "w": 102.5,
+          "r": 5,
+          "done": true
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "id": "w1",
+      "d": "2026-05-30",
+      "name": "Upper A",
+      "start": 1780156800000,
+      "end": 1780160400000,
+      "bw": 71.2,
+      "note": "Felt strong",
+      "entries": [
+       {
+        "id": "0025",
+        "sets": [
+         {
+          "w": 40,
+          "r": 10,
+          "done": true,
+          "warmup": true
+         },
+         {
+          "w": 60,
+          "r": 8,
+          "done": true,
+          "rir": 2
+         },
+         {
+          "w": 60,
+          "r": 7,
+          "done": true
+         },
+         {
+          "w": 60,
+          "r": 6
+         }
+        ]
+       },
+       {
+        "id": "0336",
+        "sets": [
+         {
+          "sides": {
+           "L": {
+            "w": 12,
+            "r": 10,
+            "done": true
+           },
+           "R": {
+            "w": 12,
+            "r": 9,
+            "done": true
+           }
+          },
+          "w": 12,
+          "r": 10
+         }
+        ]
+       },
+       {
+        "id": "c1",
+        "sets": [
+         {
+          "w": 20,
+          "r": 12,
+          "done": true,
+          "phase": "work"
+         },
+         {
+          "w": 10,
+          "r": 15,
+          "done": true,
+          "phase": "warmup"
+         }
+        ]
+       },
+       {
+        "id": "0685",
+        "sets": [
+         {
+          "min": 20,
+          "speed": 9.5,
+          "incline": 2,
+          "done": true
+         }
+        ]
+       },
+       {
+        "id": "0001",
+        "sets": [
+         {
+          "sec": 45,
+          "done": true,
+          "rpe": 8
+         }
+        ]
+       }
+      ],
+      "prs": [
+       "0025",
+       "c1"
+      ]
+     }
+    ],
+    "bodyweight": []
+   },
+   "events": [
+    {
+     "type": "workout.finished",
+     "entity": "w1",
+     "at": 1780160400000,
+     "data": {
+      "workout": {
+       "id": "w1",
+       "name": "Upper A",
+       "date": "2026-05-30",
+       "startedAt": "2026-05-30T16:00:00.000Z",
+       "endedAt": "2026-05-30T17:00:00.000Z",
+       "durationMin": 60,
+       "unit": "kg",
+       "bodyweight": 71.2,
+       "totals": {
+        "exercises": 5,
+        "sets": 6,
+        "reps": 46,
+        "volume": 1368
+       },
+       "exercises": [
+        {
+         "id": "0025",
+         "name": "barbell bench press",
+         "sets": [
+          {
+           "weight": 40,
+           "reps": 10,
+           "warmup": true
+          },
+          {
+           "weight": 60,
+           "reps": 8,
+           "rir": 2
+          },
+          {
+           "weight": 60,
+           "reps": 7
+          }
+         ]
+        },
+        {
+         "id": "0336",
+         "name": "dumbbell lunge",
+         "sets": [
+          {
+           "sides": {
+            "left": {
+             "weight": 12,
+             "reps": 10
+            },
+            "right": {
+             "weight": 12,
+             "reps": 9
+            }
+           }
+          }
+         ]
+        },
+        {
+         "id": "c1",
+         "name": "My cable fly",
+         "sets": [
+          {
+           "weight": 20,
+           "reps": 12
+          },
+          {
+           "weight": 10,
+           "reps": 15,
+           "warmup": true
+          }
+         ]
+        },
+        {
+         "id": "0685",
+         "name": "run",
+         "sets": [
+          {
+           "minutes": 20,
+           "speedKmh": 9.5,
+           "incline": 2
+          }
+         ]
+        },
+        {
+         "id": "0001",
+         "name": "3/4 sit-up",
+         "sets": [
+          {
+           "seconds": 45,
+           "rpe": 8
+          }
+         ]
+        }
+       ],
+       "records": [
+        {
+         "id": "0025",
+         "name": "barbell bench press"
+        },
+        {
+         "id": "c1",
+         "name": "My cable fly"
+        }
+       ],
+       "note": "Felt strong"
+      }
+     }
+    },
+    {
+     "type": "workout.pr",
+     "entity": "w1",
+     "at": 1780160400000,
+     "data": {
+      "workout": {
+       "id": "w1",
+       "name": "Upper A",
+       "date": "2026-05-30"
+      },
+      "unit": "kg",
+      "records": [
+       {
+        "id": "0025",
+        "name": "barbell bench press",
+        "weight": 60,
+        "reps": 8
+       },
+       {
+        "id": "c1",
+        "name": "My cable fly",
+        "weight": 20,
+        "reps": 12
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "name": "nothing new",
+   "prev": {
+    "unit": "kg",
+    "customEx": [
+     {
+      "id": "c1",
+      "name": "My cable fly"
+     }
+    ],
+    "workouts": [
+     {
+      "id": "w0",
+      "d": "2026-04-01",
+      "entries": [
+       {
+        "id": "0043",
+        "sets": [
+         {
+          "w": 90,
+          "r": 5,
+          "done": true
+         }
+        ]
+       }
+      ],
+      "prs": [
+       "0043"
+      ]
+     },
+     {
+      "id": "w2",
+      "d": "2026-05-29",
+      "name": "Lower",
+      "start": 1780056000000,
+      "end": 1780059600000,
+      "entries": [
+       {
+        "id": "0043",
+        "sets": [
+         {
+          "w": 100,
+          "r": 5,
+          "done": true
+         },
+         {
+          "w": 102.5,
+          "r": 5,
+          "done": true
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "bodyweight": []
+   },
+   "next": {
+    "unit": "kg",
+    "customEx": [
+     {
+      "id": "c1",
+      "name": "My cable fly"
+     }
+    ],
+    "workouts": [
+     {
+      "id": "w0",
+      "d": "2026-04-01",
+      "entries": [
+       {
+        "id": "0043",
+        "sets": [
+         {
+          "w": 90,
+          "r": 5,
+          "done": true
+         }
+        ]
+       }
+      ],
+      "prs": [
+       "0043"
+      ]
+     },
+     {
+      "id": "w2",
+      "d": "2026-05-29",
+      "name": "Lower",
+      "start": 1780056000000,
+      "end": 1780059600000,
+      "entries": [
+       {
+        "id": "0043",
+        "sets": [
+         {
+          "w": 100,
+          "r": 5,
+          "done": true
+         },
+         {
+          "w": 102.5,
+          "r": 5,
+          "done": true
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "bodyweight": []
+   },
+   "events": []
+  },
+  {
+   "name": "old and future skipped",
+   "prev": {
+    "unit": "kg",
+    "customEx": [
+     {
+      "id": "c1",
+      "name": "My cable fly"
+     }
+    ],
+    "workouts": [],
+    "bodyweight": []
+   },
+   "next": {
+    "unit": "kg",
+    "customEx": [
+     {
+      "id": "c1",
+      "name": "My cable fly"
+     }
+    ],
+    "workouts": [
+     {
+      "id": "w0",
+      "d": "2026-04-01",
+      "entries": [
+       {
+        "id": "0043",
+        "sets": [
+         {
+          "w": 90,
+          "r": 5,
+          "done": true
+         }
+        ]
+       }
+      ],
+      "prs": [
+       "0043"
+      ]
+     },
+     {
+      "id": "wf",
+      "d": "2026-06-03",
+      "entries": []
+     },
+     {
+      "id": 7,
+      "d": "2026-05-28",
+      "entries": []
+     }
+    ],
+    "bodyweight": []
+   },
+   "events": [
+    {
+     "type": "workout.finished",
+     "entity": "7",
+     "at": 1779969600000,
+     "data": {
+      "workout": {
+       "id": "7",
+       "name": null,
+       "date": "2026-05-28",
+       "startedAt": null,
+       "endedAt": null,
+       "durationMin": null,
+       "unit": "kg",
+       "bodyweight": null,
+       "totals": {
+        "exercises": 0,
+        "sets": 0,
+        "reps": 0,
+        "volume": 0
+       },
+       "exercises": [],
+       "records": []
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "weigh-in changed and new",
+   "prev": {
+    "unit": "kg",
+    "customEx": [
+     {
+      "id": "c1",
+      "name": "My cable fly"
+     }
+    ],
+    "workouts": [],
+    "bodyweight": [
+     {
+      "d": "2026-05-29",
+      "w": 72
+     },
+     {
+      "d": "2026-05-30",
+      "w": 71
+     }
+    ]
+   },
+   "next": {
+    "unit": "kg",
+    "customEx": [
+     {
+      "id": "c1",
+      "name": "My cable fly"
+     }
+    ],
+    "workouts": [],
+    "bodyweight": [
+     {
+      "d": "2026-05-29",
+      "w": 71.8
+     },
+     {
+      "d": "2026-05-30",
+      "w": 71
+     },
+     {
+      "d": "2026-05-01",
+      "w": 73
+     },
+     {
+      "d": "bad",
+      "w": 70
+     },
+     {
+      "d": "2026-05-30",
+      "w": "x"
+     }
+    ]
+   },
+   "events": [
+    {
+     "type": "weighin.logged",
+     "entity": "2026-05-29:71.8",
+     "at": 1780056000000,
+     "data": {
+      "weighin": {
+       "date": "2026-05-29",
+       "weight": 71.8,
+       "unit": "kg"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "pounds",
+   "prev": {
+    "unit": "kg",
+    "customEx": [
+     {
+      "id": "c1",
+      "name": "My cable fly"
+     }
+    ],
+    "workouts": [],
+    "bodyweight": []
+   },
+   "next": {
+    "unit": "lb",
+    "customEx": [
+     {
+      "id": "c1",
+      "name": "My cable fly"
+     }
+    ],
+    "workouts": [
+     {
+      "id": "w2",
+      "d": "2026-05-29",
+      "name": "Lower",
+      "start": 1780056000000,
+      "end": 1780059600000,
+      "entries": [
+       {
+        "id": "0043",
+        "sets": [
+         {
+          "w": 100,
+          "r": 5,
+          "done": true
+         },
+         {
+          "w": 102.5,
+          "r": 5,
+          "done": true
+         }
+        ]
+       }
+      ]
+     }
+    ],
+    "bodyweight": [
+     {
+      "d": "2026-05-30",
+      "w": 160
+     }
+    ]
+   },
+   "events": [
+    {
+     "type": "workout.finished",
+     "entity": "w2",
+     "at": 1780059600000,
+     "data": {
+      "workout": {
+       "id": "w2",
+       "name": "Lower",
+       "date": "2026-05-29",
+       "startedAt": "2026-05-29T12:00:00.000Z",
+       "endedAt": "2026-05-29T13:00:00.000Z",
+       "durationMin": 60,
+       "unit": "lb",
+       "bodyweight": null,
+       "totals": {
+        "exercises": 1,
+        "sets": 2,
+        "reps": 10,
+        "volume": 1012.5
+       },
+       "exercises": [
+        {
+         "id": "0043",
+         "name": "barbell full squat",
+         "sets": [
+          {
+           "weight": 100,
+           "reps": 5
+          },
+          {
+           "weight": 102.5,
+           "reps": 5
+          }
+         ]
+        }
+       ],
+       "records": []
+      }
+     }
+    },
+    {
+     "type": "weighin.logged",
+     "entity": "2026-05-30:160",
+     "at": 1780142400000,
+     "data": {
+      "weighin": {
+       "date": "2026-05-30",
+       "weight": 160,
+       "unit": "lb"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "more than ten",
+   "prev": {
+    "unit": "kg",
+    "customEx": [
+     {
+      "id": "c1",
+      "name": "My cable fly"
+     }
+    ],
+    "workouts": [],
+    "bodyweight": []
+   },
+   "next": {
+    "unit": "kg",
+    "customEx": [
+     {
+      "id": "c1",
+      "name": "My cable fly"
+     }
+    ],
+    "workouts": [
+     {
+      "id": "m0",
+      "d": "2026-05-30",
+      "end": 1780163220000,
+      "entries": []
+     },
+     {
+      "id": "m1",
+      "d": "2026-05-30",
+      "end": 1780163280000,
+      "entries": []
+     },
+     {
+      "id": "m2",
+      "d": "2026-05-30",
+      "end": 1780163340000,
+      "entries": []
+     },
+     {
+      "id": "m3",
+      "d": "2026-05-30",
+      "end": 1780163400000,
+      "entries": []
+     },
+     {
+      "id": "m4",
+      "d": "2026-05-30",
+      "end": 1780163460000,
+      "entries": []
+     },
+     {
+      "id": "m5",
+      "d": "2026-05-30",
+      "end": 1780163520000,
+      "entries": []
+     },
+     {
+      "id": "m6",
+      "d": "2026-05-30",
+      "end": 1780163580000,
+      "entries": []
+     },
+     {
+      "id": "m7",
+      "d": "2026-05-30",
+      "end": 1780163640000,
+      "entries": []
+     },
+     {
+      "id": "m8",
+      "d": "2026-05-30",
+      "end": 1780163700000,
+      "entries": []
+     },
+     {
+      "id": "m9",
+      "d": "2026-05-30",
+      "end": 1780163760000,
+      "entries": []
+     },
+     {
+      "id": "m10",
+      "d": "2026-05-30",
+      "end": 1780163820000,
+      "entries": []
+     },
+     {
+      "id": "m11",
+      "d": "2026-05-30",
+      "end": 1780163880000,
+      "entries": []
+     },
+     {
+      "id": "m12",
+      "d": "2026-05-30",
+      "end": 1780163940000,
+      "entries": []
+     }
+    ],
+    "bodyweight": []
+   },
+   "events": [
+    {
+     "type": "workout.finished",
+     "entity": "m3",
+     "at": 1780163400000,
+     "data": {
+      "workout": {
+       "id": "m3",
+       "name": null,
+       "date": "2026-05-30",
+       "startedAt": null,
+       "endedAt": "2026-05-30T17:50:00.000Z",
+       "durationMin": null,
+       "unit": "kg",
+       "bodyweight": null,
+       "totals": {
+        "exercises": 0,
+        "sets": 0,
+        "reps": 0,
+        "volume": 0
+       },
+       "exercises": [],
+       "records": []
+      }
+     }
+    },
+    {
+     "type": "workout.finished",
+     "entity": "m4",
+     "at": 1780163460000,
+     "data": {
+      "workout": {
+       "id": "m4",
+       "name": null,
+       "date": "2026-05-30",
+       "startedAt": null,
+       "endedAt": "2026-05-30T17:51:00.000Z",
+       "durationMin": null,
+       "unit": "kg",
+       "bodyweight": null,
+       "totals": {
+        "exercises": 0,
+        "sets": 0,
+        "reps": 0,
+        "volume": 0
+       },
+       "exercises": [],
+       "records": []
+      }
+     }
+    },
+    {
+     "type": "workout.finished",
+     "entity": "m5",
+     "at": 1780163520000,
+     "data": {
+      "workout": {
+       "id": "m5",
+       "name": null,
+       "date": "2026-05-30",
+       "startedAt": null,
+       "endedAt": "2026-05-30T17:52:00.000Z",
+       "durationMin": null,
+       "unit": "kg",
+       "bodyweight": null,
+       "totals": {
+        "exercises": 0,
+        "sets": 0,
+        "reps": 0,
+        "volume": 0
+       },
+       "exercises": [],
+       "records": []
+      }
+     }
+    },
+    {
+     "type": "workout.finished",
+     "entity": "m6",
+     "at": 1780163580000,
+     "data": {
+      "workout": {
+       "id": "m6",
+       "name": null,
+       "date": "2026-05-30",
+       "startedAt": null,
+       "endedAt": "2026-05-30T17:53:00.000Z",
+       "durationMin": null,
+       "unit": "kg",
+       "bodyweight": null,
+       "totals": {
+        "exercises": 0,
+        "sets": 0,
+        "reps": 0,
+        "volume": 0
+       },
+       "exercises": [],
+       "records": []
+      }
+     }
+    },
+    {
+     "type": "workout.finished",
+     "entity": "m7",
+     "at": 1780163640000,
+     "data": {
+      "workout": {
+       "id": "m7",
+       "name": null,
+       "date": "2026-05-30",
+       "startedAt": null,
+       "endedAt": "2026-05-30T17:54:00.000Z",
+       "durationMin": null,
+       "unit": "kg",
+       "bodyweight": null,
+       "totals": {
+        "exercises": 0,
+        "sets": 0,
+        "reps": 0,
+        "volume": 0
+       },
+       "exercises": [],
+       "records": []
+      }
+     }
+    },
+    {
+     "type": "workout.finished",
+     "entity": "m8",
+     "at": 1780163700000,
+     "data": {
+      "workout": {
+       "id": "m8",
+       "name": null,
+       "date": "2026-05-30",
+       "startedAt": null,
+       "endedAt": "2026-05-30T17:55:00.000Z",
+       "durationMin": null,
+       "unit": "kg",
+       "bodyweight": null,
+       "totals": {
+        "exercises": 0,
+        "sets": 0,
+        "reps": 0,
+        "volume": 0
+       },
+       "exercises": [],
+       "records": []
+      }
+     }
+    },
+    {
+     "type": "workout.finished",
+     "entity": "m9",
+     "at": 1780163760000,
+     "data": {
+      "workout": {
+       "id": "m9",
+       "name": null,
+       "date": "2026-05-30",
+       "startedAt": null,
+       "endedAt": "2026-05-30T17:56:00.000Z",
+       "durationMin": null,
+       "unit": "kg",
+       "bodyweight": null,
+       "totals": {
+        "exercises": 0,
+        "sets": 0,
+        "reps": 0,
+        "volume": 0
+       },
+       "exercises": [],
+       "records": []
+      }
+     }
+    },
+    {
+     "type": "workout.finished",
+     "entity": "m10",
+     "at": 1780163820000,
+     "data": {
+      "workout": {
+       "id": "m10",
+       "name": null,
+       "date": "2026-05-30",
+       "startedAt": null,
+       "endedAt": "2026-05-30T17:57:00.000Z",
+       "durationMin": null,
+       "unit": "kg",
+       "bodyweight": null,
+       "totals": {
+        "exercises": 0,
+        "sets": 0,
+        "reps": 0,
+        "volume": 0
+       },
+       "exercises": [],
+       "records": []
+      }
+     }
+    },
+    {
+     "type": "workout.finished",
+     "entity": "m11",
+     "at": 1780163880000,
+     "data": {
+      "workout": {
+       "id": "m11",
+       "name": null,
+       "date": "2026-05-30",
+       "startedAt": null,
+       "endedAt": "2026-05-30T17:58:00.000Z",
+       "durationMin": null,
+       "unit": "kg",
+       "bodyweight": null,
+       "totals": {
+        "exercises": 0,
+        "sets": 0,
+        "reps": 0,
+        "volume": 0
+       },
+       "exercises": [],
+       "records": []
+      }
+     }
+    },
+    {
+     "type": "workout.finished",
+     "entity": "m12",
+     "at": 1780163940000,
+     "data": {
+      "workout": {
+       "id": "m12",
+       "name": null,
+       "date": "2026-05-30",
+       "startedAt": null,
+       "endedAt": "2026-05-30T17:59:00.000Z",
+       "durationMin": null,
+       "unit": "kg",
+       "bodyweight": null,
+       "totals": {
+        "exercises": 0,
+        "sets": 0,
+        "reps": 0,
+        "volume": 0
+       },
+       "exercises": [],
+       "records": []
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "test": {
+  "workout.finished": {
+   "workout": {
+    "id": "test",
+    "name": "Test workout",
+    "date": "2026-05-30",
+    "startedAt": "2026-05-30T17:15:00.000Z",
+    "endedAt": "2026-05-30T18:00:00.000Z",
+    "durationMin": 45,
+    "unit": "kg",
+    "bodyweight": null,
+    "totals": {
+     "exercises": 1,
+     "sets": 3,
+     "reps": 24,
+     "volume": 1440
+    },
+    "exercises": [
+     {
+      "id": "0025",
+      "name": "barbell bench press",
+      "sets": [
+       {
+        "weight": 60,
+        "reps": 8
+       },
+       {
+        "weight": 60,
+        "reps": 8
+       },
+       {
+        "weight": 60,
+        "reps": 8
+       }
+      ]
+     }
+    ],
+    "records": []
+   }
+  },
+  "workout.pr": {
+   "workout": {
+    "id": "test",
+    "name": "Test workout",
+    "date": "2026-05-30"
+   },
+   "unit": "kg",
+   "records": [
+    {
+     "id": "0025",
+     "name": "barbell bench press",
+     "weight": 60,
+     "reps": 8
+    }
+   ]
+  },
+  "weighin.logged": {
+   "weighin": {
+    "date": "2026-05-30",
+    "weight": 80,
+    "unit": "kg"
+   }
+  }
+ },
+ "envelope": {
+  "version": 1,
+  "id": "d1",
+  "type": "workout.finished",
+  "createdAt": "2026-05-30T18:00:00.000Z",
+  "test": true,
+  "data": {
+   "a": 1
+  }
+ },
+ "signature": {
+  "secret": "whsec_test",
+  "body": "{\"a\":1}",
+  "ts": 1780000000,
+  "header": "t=1780000000,v1=700c60b8f205399083ecf27f87a596a7e0e9e3e24df342efa14010dbfa48faae"
+ }
+}

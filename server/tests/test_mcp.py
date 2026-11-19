@@ -8,7 +8,7 @@ import anyio
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
-from hexserver.mcp_server import connect, exercise_history, query, summary
+from hexserver.mcp_server import connect, exercise_history, query, routines, summary
 from hexserver.store import Store
 
 FIXTURE = Path(__file__).resolve().parents[2] / "app/HexplateCore/Tests/HexplateCoreTests/Fixtures/history-state.json"
@@ -28,6 +28,8 @@ def test_tools(tmp_path):
     q = query(db, "SELECT exname(exercise_id) AS name, MAX(e1rm(weight, reps)) FROM sets WHERE done AND NOT warmup GROUP BY 1 ORDER BY 2 DESC")
     assert q["columns"][0] == "name" and q["rows"] and not q["truncated"]
     assert "error" in exercise_history(db, "no such lift")
+    r = routines(db)["routines"]
+    assert r and r[0]["name"] and all(e["exercise"] for x in r for e in x["exercises"])
     name = q["rows"][0][0]
     assert exercise_history(db, name)["exercise"] == name
 
@@ -53,6 +55,6 @@ def test_stdio_handshake(tmp_path):
             return tools, result
 
     tools, result = anyio.run(run)
-    assert tools == {"get_summary", "get_exercise_history", "get_schema", "run_query"}
+    assert tools == {"get_summary", "get_exercise_history", "get_routines", "get_schema", "run_query"}
     assert not result.is_error and '"workouts":4' in result.content[0].text.replace(" ", "")
     assert hashlib.md5((folder / "hexplate.sqlite3").read_bytes()).hexdigest() == before

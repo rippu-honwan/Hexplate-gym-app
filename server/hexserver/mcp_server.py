@@ -98,6 +98,23 @@ def exercise_history(db, name: str, limit: int = 20):
     }
 
 
+def routines(db):
+    """The saved routines from the latest document: each exercise's planned sets, reps, weight and rest."""
+    state = latest(db) or {}
+    out = []
+    for r in state.get("routines") or []:
+        if not isinstance(r, dict):
+            continue
+        exercises = []
+        for e in r.get("ex") or []:
+            if not isinstance(e, dict):
+                continue
+            plan = {k: e[k] for k in ("sets", "reps", "repsMin", "repsMax", "weight", "sec", "min", "restSec", "mode", "note") if e.get(k) not in (None, "")}
+            exercises.append({"exercise": name_of(e.get("id"), state), "exercise_id": e.get("id"), **plan})
+        out.append({"id": r.get("id"), "name": r.get("name"), "exercises": exercises})
+    return {"unit": state.get("unit", "kg"), "routines": out}
+
+
 def build(folder: Path) -> MCPServer:
     db = connect(folder)
     server = MCPServer("hexplate", instructions="Read-only access to one person's Hexplate workout log: workouts, sets, "
@@ -114,6 +131,12 @@ def build(folder: Path) -> MCPServer:
         """One exercise's sessions, oldest first: best set, estimated 1RM (Epley), working sets, volume.
         `name` is matched by words, e.g. "lat pulldown"."""
         return exercise_history(db, name, limit)
+
+    @server.tool(annotations=ro)
+    def get_routines() -> dict:
+        """The saved routines (the plan): each exercise with its planned sets, reps (or a repsMin–repsMax
+        range), weight, hold seconds (`sec`), cardio minutes (`min`), restSec and the lifter's note."""
+        return routines(db)
 
     @server.tool(annotations=ro)
     def get_schema() -> str:

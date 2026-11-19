@@ -5,9 +5,11 @@ with your data are not. Forms that change something also need the browser to say
 these pages (Sec-Fetch-Site / Origin), so another website open on this Mac cannot post to them.
 """
 import datetime as dt
+import json
 import socket
 import subprocess
 from html import escape
+from pathlib import Path
 from urllib.parse import parse_qs
 
 from fastapi import Request
@@ -15,7 +17,8 @@ from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse, Res
 
 from .queries import WORK, name_of
 from .queries import sessions as _sessions
-TABS = [("Overview", "/"), ("Progress", "/progress"), ("Rep counter", "/reps"), ("Data", "/data")]
+from .webhooks import EVENT_LABELS, EVENTS
+TABS = [("Overview", "/"), ("Progress", "/progress"), ("Rep counter", "/reps"), ("Data", "/data"), ("Connect", "/connect")]
 
 CSS = """
 :root { --bg:#000; --card:#1c1c1e; --line:#2c2c2e; --ink:#fff; --ink2:#8e8e93; --accent:#40c8e0; --on-accent:#000; --warn:#ff9f0a; }
@@ -56,6 +59,8 @@ a.lift { color:inherit; text-decoration:none; }
 button, .btn { font:inherit; font-weight:600; background:var(--accent); color:var(--on-accent); border:0; border-radius:999px; padding:8px 16px; cursor:pointer; text-decoration:none; display:inline-block; }
 button.quiet, .btn.quiet { background:var(--line); color:var(--ink); font-weight:500; padding:5px 12px; font-size:13px; }
 form { display:inline; }
+input:not([type=hidden]):not([type=checkbox]) { background:var(--bg); color:var(--ink); border:1px solid var(--line); border-radius:10px; padding:9px 12px; font:inherit; max-width:560px; }
+pre, code { font-family:ui-monospace,Menlo,monospace; font-size:12px; } pre { background:var(--bg); border:1px solid var(--line); padding:12px; border-radius:10px; }
 .code { font:700 40px/1 ui-monospace, "SF Mono", monospace; letter-spacing:.12em; color:var(--accent); margin:8px 0; }
 .warn { color:var(--warn); }
 """
@@ -341,3 +346,82 @@ def install(app, store):
     @app.get("/data/rev/{rev}.json")
     async def version(rev: int):
         return download(store.document(rev), f"hexplate-rev{rev}.json")
+
+    # MARK: Connect (webhooks and the MCP server)
+
+    hooks = app.state.webhooks
+
+    def connect_page(note=""):
+        rows = "".join(f"""<tr><td><b>{escape(h["label"] or "")}</b><div class="sub">{escape(_mask(h["url"]))}</div></td>
+<td>{", ".join(EVENT_LABELS[e] for e in h["events"])}</td>
+<td>{"Paused" if h["paused"] else ("–" if h["last_ok"] is None else ("OK" if h["last_ok"] else "Failed"))}
+<div class="sub">{escape(h["last_msg"] or "")}{f" · {dt.datetime.fromtimestamp(h['last_at']):%-d %b %H:%M}" if h["last_at"] else ""}</div></td>
+<td class=n><form method="post" action="/connect/test"><input type="hidden" name="id" value="{h["id"]}"><button class="quiet">Send test</button></form>
+<form method="post" action="/connect/pause"><input type="hidden" name="id" value="{h["id"]}"><input type="hidden" name="paused" value="{0 if h["paused"] else 1}">
+<button class="quiet">{"Resume" if h["paused"] else "Pause"}</button></form>
+<form method="post" action="/connect/remove" onsubmit="return confirm('Delete this webhook? Its URL and secret are forgotten.')">
+<input type="hidden" name="id" value="{h["id"]}"><button class="quiet">Delete</button></form></td></tr>""" for h in hooks.all())
+        boxes = "".join(f'<label style="margin-right:14px"><input type="checkbox" name="events" value="{e}"{" checked" if e == "workout.finished" else ""}> {EVENT_LABELS[e]}</label>' for e in EVENTS)
+        here = Path(__file__).resolve().parents[1]
+        mcp = json.dumps({"mcpServers": {"hexplate": {"command": str(here / ".venv/bin/python"), "args": ["-m", "hexserver", "mcp"],
+                                                       "env": {"PYTHONPATH": str(here)}}}}, indent=2)
+        body = f"""{note}
+<div class="card"><h2>Webhooks</h2>
+<p class="sub">A signed JSON message to Home Assistant, n8n, Node-RED or ntfy when you finish a workout, set a record or weigh in.
+Sent when the phone syncs, for what happened in the last seven days.</p>
+<table><thead><tr><th>Webhook</th><th>Events</th><th>Last delivery</th><th class=n></th></tr></thead>
+<tbody>{rows or '<tr><td colspan=4 class=sub>No webhooks yet</td></tr>'}</tbody></table>
+<form method="post" action="/connect/add" style="margin-top:16px;display:grid;gap:10px">
+<input name="label" placeholder="Name (optional)" maxlength="60">
+<input name="url" placeholder="https://… (the URL your tool gave you)" required>
+<div>{boxes}</div><div><button>Add webhook</button></div></form>
+<p class="sub">Each message carries <code>X-Hexplate-Signature: t=&lt;seconds&gt;,v1=&lt;HMAC-SHA256 of "t.body"&gt;</code>,
+keyed with the secret shown once when you add the webhook.</p></div>
+<div class="card"><h2>MCP server (AI assistants)</h2>
+<p class="sub">Lets Claude Desktop or Claude Code read your training log, read-only: summary, routines, an exercise's history and any SQL question.
+For Claude Desktop, add this to <code>~/Library/Application Support/Claude/claude_desktop_config.json</code> and restart it. Claude Code in this repo picks it up from <code>.mcp.json</code>.</p>
+<pre style="overflow-x:auto">{escape(mcp)}</pre></div>"""
+        return page("Connect", body)
+
+    async def fields(req: Request):
+        return parse_qs((await req.body()).decode())
+
+    def to_connect():
+        return Response(status_code=303, headers={"Location": "/connect"})
+
+    @app.get("/connect", response_class=HTMLResponse)
+    async def connect():
+        return connect_page()
+
+    @app.post("/connect/add", response_class=HTMLResponse)
+    async def connect_add(req: Request):
+        f = await fields(req)
+        try:
+            _, secret = hooks.add(f.get("url", [""])[0], f.get("label", [""])[0], f.get("events", []))
+        except ValueError as e:
+            return connect_page(f'<div class="card"><b>Not added:</b> {escape(str(e))}</div>')
+        return connect_page(f'''<div class="card"><h2>Webhook added</h2><p>Its signing secret, shown only now. Copy it into your tool:</p>
+<div class="code" style="font-size:18px;word-break:break-all">{escape(secret)}</div></div>''')
+
+    @app.post("/connect/test", response_class=HTMLResponse)
+    async def connect_test(req: Request):
+        ok, msg = hooks.send_test((await fields(req)).get("id", [""])[0])
+        return connect_page(f'<div class="card"><b>{"Test sent." if ok else "Test failed."}</b> {escape(msg)}</div>')
+
+    @app.post("/connect/pause")
+    async def connect_pause(req: Request):
+        f = await fields(req)
+        hooks.pause(f.get("id", [""])[0], f.get("paused", ["0"])[0] == "1")
+        return to_connect()
+
+    @app.post("/connect/remove")
+    async def connect_remove(req: Request):
+        hooks.remove((await fields(req)).get("id", [""])[0])
+        return to_connect()
+
+
+def _mask(url):
+    """Enough of the URL to recognise it, not enough to call it (Home Assistant keeps a secret in the path)."""
+    from urllib.parse import urlsplit
+    u = urlsplit(url)
+    return f"{u.scheme}://{u.netloc}" + ("/…" + u.path[-4:] if len(u.path) > 1 else "")

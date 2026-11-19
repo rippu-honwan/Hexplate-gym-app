@@ -15,6 +15,7 @@ from fastapi.responses import JSONResponse
 
 from . import dashboard
 from .store import Conflict, Store
+from .webhooks import Webhooks
 
 USER = {"id": "me", "name": "Hexplate"}
 
@@ -23,6 +24,7 @@ def create_app(folder: Path | None = None) -> FastAPI:
     store = Store(folder or Path(os.environ.get("HEXPLATE_DATA", Path(__file__).resolve().parents[1] / "data")))
     app = FastAPI(title="Hexplate server", docs_url=None, redoc_url=None)
     app.state.store = store
+    app.state.webhooks = webhooks = Webhooks(store.db)
 
     def err(status, message, **extra):
         return JSONResponse({"error": message, **extra}, status_code=status)
@@ -81,10 +83,12 @@ def create_app(folder: Path | None = None) -> FastAPI:
         if any(state.get(k) is not None and not isinstance(state.get(k), list) for k in ("workouts", "routines")):
             return err(400, "invalid state")
         base_rev = b.get("baseRev")
+        _, prev = store.current()
         try:
             saved = store.put(state, base_rev if isinstance(base_rev, int) else None, b.get("baseWid"))
         except Conflict as c:
             return err(409, "conflict", rev=c.rev, state=c.state)
+        webhooks.dispatch(prev, saved)   # what is new since the last copy, sent in the background
         return {"ok": True, "ts": saved.get("_ts"), "rev": saved["_rev"], "wid": saved["_wid"]}
 
     @app.put("/api/motion")
