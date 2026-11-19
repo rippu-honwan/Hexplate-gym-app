@@ -9,6 +9,8 @@ what it is, a sentence above says what it shows, and hovering a mark names its v
 import datetime as dt
 from html import escape
 
+from .i18n import fd, t, zh
+
 CSS = """
 :root { color-scheme: light dark;
   --bg:#f5f5f7; --surface:#fff; --raised:#fff; --fill:rgba(120,120,128,.12); --fill2:rgba(120,120,128,.07);
@@ -128,7 +130,8 @@ input[type=text], input[type=search], input[type=url], input[type=date], input:n
   border:.5px solid var(--line); box-shadow:inset 0 0 0 .5px var(--line); border-radius:8px; padding:7px 11px; min-width:0; }
 input:focus { outline:none; box-shadow:0 0 0 3px var(--accent-soft), inset 0 0 0 1px var(--accent); }
 .seg { display:inline-flex; background:var(--fill); border-radius:8px; padding:2px; gap:2px; }
-.seg a { white-space:nowrap; padding:5px 12px; border-radius:6px; color:var(--ink); font-size:13px; }
+.seg button { background:none; color:var(--ink); font-weight:400; } .seg button.on { background:var(--raised); box-shadow:0 1px 2px rgba(0,0,0,.12); font-weight:600; }
+.seg a, .seg button { white-space:nowrap; padding:5px 12px; border-radius:6px; color:var(--ink); font-size:13px; }
 .seg a:hover { text-decoration:none; background:var(--fill2); } .seg a.on { background:var(--raised); box-shadow:0 1px 2px rgba(0,0,0,.12); font-weight:600; }
 label.check { display:inline-flex; gap:6px; align-items:center; margin-right:14px; font-size:13px; }
 pre, code { font:12px/1.5 ui-monospace, "SF Mono", Menlo, monospace; } pre { background:var(--fill2); padding:14px; border-radius:10px; overflow-x:auto; margin:0; }
@@ -149,7 +152,8 @@ svg .dot { fill:var(--accent); stroke:var(--surface); stroke-width:2; }
 @media print {
   :root { --bg:#fff; --surface:#fff; --shadow:none; --ink:#000; --ink2:#555; --line:rgba(0,0,0,.15); --accent:#0b7a90; --accent-soft:rgba(11,122,144,.12); --bar:#c7c7cc; }
   .side, .noprint { display:none !important; } .content { margin:0; } .page { padding:0; max-width:none; }
-  .card, .group, .stats { box-shadow:0 0 0 .5px rgba(0,0,0,.2); break-inside:avoid; } .sec { break-inside:avoid-page; } }
+  .card, .group, .stats { box-shadow:0 0 0 .5px rgba(0,0,0,.2); } .stats, svg, tr, .row { break-inside:avoid; }
+  .sec-h, .lede { break-after:avoid; } .grid2 { display:block; } .grid2 > .sec { margin-top:28px; } }
 @media (prefers-reduced-transparency: reduce) { .side { background:var(--bg); backdrop-filter:none; -webkit-backdrop-filter:none; } }
 """
 
@@ -167,12 +171,14 @@ ICONS = {
     "connect": '<path d="M6.6 9.4a2.6 2.6 0 0 0 3.7 0l2.2-2.2a2.6 2.6 0 0 0-3.7-3.7l-.9.9"/><path d="M9.4 6.6a2.6 2.6 0 0 0-3.7 0L3.5 8.8a2.6 2.6 0 0 0 3.7 3.7l.9-.9"/>',
     "chevron": '<path d="M6 3.5 10.5 8 6 12.5"/>',
     "print": '<path d="M4.5 6V2.5h7V6M4.5 11.5H2.5v-5h11v5h-2M4.5 9.5h7v4h-7z"/>',
+    "settings": '<circle cx="8" cy="8" r="2.2"/><path d="M8 1.8v1.6M8 12.6v1.6M1.8 8h1.6M12.6 8h1.6M3.6 3.6l1.1 1.1M11.3 11.3l1.1 1.1M3.6 12.4l1.1-1.1M11.3 4.7l1.1-1.1"/>',
     "brand": '<path d="M2 8h12M4.2 5v6M11.8 5v6M2.6 6.3v3.4M13.4 6.3v3.4"/>',
 }
 
 NAV = [("Training", [("Summary", "/", "summary"), ("History", "/history", "history"), ("Plan", "/plan", "plan"), ("Exercises", "/exercises", "exercises")]),
        ("Progress", [("Body", "/body", "body"), ("Stats", "/stats", "stats"), ("Report", "/report", "report")]),
-       ("Hexplate", [("Rep counter", "/reps", "reps"), ("Sync & backup", "/data", "data"), ("Connect", "/connect", "connect")])]
+       ("Hexplate", [("Rep counter", "/reps", "reps"), ("Sync & backup", "/data", "data"), ("Connect", "/connect", "connect"),
+                     ("Settings", "/settings", "settings")])]
 
 
 def icon(name, size=16, width=1.6):
@@ -181,13 +187,13 @@ def icon(name, size=16, width=1.6):
 
 
 def shell(active, title, body, sync):
-    nav = "".join(f'<div class="nav-h">{g}</div>' + "".join(
-        f'<a href="{h}" class="{"on" if t == active else ""}"{" aria-current=page" if t == active else ""}>{icon(i)}{t}</a>' for t, h, i in items)
+    nav = "".join(f'<div class="nav-h">{t(g)}</div>' + "".join(
+        f'<a href="{h}" class="{"on" if k == active else ""}"{" aria-current=page" if k == active else ""}>{icon(i)}{t(k)}</a>' for k, h, i in items)
         for g, items in NAV)
-    return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    return f"""<!doctype html><html lang="{"zh-Hant" if zh() else "en"}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark"><title>{escape(title)} · Hexplate</title><style>{CSS}</style></head>
 <body><aside class="side"><div class="brand"><span class="brand-mark">{icon("brand", 16, 1.8)}</span><b>Hexplate</b></div>
-<div class="sync">{escape(sync)}</div><nav aria-label="Sections">{nav}</nav></aside>
+<div class="sync">{escape(sync)}</div><nav aria-label="{t("Sections")}">{nav}</nav></aside>
 <div class="content"><main class="page">{body}</main></div>
 <script>document.querySelector(".side a.on")?.scrollIntoView({{block: "nearest", inline: "center"}})</script></body></html>"""
 
@@ -211,7 +217,7 @@ def stats(items):
 
 
 def group(rows, empty="Nothing here yet."):
-    return f'<div class="group">{"".join(rows) or f"<div class=empty>{escape(empty)}</div>"}</div>'
+    return f'<div class="group">{"".join(rows) or f"<div class=empty>{escape(t(empty))}</div>"}</div>'
 
 
 def row(title, sub="", end="", href=None, lead=""):
@@ -222,7 +228,7 @@ def row(title, sub="", end="", href=None, lead=""):
 
 
 def date_lead(d: dt.date):
-    return f'<div class="date"><span>{d:%a}</span><b>{d.day}</b></div>'
+    return f'<div class="date"><span>{fd(d, "a")}</span><b>{d.day}</b></div>'
 
 
 def seg(options, current):
@@ -260,7 +266,7 @@ def bars(points, height=170, unit="kg", label="Volume", hi=None):
     """[(label, value, tooltip)]: thin rounded bars on a recessive grid; `hi` (default the last)
     is the one in the accent colour."""
     if not points:
-        return '<div class="empty">No data yet.</div>'
+        return f'<div class="empty">{t("No data yet.")}</div>'
     w, h, left, bottom = 760, height, 40, 22
     top = nice_max(max(v for _, v, _ in points))
     n = len(points)
@@ -287,7 +293,7 @@ def bars(points, height=170, unit="kg", label="Volume", hi=None):
 def line(points, height=200, label="Trend", goal=None, fmt_v=lambda v: fmt(v, 1), spark=False):
     """[(date, value)]: a 2 px line over time, the latest point marked; `goal` adds a dashed line."""
     if len(points) < 2:
-        return '<div class="empty">One entry so far.</div>' if points else '<div class="empty">No data yet.</div>'
+        return f'<div class="empty">{t("One entry so far." if points else "No data yet.")}</div>'
     w, h = (240, 44) if spark else (760, height)
     left, bottom, top_pad = (0, 0, 6) if spark else (44, 22, 10)
     vals = [v for _, v in points] + ([goal] if goal else [])
@@ -303,13 +309,13 @@ def line(points, height=200, label="Trend", goal=None, fmt_v=lambda v: fmt(v, 1)
         for f in (0, .5, 1):
             v = lo + (hi - lo) * f
             out.append(f'<line class="grid" x1="{left}" x2="{w}" y1="{Y(v):.1f}" y2="{Y(v):.1f}"/><text x="{left - 8}" y="{Y(v) + 4:.1f}" text-anchor="end">{fmt_v(v)}</text>')
-        out.append(f'<text x="{left}" y="{h - 5}">{points[0][0]:%-d %b %Y}</text><text x="{w - 6}" y="{h - 5}" text-anchor="end">{points[-1][0]:%-d %b %Y}</text>')
+        out.append(f'<text x="{left}" y="{h - 5}">{fd(points[0][0], "dy")}</text><text x="{w - 6}" y="{h - 5}" text-anchor="end">{fd(points[-1][0], "dy")}</text>')
     if goal:
-        out.append(f'<line class="goal" x1="{left}" x2="{w - 6}" y1="{Y(goal):.1f}" y2="{Y(goal):.1f}"><title>Goal {fmt_v(goal)}</title></line>')
+        out.append(f'<line class="goal" x1="{left}" x2="{w - 6}" y1="{Y(goal):.1f}" y2="{Y(goal):.1f}"><title>{t("Goal {v}", v=fmt_v(goal))}</title></line>')
     path = " ".join(f"{'M' if i == 0 else 'L'}{X(d):.1f},{Y(v):.1f}" for i, (d, v) in enumerate(points))
     out.append(f'<path class="ln" d="{path}"/>')
     if not spark:
-        out += [f'<circle cx="{X(d):.1f}" cy="{Y(v):.1f}" r="8" fill="transparent"><title>{d:%-d %b %Y}: {fmt_v(v)}</title></circle>' for d, v in points]
+        out += [f'<circle cx="{X(d):.1f}" cy="{Y(v):.1f}" r="8" fill="transparent"><title>{fd(d, "dy")}: {fmt_v(v)}</title></circle>' for d, v in points]
     d, v = points[-1]
     out.append(f'<circle class="dot" cx="{X(d):.1f}" cy="{Y(v):.1f}" r="{3.5 if spark else 4.5}"/>')
     return f'<svg viewBox="-4 -2 {w + 8} {h + 4}" width="100%" role="img" aria-label="{escape(label)}">{"".join(out)}</svg>'
@@ -318,14 +324,15 @@ def line(points, height=200, label="Trend", goal=None, fmt_v=lambda v: fmt(v, 1)
 def meter(name, sets, lo, hi, status, scale=None):
     """A muscle's sets against its range: the band is the range, the bar what was done."""
     scale = scale or max(hi * 1.25, sets, 1)
-    word = {"below": "under range", "in": "in range", "above": "over range"}[status]
-    return (f'<div class="meter" title="{escape(name)}: {fmt(sets, 1 if sets % 1 else 0)} sets, aim {lo}–{hi} ({word})"><span>{escape(name)}</span>'
+    word = t({"below": "under range", "in": "in range", "above": "over range"}[status])
+    tip = t("{name}: {sets} sets, aim {lo}–{hi} ({word})", name=name, sets=fmt(sets, 1 if sets % 1 else 0), lo=lo, hi=hi, word=word)
+    return (f'<div class="meter" title="{escape(tip)}"><span>{escape(name)}</span>'
             f'<span class="track"><span class="band" style="left:{lo / scale * 100:.1f}%;width:{(hi - lo) / scale * 100:.1f}%"></span>'
             f'<span class="fill {status}" style="width:{min(sets / scale, 1) * 100:.1f}%"></span></span>'
             f'<span class="v"><b>{fmt(sets, 1 if sets % 1 else 0)}</b> / {lo}–{hi}</span></div>')
 
 
-def heat(days: dict, end: dt.date, weeks=53, ws=1):
+def heat(days: dict, end: dt.date, weeks=53, ws=1, unit="kg"):
     """A year of training days, a column per week (the profile's first weekday on top), shaded by volume."""
     start = end - dt.timedelta(days=(((end.weekday() + 1) % 7 - ws) % 7) + 7 * (weeks - 1))
     vals = sorted(v for v in days.values() if v > 0)
@@ -341,8 +348,8 @@ def heat(days: dict, end: dt.date, weeks=53, ws=1):
                 continue
             v = days.get(d.isoformat())
             lvl = "" if v is None else " l1" if not v else " l4" if v >= t3 else " l3" if v >= t2 else " l2" if v >= t1 else " l1"
-            cells.append(f'<i class="{lvl.strip()}" title="{d:%a %-d %b %Y}{f": {fmt(v)} kg" if v else ": rest" if v is None else ""}"></i>')
+            cells.append(f'<i class="{lvl.strip()}" title="{fd(d, "wdy")}{f": {fmt(v)} {unit}" if v else ": " + t("rest") if v is None else ""}"></i>')
         cols.append(f'<div>{"".join(cells)}</div>')
-    legend = '<div class="legend">Less <i></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i> More</div>'
+    legend = f'<div class="legend">{t("Less")} <i></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i> {t("More")}</div>'
     # rtl on the scroller only: a narrow window opens on the latest weeks; the grid itself stays left to right.
-    return f'<div class="scroll" style="direction:rtl"><div class="heat" style="direction:ltr" role="img" aria-label="Training days, last {weeks} weeks">{"".join(cols)}</div></div>{legend}'
+    return f'<div class="scroll" style="direction:rtl"><div class="heat" style="direction:ltr" role="img" aria-label="{t("Training days, last {n} weeks", n=weeks)}">{"".join(cols)}</div></div>{legend}'

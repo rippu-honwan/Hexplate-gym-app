@@ -9,6 +9,7 @@ import json
 import math
 from functools import cache
 
+from .i18n import exercise, t
 from .queries import CATALOGUE, name_of
 
 # lib/muscle-targets.js DEFAULT_TARGETS, in body order: weekly working sets per main muscle.
@@ -27,7 +28,7 @@ def exercise_index() -> dict:
 
 
 def muscle_name(slug: str) -> str:
-    return catalogue()["meta"].get("muscleNames", {}).get(slug) or slug.replace("-", " ").title()
+    return t(catalogue()["meta"].get("muscleNames", {}).get(slug) or slug.replace("-", " ").title())
 
 
 def js_round1(x: float) -> float:
@@ -97,12 +98,13 @@ def unit(state) -> str:
 
 
 def ex_name(ex_id, state, entry=None) -> str:
-    """The catalogue's or your own name, else what the entry saved, else the id."""
+    """The catalogue's or your own name, else what the entry saved, else the id; in Chinese the
+    way the phone shows it (i18n.exercise)."""
     n = name_of(ex_id, state)
     if n == str(ex_id) and entry:
         saved = (entry.get("exercise") or entry.get("ex") or {}).get("n") if isinstance(entry.get("exercise") or entry.get("ex"), dict) else None
         return saved or n
-    return n
+    return exercise(ex_id, n, state)
 
 
 # MARK: weeks
@@ -121,20 +123,6 @@ def week_key(iso: str, ws: int) -> str | None:
     return (d - dt.timedelta(days=(weekday - ws) % 7)).isoformat()
 
 
-def weeks_in_a_row(state, today: dt.date) -> int:
-    """Weeks in a row with a workout, up to this week (this week counts once it has one, and an
-    empty this-week does not break the run yet). ponytail: the app's streak also spends freezes
-    on a missed week (WidgetData.streak); this plain count can be lower than the phone's."""
-    ws = week_start(state)
-    trained = {week_key(day(w), ws) for w in workouts(state)}
-    k = dt.date.fromisoformat(week_key(today.isoformat(), ws))
-    if k.isoformat() not in trained:
-        k -= dt.timedelta(days=7)
-    n = 0
-    while k.isoformat() in trained:
-        n += 1
-        k -= dt.timedelta(days=7)
-    return n
 
 
 # MARK: muscles

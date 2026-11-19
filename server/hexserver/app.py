@@ -14,6 +14,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from . import dashboard
+from .backup import Backup
 from .store import Conflict, Store
 from .webhooks import Webhooks
 
@@ -25,6 +26,8 @@ def create_app(folder: Path | None = None) -> FastAPI:
     app = FastAPI(title="Hexplate server", docs_url=None, redoc_url=None)
     app.state.store = store
     app.state.webhooks = webhooks = Webhooks(store.db)
+    # A data folder given (the tests) keeps its backup beside it, never in your iCloud Drive.
+    app.state.backup = backup = Backup(store, Path(folder) / "backup" if folder else None)
 
     def err(status, message, **extra):
         return JSONResponse({"error": message, **extra}, status_code=status)
@@ -89,6 +92,7 @@ def create_app(folder: Path | None = None) -> FastAPI:
         except Conflict as c:
             return err(409, "conflict", rev=c.rev, state=c.state)
         webhooks.dispatch(prev, saved)   # what is new since the last copy, sent in the background
+        backup.soon()
         return {"ok": True, "ts": saved.get("_ts"), "rev": saved["_rev"], "wid": saved["_wid"]}
 
     @app.put("/api/motion")
@@ -99,7 +103,8 @@ def create_app(folder: Path | None = None) -> FastAPI:
         name, csv = b.get("name"), b.get("csv")
         if not isinstance(name, str) or not isinstance(csv, str) or not store.save_motion(name, csv):
             return err(400, "bad motion file")
-        return {"ok": True}
+        # The phone deletes its copy only when this is true: the file is here and in the backup.
+        return {"ok": True, "canDelete": backup.can_delete(name)}
 
     dashboard.install(app, store)
     return app

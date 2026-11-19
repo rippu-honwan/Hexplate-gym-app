@@ -70,8 +70,9 @@ def test_tables_follow_the_latest_document(phone):
 
 def test_motion_files(phone, tmp_path):
     csv = '# {"kind":"set","v":1}\nt,ax\n0,1\n'
-    assert phone.put("/api/motion", json={"name": "20261118-120000_0025_s1.csv", "csv": csv}).json() == {"ok": True}
+    assert phone.put("/api/motion", json={"name": "20261118-120000_0025_s1.csv", "csv": csv}).json() == {"ok": True, "canDelete": True}
     assert (tmp_path / "motion/20261118-120000_0025_s1.csv").read_text() == csv
+    assert (tmp_path / "backup/motion/20261118-120000_0025_s1.csv").read_text() == csv   # backed up before the answer
     row = phone.app.state.store.db.execute("SELECT recorded_at, exercise, set_no, kind FROM motion_files").fetchone()
     assert row == ("20261118-120000", "0025", 1, "set")
     for name, body in [("../x.csv", csv), ("20261118-120000_0025_s1.txt", csv), ("20261118-120000_0025_s1.csv", "t,ax\n")]:
@@ -143,3 +144,36 @@ def test_code_typed_with_another_keyboard(client):
     code = client.app.state.store.new_pair_code()
     wide = "".join(chr(ord(c) + 0xFEE0) for c in code.lower())   # full-width, as a Chinese keyboard types it
     assert client.post("/api/pair/redeem", json={"code": f" {wide[:4]}-{wide[4:]} "}).status_code == 200
+
+
+def test_backup_gates_the_phones_delete(phone, tmp_path):
+    csv = '# {"kind":"set","v":1}\nt,ax\n0,1\n'
+    backup, store = phone.app.state.backup, phone.app.state.store
+    (tmp_path / "backup").write_text("not a folder")   # the backup cannot be written
+    r = phone.put("/api/motion", json={"name": "20261118-120000_0025_s2.csv", "csv": csv}).json()
+    assert r == {"ok": True, "canDelete": False} and store.setting("backup_error")   # the phone keeps its copy
+    store.set_setting("backup", "off")                   # switched off: the server's copy is enough
+    assert phone.put("/api/motion", json={"name": "20261118-120000_0025_s3.csv", "csv": csv}).json()["canDelete"] is True
+    (tmp_path / "backup").unlink()
+    store.set_setting("backup", "on")
+    copied, ok = backup.everything()
+    assert ok and copied == 2 and store.setting("backup_error") is None
+    assert len(list((tmp_path / "backup").glob("hexplate-*.sqlite3"))) == 1
+    assert backup.status()["motion"] == 2
+
+
+def test_chinese_dashboard_and_settings(client):
+    store = client.app.state.store
+    store.put(state())
+    same = {"Origin": "http://testserver"}
+    assert "Weekly volume" in client.get("/").text                        # English unless chosen
+    assert "總覽" in client.get("/", headers={"Accept-Language": "zh-TW,zh"}).text   # the browser's language
+    client.post("/settings/lang", data={"lang": "zh"}, headers=same)
+    for path in ("/", "/history", "/plan", "/exercises", "/body", "/stats", "/report", "/reps", "/data", "/connect", "/settings"):
+        html = client.get(path).text
+        assert 'lang="zh-Hant"' in html and "設定" in html, path
+    assert "每週訓練量" in client.get("/").text
+    client.post("/settings/lang", data={"lang": "en"}, headers=same)
+    assert "Weekly volume" in client.get("/").text
+    client.post("/settings/backup", data={"on": "0"}, headers=same)
+    assert store.setting("backup") == "off" and "Backup is off" in client.get("/settings").text

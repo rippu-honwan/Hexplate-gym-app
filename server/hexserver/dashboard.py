@@ -1,6 +1,6 @@
 """The dashboard: server-rendered pages read from the latest document the phone sent, styled by ui.py
-(no JavaScript library, no CDN). Read-only for training data: the log is edited on the phone, which
-owns the merge; here you look, print and back up.
+and worded by i18n.py (no JavaScript library, no CDN). Read-only for training data: the log is
+edited on the phone, which owns the merge; here you look, print and back up.
 
 Only answers on this Mac (localhost): the API is reachable on your Wi-Fi for the phone, the pages
 with your data are not. Forms that change something also need the browser to say they came from
@@ -20,8 +20,9 @@ from urllib.parse import parse_qs, quote
 from fastapi import Request
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse, Response
 
+from . import schedule as P
 from . import stats as S
-from .queries import name_of
+from .i18n import LANG, fd, t, tm, tn
 from .ui import bars, compact, date_lead, fmt, group, head, heat, icon, kg, line, meter, row, section, seg, shell, stats
 
 
@@ -58,16 +59,6 @@ def D(iso):
     return dt.date.fromisoformat(iso)
 
 
-def week_target(state):
-    """The week's goal: `weekTarget` (rotation), else the days the weekly plan fills.
-    ponytail: ignores day overrides and the queue (Schedule.workoutsLeft); fine for a summary."""
-    n = S.num((state or {}).get("weekTarget"))
-    if n and 1 <= int(n + .5) <= 7:
-        return int(n + .5)
-    days = sum(1 for v in ((state or {}).get("week") or {}).values() if v)
-    return days or None
-
-
 def prs_of(w):
     return [str(p if not isinstance(p, dict) else p.get("id") or p.get("ex")) for p in (w.get("prs") or [])]
 
@@ -90,19 +81,24 @@ def by_week(ws, state, weeks, today):
 
 def names(w, state, n=3):
     ex = [S.ex_name(e.get("id"), state, e) for e in S.entries(w) if any(S.done_units(s) for s in S.sets(e))]
-    more = f", +{len(ex) - n} more" if len(ex) > n else ""
+    more = ", " + t("+{n} more", n=len(ex) - n) if len(ex) > n else ""
     return escape(", ".join(ex[:n])) + more
 
 
 def duration(m):
-    return "–" if m is None else f"{m} min" if m < 60 else f"{m // 60} h {m % 60:02d} min"
+    return "–" if m is None else t("{n} min", n=m) if m < 60 else t("{h} h {m} min", h=m // 60, m=f"{m % 60:02d}")
+
+
+def routine_names(state, ids):
+    by_id = {r["id"]: r.get("name") or t("Workout") for r in S.routines(state)}
+    return [by_id[i] for i in ids if i in by_id]
 
 
 def workout_row(w, state, u):
     m, n, pr = S.minutes(w), S.work_sets(w), len(prs_of(w))
-    badge = f'<span class="badge">{pr} PR</span>' if pr else ""
-    end = " · ".join(x for x in (duration(m) if m else "", f"{n} sets", f"{fmt(S.volume(w))} {u}" if S.volume(w) else "") if x)
-    return row(f"{escape(w.get('name') or 'Workout')}{badge}", names(w, state), end, f"/history/{quote(str(w.get('id')))}", date_lead(D(S.day(w))))
+    badge = f'<span class="badge">{t("{n} PR", n=pr)}</span>' if pr else ""
+    end = " · ".join(x for x in (duration(m) if m else "", tn(n, "{n} set", "{n} sets"), f"{fmt(S.volume(w))} {u}" if S.volume(w) else "") if x)
+    return row(f"{escape(w.get('name') or t('Workout'))}{badge}", names(w, state), end, f"/history/{quote(str(w.get('id')))}", date_lead(D(S.day(w))))
 
 
 def range_of(kind, today):
@@ -125,13 +121,20 @@ def delta(now, before, unit="", d=0):
     if not before:
         return ""
     ch = now - before
-    pct = ch / before * 100
     sign = "+" if ch >= 0 else "−"
-    return f'{sign}{fmt(abs(ch), d)}{unit} ({sign}{fmt(abs(pct))}%) vs before'
+    return f'{sign}{fmt(abs(ch), d)}{unit} ({sign}{fmt(abs(ch / before * 100))}%) {t("vs before")}'
+
+
+def table(head_cells, rows, empty=""):
+    """A plain table in a card: head cells ending in '>' are right-aligned."""
+    th = "".join(f'<th class=r>{h[:-1]}</th>' if h.endswith(">") else f"<th>{h}</th>" for h in head_cells)
+    body = "".join(rows) or f'<tr><td colspan={len(head_cells)} class=muted>{empty}</td></tr>'
+    return f'<div class="card"><div class="scroll"><table><thead><tr>{th}</tr></thead><tbody>{body}</tbody></table></div></div>'
 
 
 def install(app, store):
     db = store.db
+    backup = app.state.backup
 
     @app.middleware("http")
     async def guard(req: Request, call_next):
@@ -143,18 +146,21 @@ def install(app, store):
                 same = site in ("same-origin", "none") if site else req.headers.get("origin") == f"{req.url.scheme}://{req.url.netloc}"
                 if not same:
                     return PlainTextResponse("Refused: this form did not come from the dashboard.", status_code=403)
+            # Your choice in Settings, else the browser's first language.
+            lang = store.setting("lang") or ("zh" if req.headers.get("accept-language", "").lower().startswith("zh") else "en")
+            LANG.set(lang)
         return await call_next(req)
 
     def page(active, body, title=None):
         rev = db.execute("SELECT rev, received_at FROM documents ORDER BY rev DESC LIMIT 1").fetchone()
-        sync = f"Synced {dt.datetime.fromtimestamp(rev[1]):%-d %b, %H:%M}" if rev else "Not synced yet"
-        return HTMLResponse(shell(active, title or active, body, sync))
+        sync = t("Synced {when}", when=fd(dt.datetime.fromtimestamp(rev[1]), "dt")) if rev else t("Not synced yet")
+        return HTMLResponse(shell(active, title or t(active), body, sync))
 
     def doc():
         return store.current()[1] or {}
 
-    def no_data(active, title):
-        return page(active, head(title) + group([], "No workouts yet. Pair your phone in Sync & backup and they appear here."))
+    def no_data(active):
+        return page(active, head(t(active)) + group([], "No workouts yet. Pair your phone in Sync & backup and they appear here."))
 
     # MARK: Summary
 
@@ -163,70 +169,63 @@ def install(app, store):
         state, today = doc(), dt.date.today()
         ws = S.workouts(state)
         if not ws:
-            return no_data("Summary", "Summary")
-        u, wst = S.unit(state), S.week_start(state)
-        start = D(S.week_key(today.isoformat(), wst))
+            return no_data("Summary")
+        u, wst, iso = S.unit(state), S.week_start(state), today.isoformat()
+        start = D(S.week_key(iso, wst))
         this = [w for w in ws if S.week_key(S.day(w), wst) == start.isoformat()]
-        plan, target = S.plan_by_weekday(state), week_target(state)
 
         rings = []
         for i in range(7):
             d = start + dt.timedelta(days=i)
             done = [w for w in this if S.day(w) == d.isoformat()]
-            planned = plan.get((d.weekday() + 1) % 7) or []
+            planned = routine_names(state, P.routine_ids(state, d.isoformat(), iso)) if d >= today else []
             cls = "done" if done else "today" if d == today else "future" if d > today else ""
-            label = escape(done[0].get("name") or "Workout") if done else f'<span class="muted">{escape(", ".join(planned))}</span>' if planned and d >= today else ""
+            label = escape(done[0].get("name") or t("Workout")) if done else f'<span class="muted">{escape(", ".join(planned))}</span>' if planned else ""
             ring = f'<div class="ring {cls}"{" aria-current=date" if d == today else ""}>{d.day}</div>'
             if done:
                 ring = f'<a href="/history/{quote(str(done[0].get("id")))}">{ring}</a>'
-            rings.append(f'<div><div class="wd">{d:%a}</div>{ring}<div class="pl">{label}</div></div>')
+            rings.append(f'<div><div class="wd">{fd(d, "a")}</div>{ring}<div class="pl">{label}</div></div>')
 
         weeks = by_week(ws, state, 12, today)
         avg4 = sum(v for _, v, _ in weeks[-5:-1]) / 4
         while len(weeks) > 4 and weeks[0][1] == 0 and weeks[0][2] == 0:
             weeks.pop(0)
         vol = work_volume(this)
-        streak = S.weeks_in_a_row(state, today)
+        left, streak = P.workouts_left(state, iso), P.streak(state, iso)
+        freeze = tn(streak["freezes"], "{n} freeze banked", "{n} freezes banked") if streak["freezes"] else t("best {n}", n=streak["best"])
         strip = stats([
-            ("Workouts", f"{len(this)}", f"of {target}" if target else "", "this week"),
-            ("Working sets", fmt(sum(S.work_sets(w) for w in this)), "", "this week"),
-            ("Volume", compact(vol), u, f"4-week average {compact(avg4)} {u}"),
-            ("Weeks in a row", str(streak), "", "with a workout")])
+            (t("Workouts"), str(left["done"] if left else len(this)), t("of {n}", n=left["of"]) if left else "", t("this week")),
+            (t("Working sets"), fmt(sum(S.work_sets(w) for w in this)), "", t("this week")),
+            (t("Volume"), compact(vol), u, t("4-week average {v}", v=f"{compact(avg4)} {u}")),
+            (t("Weeks in a row"), str(streak["current"]), "", freeze)])
 
-        muscles = S.weekly_muscle_sets(state, today.isoformat())
-        in_range_n = sum(m["status"] == "in" for m in muscles)
-        recent = group([workout_row(w, state, u) for w in ws[:5]])
-
+        muscles = S.weekly_muscle_sets(state, iso)
+        in_n = sum(m["status"] == "in" for m in muscles)
         recs = []
         for w in ws:
             for ex in prs_of(w):
                 b = next((S.best_set(e) for e in S.entries(w) if str(e.get("id")) == ex), None)
-                recs.append(row(escape(S.ex_name(ex, state)), f"{D(S.day(w)):%-d %b}",
-                                f"{kg(b[1])} {u} × {fmt(b[2])}" if b else "", f"/exercises/{quote(ex)}"))
-                if len(recs) == 5:
-                    break
-            if len(recs) == 5:
+                recs.append(row(escape(S.ex_name(ex, state)), fd(D(S.day(w))), f"{kg(b[1])} {u} × {fmt(b[2])}" if b else "", f"/exercises/{quote(ex)}"))
+            if len(recs) >= 5:
                 break
-
         bw = S.weigh_ins(state)
-        body_card = (f'<div class="card"><div class="stat" style="padding:0"><div class="l">Latest {D(bw[-1][0]):%-d %b}</div>'
-                     f'<b>{fmt(bw[-1][1], 1)}<small>{u}</small></b></div>{line([(D(d), v) for d, v in bw[-30:]], spark=True, label="Body weight")}</div>'
+        body_card = (f'<div class="card"><div class="stat" style="padding:0"><div class="l">{t("Latest {d}", d=fd(D(bw[-1][0])))}</div>'
+                     f'<b>{fmt(bw[-1][1], 1)}<small>{u}</small></b></div>{line([(D(d), v) for d, v in bw[-30:]], spark=True, label=t("Body weight"))}</div>'
                      if bw else group([], "No weigh-ins yet."))
+        vbars = bars([(fd(s, "dm"), v, t("Week of {d}: {v}, {n} workouts", d=fd(s), v=f"{fmt(v)} {u}", n=n)) for s, v, n in weeks], label=t("Weekly volume"))
 
-        body = (head("Summary", f"{today:%A, %-d %B}")
-                + section("This week", f'<div class="card"><div class="week">{"".join(rings)}</div></div>',
-                          sub=f"Week of {start:%-d %b}")
+        body = (head(t("Summary"), fd(today, "long"))
+                + section(t("This week"), f'<div class="card"><div class="week">{"".join(rings)}</div></div>', sub=t("Week of {d}", d=fd(start)))
                 + f'<div class="sec">{strip}</div>'
-                + section("Weekly volume", f'<div class="card">{bars([(f"{s:%-d/%-m}", v, f"Week of {s:%-d %b}: {fmt(v)} {u}, {n} workouts") for s, v, n in weeks], unit=u, label="Weekly volume")}</div>',
-                          sub=f"last {len(weeks)} weeks", link=("Stats", "/stats"),
-                          lede=f"This week {fmt(vol)} {u} so far; the 4 weeks before averaged {fmt(avg4)} {u}.")
+                + section(t("Weekly volume"), f'<div class="card">{vbars}</div>', sub=t("last {n} weeks", n=len(weeks)), link=(t("Stats"), "/stats"),
+                          lede=t("This week {v} so far; the 4 weeks before averaged {a}.", v=f"{fmt(vol)} {u}", a=f"{fmt(avg4)} {u}"))
                 + '<div class="grid2">'
-                + section("Muscle sets", '<div class="card">' + "".join(meter(m["name"], m["sets"], m["lo"], m["hi"], m["status"]) for m in muscles) + "</div>",
-                          sub="this week", lede=f"{in_range_n} of {len(muscles)} muscles in their weekly range. The shaded band is the range.")
-                + section("Recent workouts", recent, link=("History", "/history"))
+                + section(t("Muscle sets"), '<div class="card">' + "".join(meter(m["name"], m["sets"], m["lo"], m["hi"], m["status"]) for m in muscles) + "</div>",
+                          sub=t("this week"), lede=t("{n} of {m} muscles in their weekly range. The shaded band is the range.", n=in_n, m=len(muscles)))
+                + section(t("Recent workouts"), group([workout_row(w, state, u) for w in ws[:5]]), link=(t("History"), "/history"))
                 + "</div><div class=grid2>"
-                + section("Latest records", group(recs, "No records yet."), link=("Exercises", "/exercises"))
-                + section("Body weight", body_card, link=("Body", "/body"))
+                + section(t("Latest records"), group(recs[:5], "No records yet."), link=(t("Exercises"), "/exercises"))
+                + section(t("Body weight"), body_card, link=(t("Body"), "/body"))
                 + "</div>")
         return page("Summary", body)
 
@@ -237,20 +236,20 @@ def install(app, store):
         state = doc()
         ws = S.workouts(state)
         if not ws:
-            return no_data("History", "History")
+            return no_data("History")
         u, needle = S.unit(state), q.strip().lower()
         if needle:
             ws = [w for w in ws if needle in (w.get("name") or "").lower()
-                  or any(needle in S.ex_name(e.get("id"), state, e).lower() for e in S.entries(w))]
+                  or any(needle in S.ex_name(e.get("id"), state, e).lower() or needle in S.name_of(e.get("id"), state).lower() for e in S.entries(w))]
         months = {}
         for w in ws:
             months.setdefault(S.day(w)[:7], []).append(w)
         search = (f'<form method="get" action="/history" class="noprint" role="search"><input type="search" name="q" value="{escape(q)}" '
-                  f'placeholder="Exercise or workout" aria-label="Search workouts" style="width:240px"></form>')
-        body = head("History", f"{len(ws)} workout{'s' * (len(ws) != 1)}" + (f" with “{escape(q)}”" if needle else ""), search)
+                  f'placeholder="{t("Exercise or workout")}" aria-label="{t("Search workouts")}" style="width:240px"></form>')
+        body = head(t("History"), tn(len(ws), "{n} workout", "{n} workouts") + (t(" with “{q}”", q=escape(q)) if needle else ""), search)
         for m, mws in months.items():
-            body += section(f"{D(m + '-01'):%B %Y}", group([workout_row(w, state, u) for w in mws]),
-                            sub=f"{len(mws)} workout{'s' * (len(mws) != 1)} · {fmt(work_volume(mws))} {u}")
+            body += section(fd(D(m + "-01"), "month"), group([workout_row(w, state, u) for w in mws]),
+                            sub=f'{tn(len(mws), "{n} workout", "{n} workouts")} · {fmt(work_volume(mws))} {u}')
         if not months:
             body += group([], "No workout matches.")
         return page("History", body)
@@ -260,20 +259,21 @@ def install(app, store):
         state = doc()
         w = next((w for w in S.workouts(state) if str(w.get("id")) == wid), None)
         if not w:
-            return page("History", head("Not found", back=("History", "/history")) + group([], "No workout with that id."))
+            return page("History", head(t("Not found"), back=(t("History"), "/history")) + group([], "No workout with that id."))
         u, prs = S.unit(state), prs_of(w)
         s, e = S.num(w.get("start")), S.num(w.get("end"))
-        when = f"{D(S.day(w)):%A, %-d %B %Y}"
+        when = fd(D(S.day(w)), "longy")
         if s and e:
             when += f" · {dt.datetime.fromtimestamp(s / 1000):%H:%M}–{dt.datetime.fromtimestamp(e / 1000):%H:%M}"
         gym = (w.get("gym") or {}).get("name") if isinstance(w.get("gym"), dict) else None
-        strip = [("Duration", duration(S.minutes(w)), "", ""), ("Working sets", str(S.work_sets(w)), "", ""),
-                 ("Volume", fmt(S.volume(w)), u, ""), ("Records", str(len(prs)), "", "")]
+        strip = [(t("Duration"), duration(S.minutes(w)), "", ""), (t("Working sets"), str(S.work_sets(w)), "", ""),
+                 (t("Volume"), fmt(S.volume(w)), u, ""), (t("Records"), str(len(prs)), "", "")]
         if S.num(w.get("bw")):
-            strip.append(("Body weight", fmt(w["bw"], 1), u, ""))
-        body = head(w.get("name") or "Workout", escape(when + (f" · {gym}" if gym else "")), back=("History", "/history")) + stats(strip)
+            strip.append((t("Body weight"), fmt(w["bw"], 1), u, ""))
+        name = w.get("name") or t("Workout")
+        body = head(name, escape(when + (f" · {gym}" if gym else "")), back=(t("History"), "/history")) + stats(strip)
         if w.get("note"):
-            body += section("Note", f'<div class="card">{escape(str(w["note"]))}</div>')
+            body += section(t("Note"), f'<div class="card">{escape(str(w["note"]))}</div>')
         for ent in S.entries(w):
             ex = str(ent.get("id"))
             rows, n = [], 0
@@ -283,42 +283,55 @@ def install(app, store):
                 label = "W" if warm else str(n)
                 side = [(k, x["sides"][k]) for k in ("L", "R")] if S.is_side(x) else [("", x)]
                 for k, y in side:
-                    done = y.get("done") is True
                     hr = x.get("hr") if isinstance(x.get("hr"), dict) else {}
-                    rows.append(f'<tr class="{"dim" if warm else "" if done else "off"}"><td>{label}{f" · {k}" if k else ""}</td>'
+                    rows.append(f'<tr class="{"dim" if warm else "" if y.get("done") is True else "off"}"><td>{label}{f" · {k}" if k else ""}</td>'
                                 f'<td class=r>{kg(y["w"]) + " " + u if S.num(y.get("w")) is not None else "–"}</td>'
                                 f'<td class=r>{fmt(y["r"]) if S.num(y.get("r")) is not None else "–"}</td>'
                                 f'<td class=r>{fmt(y["rir"]) if S.num(y.get("rir")) is not None else ""}</td>'
                                 f'<td class=r>{fmt(hr["avg"]) if S.num(hr.get("avg")) else ""}</td></tr>')
             b = S.best_set(ent)
-            sub = f"best {kg(b[1])} {u} × {fmt(b[2])} · e1RM {fmt(b[0], 1)}" if b else ""
-            badge = '<span class="badge">PR</span>' if ex in prs else ""
+            sub = t("best {w} × {r} · e1RM {e}", w=f"{kg(b[1])} {u}", r=fmt(b[2]), e=fmt(b[0], 1)) if b else ""
+            badge = f'<span class="badge">{t("PR")}</span>' if ex in prs else ""
             note = (ent.get("target") or {}).get("note") if isinstance(ent.get("target"), dict) else None
-            table = (f'<div class="card">{f"<p class=lede style=margin:0 0 10px>{escape(note)}</p>" if note else ""}<div class="scroll"><table>'
-                     f'<thead><tr><th>Set</th><th class=r>Weight</th><th class=r>Reps</th><th class=r>RIR</th><th class=r>Heart rate</th></tr></thead>'
-                     f'<tbody>{"".join(rows)}</tbody></table></div></div>')
+            tbl = table([t("Set"), t("Weight") + ">", t("Reps") + ">", t("RIR") + ">", t("Heart rate") + ">"], rows)
+            if note:
+                tbl = tbl.replace('<div class="card">', f'<div class="card"><p class="lede" style="margin:0 0 10px">{escape(note)}</p>', 1)
             body += (f'<section class="sec"><div class="sec-h"><h2><a href="/exercises/{quote(ex)}" style="color:inherit">{escape(S.ex_name(ex, state, ent))}</a>{badge}</h2>'
-                     f'<span>{sub}</span></div>{table}</section>')
-        body += '<p class="note">Warm-ups are dimmed, sets not ticked are struck through. Edit a workout on the phone.</p>'
-        return page("History", body, w.get("name") or "Workout")
+                     f'<span>{sub}</span></div>{tbl}</section>')
+        body += f'<p class="note">{t("Warm-ups are dimmed, sets not ticked are struck through. Edit a workout on the phone.")}</p>'
+        return page("History", body, name)
 
     # MARK: Plan
 
     @app.get("/plan", response_class=HTMLResponse)
     async def plan():
-        state = doc()
+        state, today = doc(), dt.date.today()
         rs = S.routines(state)
         if not rs:
-            return page("Plan", head("Plan") + group([], "No routines yet. Make one on the phone."))
-        u, by_day, wst = S.unit(state), S.plan_by_weekday(state), S.week_start(state)
+            return page("Plan", head(t("Plan")) + group([], "No routines yet. Make one on the phone."))
+        u, wst, iso = S.unit(state), S.week_start(state), today.isoformat()
+        start = D(S.week_key(iso, wst))
+        days = []
+        for i in range(7):
+            d = start + dt.timedelta(days=i)
+            got = [w.get("name") or t("Workout") for w in S.workouts(state) if S.day(w) == d.isoformat()]
+            ids = P.routine_ids(state, d.isoformat(), iso)
+            badge = f' <span class="badge">{t("Today")}</span>' if d == today else ""
+            end = (escape(", ".join(got)) + " ✓") if got else escape(", ".join(routine_names(state, ids))) or f'<span class="muted">{t("Rest")}</span>'
+            days.append(row(fd(d, "A") + badge, fd(d), end))
+        left = P.workouts_left(state, iso)
+        mode = P.schedule_mode(state)
+        sub = " · ".join(x for x in (tn(len(rs), "{n} routine", "{n} routines"), t(mode if mode == "rotation" else "weekly plan"),
+                                     t("{n} workouts a week", n=left["of"]) if left else "") if x)
+        body = head(t("Plan"), sub) + section(t("This week"), group(days), sub=t("Week of {d}", d=fd(start)),
+                                               lede=t("What each day of this week holds, as the phone plans it. Change the plan on the phone."))
+        rot = state.get("rotation") if isinstance(state.get("rotation"), dict) else {}
+        seq = [x for x in (rot.get("sequence") or []) if isinstance(x, str)]
+        if mode == "rotation" and seq:
+            steps = [t("Rest") if x == P.REST else escape((routine_names(state, [x]) or [x])[0]) for x in seq]
+            body += section(t("Rotation"), f'<div class="card">{" → ".join(steps)}</div>', lede=t("The loop the rotation works through, in order."))
         order = [(wst + i) % 7 for i in range(7)]
-        today = (dt.date.today().weekday() + 1) % 7
-        week = group([row(calendar.day_name[(d - 1) % 7] + (' <span class="badge">Today</span>' if d == today else ""),
-                          end=escape(", ".join(by_day.get(d) or [])) or '<span class="muted">Rest</span>') for d in order])
-        target = week_target(state)
-        mode = "rotation" if (state.get("scheduleMode") == "rotation") else "weekly plan"
-        body = head("Plan", f"{len(rs)} routine{'s' * (len(rs) != 1)} · {mode}" + (f" · {target} workouts a week" if target else ""))
-        body += section("Week", week, lede="The routines your weekly plan puts on each day. Change the plan on the phone.")
+        week = state.get("week") if isinstance(state.get("week"), dict) else {}
         for r in rs:
             rows = []
             for x in r.get("ex") or []:
@@ -333,10 +346,10 @@ def install(app, store):
                             f'<td class=r>{kg(x["weight"]) + " " + u if S.num(x.get("weight")) else "–"}</td>'
                             f'<td class=r>{f"{rest // 60}:{rest % 60:02d}" if rest else "–"}</td></tr>')
             sets_n = sum(S.num(x.get("sets")) or 0 for x in r.get("ex") or [] if isinstance(x, dict))
-            days = [calendar.day_abbr[(d - 1) % 7] for d in order if (r.get("name") or "Workout") in (by_day.get(d) or [])]
-            body += section(r.get("name") or "Workout", f'<div class="card"><div class="scroll"><table><thead><tr><th>Exercise</th><th class=r>Sets × reps</th>'
-                            f'<th class=r>Weight</th><th class=r>Rest</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div></div>',
-                            sub=f"{len(rows)} exercises · {fmt(sets_n)} sets" + (f" · {', '.join(days)}" if days else ""))
+            on = [fd(start + dt.timedelta(days=i), "a") for i, wd in enumerate(order)
+                  if r["id"] in ([week.get(str(wd))] if isinstance(week.get(str(wd)), str) else week.get(str(wd)) or [])]
+            body += section(r.get("name") or t("Workout"), table([t("Exercise"), t("Sets × reps") + ">", t("Weight") + ">", t("Rest") + ">"], rows),
+                            sub=t("{n} exercises · {s} sets", n=len(rows), s=fmt(sets_n)) + (f" · {', '.join(on)}" if on else ""))
         return page("Plan", body)
 
     # MARK: Exercises
@@ -350,50 +363,48 @@ def install(app, store):
         state = doc()
         trained = S.trained_exercises(state)
         if not trained:
-            return no_data("Exercises", "Exercises")
+            return no_data("Exercises")
         u, needle = S.unit(state), q.strip().lower()
         rows = []
         for i, n, last in trained:
             nm = S.ex_name(i, state)
-            if needle and needle not in nm.lower():
+            if needle and needle not in nm.lower() and needle not in S.name_of(i, state).lower():
                 continue
-            ses = S.exercise_sessions(state, i)
-            best = max((s["est"] for s in ses if s["est"]), default=None)
-            rows.append(row(escape(nm), f"{n} session{'s' * (n != 1)} · last {D(last):%-d %b}",
-                            f"e1RM {fmt(best, 1)} {u}" if best else "", f"/exercises/{quote(i)}"))
+            best = max((s["est"] for s in S.exercise_sessions(state, i) if s["est"]), default=None)
+            rows.append(row(escape(nm), tn(n, "{n} session · last {d}", "{n} sessions · last {d}", d=fd(D(last))),
+                            f"{t('e1RM')} {fmt(best, 1)} {u}" if best else "", f"/exercises/{quote(i)}"))
         search = (f'<form method="get" action="/exercises" role="search"><input type="search" name="q" value="{escape(q)}" '
-                  f'placeholder="Find an exercise" aria-label="Find an exercise" style="width:220px"></form>')
-        body = head("Exercises", f"{len(trained)} trained, most recent first", search) + group(rows, "No exercise matches.")
-        return page("Exercises", body)
+                  f'placeholder="{t("Find an exercise")}" aria-label="{t("Find an exercise")}" style="width:220px"></form>')
+        return page("Exercises", head(t("Exercises"), t("{n} trained, most recent first", n=len(trained)), search) + group(rows, "No exercise matches."))
 
     @app.get("/exercises/{ex}", response_class=HTMLResponse)
     async def exercise(ex: str):
         state = doc()
         ses = S.exercise_sessions(state, ex)
         nm = S.ex_name(ex, state)
+        back = (t("Exercises"), "/exercises")
         if not ses:
-            return page("Exercises", head(nm, back=("Exercises", "/exercises")) + group([], "No working sets logged for this exercise."), nm)
+            return page("Exercises", head(nm, back=back) + group([], "No working sets logged for this exercise."), nm)
         u = S.unit(state)
         mw = sorted(S.muscle_weights(ex, state).items(), key=lambda kv: -kv[1])
         muscles = ", ".join(S.muscle_name(k) for k, v in mw if v >= .5) or ", ".join(S.muscle_name(k) for k, _ in mw[:2])
         est = [s for s in ses if s["est"]]
         best = max(est, key=lambda s: s["est"]) if est else None
-        heaviest = max((s for s in ses if s["w"]), key=lambda s: s["w"], default=None)
-        strip = [("Best e1RM", fmt(best["est"], 1) if best else "–", u if best else "", f"{D(best['d']):%-d %b %Y}" if best else ""),
-                 ("Heaviest set", f"{kg(heaviest['w'])}" if heaviest else "–", f"{u} × {fmt(heaviest['r'])}" if heaviest else "", f"{D(heaviest['d']):%-d %b %Y}" if heaviest else ""),
-                 ("Sessions", str(len(ses)), "", f"since {D(ses[0]['d']):%-d %b %Y}"),
-                 ("Last time", f"{D(ses[-1]['d']):%-d %b}", "", f"{ses[-1]['sets']} sets · {fmt(ses[-1]['volume'])} {u}")]
+        heavy = max((s for s in ses if s["w"]), key=lambda s: s["w"], default=None)
+        strip = [(t("Best e1RM"), fmt(best["est"], 1) if best else "–", u if best else "", fd(D(best["d"]), "dy") if best else ""),
+                 (t("Heaviest set"), kg(heavy["w"]) if heavy else "–", f"{u} × {fmt(heavy['r'])}" if heavy else "", fd(D(heavy["d"]), "dy") if heavy else ""),
+                 (t("Sessions"), str(len(ses)), "", t("since {d}", d=fd(D(ses[0]["d"]), "dy"))),
+                 (t("Last time"), fd(D(ses[-1]["d"])), "", f'{tn(ses[-1]["sets"], "{n} set", "{n} sets")} · {fmt(ses[-1]["volume"])} {u}')]
         pts = [(D(s["d"]), s["est"]) for s in est]
-        change = (f"From {fmt(pts[0][1], 1)} to {fmt(pts[-1][1], 1)} {u} over {len(pts)} sessions." if len(pts) > 1 else "")
-        rows = "".join(f'<tr><td><a href="/history/{quote(str(s["id"]))}">{D(s["d"]):%a %-d %b %Y}</a>{"<span class=badge>PR</span>" if s["pr"] else ""}</td>'
-                       f'<td class=r>{kg(s["w"]) + " " + u + " × " + fmt(s["r"]) if s["w"] else "–"}</td><td class=r>{fmt(s["est"], 1) if s["est"] else "–"}</td>'
-                       f'<td class=r>{s["sets"]}</td><td class=r>{fmt(s["volume"])} {u}</td></tr>' for s in reversed(ses))
-        body = (head(nm, escape(muscles), back=("Exercises", "/exercises")) + stats(strip)
-                + section("Estimated 1RM per session", f'<div class="card">{line(pts, label="Estimated 1RM per session", fmt_v=lambda v: fmt(v, 1 if v < 20 else 0))}</div>',
+        change = t("From {a} to {b} {u} over {n} sessions.", a=fmt(pts[0][1], 1), b=fmt(pts[-1][1], 1), u=u, n=len(pts)) if len(pts) > 1 else ""
+        rows = [f'<tr><td><a href="/history/{quote(str(s["id"]))}">{fd(D(s["d"]), "wdy")}</a>{"<span class=badge>" + t("PR") + "</span>" if s["pr"] else ""}</td>'
+                f'<td class=r>{kg(s["w"]) + " " + u + " × " + fmt(s["r"]) if s["w"] else "–"}</td><td class=r>{fmt(s["est"], 1) if s["est"] else "–"}</td>'
+                f'<td class=r>{s["sets"]}</td><td class=r>{fmt(s["volume"])} {u}</td></tr>' for s in reversed(ses)]
+        body = (head(nm, escape(muscles), back=back) + stats(strip)
+                + section(t("Estimated 1RM per session"), f'<div class="card">{line(pts, label=t("Estimated 1RM per session"), fmt_v=lambda v: fmt(v, 1 if v < 20 else 0))}</div>',
                           sub=u, lede=change)
-                + section("Sessions", f'<div class="card"><div class="scroll"><table><thead><tr><th>Date</th><th class=r>Best set</th><th class=r>e1RM</th>'
-                          f'<th class=r>Sets</th><th class=r>Volume</th></tr></thead><tbody>{rows}</tbody></table></div></div>')
-                + '<p class="note">Estimated 1RM uses the Epley formula, weight × (1 + reps / 30), on ticked working sets.</p>')
+                + section(t("Sessions"), table([t("Date"), t("Best set") + ">", t("e1RM") + ">", t("Sets") + ">", t("Volume") + ">"], rows))
+                + f'<p class="note">{t("Estimated 1RM uses the Epley formula, weight × (1 + reps / 30), on ticked working sets.")}</p>')
         return page("Exercises", body, nm)
 
     # MARK: Body
@@ -403,26 +414,26 @@ def install(app, store):
         state, today = doc(), dt.date.today()
         u, bw, ms = S.unit(state), S.weigh_ins(state), S.measurements(state)
         if not bw and not ms:
-            return page("Body", head("Body") + group([], "No weigh-ins or measurements yet. Log them on the phone."))
-        out = head("Body", f"{len(bw)} weigh-in{'s' * (len(bw) != 1)} · {len(ms)} measurement{'s' * (len(ms) != 1)}")
+            return page("Body", head(t("Body")) + group([], "No weigh-ins or measurements yet. Log them on the phone."))
+        out = head(t("Body"), f'{tn(len(bw), "{n} weigh-in", "{n} weigh-ins")} · {tn(len(ms), "{n} measurement", "{n} measurements")}')
         if bw:
             def ago(days):
                 cut = (today - dt.timedelta(days=days)).isoformat()
                 old = [v for d, v in bw if d <= cut]
                 return f"{'+' if bw[-1][1] - old[-1] >= 0 else '−'}{fmt(abs(bw[-1][1] - old[-1]), 1)}" if old else "–"
             goal = S.num(state.get("targetW"))
-            strip = [("Latest", fmt(bw[-1][1], 1), u, f"{D(bw[-1][0]):%-d %b %Y}"), ("30 days", ago(30), u, "change"),
-                     ("90 days", ago(90), u, "change")]
-            if goal and goal > 0:
-                strip.append(("Goal", fmt(goal, 1), u, f"{fmt(abs(bw[-1][1] - goal), 1)} {u} to go"))
-            days = {"3m": 92, "1y": 366}.get(range)
-            pts = [(D(d), v) for d, v in bw if not days or d >= (today - dt.timedelta(days=days)).isoformat()]
-            ctl = seg([("3 months", "/body?range=3m", "3m"), ("1 year", "/body?range=1y", "1y"), ("All", "/body?range=all", "all")], range if range in ("1y", "all") else "3m")
-            out += stats(strip) + section("Body weight", f'<div class="card">{line(pts, label="Body weight", goal=goal if goal and goal > 0 else None)}</div>',
-                                          sub=u, link=None, lede=(f"{len(pts)} weigh-ins in this range." + (" The dashed line is your goal." if goal else "")))
-            out = out.replace(f'<h2>Body weight</h2><span>{u}</span>', f'<h2>Body weight</h2><span>{u}</span><span style="margin-left:auto">{ctl}</span>', 1)
-            rows = "".join(f"<tr><td>{D(d):%a %-d %b %Y}</td><td class=r>{fmt(v, 1)} {u}</td></tr>" for d, v in reversed(bw[-20:]))
-            weigh = f'<div class="card"><table><thead><tr><th>Date</th><th class=r>Weight</th></tr></thead><tbody>{rows}</tbody></table></div>'
+            goal = goal if goal and goal > 0 else None
+            strip = [(t("Latest"), fmt(bw[-1][1], 1), u, fd(D(bw[-1][0]), "dy")), (t("30 days"), ago(30), u, t("change")), (t("90 days"), ago(90), u, t("change"))]
+            if goal:
+                strip.append((t("Goal"), fmt(goal, 1), u, t("{v} to go", v=f"{fmt(abs(bw[-1][1] - goal), 1)} {u}")))
+            range = range if range in ("1y", "all") else "3m"
+            span = {"3m": 92, "1y": 366}.get(range)
+            pts = [(D(d), v) for d, v in bw if not span or d >= (today - dt.timedelta(days=span)).isoformat()]
+            ctl = seg([(t("3 months"), "/body?range=3m", "3m"), (t("1 year"), "/body?range=1y", "1y"), (t("All"), "/body?range=all", "all")], range)
+            out += stats(strip) + section(t("Body weight"), f'<div class="card">{line(pts, label=t("Body weight"), goal=goal)}</div>',
+                                          sub=f'{u}</span><span style="margin-left:auto">{ctl}',
+                                          lede=t("{n} weigh-ins in this range.", n=len(pts)) + (t(" The dashed line is your goal.") if goal else ""))
+            weigh = table([t("Date"), t("Weight") + ">"], [f"<tr><td>{fd(D(d), 'wdy')}</td><td class=r>{fmt(v, 1)} {u}</td></tr>" for d, v in reversed(bw[-20:])])
         else:
             weigh = group([], "No weigh-ins yet.")
         if ms:
@@ -430,14 +441,12 @@ def install(app, store):
             for d, vals in ms:
                 for k, (v, unit_) in vals.items():
                     series.setdefault(k, []).append((d, v, unit_))
-            rows = "".join(f'<tr><td>{escape(k)}</td><td class=r>{fmt(s[-1][1], 1)} {escape(s[-1][2])}</td><td class=r>{D(s[-1][0]):%-d %b}</td>'
-                           f'<td class=r>{"" if len(s) < 2 else ("+" if s[-1][1] >= s[0][1] else "−") + fmt(abs(s[-1][1] - s[0][1]), 1)}</td></tr>'
-                           for k, s in series.items())
-            meas = (f'<div class="card"><div class="scroll"><table><thead><tr><th>Measure</th><th class=r>Latest</th><th class=r>Date</th>'
-                    f'<th class=r>Since first</th></tr></thead><tbody>{rows}</tbody></table></div></div>')
+            rows = [f'<tr><td>{escape(tm(k))}</td><td class=r>{fmt(s[-1][1], 1)} {escape(s[-1][2])}</td><td class=r>{fd(D(s[-1][0]))}</td>'
+                    f'<td class=r>{"" if len(s) < 2 else ("+" if s[-1][1] >= s[0][1] else "−") + fmt(abs(s[-1][1] - s[0][1]), 1)}</td></tr>' for k, s in series.items()]
+            meas = table([t("Measure"), t("Latest") + ">", t("Date") + ">", t("Since first") + ">"], rows)
         else:
             meas = group([], "No measurements yet.")
-        out += '<div class="grid2">' + section("Measurements", meas) + section("Weigh-ins", weigh, sub="latest 20") + "</div>"
+        out += '<div class="grid2">' + section(t("Measurements"), meas) + section(t("Weigh-ins"), weigh, sub=t("latest 20")) + "</div>"
         return page("Body", out)
 
     # MARK: Stats
@@ -447,20 +456,20 @@ def install(app, store):
         state, today = doc(), dt.date.today()
         ws = S.workouts(state)
         if not ws:
-            return no_data("Stats", "Stats")
+            return no_data("Stats")
         range = range if range in ("4w", "3m", "1y") else "3m"
         weeks_n = {"4w": 4, "3m": 13, "1y": 52}[range]
         u, wst = S.unit(state), S.week_start(state)
         first = D(S.week_key(today.isoformat(), wst)) - dt.timedelta(weeks=weeks_n - 1)
         rws = in_range(ws, first, today)
         mins = [m for m in (S.minutes(w) for w in rws) if m]
-        strip = stats([("Workouts", str(len(rws)), "", f"{fmt(len(rws) / weeks_n, 1)} a week"),
-                       ("Volume", compact(work_volume(rws)), u, f"{compact(work_volume(rws) / weeks_n)} {u} a week"),
-                       ("Working sets", fmt(sum(S.work_sets(w) for w in rws)), "", ""),
-                       ("Time trained", f"{sum(mins) // 60}", "h", f"{duration(round(sum(mins) / len(mins)))} a workout" if mins else "")])
-        ctl = seg([("4 weeks", "/stats?range=4w", "4w"), ("3 months", "/stats?range=3m", "3m"), ("1 year", "/stats?range=1y", "1y")], range)
+        strip = stats([(t("Workouts"), str(len(rws)), "", t("{v} a week", v=fmt(len(rws) / weeks_n, 1))),
+                       (t("Volume"), compact(work_volume(rws)), u, t("{v} a week", v=f"{compact(work_volume(rws) / weeks_n)} {u}")),
+                       (t("Working sets"), fmt(sum(S.work_sets(w) for w in rws)), "", ""),
+                       (t("Time trained"), f"{sum(mins) // 60}", t("h"), t("{v} a workout", v=duration(round(sum(mins) / len(mins)))) if mins else "")])
+        ctl = seg([(t("4 weeks"), "/stats?range=4w", "4w"), (t("3 months"), "/stats?range=3m", "3m"), (t("1 year"), "/stats?range=1y", "1y")], range)
         weeks = by_week(ws, state, weeks_n, today)
-        busiest = max(weeks, key=lambda t: t[1])
+        busiest = max(weeks, key=lambda x: x[1])
         days = {}
         for w in ws:
             days[S.day(w)] = days.get(S.day(w), 0) + S.volume(w)
@@ -477,16 +486,19 @@ def install(app, store):
                 if n:
                     top[str(e.get("id"))] = top.get(str(e.get("id")), 0) + n
         tops = sorted(top.items(), key=lambda kv: -kv[1])[:8]
-        top_rows = group([row(escape(S.ex_name(i, state)), end=f"{n} sets", href=f"/exercises/{quote(i)}") for i, n in tops], "No sets in this range.")
-        body = (head("Stats", f"{first:%-d %b %Y} – {today:%-d %b %Y}", ctl) + strip
-                + section("Consistency", f'<div class="card">{heat(days, today, 53, wst)}</div>', sub="last 12 months",
-                          lede=f"{len([d for d in days if d >= (today - dt.timedelta(days=364)).isoformat()])} training days in the last year; darker days moved more weight.")
-                + section("Weekly volume", f'<div class="card">{bars([(f"{s:%-d/%-m}", v, f"Week of {s:%-d %b}: {fmt(v)} {u}, {n} workouts") for s, v, n in weeks], unit=u, label="Weekly volume", hi=weeks.index(busiest))}</div>',
-                          sub=u, lede=f"The busiest week, highlighted, was {busiest[0]:%-d %b} with {fmt(busiest[1])} {u}.")
+        top_rows = group([row(escape(S.ex_name(i, state)), end=tn(n, "{n} set", "{n} sets"), href=f"/exercises/{quote(i)}") for i, n in tops], "No sets in this range.")
+        trained_days = len([d for d in days if d >= (today - dt.timedelta(days=364)).isoformat()])
+        vbars = bars([(fd(s, "dm"), v, t("Week of {d}: {v}, {n} workouts", d=fd(s), v=f"{fmt(v)} {u}", n=n)) for s, v, n in weeks],
+                     label=t("Weekly volume"), hi=weeks.index(busiest))
+        body = (head(t("Stats"), f"{fd(first, 'dy')} – {fd(today, 'dy')}", ctl) + strip
+                + section(t("Consistency"), f'<div class="card">{heat(days, today, 53, wst, u)}</div>', sub=t("last 12 months"),
+                          lede=t("{n} training days in the last year; darker days moved more weight.", n=trained_days))
+                + section(t("Weekly volume"), f'<div class="card">{vbars}</div>', sub=u,
+                          lede=t("The busiest week, highlighted, was {d} with {v}.", d=fd(busiest[0]), v=f"{fmt(busiest[1])} {u}"))
                 + '<div class="grid2">'
-                + section("Muscle balance", f'<div class="card">{balance}</div>', sub="average sets a week",
-                          lede="Working sets per muscle, averaged over the range, against each weekly range.")
-                + section("Most trained", top_rows, sub="by working sets")
+                + section(t("Muscle balance"), f'<div class="card">{balance}</div>', sub=t("average sets a week"),
+                          lede=t("Working sets per muscle, averaged over the range, against each weekly range."))
+                + section(t("Most trained"), top_rows, sub=t("by working sets"))
                 + "</div>")
         return page("Stats", body)
 
@@ -497,47 +509,44 @@ def install(app, store):
         state, today = doc(), dt.date.today()
         ws = S.workouts(state)
         if not ws:
-            return no_data("Report", "Report")
+            return no_data("Report")
         range = range if range in ("7d", "4w", "3m") else "4w"
         a, b = range_of(range, today)
         n_days = (b - a).days + 1
-        pa, pb = a - dt.timedelta(days=n_days), a - dt.timedelta(days=1)
-        rws, pws = in_range(ws, a, b), in_range(ws, pa, pb)
+        rws, pws = in_range(ws, a, b), in_range(ws, a - dt.timedelta(days=n_days), a - dt.timedelta(days=1))
         u = S.unit(state)
         mins, pmins = sum(S.minutes(w) or 0 for w in rws), sum(S.minutes(w) or 0 for w in pws)
         sets_, psets = sum(S.work_sets(w) for w in rws), sum(S.work_sets(w) for w in pws)
-        strip = stats([("Workouts", str(len(rws)), "", delta(len(rws), len(pws))),
-                       ("Volume", compact(work_volume(rws)), u, delta(work_volume(rws), work_volume(pws))),
-                       ("Working sets", fmt(sets_), "", delta(sets_, psets)),
-                       ("Time", duration(mins) if mins else "–", "", delta(mins, pmins, " min"))])
-        ctl = seg([("7 days", "/report?range=7d", "7d"), ("4 weeks", "/report?range=4w", "4w"), ("3 months", "/report?range=3m", "3m")], range)
-        act = f'<span class="noprint">{ctl}</span><button class="noprint" onclick="print()">{icon("print", 14)} Print</button>'
+        strip = stats([(t("Workouts"), str(len(rws)), "", delta(len(rws), len(pws))),
+                       (t("Volume"), compact(work_volume(rws)), u, delta(work_volume(rws), work_volume(pws))),
+                       (t("Working sets"), fmt(sets_), "", delta(sets_, psets)),
+                       (t("Time"), duration(mins) if mins else "–", "", delta(mins, pmins, " " + t("{n} min", n="").strip()))])
+        ctl = seg([(t("7 days"), "/report?range=7d", "7d"), (t("4 weeks"), "/report?range=4w", "4w"), (t("3 months"), "/report?range=3m", "3m")], range)
+        act = f'<span class="noprint">{ctl}</span><button class="noprint" onclick="print()">{icon("print", 14)} {t("Print")}</button>'
         recs = []
         for w in reversed(rws):
             for ex in prs_of(w):
                 bs = next((S.best_set(e) for e in S.entries(w) if str(e.get("id")) == ex), None)
                 recs.append(f'<tr><td>{escape(S.ex_name(ex, state))}</td><td class=r>{f"{kg(bs[1])} {u} × {fmt(bs[2])}" if bs else ""}</td>'
-                            f'<td class=r>{f"{fmt(bs[0], 1)}" if bs else ""}</td><td class=r>{D(S.day(w)):%-d %b}</td></tr>')
+                            f'<td class=r>{fmt(bs[0], 1) if bs else ""}</td><td class=r>{fd(D(S.day(w)))}</td></tr>')
         load = S.load_of(rws, state)
         muscles = sorted(((S.muscle_name(k), v) for k, v in load.items() if v >= .5), key=lambda kv: -kv[1])[:10]
-        mrows = "".join(f"<tr><td>{escape(k)}</td><td class=r>{fmt(S.js_round1(v), 1)}</td></tr>" for k, v in muscles)
         bw = [(d, v) for d, v in S.weigh_ins(state) if a.isoformat() <= d <= b.isoformat()]
-        wrows = "".join(f'<tr><td><a href="/history/{quote(str(w.get("id")))}">{D(S.day(w)):%a %-d %b}</a></td><td>{escape(w.get("name") or "Workout")}'
-                        f'<div class=muted style=font-size:12px>{names(w, state, 6)}</div></td><td class=r>{duration(S.minutes(w)) if S.minutes(w) else "–"}</td>'
-                        f'<td class=r>{S.work_sets(w)}</td><td class=r>{fmt(S.volume(w))} {u}</td></tr>' for w in reversed(rws))
-        body = (head("Training report", f"{a:%-d %b %Y} – {b:%-d %b %Y} · {n_days} days, compared with the {n_days} days before", act) + strip
+        wrows = [f'<tr><td style="white-space:nowrap"><a href="/history/{quote(str(w.get("id")))}">{fd(D(S.day(w)), "wd")}</a></td><td>{escape(w.get("name") or t("Workout"))}'
+                 f'<div class=muted style=font-size:12px>{names(w, state, 6)}</div></td><td class=r>{duration(S.minutes(w))}</td>'
+                 f'<td class=r>{S.work_sets(w)}</td><td class=r>{fmt(S.volume(w))} {u}</td></tr>' for w in reversed(rws)]
+        body = (head(t("Training report"), t("{a} – {b} · {n} days, compared with the {n} days before", a=fd(a, "dy"), b=fd(b, "dy"), n=n_days), act) + strip
                 + '<div class="grid2">'
-                + section("Records", f'<div class="card">{"<table><thead><tr><th>Exercise</th><th class=r>Set</th><th class=r>e1RM</th><th class=r>Date</th></tr></thead><tbody>" + "".join(recs) + "</tbody></table>" if recs else "<div class=muted>No records in this range.</div>"}</div>',
-                          sub=f"{len(recs)} new")
-                + section("Muscles worked", f'<div class="card">{"<table><thead><tr><th>Muscle</th><th class=r>Sets</th></tr></thead><tbody>" + mrows + "</tbody></table>" if mrows else "<div class=muted>No working sets.</div>"}</div>',
-                          sub="effective working sets")
+                + section(t("Records"), table([t("Exercise"), t("Set") + ">", t("e1RM") + ">", t("Date") + ">"], recs, t("No records in this range.")),
+                          sub=t("{n} new", n=len(recs)))
+                + section(t("Muscles worked"), table([t("Muscle"), t("Sets") + ">"], [f"<tr><td>{escape(k)}</td><td class=r>{fmt(S.js_round1(v), 1)}</td></tr>" for k, v in muscles],
+                                                     t("No working sets.")), sub=t("effective working sets"))
                 + "</div>"
-                + (section("Body weight", f'<div class="card">{line([(D(d), v) for d, v in bw], height=150, label="Body weight")}</div>',
+                + (section(t("Body weight"), f'<div class="card">{line([(D(d), v) for d, v in bw], height=150, label=t("Body weight"))}</div>',
                            sub=f"{fmt(bw[0][1], 1)} → {fmt(bw[-1][1], 1)} {u}") if bw else "")
-                + section("Every workout", f'<div class="card"><div class="scroll"><table><thead><tr><th>Date</th><th>Workout</th><th class=r>Time</th>'
-                          f'<th class=r>Sets</th><th class=r>Volume</th></tr></thead><tbody>{wrows or "<tr><td colspan=5 class=muted>No workouts in this range.</td></tr>"}</tbody></table></div></div>')
-                + f'<p class="note">Made by Hexplate on {today:%-d %B %Y}. The phone makes the same report as a PDF (Settings › Report).</p>')
-        return page("Report", body, "Training report")
+                + section(t("Every workout"), table([t("Date"), t("Workout"), t("Time") + ">", t("Sets") + ">", t("Volume") + ">"], wrows, t("No workouts in this range.")))
+                + f'<p class="note">{t("Made by Hexplate on {d}. The phone makes the same report as a PDF (Settings › Report).", d=fd(today, "dy"))}</p>')
+        return page("Report", body, t("Training report"))
 
     # MARK: Rep counter
 
@@ -557,60 +566,66 @@ def install(app, store):
         for ex, fs in sorted(per.items(), key=lambda kv: -len(kv[1])):
             r = [f for f in fs if rated(f)]
             e, m = score(r)
-            ex_rows.append(f"<tr><td>{escape(name_of(ex, state))}</td><td class=r>{len(fs)}</td><td class=r>{len(r)}</td>"
+            ex_rows.append(f"<tr><td>{escape(S.ex_name(ex, state))}</td><td class=r>{len(fs)}</td><td class=r>{len(r)}</td>"
                            f"<td class=r>{f'{e}/{len(r)}' if r else '–'}</td><td class=r>{fmt(m, 2) if m is not None else '–'}</td></tr>")
         recent = []
         for f in files[:15]:
             off = f["auto"] - f["reps"] if rated(f) else None
             off_text = "" if off is None else ("0" if off == 0 else f'<span class="warn">{off:+d}</span>')
             weight = f"{kg(f['w'])} kg" if isinstance(f.get("w"), (int, float)) else "–"
-            recent.append(f"<tr><td>{dt.datetime.fromtimestamp(f['end'] / 1000):%-d %b %H:%M}</td><td>{escape(name_of(str(f.get('exId')), state))}</td>"
+            recent.append(f"<tr><td>{fd(dt.datetime.fromtimestamp(f['end'] / 1000), 'dt')}</td><td>{escape(S.ex_name(str(f.get('exId')), state))}</td>"
                           f"<td class=r>{weight}</td><td class=r>{f.get('auto', '–')}</td><td class=r>{f.get('reps', '–')}</td><td class=r>{off_text}</td></tr>")
-        strip = stats([("Sets recorded", str(len(files)), "", f"{len(per)} exercises"),
-                       ("Confirmed", str(len(checked)), "", "counts checked on the watch"),
-                       ("Exact", str(round(100 * exact / len(checked))) if checked else "–", "%", f"{exact} of {len(checked)} counted right"),
-                       ("Mean error", fmt(mae, 2) if mae is not None else "–", "reps", "live count vs confirmed")])
-        body = (head("Rep counter", "How well the watch counts your reps") + strip
-                + section("By exercise", f'<div class="card"><div class="scroll"><table><thead><tr><th>Exercise</th><th class=r>Sets</th><th class=r>Checked</th>'
-                          f'<th class=r>Exact</th><th class=r>Error</th></tr></thead><tbody>{"".join(ex_rows) or "<tr><td colspan=5 class=muted>No motion files yet.</td></tr>"}</tbody></table></div></div>')
-                + section("Latest sets", f'<div class="card"><div class="scroll"><table><thead><tr><th>When</th><th>Exercise</th><th class=r>Weight</th><th class=r>Live</th>'
-                          f'<th class=r>Final</th><th class=r>Off</th></tr></thead><tbody>{"".join(recent) or "<tr><td colspan=6 class=muted>No sets yet.</td></tr>"}</tbody></table></div></div>')
-                + '<p class="note">Live is the watch\'s own count; Final is the count after you corrected it on the watch. The full check against the phone\'s log is analysis/motion_check.py.</p>')
+        strip = stats([(t("Sets recorded"), str(len(files)), "", t("{n} exercises", n=len(per))),
+                       (t("Confirmed"), str(len(checked)), "", t("counts checked on the watch")),
+                       (t("Exact"), str(round(100 * exact / len(checked))) if checked else "–", "%", t("{a} of {b} counted right", a=exact, b=len(checked))),
+                       (t("Mean error"), fmt(mae, 2) if mae is not None else "–", t("reps"), t("live count vs confirmed"))])
+        note = t("Live is the watch's own count; Final is the count after you corrected it on the watch. The full check against the phone's log is analysis/motion_check.py.")
+        body = (head(t("Rep counter"), t("How well the watch counts your reps")) + strip
+                + section(t("By exercise"), table([t("Exercise"), t("Sets") + ">", t("Checked") + ">", t("Exact") + ">", t("Error") + ">"], ex_rows, t("No motion files yet.")))
+                + section(t("Latest sets"), table([t("When"), t("Exercise"), t("Weight") + ">", t("Live") + ">", t("Final") + ">", t("Off") + ">"], recent, t("No sets yet.")))
+                + f'<p class="note">{note}</p>')
         return page("Rep counter", body)
 
     # MARK: Sync & backup
 
+    def confirm(text):
+        return escape(json.dumps(text), quote=True)
+
     def data_page(req: Request, code: str | None = None):
-        address = f"http://{local_name()}.local:{req.url.port or 8765}"
+        port = req.url.port or 8765
+        address = f"http://{local_name()}.local:{port}"
         ip = wifi_address()
-        fallback = f" If the phone cannot reach it, try <b>http://{ip}:{req.url.port or 8765}</b>." if ip else ""
-        pair = (f'<div class="code">{code}</div><div class="muted">Works once, for 5 minutes. On the phone: Settings › Server, '
-                f'address <b style="color:var(--ink)">{escape(address)}</b>, then this code.{fallback}</div>') if code else \
-               ('<p class="muted" style="margin:0 0 14px">A code lets one phone sync with this Mac. It works once, for 5 minutes.</p>'
-                '<form method="post" action="/data/pair"><button>New pairing code</button></form>')
-        phones = [row(f"Phone {i + 1}", f"Paired {dt.datetime.fromtimestamp(at):%-d %b %Y, %H:%M}",
-                      f"""<form method="post" action="/data/revoke" onsubmit="return confirm('Unpair this phone? It stops syncing until it is paired again.')">
-<input type="hidden" name="h" value="{h}"><button class="plain small">Unpair</button></form>""") for i, (h, at) in enumerate(store.tokens())]
-        versions = "".join(f"""<tr><td>rev {rev}</td><td>{dt.datetime.fromtimestamp(at):%a %-d %b, %H:%M}</td><td class=r>{n or 0}</td>
-<td class=r>{fmt(size / 1024)} KB</td><td class=r><a class="btn plain small" href="/data/rev/{rev}.json" download>Download</a>
-<form method="post" action="/data/restore" onsubmit="return confirm('Make rev {rev} the current copy? The phone takes it on its next sync and merges in anything it changed since. No version is deleted.')">
-<input type="hidden" name="rev" value="{rev}"><button class="plain small">Restore</button></form></td></tr>"""
-                           for rev, at, n, size in store.versions())
-        act = '<a class="btn plain" href="/data/sets.csv" download>Sets (CSV)</a><a class="btn" href="/data/latest.json" download>Download backup</a>'
-        body = (head("Sync & backup", "Pair phones, keep every version, download your data", act)
-                + '<div class="grid2">' + section("Pair a phone", f'<div class="card">{pair}</div>')
-                + section("Paired phones", group(phones, "No phone paired yet.")) + "</div>"
-                + section("Versions", f'<div class="card"><div class="scroll"><table><thead><tr><th>Version</th><th>Received</th><th class=r>Workouts</th><th class=r>Size</th>'
-                          f'<th class=r></th></tr></thead><tbody>{versions or "<tr><td colspan=5 class=muted>No data yet.</td></tr>"}</tbody></table></div></div>',
-                          sub="latest 30",
-                          lede="Every copy the phone sends is kept. The backup is the openGym JSON the app imports; the CSV has one row per set, for a spreadsheet."))
+        fallback = t(" If the phone cannot reach it, try {a}.", a=f"<b>http://{ip}:{port}</b>") if ip else ""
+        how = t("Works once, for 5 minutes. On the phone: Settings › Server, address {a}, then this code.", a=f'<b style="color:var(--ink)">{escape(address)}</b>')
+        pair = (f'<div class="code">{code}</div><div class="muted">{how}{fallback}</div>' if code else
+                f'<p class="muted" style="margin:0 0 14px">{t("A code lets one phone sync with this Mac. It works once, for 5 minutes.")}</p>'
+                f'<form method="post" action="/data/pair"><button>{t("New pairing code")}</button></form>')
+        unpair = confirm(t("Unpair this phone? It stops syncing until it is paired again."))
+        phones = [row(t("Phone {n}", n=i + 1), t("Paired {d}", d=fd(dt.datetime.fromtimestamp(at), "dt")),
+                      f"""<form method="post" action="/data/revoke" onsubmit="return confirm({unpair})">
+<input type="hidden" name="h" value="{h}"><button class="plain small">{t("Unpair")}</button></form>""") for i, (h, at) in enumerate(store.tokens())]
+        versions = []
+        for rev, at, n, size in store.versions():
+            ask = confirm(t("Make rev {rev} the current copy? The phone takes it on its next sync and merges in anything it changed since. No version is deleted.", rev=rev))
+            versions.append(f"""<tr><td>rev {rev}</td><td>{fd(dt.datetime.fromtimestamp(at), "wdt")}</td><td class=r>{n or 0}</td>
+<td class=r>{fmt(size / 1024)} KB</td><td class=r><a class="btn plain small" href="/data/rev/{rev}.json" download>{t("Download")}</a>
+<form method="post" action="/data/restore" onsubmit="return confirm({ask})">
+<input type="hidden" name="rev" value="{rev}"><button class="plain small">{t("Restore")}</button></form></td></tr>""")
+        act = (f'<a class="btn plain" href="/data/sets.csv" download>{t("Sets (CSV)")}</a>'
+               f'<a class="btn" href="/data/latest.json" download>{t("Download backup")}</a>')
+        body = (head(t("Sync & backup"), t("Pair phones, keep every version, download your data"), act)
+                + '<div class="grid2">' + section(t("Pair a phone"), f'<div class="card">{pair}</div>')
+                + section(t("Paired phones"), group(phones, "No phone paired yet.")) + "</div>"
+                + section(t("Versions"), table([t("Version"), t("Received"), t("Workouts") + ">", t("Size") + ">", ">"], versions, t("No data yet.")),
+                          sub=t("latest 30"),
+                          lede=t("Every copy the phone sends is kept. The backup is the openGym JSON the app imports; the CSV has one row per set, for a spreadsheet.")))
         return page("Sync & backup", body)
 
     async def form(req: Request):
         return {k: v[0] for k, v in parse_qs((await req.body()).decode()).items()}
 
-    def back():
-        return Response(status_code=303, headers={"Location": "/data"})
+    def to(path):
+        return Response(status_code=303, headers={"Location": path})
 
     def download(state, name):
         if state is None:
@@ -628,14 +643,14 @@ def install(app, store):
     @app.post("/data/revoke")
     async def revoke(req: Request):
         store.revoke((await form(req)).get("h", ""))
-        return back()
+        return to("/data")
 
     @app.post("/data/restore")
     async def restore(req: Request):
         rev = (await form(req)).get("rev", "")
         if not rev.isdigit() or not store.restore(int(rev)):
             return PlainTextResponse("No such version.", status_code=404)
-        return back()
+        return to("/data")
 
     @app.get("/data/latest.json")
     async def latest():
@@ -656,7 +671,7 @@ def install(app, store):
             for e in S.entries(w):
                 for i, x in enumerate(S.sets(e), 1):
                     hr = x.get("hr") if isinstance(x.get("hr"), dict) else {}
-                    out.writerow([S.day(w), w.get("name") or "", e.get("id"), S.ex_name(e.get("id"), state, e), i, int(S.is_warmup(x)),
+                    out.writerow([S.day(w), w.get("name") or "", e.get("id"), S.name_of(e.get("id"), state), i, int(S.is_warmup(x)),
                                   int(x.get("done") is True), x.get("w", ""), x.get("r", ""), x.get("rir", ""), hr.get("avg", ""), u])
         return Response(buf.getvalue(), media_type="text/csv",
                         headers={"Content-Disposition": f'attachment; filename="hexplate-sets-{dt.date.today()}.csv"'})
@@ -668,39 +683,35 @@ def install(app, store):
 
     def connect_page(note=""):
         def status(h):
-            word = "Paused" if h["paused"] else ("Not sent yet" if h["last_ok"] is None else ("Delivered" if h["last_ok"] else "Failed"))
-            when = f" · {dt.datetime.fromtimestamp(h['last_at']):%-d %b, %H:%M}" if h["last_at"] else ""
+            word = t("Paused") if h["paused"] else t("Not sent yet") if h["last_ok"] is None else t("Delivered") if h["last_ok"] else t("Failed")
+            when = f" · {fd(dt.datetime.fromtimestamp(h['last_at']), 'dt')}" if h["last_at"] else ""
             return f'<span class="{"warn" if h["last_ok"] is False and not h["paused"] else ""}">{word}</span>{when}' + (f" · {escape(h['last_msg'])}" if h["last_msg"] else "")
-        rows = [row(f'{escape(h["label"] or "Webhook")}', f'{escape(_mask(h["url"]))} · {", ".join(EVENT_LABELS[e] for e in h["events"])}<br>{status(h)}',
-                    f"""<form method="post" action="/connect/test"><input type="hidden" name="id" value="{h["id"]}"><button class="plain small">Send test</button></form>
+        forget = confirm(t("Delete this webhook? Its URL and secret are forgotten."))
+        rows = [row(escape(h["label"] or "Webhook"), f'{escape(_mask(h["url"]))} · {", ".join(t(EVENT_LABELS[e]) for e in h["events"])}<br>{status(h)}',
+                    f"""<form method="post" action="/connect/test"><input type="hidden" name="id" value="{h["id"]}"><button class="plain small">{t("Send test")}</button></form>
 <form method="post" action="/connect/pause"><input type="hidden" name="id" value="{h["id"]}"><input type="hidden" name="paused" value="{0 if h["paused"] else 1}">
-<button class="plain small">{"Resume" if h["paused"] else "Pause"}</button></form>
-<form method="post" action="/connect/remove" onsubmit="return confirm('Delete this webhook? Its URL and secret are forgotten.')">
-<input type="hidden" name="id" value="{h["id"]}"><button class="danger small">Delete</button></form>""") for h in hooks.all()]
-        boxes = "".join(f'<label class="check"><input type="checkbox" name="events" value="{e}"{" checked" if e == "workout.finished" else ""}> {EVENT_LABELS[e]}</label>' for e in EVENTS)
+<button class="plain small">{t("Resume") if h["paused"] else t("Pause")}</button></form>
+<form method="post" action="/connect/remove" onsubmit="return confirm({forget})">
+<input type="hidden" name="id" value="{h["id"]}"><button class="danger small">{t("Delete")}</button></form>""") for h in hooks.all()]
+        boxes = "".join(f'<label class="check"><input type="checkbox" name="events" value="{e}"{" checked" if e == "workout.finished" else ""}> {t(EVENT_LABELS[e])}</label>' for e in EVENTS)
         here = Path(__file__).resolve().parents[1]
         mcp = json.dumps({"mcpServers": {"hexplate": {"command": str(here / ".venv/bin/python"), "args": ["-m", "hexserver", "mcp"],
                                                        "env": {"PYTHONPATH": str(here)}}}}, indent=2)
         add = f"""<div class="card"><form method="post" action="/connect/add" style="display:grid;gap:12px">
-<div style="display:grid;grid-template-columns:1fr 2fr;gap:10px"><input name="label" placeholder="Name (optional)" maxlength="60" aria-label="Name">
-<input name="url" type="url" placeholder="https://… (the URL your tool gave you)" required aria-label="URL"></div>
-<div>{boxes}</div><div><button>Add webhook</button></div></form></div>"""
-        body = (note + head("Connect", "Send your training to other tools")
-                + section("Webhooks", group(rows, "No webhooks yet."),
-                          lede="A signed JSON message to Home Assistant, n8n, Node-RED or ntfy when you finish a workout, set a record or weigh in. Sent when the phone syncs, for what happened in the last seven days.")
-                + section("Add a webhook", add)
-                + '<p class="note">Each message carries <code>X-Hexplate-Signature: t=&lt;seconds&gt;,v1=&lt;HMAC-SHA256 of "t.body"&gt;</code>, keyed with the secret shown once when you add the webhook.</p>'
-                + section("MCP server", f"<pre>{escape(mcp)}</pre>", sub="for AI assistants",
-                          lede="Lets Claude Desktop or Claude Code read your training log, read-only: summary, routines, an exercise's history and any SQL question. "
-                               "For Claude Desktop, add this to <code>~/Library/Application Support/Claude/claude_desktop_config.json</code> and restart it; "
-                               "Claude Code in this repo picks it up from <code>.mcp.json</code>."))
+<div style="display:grid;grid-template-columns:1fr 2fr;gap:10px"><input name="label" placeholder="{t("Name (optional)")}" maxlength="60" aria-label="{t("Name")}">
+<input name="url" type="url" placeholder="{t("https://… (the URL your tool gave you)")}" required aria-label="{t("URL")}"></div>
+<div>{boxes}</div><div><button>{t("Add webhook")}</button></div></form></div>"""
+        body = (note + head(t("Connect"), t("Send your training to other tools"))
+                + section(t("Webhooks"), group(rows, "No webhooks yet."),
+                          lede=t("A signed JSON message to Home Assistant, n8n, Node-RED or ntfy when you finish a workout, set a record or weigh in. Sent when the phone syncs, for what happened in the last seven days."))
+                + section(t("Add a webhook"), add)
+                + '<p class="note"><code>X-Hexplate-Signature: t=&lt;seconds&gt;,v1=&lt;HMAC-SHA256 of "t.body"&gt;</code></p>'
+                + section(t("MCP server"), f"<pre>{escape(mcp)}</pre>", sub=t("for AI assistants"),
+                          lede="Claude Desktop: <code>~/Library/Application Support/Claude/claude_desktop_config.json</code> · Claude Code: <code>.mcp.json</code>"))
         return page("Connect", body)
 
     async def fields(req: Request):
         return parse_qs((await req.body()).decode())
-
-    def to_connect():
-        return Response(status_code=303, headers={"Location": "/connect"})
 
     @app.get("/connect", response_class=HTMLResponse)
     async def connect():
@@ -712,22 +723,74 @@ def install(app, store):
         try:
             _, secret = hooks.add(f.get("url", [""])[0], f.get("label", [""])[0], f.get("events", []))
         except ValueError as e:
-            return connect_page(f'<div class="banner"><b>Not added.</b> {escape(str(e))}</div>')
-        return connect_page(f'''<div class="banner"><b>Webhook added.</b> Its signing secret, shown only now. Copy it into your tool:
+            return connect_page(f'<div class="banner"><b>{t("Not added.")}</b> {escape(str(e))}</div>')
+        return connect_page(f'''<div class="banner"><b>{t("Webhook added.")}</b> {t("Its signing secret, shown only now. Copy it into your tool:")}
 <div class="code" style="font-size:16px;word-break:break-all;margin-top:8px">{escape(secret)}</div></div>''')
 
     @app.post("/connect/test", response_class=HTMLResponse)
     async def connect_test(req: Request):
         ok, msg = hooks.send_test((await fields(req)).get("id", [""])[0])
-        return connect_page(f'<div class="banner"><b>{"Test sent." if ok else "Test failed."}</b> {escape(msg)}</div>')
+        return connect_page(f'<div class="banner"><b>{t("Test sent." if ok else "Test failed.")}</b> {escape(msg)}</div>')
 
     @app.post("/connect/pause")
     async def connect_pause(req: Request):
         f = await fields(req)
         hooks.pause(f.get("id", [""])[0], f.get("paused", ["0"])[0] == "1")
-        return to_connect()
+        return to("/connect")
 
     @app.post("/connect/remove")
     async def connect_remove(req: Request):
         hooks.remove((await fields(req)).get("id", [""])[0])
-        return to_connect()
+        return to("/connect")
+
+    # MARK: Settings (language, backup)
+
+    def settings_page(note=""):
+        lang = LANG.get()
+        langs = "".join(f'<button name="lang" value="{k}" class="{"on" if k == lang else ""}"{" aria-pressed=true" if k == lang else ""}>{label}</button>'
+                        for k, label in (("en", "English"), ("zh", "中文")))
+        st = backup.status()
+        if not st["on"]:
+            state_line = t("Backup is off: the phone deletes the Watch's recordings as soon as this Mac has them.")
+        elif st["error"]:
+            state_line = f'<span class="warn">{escape(t(st["error"]))}</span>'
+        elif st["at"]:
+            state_line = t("Last backup {d}", d=fd(dt.datetime.fromtimestamp(st["at"]), "wdt"))
+        else:
+            state_line = t("Not backed up yet")
+        folder = f'{t("iCloud Drive")} › {escape(Path(st["folder"]).name)}' if st["in_icloud"] else escape(st["folder"])
+        toggle = (f'<form method="post" action="/settings/backup"><input type="hidden" name="on" value="{0 if st["on"] else 1}">'
+                  f'<button class="plain small">{t("Turn off") if st["on"] else t("Turn on")}</button></form>')
+        rows = [row(t("Backup is on") if st["on"] else t("Backup is off"), state_line, toggle),
+                row(t("Folder"), end=folder),
+                row(t("Daily copies"), end=t("{n} of the latest {k} days", n=st["copies"], k=30)),
+                row(t("Watch recordings"), end=t("{n} files", n=st["motion"]))]
+        run = f'<form method="post" action="/settings/backup/run" style="display:block;margin-top:12px"><button>{t("Back up now")}</button></form>' if st["on"] else ""
+        body = (note + head(t("Settings"), t("Language and backup"))
+                + section(t("Language"), f'<form method="post" action="/settings/lang"><div class="seg" role="group">{langs}</div></form>',
+                          lede=t("The dashboard's language. The phone keeps its own."))
+                + section(t("Backup"), group(rows) + run,
+                          lede=t("The Watch hands each set's recording to the phone, then deletes its own. The phone sends it to this Mac, which saves it and copies it to the backup; only then does the phone delete its copy. Your training log stays on the phone and is kept here in every version, copied to the backup a minute after each sync.")))
+        return page("Settings", body)
+
+    @app.get("/settings", response_class=HTMLResponse)
+    async def settings():
+        return settings_page()
+
+    @app.post("/settings/lang")
+    async def settings_lang(req: Request):
+        lang = (await form(req)).get("lang")
+        if lang in ("en", "zh"):
+            store.set_setting("lang", lang)
+        return to("/settings")
+
+    @app.post("/settings/backup")
+    async def settings_backup(req: Request):
+        store.set_setting("backup", "on" if (await form(req)).get("on") == "1" else "off")
+        return to("/settings")
+
+    @app.post("/settings/backup/run", response_class=HTMLResponse)
+    async def settings_backup_run():
+        copied, ok = backup.everything()
+        msg = t("Backed up: {n} new Watch recordings and the database.", n=copied) if ok else t("Backup failed.")
+        return settings_page(f'<div class="banner"><b>{msg}</b></div>')

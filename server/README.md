@@ -13,14 +13,25 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt -r requiremen
 ./launchd.sh install                           # keep it running in the background from login on
 ```
 
-The dashboard is at http://127.0.0.1:8765 on the Mac only. The phone pairs from it (Data, New
-pairing code) with the address `http://<LocalHostName>.local:8765`. If macOS asks whether Python
+The dashboard is at http://127.0.0.1:8765 on the Mac only, in English or Chinese (Settings). The
+phone pairs from it (Sync & backup, New pairing code) with the address `http://<LocalHostName>.local:8765`. If macOS asks whether Python
 may accept incoming connections, allow it, or the phone cannot reach the server. While the Mac
 sleeps the phone cannot sync; it keeps its changes and motion files and sends them later.
 
 Data lives in `server/data/` (git-ignored; `HEXPLATE_DATA` moves it): `hexplate.sqlite3` keeps every
 pushed document (`documents`) and the latest one split into `workouts`, `sets` and `bodyweight`;
 `motion/` holds the watch's CSV files.
+
+## Backup
+
+Everything is copied to iCloud Drive › Hexplate Backup (`HEXPLATE_BACKUP` picks another folder;
+Settings turns it off). The database, with every version, goes a minute after the phone stops
+syncing, one copy a day for the last 30 days. Each Watch recording goes the moment it arrives:
+
+Watch → phone (the Watch deletes its copy) → this Mac → backup → only then the phone deletes its
+copy (`PUT /api/motion` answers `canDelete`). If the backup fails, the phone keeps the files and
+sends them again on the next sync; Settings shows why. The launchd service runs Python outside a
+Terminal, so if macOS refuses it the iCloud folder, give that Python Full Disk Access.
 
 ## MCP (for an AI assistant)
 

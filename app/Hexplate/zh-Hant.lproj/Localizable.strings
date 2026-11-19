@@ -955,3 +955,6 @@
 /* plates */
 "{0} pair" = "{0} 對";
 "{0} pairs" = "{0} 對";
+
+/* server backup */
+"Watch recordings leave this phone once the server has saved and backed them up." = "伺服器儲存並備份後，手錶紀錄就會從這部手機移除。";

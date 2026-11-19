@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS documents (
     rev INTEGER PRIMARY KEY, wid TEXT NOT NULL, ts REAL, received_at REAL NOT NULL, body TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS tokens (hash TEXT PRIMARY KEY, created_at REAL NOT NULL);
 CREATE TABLE IF NOT EXISTS pair_codes (code TEXT PRIMARY KEY, expires_at REAL NOT NULL);
+CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT);
 CREATE TABLE IF NOT EXISTS workouts (
     id TEXT PRIMARY KEY, date TEXT, start_ms REAL, end_ms REAL, name TEXT, routine_id TEXT,
     volume REAL, body_weight REAL, session_effort REAL);
@@ -63,6 +64,18 @@ class Store:
         self.db = sqlite3.connect(self.folder / "hexplate.sqlite3", check_same_thread=False, isolation_level=None)
         self.db.execute("PRAGMA journal_mode=WAL")
         self.db.executescript(SCHEMA)
+
+    # MARK: settings (the dashboard's language, the backup's switch and last result)
+
+    def setting(self, key: str, default=None):
+        row = self.db.execute("SELECT value FROM settings WHERE key = ?", (key,)).fetchone()
+        return row[0] if row else default
+
+    def set_setting(self, key: str, value):
+        if value is None:
+            self.db.execute("DELETE FROM settings WHERE key = ?", (key,))
+        else:
+            self.db.execute("INSERT OR REPLACE INTO settings VALUES (?, ?)", (key, str(value)))
 
     # MARK: pairing
 

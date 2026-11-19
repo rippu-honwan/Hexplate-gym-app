@@ -502,7 +502,11 @@ struct ServerSection: View {
                     }
                 }
                 if sync.motionWaiting > 0 {
-                    LabeledContent("Motion files waiting", value: "\(sync.motionWaiting)")
+                    VStack(alignment: .leading, spacing: 4) {
+                        LabeledContent("Motion files waiting", value: "\(sync.motionWaiting)")
+                        Text("Watch recordings leave this phone once the server has saved and backed them up.")
+                            .font(.footnote).foregroundStyle(.secondary)
+                    }
                 }
                 Toggle("Write sync changes", isOn: $sync.writes)
                 Button("Sync now") { Task { busy = true; await sync.run(model)?.value; busy = false } }

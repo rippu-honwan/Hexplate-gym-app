@@ -147,16 +147,22 @@ final class ServerSync {
     }
     private func countMotion() { motionWaiting = motionFiles().count }
 
-    /// Oldest first; a file is deleted here only once the server took it, and the first failure
-    /// stops the pass (offline, the server away). ponytail: a file the server refuses (400)
-    /// blocks the ones after it, as in the old app; the watch only writes valid ones.
+    /// Oldest first. The Watch's file leaves this phone only once the server says both it and its
+    /// backup hold it (`canDelete`); until then it stays and goes up again on the next sync. The
+    /// first failure stops the pass (offline, the server away, the backup failing).
+    /// ponytail: a file the server refuses (400) blocks the ones after it, as in the old app; the
+    /// watch only writes valid ones.
     func uploadMotion() async {
         var sent = 0
         for name in motionFiles() {
             let url = Self.motionDir.appending(path: name)
             guard let csv = try? String(contentsOf: url, encoding: .utf8) else { continue }
             do {
-                _ = try await call("/api/motion", "PUT", .object(["name": .string(name), "csv": .string(csv)]))
+                let r = try await call("/api/motion", "PUT", .object(["name": .string(name), "csv": .string(csv)]))
+                guard r?["canDelete"] == .bool(true) else {
+                    note("motion \(name) kept: the server has not backed it up yet")
+                    break
+                }
             } catch {
                 note("motion \(name) not sent: \(describe(error))")
                 break
