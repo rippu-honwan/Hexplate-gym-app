@@ -874,3 +874,28 @@
 "ez barbell" = "EZ 曲槓";
 "trap bar" = "六角槓";
 "smith machine" = "史密斯機";
+
+/* performance report */
+"Performance report" = "訓練表現報告";
+"Performance report (PDF)" = "訓練表現報告（PDF）";
+"Totals, charts, new bests and every set over a stretch of days, to print or send to your coach." = "一段日子內的總數、圖表、新紀錄和每一組，可以列印或傳給教練。";
+"7 days" = "7 天";
+"Your training on paper: totals, charts, new bests and every set. Print it or send it to your coach." = "把你的訓練印在紙上：總數、圖表、新紀錄和每一組。可以列印或傳給教練。";
+"Create PDF" = "建立 PDF";
+"Work sets" = "正式組";
+"Training time" = "訓練時間";
+"New bests" = "新紀錄";
+"Arrows compare with the %lld days before." = "箭咀與之前 %lld 天比較。";
+"Volume per day" = "每日訓練量";
+"Volume per month" = "每月訓練量";
+"Sets per muscle" = "每個肌群的組數";
+"Every workout" = "每次訓練";
+"%@ · Work sets only, warm-ups left out." = "%@・只計正式組，不計熱身組。";
+"Active days" = "有訓練的日子";
+"Most days in a row" = "最多連續天數";
+"Not trained:" = "未練到";
+"Effective sets: a set counts fully for its main muscle and partly for the ones that help." = "有效組數：一組完整計入主要肌群，輔助肌群只計一部分。";
+"Best:" = "最佳";
+"One session in this period." = "這段期間只有一次。";
+"Best set" = "最佳一組";
+"Est. 1RM" = "預估 1RM";

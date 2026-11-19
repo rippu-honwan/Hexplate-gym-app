@@ -658,3 +658,30 @@ it('writes the set trend golden file', async () => {
   const out = cases.map(c => ({ name: c.name, trends: setTrendsFor(c.entry, c.last, { formula: c.formula }) }))
   writeFileSync(process.env.TREND_OUT, JSON.stringify(out, null, 1) + '\n')
 })
+
+// The performance report's numbers (lib/report.js reportData), every range kind.
+it('writes the report golden file', async () => {
+  if (!process.env.REPORT_IN) return
+  const { reportData } = await import('../../frontend/src/lib/report.js')
+  const { states, cases } = JSON.parse(readFileSync(process.env.REPORT_IN, 'utf8'))
+  // reportData reads the clock for the current streak: freeze it on the case's today.
+  vi.useFakeTimers({ toFake: ['Date'] })
+  const out = cases.map(c => {
+    vi.setSystemTime(new Date(c.today + 'T12:00:00'))
+    const R = reportData(states[c.state], { range: c.range, from: c.from ?? undefined, to: c.to ?? undefined, today: c.today })
+    return {
+      name: c.name,
+      range: { from: R.range.from, to: R.range.to, days: R.range.days },
+      totals: R.totals, prev: R.prev, perWeek: R.perWeek,
+      buckets: R.buckets,
+      calendar: R.calendar,
+      muscles: { worked: R.muscles.worked.map(m => ({ slug: m.slug, sets: m.sets })), missed: R.muscles.missed.map(m => m.slug) },
+      lifts: R.lifts.map(l => ({ id: l.id, ys: l.points.map(p => p.y), best: l.best ? l.best.y : null, change: l.change })),
+      prs: R.prs.map(p => ({ id: p.id, d: p.d, est: p.best ? p.best.est : null })),
+      bodyweight: R.bodyweight.map(b => ({ d: b.d, w: b.w })),
+      streak: R.streak,
+    }
+  })
+  vi.useRealTimers()
+  writeFileSync(process.env.REPORT_OUT, JSON.stringify(out, null, 1) + '\n')
+})

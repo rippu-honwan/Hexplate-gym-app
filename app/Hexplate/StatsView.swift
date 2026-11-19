@@ -42,6 +42,11 @@ struct StatsView: View {
                 } footer: {
                     Text("How each lift compares with the others, against a strength standard.")
                 }
+                Section {
+                    NavigationLink("Performance report (PDF)") { ReportView() }
+                } footer: {
+                    Text("Totals, charts, new bests and every set over a stretch of days, to print or send to your coach.")
+                }
             }
             .navigationTitle("Stats")
             .sheet(item: $sheet) { s in

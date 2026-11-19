@@ -1,0 +1,8757 @@
+{
+ "states": [
+  {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-01-05",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 60.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 60.0,
+         "r": 8
+        },
+        {
+         "done": false,
+         "w": 60.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 80.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 80.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 80.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1767596400000,
+     "end": 1767600600000
+    },
+    {
+     "id": "w1",
+     "d": "2026-01-08",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 102.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 102.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0032",
+      "0032"
+     ],
+     "start": 1767859200000,
+     "end": 1767863400000
+    },
+    {
+     "id": "w2",
+     "d": "2026-01-10",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 65.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 65.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 65.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 85.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 85.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 85.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w3",
+     "d": "2026-01-13",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 107.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 107.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1768298400000,
+     "end": 1768302600000
+    },
+    {
+     "id": "w4",
+     "d": "2026-01-15",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 70.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 70.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 70.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 90.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 90.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 90.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1768474800000,
+     "end": 1768479000000
+    },
+    {
+     "id": "w5",
+     "d": "2026-01-18",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 112.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 112.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w5b",
+     "d": "2026-01-18",
+     "name": "Extra",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 12
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w6",
+     "d": "2026-01-20",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 75.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 75.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 75.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 95.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 95.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 95.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1768914000000,
+     "end": 1768918200000
+    },
+    {
+     "id": "w7",
+     "d": "2026-01-23",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 117.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 117.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1769176800000,
+     "end": 1769181000000
+    },
+    {
+     "id": "w8",
+     "d": "2026-01-25",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 80.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 80.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 80.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 100.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 100.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 100.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w9",
+     "d": "2026-01-28",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 122.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 122.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1769616000000,
+     "end": 1769620200000
+    },
+    {
+     "id": "w10",
+     "d": "2026-01-30",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 85.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 85.0,
+         "r": 8
+        },
+        {
+         "done": false,
+         "w": 85.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 105.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 105.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 105.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1769792400000,
+     "end": 1769796600000
+    },
+    {
+     "id": "w11",
+     "d": "2026-02-02",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 127.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 127.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w12",
+     "d": "2026-02-04",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 90.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 90.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 90.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 110.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 110.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 110.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1770188400000,
+     "end": 1770192600000
+    },
+    {
+     "id": "w13",
+     "d": "2026-02-07",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 132.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 132.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1770451200000,
+     "end": 1770455400000
+    },
+    {
+     "id": "w14",
+     "d": "2026-02-09",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 95.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 95.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 95.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 115.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 115.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 115.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w15",
+     "d": "2026-02-12",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 137.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 137.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0032",
+      "0032"
+     ],
+     "start": 1770890400000,
+     "end": 1770894600000
+    },
+    {
+     "id": "w16",
+     "d": "2026-02-14",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 100.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 100.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 100.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 120.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 120.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 120.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1771066800000,
+     "end": 1771071000000
+    },
+    {
+     "id": "w16b",
+     "d": "2026-02-14",
+     "name": "Extra",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 12
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w17",
+     "d": "2026-02-17",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 142.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 142.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w18",
+     "d": "2026-02-19",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 105.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 105.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 105.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 125.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 125.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 125.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1771506000000,
+     "end": 1771510200000
+    },
+    {
+     "id": "w19",
+     "d": "2026-02-22",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 147.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 147.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1771768800000,
+     "end": 1771773000000
+    },
+    {
+     "id": "w20",
+     "d": "2026-02-24",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 110.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 110.0,
+         "r": 8
+        },
+        {
+         "done": false,
+         "w": 110.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 130.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 130.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 130.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w21",
+     "d": "2026-02-27",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 152.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 152.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1772208000000,
+     "end": 1772212200000
+    },
+    {
+     "id": "w22",
+     "d": "2026-03-01",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 115.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 115.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 115.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 135.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 135.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 135.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1772384400000,
+     "end": 1772388600000
+    },
+    {
+     "id": "w23",
+     "d": "2026-03-04",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 157.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 157.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w24",
+     "d": "2026-03-06",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 120.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 120.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 120.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 140.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 140.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 140.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1772780400000,
+     "end": 1772784600000
+    },
+    {
+     "id": "w25",
+     "d": "2026-03-09",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 162.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 162.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1773043200000,
+     "end": 1773047400000
+    },
+    {
+     "id": "w26",
+     "d": "2026-03-18",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 125.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 125.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 125.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 145.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 145.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 145.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w27",
+     "d": "2026-03-21",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 167.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 167.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1774087200000,
+     "end": 1774091400000
+    },
+    {
+     "id": "w27b",
+     "d": "2026-03-21",
+     "name": "Extra",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 12
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w28",
+     "d": "2026-03-23",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 130.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 130.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 130.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 150.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 150.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 150.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1774263600000,
+     "end": 1774267800000
+    },
+    {
+     "id": "w29",
+     "d": "2026-03-26",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 172.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 172.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0032",
+      "0032"
+     ]
+    },
+    {
+     "id": "w30",
+     "d": "2026-03-28",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 135.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 135.0,
+         "r": 8
+        },
+        {
+         "done": false,
+         "w": 135.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 155.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 155.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 155.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1774702800000,
+     "end": 1774707000000
+    },
+    {
+     "id": "w31",
+     "d": "2026-03-31",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 177.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 177.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1774965600000,
+     "end": 1774969800000
+    },
+    {
+     "id": "w32",
+     "d": "2026-04-02",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 140.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 140.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 140.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 160.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 160.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 160.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w33",
+     "d": "2026-04-05",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 182.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 182.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1775404800000,
+     "end": 1775409000000
+    },
+    {
+     "id": "w34",
+     "d": "2026-04-07",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 145.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 145.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 145.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 165.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 165.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 165.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1775581200000,
+     "end": 1775585400000
+    },
+    {
+     "id": "w35",
+     "d": "2026-04-10",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 187.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 187.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w36",
+     "d": "2026-04-12",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 150.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 150.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 150.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 170.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 170.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 170.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1775977200000,
+     "end": 1775981400000
+    },
+    {
+     "id": "w37",
+     "d": "2026-04-15",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 192.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 192.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1776240000000,
+     "end": 1776244200000
+    },
+    {
+     "id": "w38",
+     "d": "2026-04-17",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 155.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 155.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 155.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 175.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 175.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 175.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w38b",
+     "d": "2026-04-17",
+     "name": "Extra",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 12
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w39",
+     "d": "2026-04-20",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 197.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 197.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1776679200000,
+     "end": 1776683400000
+    },
+    {
+     "id": "w40",
+     "d": "2026-04-22",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 160.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 160.0,
+         "r": 8
+        },
+        {
+         "done": false,
+         "w": 160.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 180.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 180.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 180.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1776855600000,
+     "end": 1776859800000
+    },
+    {
+     "id": "w41",
+     "d": "2026-04-25",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 202.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 202.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w42",
+     "d": "2026-04-27",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 165.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 165.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 165.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 185.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 185.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 185.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1777294800000,
+     "end": 1777299000000
+    },
+    {
+     "id": "w43",
+     "d": "2026-04-30",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 207.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 207.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0032",
+      "0032"
+     ],
+     "start": 1777557600000,
+     "end": 1777561800000
+    },
+    {
+     "id": "w44",
+     "d": "2026-05-02",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 170.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 170.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 170.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 190.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 190.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 190.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w45",
+     "d": "2026-05-05",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 212.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 212.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1777996800000,
+     "end": 1778001000000
+    },
+    {
+     "id": "w46",
+     "d": "2026-05-07",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 175.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 175.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 175.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 195.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 195.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 195.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1778173200000,
+     "end": 1778177400000
+    },
+    {
+     "id": "w47",
+     "d": "2026-05-10",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 217.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 217.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w48",
+     "d": "2026-05-12",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 180.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 180.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 180.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 200.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 200.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 200.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1778569200000,
+     "end": 1778573400000
+    },
+    {
+     "id": "w49",
+     "d": "2026-05-15",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 222.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 222.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1778832000000,
+     "end": 1778836200000
+    },
+    {
+     "id": "w49b",
+     "d": "2026-05-15",
+     "name": "Extra",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 12
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w50",
+     "d": "2026-05-17",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 185.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 185.0,
+         "r": 8
+        },
+        {
+         "done": false,
+         "w": 185.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 205.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 205.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 205.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w51",
+     "d": "2026-05-20",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 227.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 227.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1779271200000,
+     "end": 1779275400000
+    },
+    {
+     "id": "w52",
+     "d": "2026-05-22",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 190.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 190.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 190.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 210.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 210.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 210.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1779447600000,
+     "end": 1779451800000
+    },
+    {
+     "id": "w53",
+     "d": "2026-05-25",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 232.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 232.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w54",
+     "d": "2026-05-27",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 195.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 195.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 195.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 215.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 215.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 215.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1779886800000,
+     "end": 1779891000000
+    }
+   ],
+   "bodyweight": [
+    {
+     "d": "2026-01-03",
+     "w": 72.0
+    },
+    {
+     "d": "2026-01-08",
+     "w": 71.9,
+     "t": 1767853800000
+    },
+    {
+     "d": "2026-01-13",
+     "w": 71.9
+    },
+    {
+     "d": "2026-01-18",
+     "w": 71.5,
+     "t": 1768717800000
+    },
+    {
+     "d": "2026-01-23",
+     "w": 71.5
+    },
+    {
+     "d": "2026-01-28",
+     "w": 71.5,
+     "t": 1769581800000
+    },
+    {
+     "d": "2026-02-02",
+     "w": 71.1
+    },
+    {
+     "d": "2026-02-07",
+     "w": 71.0,
+     "t": 1770445800000
+    },
+    {
+     "d": "2026-02-12",
+     "w": 71.0
+    },
+    {
+     "d": "2026-02-17",
+     "w": 70.7,
+     "t": 1771309800000
+    },
+    {
+     "d": "2026-02-22",
+     "w": 70.6
+    },
+    {
+     "d": "2026-02-27",
+     "w": 70.5,
+     "t": 1772173800000
+    },
+    {
+     "d": "2026-03-04",
+     "w": 70.2
+    },
+    {
+     "d": "2026-03-09",
+     "w": 70.1,
+     "t": 1773037800000
+    },
+    {
+     "d": "2026-03-14",
+     "w": 70.1
+    },
+    {
+     "d": "2026-03-19",
+     "w": 69.8,
+     "t": 1773901800000
+    },
+    {
+     "d": "2026-03-24",
+     "w": 69.7
+    },
+    {
+     "d": "2026-03-29",
+     "w": 69.7,
+     "t": 1774765800000
+    },
+    {
+     "d": "2026-04-03",
+     "w": 69.3
+    },
+    {
+     "d": "2026-04-08",
+     "w": 69.2,
+     "t": 1775629800000
+    },
+    {
+     "d": "2026-04-13",
+     "w": 69.2
+    },
+    {
+     "d": "2026-04-18",
+     "w": 68.8,
+     "t": 1776493800000
+    },
+    {
+     "d": "2026-04-23",
+     "w": 68.8
+    },
+    {
+     "d": "2026-04-28",
+     "w": 68.8,
+     "t": 1777357800000
+    },
+    {
+     "d": "2026-05-03",
+     "w": 68.4
+    },
+    {
+     "d": "2026-05-08",
+     "w": 68.3,
+     "t": 1778221800000
+    },
+    {
+     "d": "2026-05-13",
+     "w": 68.3
+    },
+    {
+     "d": "2026-05-18",
+     "w": 68.0,
+     "t": 1779085800000
+    },
+    {
+     "d": "2026-05-23",
+     "w": 67.9
+    },
+    {
+     "d": "2026-05-28",
+     "w": 67.9,
+     "t": 1779949800000
+    }
+   ]
+  },
+  {
+   "unit": "kg",
+   "workouts": [
+    {
+     "id": "w0",
+     "d": "2026-01-05",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 60.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 60.0,
+         "r": 8
+        },
+        {
+         "done": false,
+         "w": 60.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 80.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 80.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 80.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1767596400000,
+     "end": 1767600600000
+    },
+    {
+     "id": "w1",
+     "d": "2026-01-08",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 102.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 102.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0032",
+      "0032"
+     ],
+     "start": 1767859200000,
+     "end": 1767863400000
+    },
+    {
+     "id": "w2",
+     "d": "2026-01-10",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 65.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 65.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 65.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 85.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 85.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 85.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w3",
+     "d": "2026-01-13",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 107.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 107.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1768298400000,
+     "end": 1768302600000
+    },
+    {
+     "id": "w4",
+     "d": "2026-01-15",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 70.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 70.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 70.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 90.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 90.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 90.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1768474800000,
+     "end": 1768479000000
+    },
+    {
+     "id": "w5",
+     "d": "2026-01-18",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 112.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 112.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w5b",
+     "d": "2026-01-18",
+     "name": "Extra",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 12
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w6",
+     "d": "2026-01-20",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 75.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 75.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 75.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 95.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 95.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 95.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1768914000000,
+     "end": 1768918200000
+    },
+    {
+     "id": "w7",
+     "d": "2026-01-23",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 117.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 117.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1769176800000,
+     "end": 1769181000000
+    },
+    {
+     "id": "w8",
+     "d": "2026-01-25",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 80.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 80.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 80.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 100.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 100.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 100.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w9",
+     "d": "2026-01-28",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 122.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 122.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1769616000000,
+     "end": 1769620200000
+    },
+    {
+     "id": "w10",
+     "d": "2026-01-30",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 85.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 85.0,
+         "r": 8
+        },
+        {
+         "done": false,
+         "w": 85.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 105.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 105.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 105.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1769792400000,
+     "end": 1769796600000
+    },
+    {
+     "id": "w11",
+     "d": "2026-02-02",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 127.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 127.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w12",
+     "d": "2026-02-04",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 90.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 90.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 90.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 110.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 110.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 110.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1770188400000,
+     "end": 1770192600000
+    },
+    {
+     "id": "w13",
+     "d": "2026-02-07",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 132.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 132.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1770451200000,
+     "end": 1770455400000
+    },
+    {
+     "id": "w14",
+     "d": "2026-02-09",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 95.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 95.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 95.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 115.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 115.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 115.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w15",
+     "d": "2026-02-12",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 137.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 137.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0032",
+      "0032"
+     ],
+     "start": 1770890400000,
+     "end": 1770894600000
+    },
+    {
+     "id": "w16",
+     "d": "2026-02-14",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 100.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 100.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 100.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 120.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 120.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 120.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1771066800000,
+     "end": 1771071000000
+    },
+    {
+     "id": "w16b",
+     "d": "2026-02-14",
+     "name": "Extra",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 12
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w17",
+     "d": "2026-02-17",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 142.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 142.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w18",
+     "d": "2026-02-19",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 105.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 105.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 105.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 125.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 125.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 125.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1771506000000,
+     "end": 1771510200000
+    },
+    {
+     "id": "w19",
+     "d": "2026-02-22",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 147.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 147.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1771768800000,
+     "end": 1771773000000
+    },
+    {
+     "id": "w20",
+     "d": "2026-02-24",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 110.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 110.0,
+         "r": 8
+        },
+        {
+         "done": false,
+         "w": 110.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 130.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 130.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 130.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w21",
+     "d": "2026-02-27",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 152.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 152.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1772208000000,
+     "end": 1772212200000
+    },
+    {
+     "id": "w22",
+     "d": "2026-03-01",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 115.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 115.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 115.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 135.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 135.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 135.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1772384400000,
+     "end": 1772388600000
+    },
+    {
+     "id": "w23",
+     "d": "2026-03-04",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 157.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 157.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w24",
+     "d": "2026-03-06",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 120.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 120.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 120.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 140.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 140.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 140.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1772780400000,
+     "end": 1772784600000
+    },
+    {
+     "id": "w25",
+     "d": "2026-03-09",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 162.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 162.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1773043200000,
+     "end": 1773047400000
+    },
+    {
+     "id": "w26",
+     "d": "2026-03-18",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 125.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 125.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 125.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 145.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 145.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 145.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w27",
+     "d": "2026-03-21",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 167.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 167.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1774087200000,
+     "end": 1774091400000
+    },
+    {
+     "id": "w27b",
+     "d": "2026-03-21",
+     "name": "Extra",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 12
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w28",
+     "d": "2026-03-23",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 130.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 130.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 130.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 150.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 150.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 150.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1774263600000,
+     "end": 1774267800000
+    },
+    {
+     "id": "w29",
+     "d": "2026-03-26",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 172.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 172.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0032",
+      "0032"
+     ]
+    },
+    {
+     "id": "w30",
+     "d": "2026-03-28",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 135.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 135.0,
+         "r": 8
+        },
+        {
+         "done": false,
+         "w": 135.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 155.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 155.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 155.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1774702800000,
+     "end": 1774707000000
+    },
+    {
+     "id": "w31",
+     "d": "2026-03-31",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 177.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 177.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1774965600000,
+     "end": 1774969800000
+    },
+    {
+     "id": "w32",
+     "d": "2026-04-02",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 140.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 140.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 140.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 160.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 160.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 160.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w33",
+     "d": "2026-04-05",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 182.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 182.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1775404800000,
+     "end": 1775409000000
+    },
+    {
+     "id": "w34",
+     "d": "2026-04-07",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 145.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 145.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 145.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 165.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 165.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 165.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1775581200000,
+     "end": 1775585400000
+    },
+    {
+     "id": "w35",
+     "d": "2026-04-10",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 187.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 187.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w36",
+     "d": "2026-04-12",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 150.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 150.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 150.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 170.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 170.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 170.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1775977200000,
+     "end": 1775981400000
+    },
+    {
+     "id": "w37",
+     "d": "2026-04-15",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 192.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 192.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1776240000000,
+     "end": 1776244200000
+    },
+    {
+     "id": "w38",
+     "d": "2026-04-17",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 155.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 155.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 155.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 175.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 175.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 175.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w38b",
+     "d": "2026-04-17",
+     "name": "Extra",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 12
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w39",
+     "d": "2026-04-20",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 197.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 197.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1776679200000,
+     "end": 1776683400000
+    },
+    {
+     "id": "w40",
+     "d": "2026-04-22",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 160.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 160.0,
+         "r": 8
+        },
+        {
+         "done": false,
+         "w": 160.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 180.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 180.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 180.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1776855600000,
+     "end": 1776859800000
+    },
+    {
+     "id": "w41",
+     "d": "2026-04-25",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 202.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 202.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w42",
+     "d": "2026-04-27",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 165.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 165.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 165.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 185.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 185.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 185.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1777294800000,
+     "end": 1777299000000
+    },
+    {
+     "id": "w43",
+     "d": "2026-04-30",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 207.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 207.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0032",
+      "0032"
+     ],
+     "start": 1777557600000,
+     "end": 1777561800000
+    },
+    {
+     "id": "w44",
+     "d": "2026-05-02",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 170.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 170.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 170.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 190.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 190.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 190.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w45",
+     "d": "2026-05-05",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 212.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 212.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1777996800000,
+     "end": 1778001000000
+    },
+    {
+     "id": "w46",
+     "d": "2026-05-07",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 175.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 175.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 175.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 195.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 195.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 195.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 24,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1778173200000,
+     "end": 1778177400000
+    },
+    {
+     "id": "w47",
+     "d": "2026-05-10",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 217.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 217.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w48",
+     "d": "2026-05-12",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 180.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 180.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 180.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 200.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 200.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 200.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 22,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1778569200000,
+     "end": 1778573400000
+    },
+    {
+     "id": "w49",
+     "d": "2026-05-15",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 222.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 222.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1778832000000,
+     "end": 1778836200000
+    },
+    {
+     "id": "w49b",
+     "d": "2026-05-15",
+     "name": "Extra",
+     "entries": [
+      {
+       "id": "0031",
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 12
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w50",
+     "d": "2026-05-17",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 185.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 185.0,
+         "r": 8
+        },
+        {
+         "done": false,
+         "w": 185.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 205.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 205.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 205.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 30,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w51",
+     "d": "2026-05-20",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 227.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 227.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 11
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": false
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1779271200000,
+     "end": 1779275400000
+    },
+    {
+     "id": "w52",
+     "d": "2026-05-22",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 190.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 190.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 190.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 210.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 210.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 210.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 28,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [],
+     "start": 1779447600000,
+     "end": 1779451800000
+    },
+    {
+     "id": "w53",
+     "d": "2026-05-25",
+     "name": "Lower B",
+     "entries": [
+      {
+       "id": "0032",
+       "sets": [
+        {
+         "done": true,
+         "w": 60,
+         "r": 5,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 232.5,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 232.5,
+         "r": 4
+        }
+       ]
+      },
+      {
+       "id": "0652",
+       "sets": [
+        {
+         "done": true,
+         "w": 0,
+         "r": 9
+        },
+        {
+         "done": true,
+         "w": 0,
+         "r": 7
+        }
+       ]
+      },
+      {
+       "id": "0336",
+       "sets": [
+        {
+         "sides": {
+          "L": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          },
+          "R": {
+           "w": 12,
+           "r": 10,
+           "done": true
+          }
+         },
+         "w": 12,
+         "r": 10
+        }
+       ]
+      },
+      {
+       "id": "0685",
+       "target": {
+        "mode": "cardio"
+       },
+       "sets": [
+        {
+         "done": true,
+         "min": 20,
+         "km": 4
+        }
+       ]
+      }
+     ],
+     "prs": []
+    },
+    {
+     "id": "w54",
+     "d": "2026-05-27",
+     "name": "Upper A",
+     "entries": [
+      {
+       "id": "0025",
+       "sets": [
+        {
+         "done": true,
+         "w": 40,
+         "r": 10,
+         "warmup": true
+        },
+        {
+         "done": true,
+         "w": 195.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 195.0,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 195.0,
+         "r": 6
+        }
+       ]
+      },
+      {
+       "id": "0043",
+       "sets": [
+        {
+         "done": true,
+         "w": 215.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 215.0,
+         "r": 5
+        },
+        {
+         "done": true,
+         "w": 215.0,
+         "r": 5
+        }
+       ]
+      },
+      {
+       "id": "0017",
+       "target": {
+        "assisted": true
+       },
+       "sets": [
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        },
+        {
+         "done": true,
+         "w": 26,
+         "r": 8
+        }
+       ]
+      }
+     ],
+     "prs": [
+      "0025",
+      "0043"
+     ],
+     "start": 1779886800000,
+     "end": 1779891000000
+    }
+   ],
+   "bodyweight": [
+    {
+     "d": "2026-01-03",
+     "w": 72.0
+    },
+    {
+     "d": "2026-01-08",
+     "w": 71.9,
+     "t": 1767853800000
+    },
+    {
+     "d": "2026-01-13",
+     "w": 71.9
+    },
+    {
+     "d": "2026-01-18",
+     "w": 71.5,
+     "t": 1768717800000
+    },
+    {
+     "d": "2026-01-23",
+     "w": 71.5
+    },
+    {
+     "d": "2026-01-28",
+     "w": 71.5,
+     "t": 1769581800000
+    },
+    {
+     "d": "2026-02-02",
+     "w": 71.1
+    },
+    {
+     "d": "2026-02-07",
+     "w": 71.0,
+     "t": 1770445800000
+    },
+    {
+     "d": "2026-02-12",
+     "w": 71.0
+    },
+    {
+     "d": "2026-02-17",
+     "w": 70.7,
+     "t": 1771309800000
+    },
+    {
+     "d": "2026-02-22",
+     "w": 70.6
+    },
+    {
+     "d": "2026-02-27",
+     "w": 70.5,
+     "t": 1772173800000
+    },
+    {
+     "d": "2026-03-04",
+     "w": 70.2
+    },
+    {
+     "d": "2026-03-09",
+     "w": 70.1,
+     "t": 1773037800000
+    },
+    {
+     "d": "2026-03-14",
+     "w": 70.1
+    },
+    {
+     "d": "2026-03-19",
+     "w": 69.8,
+     "t": 1773901800000
+    },
+    {
+     "d": "2026-03-24",
+     "w": 69.7
+    },
+    {
+     "d": "2026-03-29",
+     "w": 69.7,
+     "t": 1774765800000
+    },
+    {
+     "d": "2026-04-03",
+     "w": 69.3
+    },
+    {
+     "d": "2026-04-08",
+     "w": 69.2,
+     "t": 1775629800000
+    },
+    {
+     "d": "2026-04-13",
+     "w": 69.2
+    },
+    {
+     "d": "2026-04-18",
+     "w": 68.8,
+     "t": 1776493800000
+    },
+    {
+     "d": "2026-04-23",
+     "w": 68.8
+    },
+    {
+     "d": "2026-04-28",
+     "w": 68.8,
+     "t": 1777357800000
+    },
+    {
+     "d": "2026-05-03",
+     "w": 68.4
+    },
+    {
+     "d": "2026-05-08",
+     "w": 68.3,
+     "t": 1778221800000
+    },
+    {
+     "d": "2026-05-13",
+     "w": 68.3
+    },
+    {
+     "d": "2026-05-18",
+     "w": 68.0,
+     "t": 1779085800000
+    },
+    {
+     "d": "2026-05-23",
+     "w": 67.9
+    },
+    {
+     "d": "2026-05-28",
+     "w": 67.9,
+     "t": 1779949800000
+    }
+   ],
+   "weekStart": 0,
+   "volumeWarmups": true,
+   "oneRmFormula": "brzycki"
+  }
+ ],
+ "cases": [
+  {
+   "name": "7 days",
+   "state": 0,
+   "range": "7d",
+   "from": null,
+   "to": null,
+   "today": "2026-05-30"
+  },
+  {
+   "name": "4 weeks",
+   "state": 0,
+   "range": "4w",
+   "from": null,
+   "to": null,
+   "today": "2026-05-30"
+  },
+  {
+   "name": "3 months",
+   "state": 0,
+   "range": "3m",
+   "from": null,
+   "to": null,
+   "today": "2026-05-30"
+  },
+  {
+   "name": "3 months from a month end",
+   "state": 0,
+   "range": "3m",
+   "from": null,
+   "to": null,
+   "today": "2026-05-31"
+  },
+  {
+   "name": "3 months clamps to February",
+   "state": 1,
+   "range": "3m",
+   "from": null,
+   "to": null,
+   "today": "2026-05-30"
+  },
+  {
+   "name": "custom by months",
+   "state": 0,
+   "range": "custom",
+   "from": "2026-01-01",
+   "to": "2026-05-30",
+   "today": "2026-05-30"
+  },
+  {
+   "name": "custom swapped ends",
+   "state": 0,
+   "range": "custom",
+   "from": "2026-04-10",
+   "to": "2026-03-01",
+   "today": "2026-05-30"
+  },
+  {
+   "name": "custom future end",
+   "state": 1,
+   "range": "custom",
+   "from": "2026-05-01",
+   "to": "2026-07-01",
+   "today": "2026-05-30"
+  },
+  {
+   "name": "custom bad from",
+   "state": 0,
+   "range": "custom",
+   "from": "2026-02-30",
+   "to": "2026-04-15",
+   "today": "2026-05-30"
+  },
+  {
+   "name": "one day",
+   "state": 0,
+   "range": "custom",
+   "from": "2026-03-02",
+   "to": "2026-03-02",
+   "today": "2026-05-30"
+  },
+  {
+   "name": "past range, Sunday weeks",
+   "state": 1,
+   "range": "4w",
+   "from": null,
+   "to": null,
+   "today": "2026-03-20"
+  },
+  {
+   "name": "nothing in range",
+   "state": 0,
+   "range": "7d",
+   "from": null,
+   "to": null,
+   "today": "2026-07-30"
+  }
+ ]
+}

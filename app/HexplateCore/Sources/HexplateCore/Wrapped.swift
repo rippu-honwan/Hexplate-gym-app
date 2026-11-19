@@ -213,7 +213,7 @@ public enum Wrapped {
         var byPart: [String: Int] = Dictionary(uniqueKeysWithValues: dayparts.map { ($0, 0) })
         var months = [(n: Int, vol: Double)](repeating: (0, 0), count: 12)
         var cardioSets = 0, early = 0, late = 0, weekend = 0
-        var load: [String: Double] = [:]
+        let load = Report.muscleLoad(ws, c)
 
         for w in ws {
             let d = day(w)!
@@ -236,11 +236,6 @@ public enum Wrapped {
             }
             prs += Set((w["prs"]?.arrayValue ?? []).compactMap(\.stringValue)).count
             for e in (w["entries"]?.arrayValue ?? []).compactMap(\.object) {
-                // Muscle load: ticked work sets, by each exercise's muscle weights (muscles.js loadOfWorkouts).
-                let ticked = Double((e["sets"]?.arrayValue ?? []).compactMap(\.object).filter { $0["done"] == .bool(true) && !Recovery.isWarmupRow($0) }.count)
-                if ticked > 0, let ex = e["id"]?.stringValue.flatMap({ c[$0] }) {
-                    for (m, share) in c.muscleWeights(of: ex) { load[m, default: 0] += share * ticked }
-                }
                 guard let id = e["id"]?.stringValue else { continue }
                 let done = workSets(e)
                 let n = done.reduce(0) { $0 + Challenges.doneUnits($1) }

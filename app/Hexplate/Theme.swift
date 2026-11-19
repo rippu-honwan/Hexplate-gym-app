@@ -33,6 +33,8 @@ enum Theme {
     static let accentId = UserDefaults.standard.string(forKey: accentKey) ?? "teal"
     /// Teal is the asset's colour, darker in light mode; the others are openGym's swatches.
     static let accent: Color = accents.first { $0.id == accentId && $0.id != "teal" }.map { rgb($0.rgb) } ?? .accentColor
+    /// The accent on paper (PDF report): teal is the asset's light-mode shade, the others as they are.
+    static let paperAccent: Color = accentId == "teal" ? rgb(0x0B7A90) : accent
     static func rgb(_ v: UInt32) -> Color {
         Color(red: Double(v >> 16 & 0xFF) / 255, green: Double(v >> 8 & 0xFF) / 255, blue: Double(v & 0xFF) / 255)
     }

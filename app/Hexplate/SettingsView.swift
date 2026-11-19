@@ -288,6 +288,7 @@ struct SettingsView: View {
     @ViewBuilder private var data: some View {
         Section {
             ShareLink("Export backup (JSON)", item: model.stateFileURL)
+            NavigationLink("Performance report (PDF)") { ReportView() }
             NavigationLink("Export as spreadsheet (CSV)") { CSVExportView() }
             Button("Import backup", systemImage: "square.and.arrow.down") { importing = true }
         } footer: {
@@ -376,21 +377,11 @@ private struct CSVExportView: View {
     @State private var to = Date.now
     @State private var files: (workouts: URL?, body: URL?) = (nil, nil)
 
-    /// openGym report.js reportRange: the last 4 weeks, 3 months, or the days picked (never past today).
+    /// All days, or a stretch picked the way the report picks it (Report.range).
     private var bounds: (from: String?, to: String?) {
-        let today = model.today
-        switch range {
-        case "4w": return (Day.adding(-27, to: today), today)
-        case "3m":
-            let back = Day.date(today).flatMap { Calendar(identifier: .gregorian).date(byAdding: .month, value: -3, to: $0) }
-            return (back.flatMap { Day.adding(1, to: Day.iso($0)) }, today)
-        case "custom":
-            var (a, b) = (Day.iso(from), Day.iso(to))
-            if a > b { (a, b) = (b, a) }
-            b = min(b, today)
-            return (min(a, b), b)
-        default: return (nil, nil)
-        }
+        guard range != "all" else { return (nil, nil) }
+        let r = Report.range(range, from: Day.iso(from), to: Day.iso(to), today: model.today)
+        return (r.from, r.to)
     }
 
     var body: some View {
