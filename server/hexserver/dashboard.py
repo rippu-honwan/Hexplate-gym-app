@@ -11,6 +11,8 @@ import csv
 import datetime as dt
 import io
 import json
+import math
+import re
 import socket
 import subprocess
 from html import escape
@@ -20,10 +22,11 @@ from urllib.parse import parse_qs, quote
 from fastapi import Request
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse, Response
 
+from . import motion as M
 from . import schedule as P
 from . import stats as S
 from .i18n import LANG, fd, t, tm, tn
-from .ui import bars, compact, date_lead, fmt, group, head, heat, icon, kg, line, meter, row, section, seg, shell, stats
+from .ui import bars, compact, date_lead, fmt, group, head, heat, icon, key, kg, line, meter, per_set, row, scatter, section, seg, shell, stats, traces
 
 
 def local_name():
@@ -271,7 +274,8 @@ def install(app, store):
         if S.num(w.get("bw")):
             strip.append((t("Body weight"), fmt(w["bw"], 1), u, ""))
         name = w.get("name") or t("Workout")
-        body = head(name, escape(when + (f" · {gym}" if gym else "")), back=(t("History"), "/history")) + stats(strip)
+        act = f'<a class="btn plain" href="/motion/{quote(wid)}">{icon("motion", 14)} {t("Motion data")}</a>' if motion_of(state).get(wid) else ""
+        body = head(name, escape(when + (f" · {gym}" if gym else "")), act, back=(t("History"), "/history")) + stats(strip)
         if w.get("note"):
             body += section(t("Note"), f'<div class="card">{escape(str(w["note"]))}</div>')
         for ent in S.entries(w):
@@ -585,6 +589,122 @@ def install(app, store):
                 + section(t("Latest sets"), table([t("When"), t("Exercise"), t("Weight") + ">", t("Live") + ">", t("Final") + ">", t("Off") + ">"], recent, t("No sets yet.")))
                 + f'<p class="note">{note}</p>')
         return page("Rep counter", body)
+
+    # MARK: Motion data
+
+    def flag_text(f):
+        """A quality flag in the page's language: the number goes into the template ("gap {v} s")."""
+        v = re.search(r"\d+(\.\d+)?", f)
+        return t(f.replace(v.group(0), "{v}", 1), v=v.group(0)) if v else t(f)
+
+    def motion_of(state):
+        return M.by_workout(store.motion_meta(), S.workouts(state))
+
+    @app.get("/motion", response_class=HTMLResponse)
+    async def motion_list():
+        state = doc()
+        per = motion_of(state)
+        ws = [w for w in S.workouts(state) if str(w.get("id")) in per]
+        ws.sort(key=lambda w: S.num(w.get("start")) or 0, reverse=True)
+        rows = [row(escape(w.get("name") or t("Workout")), names(w, state), t("{n} sets", n=len(per[str(w["id"])])),
+                    f"/motion/{quote(str(w.get('id')))}", date_lead(D(S.day(w)))) for w in ws]
+        loose = len(store.motion_meta()) - sum(len(v) for v in per.values())
+        note = t("{n} set files belong to no saved workout.", n=loose) if loose else ""
+        body = (head(t("Motion data"), t("What the watch recorded in each workout")) + group(rows, "No motion files yet.")
+                + (f'<p class="note">{note}</p>' if note else ""))
+        return page("Motion data", body)
+
+    @app.get("/motion/{wid}", response_class=HTMLResponse)
+    async def motion_workout(wid: str):
+        state = doc()
+        w = next((w for w in S.workouts(state) if str(w.get("id")) == wid), None)
+        metas = motion_of(state).get(wid, []) if w else []
+        if not metas:
+            return page("Motion data", head(t("Not found"), back=(t("Motion data"), "/motion")) + group([], "No motion files for this workout."))
+        rows = M.sets(store.motion_dir, metas, w)
+        name = lambda r: S.ex_name(str(r["meta"].get("exId")), state)
+        per_ex, n = {}, {}
+        for r in rows:
+            ex = str(r["meta"].get("exId"))
+            per_ex.setdefault(ex, []).append(r)
+            n[ex] = n.get(ex, 0) + 1
+            r["label"] = f"{list(per_ex).index(ex) + 1}.{n[ex]}"
+            r["tip"] = f"{name(r)} · {t('set {n}', n=r['meta'].get('set') or n[ex])}"
+        clean = [r for r in rows if not r["flags"]]
+        counts = {}
+        for r in rows:
+            for f in r["flags"]:
+                k = re.sub(r"\d+(\.\d+)?", "#", f)
+                counts[k] = (counts.get(k, (0, f))[0] + 1, f)
+        secs = sum(r["q"].get("dur_s", 0) for r in rows)
+
+        # 1. What there is
+        strip = stats([(t("Sets recorded"), str(len(rows)), "", t("{n} exercises", n=len(per_ex))),
+                       (t("Clean"), str(len(clean)), "", t("no quality flag")),
+                       (t("Recorded"), duration(round(secs / 60)), "", t("of motion at 50 Hz")),
+                       (t("Rows"), compact(sum(r["q"].get("rows", 0) for r in rows)), "", t("samples"))])
+        ex_rows = [f"<tr><td>{list(per_ex).index(ex) + 1}. {escape(name(rs[0]))}</td><td class=r>{len(rs)}</td><td class=r>{sum(not r['flags'] for r in rs)}</td>"
+                   f"<td>{escape(', '.join(sorted({flag_text(f) for r in rs for f in r['flags']})) or '–')}</td></tr>" for ex, rs in per_ex.items()]
+        flag_rows = [f"<tr><td>{escape(flag_text(f))}</td><td class=r>{c}</td></tr>" for c, f in sorted(counts.values(), key=lambda v: -v[0])]
+        body = (head(t("Motion data"), escape(f"{w.get('name') or t('Workout')} · {fd(D(S.day(w)), 'longy')}"),
+                     f'<a class="btn plain" href="/history/{quote(wid)}">{icon("history", 14)} {t("Workout")}</a>', back=(t("Motion data"), "/motion")) + strip
+                + '<div class="grid2">'
+                + section(t("1. What there is"), table([t("Exercise"), t("Sets") + ">", t("Clean") + ">", t("Flags")], ex_rows))
+                + section(t("Flags"), table([t("Flag"), t("Sets") + ">"], flag_rows, t("Every set is clean.")))
+                + "</div>")
+
+        # 2. Sampling, 3. Window
+        pts = lambda k, flag: [(r["label"], r["q"][k], f"{r['tip']}: {r['q'][k]}", any(f.startswith(flag) for f in r["flags"]))
+                               for r in rows if r["q"].get(k) is not None]
+        hz = pts("hz", "rate")
+        chart = lambda title, svg, legend: f'<div class="card"><h3 class="ch">{title}</h3>{key(legend)}{svg}</div>'
+        ref = lambda text: [("ref", text)]
+        body += section(t("2. Sampling: 50 Hz, no gaps?"), '<div class="grid2">'
+                        + chart(t("Sample rate (Hz)"), per_set(hz, 50, t("Sample rate"), lo=min([45] + [p[1] for p in hz])), ref(t("50 Hz target")))
+                        + chart(t("Largest gap (s, log scale)"), per_set(pts("max_gap_s", "gap"), .1, t("Largest gap"), log=True), ref(t("0.1 s: flagged above")))
+                        + "</div>", lede=t("Each dot is a set; the x-axis labels are exercise.set as numbered in the table above."))
+        body += section(t("3. Does the window hold the whole set?"), '<div class="grid2">'
+                        + chart(t("Head: first second"), per_set(pts("head", "clipped start"), .6, t("Head")), [("ref", t("0.6: busy")), ("pt flag", t("clipped start"))])
+                        + chart(t("Tail: last second"), per_set(pts("tail", "clipped end"), .6, t("Tail")), [("ref", t("0.6: busy")), ("pt flag", t("clipped end"))])
+                        + "</div>", lede=t("How busy the first and last second is, against the set's 90th-percentile activity. A busy start with no rep in the first 2 s is the walk to the machine; a busy end would be a set cut before it finished."))
+
+        # 4. One set per exercise: the last clean one
+        legend = [("s1", "x"), ("s2", "y"), ("s3", "z"), ("mag", t("magnitude")), ("tick", t("rep counted live"))]
+        cards = []
+        for ex, rs in per_ex.items():
+            r = ([x for x in rs if not x["flags"]] or rs)[-1]
+            c = r["cols"]
+            mag = M.smooth([math.sqrt(x * x + y * y + z * z) for x, y, z in zip(c["ax"], c["ay"], c["az"])])
+            ticks = [e[0] for e in r["meta"].get("helpers", {}).get("log", []) if isinstance(e, list) and len(e) > 1 and isinstance(e[1], str) and e[1].startswith("rep ")]
+            title = t("{name}: {reps} reps logged, {auto} counted live", name=name(r), reps=fmt(r["reps"]) if isinstance(r["reps"], (int, float)) else "–",
+                      auto=r["auto"] if r["auto"] is not None else "–")
+            cards.append(f'<div class="card"><h3 class="ch">{escape(title)}</h3>{traces(c, mag, ticks, title)}</div>')
+        body += section(t("4. One set per exercise"), key(legend) + "".join(cards), lede=t("User acceleration (g) and its smoothed magnitude; ticks: reps the watch counted live."))
+
+        # 5. Live count vs logged
+        live = M.live_rows(rows)
+        lrows = [f"<tr><td>{escape(S.ex_name(ex, state))}</td><td class=r>{k}</td><td class=r>{fmt(m, 1)}</td><td class=r>{fmt(e, 2)}</td>"
+                 f"<td class=r>{round(100 * x)}%</td><td class=r>{b:+.2f}</td></tr>" for ex, k, m, e, x, b in live]
+        sc = [(r["reps"], r["auto"], f"{r['tip']}: {fmt(r['reps'])} → {r['auto']}") for r in clean if r["auto"] is not None and isinstance(r["reps"], (int, float))]
+        body += section(t("5. The watch's live count against the logged reps"), '<div class="grid2">'
+                        + table([t("Exercise"), t("Sets") + ">", t("Reps") + ">", t("Error") + ">", t("Exact") + ">", t("Bias") + ">"], lrows, t("No clean sets with a live count."))
+                        + f'<div class="card">{key([("tick", t("on the line: exact"))])}{scatter(sc, t("logged reps"), t("live count"), t("Live count vs logged"))}</div>'
+                        + "</div>", lede=t("Clean sets only. Error is the mean miss in reps; bias above zero means the watch counts too many."))
+
+        # 6. Findings
+        found = [t("{a} of {b} sets are clean.", a=len(clean), b=len(rows))]
+        if counts:
+            c, f = max(counts.values(), key=lambda v: v[0])
+            found.append(t("Most common flag: {f} ({n} sets).", f=flag_text(f), n=c))
+        if sc:
+            err = [a - r for r, a, _ in sc]
+            found.append(t("Live count: exact on {x} of {n} clean sets, mean error {e} reps, bias {b:+.2f}.",
+                           x=sum(e == 0 for e in err), n=len(err), e=fmt(sum(map(abs, err)) / len(err), 2), b=sum(err) / len(err)))
+            worst = max(live, key=lambda r: r[3])
+            if worst[3] > 0:
+                found.append(t("Hardest to count: {ex} (mean error {e}).", ex=S.ex_name(worst[0], state), e=fmt(worst[3], 2)))
+        body += section(t("6. Findings"), '<div class="card"><ul class="list">' + "".join(f"<li>{escape(x)}</li>" for x in found) + "</ul></div>")
+        return page("Motion data", body, t("Motion data"))
 
     # MARK: Sync & backup
 

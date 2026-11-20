@@ -7,6 +7,7 @@ appearance; there is no switch of its own. Charts are inline SVG: one series eac
 what it is, a sentence above says what it shows, and hovering a mark names its value.
 """
 import datetime as dt
+import math
 from html import escape
 
 from .i18n import fd, t, zh
@@ -66,7 +67,7 @@ a:hover { text-decoration:underline; }
 .card { background:var(--surface); border-radius:12px; box-shadow:var(--shadow); padding:18px 20px; min-width:0; }
 /* Two columns when each gets at least 400px, else one: follows the content width, not the window. */
 .grid2 { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(400px, 100%), 1fr)); gap:20px 24px; margin-top:36px; }
-.grid2 > .sec { margin-top:0; }
+.grid2 > .sec { margin-top:0; } .sec .grid2 { margin-top:0; }
 .note { color:var(--ink2); font-size:12px; margin:10px 4px 0; }
 .muted { color:var(--ink2); } .warn { color:var(--warn); }
 .empty { color:var(--ink2); padding:28px 20px; text-align:center; }
@@ -144,6 +145,18 @@ svg .grid { stroke:var(--line); } svg .bar { fill:var(--bar); } svg .bar.hi { fi
 svg .ln { stroke:var(--accent); fill:none; stroke-width:2; stroke-linejoin:round; stroke-linecap:round; }
 svg .goal { stroke:var(--ink2); stroke-dasharray:4 4; }
 svg .dot { fill:var(--accent); stroke:var(--surface); stroke-width:2; }
+/* Motion charts: the three acceleration axes take the reference palette's first three slots, the magnitude the ink */
+svg .s1 { stroke:#2a78d6; } svg .s2 { stroke:#eb6834; } svg .s3 { stroke:#1baf7a; } .key .s1 { background:#2a78d6; } .key .s2 { background:#eb6834; } .key .s3 { background:#1baf7a; }
+@media (prefers-color-scheme: dark) { svg .s1 { stroke:#3987e5; } svg .s2 { stroke:#d95926; } svg .s3 { stroke:#199e70; } .key .s1 { background:#3987e5; } .key .s2 { background:#d95926; } .key .s3 { background:#199e70; } }
+svg .tr { fill:none; stroke-width:1; stroke-linejoin:round; opacity:.85; } svg .mag { fill:none; stroke:var(--ink); stroke-width:1.6; stroke-linejoin:round; }
+svg .tick { stroke:var(--ink2); stroke-dasharray:2 3; } svg .ref { stroke:var(--warn); stroke-dasharray:4 3; }
+svg .stem { stroke:var(--bar); stroke-width:2; } svg .pt { fill:var(--accent); stroke:var(--surface); stroke-width:1.5; } svg .pt.flag { fill:var(--warn); }
+.card h3.ch { margin:0 0 8px; font-size:13px; font-weight:600; } .card + .card { margin-top:12px; } .grid2 > .card + .card { margin-top:0; }
+ul.list { margin:0; padding-left:18px; } ul.list li { margin:4px 0; }
+.key { display:flex; flex-wrap:wrap; gap:4px 14px; font-size:12px; color:var(--ink2); margin:0 0 6px; }
+.key i { display:inline-block; width:12px; height:3px; border-radius:2px; margin-right:6px; vertical-align:middle; } .key .mag { background:var(--ink); }
+.key .pt { width:8px; height:8px; border-radius:50%; background:var(--accent); } .key .pt.flag { background:var(--warn); }
+.key .tick { height:0; border-top:1px dashed var(--ink2); } .key .ref { height:0; border-top:1px dashed var(--warn); }
 .heat { display:flex; gap:3px; width:max-content; } .heat i, .legend i { display:block; width:11px; height:11px; border-radius:3px; background:var(--fill); margin-bottom:3px; }
 :is(.heat, .legend) i.l1 { background:var(--accent); opacity:.3; } :is(.heat, .legend) i.l2 { background:var(--accent); opacity:.55; }
 :is(.heat, .legend) i.l3 { background:var(--accent); opacity:.8; } :is(.heat, .legend) i.l4 { background:var(--accent); }
@@ -167,6 +180,7 @@ ICONS = {
     "stats": '<path d="M3 13.5V8.5M6.3 13.5V4.5M9.7 13.5v-6M13 13.5V2.5"/>',
     "report": '<path d="M4 1.8h5.2L12.5 5v9.2H4z"/><path d="M9 1.8V5h3.5M6 8.3h4.5M6 10.8h4.5"/>',
     "reps": '<rect x="4.3" y="3.6" width="7.4" height="8.8" rx="2.2"/><path d="M6 1.5h4M6 14.5h4M6.4 8h1l.7-1.5.9 3 .7-1.5h.9"/>',
+    "motion": '<path d="M1.5 8h2l1.5-4.5 2.5 9 2.5-7 1.5 2.5h3"/>',
     "data": '<ellipse cx="8" cy="3.8" rx="5" ry="1.8"/><path d="M3 3.8v8.4c0 1 2.2 1.8 5 1.8s5-.8 5-1.8V3.8M3 8c0 1 2.2 1.8 5 1.8s5-.8 5-1.8"/>',
     "connect": '<path d="M6.6 9.4a2.6 2.6 0 0 0 3.7 0l2.2-2.2a2.6 2.6 0 0 0-3.7-3.7l-.9.9"/><path d="M9.4 6.6a2.6 2.6 0 0 0-3.7 0L3.5 8.8a2.6 2.6 0 0 0 3.7 3.7l.9-.9"/>',
     "chevron": '<path d="M6 3.5 10.5 8 6 12.5"/>',
@@ -177,7 +191,7 @@ ICONS = {
 
 NAV = [("Training", [("Summary", "/", "summary"), ("History", "/history", "history"), ("Plan", "/plan", "plan"), ("Exercises", "/exercises", "exercises")]),
        ("Progress", [("Body", "/body", "body"), ("Stats", "/stats", "stats"), ("Report", "/report", "report")]),
-       ("Hexplate", [("Rep counter", "/reps", "reps"), ("Sync & backup", "/data", "data"), ("Connect", "/connect", "connect"),
+       ("Hexplate", [("Rep counter", "/reps", "reps"), ("Motion data", "/motion", "motion"), ("Sync & backup", "/data", "data"), ("Connect", "/connect", "connect"),
                      ("Settings", "/settings", "settings")])]
 
 
@@ -353,3 +367,86 @@ def heat(days: dict, end: dt.date, weeks=53, ws=1, unit="kg"):
     legend = f'<div class="legend">{t("Less")} <i></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i> {t("More")}</div>'
     # rtl on the scroller only: a narrow window opens on the latest weeks; the grid itself stays left to right.
     return f'<div class="scroll" style="direction:rtl"><div class="heat" style="direction:ltr" role="img" aria-label="{t("Training days, last {n} weeks", n=weeks)}">{"".join(cols)}</div></div>{legend}'
+
+
+# MARK: motion charts (the Motion page)
+
+def per_set(points, ref, label, log=False, lo=None):
+    """[(set label, value, tooltip, flagged)]: one stem and dot per set, a dashed line at the threshold `ref`;
+    flagged sets' dots take the warning colour. `log` puts the values on a log scale (gaps)."""
+    if not points:
+        return f'<div class="empty">{t("No data yet.")}</div>'
+    w, h, left, bottom, top_pad = 380, 150, 40, 22, 8
+    vals = [p[1] for p in points] + [ref]
+    if log:
+        f0 = math.floor(math.log10(max(min(vals), 1e-3))); f1 = math.ceil(math.log10(max(vals) * 1.05))
+        f1 = f1 if f1 > f0 else f0 + 1
+        Y = lambda v: top_pad + (h - bottom - top_pad) * (1 - (math.log10(max(v, 10 ** f0)) - f0) / (f1 - f0))
+        marks = [10 ** e for e in range(f0, f1 + 1)]
+    else:
+        a = lo if lo is not None else 0
+        b = nice_max(max(vals) * 1.05) if lo is None else max(vals) + (max(vals) - a) * .08
+        b = b if b > a else a + 1
+        Y = lambda v: top_pad + (h - bottom - top_pad) * (1 - (v - a) / (b - a))
+        marks = [a, a + (b - a) / 2, b]
+    out = [f'<line class="grid" x1="{left}" x2="{w}" y1="{Y(m):.1f}" y2="{Y(m):.1f}"/><text x="{left - 6}" y="{Y(m) + 4:.1f}" text-anchor="end">{round(m, 2):g}</text>' for m in marks]
+    out.append(f'<line class="ref" x1="{left}" x2="{w}" y1="{Y(ref):.1f}" y2="{Y(ref):.1f}"/>')
+    n = len(points); slot = (w - left) / n; base = h - bottom
+    for i, (lab, v, tip, bad) in enumerate(points):
+        cx = left + slot * (i + .5)
+        out.append(f'<g><title>{escape(tip)}</title><rect x="{left + slot * i:.1f}" y="0" width="{slot:.1f}" height="{base}" fill="transparent"/>'
+                   f'<line class="stem" x1="{cx:.1f}" x2="{cx:.1f}" y1="{base}" y2="{Y(v):.1f}"/><circle class="pt{" flag" if bad else ""}" cx="{cx:.1f}" cy="{Y(v):.1f}" r="4"/>'
+                   f'{f"<text x={cx:.1f} y={h - 6} text-anchor=middle>{escape(lab)}</text>" if n <= 24 or i % 2 == 0 else ""}</g>')
+    return f'<svg viewBox="-2 0 {w + 4} {h}" width="100%" role="img" aria-label="{escape(label)}">{"".join(out)}</svg>'
+
+
+def traces(cols, mag, ticks, label, keep=600):
+    """One set's user acceleration: x, y, z (g) as thin lines, the smoothed magnitude in ink, a dotted
+    tick at each rep the watch counted live. Thinned to about `keep` points a line."""
+    ts = cols["t"]
+    if len(ts) < 2:
+        return f'<div class="empty">{t("No data yet.")}</div>'
+    step = max(1, len(ts) // keep)
+    idx = range(0, len(ts), step)
+    w, h, left, bottom, top_pad = 760, 170, 40, 22, 8
+    series = [cols["ax"], cols["ay"], cols["az"], mag]
+    lo = min(min(s[i] for i in idx) for s in series); hi = max(max(s[i] for i in idx) for s in series)
+    pad = (hi - lo) * .06 or .1; lo, hi = lo - pad, hi + pad
+    t0, t1 = ts[0], ts[-1]
+    X = lambda x: left + (x - t0) / ((t1 - t0) or 1) * (w - left - 4)
+    Y = lambda v: top_pad + (h - bottom - top_pad) * (1 - (v - lo) / (hi - lo))
+    out = []
+    for m in (lo, (lo + hi) / 2, hi):
+        out.append(f'<line class="grid" x1="{left}" x2="{w}" y1="{Y(m):.1f}" y2="{Y(m):.1f}"/><text x="{left - 6}" y="{Y(m) + 4:.1f}" text-anchor="end">{m:.1f}</text>')
+    for k in range(0, int(t1 - t0) + 1, 5 if t1 - t0 <= 60 else 10):
+        out.append(f'<text x="{X(t0 + k):.1f}" y="{h - 6}" text-anchor="middle">{k}s</text>')
+    for x in ticks:
+        if t0 <= x <= t1:
+            out.append(f'<line class="tick" x1="{X(x):.1f}" x2="{X(x):.1f}" y1="{top_pad}" y2="{h - bottom}"/>')
+    for cls, s in zip(("tr s1", "tr s2", "tr s3", "mag"), series):
+        out.append(f'<path class="{cls}" d="' + " ".join(f"{'M' if j == 0 else 'L'}{X(ts[i]):.1f},{Y(s[i]):.1f}" for j, i in enumerate(idx)) + '"/>')
+    return f'<svg viewBox="-2 0 {w + 4} {h}" width="100%" role="img" aria-label="{escape(label)}">{"".join(out)}</svg>'
+
+
+def scatter(points, xlabel, ylabel, label):
+    """[(x, y, tooltip)] with the y = x line: points on it are exact."""
+    if not points:
+        return f'<div class="empty">{t("No data yet.")}</div>'
+    w, h, left, bottom, top_pad = 380, 260, 40, 34, 8
+    m = max(max(x, y) for x, y, _ in points) * 1.1 or 1
+    X = lambda v: left + v / m * (w - left - 8)
+    Y = lambda v: top_pad + (h - bottom - top_pad) * (1 - v / m)
+    out = []
+    for k in (0, m / 2, m):
+        out.append(f'<line class="grid" x1="{left}" x2="{w}" y1="{Y(k):.1f}" y2="{Y(k):.1f}"/><text x="{left - 6}" y="{Y(k) + 4:.1f}" text-anchor="end">{k:.0f}</text>'
+                   f'<text x="{X(k):.1f}" y="{h - bottom + 14}" text-anchor="middle">{k:.0f}</text>')
+    out.append(f'<line class="goal" x1="{X(0):.1f}" y1="{Y(0):.1f}" x2="{X(m):.1f}" y2="{Y(m):.1f}"/>')
+    out.append(f'<text x="{(left + w) / 2:.1f}" y="{h - 4}" text-anchor="middle">{escape(xlabel)}</text>'
+               f'<text x="12" y="{(h - bottom) / 2:.1f}" text-anchor="middle" transform="rotate(-90 12 {(h - bottom) / 2:.1f})">{escape(ylabel)}</text>')
+    out += [f'<circle class="pt" cx="{X(x):.1f}" cy="{Y(y):.1f}" r="5"><title>{escape(tip)}</title></circle>' for x, y, tip in points]
+    return f'<svg viewBox="-2 0 {w + 4} {h}" width="100%" role="img" aria-label="{escape(label)}">{"".join(out)}</svg>'
+
+
+def key(items):
+    """A chart legend: [(css class, label)]."""
+    return '<div class="key">' + "".join(f'<span><i class="{c}"></i>{escape(l)}</span>' for c, l in items) + "</div>"
