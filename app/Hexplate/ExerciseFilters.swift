@@ -2,29 +2,43 @@ import HexplateCore
 import SwiftUI
 
 /// The equipment and muscle-group filters (ExerciseGroups) the exercise lists show under their
-/// search field: the library and the add / swap pickers.
+/// search field: the library and the add / swap pickers. Each takes any number of groups: an
+/// exercise passes when it uses one of the equipment picked and trains one of the muscles picked.
 struct ExerciseFilter: Equatable {
-    var equipment: String?
-    var muscle: String?
+    var equipment: Set<String> = []
+    var muscles: Set<String> = []
 
-    var isOn: Bool { equipment != nil || muscle != nil }
+    var isOn: Bool { !equipment.isEmpty || !muscles.isEmpty }
 
     /// A group's label; "None" already means "nothing" elsewhere, so the equipment one gets its own.
     static func label(_ group: String) -> LocalizedStringKey { LocalizedStringKey(group == "None" ? "No equipment" : group) }
 
-    func keeps(_ ex: Exercise, _ c: ExerciseCatalog) -> Bool {
-        (equipment == nil || ExerciseGroups.equipment(of: ex) == equipment)
-            && (muscle == nil || ExerciseGroups.muscle(of: ex, catalog: c) == muscle)
+    /// The exercises that pass, those whose main muscle was picked before those that only help.
+    func apply(_ list: [Exercise], _ c: ExerciseCatalog) -> [Exercise] {
+        guard isOn else { return list }
+        var main: [Exercise] = [], helping: [Exercise] = []
+        for ex in list where equipment.isEmpty || equipment.contains(ExerciseGroups.equipment(of: ex)) {
+            if muscles.isEmpty { main.append(ex); continue }
+            let tags = ExerciseGroups.muscles(of: ex, catalog: c)
+            if muscles.contains(tags[0]) { main.append(ex) } else if tags.contains(where: muscles.contains) { helping.append(ex) }
+        }
+        return main + helping
+    }
+
+    /// 0 when the exercise's main muscle was picked (or none was), 1 when it only helps.
+    func tier(_ ex: Exercise, _ c: ExerciseCatalog) -> Int {
+        muscles.isEmpty || muscles.contains(ExerciseGroups.muscle(of: ex, catalog: c)) ? 0 : 1
     }
 }
 
 /// A filtered list as two sections: the staples (ExerciseGroups.popular) first, then the rest.
 struct ExerciseSections<Row: View>: View {
     let results: [Exercise]
+    var tier: (Exercise) -> Int = { _ in 0 }
     @ViewBuilder let row: (Exercise) -> Row
 
     var body: some View {
-        let split = ExerciseGroups.split(results)
+        let split = ExerciseGroups.split(results, tier: tier)
         if !split.popular.isEmpty {
             Section("Popular") { ForEach(split.popular, id: \.id) { row($0) } }
         }
@@ -52,39 +66,51 @@ struct ExerciseFilterBar: View {
 
     var body: some View {
         HStack(spacing: 8) {
-            chip(.equipment, filter.equipment, all: "All equipment")
-            chip(.muscle, filter.muscle, all: "All muscles")
+            chip(.equipment, picked(.equipment), all: "All equipment")
+            chip(.muscle, picked(.muscle), all: "All muscles")
             Spacer(minLength: 0)
         }
         .padding(.horizontal, 16).padding(.vertical, 6)
         .sheet(item: $open) { kind in
-            FilterOptions(kind: kind, selection: kind == .equipment ? $filter.equipment : $filter.muscle)
+            FilterOptions(kind: kind, selection: kind == .equipment ? $filter.equipment : $filter.muscles)
                 .presentationDetents([.medium, .large])
         }
     }
 
-    private func chip(_ kind: Kind, _ value: String?, all: LocalizedStringKey) -> some View {
+    /// The picked groups in the options' order, so the chip names the first one listed.
+    private func picked(_ kind: Kind) -> [String] {
+        kind == .equipment ? ExerciseGroups.equipment.filter(filter.equipment.contains)
+            : ExerciseGroups.muscles.flatMap(\.groups).filter(filter.muscles.contains)
+    }
+
+    private func chip(_ kind: Kind, _ picked: [String], all: LocalizedStringKey) -> some View {
         // Ink on the accent: black on the bright dark-mode teal, white on the deeper light-mode one.
         let ink: Color = scheme == .dark ? .black : .white
         return Button { open = kind } label: {
             HStack(spacing: 6) {
-                if let value { GroupIcon(kind: kind, name: value).frame(width: 18, height: 18).tint(ink) }
-                Text(value.map(ExerciseFilter.label) ?? all).lineLimit(1)
+                if let first = picked.first {
+                    GroupIcon(kind: kind, name: first).frame(width: 18, height: 18).tint(ink)
+                    Text(ExerciseFilter.label(first)).lineLimit(1)
+                    if picked.count > 1 { Text(verbatim: "+\(picked.count - 1)").monospacedDigit() }
+                } else {
+                    Text(all).lineLimit(1)
+                }
                 Image(systemName: "chevron.down").font(.caption2.weight(.semibold))
             }
             .font(.subheadline.weight(.medium))
             .padding(.horizontal, 12).padding(.vertical, 7)
-            .foregroundStyle(value == nil ? AnyShapeStyle(.primary) : AnyShapeStyle(ink))
-            .background(value == nil ? AnyShapeStyle(.fill.tertiary) : AnyShapeStyle(Theme.accent), in: .capsule)
+            .foregroundStyle(picked.isEmpty ? AnyShapeStyle(.primary) : AnyShapeStyle(ink))
+            .background(picked.isEmpty ? AnyShapeStyle(.fill.tertiary) : AnyShapeStyle(Theme.accent), in: .capsule)
         }
         .buttonStyle(.plain)
     }
 }
 
+/// Tap options to tick any number of them; All clears the ticks.
 private struct FilterOptions: View {
     @Environment(\.dismiss) private var dismiss
     let kind: ExerciseFilterBar.Kind
-    @Binding var selection: String?
+    @Binding var selection: Set<String>
 
     var body: some View {
         NavigationStack {
@@ -100,13 +126,14 @@ private struct FilterOptions: View {
             }
             .navigationTitle(kind == .equipment ? "Equipment" : "Muscle group")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
         }
     }
 
     private func row(_ name: String?) -> some View {
-        Button {
-            selection = name
-            dismiss()
+        let on = name.map(selection.contains) ?? selection.isEmpty
+        return Button {
+            if let name { if on { selection.remove(name) } else { selection.insert(name) } } else { selection = [] }
         } label: {
             HStack(spacing: 14) {
                 Group {
@@ -117,11 +144,14 @@ private struct FilterOptions: View {
                 Text(name.map(ExerciseFilter.label) ?? (kind == .equipment ? "All equipment" : "All muscles"))
                     .foregroundStyle(.primary)
                 Spacer()
-                if selection == name { Image(systemName: "checkmark").foregroundStyle(.tint).accessibilityLabel("Selected") }
+                Image(systemName: on ? "checkmark.circle.fill" : "circle")
+                    .font(.title3)
+                    .foregroundStyle(on ? AnyShapeStyle(.tint) : AnyShapeStyle(.tertiary))
             }
             .contentShape(.rect)
         }
         .buttonStyle(.plain)
+        .accessibilityAddTraits(on ? .isSelected : [])
     }
 }
 

@@ -411,7 +411,7 @@ struct WorkoutView: View {
             } message: {
                 Text("Nothing from this session is saved. This cannot be undone.")
             }
-            .keyboardDone()
+            .keyboardDismissal()
             .navigationTitle(model.active?["name"]?.stringValue ?? "Workout")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

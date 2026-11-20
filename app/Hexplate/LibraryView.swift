@@ -59,7 +59,7 @@ struct LibraryView: View {
             let results = results
             let favourites = model.favourites
             List {
-                ExerciseSections(results: results) { ex in
+                ExerciseSections(results: results, tier: { filter.tier($0, model.catalog) }) { ex in
                     NavigationLink(value: ExerciseLink(id: ex.id)) {
                         ExerciseRow(exercise: ex, catalog: model.catalog, favourite: favourites.contains(ex.id))
                     }
@@ -108,17 +108,16 @@ struct LibraryView: View {
         let have = mineOnly ? profile.map { ExerciseCatalog.equipment(of: $0) } : nil
         let favourites = model.favourites
         let aliases = model.root["exAliases"]?.object ?? [:]
-        return catalog.all.filter { ex in
+        return filter.apply(catalog.all.filter { ex in
             if favouritesOnly && !favourites.contains(ex.id) { return false }
             if customOnly && !ex.isCustom { return false }
-            if !filter.keeps(ex, catalog) { return false }
             if !words.isEmpty {
                 let text = ([ex.name, ex.translatedName ?? ""] + (aliases[ex.id]?.arrayValue ?? []).compactMap(\.stringValue)).joined(separator: " ").lowercased()
                 if !words.allSatisfy({ text.contains($0) }) { return false }
             }
             if let have, !catalog.isAvailable(ex, with: have) { return false }
             return true
-        }
+        }, catalog)
     }
 }
 
@@ -128,6 +127,13 @@ struct ExerciseRow: View {
     var catalog: ExerciseCatalog = .builtIn
     var favourite = false
 
+    /// The filters' groups in the app's language: "Barbell · Chest, Triceps, Shoulders".
+    private var groups: String {
+        let eq = ExerciseGroups.equipment(of: exercise)
+        let muscles = ExerciseGroups.muscles(of: exercise, catalog: catalog).map { tr($0) }
+        return tr(eq == "None" ? "No equipment" : eq) + " · " + muscles.joined(separator: Theme.language == "zh" ? "、" : ", ")
+    }
+
     var body: some View {
         HStack(spacing: 12) {
             ExerciseThumb(id: exercise.id)
@@ -135,8 +141,7 @@ struct ExerciseRow: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(exercise.displayName)
                     .foregroundStyle(.primary)
-                // The filters' groups, so the line reads in the app's language.
-                Text("\(Text(ExerciseFilter.label(ExerciseGroups.equipment(of: exercise)))) · \(Text(LocalizedStringKey(ExerciseGroups.muscle(of: exercise, catalog: catalog))))")
+                Text(verbatim: groups)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }

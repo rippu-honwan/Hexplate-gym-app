@@ -247,7 +247,7 @@ private struct SlotEditor: View {
                     }), axis: .vertical)
                 }
             }
-            .keyboardDone()
+            .keyboardDismissal()
             .navigationTitle(model.catalog[cfg["id"]?.stringValue ?? ""]?.displayName ?? "Exercise")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -308,7 +308,7 @@ struct ExercisePicker: View {
         NavigationStack {
             let results = results
             List {
-                ExerciseSections(results: results) { ex in
+                ExerciseSections(results: results, tier: { filter.tier($0, model.catalog) }) { ex in
                     Button {
                         onPick(ex.id)
                         dismiss()
@@ -338,6 +338,6 @@ struct ExercisePicker: View {
     // ponytail: the whole catalogue on every render, like the library; cache if typing lags.
     private var results: [Exercise] {
         let c = model.catalog
-        return c.search(query, limit: .max).filter { filter.keeps($0, c) }
+        return filter.apply(c.search(query, limit: .max), c)
     }
 }

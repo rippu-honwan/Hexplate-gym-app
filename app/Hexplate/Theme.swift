@@ -54,24 +54,15 @@ enum Theme {
 }
 
 extension View {
-    /// A Done button above the keyboard, and dragging the list down hides it: the number pad
-    /// has no return key, so without these it never closes.
-    func keyboardDone() -> some View {
-        toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("Done") {
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                }
-                .fontWeight(.semibold)
-            }
-        }
-        .scrollDismissesKeyboard(.interactively)
+    /// Dragging the list down hides the keyboard; a tap outside a field does too (KeyboardDismisser),
+    /// so the number pad, which has no return key, needs no Done button above it.
+    func keyboardDismissal() -> some View {
+        scrollDismissesKeyboard(.interactively)
     }
 }
 
-/// A tap anywhere outside a text field closes the keyboard, the way people expect when the number
-/// pad's Done above it goes unseen. One recogniser per window, which sheets and covers share; it
+/// A tap anywhere outside a text field closes the keyboard, the way people expect: the number pad
+/// has no return key. One recogniser per window, which sheets and covers share; it
 /// lets every tap through, so the button tapped still works.
 @MainActor
 final class KeyboardDismisser: NSObject, UIGestureRecognizerDelegate {

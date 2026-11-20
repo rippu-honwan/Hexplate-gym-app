@@ -318,7 +318,7 @@ struct SettingsView: View {
                                      @ViewBuilder _ content: @escaping () -> Content) -> some View {
         NavigationLink {
             Form { content() }
-                .keyboardDone()
+                .keyboardDismissal()
                 .navigationTitle(title)
                 .navigationBarTitleDisplayMode(.inline)
         } label: {
@@ -593,7 +593,7 @@ struct PlateCalculator: View {
                 }
             }
         }
-        .keyboardDone()
+        .keyboardDismissal()
         .navigationTitle("Plate calculator")
         .onAppear { bar = Equipment.barWeight(model.root, "barbell") }
     }

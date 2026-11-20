@@ -23,6 +23,14 @@ final class ExerciseGroupsTests: XCTestCase {
         }
     }
 
+    func testMusclesTagTheHelpersAfterTheMainGroup() {
+        XCTAssertEqual(ExerciseGroups.muscles(of: c["0025"]!, catalog: c), ["Chest", "Triceps", "Shoulders"])
+        XCTAssertEqual(ExerciseGroups.muscles(of: c["0043"]!, catalog: c), ["Quadriceps", "Glutes", "Hamstrings", "Calves", "Abdominals"])
+        XCTAssertEqual(ExerciseGroups.muscles(of: c["2330"]!, catalog: c), ["Lats", "Biceps", "Upper Back", "Shoulders"])
+        let listed = Set(ExerciseGroups.muscles.flatMap(\.groups))
+        XCTAssertTrue(c.all.allSatisfy { Set(ExerciseGroups.muscles(of: $0, catalog: c)).isSubset(of: listed) })
+    }
+
     func testEveryExerciseLandsInAListedGroup() {
         let muscles = Set(ExerciseGroups.muscles.flatMap(\.groups)), equipment = Set(ExerciseGroups.equipment)
         for ex in c.all {
@@ -39,5 +47,7 @@ final class ExerciseGroupsTests: XCTestCase {
         let s = ExerciseGroups.split(list)
         XCTAssertEqual(s.popular.map(\.id), ["0025", "0047", "0662"])
         XCTAssertTrue(s.rest.allSatisfy { !ExerciseGroups.popular.contains($0.id) })
+        // A lower tier goes first whatever the staples' order: the curl (0031) before the bench press.
+        XCTAssertEqual(ExerciseGroups.split([c["0025"]!, c["0031"]!], tier: { $0.id == "0031" ? 0 : 1 }).popular.map(\.id), ["0031", "0025"])
     }
 }

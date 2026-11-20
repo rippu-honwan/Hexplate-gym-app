@@ -303,7 +303,7 @@ private struct DumbbellsEditor: View {
                 }
             }
         }
-        .keyboardDone()
+        .keyboardDismissal()
         .navigationTitle("Dumbbells")
         .navigationBarTitleDisplayMode(.inline)
     }

@@ -206,7 +206,7 @@ private struct ExerciseCard: View {
             ExerciseRecordSections(id: entry["id"]?.stringValue ?? "", entry: entry)
         }
         .listSectionSpacing(.compact)
-        .keyboardDone()
+        .keyboardDismissal()
     }
 }
 

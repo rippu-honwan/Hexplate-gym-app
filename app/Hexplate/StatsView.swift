@@ -231,7 +231,7 @@ struct WeightEntry: View {
                     .font(.title2.monospacedDigit())
                 DatePicker("Day", selection: $date, in: ...Date.now, displayedComponents: .date)
             }
-            .keyboardDone()
+            .keyboardDismissal()
             .navigationTitle("Log weight")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -273,7 +273,7 @@ private struct MeasurementEntry: View {
                     }
                 }
             }
-            .keyboardDone()
+            .keyboardDismissal()
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

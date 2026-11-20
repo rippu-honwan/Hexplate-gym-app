@@ -33,7 +33,26 @@ public enum ExerciseGroups {
         "quads": "Quadriceps", "quadriceps": "Quadriceps", "cardiovascular system": "Cardio",
     ]
 
+    /// The catalogue's helper muscles (`sm`, `mg`) beyond the target names above. Hands, feet,
+    /// ankles and hip flexors name no group, so they tag nothing.
+    private static let helperOf: [String: String] = [
+        "core": "Abdominals", "lower abs": "Abdominals", "abdominals": "Abdominals", "shoulders": "Shoulders",
+        "rear deltoids": "Shoulders", "rotator cuff": "Shoulders", "lower back": "Lower Back", "rhomboids": "Upper Back",
+        "back": "Upper Back", "latissimus dorsi": "Lats", "upper chest": "Chest", "grip muscles": "Forearms",
+        "wrist flexors": "Forearms", "wrist extensors": "Forearms", "wrists": "Forearms", "brachialis": "Biceps",
+        "soleus": "Calves", "groin": "Adductors", "inner thighs": "Adductors", "sternocleidomastoid": "Neck",
+    ]
+
     public static func equipment(of ex: Exercise) -> String { equipmentOf[ex.equipment ?? ""] ?? "Other" }
+
+    /// Every group the exercise trains: its main one (`muscle(of:)`) first, then the helpers.
+    public static func muscles(of ex: Exercise, catalog c: ExerciseCatalog = .builtIn) -> [String] {
+        var out = [muscle(of: ex, catalog: c)]
+        for name in [ex.muscleGroup ?? ""] + ex.secondary {
+            if let g = muscleOf[name] ?? helperOf[name], g != "Cardio", !out.contains(g) { out.append(g) }
+        }
+        return out
+    }
 
     public static func muscle(of ex: Exercise, catalog c: ExerciseCatalog = .builtIn) -> String {
         if ex.isCardio || ex.target == "cardiovascular system" { return "Cardio" }
@@ -66,9 +85,11 @@ public enum ExerciseGroups {
     ]
     private static let rank = Dictionary(popular.enumerated().map { ($1, $0) }) { a, _ in a }
 
-    /// A filtered list split into the staples (in `popular` order) and everything else (as given).
-    public static func split(_ list: [Exercise]) -> (popular: [Exercise], rest: [Exercise]) {
-        let top = list.filter { rank[$0.id] != nil }.sorted { rank[$0.id]! < rank[$1.id]! }
+    /// A filtered list split into the staples (by `tier`, then in `popular` order) and everything
+    /// else (as given). The pickers' tier puts a picked main muscle before a picked helper.
+    public static func split(_ list: [Exercise], tier: (Exercise) -> Int = { _ in 0 }) -> (popular: [Exercise], rest: [Exercise]) {
+        let top = list.filter { rank[$0.id] != nil }.map { ($0, tier($0)) }
+            .sorted { $0.1 != $1.1 ? $0.1 < $1.1 : rank[$0.0.id]! < rank[$1.0.id]! }.map(\.0)
         return (top, list.filter { rank[$0.id] == nil })
     }
 }
