@@ -863,7 +863,7 @@ def install(app, store):
         hooks.remove((await fields(req)).get("id", [""])[0])
         return to("/connect")
 
-    # MARK: Settings (language, backup)
+    # MARK: Settings (language, backup, Apple ID signing)
 
     def settings_page(note=""):
         lang = LANG.get()
@@ -886,9 +886,51 @@ def install(app, store):
                 row(t("Daily copies"), end=t("{n} of the latest {k} days", n=st["copies"], k=30)),
                 row(t("Watch recordings"), end=t("{n} files", n=st["motion"]))]
         run = f'<form method="post" action="/settings/backup/run" style="display:block;margin-top:12px"><button>{t("Back up now")}</button></form>' if st["on"] else ""
-        body = (note + head(t("Settings"), t("Language and backup"))
+
+        sg = app.state.signing.status()
+        now_ts = dt.datetime.now().timestamp()
+        if sg["running"]:
+            sig_title = t("Refreshing Apple ID signing…")
+            sig_sub = escape(t(sg["stage"])) if sg["stage"] else t("This takes about a minute.")
+        elif sg["available"] and sg["error"]:
+            sig_title = t("Apple ID signing")
+            sig_sub = f'<span class="warn">{escape(t(sg["error"]))}</span>'
+        elif sg["at"]:
+            sig_title = t("Apple ID signing")
+            sig_sub = t("Last refreshed {d}", d=fd(dt.datetime.fromtimestamp(sg["at"]), "wdt"))
+        elif not sg["available"]:
+            sig_title = t("Apple ID signing")
+            sig_sub = t("Run on your Mac (requires macOS and Xcode)")
+        else:
+            sig_title = t("Apple ID signing")
+            sig_sub = t("Not refreshed from this server yet")
+        sig_rows = [row(sig_title, sig_sub)]
+        if sg["device"]:
+            sig_rows.append(row(t("Device"), end=escape(sg["device"])))
+        if sg["expires"]:
+            exp_dt = dt.datetime.fromtimestamp(sg["expires"])
+            left_s = sg["expires"] - now_ts
+            if left_s <= 0:
+                exp_text = f'<span class="warn">{t("Expired {d}", d=fd(exp_dt, "wdt"))}</span>'
+            else:
+                days = math.ceil(left_s / 86400)
+                exp_val = f'{fd(exp_dt, "wdt")} · {tn(days, "{n} day left", "{n} days left")}'
+                exp_text = f'<span class="warn">{exp_val}</span>' if days <= 1 else exp_val
+            sig_rows.append(row(t("Valid until"), end=exp_text))
+        if sg["available"]:
+            sig_btn = (f'<form method="post" action="/settings/signing/run" style="display:block;margin-top:12px">'
+                       f'<button{" disabled" if sg["running"] else ""}>{t("Refreshing…" if sg["running"] else "Refresh Apple ID signing")}</button></form>')
+            sig_lede = t("Free Apple ID profiles expire every 7 days, which stops Hexplate from opening. Keep your iPhone unlocked on USB or the same Wi-Fi, then click to re-sign with Xcode and reinstall without losing data.")
+        else:
+            sig_btn = f'<p class="note" style="margin-top:10px">{t("This server runs on Linux without Xcode. Refresh signing from your Mac with Hexplate Sign.app (or python -m hexserver sign) — the new expiry date syncs back here automatically.")}</p>'
+            sig_lede = t("Free Apple ID profiles expire every 7 days, which stops Hexplate from opening. Re-signing requires Xcode on macOS with your iPhone unlocked on USB or the same Wi-Fi.")
+        poll = '<script>setTimeout(()=>location.replace("/settings"),3000)</script>' if sg["running"] else ""
+
+        body = (note + poll + head(t("Settings"), t("Language, backup and signing"))
                 + section(t("Language"), f'<form method="post" action="/settings/lang"><div class="seg" role="group">{langs}</div></form>',
                           lede=t("The dashboard's language. The phone keeps its own."))
+                + section(t("Apple ID signing"), group(sig_rows) + sig_btn,
+                          lede=sig_lede)
                 + section(t("Backup"), group(rows) + run,
                           lede=t("The Watch hands each set's recording to the phone, then deletes its own. The phone sends it to this Mac, which saves it and copies it to the backup; only then does the phone delete its copy. Your training log stays on the phone and is kept here in every version, copied to the backup a minute after each sync.")))
         return page("Settings", body)
@@ -914,3 +956,8 @@ def install(app, store):
         copied, ok = backup.everything()
         msg = t("Backed up: {n} new Watch recordings and the database.", n=copied) if ok else t("Backup failed.")
         return settings_page(f'<div class="banner"><b>{msg}</b></div>')
+
+    @app.post("/settings/signing/run")
+    async def settings_signing_run():
+        app.state.signing.start()
+        return to("/settings")

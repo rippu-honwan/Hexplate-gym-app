@@ -15,6 +15,7 @@ from fastapi.responses import JSONResponse
 
 from . import dashboard
 from .backup import Backup
+from .signing import Signing
 from .store import Conflict, Store
 from .webhooks import Webhooks
 
@@ -28,6 +29,7 @@ def create_app(folder: Path | None = None) -> FastAPI:
     app.state.webhooks = webhooks = Webhooks(store.db)
     # A data folder given (the tests) keeps its backup beside it, never in your iCloud Drive.
     app.state.backup = backup = Backup(store, Path(folder) / "backup" if folder else None)
+    app.state.signing = Signing(store, derived_dir=Path(folder) / "signing-build" if folder else None)
 
     def err(status, message, **extra):
         return JSONResponse({"error": message, **extra}, status_code=status)

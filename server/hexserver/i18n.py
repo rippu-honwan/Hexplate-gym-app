@@ -183,7 +183,37 @@ ZH = {
     "Test sent.": "測試已送出。", "Test failed.": "測試失敗。", "Workout finished": "完成訓練", "New personal record": "新個人紀錄", "Weigh-in logged": "記錄體重",
     "MCP server": "MCP 伺服器", "for AI assistants": "給 AI 助理使用",
     # Settings
-    "Language and backup": "語言與備份", "Language": "語言", "The dashboard's language. The phone keeps its own.": "這個網頁的語言。手機的語言另外設定。",
+    "Language, backup and signing": "語言、備份與簽署", "Language": "語言",
+    "The dashboard's language. The phone keeps its own.": "這個網頁的語言。手機的語言另外設定。",
+    "Apple ID signing": "Apple ID 驗證", "Refresh Apple ID signing": "更新 Apple ID 驗證",
+    "Refreshing Apple ID signing…": "正在更新 Apple ID 驗證…", "Refreshing…": "更新中…",
+    "This takes about a minute.": "大約需要一分鐘。", "Not refreshed from this server yet": "尚未透過此伺服器更新",
+    "Last refreshed {d}": "上次更新 {d}", "Device": "裝置", "Valid until": "有效期限",
+    "Expired {d}": "已於 {d} 過期", "{n} day left": "剩餘 {n} 天", "{n} days left": "剩餘 {n} 天",
+    "Checking iPhone…": "正在檢查 iPhone…", "Building and renewing Apple ID signing…": "正在編譯並更新 Apple ID 驗證…",
+    "Installing on iPhone…": "正在安裝到 iPhone…",
+    "Free Apple ID profiles expire every 7 days, which stops Hexplate from opening. Keep your iPhone unlocked on USB or the same Wi-Fi, then click to re-sign with Xcode and reinstall without losing data.":
+        "免費 Apple ID 驗證每 7 天過期，過期後將無法開啟 Hexplate。請保持 iPhone 解鎖並連接 USB 或同一 Wi-Fi，按下按鈕即可透過 Xcode 重新簽署並安裝（不會遺失資料）。",
+    "No paired iPhone found. Connect your iPhone to this Mac by USB or Wi-Fi and unlock it.":
+        "找不到已配對的 iPhone。請將 iPhone 以 USB 或 Wi-Fi 連接到此 Mac 並解鎖。",
+    "Xcode could not renew signing. Open Xcode › Settings › Accounts and sign in with your Apple ID.":
+        "Xcode 無法更新簽署。請開啟 Xcode › 設定 › 帳號並登入 Apple ID。",
+    "iPhone is locked. Unlock your iPhone and try again.": "iPhone 已鎖定，請解鎖後再試。",
+    "Could not reach your iPhone. Keep it unlocked on the same Wi-Fi or connect it by USB.":
+        "無法連線到 iPhone。請保持手機解鎖並連上同一 Wi-Fi，或改用 USB 連接。",
+    "Enable Developer Mode on your iPhone (Settings › Privacy & Security › Developer Mode).":
+        "請在 iPhone 開啟開發者模式（設定 › 隱私權與安全性 › 開發者模式）。",
+    "Free Apple ID limit (3 sideloaded apps) reached on this iPhone. Remove another sideloaded app and try again.":
+        "此 iPhone 已達免費 Apple ID 上限（最多 3 個自簽 App），請先移除其他自簽 App 再試。",
+    "app/Local.xcconfig is missing. Add DEVELOPMENT_TEAM = <TEAM_ID> first.":
+        "找不到 app/Local.xcconfig，請先設定 DEVELOPMENT_TEAM。",
+    "Run on your Mac (requires macOS and Xcode)": "請在 Mac 上更新（需要 macOS 與 Xcode）",
+    "This server runs on Linux without Xcode. Refresh signing from your Mac with Hexplate Sign.app (or python -m hexserver sign) — the new expiry date syncs back here automatically.":
+        "此伺服器執行於 Linux（沒有 Xcode）。請在 Mac 上使用桌面 Hexplate Sign.app（或 python -m hexserver sign）更新驗證，新的有效期限會自動同步回來顯示。",
+    "Free Apple ID profiles expire every 7 days, which stops Hexplate from opening. Re-signing requires Xcode on macOS with your iPhone unlocked on USB or the same Wi-Fi.":
+        "免費 Apple ID 驗證每 7 天過期，過期後將無法開啟 Hexplate。重新簽署需要透過 Mac 上的 Xcode，並保持 iPhone 解鎖且連接 USB 或同一 Wi-Fi。",
+    "Apple ID signing requires macOS with Xcode. Run signing refresh on your Mac.":
+        "Apple ID 驗證需要 macOS 與 Xcode，請在你的 Mac 上執行更新。",
     "Backup": "備份", "Backup is on": "備份已開啟", "Backup is off": "備份已關閉", "Turn on": "開啟", "Turn off": "關閉", "Back up now": "立即備份", "Status": "狀態",
     "Last backup {d}": "上次備份 {d}", "Not backed up yet": "尚未備份", "Folder": "資料夾", "Daily copies": "每日副本",
     "{n} of the latest {k} days": "保留最近 {k} 天中的 {n} 份", "Watch recordings": "手錶紀錄", "{n} files": "{n} 個檔案",

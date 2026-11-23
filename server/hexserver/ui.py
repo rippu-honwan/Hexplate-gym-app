@@ -123,6 +123,7 @@ tr.dim td { color:var(--ink2); } tr.off td { color:var(--ink2); text-decoration:
 .btn, button { font:600 13px/1 -apple-system, BlinkMacSystemFont, sans-serif; background:var(--accent); color:var(--on-accent); border:0;
   border-radius:8px; padding:8px 14px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; text-decoration:none; }
 .btn:hover, button:hover { filter:brightness(1.06); text-decoration:none; }
+button:disabled { opacity:.55; cursor:default; filter:none; }
 .btn.plain, button.plain { background:var(--fill); color:var(--ink); font-weight:500; }
 button.small, .btn.small { padding:5px 10px; font-size:12px; }
 button.danger { background:var(--fill); color:var(--warn); }
