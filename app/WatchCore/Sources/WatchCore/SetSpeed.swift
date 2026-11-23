@@ -49,25 +49,6 @@ struct Stillness {
     func stillFor(at t: Double) -> Double { stillSince.map { t - $0 } ?? 0 }
 }
 
-/// MyGym: one rep counted twice (the two counters, or a counter's "two at once") came within a
-/// fraction of a second of the one before. A rep is let through only after at least `minGap`
-/// seconds and `relGap` times the median gap so far. Replayed on 29 checked sets of 11-14 Nov:
-/// mean error 2.21 -> 1.97 reps, overcount +0.97 -> +0.38.
-struct RepGate {
-    static let minGap = 0.8, relGap = 0.35
-    private(set) var times: [Double] = []
-
-    mutating func admit(_ t: Double) -> Bool {
-        if let last = times.last {
-            let gaps = zip(times.dropFirst(), times).map { $0 - $1 }.sorted()
-            let median = gaps.isEmpty ? 0 : gaps[gaps.count / 2]
-            if t - last < max(RepGate.minGap, RepGate.relGap * median) { return false }
-        }
-        times.append(t)
-        return true
-    }
-}
-
 /// MyGym: the rest is long enough by heart rate. From the readings since the rest began
 /// ([seconds since then, bpm]): at least `minRest` s in, the heart rate `drop` bpm or more under
 /// its high of the first 40 s, and levelled off (it moved no more than 3 bpm over the last 20 s:

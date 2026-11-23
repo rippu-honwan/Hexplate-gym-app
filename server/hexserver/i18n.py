@@ -218,7 +218,6 @@ ZH = {
     "Last backup {d}": "上次備份 {d}", "Not backed up yet": "尚未備份", "Folder": "資料夾", "Daily copies": "每日副本",
     "{n} of the latest {k} days": "保留最近 {k} 天中的 {n} 份", "Watch recordings": "手錶紀錄", "{n} files": "{n} 個檔案",
     "Backed up: {n} new Watch recordings and the database.": "已備份：{n} 個新的手錶紀錄和資料庫。", "Backup failed.": "備份失敗。",
-    "How your data moves": "資料流程",
     "The Watch hands each set's recording to the phone, then deletes its own. The phone sends it to this Mac, which saves it and copies it to the backup; only then does the phone delete its copy. Your training log stays on the phone and is kept here in every version, copied to the backup a minute after each sync.":
         "手錶把每組的紀錄交給手機後，就刪除自己的那份。手機再傳到這部 Mac，Mac 儲存後複製到備份；之後手機才刪除自己的那份。訓練紀錄會留在手機上，這裡會保存每個版本，並在每次同步一分鐘後複製到備份。",
     "Backup is off: the phone deletes the Watch's recordings as soon as this Mac has them.": "備份已關閉：這部 Mac 收到手錶紀錄後，手機就會刪除它的那份。",

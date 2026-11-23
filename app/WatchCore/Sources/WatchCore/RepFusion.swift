@@ -8,7 +8,7 @@ import Foundation
  *      has 5 and the speed counter under 0.6 times as many: a slow or wrist-turning movement.
  *      v2 took the larger of the two and so added both counters' extra reps.
  *   2. A rep within max(0.8 s, 0.35 x the median gap, from 3 gaps on) of the one before is the
- *      same rep (RepGate).
+ *      same rep (minimum-gap gate).
  *   3. The ends of a set: from 4 reps on, one that comes over 1.8 x the median gap after the one
  *      before waits, and counts only when the next one follows at a normal gap (else it was
  *      re-racking). At 5 reps, a first rep that stood 1.8 x the median gap before the second is

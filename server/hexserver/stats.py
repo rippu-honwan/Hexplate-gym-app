@@ -259,13 +259,3 @@ def measurements(state):
 
 def routines(state):
     return [r for r in (state or {}).get("routines") or [] if isinstance(r, dict) and r.get("id") is not None]
-
-
-def plan_by_weekday(state):
-    """{weekday 0=Sunday: [routine names]} from the weekly plan (`week`)."""
-    names = {r["id"]: r.get("name") or "Workout" for r in routines(state)}
-    out = {}
-    for k, v in ((state or {}).get("week") or {}).items():
-        ids = v if isinstance(v, list) else [v]
-        out[int(k)] = [names[i] for i in ids if i in names] if str(k).isdigit() else []
-    return out
