@@ -16,6 +16,11 @@ public struct StateDocument: Equatable, Sendable {
     public init(data: Data) throws(ReadError) {
         guard let value = try? JSONDecoder().decode(JSONValue.self, from: data) else { throw .notJSON }
         guard case .object(let object) = value else { throw .notAnObject }
+        try self.init(root: object)
+    }
+
+    /// Checks that an already-decoded JSON object is a state document before accepting it.
+    public init(root object: [String: JSONValue]) throws(ReadError) {
         guard case .array = object["workouts"] else { throw .missingWorkouts }
         root = object
     }
@@ -29,13 +34,17 @@ public struct StateDocument: Equatable, Sendable {
     }
 
     /// Makes a change to the document and stamps it for sync, the way the Capacitor app's store
-    /// does on every update (SyncStamps). A change that changes nothing leaves the document as it was.
+    /// does on every update (SyncStamps) plus Hexplate-only map stamps (HexStamps). A change that
+    /// changes nothing leaves the document as it was.
     public mutating func change(at wall: Double = (Date().timeIntervalSince1970 * 1000).rounded(), _ mutate: (inout [String: JSONValue]) -> Void) {
         let prev = root
         mutate(&root)
         Gyms.sync(&root, prev: prev, now: wall)   // the active gym's inventory and its copy in step
         guard root != prev else { return }
-        root["_ts"] = .number(SyncStamps.stampChange(prev: prev, next: &root, wall: wall))
+        let effectiveWall = max(wall, HexStamps.highestMealTs(prev) + 1)
+        let now = SyncStamps.stampChange(prev: prev, next: &root, wall: effectiveWall)
+        HexStamps.stampMeals(prev: prev, next: &root, now: now)
+        root["_ts"] = .number(now)
     }
 
     /// Sets one top-level key. Everything else stays as it is.

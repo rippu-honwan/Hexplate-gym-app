@@ -257,5 +257,8 @@ def measurements(state):
 
 # MARK: plan
 
-def routines(state):
-    return [r for r in (state or {}).get("routines") or [] if isinstance(r, dict) and r.get("id") is not None]
+def routines(state, include_clones: bool = False):
+    return [
+        r for r in (state or {}).get("routines") or []
+        if isinstance(r, dict) and r.get("id") is not None and (include_clones or r.get("aiClone") is not True)
+    ]

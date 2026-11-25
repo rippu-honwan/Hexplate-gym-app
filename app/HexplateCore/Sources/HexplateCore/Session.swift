@@ -593,7 +593,18 @@ public enum Session {
     public static func begin(_ s: Object, routineIds: [String], bodyweight: Double?, id: String, now: Double, day: String, catalog: ExerciseCatalog, today: String? = nil) -> Object {
         let routines = (s["routines"]?.arrayValue ?? []).compactMap(\.object)
         var seen = Set<String>()
-        let picked = routineIds.filter { seen.insert($0).inserted }.compactMap { rid in routines.first { $0["id"]?.stringValue == rid } }
+        let picked: [Object] = routineIds.compactMap { rid in
+            guard var r = routines.first(where: { $0["id"]?.stringValue == rid }) else { return nil }
+            // Clone-and-Pin 1a: rewrite an aiClone's ID to its live parent before Session.entries
+            // so Programmes, progression, and history credit the parent while executing the
+            // clone's modified exercises. Orphan clones (parent deleted) run under their own ID.
+            let canonicalId = Schedule.canonical(s, rid)
+            if canonicalId != rid {
+                r["id"] = .string(canonicalId)
+            }
+            guard seen.insert(canonicalId).inserted else { return nil }
+            return r
+        }
         let names = picked.compactMap { $0["name"]?.stringValue }
         let name = names.isEmpty ? "Freestyle" : names.count <= 3 ? names.joined(separator: " + ") : "\(names[0]) + \(names[1]) + \(names.count - 2) more"
         return ["id": .string(id), "d": .string(day), "start": .number(now), "routineIds": .array(picked.compactMap { $0["id"] }),

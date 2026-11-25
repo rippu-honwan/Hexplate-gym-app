@@ -85,8 +85,11 @@ public enum WatchLink {
                             "entries": .array((a["entries"]?.arrayValue ?? []).compactMap(\.object).map { watchEntry($0, s, c, settings) })])
         }
         let todayIds = Schedule.routineIds(s, on: today, today: today)
-        let others = (s["routines"]?.arrayValue ?? []).compactMap { $0.object?["id"]?.stringValue }
-            .filter { !todayIds.contains($0) }.prefix(8).compactMap { session([$0]) }
+        let todayCanonical = Set(todayIds.map { Schedule.canonical(s, $0) })
+        let others = (s["routines"]?.arrayValue ?? []).compactMap(\.object)
+            .filter { !RoutineOps.isAIClone($0) }
+            .compactMap { $0["id"]?.stringValue }
+            .filter { !todayCanonical.contains($0) }.prefix(8).compactMap { session([$0]) }
         return .object(["today": todayIds.isEmpty ? .null : session(todayIds) ?? .null, "others": .array(others)])
     }
 
@@ -224,7 +227,13 @@ public enum WatchLink {
             let ids = (ev["routineIds"]?.arrayValue ?? []).compactMap(\.stringValue)
             let bw = n(ev["bw"]).flatMap { $0 > 0 && $0 < 700 ? $0 : nil }
             let start = at ?? now
-            s["active"] = .object(Session.begin(s, routineIds: ids, bodyweight: bw, id: wid ?? newId, now: start, day: wid != nil && at != nil ? Day.iso(start) : today, catalog: c))
+            let day = wid != nil && at != nil ? Day.iso(start) : today
+            // Clone-and-Pin 1b: Watch snapshots carry canonical parent IDs (1a), so resolve
+            // through any aiClone pinned on `day`. Midnight boundary: if a snapshot built on day D
+            // starts after 00:00 on D+1, `Day.iso(start)` resolves on D+1, finds no D pin, and
+            // starts the parent routine.
+            let resolvedIds = Schedule.resolvePin(s, ids: ids, day: day)
+            s["active"] = .object(Session.begin(s, routineIds: resolvedIds, bodyweight: bw, id: wid ?? newId, now: start, day: day, catalog: c))
         case "start":
             // The watch started a workout, the phone started the same one before that start reached it
             // (the phone app was asleep): one workout, not two. The phone's takes the watch's id, so

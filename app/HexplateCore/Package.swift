@@ -13,5 +13,6 @@ let package = Package(
             dependencies: ["HexplateCore"],
             resources: [.copy("Fixtures")]
         ),
-    ]
+    ],
+    swiftLanguageModes: [.v6]
 )

@@ -8,29 +8,122 @@ public enum RoutineOps {
 
     // MARK: Routines
 
-    /// Removes a routine and every pointer to it: its weekdays (a day left empty loses its key)
-    /// and the per-date reschedules that name it.
+    /// Ephemeral date-scoped AI Coach clones (`aiClone: true`) live in `routines[]` for openGym
+    /// sync compatibility but stay hidden from user-facing routine lists.
+    public static func isAIClone(_ routine: Object) -> Bool {
+        routine["aiClone"] == .bool(true)
+    }
+
+    /// Routine IDs currently referenced by any schedule pointer or active session.
+    /// When `dayPlanFrom` is provided, only `dayPlan` pins on or after `dayPlanFrom` count as
+    /// active references (so past pins do not keep expired `aiClone` routines alive forever).
+    static func referencedRoutineIds(in s: Object, dayPlanFrom: String? = nil) -> Set<String> {
+        var ids = Set<String>()
+        for (iso, value) in s["dayPlan"]?.object ?? [:] {
+            if let from = dayPlanFrom, iso < from { continue }
+            if let id = value.stringValue, !id.isEmpty, id != Schedule.rest { ids.insert(id) }
+        }
+        for value in s["week"]?.object?.values ?? [:].values {
+            if let id = value.stringValue, !id.isEmpty { ids.insert(id) }
+            for id in Schedule.strings(value) where !id.isEmpty { ids.insert(id) }
+        }
+        for id in Schedule.strings(s["rotation"]?.object?["sequence"]) where !id.isEmpty && id != Schedule.rest {
+            ids.insert(id)
+        }
+        for id in Schedule.strings(s["queue"]?.object?["ids"]) where !id.isEmpty {
+            ids.insert(id)
+        }
+        if let active = s["active"]?.object {
+            for id in Schedule.strings(active["routineIds"]) where !id.isEmpty { ids.insert(id) }
+            if let id = active["routineId"]?.stringValue, !id.isEmpty { ids.insert(id) }
+        }
+        return ids
+    }
+
+    /// Removes a routine, any `aiClone` routines derived from it (1d cascade), and every pointer to
+    /// them in `week` (a day left empty loses its key) and `dayPlan`.
     public static func deleteRoutine(_ s: inout Object, id: String) {
-        s["routines"] = .array((s["routines"]?.arrayValue ?? []).filter { $0.object?["id"] != .string(id) })
+        let raw = s["routines"]?.arrayValue ?? []
+        var toDelete: Set<String> = [id]
+        for r in raw.compactMap(\.object) where isAIClone(r) && r["cloneOf"] == .string(id) {
+            if let cid = r["id"]?.stringValue { toDelete.insert(cid) }
+        }
+        s["routines"] = .array(raw.filter { v in
+            guard let rid = v.object?["id"]?.stringValue else { return true }
+            return !toDelete.contains(rid)
+        })
         if var week = s["week"]?.object {
             for (day, v) in week {
                 let ids = v.stringValue.map { [$0] } ?? Schedule.strings(v)
-                guard ids.contains(id) else { continue }
-                let left = ids.filter { $0 != id }
+                guard ids.contains(where: toDelete.contains) else { continue }
+                let left = ids.filter { !toDelete.contains($0) }
                 week[day] = left.isEmpty ? nil : .array(left.map(JSONValue.string))
             }
             s["week"] = .object(week)
         }
         if var plan = s["dayPlan"]?.object {
-            for (iso, v) in plan where v == .string(id) { plan[iso] = nil }
+            for (iso, v) in plan where v.stringValue.map(toDelete.contains) == true { plan[iso] = nil }
             s["dayPlan"] = .object(plan)
         }
     }
 
+    /// Garbage-collects stale or past-orphan `aiClone` routines on app launch, clearing any past
+    /// `dayPlan` pins pointing to pruned clones:
+    /// 1. Clones not referenced by any current/future `dayPlan` (`iso >= today`), `week`,
+    ///    `rotation`, `queue`, or `active` with missing/invalid `ephemeralDate` or
+    ///    `ephemeralDate < today - maxAgeDays`.
+    /// 2. Orphan clones (parent deleted/missing) with missing/invalid `ephemeralDate` or
+    ///    `ephemeralDate < today` (keeping today's and future orphans runnable until their date passes).
+    public static func pruneExpiredClones(_ s: inout Object, today: String, maxAgeDays: Int = 30) {
+        guard let cutoff = Day.adding(-maxAgeDays, to: today),
+              let raw = s["routines"]?.arrayValue, !raw.isEmpty else { return }
+        let liveParents = Set(raw.compactMap(\.object).filter { !isAIClone($0) }.compactMap { $0["id"]?.stringValue })
+        let activeReferences = referencedRoutineIds(in: s, dayPlanFrom: today)
+
+        var kept: [JSONValue] = []
+        var prunedIds = Set<String>()
+        kept.reserveCapacity(raw.count)
+
+        for value in raw {
+            guard let r = value.object, isAIClone(r), let rid = r["id"]?.stringValue else {
+                kept.append(value)
+                continue
+            }
+            let ephem = r["ephemeralDate"]?.stringValue
+            let validDate = ephem.map { Programmes.isISO(.string($0)) } ?? false
+            let parentId = r["cloneOf"]?.stringValue
+            let isOrphan = (parentId == nil || parentId!.isEmpty || !liveParents.contains(parentId!))
+            let pruneOrphan = isOrphan && (!validDate || ephem! < today)
+            let pruneExpiredUnreferenced = !activeReferences.contains(rid) && (!validDate || ephem! < cutoff)
+
+            if pruneOrphan || pruneExpiredUnreferenced {
+                prunedIds.insert(rid)
+            } else {
+                kept.append(value)
+            }
+        }
+
+        if kept.count != raw.count {
+            s["routines"] = .array(kept)
+        }
+        if !prunedIds.isEmpty, var plan = s["dayPlan"]?.object {
+            var planChanged = false
+            for (iso, v) in plan where v.stringValue.map(prunedIds.contains) == true {
+                plan[iso] = nil
+                planChanged = true
+            }
+            if planChanged { s["dayPlan"] = .object(plan) }
+        }
+    }
+
     /// A copy under a new id: "Push (Copy)", and "Push (Copy 2)" for a copy of that.
+    /// Strips ephemeral AI clone markers so user-duplicated routines stay visible and are never GC'd.
     public static func copyRoutine(_ routine: Object, newId: String) -> Object {
         var copy = routine
         copy["id"] = .string(newId)
+        copy["aiClone"] = nil
+        copy["cloneOf"] = nil
+        copy["ephemeralDate"] = nil
         let name = routine["name"]?.stringValue ?? ""
         if let m = name.wholeMatch(of: /^(.*) \(Copy(?: (\d+))?\)$/) {
             copy["name"] = .string("\(m.1) (Copy \((m.2.flatMap { Int($0) } ?? 1) + 1))")

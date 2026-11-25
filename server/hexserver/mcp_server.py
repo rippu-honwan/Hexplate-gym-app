@@ -103,7 +103,7 @@ def routines(db):
     state = latest(db) or {}
     out = []
     for r in state.get("routines") or []:
-        if not isinstance(r, dict):
+        if not isinstance(r, dict) or r.get("aiClone") is True:
             continue
         exercises = []
         for e in r.get("ex") or []:

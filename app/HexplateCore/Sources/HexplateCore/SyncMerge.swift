@@ -14,7 +14,8 @@ public enum SyncMerge {
     public enum Failure: Error { case noBundle, script(String) }
 
     /// Both copies' entries kept, the newer copy deciding the rest (mergeStates(local, server)).
-    public static func merge(_ local: Object, _ server: Object) throws -> Object {
+    /// Internal so external callers go through `HexMerge.merge`, which isolates Hexplate-only keys.
+    static func merge(_ local: Object, _ server: Object) throws -> Object {
         let out = try call("merge", local, server)
         guard case .object(let o) = try JSONDecoder().decode(JSONValue.self, from: Data(out.toString().utf8)) else { throw Failure.script("not an object") }
         return o
@@ -22,10 +23,13 @@ public enum SyncMerge {
 
     /// How many workouts, weigh-ins, routines and custom exercises `s` added, changed or removed
     /// compared with `since`, plus one when anything else changed (countChanges).
-    public static func changes(_ s: Object, since: Object) throws -> Int {
+    /// Internal so external callers go through `HexMerge.changes`.
+    static func changes(_ s: Object, since: Object) throws -> Int {
         Int(try call("changes", s, since).toInt32())
     }
 
+    // Intentionally constructs a fresh JSContext per call (never a static JSContext) to keep
+    // execution isolated and Swift 6 concurrency-safe.
     static func call(_ name: String, _ a: Object, _ b: Object) throws -> JSValue {
         guard let url = Bundle.module.url(forResource: "sync", withExtension: "js"),
               let source = try? String(contentsOf: url, encoding: .utf8),

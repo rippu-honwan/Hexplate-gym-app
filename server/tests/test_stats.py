@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from hexserver.stats import is_warmup, weekly_muscle_sets
+from hexserver.stats import is_warmup, routines, weekly_muscle_sets
 
 FIX = Path(__file__).resolve().parents[2] / "app/HexplateCore/Tests/HexplateCoreTests/Fixtures"
 CASES = [(c, g) for c, g in zip(json.loads((FIX / "stats-cases.json").read_text()), json.loads((FIX / "stats-golden.json").read_text()))
@@ -20,3 +20,14 @@ def test_weekly_muscle_sets_match_opengym(case, golden):
 def test_warmups_by_phase_or_flag():
     assert is_warmup({"phase": "warmup"}) and is_warmup({"warmup": True})
     assert not is_warmup({"phase": "work", "warmup": True}) and not is_warmup({"type": "warmup"})
+
+
+def test_routines_filters_ai_clones_by_default():
+    state = {
+        "routines": [
+            {"id": "push", "name": "Push", "ex": []},
+            {"id": "ai-2026-11-25-p", "name": "Push", "ex": [], "aiClone": True, "cloneOf": "push"},
+        ]
+    }
+    assert [r["id"] for r in routines(state)] == ["push"]
+    assert [r["id"] for r in routines(state, include_clones=True)] == ["push", "ai-2026-11-25-p"]

@@ -56,7 +56,15 @@ struct PlanView: View {
                     .onMove { from, to in
                         model.change { s in
                             guard var list = s["routines"]?.arrayValue else { return }
-                            list.move(fromOffsets: from, toOffset: to)
+                            // Write reordered user routines back into their original slot indices so
+                            // any server-interleaved aiClone entries keep their positions.
+                            let slots = list.indices.filter {
+                                guard let r = list[$0].object, r["id"]?.stringValue != nil else { return false }
+                                return !RoutineOps.isAIClone(r)
+                            }
+                            var visible = slots.map { list[$0] }
+                            visible.move(fromOffsets: from, toOffset: to)
+                            for (slot, item) in zip(slots, visible) { list[slot] = item }
                             s["routines"] = .array(list)
                         }
                     }

@@ -68,21 +68,31 @@ final class AppModel {
         let name: String
         let symbol: String
         let slots: [[String: JSONValue]]
+        let isAIClone: Bool
+        let cloneOf: String?
     }
 
+    private func parseRoutine(_ v: JSONValue) -> Routine? {
+        guard let r = v.object, let id = r["id"]?.stringValue else { return nil }
+        return Routine(
+            id: id,
+            name: r["name"]?.stringValue ?? "",
+            symbol: Glyph.symbol(r["emoji"]?.stringValue),
+            slots: (r["ex"]?.arrayValue ?? []).compactMap(\.object),
+            isAIClone: RoutineOps.isAIClone(r),
+            cloneOf: r["cloneOf"]?.stringValue
+        )
+    }
+
+    /// User-visible routines only (ephemeral `aiClone` routines are hidden from lists/pickers).
     var routines: [Routine] {
-        (root["routines"]?.arrayValue ?? []).compactMap { v in
-            guard let r = v.object, let id = r["id"]?.stringValue else { return nil }
-            return Routine(
-                id: id,
-                name: r["name"]?.stringValue ?? "",
-                symbol: Glyph.symbol(r["emoji"]?.stringValue),
-                slots: (r["ex"]?.arrayValue ?? []).compactMap(\.object)
-            )
-        }
+        (root["routines"]?.arrayValue ?? []).compactMap(parseRoutine).filter { !$0.isAIClone }
     }
 
-    func routine(_ id: String) -> Routine? { routines.first { $0.id == id } }
+    /// Looks up any routine by ID, including ephemeral `aiClone` routines pinned in `dayPlan`.
+    func routine(_ id: String) -> Routine? {
+        (root["routines"]?.arrayValue ?? []).first { $0.object?["id"]?.stringValue == id }.flatMap(parseRoutine)
+    }
 
     // MARK: Writing
 
@@ -196,6 +206,29 @@ final class AppModel {
             load(doc)
         } catch {
             errorMessage = "The server's copy could not be saved. Nothing was changed. \(error.localizedDescription)"
+        }
+    }
+
+    /// Adopts a merged document from `HexMerge.merge` without restamping merged entries (except
+    /// Gyms-derived inventory deltas when a remote device switched `activeEquipId`), keeping the
+    /// running local workout (`active`).
+    ///
+    /// Deliberate departure from openGym's post-merge full restamping: preserves entry-level `_ts`,
+    /// `edited`, and `deleted` stamps untouched so cross-device HealthKit sync versions and meal
+    /// LWW stamps never inflate on merge, and never enqueues local HealthKit write-outbox items.
+    func takeMergedCopy(_ merged: [String: JSONValue]) throws {
+        var s = merged
+        s["active"] = root["active"]
+        do {
+            var doc = try StateDocument(root: s)
+            // Runs Gyms.sync(prev: s) so a remote `activeEquipId` change updates top-level
+            // inventories and stamps only Gyms-derived deltas; strict no-op otherwise.
+            doc.change { _ in }
+            try store.save(doc)
+            load(doc)
+        } catch {
+            errorMessage = "The merged copy could not be saved. Nothing was changed. \(error.localizedDescription)"
+            throw error
         }
     }
 

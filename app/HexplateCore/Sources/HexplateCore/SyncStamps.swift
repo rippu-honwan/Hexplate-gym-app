@@ -211,6 +211,8 @@ public enum SyncStamps {
         "_ts", "_rev", "_wid", "_wids", "_unstamped", "_prior", "active", "unit", "unitSet", "resetAt", "resetIds", "deleted", "edited", "undone", "routineOrder",
         "workouts", "routines", "customEx", "equipProfiles", "gymCards", "bodyweight", "measurements", "favEx",
         "exWeights", "balanceOverrides", "loadKind", "plates", "dbLoad", "dumbbells", "stackWeights", "exUnit", "dayNotes", "dayPhotos", "exMerged",
+        // Hexplate-only CRDT maps handled by HexStamps / HexMerge (never stamped into `edited`).
+        "meals",
     ]
     private static let perKey: Set<String> = ["week", "dayPlan", "exNotes", "barWeights", "exAliases", "programmes", "modules"]
     private static let editKeepMs = 180.0 * 86_400_000

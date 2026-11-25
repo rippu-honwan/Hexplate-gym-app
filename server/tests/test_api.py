@@ -179,3 +179,75 @@ def test_chinese_dashboard_and_settings(client):
     assert "Weekly volume" in client.get("/").text
     client.post("/settings/backup", data={"on": "0"}, headers=same)
     assert store.setting("backup") == "off" and "Backup is off" in client.get("/settings").text
+
+
+def test_unknown_hexplate_keys_preserved_across_write_paths(phone, client, tmp_path, monkeypatch):
+    """Store.put, PUT /api/data, Store.restore, and CLI import preserve unknown Hexplate keys
+    (meals, nutritionGoals, hexSchema, aiClone routine metadata) as deep-equal JSON values."""
+    from hexserver.__main__ import main
+
+    s = state()
+    s["hexSchema"] = 1
+    s["nutritionGoals"] = {"kcal": 2400, "proteinPerKg": 2.0, "carbs": 260, "fat": 70}
+    s["meals"] = {
+        "m1": {
+            "id": "m1", "date": "2026-11-25", "time": "12:30", "name": "Chicken Rice",
+            "kcal": 620, "protein": 48, "carbs": 72, "fat": 14, "source": "manual", "_ts": 1795500001000,
+        },
+        "m2": {"deleted": True, "_ts": 1795500002000},
+    }
+    s["routines"] = list(s.get("routines") or []) + [{
+        "id": "ai-2026-11-25-x", "name": "Upper", "emoji": "figureStrength",
+        "ex": [{"id": "0025", "sets": 2, "reps": 8}],
+        "aiClone": True, "cloneOf": s["routines"][0]["id"], "ephemeralDate": "2026-11-25",
+    }]
+
+    def strip_server_meta(doc):
+        return {k: v for k, v in doc.items() if k not in ("_rev", "_wid", "_wids", "active")}
+
+    # 1. PUT /api/data -> GET /api/data
+    res = phone.put("/api/data", json={"state": {**s, "active": {"id": "live"}}, "stamped": True})
+    assert res.status_code == 200
+    fetched = phone.get("/api/data").json()["state"]
+    assert strip_server_meta(fetched) == strip_server_meta(s)
+
+    # 2. Store.restore preserves deep-equal JSON values across revisions
+    store = phone.app.state.store
+    store.put({**s, "meals": {}})
+    restored = store.restore(1)
+    assert strip_server_meta(restored) == strip_server_meta(s)
+
+    # 3. CLI import preserves deep-equal JSON values
+    src = tmp_path / "hexplate-state.json"
+    src.write_text(json.dumps(s))
+    cli_data = tmp_path / "cli-data"
+    monkeypatch.setenv("HEXPLATE_DATA", str(cli_data))
+    monkeypatch.setattr("sys.argv", ["hexserver", "import", str(src)])
+    main()
+    _, imported = create_app(cli_data).state.store.current()
+    assert strip_server_meta(imported) == strip_server_meta(s)
+
+
+def test_plan_page_hides_ai_clones_from_list_but_resolves_pinned_day_name(client):
+    import datetime as dt
+
+    s = state()
+    today_iso = dt.date.today().isoformat()
+    parent_id = s["routines"][0]["id"]
+    parent_name = s["routines"][0]["name"]
+    s["routines"] = list(s["routines"]) + [{
+        "id": "ai-clone-today",
+        "name": parent_name,
+        "ex": [{"id": "0025", "sets": 2, "reps": 8}],
+        "aiClone": True,
+        "cloneOf": parent_id,
+        "ephemeralDate": today_iso,
+    }]
+    s["dayPlan"] = {today_iso: "ai-clone-today"}
+    client.app.state.store.put(s)
+
+    html = client.get("/plan").text
+    # Routine count header excludes the ephemeral aiClone.
+    assert f"{len(state()['routines'])} routines" in html or f"{len(state()['routines'])} routine" in html
+    # Pinned day still displays the routine's name on the weekly schedule.
+    assert parent_name in html

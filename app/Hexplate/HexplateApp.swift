@@ -47,6 +47,7 @@ struct HexplateApp: App {
                 }
                 .task {
                     model.backupIfDue()
+                    model.change { RoutineOps.pruneExpiredClones(&$0, today: model.today) }
                     KeyboardDismisser.install()
                     WatchBridge.shared.start(model: model, timer: timer)
                     WidgetSync.write(model)

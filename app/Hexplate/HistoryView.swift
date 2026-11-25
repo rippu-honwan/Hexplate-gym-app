@@ -195,7 +195,9 @@ struct LogPastWorkoutSheet: View {
         }
     }
 
-    private var routines: [AppModel.Object] { (model.root["routines"]?.arrayValue ?? []).compactMap(\.object) }
+    private var routines: [AppModel.Object] {
+        (model.root["routines"]?.arrayValue ?? []).compactMap(\.object).filter { !RoutineOps.isAIClone($0) }
+    }
     private var choosing: Binding<Bool> { Binding(get: { !sameDay.isEmpty }, set: { if !$0 { sameDay = [] } }) }
     private func replaceLabel(_ w: AppModel.Object) -> String {
         sameDay.count > 1 ? "Replace · " + (w["name"]?.stringValue ?? "") : "Replace"

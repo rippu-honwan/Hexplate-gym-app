@@ -41,6 +41,11 @@ targets:
         # Same id as the Capacitor app on purpose: Hexplate installs over it.
         PRODUCT_BUNDLE_IDENTIFIER: com.rippuhonwan.mygym
         SWIFT_VERSION: "6.0"
+        # Explicit pins of current effective Swift 6 concurrency defaults so future Xcode upgrades
+        # cannot silently flip nonisolated async execution onto @MainActor.
+        SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
+        SWIFT_APPROACHABLE_CONCURRENCY: NO
+        SWIFT_STRICT_CONCURRENCY: complete
         TARGETED_DEVICE_FAMILY: "1"
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: Hexplate

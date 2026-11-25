@@ -30,6 +30,22 @@ def _has(s, rid):
     return any(r.get("id") == rid for r in _routines(s))
 
 
+def _canonical(s, rid):
+    """Resolves an aiClone ID to its parent routine ID only when that parent still exists and is
+    not itself an aiClone (mirroring HexplateCore Schedule.canonical)."""
+    rs = _routines(s)
+    r = next((x for x in rs if x.get("id") == rid), None)
+    if not r or r.get("aiClone") is not True:
+        return rid
+    parent_id = r.get("cloneOf")
+    if not isinstance(parent_id, str) or not parent_id:
+        return rid
+    parent = next((x for x in rs if x.get("id") == parent_id), None)
+    if not parent or parent.get("aiClone") is True:
+        return rid
+    return parent_id
+
+
 def _rids(w):
     if isinstance(w.get("routineIds"), list):
         return _strings(w["routineIds"])
@@ -116,7 +132,13 @@ def queue_done(s):
 
 def _pins(s, remaining, today):
     plan = s.get("dayPlan") if isinstance(s.get("dayPlan"), dict) else {}
-    return sorted(((iso, v) for iso, v in plan.items() if iso >= today and isinstance(v, str) and v in remaining))
+    out = []
+    for iso, v in plan.items():
+        if iso >= today and isinstance(v, str):
+            cid = _canonical(s, v)
+            if cid in remaining:
+                out.append((iso, cid))
+    return sorted(out)
 
 
 def _next_on(s, remaining, on, today):
@@ -141,9 +163,12 @@ def _queue_live_on(s, iso, today):
 
 def _pin_state(s, rid):
     q = queue(s)
-    if not q or not rid or rid not in q["ids"]:
+    if not q or not rid:
         return None
-    return "done" if _done(s, q, rid) else "open"
+    cid = _canonical(s, rid)
+    if cid not in q["ids"]:
+        return None
+    return "done" if _done(s, q, cid) else "open"
 
 
 def schedule_mode(s):

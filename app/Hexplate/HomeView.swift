@@ -114,6 +114,7 @@ struct HomeView: View {
 
     @ViewBuilder private var today: some View {
         let ids = Schedule.routineIds(model.root, on: model.today, today: model.today)
+        let canonicalIds = Set(ids.map { Schedule.canonical(model.root, $0) })
         let done = model.history?.workouts.filter { $0.date == model.today } ?? []
         if ids.isEmpty && done.isEmpty {
             Label("Rest day", systemImage: "moon.fill")
@@ -121,7 +122,8 @@ struct HomeView: View {
         }
         ForEach(ids, id: \.self) { id in
             if let routine = model.routine(id) {
-                let logged = done.first { $0.routineId == id }
+                let cid = Schedule.canonical(model.root, id)
+                let logged = done.first { $0.routineId == cid }
                 HStack {
                     Label {
                         VStack(alignment: .leading, spacing: 2) {
@@ -152,7 +154,7 @@ struct HomeView: View {
             }
         }
         // Trained today on something the plan did not hold.
-        ForEach(done.filter { w in !ids.contains(w.routineId ?? "") }) { w in
+        ForEach(done.filter { w in !canonicalIds.contains(w.routineId ?? "") }) { w in
             Label(w.name ?? "Workout", systemImage: "checkmark.circle.fill")
         }
     }
@@ -225,7 +227,7 @@ struct DaySwapSheet: View {
 
     var body: some View {
         let plan = model.root["dayPlan"]?.object ?? [:]
-        let current = Schedule.routineIds(model.root, on: iso, today: model.today)
+        let current = Set(Schedule.routineIds(model.root, on: iso, today: model.today).map { Schedule.canonical(model.root, $0) })
         var weekly = model.root
         weekly["dayPlan"] = .object(plan.filter { $0.key != iso })
         let weeklyNames = Schedule.routineIds(weekly, on: iso, today: model.today).compactMap { model.routine($0)?.name }

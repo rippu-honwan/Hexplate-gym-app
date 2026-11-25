@@ -39,7 +39,7 @@ extension AppModel {
 
     /// "Save as routine": the workout's exercise setup as a new routine (session-routines.js). Its id.
     func saveAsRoutine(_ w: Object) -> String? {
-        let routines = (root["routines"]?.arrayValue ?? []).compactMap(\.object)
+        let routines = (root["routines"]?.arrayValue ?? []).compactMap(\.object).filter { !RoutineOps.isAIClone($0) }
         guard let r = SessionCopy.routine(from: w, name: w["name"]?.stringValue, routines: routines, catalog: catalog) else {
             errorMessage = "Nothing logged yet"; return nil
         }
@@ -530,8 +530,9 @@ struct WorkoutView: View {
     /// the note and name, progression, and throwing the session away.
     @ViewBuilder private var sessionMenu: some View {
         let a = model.active ?? [:]
-        let inSession = Set((a["routineIds"]?.arrayValue ?? []).compactMap(\.stringValue))
+        let inSession = Set((a["routineIds"]?.arrayValue ?? []).compactMap(\.stringValue).map { Schedule.canonical(model.root, $0) })
         let routines = (model.root["routines"]?.arrayValue ?? []).compactMap(\.object)
+        let addableRoutines = routines.filter { !RoutineOps.isAIClone($0) }
         Section("Workout settings") {
             Picker(selection: Binding(get: { model.defaultRest }, set: { model.set("restSec", .number($0)) })) {
                 Text("No timer").tag(0.0)
@@ -551,11 +552,11 @@ struct WorkoutView: View {
                 noteText = a["note"]?.stringValue ?? ""; editingSessionNote = true
             }
             if !model.isEditingSaved { Menu("Add routine", systemImage: "list.clipboard") {
-                ForEach(routines.indices, id: \.self) { i in
-                    let r = routines[i], id = r["id"]?.stringValue ?? ""
+                ForEach(addableRoutines.indices, id: \.self) { i in
+                    let r = addableRoutines[i], id = r["id"]?.stringValue ?? ""
                     let empty = (r["ex"]?.arrayValue ?? []).isEmpty
                     Button(r["name"]?.stringValue ?? "Routine") { model.changeActive { ActiveEdit.addRoutine(&$0, model.root, r, catalog: model.catalog) } }
-                        .disabled(inSession.contains(id) || empty)
+                        .disabled(inSession.contains(Schedule.canonical(model.root, id)) || empty)
                 }
             } }
             Button("Rename workout", systemImage: "pencil") { noteText = a["name"]?.stringValue ?? ""; renaming = true }

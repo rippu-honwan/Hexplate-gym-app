@@ -16,6 +16,30 @@ public enum Schedule {
     static func routines(_ s: Object) -> [Object] { (s["routines"]?.arrayValue ?? []).compactMap(\.object) }
     public static func workouts(_ s: Object) -> [Object] { (s["workouts"]?.arrayValue ?? []).compactMap(\.object) }
     static func hasRoutine(_ s: Object, _ id: String) -> Bool { routines(s).contains { $0["id"] == .string(id) } }
+
+    /// Resolves an ephemeral `aiClone` ID to its parent routine ID (`cloneOf`) only when that
+    /// parent still exists as a non-clone routine. Orphan clones and ordinary routines return `id`.
+    public static func canonical(_ s: Object, _ id: String) -> String {
+        let list = routines(s)
+        guard let r = list.first(where: { $0["id"] == .string(id) }),
+              RoutineOps.isAIClone(r),
+              let parentId = r["cloneOf"]?.stringValue,
+              !parentId.isEmpty,
+              let parent = list.first(where: { $0["id"] == .string(parentId) }),
+              !RoutineOps.isAIClone(parent) else { return id }
+        return parentId
+    }
+
+    /// Clone-and-Pin 1b helper: maps any parent routine ID in `ids` to the `aiClone` pinned on
+    /// `day` when that pin exists and its parent is still live. Used by Watch `start` (not by
+    /// explicit parent starts in RoutineEditorView or Backfill).
+    public static func resolvePin(_ s: Object, ids: [String], day: String) -> [String] {
+        guard let pinId = s["dayPlan"]?.object?[day]?.stringValue,
+              !pinId.isEmpty, pinId != rest else { return ids }
+        let parentId = canonical(s, pinId)
+        guard parentId != pinId else { return ids }
+        return ids.map { $0 == parentId ? pinId : $0 }
+    }
     static func routineIds(of w: Object) -> [String] {
         if let ids = w["routineIds"]?.arrayValue { return ids.compactMap(\.stringValue) }
         return w["routineId"]?.stringValue.map { $0.isEmpty ? [] : [$0] } ?? []
@@ -69,8 +93,10 @@ public enum Schedule {
     /// The remaining sessions pinned to a day from today on, earliest first.
     private static func activePins(_ s: Object, _ remaining: [String], _ today: String) -> [(iso: String, id: String)] {
         (s["dayPlan"]?.object ?? [:]).compactMap { iso, v in
-            guard iso >= today, let id = v.stringValue, remaining.contains(id) else { return nil }
-            return (iso, id)
+            guard iso >= today, let raw = v.stringValue else { return nil }
+            let cid = canonical(s, raw)
+            guard remaining.contains(cid) else { return nil }
+            return (iso, cid)
         }.sorted { $0.iso < $1.iso }
     }
 
@@ -94,8 +120,10 @@ public enum Schedule {
 
     /// "open" or "done" for a queue session a day is pinned to, nil for anything else.
     static func pinState(_ s: Object, _ id: String?) -> String? {
-        guard let q = queue(s), let id, !id.isEmpty, q.ids.contains(id) else { return nil }
-        return isDone(s, q, id) ? "done" : "open"
+        guard let q = queue(s), let id, !id.isEmpty else { return nil }
+        let cid = canonical(s, id)
+        guard q.ids.contains(cid) else { return nil }
+        return isDone(s, q, cid) ? "done" : "open"
     }
 
     public struct QueueView: Equatable, Sendable {
@@ -288,7 +316,7 @@ public enum Schedule {
 
     private static func sweepPins(_ s: inout Object, _ ids: [String], _ today: String) {
         guard !ids.isEmpty, var plan = s["dayPlan"]?.object else { return }
-        for (iso, v) in plan where iso >= today && ids.contains(v.stringValue ?? "") { plan[iso] = nil }
+        for (iso, v) in plan where iso >= today && v.stringValue.map({ ids.contains(canonical(s, $0)) }) == true { plan[iso] = nil }
         s["dayPlan"] = .object(plan)
     }
 

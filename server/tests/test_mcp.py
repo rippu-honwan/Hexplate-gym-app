@@ -58,3 +58,24 @@ def test_stdio_handshake(tmp_path):
     assert tools == {"get_summary", "get_exercise_history", "get_routines", "get_schema", "run_query"}
     assert not result.is_error and '"workouts":4' in result.content[0].text.replace(" ", "")
     assert hashlib.md5((folder / "hexplate.sqlite3").read_bytes()).hexdigest() == before
+
+
+def test_routines_excludes_ai_clones(tmp_path):
+    doc = json.loads(FIXTURE.read_text())
+    parent_id = doc["routines"][0]["id"]
+    doc["routines"].append({
+        "id": "ai-2026-11-25-x",
+        "name": doc["routines"][0]["name"],
+        "ex": [{"id": "0025", "sets": 2, "reps": 8}],
+        "aiClone": True,
+        "cloneOf": parent_id,
+        "ephemeralDate": "2026-11-25",
+    })
+    store = Store(tmp_path)
+    store.put(doc)
+    store.db.close()
+
+    db = connect(tmp_path)
+    ids = [r["id"] for r in routines(db)["routines"]]
+    assert parent_id in ids
+    assert "ai-2026-11-25-x" not in ids

@@ -93,7 +93,7 @@ def duration(m):
 
 
 def routine_names(state, ids):
-    by_id = {r["id"]: r.get("name") or t("Workout") for r in S.routines(state)}
+    by_id = {r["id"]: r.get("name") or t("Workout") for r in S.routines(state, include_clones=True)}
     return [by_id[i] for i in ids if i in by_id]
 
 

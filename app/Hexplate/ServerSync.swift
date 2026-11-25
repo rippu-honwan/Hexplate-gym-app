@@ -220,13 +220,14 @@ final class ServerSync {
         }
     }
 
-    /// Both copies' entries kept (SyncMerge); saved as a change this device now holds, while the
-    /// marker keeps the old `ts`, so the merged copy still counts as unsent.
+    /// Both copies' entries kept (`HexMerge`); saved without restamping merged entries (except
+    /// Gyms-derived deltas) while keeping the old `base.ts`, so the merged copy still counts as
+    /// unsent. Runs synchronously on `@MainActor` (if ever moved off main, re-check
+    /// `model.root["_ts"]` before applying so concurrent edits are not lost).
     private func mergeIn(_ model: AppModel, _ server: Object, rev: Int) throws {
         let local = model.root
-        var merged = try SyncMerge.merge(local, server)
-        merged["active"] = local["active"]   // the running workout never syncs
-        model.change { $0 = merged }
+        let merged = try HexMerge.merge(local, server)
+        try model.takeMergedCopy(merged)
         base = .init(rev: rev, wid: server["_wid"]?.stringValue, ts: base?.ts ?? 0)
         note("merged with server rev \(rev)")
     }
@@ -261,8 +262,8 @@ final class ServerSync {
         switch plan {
         case .merge:
             guard let server else { break }
-            let merged = try SyncMerge.merge(local, server)
-            let here = try SyncMerge.changes(merged, since: local), there = try SyncMerge.changes(merged, since: server)
+            let merged = try HexMerge.merge(local, server)
+            let here = try HexMerge.changes(merged, since: local), there = try HexMerge.changes(merged, since: server)
             let dropped = ids(local).union(ids(server)).subtracting(ids(merged)).count
             line += ", merged \(count(merged)), would change \(here) here and \(there) on the server, \(dropped) workouts left out"
             try? JSONEncoder().encode(JSONValue.object(merged)).write(to: Self.dryFile, options: .atomic)

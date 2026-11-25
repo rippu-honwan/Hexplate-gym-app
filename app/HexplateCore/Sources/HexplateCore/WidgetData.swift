@@ -109,7 +109,8 @@ public enum WidgetData {
             let logged = (s["workouts"]?.arrayValue ?? []).compactMap(\.object).filter { $0["d"]?.stringValue == today }
             day["done"] = .bool(routines.allSatisfy { r in
                 let id = r["id"]?.stringValue ?? ""
-                return !queued.contains(id) && logged.contains { routineIdsOf($0).contains(id) }
+                let cid = Schedule.canonical(s, id)
+                return !queued.contains(cid) && logged.contains { routineIdsOf($0).contains(cid) }
             })
         }
         return day
