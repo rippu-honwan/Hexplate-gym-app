@@ -1,7 +1,38 @@
 import HexplateCore
 import SwiftUI
 
-/// Every logged workout, newest first, emitted as monthly sections inside ProfileView's List.
+/// Full workout history pushed from ProfileView; sheets (Import / Log past) remain owned by ProfileView.
+struct HistoryListView: View {
+    @Environment(AppModel.self) private var model
+    @Binding var importing: Bool
+    @Binding var logging: Bool
+    @State private var deleting: AppModel.Item?
+
+    var body: some View {
+        List {
+            HistoryContent(deleting: $deleting, importing: $importing)
+        }
+        .navigationTitle("History")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu("More", systemImage: "ellipsis") {
+                    Button("Log a past workout", systemImage: "calendar.badge.plus") { logging = true }
+                        .disabled(model.active != nil)
+                    Button("Import data", systemImage: "square.and.arrow.down") { importing = true }
+                }
+            }
+        }
+        .alert("Delete this workout?", isPresented: Binding(get: { deleting != nil }, set: { if !$0 { deleting = nil } }), presenting: deleting) { item in
+            Button("Delete", role: .destructive) { model.deleteWorkout(id: item.id) }
+            Button("Cancel", role: .cancel) {}
+        } message: { item in
+            Text("\(item.workout.name ?? "This workout") is removed from your history for good.")
+        }
+    }
+}
+
+/// Every logged workout, newest first, emitted as monthly sections inside HistoryListView's List.
 struct HistoryContent: View {
     @Environment(AppModel.self) private var model
     @Binding var deleting: AppModel.Item?

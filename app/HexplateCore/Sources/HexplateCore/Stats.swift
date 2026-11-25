@@ -355,4 +355,204 @@ public enum Stats {
             return RadarAxis(id: group.id, sets: round1(rawSets), target: round1(fourWeekTarget), pct: pct)
         }
     }
+
+    // MARK: Profile calendar, last week targets & 1RM progress
+
+    /// Workout IDs grouped by valid ISO date (`YYYY-MM-DD`), sorted chronologically within each day
+    /// by start time (stable tie-break by document order), skipping entries without a valid date or ID.
+    public static func workoutsByDay(_ s: Object) -> [String: [String]] {
+        var bucket: [String: [(id: String, at: Double, offset: Int)]] = [:]
+        for (offset, w) in (s["workouts"]?.arrayValue ?? []).compactMap(\.object).enumerated() {
+            guard let day = Report.valid(w["d"]?.stringValue),
+                  let id = w["id"]?.stringValue, !id.isEmpty else { continue }
+            bucket[day, default: []].append((id: id, at: Report.at(w), offset: offset))
+        }
+        var out: [String: [String]] = [:]
+        for (day, list) in bucket {
+            let sorted = list.sorted { a, b in
+                let cmp = a.at != b.at && !(a.at.isNaN || b.at.isNaN)
+                return cmp ? a.at < b.at : a.offset < b.offset
+            }
+            var seen = Set<String>()
+            let ids = sorted.map(\.id).filter { seen.insert($0).inserted }
+            if !ids.isEmpty { out[day] = ids }
+        }
+        return out
+    }
+
+    /// Effective sets per muscle for the previous profile week (`Day.adding(-7, to: today)`),
+    /// respecting `weekStart` and user `muscleTargets` overrides.
+    public static func lastWeekMuscleSets(_ s: Object, today: String, catalog: ExerciseCatalog) -> [MuscleWeek] {
+        guard Report.valid(today) != nil, let prev = Day.adding(-7, to: today) else {
+            return defaultTargets.map { slug, range in
+                let t = target(s, slug, range)
+                return MuscleWeek(slug: slug, sets: 0, low: t[0], high: t[1], status: 0 < t[0] - 1e-9 ? "below" : "in")
+            }
+        }
+        return weeklyMuscleSets(s, today: prev, catalog: catalog)
+    }
+
+    public struct RMDelta: Equatable, Sendable {
+        /// Current e1RM (or matched sum of qualifying groups for Overall), in the profile's stored unit.
+        public let current: Double
+        /// Baseline e1RM at the comparison timestamp (or matched sum for Overall), in the profile's stored unit.
+        public let baseline: Double
+        /// Signed change (`round1(current - baseline)`), in the profile's stored unit (kg or lb).
+        public let delta: Double
+        /// Signed percentage change (`round1(((current - baseline) / baseline) * 100)`), nil if `baseline <= 0`.
+        public let pct: Double?
+        /// Number of contributing groups (1 for individual groups; 1...4 for Overall).
+        public let groupCount: Int
+    }
+
+    public struct GroupRMProgress: Equatable, Identifiable, Sendable {
+        /// Canonical English key: "Chest", "Back", "Shoulders", "Legs", or "Overall".
+        public let id: String
+        /// Representative lift ID for individual groups (tappable to OneRepMaxView); nil for Overall or no-data group.
+        public let exerciseId: String?
+        /// Latest e1RM on or before `today` (individual groups) or sum of all groups with current data (Overall).
+        public let current: Double?
+        /// Comparison against the latest e1RM on or before `today - 28d` (nil if no data <= cutoff).
+        public let change4w: RMDelta?
+        /// Comparison against the earliest recorded e1RM (requires >= 2 logged sessions so a prior baseline exists).
+        public let changeFromFirst: RMDelta?
+    }
+
+    private static let rmGroups: [(id: String, standards: [String], slugs: Set<String>)] = [
+        ("Chest", ["0025", "0047", "0289"], ["chest"]),
+        ("Back", ["0027"], ["upper-back"]),
+        ("Shoulders", ["1162", "0405"], ["deltoids"]),
+        ("Legs", ["0043", "3593", "0042", "0032", "0117", "0085", "1060"], ["quadriceps", "hamstring", "gluteal"]),
+    ]
+
+    /// Single-pass 1RM series builder across all exercises for workouts with valid date `<= today`.
+    /// Produces the same per-workout best `Point` as `oneRepMaxSeries`, stably sorted by `day` ascending.
+    // ponytail: scans full workout history once per root change; cache keyed by (root._ts, today) if large histories ever lag.
+    static func allOneRepMaxSeries(_ s: Object, through today: String, catalog: ExerciseCatalog) -> [String: [Point]] {
+        guard Report.valid(today) != nil else { return [:] }
+        let f = formula(s)
+        var raw: [String: [(point: Point, offset: Int)]] = [:]
+        for (offset, w) in (s["workouts"]?.arrayValue ?? []).compactMap(\.object).enumerated() {
+            guard let day = Report.valid(w["d"]?.stringValue), day <= today else { continue }
+            var bestInWorkout: [String: Point] = [:]
+            for e in (w["entries"]?.arrayValue ?? []).compactMap(\.object) {
+                guard let exId = e["id"]?.stringValue, !exId.isEmpty,
+                      catalog[exId]?.isAssisted != true,
+                      let p = bestSet(e, formula: f, catalog: catalog) else { continue }
+                if let prev = bestInWorkout[exId], prev.estimate >= p.estimate { continue }
+                bestInWorkout[exId] = Point(day: day, estimate: p.estimate, weight: p.weight, reps: p.reps)
+            }
+            for (exId, pt) in bestInWorkout {
+                raw[exId, default: []].append((point: pt, offset: offset))
+            }
+        }
+        return raw.mapValues { list in
+            list.sorted { a, b in a.point.day != b.point.day ? a.point.day < b.point.day : a.offset < b.offset }.map(\.point)
+        }
+    }
+
+    /// Estimated 1RM progress for Chest, Back, Shoulders, Legs, and Overall (now vs 4 weeks ago vs first record).
+    ///
+    /// Lift selection per group:
+    /// 1. Standard lifts (`Stats.standards` mapped per group) with 1RM data, ranked by sessions in the last 12 weeks
+    ///    (`today - 84d ... today`), then all-time sessions, then standard priority order.
+    /// 2. Fallback to any logged exercise whose `catalog.primaryMuscle(of:)` belongs to the group's slugs, ranked by
+    ///    12-week sessions, then all-time sessions, then most recent day, then highest latest estimate, then ascending id.
+    ///
+    /// `Overall` sums only groups that have data at both comparison timestamps for each comparison window.
+    public static func groupRMProgress(_ s: Object, today: String, catalog: ExerciseCatalog) -> [GroupRMProgress] {
+        guard Report.valid(today) != nil,
+              let cutoff4w = Day.adding(-28, to: today),
+              let recentCutoff = Day.adding(-84, to: today) else {
+            return (rmGroups.map(\.id) + ["Overall"]).map {
+                GroupRMProgress(id: $0, exerciseId: nil, current: nil, change4w: nil, changeFromFirst: nil)
+            }
+        }
+
+        let byExercise = allOneRepMaxSeries(s, through: today, catalog: catalog)
+        func recentCount(_ pts: [Point]) -> Int { pts.filter { $0.day >= recentCutoff }.count }
+
+        func deltaBetween(current: Double, baseline: Double, count: Int) -> RMDelta {
+            let diff = round1(current - baseline)
+            let pct = baseline > 0 ? round1(((current - baseline) / baseline) * 100) : nil
+            return RMDelta(current: round1(current), baseline: round1(baseline), delta: diff, pct: pct, groupCount: count)
+        }
+
+        var groupResults: [GroupRMProgress] = []
+        for g in rmGroups {
+            let chosenId: String?
+            let standardCandidates = g.standards.enumerated().compactMap { idx, id -> (id: String, pts: [Point], order: Int)? in
+                guard let pts = byExercise[id], !pts.isEmpty else { return nil }
+                return (id: id, pts: pts, order: idx)
+            }
+            if let bestStd = standardCandidates.max(by: { a, b in
+                let ra = recentCount(a.pts), rb = recentCount(b.pts)
+                if ra != rb { return ra < rb }
+                if a.pts.count != b.pts.count { return a.pts.count < b.pts.count }
+                return a.order > b.order
+            }) {
+                chosenId = bestStd.id
+            } else {
+                let fallbackCandidates = byExercise.compactMap { id, pts -> (id: String, pts: [Point])? in
+                    guard !pts.isEmpty,
+                          let ex = catalog[id],
+                          let primary = catalog.primaryMuscle(of: ex),
+                          g.slugs.contains(primary) else { return nil }
+                    return (id: id, pts: pts)
+                }
+                chosenId = fallbackCandidates.max(by: { a, b in
+                    let ra = recentCount(a.pts), rb = recentCount(b.pts)
+                    if ra != rb { return ra < rb }
+                    if a.pts.count != b.pts.count { return a.pts.count < b.pts.count }
+                    let la = a.pts.last!, lb = b.pts.last!
+                    if la.day != lb.day { return la.day < lb.day }
+                    if la.estimate != lb.estimate { return la.estimate < lb.estimate }
+                    return a.id > b.id
+                })?.id
+            }
+
+            guard let exId = chosenId, let pts = byExercise[exId], let nowPt = pts.last else {
+                groupResults.append(GroupRMProgress(id: g.id, exerciseId: nil, current: nil, change4w: nil, changeFromFirst: nil))
+                continue
+            }
+
+            let change4w = pts.last { $0.day <= cutoff4w }.map {
+                deltaBetween(current: nowPt.estimate, baseline: $0.estimate, count: 1)
+            }
+            let changeFirst = pts.count >= 2 ? deltaBetween(current: nowPt.estimate, baseline: pts.first!.estimate, count: 1) : nil
+            groupResults.append(GroupRMProgress(
+                id: g.id,
+                exerciseId: exId,
+                current: round1(nowPt.estimate),
+                change4w: change4w,
+                changeFromFirst: changeFirst
+            ))
+        }
+
+        let activeCurrents = groupResults.compactMap(\.current)
+        let overallCurrent = activeCurrents.isEmpty ? nil : round1(activeCurrents.reduce(0, +))
+
+        let matched4w = groupResults.compactMap(\.change4w)
+        let overall4w: RMDelta? = matched4w.isEmpty ? nil : deltaBetween(
+            current: matched4w.reduce(0) { $0 + $1.current },
+            baseline: matched4w.reduce(0) { $0 + $1.baseline },
+            count: matched4w.count
+        )
+
+        let matchedFirst = groupResults.compactMap(\.changeFromFirst)
+        let overallFirst: RMDelta? = matchedFirst.isEmpty ? nil : deltaBetween(
+            current: matchedFirst.reduce(0) { $0 + $1.current },
+            baseline: matchedFirst.reduce(0) { $0 + $1.baseline },
+            count: matchedFirst.count
+        )
+
+        groupResults.append(GroupRMProgress(
+            id: "Overall",
+            exerciseId: nil,
+            current: overallCurrent,
+            change4w: overall4w,
+            changeFromFirst: overallFirst
+        ))
+        return groupResults
+    }
 }

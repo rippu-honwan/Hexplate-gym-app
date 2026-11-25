@@ -70,6 +70,40 @@ public enum BodyData {
         }
     }
 
+    public struct WeekAverage: Equatable, Sendable {
+        /// Unrounded mean body weight for `today`'s profile week.
+        public let avg: Double
+        /// Unrounded difference against the previous profile week's mean (`avg - lastWeekAvg`), nil if last week had no readings.
+        public let delta: Double?
+    }
+
+    /// Mean body weight in `today`'s profile week (respecting `weekStart`, ignoring readings after `today`)
+    /// and change versus the previous profile week. Returns nil when `today` is invalid or `today`'s week has no weigh-ins.
+    public static func weekAverage(_ s: Object, today: String) -> WeekAverage? {
+        guard Report.valid(today) != nil, let prevDay = Day.adding(-7, to: today) else { return nil }
+        let start = Schedule.weekStart(s)
+        guard let thisWeek = Schedule.weekKey(today, weekStart: start),
+              let lastWeek = Schedule.weekKey(prevDay, weekStart: start) else { return nil }
+
+        var thisSum = 0.0, thisCount = 0
+        var lastSum = 0.0, lastCount = 0
+        for r in weights(s) {
+            guard Report.valid(r.day) != nil, r.day <= today,
+                  let wk = Schedule.weekKey(r.day, weekStart: start) else { continue }
+            if wk == thisWeek {
+                thisSum += r.weight
+                thisCount += 1
+            } else if wk == lastWeek {
+                lastSum += r.weight
+                lastCount += 1
+            }
+        }
+        guard thisCount > 0 else { return nil }
+        let avg = thisSum / Double(thisCount)
+        let delta = lastCount > 0 ? avg - (lastSum / Double(lastCount)) : nil
+        return WeekAverage(avg: avg, delta: delta)
+    }
+
     // MARK: Measurements
 
     public struct Field: Identifiable, Equatable, Sendable {

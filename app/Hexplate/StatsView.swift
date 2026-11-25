@@ -386,6 +386,29 @@ private struct BalanceView: View {
     }
 }
 
+/// One muscle's weekly set progress against its target range (shared by Analysis and Profile).
+struct MuscleTargetRow: View {
+    @Environment(AppModel.self) private var model
+    let row: Stats.MuscleWeek
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                Text(LocalizedStringKey(model.catalog.muscleName(row.slug)))
+                Spacer()
+                Text("\(Format.number(row.sets)) / \(Int(row.low))–\(Int(row.high))")
+                    .monospacedDigit()
+                    .foregroundStyle(.secondary)
+            }
+            .font(.subheadline)
+            Gauge(value: min(row.sets, row.high), in: 0...max(row.high, 1)) {}
+                .gaugeStyle(.linearCapacity)
+                .tint(row.status == "below" ? Color.secondary : Theme.accent)
+        }
+        .accessibilityElement(children: .combine)
+    }
+}
+
 /// Sets per muscle this week against each muscle's range (Stats, and Home with Weekly sets on Home).
 struct MuscleSetsSection: View {
     @Environment(AppModel.self) private var model
@@ -394,20 +417,7 @@ struct MuscleSetsSection: View {
         let rows = Stats.weeklyMuscleSets(model.root, today: model.today, catalog: model.catalog)
         Section {
             ForEach(rows, id: \.slug) { row in
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(LocalizedStringKey(model.catalog.muscleName(row.slug)))
-                        Spacer()
-                        Text("\(Format.number(row.sets)) / \(Int(row.low))–\(Int(row.high))")
-                            .monospacedDigit()
-                            .foregroundStyle(.secondary)
-                    }
-                    .font(.subheadline)
-                    Gauge(value: min(row.sets, row.high), in: 0...max(row.high, 1)) {}
-                        .gaugeStyle(.linearCapacity)
-                        .tint(row.status == "below" ? Color.secondary : Theme.accent)
-                }
-                .accessibilityElement(children: .combine)
+                MuscleTargetRow(row: row)
             }
         } header: {
             Text("Sets per muscle this week")
