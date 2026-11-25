@@ -40,8 +40,6 @@ targets:
       base:
         # Same id as the Capacitor app on purpose: Hexplate installs over it.
         PRODUCT_BUNDLE_IDENTIFIER: com.rippuhonwan.mygym
-        MARKETING_VERSION: "0.1.0"
-        CURRENT_PROJECT_VERSION: "2"
         SWIFT_VERSION: "6.0"
         TARGETED_DEVICE_FAMILY: "1"
         GENERATE_INFOPLIST_FILE: YES
@@ -67,6 +65,8 @@ targets:
     info:
       path: Hexplate/Info.plist
       properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleURLTypes:
           - CFBundleURLName: com.rippuhonwan.mygym
             CFBundleURLSchemes: [opengym]
@@ -113,11 +113,11 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.rippuhonwan.mygym.watchkitapp
-        MARKETING_VERSION: "0.1.0"
-        CURRENT_PROJECT_VERSION: "2"
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "4"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        # ponytail: defensive/unproven — keep Watch debug bundles monolithic (no split .debug.dylib stub) for untethered installs.
+        ENABLE_DEBUG_DYLIB: NO
 
   # The Home Screen and Lock Screen widgets, moved from frontend/ios/App/OpenGymWidgets (same
   # bundle id, so widgets already placed stay), and the workout's Live Activity.
@@ -141,8 +141,6 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.rippuhonwan.mygym.widgets
-        MARKETING_VERSION: "0.1.0"
-        CURRENT_PROJECT_VERSION: "2"
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "1"
 
@@ -170,7 +168,17 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.rippuhonwan.mygym.watchkitapp.widgets
-        MARKETING_VERSION: "0.1.0"
-        CURRENT_PROJECT_VERSION: "2"
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "4"
+        # ponytail: defensive/unproven — match HexplateWatch monolithic binary layout.
+        ENABLE_DEBUG_DYLIB: NO
+
+schemes:
+  Hexplate:
+    build:
+      targets:
+        Hexplate: all
+  HexplateWatch:
+    build:
+      targets:
+        HexplateWatch: all
