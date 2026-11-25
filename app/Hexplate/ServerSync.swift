@@ -28,6 +28,15 @@ final class ServerSync {
     var paired: Bool { remote?.mode == "remote" && remote?.base != nil && remote?.token != nil }
     var host: String { remote?.base.flatMap { URL(string: $0)?.host() } ?? "" }
 
+    /// Paired server address and Bearer token for AI endpoints. Always read fresh per request
+    /// because `renew()` may rotate `remote.token`.
+    var aiCredentials: (base: String, token: String)? {
+        guard remote?.mode == "remote",
+              let base = remote?.base, !base.isEmpty,
+              let token = remote?.token, !token.isEmpty else { return nil }
+        return (base, token)
+    }
+
     /// Off (the default): dry run. On: merges are saved here and pushed to the server.
     var writes = UserDefaults.standard.bool(forKey: "syncWrites") { didSet { UserDefaults.standard.set(writes, forKey: "syncWrites") } }
     /// What the last attempt came to, for Settings.

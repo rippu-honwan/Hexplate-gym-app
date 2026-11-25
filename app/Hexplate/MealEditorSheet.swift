@@ -1,13 +1,32 @@
 import HexplateCore
 import SwiftUI
 
-/// Sheet for adding or editing a manual (or photo-backed) meal entry.
+/// Sheet for adding or editing a manual (or photo-backed / AI-estimated) meal entry.
 struct MealEditorSheet: View {
+    struct AIDraft: Equatable {
+        let estimate: AIWire.MealEstimate
+        let jpegData: Data?
+    }
+
     @Environment(AppModel.self) private var model
     @Environment(\.dismiss) private var dismiss
 
     let existing: Nutrition.Meal?
     let defaultDate: String
+    let aiDraft: AIDraft?
+    let pendingPhotoData: Data?
+
+    init(
+        existing: Nutrition.Meal? = nil,
+        defaultDate: String,
+        aiDraft: AIDraft? = nil,
+        pendingPhotoData: Data? = nil
+    ) {
+        self.existing = existing
+        self.defaultDate = defaultDate
+        self.aiDraft = aiDraft
+        self.pendingPhotoData = pendingPhotoData
+    }
 
     @State private var name = ""
     @State private var date = Date.now
@@ -26,10 +45,28 @@ struct MealEditorSheet: View {
         return hasName || hasMacro
     }
 
+    private var previewImage: UIImage? {
+        if let raw = pendingPhotoData ?? aiDraft?.jpegData {
+            return UIImage(data: raw)
+        }
+        if let photoId = existing?.photoId {
+            return MealPhotos.image(for: photoId)
+        }
+        return nil
+    }
+
+    private var confidenceLabel: LocalizedStringKey {
+        switch aiDraft?.estimate.confidence {
+        case "high": "High"
+        case "low": "Low"
+        default: "Medium"
+        }
+    }
+
     var body: some View {
         NavigationStack {
             Form {
-                if let photoId = existing?.photoId, let image = MealPhotos.image(for: photoId) {
+                if let image = previewImage {
                     Section {
                         Image(uiImage: image)
                             .resizable()
@@ -37,6 +74,24 @@ struct MealEditorSheet: View {
                             .frame(maxWidth: .infinity, maxHeight: 180)
                             .clipShape(.rect(cornerRadius: 10))
                             .listRowInsets(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
+                    }
+                }
+
+                if let estimate = aiDraft?.estimate,
+                   estimate.plausibilityWarning || !estimate.warnings.isEmpty {
+                    let codes = estimate.warnings.isEmpty ? ["plausibility"] : estimate.warnings
+                    Section {
+                        ForEach(codes, id: \.self) { code in
+                            Label {
+                                Text(AIClient.warningMessage(for: code))
+                                    .font(.subheadline)
+                            } icon: {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundStyle(.orange)
+                            }
+                        }
+                    } header: {
+                        Text("Check estimate")
                     }
                 }
 
@@ -54,6 +109,35 @@ struct MealEditorSheet: View {
                     numberRow("Protein", unit: "g", text: $protein)
                     numberRow("Carbs", unit: "g", text: $carbs)
                     numberRow("Fat", unit: "g", text: $fat)
+                }
+
+                if let estimate = aiDraft?.estimate, !estimate.items.isEmpty {
+                    Section {
+                        ForEach(Array(estimate.items.enumerated()), id: \.offset) { _, item in
+                            VStack(alignment: .leading, spacing: 2) {
+                                HStack {
+                                    Text(item.name).font(.subheadline)
+                                    Spacer()
+                                    Text("\(Format.number(item.kcal, decimals: 0)) kcal")
+                                        .font(.subheadline)
+                                        .monospacedDigit()
+                                        .foregroundStyle(.secondary)
+                                }
+                                Text("P \(Format.number(item.protein, decimals: 1)) g · C \(Format.number(item.carbs, decimals: 1)) g · F \(Format.number(item.fat, decimals: 1)) g")
+                                    .font(.caption)
+                                    .monospacedDigit()
+                                    .foregroundStyle(.secondary)
+                            }
+                            .accessibilityElement(children: .combine)
+                        }
+                    } header: {
+                        Text("Detected items")
+                    } footer: {
+                        HStack(spacing: 4) {
+                            Text("Confidence:")
+                            Text(confidenceLabel)
+                        }
+                    }
                 }
 
                 if existing != nil {
@@ -136,6 +220,14 @@ struct MealEditorSheet: View {
             date = Day.date(defaultDate) ?? .now
             includeTime = (defaultDate == model.today)
             time = .now
+            if let estimate = aiDraft?.estimate {
+                // Display server totals verbatim without re-summing individually rounded items.
+                name = estimate.name
+                kcal = estimate.kcal > 0 ? Format.number(estimate.kcal, decimals: 0) : ""
+                protein = estimate.protein > 0 ? Format.number(estimate.protein, decimals: 1) : ""
+                carbs = estimate.carbs > 0 ? Format.number(estimate.carbs, decimals: 1) : ""
+                fat = estimate.fat > 0 ? Format.number(estimate.fat, decimals: 1) : ""
+            }
         }
     }
 
@@ -148,6 +240,17 @@ struct MealEditorSheet: View {
         } else {
             timeStr = nil
         }
+
+        // Persist the EXIF-stripped JPEG only on Save (never on Cancel).
+        var savedPhotoId = existing?.photoId
+        if existing == nil, let jpegData = pendingPhotoData ?? aiDraft?.jpegData {
+            let candidateId = UUID().uuidString.lowercased()
+            if (try? MealPhotos.save(jpegData, photoId: candidateId)) != nil {
+                savedPhotoId = candidateId
+            }
+        }
+
+        let mealSource: Nutrition.Source = existing?.source ?? ((aiDraft != nil || savedPhotoId != nil) ? .photo : .manual)
         let meal = Nutrition.Meal(
             id: existing?.id ?? RoutineOps.newId(now: model.now),
             date: day,
@@ -157,8 +260,8 @@ struct MealEditorSheet: View {
             protein: parseNumber(protein),
             carbs: parseNumber(carbs),
             fat: parseNumber(fat),
-            source: existing?.source ?? .manual,
-            photoId: existing?.photoId,
+            source: mealSource,
+            photoId: savedPhotoId,
             ts: existing?.ts ?? 0
         )
         model.upsertMeal(meal)

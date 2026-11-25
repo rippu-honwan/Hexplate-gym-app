@@ -1,22 +1,107 @@
 import HexplateCore
 import SwiftUI
 
-/// Today: what is planned, how the week stands, and the loop.
+/// Today: readiness overview, today's planned workout, nutrition rings with AI meal capture,
+/// how the week stands, and the rotation loop.
 struct HomeView: View {
-    @State private var swapping = false
-    @State private var choosingPlan = false
-    @State private var importing = false
+    private enum HomeSheet: Identifiable {
+        case choosingPlan
+        case importing
+        case swapping
+        case scanMeal
+        case logMeal
+
+        var id: String {
+            switch self {
+            case .choosingPlan: "choosingPlan"
+            case .importing: "importing"
+            case .swapping: "swapping"
+            case .scanMeal: "scanMeal"
+            case .logMeal: "logMeal"
+            }
+        }
+    }
+
     @Environment(AppModel.self) private var model
+    @Environment(HealthService.self) private var health
+    @Environment(\.dynamicTypeSize) private var typeSize
+    @AppStorage("health") private var healthEnabledStorage = false
+
+    @State private var sheet: HomeSheet?
+    @State private var deferWeighIn = false
+
+    private var healthEnabled: Bool {
+        _ = healthEnabledStorage
+        return health.isEnabled(root: model.root)
+    }
+
+    private var refreshKey: String {
+        let excluded = health.excludedSourceIds.sorted().joined(separator: ",")
+        return "\(model.today)|\(healthEnabled)|\(excluded)"
+    }
+
+    private func present(_ next: HomeSheet) {
+        model.homeSheetOpen = true
+        sheet = next
+    }
 
     var body: some View {
+        let todayIds = Schedule.routineIds(model.root, on: model.today, today: model.today)
+        let load = Recovery.loadSummary(model.root, now: model.now, catalog: model.catalog)
+        let plannedLoad = Recovery.plannedMuscleLoad(model.root, on: model.today, today: model.today, catalog: model.catalog)
+        let healthState: Readiness.HealthState = !healthEnabled ? .off : (health.readinessUnavailable ? .unavailable : .available)
+        let readiness = Readiness.evaluate(Readiness.Input(
+            signals: health.readinessSignals,
+            healthState: healthState,
+            load: load,
+            plannedLoad: plannedLoad,
+            hasTodayPlan: !todayIds.isEmpty
+        ))
+        let goals = Nutrition.effectiveGoals(model.root)
+        let externalToday: Nutrition.Macros? = health.externalByDay.map { $0[model.today] ?? .zero }
+        let todayTotals = Nutrition.dailyTotals(model.root, day: model.today, external: externalToday)
+
         NavigationStack {
             List {
+                if healthEnabled && health.authStatus == .shouldRequest {
+                    Section {
+                        Button("Enable new Health data", systemImage: "heart.badge.plus") {
+                            Task {
+                                _ = await health.authorise()
+                                await health.refreshReadiness(root: model.root, today: model.today)
+                                await health.refreshTodayExternalNutrition(root: model.root, today: model.today)
+                            }
+                        }
+                    } footer: {
+                        Text("Allow Apple Health permissions for sleep, HRV, resting heart rate, and nutrition.")
+                    }
+                }
+
+                // MARK: Readiness Card
+
                 Section {
-                    today
+                    ReadinessCard(
+                        result: readiness,
+                        signals: healthState == .available ? health.readinessSignals : nil,
+                        load: load,
+                        today: model.today
+                    )
                 } header: {
                     if let date = Day.date(model.today) {
                         Text(date.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(Theme.locale)))
                     }
+                } footer: {
+                    if let footer = readinessFooter(readiness) {
+                        Text(footer)
+                    }
+                }
+
+                // MARK: Today's Planned Workout
+
+                Section {
+                    today(ids: todayIds)
+                } header: {
+                    Text("Today’s workout")
                 } footer: {
                     VStack(alignment: .leading, spacing: 2) {
                         if let chip = Programmes.chip(model.root, today: model.today) { Label(chip, systemImage: "calendar.badge.clock") }
@@ -33,19 +118,56 @@ struct HomeView: View {
                                 Text("Set up your weekly routine to get going, or grab a ready-made starter plan.").font(.subheadline).foregroundStyle(.secondary)
                             }
                         } icon: { Image(systemName: "calendar").foregroundStyle(.tint) }
-                        Button("Load starter plan", systemImage: "list.clipboard") { choosingPlan = true }
+                        Button("Load starter plan", systemImage: "list.clipboard") { present(.choosingPlan) }
                         Button("Build my own plan", systemImage: "square.and.pencil") {
                             model.gymSegment = .plan
                             model.tab = "gym"
                         }
-                        Button("Import data", systemImage: "square.and.arrow.down") { importing = true }
+                        Button("Import data", systemImage: "square.and.arrow.down") { present(.importing) }
+                    }
+                }
+
+                // MARK: Nutrition Rings & AI Meal Capture
+
+                Section {
+                    NutritionRingsCard(totals: todayTotals.total, goals: goals) {
+                        model.tab = "nutrition"
+                    }
+                    .listRowInsets(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12))
+
+                    Button("Scan meal", systemImage: "camera.viewfinder") {
+                        present(.scanMeal)
+                    }
+                    Button("Log meal", systemImage: "plus") {
+                        present(.logMeal)
+                    }
+                } header: {
+                    let headerLayout = typeSize.isAccessibilitySize
+                        ? AnyLayout(VStackLayout(alignment: .leading, spacing: 4))
+                        : AnyLayout(HStackLayout())
+                    headerLayout {
+                        Text("Nutrition")
+                        if !typeSize.isAccessibilitySize {
+                            Spacer()
+                        }
+                        Button("View all") {
+                            model.tab = "nutrition"
+                        }
+                        .font(.caption.weight(.semibold))
+                        .textCase(nil)
+                    }
+                } footer: {
+                    if healthEnabled && health.externalUnavailable {
+                        Text("Health data unavailable. Showing Hexplate meals only.")
+                    } else if let ext = todayTotals.external, ext.isNonZero {
+                        Text("Includes \(Format.number(ext.kcal, decimals: 0)) kcal from Apple Health.")
                     }
                 }
 
                 // Look & Home -> Recovery tips (openGym S.recoveryHint, Health module).
                 if Modules.isOn(model.root, "health"), model.root["recoveryHint"] != .bool(false),
                    let hint = Recovery.hint(model.root, now: model.now, today: model.today, catalog: model.catalog) {
-                    Section { RecoveryCard(hint: hint) { swapping = true } }
+                    Section { RecoveryCard(hint: hint) { present(.swapping) } }
                 }
 
                 if model.root["homeMuscleSets"] == .bool(true) { MuscleSetsSection() }
@@ -68,8 +190,6 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Today")
-            .sheet(isPresented: $choosingPlan) { StarterPlanSheet() }
-            .sheet(isPresented: $importing) { ImportView() }
             .toolbar {
                 if model.active == nil {
                     ToolbarItem(placement: .topBarTrailing) {
@@ -80,12 +200,37 @@ struct HomeView: View {
                     }
                 }
             }
-            .sheet(isPresented: $swapping) { DaySwapSheet(iso: model.today) }
+            .sheet(item: $sheet, onDismiss: {
+                deferWeighIn = false
+                model.homeSheetOpen = false
+            }) { activeSheet in
+                switch activeSheet {
+                case .choosingPlan:
+                    StarterPlanSheet()
+                case .importing:
+                    ImportView()
+                case .swapping:
+                    DaySwapSheet(iso: model.today)
+                case .scanMeal:
+                    AIMealCaptureSheet(defaultDate: model.today, deferWeighIn: $deferWeighIn)
+                case .logMeal:
+                    MealEditorSheet(defaultDate: model.today)
+                }
+            }
+            .task(id: refreshKey) {
+                await health.refreshReadiness(root: model.root, today: model.today)
+                await health.refreshTodayExternalNutrition(root: model.root, today: model.today)
+            }
+            .onChange(of: model.weighInRequested) {
+                // Defer dismissing an active AI analysis or unsaved AI draft so paid estimates are not lost.
+                if model.weighInRequested, sheet != nil, !deferWeighIn {
+                    sheet = nil
+                }
+            }
         }
     }
 
-    @ViewBuilder private var today: some View {
-        let ids = Schedule.routineIds(model.root, on: model.today, today: model.today)
+    @ViewBuilder private func today(ids: [String]) -> some View {
         let canonicalIds = Set(ids.map { Schedule.canonical(model.root, $0) })
         let done = model.history?.workouts.filter { $0.date == model.today } ?? []
         if ids.isEmpty && done.isEmpty {
@@ -100,9 +245,19 @@ struct HomeView: View {
                     Label {
                         VStack(alignment: .leading, spacing: 2) {
                             Text(routine.name).font(.headline)
-                            Text(routine.slots.count == 1 ? "1 exercise" : "\(routine.slots.count) exercises")
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
+                            HStack(spacing: 6) {
+                                Text(routine.slots.count == 1 ? "1 exercise" : "\(routine.slots.count) exercises")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                                if routine.isAIClone {
+                                    Text("AI-adjusted")
+                                        .font(.caption2.weight(.semibold))
+                                        .foregroundStyle(.tint)
+                                        .padding(.horizontal, 6)
+                                        .padding(.vertical, 2)
+                                        .background(.tint.opacity(0.14), in: Capsule())
+                                }
+                            }
                         }
                     } icon: {
                         Image(systemName: routine.symbol).foregroundStyle(.tint)
@@ -131,6 +286,36 @@ struct HomeView: View {
         }
     }
 
+    private func readinessFooter(_ result: Readiness.Result) -> String? {
+        if result.sleepProvisional {
+            return String(localized: "Sleep still syncing. Readiness will update once your watch finishes syncing.")
+        }
+        switch result.healthState {
+        case .off:
+            return String(localized: "Apple Health is off. Readiness is based on your training load.")
+        case .unavailable:
+            return String(localized: "Health data unavailable. Readiness is based on your training load.")
+        case .available:
+            var parts: [String] = []
+            if !result.missingSignals.isEmpty {
+                let names = result.missingSignals.map(Self.signalName).joined(separator: ", ")
+                parts.append(String(localized: "Missing: \(names)."))
+            }
+            if !result.calibratingSignals.isEmpty {
+                parts.append(String(localized: "Baseline calibrating (needs 7 nights)."))
+            }
+            return parts.isEmpty ? nil : parts.joined(separator: " ")
+        }
+    }
+
+    private static func signalName(_ kind: Readiness.SignalKind) -> String {
+        switch kind {
+        case .sleep: String(localized: "Sleep")
+        case .hrv: String(localized: "HRV")
+        case .rhr: String(localized: "Resting HR")
+        }
+    }
+
     private var next: String? {
         guard let day = Schedule.nextTrainingDay(model.root, after: model.today, today: model.today),
               let date = Day.date(day.iso) else { return nil }
@@ -153,6 +338,254 @@ struct HomeView: View {
                 isToday: iso == model.today
             )
         }
+    }
+}
+
+// MARK: - Readiness Card
+
+private struct ReadinessCard: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
+    @ScaledMetric(relativeTo: .callout) private var rawScoreRingSize: CGFloat = 48
+    let result: Readiness.Result
+    let signals: Readiness.HealthSignals?
+    let load: Recovery.LoadSummary
+    let today: String
+
+    private var scoreRingSize: CGFloat { min(rawScoreRingSize, 88) }
+
+    private var verdictTitle: String {
+        switch result.verdict {
+        case .good: String(localized: "Ready to train")
+        case .light: String(localized: "Go lighter today")
+        case .rest: String(localized: "Consider rest")
+        }
+    }
+
+    private var columns: [GridItem] {
+        let count = typeSize.isAccessibilitySize ? 2 : 4
+        return Array(repeating: GridItem(.flexible(), spacing: 8), count: count)
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            let headerLayout = typeSize.isAccessibilitySize
+                ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8))
+                : AnyLayout(HStackLayout(alignment: .center, spacing: 12))
+
+            headerLayout {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Readiness")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                        .textCase(.uppercase)
+                    Text(verdictTitle)
+                        .font(.title3.weight(.semibold))
+                }
+                if !typeSize.isAccessibilitySize {
+                    Spacer(minLength: 8)
+                }
+                scoreRing
+            }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("\(String(localized: "Readiness")): \(verdictTitle), \(result.score) / 100")
+
+            LazyVGrid(columns: columns, alignment: .leading, spacing: 8) {
+                metricCell(
+                    title: "Sleep",
+                    value: signals?.sleep.map { "\(Format.number($0.totalHours, decimals: 1)) h" } ?? "–",
+                    subtitle: result.sleepProvisional ? String(localized: "Syncing") : nil
+                )
+                metricCell(
+                    title: "HRV",
+                    value: signals?.hrv?.latestMs.map { "\(Format.number($0, decimals: 0)) ms" } ?? "–",
+                    subtitle: signals?.hrv?.calibrating == true ? String(localized: "Calibrating") : nil
+                )
+                metricCell(
+                    title: "Resting HR",
+                    value: signals?.rhr?.latestBpm.map { "\(Format.number($0, decimals: 0)) bpm" } ?? "–",
+                    subtitle: rhrDateSubtitle
+                )
+                metricCell(
+                    title: "Load",
+                    value: load.global.ratio.map { "\(Format.number($0, decimals: 2))×" } ?? "–",
+                    subtitle: nil
+                )
+            }
+
+            if !result.reasons.isEmpty {
+                VStack(alignment: .leading, spacing: 4) {
+                    ForEach(Array(result.reasons.prefix(3).enumerated()), id: \.offset) { _, scored in
+                        HStack(alignment: .firstTextBaseline, spacing: 6) {
+                            Circle()
+                                .fill(scored.impact < 0 ? AnyShapeStyle(.secondary) : AnyShapeStyle(.tint))
+                                .frame(width: 5, height: 5)
+                                .accessibilityHidden(true)
+                            Text(reasonText(scored.reason))
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                }
+            }
+        }
+        .padding(.vertical, 4)
+    }
+
+    private var scoreRing: some View {
+        let strokeWidth: CGFloat = typeSize.isAccessibilitySize ? 6 : 5
+        return ZStack {
+            Circle()
+                .stroke(Color.secondary.opacity(0.2), lineWidth: strokeWidth)
+            Circle()
+                .trim(from: 0, to: CGFloat(result.score) / 100.0)
+                .stroke(Theme.accent, style: StrokeStyle(lineWidth: strokeWidth, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+            Text("\(result.score)")
+                .font(.callout.weight(.semibold))
+                .monospacedDigit()
+                .lineLimit(1)
+                .minimumScaleFactor(0.4)
+                .padding(.horizontal, 8)
+        }
+        .frame(width: scoreRingSize, height: scoreRingSize)
+        .accessibilityHidden(true)
+    }
+
+    private var rhrDateSubtitle: String? {
+        if signals?.rhr?.calibrating == true {
+            return String(localized: "Calibrating")
+        }
+        guard let iso = signals?.rhr?.sampleDateISO else { return nil }
+        if iso == today { return String(localized: "Today") }
+        if let yesterday = Day.adding(-1, to: today), iso == yesterday {
+            return String(localized: "Yesterday")
+        }
+        return Day.date(iso)?.formatted(.dateTime.day().month(.abbreviated).locale(Theme.locale)) ?? iso
+    }
+
+    private func metricCell(title: LocalizedStringKey, value: String, subtitle: String?) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(title)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .lineLimit(typeSize.isAccessibilitySize ? 2 : 1)
+                .fixedSize(horizontal: false, vertical: true)
+            Text(value)
+                .font(.subheadline.weight(.semibold))
+                .monospacedDigit()
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+            if let subtitle {
+                Text(subtitle)
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(typeSize.isAccessibilitySize ? 2 : 1)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .combine)
+    }
+
+    private func reasonText(_ reason: Readiness.Reason) -> String {
+        switch reason {
+        case .goodSleep(let hours):
+            String(localized: "Good sleep last night (\(Format.number(hours, decimals: 1)) h).")
+        case .shortSleep(let hours):
+            String(localized: "Short sleep last night (\(Format.number(hours, decimals: 1)) h).")
+        case .strongHRV(let delta):
+            String(localized: "HRV is above your 28-day baseline (+\(Int((delta * 100).rounded()))%).")
+        case .lowHRV(let delta):
+            String(localized: "HRV is below your 28-day baseline (\(Int((delta * 100).rounded()))%).")
+        case .lowRHR(let delta):
+            String(localized: "Resting HR is below baseline (\(Format.number(delta, decimals: 0)) bpm).")
+        case .elevatedRHR(let delta):
+            String(localized: "Resting HR is above baseline (+\(Format.number(delta, decimals: 0)) bpm).")
+        case .highTrainingLoad(let ratio):
+            String(localized: "7-day training load is much higher than usual (\(Format.number(ratio, decimals: 2))×).")
+        case .elevatedTrainingLoad(let ratio):
+            String(localized: "7-day training load is higher than usual (\(Format.number(ratio, decimals: 2))×).")
+        case .balancedTrainingLoad:
+            String(localized: "Training load is well balanced.")
+        case .plannedMusclesRecovering(let hours):
+            String(localized: "Planned muscles are still recovering (~\(max(1, Int(hours.rounded()))) h left).")
+        }
+    }
+}
+
+// MARK: - Nutrition 4-Ring Dashboard Card
+
+private struct NutritionRingsCard: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
+    @ScaledMetric(relativeTo: .caption) private var rawRingSize: CGFloat = 56
+    let totals: Nutrition.Macros
+    let goals: Nutrition.EffectiveGoals
+    let onSetGoal: () -> Void
+
+    private var ringSize: CGFloat { min(rawRingSize, 100) }
+
+    private var columns: [GridItem] {
+        let count = typeSize.isAccessibilitySize ? 2 : 4
+        return Array(repeating: GridItem(.flexible(), spacing: 10), count: count)
+    }
+
+    var body: some View {
+        LazyVGrid(columns: columns, spacing: 12) {
+            ring(title: "Calories", unit: "kcal", value: totals.kcal, goal: goals.kcal)
+            ring(title: "Protein", unit: "g", value: totals.protein, goal: goals.protein)
+            ring(title: "Carbs", unit: "g", value: totals.carbs, goal: goals.carbs)
+            ring(title: "Fat", unit: "g", value: totals.fat, goal: goals.fat)
+        }
+    }
+
+    private func ring(title: LocalizedStringKey, unit: String, value: Double, goal: Double?) -> some View {
+        let progress: Double = {
+            guard let goal, goal > 0 else { return 0 }
+            return min(1.0, max(0.0, value / goal))
+        }()
+        let valueText = Format.number(value, decimals: 0)
+        let goalText = goal.map { "\(Format.number($0, decimals: 0)) \(unit)" }
+        let strokeWidth: CGFloat = typeSize.isAccessibilitySize ? 7 : 6
+
+        return VStack(spacing: 6) {
+            ZStack {
+                Circle()
+                    .stroke(Color.secondary.opacity(0.2), lineWidth: strokeWidth)
+                if progress > 0 {
+                    Circle()
+                        .trim(from: 0, to: progress)
+                        .stroke(Theme.accent, style: StrokeStyle(lineWidth: strokeWidth, lineCap: .round))
+                        .rotationEffect(.degrees(-90))
+                }
+                Text(valueText)
+                    .font(.caption.weight(.semibold))
+                    .monospacedDigit()
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.4)
+                    .padding(.horizontal, 10)
+            }
+            .frame(width: ringSize, height: ringSize)
+
+            Text(title)
+                .font(.caption.weight(.medium))
+                .lineLimit(typeSize.isAccessibilitySize ? 2 : 1)
+                .multilineTextAlignment(.center)
+
+            if let goalText {
+                Text("/ \(goalText)")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .monospacedDigit()
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.75)
+            } else {
+                Button("Set goal", action: onSetGoal)
+                    .font(.caption2.weight(.medium))
+                    .buttonStyle(.borderless)
+                    .lineLimit(typeSize.isAccessibilitySize ? 2 : 1)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .accessibilityElement(children: .combine)
     }
 }
 

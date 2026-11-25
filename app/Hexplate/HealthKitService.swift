@@ -38,6 +38,7 @@ protocol HealthReading: Sendable {
     func startWatchStrengthWorkout() async throws -> Bool
     func readExternalNutritionSeries(from: String, to: String, excludedBundleIds: Set<String>) async -> [String: Nutrition.Macros]?
     func readExternalMeals(on day: String, excludedBundleIds: Set<String>) async -> [ExternalMealSummary]?
+    func readReadinessSignals(today: String, now: Date) async -> Readiness.HealthSignals?
     func nutritionSources() async -> [NutritionSource]
     func applyMealOp(_ op: Nutrition.HealthSyncOp) async throws
 }
@@ -51,13 +52,16 @@ actor HealthClient: HealthReading {
     private static let protein = HKQuantityType(.dietaryProtein)
     private static let carbs = HKQuantityType(.dietaryCarbohydrates)
     private static let fat = HKQuantityType(.dietaryFatTotal)
+    private static let hrv = HKQuantityType(.heartRateVariabilitySDNN)
+    private static let restingHR = HKQuantityType(.restingHeartRate)
+    private static let sleep = HKCategoryType(.sleepAnalysis)
 
     private static var shareTypes: Set<HKSampleType> {
         [bodyMass, .workoutType(), energy, protein, carbs, fat]
     }
 
     private static var readTypes: Set<HKObjectType> {
-        [bodyMass, energy, protein, carbs, fat]
+        [bodyMass, energy, protein, carbs, fat, hrv, restingHR, sleep]
     }
 
     private static let dietarySpecs: [(nutrient: Nutrition.Nutrient, type: HKQuantityType, unit: HKUnit)] = [
@@ -313,6 +317,91 @@ actor HealthClient: HealthReading {
         }
     }
 
+    /// Reads overnight sleep (`18:00 yesterday – 12:00 today`), 28-day overnight HRV SDNN, and
+    /// resting heart rate. Returns `nil` only when HealthKit is unavailable or throws (e.g. locked
+    /// device); denied read permissions yield empty results (never penalized by Readiness).
+    func readReadinessSignals(today: String, now: Date) async -> Readiness.HealthSignals? {
+        guard isAvailable else { return nil }
+        let cal = Calendar.current
+        guard let window = Readiness.overnightWindow(for: today, calendar: cal),
+              let hrvStart = cal.date(byAdding: .day, value: -29, to: window.start),
+              let rhrStart = cal.date(byAdding: .day, value: -29, to: cal.startOfDay(for: now)) else {
+            return Readiness.HealthSignals()
+        }
+
+        do {
+            let sleepPredicate = HKQuery.predicateForSamples(withStart: window.start, end: window.end, options: [])
+            let sleepQuery = HKSampleQueryDescriptor(
+                predicates: [.categorySample(type: Self.sleep, predicate: sleepPredicate)],
+                sortDescriptors: [SortDescriptor(\.startDate)]
+            )
+
+            let hrvPredicate = HKQuery.predicateForSamples(withStart: hrvStart, end: window.end, options: [])
+            let hrvQuery = HKSampleQueryDescriptor(
+                predicates: [.quantitySample(type: Self.hrv, predicate: hrvPredicate)],
+                sortDescriptors: [SortDescriptor(\.startDate)]
+            )
+
+            let rhrPredicate = HKQuery.predicateForSamples(withStart: rhrStart, end: now, options: [])
+            let rhrQuery = HKSampleQueryDescriptor(
+                predicates: [.quantitySample(type: Self.restingHR, predicate: rhrPredicate)],
+                sortDescriptors: [SortDescriptor(\.startDate)]
+            )
+
+            async let sleepRaw = sleepQuery.result(for: store)
+            async let hrvRaw = hrvQuery.result(for: store)
+            async let rhrRaw = rhrQuery.result(for: store)
+
+            let sleepSamples: [Readiness.SleepSample] = try await sleepRaw.compactMap { sample in
+                guard let stage = Self.mapSleepStage(sample.value) else { return nil }
+                let src = sample.sourceRevision.source
+                return Readiness.SleepSample(
+                    start: sample.startDate,
+                    end: sample.endDate,
+                    stage: stage,
+                    sourceId: src.bundleIdentifier,
+                    sourceName: src.name
+                )
+            }
+
+            let msUnit = HKUnit.secondUnit(with: .milli)
+            let hrvValues: [Readiness.DatedValue] = try await hrvRaw.map { sample in
+                Readiness.DatedValue(date: sample.startDate, value: sample.quantity.doubleValue(for: msUnit))
+            }
+
+            let bpmUnit = HKUnit.count().unitDivided(by: .minute())
+            let rhrValues: [Readiness.DatedValue] = try await rhrRaw.map { sample in
+                Readiness.DatedValue(date: sample.startDate, value: sample.quantity.doubleValue(for: bpmUnit))
+            }
+
+            let sleepSummary = Readiness.summarizeSleep(
+                sleepSamples,
+                windowStart: window.start,
+                windowEnd: window.end,
+                now: now
+            )
+            let hrvSummary = Readiness.summarizeHRV(hrvValues, today: today, calendar: cal)
+            let rhrSummary = Readiness.summarizeRHR(rhrValues, today: today, now: now, calendar: cal)
+            return Readiness.HealthSignals(sleep: sleepSummary, hrv: hrvSummary, rhr: rhrSummary)
+        } catch {
+            return nil
+        }
+    }
+
+    /// Maps `HKCategoryValueSleepAnalysis` raw values explicitly and ignores unknown future values.
+    /// Raw value 1 (`asleepUnspecified`) also covers the deprecated `.asleep` value.
+    private static func mapSleepStage(_ rawValue: Int) -> Readiness.SleepStage? {
+        switch rawValue {
+        case HKCategoryValueSleepAnalysis.inBed.rawValue: .inBed
+        case HKCategoryValueSleepAnalysis.awake.rawValue: .awake
+        case HKCategoryValueSleepAnalysis.asleepUnspecified.rawValue: .asleepUnspecified
+        case HKCategoryValueSleepAnalysis.asleepCore.rawValue: .asleepCore
+        case HKCategoryValueSleepAnalysis.asleepDeep.rawValue: .asleepDeep
+        case HKCategoryValueSleepAnalysis.asleepREM.rawValue: .asleepREM
+        default: nil
+        }
+    }
+
     /// Writes or deletes one meal's authorized dietary nutrient samples using `HKMetadataKeySyncIdentifier`
     /// and `HKMetadataKeySyncVersion = Int64(ts)`.
     func applyMealOp(_ op: Nutrition.HealthSyncOp) async throws {
@@ -382,8 +471,15 @@ actor HealthClient: HealthReading {
 #if DEBUG
 /// Deterministic mock HealthKit client for Simulator QA and SwiftUI previews (compiled in DEBUG only).
 actor FakeHealthClient: HealthReading {
+    enum ReadinessMode: Sendable {
+        case good
+        case low
+        case calibrating
+    }
+
     nonisolated let isAvailable: Bool
     private let unavailable: Bool
+    private let readinessMode: ReadinessMode
     private var appliedOps: [Nutrition.HealthSyncOp] = []
 
     private let sources: [NutritionSource] = [
@@ -391,9 +487,10 @@ actor FakeHealthClient: HealthReading {
         NutritionSource(id: "com.example.cronometer", name: "Cronometer"),
     ]
 
-    init(isAvailable: Bool = true, unavailable: Bool = false) {
+    init(isAvailable: Bool = true, unavailable: Bool = false, readinessMode: ReadinessMode = .good) {
         self.isAvailable = isAvailable
         self.unavailable = unavailable
+        self.readinessMode = readinessMode
     }
 
     func authorizationRequestStatus() async -> HealthAuthStatus {
@@ -426,6 +523,51 @@ actor FakeHealthClient: HealthReading {
         return sampleMeals(today: Day.today()).filter { $0.day == day && !excludedBundleIds.contains($0.sourceBundleId) }
     }
 
+    func readReadinessSignals(today: String, now: Date) async -> Readiness.HealthSignals? {
+        guard isAvailable, !unavailable else { return nil }
+        switch readinessMode {
+        case .good:
+            return Readiness.HealthSignals(
+                sleep: .init(
+                    totalHours: 7.6,
+                    deepHours: 1.5,
+                    remHours: 1.8,
+                    coreHours: 4.3,
+                    sourceName: "Apple Watch",
+                    hasStages: true
+                ),
+                hrv: .init(latestMs: 59, baselineMs: 54, nightsCount: 14, calibrating: false, deltaPct: (59.0 - 54.0) / 54.0),
+                rhr: .init(latestBpm: 55, sampleDateISO: today, baselineBpm: 57, daysCount: 14, calibrating: false, deltaBpm: -2.0)
+            )
+        case .low:
+            return Readiness.HealthSignals(
+                sleep: .init(
+                    totalHours: 5.0,
+                    deepHours: 0.7,
+                    remHours: 0.9,
+                    coreHours: 3.4,
+                    sourceName: "Apple Watch",
+                    hasStages: true
+                ),
+                hrv: .init(latestMs: 44, baselineMs: 56, nightsCount: 14, calibrating: false, deltaPct: (44.0 - 56.0) / 56.0),
+                rhr: .init(latestBpm: 63, sampleDateISO: today, baselineBpm: 57, daysCount: 14, calibrating: false, deltaBpm: 6.0)
+            )
+        case .calibrating:
+            return Readiness.HealthSignals(
+                sleep: .init(
+                    totalHours: 7.2,
+                    deepHours: 1.3,
+                    remHours: 1.6,
+                    coreHours: 4.3,
+                    sourceName: "Apple Watch",
+                    hasStages: true
+                ),
+                hrv: .init(latestMs: 56, baselineMs: nil, nightsCount: 3, calibrating: true, deltaPct: nil),
+                rhr: .init(latestBpm: 56, sampleDateISO: today, baselineBpm: nil, daysCount: 3, calibrating: true, deltaBpm: nil)
+            )
+        }
+    }
+
     func applyMealOp(_ op: Nutrition.HealthSyncOp) async throws {
         appliedOps.append(op)
     }
@@ -440,6 +582,15 @@ actor FakeHealthClient: HealthReading {
                 sourceName: "MyFitnessPal",
                 sourceBundleId: "com.example.myfitnesspal",
                 macros: Nutrition.Macros(kcal: 320, protein: 24, carbs: 38, fat: 8)
+            ),
+            ExternalMealSummary(
+                id: "fake-today-lunch",
+                day: today,
+                time: "12:30",
+                name: "Chicken Rice Bowl",
+                sourceName: "MyFitnessPal",
+                sourceBundleId: "com.example.myfitnesspal",
+                macros: Nutrition.Macros(kcal: 750, protein: 52, carbs: 84, fat: 18)
             ),
             ExternalMealSummary(
                 id: "fake-today-2",
@@ -489,6 +640,8 @@ final class HealthService {
     private(set) var externalByDay: [String: Nutrition.Macros]?
     private(set) var externalItemsByDay: [String: [ExternalMealSummary]] = [:]
     private(set) var externalUnavailable = false
+    private(set) var readinessSignals: Readiness.HealthSignals?
+    private(set) var readinessUnavailable = false
     private(set) var availableSources: [NutritionSource] = []
 
     var excludedSourceIds: Set<String> {
@@ -510,12 +663,15 @@ final class HealthService {
         #if DEBUG
         let args = ProcessInfo.processInfo.arguments
         let fakeOn = args.contains("-hexplate-fake-health")
+        let fakeLow = args.contains("-hexplate-fake-health-low")
+        let fakeCalibrating = args.contains("-hexplate-fake-health-calibrating")
         let fakeUnavailable = args.contains("-hexplate-fake-health-unavailable")
         if let client {
             self.client = client
             self.isDebugFakeActive = false
-        } else if fakeOn || fakeUnavailable {
-            self.client = FakeHealthClient(unavailable: fakeUnavailable)
+        } else if fakeOn || fakeLow || fakeCalibrating || fakeUnavailable {
+            let mode: FakeHealthClient.ReadinessMode = fakeLow ? .low : (fakeCalibrating ? .calibrating : .good)
+            self.client = FakeHealthClient(unavailable: fakeUnavailable, readinessMode: mode)
             self.isDebugFakeActive = true
         } else {
             self.client = HealthClient()
@@ -645,6 +801,56 @@ final class HealthService {
         }
     }
 
+    /// Refreshes today's live external nutrition totals and merges `today` into `externalByDay`
+    /// without clobbering multi-day series loaded by `NutritionView`. Strictly honors `isEnabled(root:)`.
+    func refreshTodayExternalNutrition(root: [String: JSONValue], today: String) async {
+        guard isEnabled(root: root) else {
+            externalByDay = nil
+            externalItemsByDay = [:]
+            externalUnavailable = false
+            return
+        }
+        guard isAvailable else {
+            externalByDay = nil
+            externalItemsByDay = [:]
+            externalUnavailable = true
+            return
+        }
+        if let result = await client.readExternalNutritionSeries(from: today, to: today, excludedBundleIds: excludedSourceIds) {
+            let todayMacros = result[today] ?? .zero
+            if var merged = externalByDay {
+                merged[today] = todayMacros
+                externalByDay = merged
+            } else {
+                externalByDay = [today: todayMacros]
+            }
+            externalUnavailable = false
+        } else {
+            externalUnavailable = true
+        }
+    }
+
+    /// Refreshes sleep, HRV, and resting heart rate signals for Readiness. Strictly honors `isEnabled(root:)`.
+    func refreshReadiness(root: [String: JSONValue], today: String, now: Date = .now) async {
+        guard isEnabled(root: root) else {
+            readinessSignals = nil
+            readinessUnavailable = false
+            return
+        }
+        guard isAvailable else {
+            readinessSignals = nil
+            readinessUnavailable = true
+            return
+        }
+        if let signals = await client.readReadinessSignals(today: today, now: now) {
+            readinessSignals = signals
+            readinessUnavailable = false
+        } else {
+            readinessSignals = nil
+            readinessUnavailable = true
+        }
+    }
+
     // MARK: - Meal Outbox & Bounded 14-Day Foreground Repair
 
     /// Enqueues a local user add/edit meal op. NEVER call from `takeMergedCopy` or `takeServerCopy`.
@@ -731,6 +937,8 @@ final class HealthService {
             try? await Task.sleep(for: .seconds(2))
             guard !Task.isCancelled, let self else { return }
             await self.refreshAuthStatus()
+            await self.refreshReadiness(root: model.root, today: model.today)
+            await self.refreshTodayExternalNutrition(root: model.root, today: model.today)
             await self.flushOutboxIfAllowed(root: model.root)
             await self.repairRecentMealsIfAllowed(root: model.root, today: model.today)
         }

@@ -221,9 +221,54 @@ public enum Recovery {
         return best
     }
 
-    // MARK: Fatigue
+    // MARK: Fatigue & Load Summary
+
+    public struct MuscleDetail: Equatable, Sendable {
+        public let fatigue: Double
+        public let lastSessionSets: Double
+        public let hoursToRecovered: Double
+
+        public init(fatigue: Double, lastSessionSets: Double, hoursToRecovered: Double) {
+            self.fatigue = fatigue
+            self.lastSessionSets = lastSessionSets
+            self.hoursToRecovered = hoursToRecovered
+        }
+    }
+
+    public struct GlobalLoad: Equatable, Sendable {
+        public let acute: Double
+        public let chronic: Double
+        public let ratio: Double?
+
+        public init(acute: Double, chronic: Double, ratio: Double?) {
+            self.acute = acute
+            self.chronic = chronic
+            self.ratio = ratio
+        }
+    }
+
+    public struct LoadSummary: Equatable, Sendable {
+        public let muscles: [String: MuscleDetail]
+        public let global: GlobalLoad
+
+        public init(muscles: [String: MuscleDetail], global: GlobalLoad) {
+            self.muscles = muscles
+            self.global = global
+        }
+
+        public var fatigueMap: [String: Double] {
+            muscles.mapValues(\.fatigue)
+        }
+    }
 
     struct Item { let w: Object; let index: Int; let ts: Double }
+
+    private struct FatigueComputation {
+        let values: [String: Double]
+        let lastSessionSets: [String: Double]
+        let globalAcute: Double
+        let globalChronic: Double
+    }
 
     static func ordered(_ ws: [Object], after cutoff: Double = -.infinity) -> [Item] {
         ws.enumerated().map { Item(w: $1, index: $0, ts: at($1)) }
@@ -231,10 +276,18 @@ public enum Recovery {
             .sorted { $0.ts != $1.ts ? $0.ts < $1.ts : $0.index < $1.index }
     }
 
-    /// The muscle → fatigue (0...1) map at `now`.
-    public static func fatigue(_ workouts: [Object], now: Double, unit: String?, bodyweightKg: Double?, catalog c: ExerciseCatalog) -> [String: Double] {
-        var result = Dictionary(uniqueKeysWithValues: c.meta.muscles.map { ($0, 0.0) })
-        guard now.isFinite else { return result }
+    private static func computeFatigueState(
+        _ workouts: [Object],
+        now: Double,
+        unit: String?,
+        bodyweightKg: Double?,
+        catalog c: ExerciseCatalog
+    ) -> FatigueComputation {
+        var values = Dictionary(uniqueKeysWithValues: c.meta.muscles.map { ($0, 0.0) })
+        var lastSets = Dictionary(uniqueKeysWithValues: c.meta.muscles.map { ($0, 0.0) })
+        guard now.isFinite else {
+            return FatigueComputation(values: values, lastSessionSets: lastSets, globalAcute: 0, globalChronic: 0)
+        }
         let o = Opts(record: unit.map { ["unit": .string($0)] } ?? [:], bodyweightKg: bodyweightKg)
         let pool = ordered(workouts, after: now - (scanMs + rirWindowMs))
         let bests = pool.map { sessionBests($0.w, o, c) }
@@ -247,6 +300,8 @@ public enum Recovery {
             effSets.append(sessionEffSets(item.w, anchors, o, c))
         }
         var events: [String: [(ts: Double, stim: Double)]] = [:]
+        var globalAcute = 0.0
+        var globalChronic28d = 0.0
         for (i, item) in pool.enumerated() where item.ts > now - scanMs {
             var acute: [String: Double] = [:], chronic: [String: Double] = [:]
             for j in 0...i {
@@ -260,9 +315,20 @@ public enum Recovery {
             for (slug, stim) in effSets[i] where stim > 0 {
                 let gain = min(2, max(0.5, ((acute[slug] ?? 0) + noviceWeekly) / ((chronic[slug] ?? 0) / 4 + noviceWeekly)))
                 events[slug, default: []].append((item.ts, stim / setsPerUnit * gain))
+                if item.ts <= now, lastSets[slug] != nil {
+                    lastSets[slug] = stim
+                }
+            }
+            let ageAtNow = now - item.ts
+            if ageAtNow >= 0, ageAtNow <= chronicMs {
+                let sessionTotal = effSets[i].values.reduce(0, +)
+                globalChronic28d += sessionTotal
+                if ageAtNow <= acuteMs {
+                    globalAcute += sessionTotal
+                }
             }
         }
-        for (slug, list) in events where result[slug] != nil {
+        for (slug, list) in events where values[slug] != nil {
             let hl = halfLife(slug)
             var value = 0.0, last = list[0].ts
             for e in list {
@@ -270,9 +336,73 @@ public enum Recovery {
                 last = e.ts
             }
             value *= pow(0.5, max(0, now - last) / hl)
-            result[slug] = 1 - exp(-value)
+            values[slug] = value
         }
-        return result
+        return FatigueComputation(
+            values: values,
+            lastSessionSets: lastSets,
+            globalAcute: globalAcute,
+            globalChronic: globalChronic28d / 4.0
+        )
+    }
+
+    /// The muscle → fatigue (0...1) map at `now`.
+    public static func fatigue(_ workouts: [Object], now: Double, unit: String?, bodyweightKg: Double?, catalog c: ExerciseCatalog) -> [String: Double] {
+        let computed = computeFatigueState(workouts, now: now, unit: unit, bodyweightKg: bodyweightKg, catalog: c)
+        return computed.values.mapValues { 1 - exp(-$0) }
+    }
+
+    /// Per-muscle fatigue details (fatigue, last-session effective sets, closed-form hours until
+    /// fatigue drops below 0.5) plus global 7-day acute vs 28-day weekly chronic load.
+    public static func loadSummary(
+        _ workouts: [Object],
+        now: Double,
+        unit: String?,
+        bodyweightKg: Double?,
+        catalog c: ExerciseCatalog
+    ) -> LoadSummary {
+        let computed = computeFatigueState(workouts, now: now, unit: unit, bodyweightKg: bodyweightKg, catalog: c)
+        let ln2 = log(2.0)
+        var muscles: [String: MuscleDetail] = [:]
+        muscles.reserveCapacity(computed.values.count)
+        for slug in c.meta.muscles {
+            let value = computed.values[slug] ?? 0.0
+            let f = 1 - exp(-value)
+            let hlHours = halfLife(slug) / 3_600_000.0
+            let hours = value > ln2 ? hlHours * log2(value / ln2) : 0.0
+            muscles[slug] = MuscleDetail(
+                fatigue: f,
+                lastSessionSets: computed.lastSessionSets[slug] ?? 0.0,
+                hoursToRecovered: hours
+            )
+        }
+        let ratio: Double? = computed.globalChronic >= noviceWeekly ? (computed.globalAcute / computed.globalChronic) : nil
+        return LoadSummary(
+            muscles: muscles,
+            global: GlobalLoad(acute: computed.globalAcute, chronic: computed.globalChronic, ratio: ratio)
+        )
+    }
+
+    /// Convenience overload reading workouts, unit, and bodyweight directly from the profile document.
+    public static func loadSummary(_ root: Object, now: Double, catalog c: ExerciseCatalog) -> LoadSummary {
+        let ws = (root["workouts"]?.arrayValue ?? []).compactMap(\.object)
+        return loadSummary(ws, now: now, unit: root["unit"]?.stringValue, bodyweightKg: Balance.bodyweightKg(root), catalog: c)
+    }
+
+    /// Expected effective sets per muscle for the routines scheduled on `iso` (respecting `dayPlan` pins).
+    public static func plannedMuscleLoad(_ root: Object, on iso: String, today: String, catalog c: ExerciseCatalog) -> [String: Double] {
+        let all = (root["routines"]?.arrayValue ?? []).compactMap(\.object)
+        let routines = Schedule.routineIds(root, on: iso, today: today)
+            .compactMap { id in all.first { $0["id"]?.stringValue == id } }
+            .filter { !($0["ex"]?.arrayValue ?? []).isEmpty }
+        var load: [String: Double] = [:]
+        for cfg in routines.flatMap({ ($0["ex"]?.arrayValue ?? []).compactMap(\.object) }) {
+            let sets = Session.or(cfg["sets"], 1)
+            for (slug, v) in historicalMuscles(cfg, c) {
+                load[slug, default: 0] += v * sets
+            }
+        }
+        return load
     }
 
     // MARK: The Home hint

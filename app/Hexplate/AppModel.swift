@@ -55,6 +55,9 @@ final class AppModel {
     /// True while a sheet owned by NutritionView is presented; cleared ONLY in the sheet's `onDismiss`
     /// so ProfileView waits for dismissal animation completion before presenting `WeightEntry`.
     var nutritionSheetOpen = false
+    /// True while a sheet owned by HomeView is presented; cleared ONLY in the sheet's `onDismiss`
+    /// so ProfileView waits for dismissal animation completion before presenting `WeightEntry`.
+    var homeSheetOpen = false
     /// MyGym: Start set pressed on the phone, and the set the watch says it records.
     var watchStart: WatchSet?
     var watchDone: WatchSet?
