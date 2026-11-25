@@ -52,8 +52,8 @@ targets:
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
-        INFOPLIST_KEY_NSHealthShareUsageDescription: Hexplate reads your body weight from Apple Health when you import it.
-        INFOPLIST_KEY_NSHealthUpdateUsageDescription: Hexplate writes your weigh-ins and finished workouts to Apple Health.
+        INFOPLIST_KEY_NSHealthShareUsageDescription: Hexplate reads your body weight and nutrition data from Apple Health.
+        INFOPLIST_KEY_NSHealthUpdateUsageDescription: Hexplate writes your weigh-ins, meals, and finished workouts to Apple Health.
         # Settings → Look & Home → App icon: recoloured copies of the icon (Assets.xcassets).
         ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES: "AppIcon-Light AppIcon-Mono AppIcon-Blue AppIcon-Orange AppIcon-Pink AppIcon-Purple"
         # Settings → Reminders → Gym reminder: the phone watches your gyms and nudges you there.

@@ -9,6 +9,7 @@ struct TrainingCalendarView: View {
     let onSelectDay: (String, [String]) -> Void
 
     @Environment(\.colorScheme) private var scheme
+    @Environment(\.dynamicTypeSize) private var typeSize
     @State private var monthKey: String
 
     init(byDay: [String: [String]], today: String, weekStart: Int, onSelectDay: @escaping (String, [String]) -> Void) {
@@ -96,7 +97,7 @@ struct TrainingCalendarView: View {
                 .accessibilityLabel("Next month")
             }
 
-            Grid(horizontalSpacing: 4, verticalSpacing: 6) {
+            Grid(horizontalSpacing: 4, verticalSpacing: 2) {
                 GridRow {
                     ForEach(Array(weekdayHeaders.enumerated()), id: \.offset) { _, letter in
                         Text(letter)
@@ -118,6 +119,7 @@ struct TrainingCalendarView: View {
                                 Color.clear
                                     .frame(maxWidth: .infinity)
                                     .aspectRatio(1, contentMode: .fit)
+                                    .frame(minHeight: 44)
                                     .accessibilityHidden(true)
                             }
                         }
@@ -143,43 +145,50 @@ struct TrainingCalendarView: View {
         let isToday = iso == today
         let isFuture = iso > today
         let trainedInk: Color = scheme == .dark ? .black : .white
+        let circleInset: CGFloat = typeSize.isAccessibilitySize ? 1 : 4
 
-        let cellContent = Text(verbatim: "\(day)")
-            .font(.callout.weight(isToday || trained ? .semibold : .regular))
-            .monospacedDigit()
-            .lineLimit(1)
-            .minimumScaleFactor(0.5)
-            .padding(3)
-            .foregroundStyle(
-                trained ? AnyShapeStyle(trainedInk)
-                    : isToday ? AnyShapeStyle(.primary)
-                    : isFuture ? AnyShapeStyle(.tertiary)
-                    : AnyShapeStyle(.secondary)
-            )
+        let cellContent = Color.clear
             .frame(maxWidth: .infinity)
             .aspectRatio(1, contentMode: .fit)
-            .background {
-                if trained {
-                    Circle().fill(Theme.accent)
-                } else if isToday {
-                    Circle().strokeBorder(Theme.accent, lineWidth: 1.5)
-                }
-            }
-            .overlay(alignment: .bottom) {
-                if ids.count > 1 {
-                    HStack(spacing: 2) {
-                        Circle().fill(trainedInk.opacity(0.85)).frame(width: 3, height: 3)
-                        Circle().fill(trainedInk.opacity(0.85)).frame(width: 3, height: 3)
+            .frame(minHeight: 44)
+            .overlay {
+                ZStack {
+                    if trained {
+                        Circle().fill(Theme.accent)
+                    } else if isToday {
+                        Circle().strokeBorder(Theme.accent, lineWidth: 1.5)
                     }
-                    .padding(.bottom, 3)
+                    Text(verbatim: "\(day)")
+                        .font(.callout.weight(isToday || trained ? .semibold : .regular))
+                        .monospacedDigit()
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.45)
+                        .padding(3)
+                        .foregroundStyle(
+                            trained ? AnyShapeStyle(trainedInk)
+                                : isToday ? AnyShapeStyle(.primary)
+                                : isFuture ? AnyShapeStyle(.tertiary)
+                                : AnyShapeStyle(.secondary)
+                        )
                 }
+                .overlay(alignment: .bottom) {
+                    if ids.count > 1 {
+                        HStack(spacing: 2) {
+                            Circle().fill(trainedInk.opacity(0.85)).frame(width: 3, height: 3)
+                            Circle().fill(trainedInk.opacity(0.85)).frame(width: 3, height: 3)
+                        }
+                        .padding(.bottom, 3)
+                    }
+                }
+                .padding(circleInset)
             }
+            .contentShape(.rect)
 
         if trained {
             Button {
                 onSelectDay(iso, ids)
             } label: {
-                cellContent.contentShape(Circle())
+                cellContent
             }
             .buttonStyle(.plain)
             .accessibilityLabel(spokenLabel(iso: iso, count: ids.count))

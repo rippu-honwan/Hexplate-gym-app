@@ -52,6 +52,9 @@ final class AppModel {
     var pendingCoverWeighIn = false
     /// Consumed by ProfileView once no modal sheet is open (dismissing Settings/Import/LogPast first if needed).
     var weighInRequested = false
+    /// True while a sheet owned by NutritionView is presented; cleared ONLY in the sheet's `onDismiss`
+    /// so ProfileView waits for dismissal animation completion before presenting `WeightEntry`.
+    var nutritionSheetOpen = false
     /// MyGym: Start set pressed on the phone, and the set the watch says it records.
     var watchStart: WatchSet?
     var watchDone: WatchSet?
@@ -121,6 +124,28 @@ final class AppModel {
     /// Removes a saved workout from the history for good (sheets.jsx deleteWorkout).
     func deleteWorkout(id: String) {
         change { s in s["workouts"] = .array((s["workouts"]?.arrayValue ?? []).filter { $0.object?["id"]?.stringValue != id }) }
+    }
+
+    /// Inserts or updates a meal locally and enqueues its HealthKit write outbox op.
+    func upsertMeal(_ meal: Nutrition.Meal) {
+        change { _ = Nutrition.upsertMeal(&$0, meal) }
+        if let stamped = Nutrition.meal(root, id: meal.id) {
+            HealthService.shared.enqueueMealUpsert(stamped, root: root)
+        }
+    }
+
+    /// Tombstones a meal locally and enqueues its HealthKit delete outbox op (local meal photos
+    /// remain on disk until safe orphan GC after tombstone retention).
+    func deleteMeal(id: String) {
+        change { _ = Nutrition.deleteMeal(&$0, id: id) }
+        if let ts = root["meals"]?.object?[id]?.object?["_ts"]?.numberValue, ts > 0 {
+            HealthService.shared.enqueueMealDelete(mealId: id, ts: ts, root: root)
+        }
+    }
+
+    /// Saves nutrition goal overrides (or `{}` on reset so whole-key LWW propagates across devices).
+    func setNutritionGoals(_ goals: Nutrition.Goals) {
+        change { Nutrition.setGoals(&$0, goals) }
     }
 
     /// One automatic copy of the document a day (Application Support/Hexplate/backups).

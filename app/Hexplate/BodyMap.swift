@@ -9,6 +9,9 @@ struct BodyMap: View {
     let side: Side
     /// 0...1 per muscle; a muscle that is absent is drawn unlit.
     var levels: [String: Double] = [:]
+    /// Optional anatomical per-side shading (`left` / `right`) for bilateral limbs; empty leaves
+    /// existing whole-slug rendering completely unchanged.
+    var sideLevels: [BodyData.PartSide: Double] = [:]
     var female = false
     var onTap: ((String) -> Void)?
     /// Muscles to frame, close up, instead of the whole figure (a filter option's picture).
@@ -26,17 +29,36 @@ struct BodyMap: View {
                         y: (geo.size.height - box.height * scale) / 2))
                 ZStack {
                     ForEach(figure.parts, id: \.slug) { part in
-                        let path = part.path.applying(move)
                         if part.inert {
-                            path.fill(.fill.tertiary)
+                            part.path.applying(move).fill(.fill.tertiary)
                         } else {
-                            let level = min(1, max(0, levels[part.slug] ?? 0))
-                            path.fill(level > 0 ? AnyShapeStyle(.tint.opacity(0.3 + 0.7 * level)) : AnyShapeStyle(.fill.secondary))
-                                .contentShape(path)
+                            let leftOverride = sideLevels[BodyData.PartSide(slug: part.slug, side: .left)]
+                            let rightOverride = sideLevels[BodyData.PartSide(slug: part.slug, side: .right)]
+                            if leftOverride != nil || rightOverride != nil {
+                                let fallback = levels[part.slug] ?? 0
+                                let lLevel = min(1, max(0, leftOverride ?? fallback))
+                                let rLevel = min(1, max(0, rightOverride ?? fallback))
+                                let lPath = part.leftPath.applying(move)
+                                let rPath = part.rightPath.applying(move)
+                                ZStack {
+                                    lPath.fill(lLevel > 0 ? AnyShapeStyle(.tint.opacity(0.3 + 0.7 * lLevel)) : AnyShapeStyle(.fill.secondary))
+                                    rPath.fill(rLevel > 0 ? AnyShapeStyle(.tint.opacity(0.3 + 0.7 * rLevel)) : AnyShapeStyle(.fill.secondary))
+                                }
+                                .contentShape(part.path.applying(move))
                                 .onTapGesture { onTap?(part.slug) }
                                 .accessibilityHidden(onTap == nil)
                                 .accessibilityLabel(ExerciseCatalog.builtIn.muscleName(part.slug))
                                 .accessibilityAddTraits(.isButton)
+                            } else {
+                                let path = part.path.applying(move)
+                                let level = min(1, max(0, levels[part.slug] ?? 0))
+                                path.fill(level > 0 ? AnyShapeStyle(.tint.opacity(0.3 + 0.7 * level)) : AnyShapeStyle(.fill.secondary))
+                                    .contentShape(path)
+                                    .onTapGesture { onTap?(part.slug) }
+                                    .accessibilityHidden(onTap == nil)
+                                    .accessibilityLabel(ExerciseCatalog.builtIn.muscleName(part.slug))
+                                    .accessibilityAddTraits(.isButton)
+                            }
                         }
                     }
                 }
@@ -58,7 +80,13 @@ struct BodyMap: View {
 
 /// One view of a figure: its drawing box and one path per body part.
 struct BodyFigure {
-    struct Part { let slug: String; let path: Path; let inert: Bool }
+    struct Part {
+        let slug: String
+        let path: Path
+        let leftPath: Path
+        let rightPath: Path
+        let inert: Bool
+    }
     let box: CGRect
     let parts: [Part]
 
@@ -69,15 +97,33 @@ struct BodyFigure {
               let raw = try? JSONDecoder().decode([String: [String: Raw]].self, from: data) else { return [:] }
         let inert = Set(ExerciseCatalog.builtIn.meta.inert)
         return raw.mapValues { views in
-            views.mapValues { view in
+            Dictionary(uniqueKeysWithValues: views.map { sideName, view in
                 let n = view.vb.split(separator: " ").compactMap { Double($0) }
                 let box = n.count == 4 ? CGRect(x: n[0], y: n[1], width: n[2], height: n[3]) : .zero
+                let isFront = sideName == "front"
                 // The silhouette first, so muscles are drawn (and tapped) on top of it.
-                let parts = view.p.map { slug, ds in
-                    Part(slug: slug, path: ds.reduce(into: Path()) { $0.addPath(SVGPath.path($1)) }, inert: inert.contains(slug))
+                let parts = view.p.map { slug, ds -> Part in
+                    var combined = Path()
+                    var left = Path()
+                    var right = Path()
+                    for d in ds {
+                        let sub = SVGPath.path(d)
+                        combined.addPath(sub)
+                        let anatomical = BodyData.anatomicalSide(
+                            subpathMidX: Double(sub.boundingRect.midX),
+                            boxMidX: Double(box.midX),
+                            isFront: isFront
+                        )
+                        if anatomical == .left {
+                            left.addPath(sub)
+                        } else {
+                            right.addPath(sub)
+                        }
+                    }
+                    return Part(slug: slug, path: combined, leftPath: left, rightPath: right, inert: inert.contains(slug))
                 }.sorted { ($0.inert ? 0 : 1, $0.slug) < ($1.inert ? 0 : 1, $1.slug) }
-                return BodyFigure(box: box, parts: parts)
-            }
+                return (sideName, BodyFigure(box: box, parts: parts))
+            })
         }
     }()
 }

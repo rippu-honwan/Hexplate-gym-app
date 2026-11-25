@@ -33,11 +33,23 @@ struct HexplateApp: App {
                 .tint(Theme.accent)
                 .environment(model)
                 .environment(timer)
+                .environment(HealthService.shared)
                 .environment(\.locale, Theme.locale)
                 // The day may have changed while the app was in the background.
                 .preferredColorScheme(appearance == "light" ? .light : appearance == "dark" ? .dark : nil)
                 .onChange(of: phase) {
-                    if phase == .active { model.today = Day.today(); WatchBridge.shared.drain(); LiveActivitySync.drain(model, timer); ServerSync.shared.run(model); ReminderSync.sync(model); WrappedNotify.sync(model) }
+                    if phase == .active {
+                        model.today = Day.today()
+                        WatchBridge.shared.drain()
+                        LiveActivitySync.drain(model, timer)
+                        ServerSync.shared.run(model)
+                        ReminderSync.sync(model)
+                        WrappedNotify.sync(model)
+                        if model.document != nil && UIApplication.shared.isProtectedDataAvailable {
+                            MealPhotos.pruneOrphans(keeping: Nutrition.referencedPhotoIds(model.root))
+                        }
+                        HealthService.shared.scheduleForegroundSync(model: model)
+                    }
                     if phase == .background {
                         model.backupIfDue()
                         // What is waiting goes to the server before iOS suspends the app.
@@ -57,6 +69,9 @@ struct HexplateApp: App {
                     GymReminder.shared.register()
                     LiveActivitySync.start(model: model, timer: timer)
                     ServerSync.shared.start(model)
+                    HealthService.shared.startObservingUnlock(model: model)
+                    await HealthService.shared.refreshAuthStatus()
+                    await HealthService.shared.flushOutboxIfAllowed(root: model.root)
                 }
                 // The watch follows every change of the document and of the rest timer.
                 .onChange(of: model.root) { keepAwake(); followProfile(); WatchBridge.shared.send(); WidgetSync.write(model); LiveActivitySync.update(model, timer); ServerSync.shared.changed(model); ReminderSync.sync(model); WrappedNotify.sync(model) }

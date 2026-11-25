@@ -137,10 +137,12 @@ public enum BodyData {
         Field(id: "scale-fatArmR", name: "Body fat right arm", unit: "%"),
         Field(id: "scale-fatLegL", name: "Body fat left leg", unit: "%"),
         Field(id: "scale-fatLegR", name: "Body fat right leg", unit: "%"),
+        Field(id: "scale-fatTrunk", name: "Body fat trunk", unit: "%"),
         Field(id: "scale-muscleArmL", name: "Muscle left arm", unit: "kg"),
         Field(id: "scale-muscleArmR", name: "Muscle right arm", unit: "kg"),
         Field(id: "scale-muscleLegL", name: "Muscle left leg", unit: "kg"),
         Field(id: "scale-muscleLegR", name: "Muscle right leg", unit: "kg"),
+        Field(id: "scale-muscleTrunk", name: "Muscle trunk", unit: "kg"),
     ]
 
     static func storedUnit(_ unit: String) -> JSONValue { .string(unit.isEmpty ? "none" : unit) }
@@ -196,4 +198,197 @@ public enum BodyData {
 
     /// Goal weight (`targetW`), if set.
     public static func goal(_ s: Object) -> Double? { s["targetW"]?.numberValue.flatMap { $0 > 0 ? $0 : nil } }
+
+    // MARK: Body Composition Scans & Anatomical Segment Mapping
+
+    public struct Scan: Identifiable, Equatable, Sendable {
+        public let day: String
+        public let weight: Double?
+        public let bodyFat: Double?
+        public let fatMass: Double?
+        public let visceralFat: Double?
+        public let muscleMass: Double?
+        public let skeletalMuscle: Double?
+        public let boneMass: Double?
+        public let bodyWater: Double?
+        public let smi: Double?
+        public let bmi: Double?
+        public let bmr: Double?
+        public let fatArmL: Double?
+        public let fatArmR: Double?
+        public let fatTrunk: Double?
+        public let fatLegL: Double?
+        public let fatLegR: Double?
+        public let muscleArmL: Double?
+        public let muscleArmR: Double?
+        public let muscleTrunk: Double?
+        public let muscleLegL: Double?
+        public let muscleLegR: Double?
+
+        public var id: String { day }
+
+        public var hasSegmentalMuscle: Bool {
+            muscleArmL != nil || muscleArmR != nil || muscleTrunk != nil || muscleLegL != nil || muscleLegR != nil
+        }
+
+        public var hasSegmentalFat: Bool {
+            fatArmL != nil || fatArmR != nil || fatTrunk != nil || fatLegL != nil || fatLegR != nil
+        }
+    }
+
+    private static let compositionFieldIds = Set(compositionFields.map(\.id))
+
+    /// Single-pass chronological history of days carrying at least one body composition scale reading
+    /// (ignoring tape-only measurement days), joined with same-day body weight when available.
+    public static func scanHistory(_ s: Object) -> [Scan] {
+        let weightByDay = Dictionary(weights(s).map { ($0.day, $0.weight) }, uniquingKeysWith: { _, latest in latest })
+        var scans: [Scan] = []
+        for entry in (s["measurements"]?.arrayValue ?? []).compactMap(\.object) {
+            guard let day = entry["d"]?.stringValue, Report.valid(day) != nil else { continue }
+            var vals: [String: Double] = [:]
+            if let bf = entry["bodyFat"]?.numberValue, bf.isFinite { vals["bodyFat"] = bf }
+            for o in (entry["other"]?.arrayValue ?? []).compactMap(\.object) {
+                guard let id = o["id"]?.stringValue, compositionFieldIds.contains(id),
+                      let x = o["value"]?.numberValue, x.isFinite else { continue }
+                vals[id] = x
+            }
+            guard !vals.isEmpty else { continue }
+            scans.append(Scan(
+                day: day,
+                weight: weightByDay[day],
+                bodyFat: vals["bodyFat"],
+                fatMass: vals["scale-fatMass"],
+                visceralFat: vals["scale-visceral"],
+                muscleMass: vals["scale-muscleMass"],
+                skeletalMuscle: vals["scale-muscle"],
+                boneMass: vals["scale-bone"],
+                bodyWater: vals["scale-water"],
+                smi: vals["scale-smi"],
+                bmi: vals["scale-bmi"],
+                bmr: vals["scale-bmr"],
+                fatArmL: vals["scale-fatArmL"],
+                fatArmR: vals["scale-fatArmR"],
+                fatTrunk: vals["scale-fatTrunk"],
+                fatLegL: vals["scale-fatLegL"],
+                fatLegR: vals["scale-fatLegR"],
+                muscleArmL: vals["scale-muscleArmL"],
+                muscleArmR: vals["scale-muscleArmR"],
+                muscleTrunk: vals["scale-muscleTrunk"],
+                muscleLegL: vals["scale-muscleLegL"],
+                muscleLegR: vals["scale-muscleLegR"]
+            ))
+        }
+        return scans.sorted { $0.day < $1.day }
+    }
+
+    public enum AnatomicalSide: String, Hashable, Sendable {
+        case left
+        case right
+    }
+
+    public struct PartSide: Hashable, Sendable {
+        public let slug: String
+        public let side: AnatomicalSide
+
+        public init(slug: String, side: AnatomicalSide) {
+            self.slug = slug
+            self.side = side
+        }
+    }
+
+    /// Maps an SVG subpath's horizontal midpoint to the person's anatomical side.
+    /// On the front view (facing the viewer), viewer-left (`subpathMidX < boxMidX`) is anatomical right;
+    /// on the back view (facing away), viewer-left is anatomical left.
+    public static func anatomicalSide(subpathMidX: Double, boxMidX: Double, isFront: Bool) -> AnatomicalSide {
+        let viewerLeft = subpathMidX < boxMidX
+        if isFront {
+            return viewerLeft ? .right : .left
+        } else {
+            return viewerLeft ? .left : .right
+        }
+    }
+
+    public enum SegmentMetric: String, CaseIterable, Identifiable, Sendable {
+        case muscle
+        case fat
+
+        public var id: String { rawValue }
+    }
+
+    public struct SegmentShading: Equatable, Sendable {
+        /// Whole-slug shading for trunk muscles (avoids midline subpath straddling).
+        public let levels: [String: Double]
+        /// Per-side shading for bilateral limb muscles (arms and legs).
+        public let sideLevels: [PartSide: Double]
+
+        public static let empty = SegmentShading(levels: [:], sideLevels: [:])
+    }
+
+    public static let armSlugs = ["deltoids", "biceps", "triceps", "forearm"]
+    public static let legSlugs = ["quadriceps", "hamstring", "adductors", "gluteal", "calves", "tibialis", "hip-flexors"]
+    public static let trunkSlugs = ["chest", "abs", "obliques", "serratus", "upper-back", "lower-back", "trapezius"]
+
+    /// Computes normalized body-map shading for a scan's segmental muscle (kg) or body fat (%).
+    /// Muscle is normalized within each L/R pair (arms L vs R, legs L vs R) so limb asymmetry stays
+    /// visible alongside trunk mass; fat shares `%` units across all five regions.
+    public static func segmentShading(for scan: Scan, metric: SegmentMetric) -> SegmentShading {
+        var levels: [String: Double] = [:]
+        var sideLevels: [PartSide: Double] = [:]
+
+        func applyLimbs(_ slugs: [String], left: Double?, right: Double?) {
+            for slug in slugs {
+                if let left { sideLevels[PartSide(slug: slug, side: .left)] = left }
+                if let right { sideLevels[PartSide(slug: slug, side: .right)] = right }
+            }
+        }
+
+        switch metric {
+        case .muscle:
+            func pairNormalized(_ l: Double?, _ r: Double?) -> (Double?, Double?) {
+                let lv = l.flatMap { $0 > 0 ? $0 : nil }
+                let rv = r.flatMap { $0 > 0 ? $0 : nil }
+                let hi = max(lv ?? 0, rv ?? 0)
+                guard hi > 0 else { return (nil, nil) }
+                func scale(_ v: Double?) -> Double? {
+                    guard let v else { return nil }
+                    let ratio = v / hi
+                    return 0.30 + 0.70 * min(1, max(0, (ratio - 0.5) / 0.5))
+                }
+                return (scale(lv), scale(rv))
+            }
+
+            let arms = pairNormalized(scan.muscleArmL, scan.muscleArmR)
+            applyLimbs(armSlugs, left: arms.0, right: arms.1)
+
+            let legs = pairNormalized(scan.muscleLegL, scan.muscleLegR)
+            applyLimbs(legSlugs, left: legs.0, right: legs.1)
+
+            if let trunk = scan.muscleTrunk, trunk > 0 {
+                let trunkLevel: Double
+                if let total = scan.muscleMass, total > 0 {
+                    trunkLevel = min(0.90, max(0.35, (trunk / total) * 1.4))
+                } else {
+                    trunkLevel = 0.75
+                }
+                for slug in trunkSlugs { levels[slug] = trunkLevel }
+            }
+
+        case .fat:
+            let all = [scan.fatArmL, scan.fatArmR, scan.fatTrunk, scan.fatLegL, scan.fatLegR].compactMap { $0 }.filter { $0 > 0 }
+            guard let lo = all.min(), let hi = all.max() else { return .empty }
+            func scale(_ v: Double?) -> Double? {
+                guard let v, v > 0 else { return nil }
+                guard hi - lo >= 0.01 else { return 0.75 }
+                return 0.30 + 0.70 * ((v - lo) / (hi - lo))
+            }
+
+            applyLimbs(armSlugs, left: scale(scan.fatArmL), right: scale(scan.fatArmR))
+            applyLimbs(legSlugs, left: scale(scan.fatLegL), right: scale(scan.fatLegR))
+            if let trunk = scale(scan.fatTrunk) {
+                for slug in trunkSlugs { levels[slug] = trunk }
+            }
+        }
+
+        return SegmentShading(levels: levels, sideLevels: sideLevels)
+    }
 }

@@ -5,8 +5,8 @@ import SwiftUI
 extension AppModel {
     func logWeight(_ w: Double, on day: String, fromHealth: Bool = false) {
         let at = now
-        if !fromHealth && UserDefaults.standard.bool(forKey: "health") && Modules.isOn(root, "health") {
-            Health.save(weight: w, unit: settings.unit, at: day == today ? .now : Day.date(day) ?? .now)
+        if !fromHealth && HealthService.shared.isEnabled(root: root) {
+            HealthService.shared.saveWeight(w, unit: settings.unit, at: day == today ? .now : Day.date(day) ?? .now)
         }
         let time = Date.now.formatted(.dateTime.hour(.twoDigits(amPM: .omitted)).minute(.twoDigits).locale(Locale(identifier: "en_GB")))
         change { BodyData.addWeighIn(&$0, day: day, time: day == today ? time : nil, weight: w, at: at, id: RoutineOps.newId(now: at)) }

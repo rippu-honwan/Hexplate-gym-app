@@ -1,4 +1,3 @@
-import HealthKit
 import HexplateCore
 import SwiftUI
 
@@ -22,58 +21,11 @@ extension AppModel {
     }
 }
 
-// MARK: - Apple Health
-
-/// Writes body weight and finished workouts to Apple Health, and reads weights back in.
-@MainActor
-enum Health {
-    static let store = HKHealthStore()
-    static let mass = HKQuantityType(.bodyMass)
-    static var available: Bool { HKHealthStore.isHealthDataAvailable() }
-
-    static func authorise() async -> Bool {
-        guard available else { return false }
-        do {
-            try await store.requestAuthorization(toShare: [mass, .workoutType()], read: [mass])
-            return true
-        } catch {
-            return false
-        }
-    }
-
-    static func save(weight: Double, unit: String, at date: Date) {
-        guard available else { return }
-        let q = HKQuantity(unit: unit == "lb" ? .pound() : .gramUnit(with: .kilo), doubleValue: weight)
-        store.save(HKQuantitySample(type: mass, quantity: q, start: date, end: date)) { _, _ in }
-    }
-
-    static func save(workout start: Date, end: Date) async {
-        guard available, end > start else { return }
-        let config = HKWorkoutConfiguration()
-        config.activityType = .traditionalStrengthTraining
-        let builder = HKWorkoutBuilder(healthStore: store, configuration: config, device: .local())
-        do {
-            try await builder.beginCollection(at: start)
-            try await builder.endCollection(at: end)
-            _ = try await builder.finishWorkout()
-        } catch {}
-    }
-
-    /// Weights logged in Health over the last `days` days, oldest first.
-    static func weights(unit: String, days: Int = 90) async -> [(date: Date, weight: Double)] {
-        guard available else { return [] }
-        let from = Calendar.current.date(byAdding: .day, value: -days, to: .now)
-        let query = HKSampleQueryDescriptor(predicates: [.quantitySample(type: mass, predicate: HKQuery.predicateForSamples(withStart: from, end: nil))],
-                                            sortDescriptors: [SortDescriptor(\.startDate)])
-        let samples = (try? await query.result(for: store)) ?? []
-        return samples.map { ($0.startDate, $0.quantity.doubleValue(for: unit == "lb" ? .pound() : .gramUnit(with: .kilo))) }
-    }
-}
-
 // MARK: - Settings
 
 struct SettingsView: View {
     @Environment(AppModel.self) private var model
+    @Environment(HealthService.self) private var healthService
     @Environment(\.dismiss) private var dismiss
     @AppStorage("appearance") private var appearance = "system"
     @AppStorage("health") private var health = false
@@ -269,20 +221,39 @@ struct SettingsView: View {
         }
     }
 
+    private var healthActive: Bool {
+        #if DEBUG
+        if healthService.isDebugFakeActive { return true }
+        #endif
+        return health
+    }
+
     @ViewBuilder private var healthPage: some View {
         Section {
             Toggle("Apple Health", isOn: $health)
                 .onChange(of: health) {
                     guard health else { return }
-                    Task { if !(await Health.authorise()) { health = false; healthNote = String(localized: "Apple Health is not available.") } }
+                    Task {
+                        if !(await healthService.authorise()) {
+                            health = false
+                            healthNote = String(localized: "Apple Health is not available.")
+                        }
+                    }
                 }
-            if health {
+            if healthActive && healthService.authStatus == .shouldRequest {
+                Button("Enable new Health data", systemImage: "heart.badge.plus") {
+                    Task { _ = await healthService.authorise() }
+                }
+            }
+            if healthActive {
+                NavigationLink("Nutrition sources") { HealthNutritionSourcesPage() }
                 Button("Import weights from Health") { Task { await importWeights() } }
             }
             if let healthNote { Text(healthNote).foregroundStyle(.secondary) }
         } footer: {
-            Text("Weigh-ins and finished workouts are written to Health.")
+            Text("Weigh-ins, meals, and finished workouts are written to Health.")
         }
+        .task { await healthService.refreshAuthStatus() }
     }
 
     @ViewBuilder private var data: some View {
@@ -360,11 +331,45 @@ struct SettingsView: View {
 
     private func importWeights() async {
         let unit = model.settings.unit
-        let samples = await Health.weights(unit: unit)
+        let samples = await healthService.readWeights(unit: unit)
         let have = Set(BodyData.weights(model.root).map(\.day))
         let new = samples.filter { !have.contains(Day.iso($0.date)) }
         for s in new { model.logWeight(s.weight, on: Day.iso(s.date), fromHealth: true) }
         healthNote = new.isEmpty ? String(localized: "Nothing new in Health.") : new.count == 1 ? String(localized: "1 weigh-in added.") : String(localized: "\(new.count) weigh-ins added.")
+    }
+}
+
+/// Include/exclude list of third-party Apple Health nutrition apps (device-local in UserDefaults).
+struct HealthNutritionSourcesPage: View {
+    @Environment(HealthService.self) private var health
+
+    var body: some View {
+        Form {
+            Section {
+                if health.availableSources.isEmpty {
+                    Text("No other apps have written nutrition data to Apple Health yet.")
+                        .foregroundStyle(.secondary)
+                } else {
+                    ForEach(health.availableSources) { source in
+                        Toggle(source.name, isOn: Binding(
+                            get: { !health.excludedSourceIds.contains(source.id) },
+                            set: { included in
+                                if included {
+                                    health.excludedSourceIds.remove(source.id)
+                                } else {
+                                    health.excludedSourceIds.insert(source.id)
+                                }
+                            }
+                        ))
+                    }
+                }
+            } footer: {
+                Text("Choose which third-party apps count toward your daily nutrition totals. Turn off any app that mirrors Hexplate meals back into Apple Health.")
+            }
+        }
+        .navigationTitle("Nutrition sources")
+        .navigationBarTitleDisplayMode(.inline)
+        .task { await health.loadNutritionSources() }
     }
 }
 

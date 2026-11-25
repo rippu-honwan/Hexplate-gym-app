@@ -96,18 +96,15 @@ final class WatchBridge: NSObject, WCSessionDelegate, @unchecked Sendable {
     @MainActor
     func openOnWatch() {
         let wc = WCSession.default
-        guard WCSession.isSupported(), wc.activationState == .activated, wc.isPaired, wc.isWatchAppInstalled, Health.available else {
-            note("watch app not opened: activated \(wc.activationState == .activated) paired \(wc.isPaired) installed \(wc.isWatchAppInstalled) health \(Health.available)")
+        let healthAvailable = HealthService.shared.isAvailable
+        guard WCSession.isSupported(), wc.activationState == .activated, wc.isPaired, wc.isWatchAppInstalled, healthAvailable else {
+            note("watch app not opened: activated \(wc.activationState == .activated) paired \(wc.isPaired) installed \(wc.isWatchAppInstalled) health \(healthAvailable)")
             return
         }
-        let config = HKWorkoutConfiguration()
-        config.activityType = .traditionalStrengthTraining
-        config.locationType = .indoor
         Task {
-            try? await Health.store.requestAuthorization(toShare: [.workoutType()], read: [])
-            note("open on watch: share workouts \(Health.store.authorizationStatus(for: .workoutType()) == .sharingAuthorized ? "allowed" : "not allowed")")
             do {
-                try await Health.store.startWatchApp(toHandle: config)
+                let allowed = try await HealthService.shared.startWatchStrengthWorkout()
+                note("open on watch: share workouts \(allowed ? "allowed" : "not allowed")")
                 note("open on watch: asked")
             } catch {
                 note("watch app not opened: \(error.localizedDescription)")
