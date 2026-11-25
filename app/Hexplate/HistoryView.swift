@@ -1,57 +1,35 @@
 import HexplateCore
 import SwiftUI
 
-/// Every logged workout, newest first, a section per month. Read only.
-struct HistoryView: View {
+/// Every logged workout, newest first, emitted as monthly sections inside ProfileView's List.
+struct HistoryContent: View {
     @Environment(AppModel.self) private var model
-    @State private var importing = false
-    @State private var deleting: AppModel.Item?
-    @State private var logging = false
+    @Binding var deleting: AppModel.Item?
+    @Binding var importing: Bool
 
     var body: some View {
-        NavigationStack {
-            Group {
-                if model.months.isEmpty {
-                    ContentUnavailableView {
-                        Label("No workouts yet", systemImage: "dumbbell")
-                    } description: {
-                        Text("Import your backup to see your history here.")
-                    } actions: {
-                        Button("Import data") { importing = true }
-                            .buttonStyle(.borderedProminent)
-                            .foregroundStyle(Theme.ink)
+        if model.months.isEmpty {
+            Section("History") {
+                Label {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("No workouts yet").font(.headline)
+                        Text("Import your backup to see your history here.").font(.subheadline).foregroundStyle(.secondary)
                     }
-                } else {
-                    List(model.months) { month in
-                        Section(month.title) {
-                            ForEach(month.items) { item in
-                                NavigationLink(value: WorkoutLink(id: item.id)) { WorkoutRow(item: item) }
-                                    .swipeActions {
-                                        Button("Delete", systemImage: "trash", role: .destructive) { deleting = item }
-                                    }
+                } icon: {
+                    Image(systemName: "dumbbell").foregroundStyle(.tint)
+                }
+                Button("Import data", systemImage: "square.and.arrow.down") { importing = true }
+            }
+        } else {
+            ForEach(model.months) { month in
+                Section(month.title) {
+                    ForEach(month.items) { item in
+                        NavigationLink(value: WorkoutLink(id: item.id)) { WorkoutRow(item: item) }
+                            .swipeActions {
+                                Button("Delete", systemImage: "trash", role: .destructive) { deleting = item }
                             }
-                        }
                     }
                 }
-            }
-            .navigationTitle("History")
-            .workoutDestination()
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Menu("More", systemImage: "ellipsis") {
-                        Button("Log a past workout", systemImage: "calendar.badge.plus") { logging = true }
-                            .disabled(model.active != nil)
-                        Button("Import data", systemImage: "square.and.arrow.down") { importing = true }
-                    }
-                }
-            }
-            .sheet(isPresented: $importing) { ImportView() }
-            .sheet(isPresented: $logging, onDismiss: { if model.isBackfill { model.showWorkout = true } }) { LogPastWorkoutSheet() }
-            .alert("Delete this workout?", isPresented: Binding(get: { deleting != nil }, set: { if !$0 { deleting = nil } }), presenting: deleting) { item in
-                Button("Delete", role: .destructive) { model.deleteWorkout(id: item.id) }
-                Button("Cancel", role: .cancel) {}
-            } message: { item in
-                Text("\(item.workout.name ?? "This workout") is removed from your history for good.")
             }
         }
     }

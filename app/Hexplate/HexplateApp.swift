@@ -73,19 +73,26 @@ private struct RootView: View {
     var body: some View {
         @Bindable var model = model
         TabView(selection: $model.tab) {
-            Tab("Today", systemImage: "house.fill", value: "today") { HomeView() }
-            Tab("Plan", systemImage: "calendar", value: "plan") { PlanView() }
-            Tab("Exercises", systemImage: "dumbbell", value: "exercises") { LibraryView() }
-            Tab("History", systemImage: "clock.arrow.circlepath", value: "history") { HistoryView() }
-            Tab("Stats", systemImage: "chart.xyaxis.line", value: "stats") { StatsView() }
+            Tab("Gym", systemImage: "dumbbell", value: "gym") { GymView() }
+            Tab("Nutrition", systemImage: "fork.knife", value: "nutrition") { NutritionView() }
+            Tab("Today", systemImage: "sun.max", value: "today") { HomeView() }
+            Tab("Analysis", systemImage: "waveform.path.ecg", value: "analysis") { AnalysisView() }
+            Tab("Profile", systemImage: "person.crop.circle", value: "profile") { ProfileView() }
         }
         .modifier(WorkoutAccessory())
-        .fullScreenCover(isPresented: $model.showWorkout) { WorkoutView().tint(Theme.accent) }
-        .fullScreenCover(item: $model.wrappedYear) { WrappedStory(year: $0).tint(Theme.accent) }
+        .fullScreenCover(isPresented: $model.showWorkout, onDismiss: flushPendingCoverWeighIn) { WorkoutView().tint(Theme.accent) }
+        .fullScreenCover(item: $model.wrappedYear, onDismiss: flushPendingCoverWeighIn) { WrappedStory(year: $0).tint(Theme.accent) }
         .alert("Something went wrong", isPresented: .init(get: { model.errorMessage != nil }, set: { if !$0 { model.errorMessage = nil } })) {
             Button("OK", role: .cancel) {}
         } message: {
             Text(model.errorMessage ?? "")
+        }
+    }
+
+    private func flushPendingCoverWeighIn() {
+        if model.pendingCoverWeighIn && !model.showWorkout && model.wrappedYear == nil {
+            model.pendingCoverWeighIn = false
+            model.weighInRequested = true
         }
     }
 }

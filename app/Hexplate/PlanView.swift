@@ -1,94 +1,89 @@
 import HexplateCore
 import SwiftUI
 
-/// The plan: how the week is scheduled (fixed weekdays or a loop) and the routines themselves.
-struct PlanView: View {
+/// The plan segment inside Gym: how the week is scheduled (fixed weekdays or a loop) and the routines themselves.
+struct PlanContent: View {
     @Environment(AppModel.self) private var model
-    @State private var path: [RoutineLink] = []
+    @Binding var path: NavigationPath
     @State private var editingDay: WeekdayLink?
     @State private var confirmWeek = false
     @State private var deleting: AppModel.Routine?
 
     var body: some View {
         let mode = Schedule.scheduleMode(model.root)
-        NavigationStack(path: $path) {
-            List {
-                Section {
-                    Picker("How you train", selection: Binding(get: { mode }, set: choose)) {
-                        Text("Fixed Week").tag("week")
-                        Text("Rotation").tag("rotation")
-                    }
-                    .pickerStyle(.segmented)
-                } footer: {
-                    Text(mode == "week"
-                        ? "The same routines on the same weekdays, every week."
-                        : "Routines in a loop. Whatever is next stays next until you train it, whatever the day.")
+        List {
+            Section {
+                Picker("How you train", selection: Binding(get: { mode }, set: choose)) {
+                    Text("Fixed Week").tag("week")
+                    Text("Rotation").tag("rotation")
                 }
+                .pickerStyle(.segmented)
+            } footer: {
+                Text(mode == "week"
+                    ? "The same routines on the same weekdays, every week."
+                    : "Routines in a loop. Whatever is next stays next until you train it, whatever the day.")
+            }
 
-                if mode == "week" { weekSection } else { loopSection }
+            if mode == "week" { weekSection } else { loopSection }
 
-                Section {
-                    NavigationLink { ProgrammesView() } label: {
-                        LabeledContent {
-                            if let chip = Programmes.chip(model.root, today: model.today) { Text(chip) }
-                        } label: { Label("Programmes", systemImage: "calendar.badge.clock") }
-                    }
+            Section {
+                NavigationLink { ProgrammesView() } label: {
+                    LabeledContent {
+                        if let chip = Programmes.chip(model.root, today: model.today) { Text(chip) }
+                    } label: { Label("Programmes", systemImage: "calendar.badge.clock") }
                 }
+            }
 
-                Section {
-                    ForEach(model.routines) { routine in
-                        NavigationLink(value: RoutineLink(id: routine.id)) {
-                            Label {
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(routine.name.isEmpty ? "Untitled" : routine.name)
-                                    Text(routine.slots.count == 1 ? "1 exercise" : "\(routine.slots.count) exercises")
-                                        .font(.subheadline)
-                                        .foregroundStyle(.secondary)
-                                }
-                            } icon: {
-                                Image(systemName: routine.symbol).foregroundStyle(.tint)
+            Section {
+                ForEach(model.routines) { routine in
+                    NavigationLink(value: RoutineLink(id: routine.id)) {
+                        Label {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(routine.name.isEmpty ? "Untitled" : routine.name)
+                                Text(routine.slots.count == 1 ? "1 exercise" : "\(routine.slots.count) exercises")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
                             }
-                        }
-                        .swipeActions {
-                            Button("Delete", systemImage: "trash", role: .destructive) { deleting = routine }
-                        }
-                    }
-                    .onMove { from, to in
-                        model.change { s in
-                            guard var list = s["routines"]?.arrayValue else { return }
-                            // Write reordered user routines back into their original slot indices so
-                            // any server-interleaved aiClone entries keep their positions.
-                            let slots = list.indices.filter {
-                                guard let r = list[$0].object, r["id"]?.stringValue != nil else { return false }
-                                return !RoutineOps.isAIClone(r)
-                            }
-                            var visible = slots.map { list[$0] }
-                            visible.move(fromOffsets: from, toOffset: to)
-                            for (slot, item) in zip(slots, visible) { list[slot] = item }
-                            s["routines"] = .array(list)
+                        } icon: {
+                            Image(systemName: routine.symbol).foregroundStyle(.tint)
                         }
                     }
-                    Button("New routine", systemImage: "plus") { addRoutine() }
-                } header: {
-                    Text("Routines")
-                } footer: {
-                    if model.routines.isEmpty { Text("No routines yet. Make one to start planning.") }
+                    .swipeActions {
+                        Button("Delete", systemImage: "trash", role: .destructive) { deleting = routine }
+                    }
                 }
+                .onMove { from, to in
+                    model.change { s in
+                        guard var list = s["routines"]?.arrayValue else { return }
+                        // Write reordered user routines back into their original slot indices so
+                        // any server-interleaved aiClone entries keep their positions.
+                        let slots = list.indices.filter {
+                            guard let r = list[$0].object, r["id"]?.stringValue != nil else { return false }
+                            return !RoutineOps.isAIClone(r)
+                        }
+                        var visible = slots.map { list[$0] }
+                        visible.move(fromOffsets: from, toOffset: to)
+                        for (slot, item) in zip(slots, visible) { list[slot] = item }
+                        s["routines"] = .array(list)
+                    }
+                }
+                Button("New routine", systemImage: "plus") { addRoutine() }
+            } header: {
+                Text("Routines")
+            } footer: {
+                if model.routines.isEmpty { Text("No routines yet. Make one to start planning.") }
             }
-            .navigationTitle("Plan")
-            .toolbar { if model.routines.count > 1 { EditButton() } }
-            .navigationDestination(for: RoutineLink.self) { RoutineEditorView(routineId: $0.id) }
-            .sheet(item: $editingDay) { WeekdaySheet(weekday: $0.weekday) }
-            .confirmationDialog("Back to a fixed week?", isPresented: $confirmWeek, titleVisibility: .visible) {
-                Button("Use Fixed Week") { model.change { Schedule.chooseFixedWeek(&$0, today: model.today) } }
-            } message: {
-                Text("The loop stops. Your weekdays stay as they are, and the loop is saved for later.")
-            }
-            .confirmationDialog("Delete routine?", isPresented: .init(get: { deleting != nil }, set: { if !$0 { deleting = nil } }), titleVisibility: .visible, presenting: deleting) { routine in
-                Button("Delete", role: .destructive) { model.change { RoutineOps.deleteRoutine(&$0, id: routine.id) } }
-            } message: { routine in
-                Text("“\(routine.name)” and its exercises will be removed. Workouts you logged with it stay in History.")
-            }
+        }
+        .sheet(item: $editingDay) { WeekdaySheet(weekday: $0.weekday) }
+        .confirmationDialog("Back to a fixed week?", isPresented: $confirmWeek, titleVisibility: .visible) {
+            Button("Use Fixed Week") { model.change { Schedule.chooseFixedWeek(&$0, today: model.today) } }
+        } message: {
+            Text("The loop stops. Your weekdays stay as they are, and the loop is saved for later.")
+        }
+        .confirmationDialog("Delete routine?", isPresented: .init(get: { deleting != nil }, set: { if !$0 { deleting = nil } }), titleVisibility: .visible, presenting: deleting) { routine in
+            Button("Delete", role: .destructive) { model.change { RoutineOps.deleteRoutine(&$0, id: routine.id) } }
+        } message: { routine in
+            Text("“\(routine.name)” and its exercises will be removed. Workouts you logged with it stay in History.")
         }
     }
 
@@ -236,7 +231,7 @@ private struct WeekdaySheet: View {
     let weekday: Int
 
     var body: some View {
-        let chosen = PlanView.routineIds(model.root, weekday: weekday)
+        let chosen = PlanContent.routineIds(model.root, weekday: weekday)
         NavigationStack {
             List {
                 Section {
@@ -261,7 +256,7 @@ private struct WeekdaySheet: View {
                     Button("Rest day", systemImage: "moon") { save([]) }
                 }
             }
-            .navigationTitle(PlanView.weekdayName(weekday))
+            .navigationTitle(PlanContent.weekdayName(weekday))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } } }
         }

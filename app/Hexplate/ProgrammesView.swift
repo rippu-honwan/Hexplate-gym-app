@@ -1,9 +1,17 @@
 import HexplateCore
 import SwiftUI
 
-/// Plan → Programmes (views/Programmes.jsx): the running one's card, your programmes, a new one.
+/// Plan -> Programmes (views/Programmes.jsx): pushed wrapper with its own navigation title.
 // ponytail: no starter programmes and no sharing as a file yet.
 struct ProgrammesView: View {
+    var body: some View {
+        ProgrammesContent()
+            .navigationTitle("Programmes")
+    }
+}
+
+/// The Programmes segment inside Gym: the running one's card, your programmes, and a new one.
+struct ProgrammesContent: View {
     @Environment(AppModel.self) private var model
     @State private var opened: ProgrammeLink?
 
@@ -33,7 +41,6 @@ struct ProgrammesView: View {
                 Text(list.isEmpty ? "No programmes yet. Make one from your plan." : "Your routines as a block of weeks, each week with its own %1RM or RPE.")
             }
         }
-        .navigationTitle("Programmes")
         .navigationDestination(item: $opened) { ProgrammeEditor(id: $0.id) }
     }
 

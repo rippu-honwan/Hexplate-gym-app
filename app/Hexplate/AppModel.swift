@@ -36,8 +36,23 @@ final class AppModel {
     var showWorkout = false
     /// The year "Your year" shows full screen (WrappedStory), nil when closed.
     var wrappedYear: Int?
+    enum GymSegment: String, CaseIterable, Identifiable {
+        case plan, programmes, exercises
+        var id: String { rawValue }
+    }
+
     /// The tab on screen.
     var tab = "today"
+    /// Active segment inside the Gym tab.
+    var gymSegment: GymSegment = .plan
+    /// Incremented by Gym deep links so GymView pops its NavigationStack even if gymSegment did not change.
+    var gymResetToken = 0
+    /// Presents the Body weight entry sheet on the Profile tab.
+    var presentWeightSheet = false
+    /// Set when opengym://weigh-in arrived while a RootView fullScreenCover was open; promoted in cover onDismiss.
+    var pendingCoverWeighIn = false
+    /// Consumed by ProfileView once no modal sheet is open (dismissing Settings/Import/LogPast first if needed).
+    var weighInRequested = false
     /// MyGym: Start set pressed on the phone, and the set the watch says it records.
     var watchStart: WatchSet?
     var watchDone: WatchSet?

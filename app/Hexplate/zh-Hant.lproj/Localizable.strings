@@ -745,7 +745,8 @@
 "No list yet, so dumbbell lifts step by their increment as usual." = "還沒有清單，啞鈴動作照常按增量加重。";
 "Normal" = "正常";
 "Off hides a part of the app. Nothing is deleted: switched back on, it is all there." = "關閉會隱藏 App 的一部分。資料不會刪除，重新開啟後全部都在。";
-"On Home" = "首頁上";
+"On Profile" = "個人資料頁面上";
+"On Today" = "今天頁面上";
 "Only while the app is on screen. Music turns down for a moment, it never stops." = "只在 App 開著時。音樂只會暫時調低，不會停止。";
 "Pairs of each plate. Without a list of your own, a standard rack of six pairs is assumed." = "每種槓片的對數。沒有自訂清單時，假設每種有六對的標準槓片架。";
 "Plates" = "槓片";
@@ -763,7 +764,7 @@
 "This is how your reminders will look." = "你的提醒會是這個樣子。";
 "Try it" = "試試看";
 "Vibrate" = "震動";
-"Weekly sets on Home" = "首頁顯示每週組數";
+"Weekly sets on Today" = "今天頁面顯示每週組數";
 "Weekly sets per muscle" = "每個肌群的每週組數";
 "What the bars at your gym weigh. Every exercise with that bar counts plates from it, unless you gave the exercise its own. Logged weights stay totals." = "你健身房的槓鈴桿重量。使用該槓的動作都從這個重量計算槓片，除非你為動作另外設定。記錄的重量仍是總重。";
 "What your gym has. Warm-ups and the plate calculator load from it." = "你的健身房有什麼器材。熱身組和槓片計算機會依此配重。";
@@ -1025,3 +1026,9 @@
 
 /* Exercise filters */
 "No equipment" = "無器材";
+
+/* Tab bar & Nutrition placeholder */
+"Gym" = "健身";
+"Nutrition" = "營養";
+"Analysis" = "分析";
+"Daily calories, macros, and body composition will appear here." = "每日熱量、營養素與身體組成紀錄將會顯示於此。";

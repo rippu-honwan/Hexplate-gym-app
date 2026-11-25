@@ -1,13 +1,11 @@
 import HexplateCore
 import SwiftUI
 
-/// Today: what is planned, how the week stands, the loop, and the latest workout.
+/// Today: what is planned, how the week stands, and the loop.
 struct HomeView: View {
-    @State private var settings = false
     @State private var swapping = false
     @State private var choosingPlan = false
     @State private var importing = false
-    @State private var loggingWeight = false
     @Environment(AppModel.self) private var model
 
     var body: some View {
@@ -36,32 +34,18 @@ struct HomeView: View {
                             }
                         } icon: { Image(systemName: "calendar").foregroundStyle(.tint) }
                         Button("Load starter plan", systemImage: "list.clipboard") { choosingPlan = true }
-                        Button("Build my own plan", systemImage: "square.and.pencil") { model.tab = "plan" }
+                        Button("Build my own plan", systemImage: "square.and.pencil") {
+                            model.gymSegment = .plan
+                            model.tab = "gym"
+                        }
                         Button("Import data", systemImage: "square.and.arrow.down") { importing = true }
                     }
                 }
 
-                if Modules.isOn(model.root, "motivation") {
-                    WrappedHomeSection()
-                    StreakPartySection()
-                    ChallengesSection()
-                }
-
-                // Look & Home → Recovery tips (openGym S.recoveryHint, Health module).
+                // Look & Home -> Recovery tips (openGym S.recoveryHint, Health module).
                 if Modules.isOn(model.root, "health"), model.root["recoveryHint"] != .bool(false),
                    let hint = Recovery.hint(model.root, now: model.now, today: model.today, catalog: model.catalog) {
                     Section { RecoveryCard(hint: hint) { swapping = true } }
-                }
-
-                // Look & Home → Body weight (S.showWeightCard, Body module): the last weigh-in, logged in one tap.
-                if Modules.isOn(model.root, "body"), model.root["showWeightCard"] != .bool(false) {
-                    Section {
-                        let last = BodyData.weights(model.root).last
-                        LabeledContent("Body weight") {
-                            Text(last.map { "\(Format.number($0.weight)) \(model.settings.unit)" } ?? "–").monospacedDigit()
-                        }
-                        Button(last?.day == model.today ? "Change today’s weight" : "Log weight", systemImage: "scalemass") { loggingWeight = true }
-                    }
                 }
 
                 if model.root["homeMuscleSets"] == .bool(true) { MuscleSetsSection() }
@@ -82,21 +66,11 @@ struct HomeView: View {
                         ForEach(view.items) { QueueRow(item: $0) }
                     }
                 }
-
-                if let latest = model.months.first?.items.first {
-                    Section("Latest workout") {
-                        NavigationLink(value: WorkoutLink(id: latest.id)) { WorkoutRow(item: latest) }
-                    }
-                }
             }
             .navigationTitle("Today")
             .sheet(isPresented: $choosingPlan) { StarterPlanSheet() }
-            .sheet(isPresented: $loggingWeight) { WeightEntry() }
             .sheet(isPresented: $importing) { ImportView() }
             .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("Settings", systemImage: "gearshape") { settings = true }
-                }
                 if model.active == nil {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button("Empty workout", systemImage: "plus") {
@@ -106,8 +80,6 @@ struct HomeView: View {
                     }
                 }
             }
-            .workoutDestination()
-            .sheet(isPresented: $settings) { SettingsView() }
             .sheet(isPresented: $swapping) { DaySwapSheet(iso: model.today) }
         }
     }

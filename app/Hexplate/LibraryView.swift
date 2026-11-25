@@ -44,62 +44,38 @@ extension AppModel {
     }
 }
 
-/// The Exercises tab: the catalogue and your own exercises, searched and filtered, staples first.
-struct LibraryView: View {
+/// The Exercises segment inside Gym: the catalogue and your own exercises, searched and filtered, staples first.
+struct LibraryContent: View {
     @Environment(AppModel.self) private var model
-    @State private var query = ""
-    @State private var filter = ExerciseFilter()
-    @State private var favouritesOnly = false
-    @State private var customOnly = false
-    @State private var mineOnly = true
-    @State private var creating = false
+    @Binding var query: String
+    @Binding var filter: ExerciseFilter
+    @Binding var favouritesOnly: Bool
+    @Binding var customOnly: Bool
+    @Binding var mineOnly: Bool
 
     var body: some View {
-        NavigationStack {
-            let results = results
-            let favourites = model.favourites
-            List {
-                ExerciseSections(results: results, tier: { filter.tier($0, model.catalog) }) { ex in
-                    NavigationLink(value: ExerciseLink(id: ex.id)) {
-                        ExerciseRow(exercise: ex, catalog: model.catalog, favourite: favourites.contains(ex.id))
-                    }
+        let results = results
+        let favourites = model.favourites
+        List {
+            ExerciseSections(results: results, tier: { filter.tier($0, model.catalog) }) { ex in
+                NavigationLink(value: ExerciseLink(id: ex.id)) {
+                    ExerciseRow(exercise: ex, catalog: model.catalog, favourite: favourites.contains(ex.id))
                 }
             }
-            .safeAreaBar(edge: .top) { ExerciseFilterBar(filter: $filter) }
-            .overlay {
-                if results.isEmpty {
-                    if query.isEmpty {
-                        ContentUnavailableView("No exercises", systemImage: "line.3.horizontal.decrease", description: Text("Nothing matches these filters."))
-                    } else {
-                        ContentUnavailableView.search(text: query)
-                    }
-                }
-            }
-            .navigationTitle("Exercises")
-            .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search exercises")
-            .exerciseDestination()
-            .workoutDestination()
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Menu("Filter", systemImage: isFiltered ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease") {
-                        Toggle("Favourites", systemImage: "star", isOn: $favouritesOnly)
-                        Toggle("My exercises", systemImage: "person", isOn: $customOnly)
-                        if profile != nil { Toggle("My equipment only", systemImage: "dumbbell", isOn: $mineOnly) }
-                        if isFiltered || filter.isOn {
-                            Button("Clear", systemImage: "xmark") { filter = ExerciseFilter(); favouritesOnly = false; customOnly = false }
-                        }
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("New exercise", systemImage: "plus") { creating = true }
-                }
-            }
-            .sheet(isPresented: $creating) { CustomExerciseEditor() }
         }
+        .overlay {
+            if results.isEmpty {
+                if query.isEmpty {
+                    ContentUnavailableView("No exercises", systemImage: "line.3.horizontal.decrease", description: Text("Nothing matches these filters."))
+                } else {
+                    ContentUnavailableView.search(text: query)
+                }
+            }
+        }
+        .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search exercises")
     }
 
     private var profile: [String: JSONValue]? { ExerciseCatalog.activeProfile(model.root) }
-    private var isFiltered: Bool { favouritesOnly || customOnly }
 
     // ponytail: filters all 5,600 exercises on every render; cache per (query, filters) if typing lags.
     private var results: [Exercise] {

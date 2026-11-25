@@ -18,45 +18,36 @@ extension AppModel {
     }
 }
 
-struct StatsView: View {
-    @Environment(AppModel.self) private var model
-    @State private var sheet: Sheet?
+enum StatsSheet: String, Identifiable {
+    case weight, composition, tape
+    var id: String { rawValue }
+}
 
-    enum Sheet: String, Identifiable { case weight, composition, tape; var id: String { rawValue } }
+/// All existing stats sections emitted directly into AnalysisView's outer List.
+struct StatsContent: View {
+    @Environment(AppModel.self) private var model
+    @Binding var sheet: StatsSheet?
 
     var body: some View {
-        NavigationStack {
-            List {
-                if Modules.isOn(model.root, "motivation") { StreakSection() }
-                if Modules.isOn(model.root, "body") { bodySection }
-                MuscleSetsSection()
-                volumeSection
-                daysSection
-                if Modules.isOn(model.root, "strength") { strengthSection }
-                if Modules.isOn(model.root, "motivation") {
-                    TrophyShelfSection()
-                    WrappedYearsSection()
-                }
-                Section {
-                    NavigationLink("Structural balance") { BalanceView() }
-                } footer: {
-                    Text("How each lift compares with the others, against a strength standard.")
-                }
-                Section {
-                    NavigationLink("Performance report (PDF)") { ReportView() }
-                } footer: {
-                    Text("Totals, charts, new bests and every set over a stretch of days, to print or send to your coach.")
-                }
-            }
-            .navigationTitle("Stats")
-            .sheet(item: $sheet) { s in
-                switch s {
-                case .weight: WeightEntry()
-                case .composition: MeasurementEntry(title: "Body composition", fields: BodyData.compositionFields, withWeight: true)
-                case .tape: MeasurementEntry(title: "Measurements", fields: BodyData.tapeFields, withWeight: false)
-                }
-            }
-            .navigationDestination(for: LiftLink.self) { OneRepMaxView(id: $0.id) }
+        if Modules.isOn(model.root, "motivation") { StreakSection() }
+        if Modules.isOn(model.root, "body") { bodySection }
+        MuscleSetsSection()
+        volumeSection
+        daysSection
+        if Modules.isOn(model.root, "strength") { strengthSection }
+        if Modules.isOn(model.root, "motivation") {
+            TrophyShelfSection()
+            WrappedYearsSection()
+        }
+        Section {
+            NavigationLink("Structural balance") { BalanceView() }
+        } footer: {
+            Text("How each lift compares with the others, against a strength standard.")
+        }
+        Section {
+            NavigationLink("Performance report (PDF)") { ReportView() }
+        } footer: {
+            Text("Totals, charts, new bests and every set over a stretch of days, to print or send to your coach.")
         }
     }
 
@@ -183,7 +174,7 @@ struct StatsView: View {
 
 struct LiftLink: Hashable { let id: String }
 
-private struct OneRepMaxView: View {
+struct OneRepMaxView: View {
     @Environment(AppModel.self) private var model
     let id: String
 
@@ -250,7 +241,7 @@ struct WeightEntry: View {
     }
 }
 
-private struct MeasurementEntry: View {
+struct MeasurementEntry: View {
     @Environment(AppModel.self) private var model
     @Environment(\.dismiss) private var dismiss
     let title: String

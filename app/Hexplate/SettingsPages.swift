@@ -446,18 +446,24 @@ struct LookPage: View {
                 Text("Just for this phone.")
             }
             Section {
-                if Modules.isOn(model.root, "body") {
-                    ProfileToggle(title: "Body weight", key: "showWeightCard", fallback: true, subtitle: "Your latest weigh-in and a quick way to log today’s.")
-                }
                 if Modules.isOn(model.root, "health") {
                     ProfileToggle(title: "Recovery tips", key: "recoveryHint", fallback: true, subtitle: "Which muscles are still recovering and what to train instead.")
                 }
-                ProfileToggle(title: "Weekly sets on Home", key: "homeMuscleSets", subtitle: "Sets per muscle this week, against the range each aims for.")
-                if Modules.isOn(model.root, "motivation") {
-                    ProfileToggle(title: "Monthly challenges", key: "monthlyChallenges", fallback: true)
-                }
+                ProfileToggle(title: "Weekly sets on Today", key: "homeMuscleSets", subtitle: "Sets per muscle this week, against the range each aims for.")
             } header: {
-                Text("On Home")
+                Text("On Today")
+            }
+            if Modules.isOn(model.root, "body") || Modules.isOn(model.root, "motivation") {
+                Section {
+                    if Modules.isOn(model.root, "body") {
+                        ProfileToggle(title: "Body weight", key: "showWeightCard", fallback: true, subtitle: "Your latest weigh-in and a quick way to log today’s.")
+                    }
+                    if Modules.isOn(model.root, "motivation") {
+                        ProfileToggle(title: "Monthly challenges", key: "monthlyChallenges", fallback: true)
+                    }
+                } header: {
+                    Text("On Profile")
+                }
             }
         }
         .navigationTitle("Look & Home")
