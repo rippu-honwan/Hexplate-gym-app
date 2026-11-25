@@ -246,4 +246,113 @@ public enum Stats {
     public static func trainingDays(_ s: Object) -> Set<String> {
         Set((s["workouts"]?.arrayValue ?? []).compactMap { $0.object?["d"]?.stringValue })
     }
+
+    // MARK: Gym summary & 4-week balance radar
+
+    public enum SummaryPeriod: String, CaseIterable, Identifiable, Sendable {
+        case week = "1W"
+        case month = "1M"
+        case sixMonths = "6M"
+        case year = "1Y"
+
+        public var id: String { rawValue }
+
+        public var days: Int {
+            switch self {
+            case .week: 7
+            case .month: 30
+            case .sixMonths: 180
+            case .year: 365
+            }
+        }
+    }
+
+    public struct DailyVolumeSummary: Equatable, Sendable {
+        public let from: String
+        public let to: String
+        public let totalVolume: Double
+        public let totalSets: Int
+        public let calendarDays: Int
+        public let avgDailyVolume: Double
+        public let avgDailySets: Double
+    }
+
+    public struct RadarAxis: Equatable, Identifiable, Sendable {
+        /// Canonical English group key ("Chest", "Back", "Shoulders", "Arms", "Legs", "Core").
+        public let id: String
+        /// Effective completed work sets over the rolling 28-day window (`today - 27 ... today`).
+        public let sets: Double
+        /// 4 × sum of constituent muscles' weekly lowTarget (respecting user `muscleTargets` overrides).
+        public let target: Double
+        /// Unclamped percentage of `target` (`round1((sets / target) * 100)`), or `0` when `target <= 0`.
+        public let pct: Double
+    }
+
+    /// Six-axis radar groups in clockwise order starting at 12 o'clock.
+    public static let radarGroups: [(id: String, slugs: [String])] = [
+        ("Chest", ["chest"]),
+        ("Back", ["upper-back"]),
+        ("Shoulders", ["deltoids"]),
+        ("Arms", ["biceps", "triceps"]),
+        ("Legs", ["quadriceps", "hamstring", "gluteal", "calves"]),
+        ("Core", ["abs"]),
+    ]
+
+    /// Inclusive date-range volume and completed work-set summary averaged over calendar days.
+    /// Reuses `Report.inRange`, `Report.volume` (with all weigh-ins for bodyweight exercises),
+    /// and `Report.workSets` (counting unilateral sides once per completed side).
+    public static func dailyVolumeSummary(_ s: Object, from: String, to: String, catalog: ExerciseCatalog) -> DailyVolumeSummary {
+        guard Report.valid(from) != nil, Report.valid(to) != nil, from <= to else {
+            return DailyVolumeSummary(from: from, to: to, totalVolume: 0, totalSets: 0, calendarDays: 0, avgDailyVolume: 0, avgDailySets: 0)
+        }
+        let days = Report.between(from, to) + 1
+        let range = Report.Range(from: from, to: to, days: days)
+        let workouts = Report.inRange(s, range)
+        let settings = ProfileSettings(s)
+        let allWeighIns = (s["bodyweight"]?.arrayValue ?? []).compactMap { try? $0.decoded(as: WeighIn.self) }
+        var rawVolume = 0.0
+        var totalSets = 0
+        for w in workouts {
+            rawVolume += Report.volume(w, settings: settings, catalog: catalog, weighIns: allWeighIns)
+            totalSets += Report.workSets(w)
+        }
+        return DailyVolumeSummary(
+            from: from,
+            to: to,
+            totalVolume: round1(rawVolume),
+            totalSets: totalSets,
+            calendarDays: days,
+            avgDailyVolume: round1(rawVolume / Double(days)),
+            avgDailySets: round1(Double(totalSets) / Double(days))
+        )
+    }
+
+    /// Convenience overload computing an inclusive rolling period ending on `today`.
+    public static func dailyVolumeSummary(_ s: Object, period: SummaryPeriod, today: String, catalog: ExerciseCatalog) -> DailyVolumeSummary {
+        guard Report.valid(today) != nil else {
+            return DailyVolumeSummary(from: today, to: today, totalVolume: 0, totalSets: 0, calendarDays: 0, avgDailyVolume: 0, avgDailySets: 0)
+        }
+        let from = Day.adding(-(period.days - 1), to: today) ?? today
+        return dailyVolumeSummary(s, from: from, to: today, catalog: catalog)
+    }
+
+    /// Rolling 4-week (28 inclusive days) effective work sets across the 6 radar groups as `%` of `4 × lowTarget`.
+    /// Reuses `Report.muscleLoad` (checking top-level `done == true`, so unilateral rows count at most once per row).
+    public static func trainingBalanceRadar(_ s: Object, today: String, catalog: ExerciseCatalog) -> [RadarAxis] {
+        let defaults = Dictionary(uniqueKeysWithValues: defaultTargets.map { ($0.slug, $0.range) })
+        let load: [String: Double]
+        if Report.valid(today) != nil {
+            let range = Report.range("4w", today: today)
+            load = Report.muscleLoad(Report.inRange(s, range), catalog)
+        } else {
+            load = [:]
+        }
+        return radarGroups.map { group in
+            let rawSets = group.slugs.reduce(0.0) { $0 + (load[$1] ?? 0) }
+            let sumLow = group.slugs.reduce(0.0) { $0 + target(s, $1, defaults[$1] ?? [0, 0])[0] }
+            let fourWeekTarget = 4 * sumLow
+            let pct = fourWeekTarget > 0 ? round1((rawSets / fourWeekTarget) * 100) : 0
+            return RadarAxis(id: group.id, sets: round1(rawSets), target: round1(fourWeekTarget), pct: pct)
+        }
+    }
 }

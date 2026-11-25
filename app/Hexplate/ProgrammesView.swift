@@ -1,24 +1,18 @@
 import HexplateCore
 import SwiftUI
 
-/// Plan -> Programmes (views/Programmes.jsx): pushed wrapper with its own navigation title.
-// ponytail: no starter programmes and no sharing as a file yet.
-struct ProgrammesView: View {
-    var body: some View {
-        ProgrammesContent()
-            .navigationTitle("Programmes")
-    }
-}
-
 /// The Programmes segment inside Gym: the running one's card, your programmes, and a new one.
+// ponytail: no starter programmes and no sharing as a file yet.
 struct ProgrammesContent: View {
     @Environment(AppModel.self) private var model
+    @Binding var period: Stats.SummaryPeriod
     @State private var opened: ProgrammeLink?
 
     var body: some View {
         let list = Programmes.all(model.root)
         let running = Programmes.status(model.root, today: model.today)?.programme["id"]?.stringValue
         List {
+            GymHeader(period: $period)
             RunningProgrammeCard()
             Section {
                 ForEach(list.indices, id: \.self) { i in

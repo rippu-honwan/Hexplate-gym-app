@@ -1032,3 +1032,16 @@
 "Nutrition" = "營養";
 "Analysis" = "分析";
 "Daily calories, macros, and body composition will appear here." = "每日熱量、營養素與身體組成紀錄將會顯示於此。";
+
+/* Gym summary & radar */
+"1W" = "1 週";
+"Back" = "背部";
+"Arms" = "手臂";
+"Legs" = "腿部";
+"Core" = "核心";
+"Daily avg volume" = "日均訓練量";
+"Daily avg sets" = "日均組數";
+"4-week balance" = "近 4 週肌群平衡";
+"4-week training balance" = "近 4 週訓練平衡";
+"Summary period" = "統計區間";
+"No sets in the last 4 weeks" = "近 4 週沒有組數";

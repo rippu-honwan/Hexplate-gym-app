@@ -44,10 +44,34 @@ extension AppModel {
     }
 }
 
-/// The Exercises segment inside Gym: the catalogue and your own exercises, searched and filtered, staples first.
+/// The Exercises segment inside Gym: owns search text and .searchable, delegating the List to LibraryList
+/// so @Environment(\.isSearching) is read inside .searchable's scope.
 struct LibraryContent: View {
+    @Binding var period: Stats.SummaryPeriod
+    @Binding var filter: ExerciseFilter
+    @Binding var favouritesOnly: Bool
+    @Binding var customOnly: Bool
+    @Binding var mineOnly: Bool
+    @State private var query = ""
+
+    var body: some View {
+        LibraryList(
+            period: $period,
+            query: query,
+            filter: $filter,
+            favouritesOnly: $favouritesOnly,
+            customOnly: $customOnly,
+            mineOnly: $mineOnly
+        )
+        .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search exercises")
+    }
+}
+
+private struct LibraryList: View {
     @Environment(AppModel.self) private var model
-    @Binding var query: String
+    @Environment(\.isSearching) private var isSearching
+    @Binding var period: Stats.SummaryPeriod
+    let query: String
     @Binding var filter: ExerciseFilter
     @Binding var favouritesOnly: Bool
     @Binding var customOnly: Bool
@@ -57,22 +81,33 @@ struct LibraryContent: View {
         let results = results
         let favourites = model.favourites
         List {
-            ExerciseSections(results: results, tier: { filter.tier($0, model.catalog) }) { ex in
-                NavigationLink(value: ExerciseLink(id: ex.id)) {
-                    ExerciseRow(exercise: ex, catalog: model.catalog, favourite: favourites.contains(ex.id))
-                }
+            if !isSearching && query.isEmpty {
+                GymHeader(period: $period)
             }
-        }
-        .overlay {
+
+            Section {
+                ExerciseFilterBar(filter: $filter)
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
+            }
+
             if results.isEmpty {
-                if query.isEmpty {
-                    ContentUnavailableView("No exercises", systemImage: "line.3.horizontal.decrease", description: Text("Nothing matches these filters."))
-                } else {
-                    ContentUnavailableView.search(text: query)
+                Section {
+                    if query.isEmpty {
+                        ContentUnavailableView("No exercises", systemImage: "line.3.horizontal.decrease", description: Text("Nothing matches these filters."))
+                    } else {
+                        ContentUnavailableView.search(text: query)
+                    }
+                }
+                .listRowBackground(Color.clear)
+            } else {
+                ExerciseSections(results: results, tier: { filter.tier($0, model.catalog) }) { ex in
+                    NavigationLink(value: ExerciseLink(id: ex.id)) {
+                        ExerciseRow(exercise: ex, catalog: model.catalog, favourite: favourites.contains(ex.id))
+                    }
                 }
             }
         }
-        .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search exercises")
     }
 
     private var profile: [String: JSONValue]? { ExerciseCatalog.activeProfile(model.root) }

@@ -5,6 +5,7 @@ import SwiftUI
 struct PlanContent: View {
     @Environment(AppModel.self) private var model
     @Binding var path: NavigationPath
+    @Binding var period: Stats.SummaryPeriod
     @State private var editingDay: WeekdayLink?
     @State private var confirmWeek = false
     @State private var deleting: AppModel.Routine?
@@ -12,6 +13,8 @@ struct PlanContent: View {
     var body: some View {
         let mode = Schedule.scheduleMode(model.root)
         List {
+            GymHeader(period: $period)
+
             Section {
                 Picker("How you train", selection: Binding(get: { mode }, set: choose)) {
                     Text("Fixed Week").tag("week")
@@ -25,14 +28,6 @@ struct PlanContent: View {
             }
 
             if mode == "week" { weekSection } else { loopSection }
-
-            Section {
-                NavigationLink { ProgrammesView() } label: {
-                    LabeledContent {
-                        if let chip = Programmes.chip(model.root, today: model.today) { Text(chip) }
-                    } label: { Label("Programmes", systemImage: "calendar.badge.clock") }
-                }
-            }
 
             Section {
                 ForEach(model.routines) { routine in

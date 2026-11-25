@@ -36,9 +36,8 @@ final class AppModel {
     var showWorkout = false
     /// The year "Your year" shows full screen (WrappedStory), nil when closed.
     var wrappedYear: Int?
-    enum GymSegment: String, CaseIterable, Identifiable {
+    enum GymSegment: String {
         case plan, programmes, exercises
-        var id: String { rawValue }
     }
 
     /// The tab on screen.

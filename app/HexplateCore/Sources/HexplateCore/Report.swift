@@ -119,13 +119,20 @@ public enum Report {
         return keys.filter(int).sorted { UInt32($0)! < UInt32($1)! } + keys.filter { !int($0) }
     }
 
+    /// Decodes a workout object and computes its session volume using the same rules as History.
+    static func volume(_ w: Object, settings: ProfileSettings, catalog: ExerciseCatalog, weighIns: [WeighIn]) -> Double {
+        (try? JSONValue.object(w).decoded(as: Workout.self)).map {
+            WorkoutMath.volume($0, settings: settings, catalog: catalog, weighIns: weighIns)
+        } ?? 0
+    }
+
     public static func data(_ s: Object, catalog c: ExerciseCatalog, kind: String, from: String? = nil, to: String? = nil, today: String) -> Data {
         let r = range(kind, from: from, to: to, today: today)
         let ws = Schedule.weekStart(s)
         let settings = ProfileSettings(s)
         let allWeighIns = (s["bodyweight"]?.arrayValue ?? []).compactMap { try? $0.decoded(as: WeighIn.self) }
         let volume = { (w: Object) -> Double in
-            (try? JSONValue.object(w).decoded(as: Workout.self)).map { WorkoutMath.volume($0, settings: settings, catalog: c, weighIns: allWeighIns) } ?? 0
+            Self.volume(w, settings: settings, catalog: c, weighIns: allWeighIns)
         }
         let duration = { (w: Object) -> Double in (try? JSONValue.object(w).decoded(as: Workout.self)).map(WorkoutMath.duration) ?? 0 }
 
