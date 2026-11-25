@@ -7,6 +7,7 @@ ponytail: handlers are `async` with blocking SQLite calls inside, so requests ru
 the event loop; for one person's phone and dashboard that is plenty, and it keeps the database
 single-threaded.
 """
+import hashlib
 import os
 from pathlib import Path
 
@@ -14,6 +15,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from . import dashboard
+from .ai import AIError, AIService, read_limited_json
 from .backup import Backup
 from .signing import Signing
 from .store import Conflict, Store
@@ -30,13 +32,20 @@ def create_app(folder: Path | None = None) -> FastAPI:
     # A data folder given (the tests) keeps its backup beside it, never in your iCloud Drive.
     app.state.backup = backup = Backup(store, Path(folder) / "backup" if folder else None)
     app.state.signing = Signing(store, derived_dir=Path(folder) / "signing-build" if folder else None)
+    app.state.ai = ai_service = AIService(store.folder)
 
     def err(status, message, **extra):
         return JSONResponse({"error": message, **extra}, status_code=status)
 
-    def signed_in(req: Request) -> bool:
+    def bearer_token(req: Request) -> str | None:
         auth = req.headers.get("authorization", "")
-        return auth.startswith("Bearer ") and store.token_ok(auth[7:].strip())
+        if not auth.startswith("Bearer "):
+            return None
+        tok = auth[7:].strip()
+        return tok if tok and store.token_ok(tok) else None
+
+    def signed_in(req: Request) -> bool:
+        return bearer_token(req) is not None
 
     async def body(req: Request):
         try:
@@ -107,6 +116,28 @@ def create_app(folder: Path | None = None) -> FastAPI:
             return err(400, "bad motion file")
         # The phone deletes its copy only when this is true: the file is here and in the backup.
         return {"ok": True, "canDelete": backup.can_delete(name)}
+
+    @app.get("/api/ai/status")
+    async def ai_status(req: Request):
+        if not signed_in(req):
+            return err(401, "not signed in")
+        return ai_service.status()
+
+    @app.post("/api/ai/meal")
+    async def ai_meal(req: Request):
+        # Auth -> config -> limited body read -> estimate (strict order prevents unauthenticated or
+        # unconfigured requests from buffering 1.5 MiB uploads).
+        token = bearer_token(req)
+        if not token:
+            return err(401, "not signed in")
+        try:
+            ai_service.require_configured()
+            payload = await read_limited_json(req)
+            token_key = hashlib.sha256(token.encode()).hexdigest()[:16]
+            return await ai_service.estimate_meal(payload, token_key=token_key)
+        except AIError as e:
+            headers = {"Retry-After": str(e.retry_after)} if e.retry_after is not None else None
+            return JSONResponse({"error": e.message, "code": e.code}, status_code=e.status_code, headers=headers)
 
     dashboard.install(app, store)
     return app
