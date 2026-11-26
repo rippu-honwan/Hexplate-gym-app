@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hexplate.local/schemas/coach_ops.schema.json",
+  "title": "Hexplate AI Coach Operations Batch",
+  "description": "Canonical schema for validated AI Coach plan mutations (using real canonical routineId and exerciseId values after server alias decoding).",
+  "type": "array",
+  "minItems": 0,
+  "maxItems": 8,
+  "items": {
+    "oneOf": [
+      { "$ref": "#/$defs/move_day" },
+      { "$ref": "#/$defs/skip" },
+      { "$ref": "#/$defs/swap_exercise" },
+      { "$ref": "#/$defs/set_sets" },
+      { "$ref": "#/$defs/add" }
+    ]
+  },
+  "$defs": {
+    "isoDate": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 10,
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "entityId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "slotIndex": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 49
+    },
+    "sets": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12
+    },
+    "reps": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "reason": {
+      "type": "string",
+      "maxLength": 160
+    },
+    "move_day": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "from", "to", "collision"],
+      "properties": {
+        "type": { "const": "move_day" },
+        "from": { "$ref": "#/$defs/isoDate" },
+        "to": { "$ref": "#/$defs/isoDate" },
+        "collision": { "type": "string", "enum": ["swap", "replace"] },
+        "reason": { "$ref": "#/$defs/reason" }
+      }
+    },
+    "skip": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "date"],
+      "properties": {
+        "type": { "const": "skip" },
+        "date": { "$ref": "#/$defs/isoDate" },
+        "reason": { "$ref": "#/$defs/reason" }
+      }
+    },
+    "swap_exercise": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "date", "routineId", "slotIndex", "fromExerciseId", "toExerciseId"],
+      "properties": {
+        "type": { "const": "swap_exercise" },
+        "date": { "$ref": "#/$defs/isoDate" },
+        "routineId": { "$ref": "#/$defs/entityId" },
+        "slotIndex": { "$ref": "#/$defs/slotIndex" },
+        "fromExerciseId": { "$ref": "#/$defs/entityId" },
+        "toExerciseId": { "$ref": "#/$defs/entityId" },
+        "sets": { "$ref": "#/$defs/sets" },
+        "reps": { "$ref": "#/$defs/reps" },
+        "reason": { "$ref": "#/$defs/reason" }
+      }
+    },
+    "set_sets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "date", "routineId", "slotIndex", "exerciseId", "sets"],
+      "properties": {
+        "type": { "const": "set_sets" },
+        "date": { "$ref": "#/$defs/isoDate" },
+        "routineId": { "$ref": "#/$defs/entityId" },
+        "slotIndex": { "$ref": "#/$defs/slotIndex" },
+        "exerciseId": { "$ref": "#/$defs/entityId" },
+        "sets": { "$ref": "#/$defs/sets" },
+        "reps": { "$ref": "#/$defs/reps" },
+        "reason": { "$ref": "#/$defs/reason" }
+      }
+    },
+    "add": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "date", "routineId", "exerciseId", "sets"],
+      "properties": {
+        "type": { "const": "add" },
+        "date": { "$ref": "#/$defs/isoDate" },
+        "routineId": { "$ref": "#/$defs/entityId" },
+        "exerciseId": { "$ref": "#/$defs/entityId" },
+        "sets": { "$ref": "#/$defs/sets" },
+        "reps": { "$ref": "#/$defs/reps" },
+        "slotIndex": { "$ref": "#/$defs/slotIndex" },
+        "reason": { "$ref": "#/$defs/reason" }
+      }
+    }
+  }
+}

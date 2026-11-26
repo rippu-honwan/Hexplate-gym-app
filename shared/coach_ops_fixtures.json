@@ -1,0 +1,604 @@
+{
+  "schema": [
+    {
+      "name": "empty_batch",
+      "ops": [],
+      "expect": "valid"
+    },
+    {
+      "name": "all_five_op_types",
+      "ops": [
+        { "type": "move_day", "from": "2026-11-26", "to": "2026-11-27", "collision": "swap", "reason": "Shift push day" },
+        { "type": "skip", "date": "2026-11-28", "reason": "Low readiness" },
+        { "type": "swap_exercise", "date": "2026-11-29", "routineId": "r-push", "slotIndex": 0, "fromExerciseId": "ex-bench", "toExerciseId": "ex-db-bench", "sets": 3, "reps": 10 },
+        { "type": "set_sets", "date": "2026-11-30", "routineId": "r-pull", "slotIndex": 1, "exerciseId": "ex-row", "sets": 4, "reps": 8 },
+        { "type": "add", "date": "2026-12-01", "routineId": "r-legs", "exerciseId": "ex-plank", "sets": 3, "slotIndex": 2 }
+      ],
+      "expect": "valid"
+    },
+    {
+      "name": "whole_float_sets_integer_parity",
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 0, "exerciseId": "ex-bench", "sets": 3.0, "reps": 10.0 }
+      ],
+      "expect": "valid"
+    },
+    {
+      "name": "max_eight_ops_boundary",
+      "ops": [
+        { "type": "skip", "date": "2026-11-26" },
+        { "type": "skip", "date": "2026-11-27" },
+        { "type": "skip", "date": "2026-11-28" },
+        { "type": "skip", "date": "2026-11-29" },
+        { "type": "skip", "date": "2026-11-30" },
+        { "type": "skip", "date": "2026-12-01" },
+        { "type": "skip", "date": "2026-12-02" },
+        { "type": "skip", "date": "2026-12-03" }
+      ],
+      "expect": "valid"
+    },
+    {
+      "name": "reason_160_codepoints_with_zwj_emoji",
+      "ops": [
+        {
+          "type": "skip",
+          "date": "2026-11-26",
+          "reason": "👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦abcdef"
+        }
+      ],
+      "expect": "valid"
+    },
+    {
+      "name": "too_many_ops_nine",
+      "ops": [
+        { "type": "skip", "date": "2026-11-26" },
+        { "type": "skip", "date": "2026-11-27" },
+        { "type": "skip", "date": "2026-11-28" },
+        { "type": "skip", "date": "2026-11-29" },
+        { "type": "skip", "date": "2026-11-30" },
+        { "type": "skip", "date": "2026-12-01" },
+        { "type": "skip", "date": "2026-12-02" },
+        { "type": "skip", "date": "2026-12-03" },
+        { "type": "skip", "date": "2026-12-04" }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "move_day_missing_collision",
+      "ops": [
+        { "type": "move_day", "from": "2026-11-26", "to": "2026-11-27" }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "move_day_combine_collision",
+      "ops": [
+        { "type": "move_day", "from": "2026-11-26", "to": "2026-11-27", "collision": "combine" }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "unknown_op_type",
+      "ops": [
+        { "type": "delete_routine", "date": "2026-11-26" }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "extra_unknown_key",
+      "ops": [
+        { "type": "skip", "date": "2026-11-26", "extra": true }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "sets_zero",
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 0, "exerciseId": "ex-bench", "sets": 0 }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "sets_thirteen",
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 0, "exerciseId": "ex-bench", "sets": 13 }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "sets_fractional_float",
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 0, "exerciseId": "ex-bench", "sets": 3.5 }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "sets_boolean_true",
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 0, "exerciseId": "ex-bench", "sets": true }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "reps_zero",
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 0, "exerciseId": "ex-bench", "sets": 3, "reps": 0 }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "reps_over_100",
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 0, "exerciseId": "ex-bench", "sets": 3, "reps": 101 }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "slot_index_negative",
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": -1, "exerciseId": "ex-bench", "sets": 3 }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "slot_index_over_49",
+      "ops": [
+        { "type": "add", "date": "2026-11-26", "routineId": "r-push", "exerciseId": "ex-bench", "sets": 3, "slotIndex": 50 }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "empty_routine_id",
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "", "slotIndex": 0, "exerciseId": "ex-bench", "sets": 3 }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "id_over_64_chars",
+      "ops": [
+        { "type": "add", "date": "2026-11-26", "routineId": "r-push", "exerciseId": "abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz012", "sets": 3 }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "malformed_date_pattern",
+      "ops": [
+        { "type": "skip", "date": "2026-1-012" }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "reason_161_codepoints_zwj_emoji",
+      "ops": [
+        {
+          "type": "skip",
+          "date": "2026-11-26",
+          "reason": "👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦👨‍👩‍👧‍👦"
+        }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "sets_int64_overflow_2_pow_63",
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 0, "exerciseId": "ex-bench", "sets": 9223372036854775808 }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "slot_index_huge_float_1e300",
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 1e300, "exerciseId": "ex-bench", "sets": 3 }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "date_trailing_newline",
+      "ops": [
+        { "type": "skip", "date": "2026-11-26\n" }
+      ],
+      "expect": "invalid"
+    },
+    {
+      "name": "date_arabic_indic_digits",
+      "ops": [
+        { "type": "skip", "date": "\u0662\u0660\u0662\u0666-\u0661\u0661-\u0662\u0666" }
+      ],
+      "expect": "invalid"
+    }
+  ],
+  "semantic": [
+    {
+      "name": "sequential_move_then_set_sets_valid",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          {
+            "date": "2026-11-26",
+            "routineId": "r-push",
+            "locked": null,
+            "isRest": false,
+            "isQueueSession": false,
+            "exercises": [
+              { "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" },
+              { "slotIndex": 1, "exerciseId": "ex-plank", "mode": "time" }
+            ]
+          },
+          {
+            "date": "2026-11-27",
+            "routineId": null,
+            "locked": null,
+            "isRest": true,
+            "isQueueSession": false,
+            "exercises": []
+          }
+        ],
+        "routineAliases": [
+          { "alias": "R1", "id": "r-push" }
+        ],
+        "exerciseAliases": [
+          { "alias": "E1", "id": "ex-bench", "mode": "reps" },
+          { "alias": "E2", "id": "ex-plank", "mode": "time" },
+          { "alias": "E3", "id": "ex-db-bench", "mode": "reps" },
+          { "alias": "E4", "id": "ex-run", "mode": "cardio" }
+        ]
+      },
+      "ops": [
+        { "type": "move_day", "from": "2026-11-26", "to": "2026-11-27", "collision": "replace" },
+        { "type": "set_sets", "date": "2026-11-27", "routineId": "r-push", "slotIndex": 0, "exerciseId": "ex-bench", "sets": 4, "reps": 8 }
+      ],
+      "expect": { "ok": true }
+    },
+    {
+      "name": "sequential_skip_then_set_sets_fails",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          {
+            "date": "2026-11-26",
+            "routineId": "r-push",
+            "locked": null,
+            "isRest": false,
+            "isQueueSession": false,
+            "exercises": [
+              { "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }
+            ]
+          }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "skip", "date": "2026-11-26" },
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 0, "exerciseId": "ex-bench", "sets": 2 }
+      ],
+      "expect": { "error": "no_routine_on_date" }
+    },
+    {
+      "name": "date_before_today",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [],
+        "routineAliases": [],
+        "exerciseAliases": []
+      },
+      "ops": [
+        { "type": "skip", "date": "2026-11-25" }
+      ],
+      "expect": { "error": "date_out_of_window" }
+    },
+    {
+      "name": "date_beyond_14_days",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [],
+        "routineAliases": [],
+        "exerciseAliases": []
+      },
+      "ops": [
+        { "type": "skip", "date": "2026-12-11" }
+      ],
+      "expect": { "error": "date_out_of_window" }
+    },
+    {
+      "name": "impossible_calendar_date",
+      "context": {
+        "today": "2026-02-20",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [],
+        "routineAliases": [],
+        "exerciseAliases": []
+      },
+      "ops": [
+        { "type": "skip", "date": "2026-02-30" }
+      ],
+      "expect": { "error": "invalid_date" }
+    },
+    {
+      "name": "move_day_same_from_and_to",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": null, "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "move_day", "from": "2026-11-26", "to": "2026-11-26", "collision": "swap" }
+      ],
+      "expect": { "error": "same_source_and_target" }
+    },
+    {
+      "name": "same_exercise_swap",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": null, "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "swap_exercise", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 0, "fromExerciseId": "ex-bench", "toExerciseId": "ex-bench" }
+      ],
+      "expect": { "error": "same_exercise_swap" }
+    },
+    {
+      "name": "locked_active",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": "active", "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "skip", "date": "2026-11-26" }
+      ],
+      "expect": { "error": "locked_date" }
+    },
+    {
+      "name": "locked_logged",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": "logged", "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "skip", "date": "2026-11-26" }
+      ],
+      "expect": { "error": "locked_date" }
+    },
+    {
+      "name": "locked_multi_on_move_target",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": null, "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] },
+          { "date": "2026-11-27", "routineId": "r-pull", "locked": "multi", "isRest": false, "isQueueSession": false, "exercises": [] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }, { "alias": "R2", "id": "r-pull" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "move_day", "from": "2026-11-26", "to": "2026-11-27", "collision": "swap" }
+      ],
+      "expect": { "error": "locked_date" }
+    },
+    {
+      "name": "locked_orphan",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": "ai-2026-11-26-old", "locked": "orphan", "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] }
+        ],
+        "routineAliases": [],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "skip", "date": "2026-11-26" }
+      ],
+      "expect": { "error": "locked_date" }
+    },
+    {
+      "name": "rotation_disallows_move_day",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "rotation",
+        "rotationOnDate": "2026-11-26",
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": null, "isRest": false, "isQueueSession": true, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] },
+          { "date": "2026-11-27", "routineId": null, "locked": null, "isRest": true, "isQueueSession": false, "exercises": [] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "move_day", "from": "2026-11-26", "to": "2026-11-27", "collision": "replace" }
+      ],
+      "expect": { "error": "disallowed_in_rotation_mode" }
+    },
+    {
+      "name": "rotation_disallows_queue_non_on_date",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "rotation",
+        "rotationOnDate": "2026-11-26",
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": null, "isRest": false, "isQueueSession": true, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] },
+          { "date": "2026-11-27", "routineId": "r-pull", "locked": null, "isRest": false, "isQueueSession": true, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-row", "mode": "reps" }] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }, { "alias": "R2", "id": "r-pull" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }, { "alias": "E2", "id": "ex-row", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "skip", "date": "2026-11-27" }
+      ],
+      "expect": { "error": "disallowed_in_rotation_mode" }
+    },
+    {
+      "name": "routine_mismatch",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": null, "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }, { "alias": "R2", "id": "r-pull" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-pull", "slotIndex": 0, "exerciseId": "ex-bench", "sets": 4 }
+      ],
+      "expect": { "error": "routine_mismatch" }
+    },
+    {
+      "name": "slot_index_out_of_bounds",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": null, "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 2, "exerciseId": "ex-bench", "sets": 4 }
+      ],
+      "expect": { "error": "invalid_slot_index" }
+    },
+    {
+      "name": "exercise_mismatch_at_slot",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": null, "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }, { "alias": "E2", "id": "ex-db-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 0, "exerciseId": "ex-db-bench", "sets": 4 }
+      ],
+      "expect": { "error": "exercise_mismatch" }
+    },
+    {
+      "name": "reps_on_time_slot_rejected",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": null, "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-plank", "mode": "time" }] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-plank", "mode": "time" }]
+      },
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-push", "slotIndex": 0, "exerciseId": "ex-plank", "sets": 3, "reps": 12 }
+      ],
+      "expect": { "error": "reps_not_applicable" }
+    },
+    {
+      "name": "reps_on_cardio_add_rejected",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": null, "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }, { "alias": "E2", "id": "ex-run", "mode": "cardio" }]
+      },
+      "ops": [
+        { "type": "add", "date": "2026-11-26", "routineId": "r-push", "exerciseId": "ex-run", "sets": 1, "reps": 20 }
+      ],
+      "expect": { "error": "reps_not_applicable" }
+    },
+    {
+      "name": "unknown_routine_id",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": null, "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "set_sets", "date": "2026-11-26", "routineId": "r-hallucinated", "slotIndex": 0, "exerciseId": "ex-bench", "sets": 3 }
+      ],
+      "expect": { "error": "unknown_routine" }
+    },
+    {
+      "name": "unknown_exercise_id",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": "r-push", "locked": null, "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "add", "date": "2026-11-26", "routineId": "r-push", "exerciseId": "ex-hallucinated", "sets": 3 }
+      ],
+      "expect": { "error": "unknown_exercise" }
+    },
+    {
+      "name": "move_day_from_rest_day_nothing_to_move",
+      "context": {
+        "today": "2026-11-26",
+        "mode": "week",
+        "rotationOnDate": null,
+        "days": [
+          { "date": "2026-11-26", "routineId": null, "locked": null, "isRest": true, "isQueueSession": false, "exercises": [] },
+          { "date": "2026-11-27", "routineId": "r-push", "locked": null, "isRest": false, "isQueueSession": false, "exercises": [{ "slotIndex": 0, "exerciseId": "ex-bench", "mode": "reps" }] }
+        ],
+        "routineAliases": [{ "alias": "R1", "id": "r-push" }],
+        "exerciseAliases": [{ "alias": "E1", "id": "ex-bench", "mode": "reps" }]
+      },
+      "ops": [
+        { "type": "move_day", "from": "2026-11-26", "to": "2026-11-27", "collision": "replace" }
+      ],
+      "expect": { "error": "nothing_to_move" }
+    }
+  ]
+}
