@@ -153,11 +153,14 @@ struct ProfileView: View {
             .onChange(of: model.homeSheetOpen) {
                 if !model.homeSheetOpen { drainWeighInRequest() }
             }
+            .onChange(of: model.analysisSheetOpen) {
+                if !model.analysisSheetOpen { drainWeighInRequest() }
+            }
         }
     }
 
     private func drainWeighInRequest() {
-        guard model.weighInRequested, !model.showWorkout, model.wrappedYear == nil, !model.nutritionSheetOpen, !model.homeSheetOpen else { return }
+        guard model.weighInRequested, !model.showWorkout, model.wrappedYear == nil, !model.nutritionSheetOpen, !model.homeSheetOpen, !model.analysisSheetOpen else { return }
         if model.presentWeightSheet {
             model.weighInRequested = false
             return

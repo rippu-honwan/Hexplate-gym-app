@@ -75,7 +75,14 @@ struct HexplateApp: App {
                 }
                 // The watch follows every change of the document and of the rest timer.
                 .onChange(of: model.root) { keepAwake(); followProfile(); WatchBridge.shared.send(); WidgetSync.write(model); LiveActivitySync.update(model, timer); ServerSync.shared.changed(model); ReminderSync.sync(model); WrappedNotify.sync(model) }
-                .onChange(of: model.today) { followProfile(); WidgetSync.write(model); ReminderSync.sync(model); WrappedNotify.sync(model) }
+                .onChange(of: model.today) {
+                    model.pruneExpiredAIUndo()
+                    model.change { RoutineOps.pruneExpiredClones(&$0, today: model.today) }
+                    followProfile()
+                    WidgetSync.write(model)
+                    ReminderSync.sync(model)
+                    WrappedNotify.sync(model)
+                }
                 .onOpenURL { WidgetSync.open($0, model) }
                 .onChange(of: timer.end) { WatchBridge.shared.send(); LiveActivitySync.update(model, timer) }
         }

@@ -694,6 +694,44 @@ final class HealthService {
         return UserDefaults.standard.bool(forKey: "health")
     }
 
+    struct TodaySnapshotContext {
+        let healthState: Readiness.HealthState
+        let readiness: Readiness.Result
+        let signals: Readiness.HealthSignals?
+        let load: Recovery.LoadSummary
+        let externalToday: Nutrition.Macros?
+    }
+
+    /// Shared readiness, recovery load, and live external nutrition snapshot used identically by
+    /// `HomeView` and `CoachSheet`.
+    func evaluateTodaySnapshot(
+        root: [String: JSONValue],
+        today: String,
+        now: Double,
+        catalog: ExerciseCatalog
+    ) -> TodaySnapshotContext {
+        let enabled = isEnabled(root: root)
+        let todayIds = Schedule.routineIds(root, on: today, today: today)
+        let load = Recovery.loadSummary(root, now: now, catalog: catalog)
+        let plannedLoad = Recovery.plannedMuscleLoad(root, on: today, today: today, catalog: catalog)
+        let healthState: Readiness.HealthState = !enabled ? .off : (readinessUnavailable ? .unavailable : .available)
+        let readiness = Readiness.evaluate(Readiness.Input(
+            signals: readinessSignals,
+            healthState: healthState,
+            load: load,
+            plannedLoad: plannedLoad,
+            hasTodayPlan: !todayIds.isEmpty
+        ))
+        let externalToday: Nutrition.Macros? = enabled ? externalByDay.map { $0[today] ?? .zero } : nil
+        return TodaySnapshotContext(
+            healthState: healthState,
+            readiness: readiness,
+            signals: healthState == .available ? readinessSignals : nil,
+            load: load,
+            externalToday: externalToday
+        )
+    }
+
     func startObservingUnlock(model: AppModel) {
         observedModel = model
         guard unlockObserver == nil else { return }

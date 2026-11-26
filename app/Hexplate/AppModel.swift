@@ -58,6 +58,20 @@ final class AppModel {
     /// True while a sheet owned by HomeView is presented; cleared ONLY in the sheet's `onDismiss`
     /// so ProfileView waits for dismissal animation completion before presenting `WeightEntry`.
     var homeSheetOpen = false
+    /// True while a top-level sheet owned by AnalysisView is presented; cleared ONLY in `onDismiss`.
+    var analysisSheetOpen = false
+
+    private static let aiUndoStackKey = "aiCoachUndoStack"
+    private static let aiAppliedTokensKey = "aiCoachAppliedTokens"
+
+    /// Device-local LIFO stack of accepted AI Coach batches for the current day (never persisted in `state.json`).
+    private(set) var aiUndoStack: [AIUndoRecord] = []
+    private var aiAppliedTokens: [String: String] = [:]
+
+    var lastAIUndoRecord: AIUndoRecord? { aiUndoStack.last }
+    var aiUndoStatus: AIUndo.Status? {
+        lastAIUndoRecord.map { AIUndo.status(of: $0, in: root, today: today) }
+    }
     /// MyGym: Start set pressed on the phone, and the set the watch says it records.
     var watchStart: WatchSet?
     var watchDone: WatchSet?
@@ -74,6 +88,8 @@ final class AppModel {
 
     init() {
         load(store.load())
+        loadAIUndoState()
+        pruneExpiredAIUndo()
     }
 
     // MARK: Reading
@@ -164,6 +180,119 @@ final class AppModel {
         } catch {
             errorMessage = "The change could not be saved. \(error.localizedDescription)"
         }
+    }
+
+    /// Throwing atomic save path: mutates a scratch copy, saves to disk, and updates live state
+    /// ONLY if both mutation and `store.save` succeed.
+    func tryChange(_ mutate: (inout [String: JSONValue]) throws -> Void) throws {
+        var doc = document ?? Self.empty
+        var thrown: Error?
+        doc.change { s in
+            var copy = s
+            do {
+                try mutate(&copy)
+                s = copy
+            } catch {
+                thrown = error
+            }
+        }
+        if let thrown { throw thrown }
+        guard doc != document else { return }
+        try store.save(doc)
+        load(doc)
+    }
+
+    // MARK: AI Coach Undo Stack (Device-Local UserDefaults Only)
+
+    private func loadAIUndoState() {
+        let defaults = UserDefaults.standard
+        if let data = defaults.data(forKey: Self.aiUndoStackKey),
+           let decoded = try? JSONDecoder().decode([AIUndoRecord].self, from: data) {
+            aiUndoStack = decoded
+        }
+        if let data = defaults.data(forKey: Self.aiAppliedTokensKey),
+           let decoded = try? JSONDecoder().decode([String: String].self, from: data) {
+            aiAppliedTokens = decoded
+        }
+    }
+
+    private func persistAIUndoState() {
+        let defaults = UserDefaults.standard
+        if aiUndoStack.isEmpty {
+            defaults.removeObject(forKey: Self.aiUndoStackKey)
+        } else if let data = try? JSONEncoder().encode(aiUndoStack) {
+            defaults.set(data, forKey: Self.aiUndoStackKey)
+        }
+        if aiAppliedTokens.isEmpty {
+            defaults.removeObject(forKey: Self.aiAppliedTokensKey)
+        } else if let data = try? JSONEncoder().encode(aiAppliedTokens) {
+            defaults.set(data, forKey: Self.aiAppliedTokensKey)
+        }
+    }
+
+    /// Drops undo records and idempotency tokens from previous calendar days.
+    func pruneExpiredAIUndo() {
+        let filteredStack = aiUndoStack.filter { today <= $0.acceptedDay }
+        let filteredTokens = aiAppliedTokens.filter { $0.value == today }
+        if filteredStack != aiUndoStack || filteredTokens != aiAppliedTokens {
+            aiUndoStack = filteredStack
+            aiAppliedTokens = filteredTokens
+            persistAIUndoState()
+        }
+    }
+
+    /// Atomically applies a validated `CoachOps.Preview` via `tryChange` and pushes its
+    /// `AIUndoRecord` onto the device-local LIFO stack ONLY after `store.save` succeeds.
+    @discardableResult
+    func applyCoachPreview(
+        _ preview: CoachOps.Preview,
+        tokenId: String
+    ) throws -> AIUndoRecord? {
+        pruneExpiredAIUndo()
+        var scratchTokens = aiAppliedTokens
+        var record: AIUndoRecord?
+        let acceptedAt = now
+        let currentToday = today
+        try tryChange { s in
+            record = try CoachOps.apply(
+                preview,
+                to: &s,
+                currentToday: currentToday,
+                acceptToken: tokenId,
+                acceptedAt: acceptedAt,
+                appliedTokens: &scratchTokens
+            )
+        }
+        aiAppliedTokens = scratchTokens
+        if let record {
+            aiUndoStack.append(record)
+        }
+        persistAIUndoState()
+        return record
+    }
+
+    /// Pops and applies the latest AI Coach undo record (LIFO).
+    @discardableResult
+    func undoLastAICoachChange() throws -> AIUndo.Outcome? {
+        pruneExpiredAIUndo()
+        guard let record = aiUndoStack.last else { return nil }
+        var outcome: AIUndo.Outcome?
+        let currentToday = today
+        try tryChange { s in
+            outcome = AIUndo.apply(record, to: &s, today: currentToday)
+        }
+        if let outcome, outcome.status == .available || outcome.status == .expired {
+            aiUndoStack.removeLast()
+            persistAIUndoState()
+        }
+        return outcome
+    }
+
+    /// Dismisses the top blocked AI undo banner entry without altering the workout document.
+    func dismissTopAIUndoBanner() {
+        guard !aiUndoStack.isEmpty else { return }
+        aiUndoStack.removeLast()
+        persistAIUndoState()
     }
 
     /// Changes one routine in place.

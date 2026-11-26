@@ -47,19 +47,11 @@ struct HomeView: View {
 
     var body: some View {
         let todayIds = Schedule.routineIds(model.root, on: model.today, today: model.today)
-        let load = Recovery.loadSummary(model.root, now: model.now, catalog: model.catalog)
-        let plannedLoad = Recovery.plannedMuscleLoad(model.root, on: model.today, today: model.today, catalog: model.catalog)
-        let healthState: Readiness.HealthState = !healthEnabled ? .off : (health.readinessUnavailable ? .unavailable : .available)
-        let readiness = Readiness.evaluate(Readiness.Input(
-            signals: health.readinessSignals,
-            healthState: healthState,
-            load: load,
-            plannedLoad: plannedLoad,
-            hasTodayPlan: !todayIds.isEmpty
-        ))
+        let todayCtx = health.evaluateTodaySnapshot(root: model.root, today: model.today, now: model.now, catalog: model.catalog)
+        let load = todayCtx.load
+        let readiness = todayCtx.readiness
         let goals = Nutrition.effectiveGoals(model.root)
-        let externalToday: Nutrition.Macros? = health.externalByDay.map { $0[model.today] ?? .zero }
-        let todayTotals = Nutrition.dailyTotals(model.root, day: model.today, external: externalToday)
+        let todayTotals = Nutrition.dailyTotals(model.root, day: model.today, external: todayCtx.externalToday)
 
         NavigationStack {
             List {
@@ -82,7 +74,7 @@ struct HomeView: View {
                 Section {
                     ReadinessCard(
                         result: readiness,
-                        signals: healthState == .available ? health.readinessSignals : nil,
+                        signals: todayCtx.signals,
                         load: load,
                         today: model.today
                     )

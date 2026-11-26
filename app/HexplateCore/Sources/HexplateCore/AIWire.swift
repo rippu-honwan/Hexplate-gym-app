@@ -6,6 +6,9 @@ public enum AIWire {
     /// Matches Stage 5a `server/hexserver/ai.py` (`MAX_IMAGE_BYTES = 1_150_000`).
     public static let maxImageBytes = 1_150_000
     public static let maxNoteCharacters = 240
+    /// Matches Stage 7b `server/hexserver/ai.py` (`MAX_COACH_MESSAGE_CHARS = 800`, Unicode scalars).
+    public static let maxCoachMessageScalars = 800
+    public static let maxCoachRequestBytes = 1_500_000
 
     // MARK: - DTOs
 
@@ -73,6 +76,18 @@ public enum AIWire {
         }
     }
 
+    public struct CoachResponse: Equatable, Sendable {
+        public let answer: String
+        public let changes: [JSONValue]
+        public let note: String?
+
+        public init(answer: String, changes: [JSONValue], note: String? = nil) {
+            self.answer = answer
+            self.changes = changes
+            self.note = note
+        }
+    }
+
     // MARK: - Typed Errors
 
     public enum ErrorKind: Error, Equatable, Sendable {
@@ -114,9 +129,93 @@ public enum AIWire {
         let lang: String
     }
 
+    private struct CoachRequestBody: Encodable {
+        let message: String
+        let context: CoachContext.Snapshot
+        let lang: String
+    }
+
+    private struct CoachResponseEnvelope: Decodable {
+        let answer: String
+        let changes: [JSONValue]
+        let note: String?
+    }
+
     private struct ErrorEnvelope: Decodable {
         let error: String?
         let code: String?
+    }
+
+    /// Cleans a coach user message identically to `server/hexserver/ai.py`:
+    /// collapses runs of ASCII control characters (`0x00...0x1F`, `0x7F`) into a single ASCII space,
+    /// trims whitespace, truncates to `maxCoachMessageScalars` Unicode scalars, and trims again.
+    public nonisolated static func cleanCoachMessage(_ raw: String) -> String {
+        var out = String.UnicodeScalarView()
+        var inControlRun = false
+        for scalar in raw.unicodeScalars {
+            let v = scalar.value
+            if v <= 0x1F || v == 0x7F {
+                if !inControlRun {
+                    out.append(UnicodeScalar(0x20)!)
+                    inControlRun = true
+                }
+            } else {
+                out.append(scalar)
+                inControlRun = false
+            }
+        }
+        let trimmed = String(out).trimmingCharacters(in: .whitespacesAndNewlines)
+        let scalars = trimmed.unicodeScalars
+        if scalars.count <= maxCoachMessageScalars {
+            return trimmed
+        }
+        return String(scalars.prefix(maxCoachMessageScalars)).trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    /// Synchronous request builder for `POST /api/ai/coach`.
+    /// Normalizes `message` by Unicode scalars, encodes deterministically with sorted keys and
+    /// unescaped slashes, and enforces `maxCoachRequestBytes`.
+    public nonisolated static func encodeCoachRequest(
+        message: String,
+        snapshot: CoachContext.Snapshot,
+        lang: String
+    ) throws -> Data {
+        let cleaned = cleanCoachMessage(message)
+        guard !cleaned.isEmpty else { throw ErrorKind.badRequest }
+        let normalizedLang = lang.trimmingCharacters(in: .whitespacesAndNewlines)
+        let payload = CoachRequestBody(
+            message: cleaned,
+            context: snapshot,
+            lang: normalizedLang.isEmpty ? "zh" : normalizedLang
+        )
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+        let data = try encoder.encode(payload)
+        guard data.count <= maxCoachRequestBytes else { throw ErrorKind.payloadTooLarge }
+        return data
+    }
+
+    /// `nonisolated async` entry point so `@MainActor` callers run JSON serialization off-main.
+    public nonisolated static func encodeCoachRequestAsync(
+        message: String,
+        snapshot: CoachContext.Snapshot,
+        lang: String
+    ) async throws -> Data {
+        try encodeCoachRequest(message: message, snapshot: snapshot, lang: lang)
+    }
+
+    public nonisolated static func decodeCoachResponse(from data: Data) throws -> CoachResponse {
+        do {
+            let env = try JSONDecoder().decode(CoachResponseEnvelope.self, from: data)
+            for item in env.changes {
+                guard case .object = item else { throw ErrorKind.invalidResponse }
+            }
+            return CoachResponse(answer: env.answer, changes: env.changes, note: env.note)
+        } catch let err as ErrorKind {
+            throw err
+        } catch {
+            throw ErrorKind.invalidResponse
+        }
     }
 
     public static func isJPEG(_ data: Data) -> Bool {

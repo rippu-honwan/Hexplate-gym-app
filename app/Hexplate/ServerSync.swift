@@ -114,6 +114,9 @@ final class ServerSync {
     /// One pass: renew the token (once per launch), send motion files, sync. Coalesced.
     @discardableResult
     func run(_ model: AppModel) -> Task<Void, Never>? {
+        #if DEBUG
+        if AIClient.shared.isFakeCoachMode { return nil }
+        #endif
         countMotion()
         guard paired else { return nil }
         if let running { return running }
@@ -130,6 +133,9 @@ final class ServerSync {
     /// A change on this device goes up a few seconds later (only when writing; a dry run waits
     /// for the minute).
     func changed(_ model: AppModel) {
+        #if DEBUG
+        if AIClient.shared.isFakeCoachMode { return }
+        #endif
         guard writes, paired else { return }
         pushSoon?.cancel()
         pushSoon = Task {

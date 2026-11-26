@@ -139,5 +139,20 @@ def create_app(folder: Path | None = None) -> FastAPI:
             headers = {"Retry-After": str(e.retry_after)} if e.retry_after is not None else None
             return JSONResponse({"error": e.message, "code": e.code}, status_code=e.status_code, headers=headers)
 
+    @app.post("/api/ai/coach")
+    async def ai_coach(req: Request):
+        # Auth -> config -> limited body read -> stateless coach (same DoS guard order as /api/ai/meal).
+        token = bearer_token(req)
+        if not token:
+            return err(401, "not signed in")
+        try:
+            ai_service.require_configured()
+            payload = await read_limited_json(req)
+            token_key = hashlib.sha256(token.encode()).hexdigest()[:16]
+            return await ai_service.coach(payload, token_key=token_key)
+        except AIError as e:
+            headers = {"Retry-After": str(e.retry_after)} if e.retry_after is not None else None
+            return JSONResponse({"error": e.message, "code": e.code}, status_code=e.status_code, headers=headers)
+
     dashboard.install(app, store)
     return app

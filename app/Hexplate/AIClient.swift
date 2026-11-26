@@ -2,27 +2,36 @@ import Foundation
 import HexplateCore
 import Observation
 
-/// Client for Stage 5a's paired server AI endpoints (`GET /api/ai/status`, `POST /api/ai/meal`).
+/// Client for paired server AI endpoints (`GET /api/ai/status`, `POST /api/ai/meal`, `POST /api/ai/coach`).
 ///
 /// Key invariants:
 /// - Reads `ServerSync.shared.aiCredentials` fresh on every request (never cached across token rotation).
 /// - Dedicated ephemeral `URLSession` with `httpShouldSetCookies = false` and `timeoutIntervalForResource = 60`
 ///   (above the server's 50 s deadline so structured 504 errors arrive cleanly).
-/// - Request base64/JSON serialization runs off-main via `AIWire.encodeMealRequestAsync`.
+/// - Meal and Coach privacy consents are tracked under separate UserDefaults keys because each
+///   feature transmits a different data scope.
+/// - Request serialization runs off-main via `AIWire.encodeMealRequestAsync` / `encodeCoachRequestAsync`.
 @MainActor
 @Observable
 final class AIClient {
     static let shared = AIClient()
     static let privacyConsentKey = "aiPrivacyConsentAccepted"
+    static let coachPrivacyConsentKey = "aiCoachPrivacyConsentAccepted"
 
     private(set) var hasPrivacyConsent: Bool
+    private(set) var hasCoachPrivacyConsent: Bool
 
     #if DEBUG
     let isFakeMode: Bool
+    let isFakeCoachMode: Bool
     private let fakeWarning: Bool
     private let fakeErrorOnce: Bool
     private let fakeDelayMs: Int
     private var fakeErrorConsumed = false
+
+    private let fakeCoachNoChange: Bool
+    private let fakeCoachErrorOnce: Bool
+    private var fakeCoachErrorConsumed = false
     #endif
 
     private let session: URLSession = {
@@ -35,6 +44,7 @@ final class AIClient {
 
     init() {
         self.hasPrivacyConsent = UserDefaults.standard.bool(forKey: Self.privacyConsentKey)
+        self.hasCoachPrivacyConsent = UserDefaults.standard.bool(forKey: Self.coachPrivacyConsentKey)
         #if DEBUG
         let args = ProcessInfo.processInfo.arguments
         let fakeAI = args.contains("-hexplate-fake-ai")
@@ -45,6 +55,13 @@ final class AIClient {
         self.fakeWarning = fakeWarn
         self.fakeErrorOnce = fakeErr
         self.fakeDelayMs = fakeSlow ? 4_000 : 700
+
+        let fakeCoach = args.contains("-hexplate-fake-coach")
+        let fakeCoachNoChg = args.contains("-hexplate-fake-coach-no-change")
+        let fakeCoachErr = args.contains("-hexplate-fake-coach-error")
+        self.isFakeCoachMode = fakeCoach || fakeCoachNoChg || fakeCoachErr
+        self.fakeCoachNoChange = fakeCoachNoChg
+        self.fakeCoachErrorOnce = fakeCoachErr
         #endif
     }
 
@@ -55,9 +72,21 @@ final class AIClient {
         return ServerSync.shared.paired
     }
 
+    var isAvailableForCoach: Bool {
+        #if DEBUG
+        if isFakeCoachMode { return true }
+        #endif
+        return ServerSync.shared.paired
+    }
+
     func acceptPrivacyConsent() {
         UserDefaults.standard.set(true, forKey: Self.privacyConsentKey)
         hasPrivacyConsent = true
+    }
+
+    func acceptCoachPrivacyConsent() {
+        UserDefaults.standard.set(true, forKey: Self.coachPrivacyConsentKey)
+        hasCoachPrivacyConsent = true
     }
 
     func fetchStatus() async throws -> AIWire.Status {
@@ -133,6 +162,51 @@ final class AIClient {
         return try AIWire.decodeMealEstimate(from: data)
     }
 
+    func askCoach(message: String, snapshot: CoachContext.Snapshot) async throws -> AIWire.CoachResponse {
+        let lang = Theme.language
+        let body = try await AIWire.encodeCoachRequestAsync(message: message, snapshot: snapshot, lang: lang)
+        try Task.checkCancellation()
+
+        #if DEBUG
+        if isFakeCoachMode {
+            do {
+                try await Task.sleep(for: .milliseconds(500))
+            } catch {
+                throw AIWire.ErrorKind.cancelled
+            }
+            if fakeCoachErrorOnce && !fakeCoachErrorConsumed {
+                fakeCoachErrorConsumed = true
+                throw AIWire.ErrorKind.networkLost
+            }
+            let fakeData = try Self.fakeCoachResponseData(snapshot: snapshot, noChange: fakeCoachNoChange)
+            return try AIWire.decodeCoachResponse(from: fakeData)
+        }
+        #endif
+
+        guard let creds = ServerSync.shared.aiCredentials else {
+            throw AIWire.ErrorKind.notPaired
+        }
+        guard let url = URL(string: creds.base + "/api/ai/coach") else {
+            throw AIWire.ErrorKind.notPaired
+        }
+
+        var req = URLRequest(url: url)
+        req.httpMethod = "POST"
+        req.httpBody = body
+        req.setValue("Bearer \(creds.token)", forHTTPHeaderField: "Authorization")
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let (data, http) = try await perform(req)
+        guard (200..<300).contains(http.statusCode) else {
+            throw AIWire.mapHTTPError(
+                status: http.statusCode,
+                body: data,
+                retryAfterHeader: http.value(forHTTPHeaderField: "Retry-After")
+            )
+        }
+        return try AIWire.decodeCoachResponse(from: data)
+    }
+
     private func perform(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) {
         do {
             let (data, response) = try await session.data(for: request)
@@ -199,6 +273,111 @@ final class AIClient {
             String(localized: "Review the estimated numbers before saving.")
         }
     }
+
+    static func coachUserMessage(for error: AIWire.ErrorKind) -> String {
+        switch error {
+        case .notPaired:
+            String(localized: "Connect Hexplate to your server in Profile → Settings → Server before using AI Coach.")
+        case .notConfigured:
+            String(localized: "AI Coach is not configured on your server yet.")
+        case .unauthorized:
+            String(localized: "Your server sign-in expired. Re-pair in Settings.")
+        case .upstreamAuth:
+            String(localized: "The AI provider rejected your server’s API key. Check your server configuration.")
+        case .payloadTooLarge:
+            String(localized: "Your training context is too large to send. Try a shorter question.")
+        case .badRequest, .invalidImage, .noFoodDetected:
+            String(localized: "Enter a question for AI Coach before sending.")
+        case .rateLimited:
+            String(localized: "Too many AI requests right now. Wait a moment and try again.")
+        case .dailyCapReached:
+            String(localized: "Daily AI limit reached — try again later.")
+        case .busy:
+            String(localized: "The AI service is busy right now. Try again in a moment.")
+        case .timeout:
+            String(localized: "AI Coach timed out. Check your connection and try again.")
+        case .networkLost:
+            String(localized: "Connection was interrupted. Tap Try again to re-send your question.")
+        case .cancelled:
+            String(localized: "Request cancelled.")
+        case .serverError, .invalidResponse:
+            String(localized: "The AI service returned an unexpected response. Try again.")
+        }
+    }
+
+    static func coachNoteMessage(for code: String) -> String {
+        switch code {
+        case "no_valid_plan_change":
+            String(localized: "No valid plan change could be created from this reply. Your schedule is unchanged.")
+        case "stale_plan":
+            String(localized: "Your schedule changed while reviewing this suggestion. Ask again to get an updated plan.")
+        case "today_shifted":
+            String(localized: "The date rolled over to a new day. Ask again to review changes for today.")
+        case "net_zero_change":
+            String(localized: "This suggestion already matches your current plan. No changes are needed.")
+        default:
+            String(localized: "No valid plan change could be created from this reply. Your schedule is unchanged.")
+        }
+    }
+
+    #if DEBUG
+    private static func fakeCoachResponseData(snapshot: CoachContext.Snapshot, noChange: Bool) throws -> Data {
+        if noChange {
+            let payload: JSONValue = .object([
+                "answer": .string(String(localized: "Your current plan already balances fatigue well, so no safe schedule adjustment was applied.")),
+                "changes": .array([]),
+                "note": .string("no_valid_plan_change"),
+            ])
+            return try JSONEncoder().encode(payload)
+        }
+
+        // Pick an unlocked non-rest day allowed by the active schedule mode (preferring today so
+        // the "AI-adjusted" badge appears immediately on Today after Accept).
+        let eligibleDays = snapshot.plan.filter { day in
+            guard day.locked == nil, !day.isRest, day.routineId != nil, !day.exercises.isEmpty else {
+                return false
+            }
+            if snapshot.scheduleMode == "rotation", day.isQueueSession {
+                return day.date == snapshot.rotationOnDate
+            }
+            return true
+        }
+        let targetDay = eligibleDays.first(where: { $0.date == snapshot.today }) ?? eligibleDays.first
+
+        guard let day = targetDay,
+              let rid = day.routineId,
+              let slot = day.exercises.first else {
+            let payload: JSONValue = .object([
+                "answer": .string(String(localized: "There is no unlocked upcoming workout to modify right now. Load a routine or plan first, then ask again.")),
+                "changes": .array([]),
+                "note": .null,
+            ])
+            return try JSONEncoder().encode(payload)
+        }
+
+        let newSets = slot.sets > 2 ? max(1, slot.sets - 1) : min(12, slot.sets + 1)
+        var opObj: [String: JSONValue] = [
+            "type": .string("set_sets"),
+            "date": .string(day.date),
+            "routineId": .string(rid),
+            "slotIndex": .number(Double(slot.slotIndex)),
+            "exerciseId": .string(slot.exerciseId),
+            "sets": .number(Double(newSets)),
+            "reason": .string(String(localized: "Trimmed working volume to match recovery and save time.")),
+        ]
+        if slot.mode == "reps", let reps = slot.reps {
+            opObj["reps"] = .number(Double(reps))
+        }
+
+        let answer = String(localized: "I adjusted \(slot.name) to \(newSets) sets so you can stay on track without adding extra fatigue.")
+        let payload: JSONValue = .object([
+            "answer": .string(answer),
+            "changes": .array([.object(opObj)]),
+            "note": .null,
+        ])
+        return try JSONEncoder().encode(payload)
+    }
+    #endif
 
     #if DEBUG
     private static func fakeEstimate(lang: String, warning: Bool) -> AIWire.MealEstimate {

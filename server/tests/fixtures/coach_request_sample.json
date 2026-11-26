@@ -1,0 +1,293 @@
+{
+  "expectedSemanticContext": {
+    "days": [
+      {
+        "date": "2026-11-26",
+        "exercises": [
+          {
+            "exerciseId": "ex-bench",
+            "mode": "reps",
+            "slotIndex": 0
+          },
+          {
+            "exerciseId": "ex-plank",
+            "mode": "time",
+            "slotIndex": 1
+          },
+          {
+            "exerciseId": "ex-run",
+            "mode": "cardio",
+            "slotIndex": 2
+          }
+        ],
+        "isQueueSession": true,
+        "isRest": false,
+        "routineId": "r-push"
+      },
+      {
+        "date": "2026-11-27",
+        "exercises": [
+          {
+            "exerciseId": "ex-row",
+            "mode": "reps",
+            "slotIndex": 0
+          }
+        ],
+        "isQueueSession": false,
+        "isRest": false,
+        "locked": "logged",
+        "routineId": "r-pull"
+      },
+      {
+        "date": "2026-11-28",
+        "exercises": [],
+        "isQueueSession": false,
+        "isRest": true
+      }
+    ],
+    "exerciseAliases": [
+      {
+        "alias": "E1",
+        "id": "ex-bench",
+        "mode": "reps"
+      },
+      {
+        "alias": "E2",
+        "id": "ex-plank",
+        "mode": "time"
+      },
+      {
+        "alias": "E3",
+        "id": "ex-run",
+        "mode": "cardio"
+      },
+      {
+        "alias": "E4",
+        "id": "ex-row",
+        "mode": "reps"
+      },
+      {
+        "alias": "E5",
+        "id": "ex-db-press",
+        "mode": "reps"
+      }
+    ],
+    "mode": "rotation",
+    "rotationOnDate": "2026-11-26",
+    "routineAliases": [
+      {
+        "alias": "R1",
+        "id": "r-push"
+      },
+      {
+        "alias": "R2",
+        "id": "r-pull"
+      }
+    ],
+    "today": "2026-11-26"
+  },
+  "request": {
+    "context": {
+      "allowedOps": [
+        "skip",
+        "swap_exercise",
+        "set_sets",
+        "add"
+      ],
+      "exerciseAliases": [
+        {
+          "alias": "E1",
+          "equipment": "barbell",
+          "id": "ex-bench",
+          "mode": "reps",
+          "name": "Barbell Bench Press",
+          "target": "chest"
+        },
+        {
+          "alias": "E2",
+          "equipment": "body weight",
+          "id": "ex-plank",
+          "mode": "time",
+          "name": "Forearm Plank",
+          "target": "abs"
+        },
+        {
+          "alias": "E3",
+          "id": "ex-run",
+          "mode": "cardio",
+          "name": "Treadmill Run"
+        },
+        {
+          "alias": "E4",
+          "equipment": "barbell",
+          "id": "ex-row",
+          "mode": "reps",
+          "name": "Barbell Row",
+          "target": "upper-back"
+        },
+        {
+          "alias": "E5",
+          "equipment": "dumbbell",
+          "id": "ex-db-press",
+          "mode": "reps",
+          "name": "Dumbbell Bench Press",
+          "target": "chest"
+        }
+      ],
+      "plan": [
+        {
+          "date": "2026-11-26",
+          "digest": "0123456789abcdef",
+          "exercises": [
+            {
+              "alias": "E1",
+              "exerciseId": "ex-bench",
+              "hasProgrammePct": true,
+              "mode": "reps",
+              "name": "Barbell Bench Press",
+              "reps": 8,
+              "sets": 4,
+              "slotIndex": 0
+            },
+            {
+              "alias": "E2",
+              "exerciseId": "ex-plank",
+              "hasProgrammePct": false,
+              "mode": "time",
+              "name": "Forearm Plank",
+              "sec": 60,
+              "sets": 3,
+              "slotIndex": 1
+            },
+            {
+              "alias": "E3",
+              "exerciseId": "ex-run",
+              "hasProgrammePct": false,
+              "mode": "cardio",
+              "name": "Treadmill Run",
+              "sets": 1,
+              "slotIndex": 2
+            }
+          ],
+          "isAIClone": false,
+          "isQueueSession": true,
+          "isRest": false,
+          "routineAlias": "R1",
+          "routineId": "r-push",
+          "routineName": "Push",
+          "weekday": "Thu"
+        },
+        {
+          "date": "2026-11-27",
+          "digest": "fedcba9876543210",
+          "exercises": [
+            {
+              "alias": "E4",
+              "exerciseId": "ex-row",
+              "hasProgrammePct": false,
+              "mode": "reps",
+              "name": "Barbell Row",
+              "reps": 10,
+              "sets": 3,
+              "slotIndex": 0
+            }
+          ],
+          "isAIClone": false,
+          "isQueueSession": false,
+          "isRest": false,
+          "locked": "logged",
+          "routineAlias": "R2",
+          "routineId": "r-pull",
+          "routineName": "Pull",
+          "weekday": "Fri"
+        },
+        {
+          "date": "2026-11-28",
+          "digest": "aaaa1111bbbb2222",
+          "exercises": [],
+          "isAIClone": false,
+          "isQueueSession": false,
+          "isRest": true,
+          "weekday": "Sat"
+        }
+      ],
+      "readiness": {
+        "calibratingSignals": [],
+        "hrvDeltaPct": -0.05,
+        "hrvMs": 62,
+        "missingSignals": [],
+        "rhrBpm": 54,
+        "rhrDeltaBpm": 1,
+        "score": 78,
+        "sleepHours": 7.5,
+        "sleepProvisional": false,
+        "verdict": "good"
+      },
+      "recentWorkouts": [
+        {
+          "date": "2026-11-25",
+          "name": "Pull",
+          "routineId": "r-pull",
+          "setsDone": 12,
+          "topMuscles": [
+            "upper-back"
+          ],
+          "volume": 3200
+        }
+      ],
+      "recovery": {
+        "globalAcute": 24,
+        "globalChronic": 20,
+        "globalRatio": 1.2,
+        "recoveringMuscles": [
+          {
+            "fatigue": 0.62,
+            "hoursToRecovered": 11.5,
+            "slug": "chest"
+          }
+        ]
+      },
+      "rotationNote": "Rotation queue is active on 2026-11-26; move_day is disallowed.",
+      "rotationOnDate": "2026-11-26",
+      "routineAliases": [
+        {
+          "alias": "R1",
+          "id": "r-push",
+          "name": "Push"
+        },
+        {
+          "alias": "R2",
+          "id": "r-pull",
+          "name": "Pull"
+        }
+      ],
+      "scheduleMode": "rotation",
+      "timezone": "Asia/Tokyo",
+      "today": "2026-11-26",
+      "todayNutrition": {
+        "goals": {
+          "kcal": 2400,
+          "protein": 160,
+          "proteinIsDerived": true,
+          "proteinPerKg": 2,
+          "weightKgUsed": 80
+        },
+        "hexplate": {
+          "carbs": 120,
+          "fat": 30,
+          "kcal": 1100,
+          "protein": 80
+        },
+        "total": {
+          "carbs": 120,
+          "fat": 30,
+          "kcal": 1100,
+          "protein": 80
+        }
+      },
+      "unit": "kg"
+    },
+    "lang": "en",
+    "message": "Short on time today, lighten chest slightly."
+  }
+}
