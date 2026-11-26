@@ -63,6 +63,16 @@ USAGE_KEEP_SECONDS = 7 * 86_400.0
 USAGE_COMPACT_BYTES = 2 * 1024 * 1024  # Compact usage log at startup when > 2 MiB
 MAX_FORWARDED_RETRY_AFTER = 3_600
 
+# Web-editable AI config bounds (stored in `<data_dir>/ai-config.json`, mode 0600, never in SQLite).
+MIN_DAILY_TOKEN_CAP = 1
+MAX_DAILY_TOKEN_CAP = 10_000_000
+MIN_RATE_LIMIT_PER_MIN = 1
+MAX_RATE_LIMIT_PER_MIN = 600
+MAX_SECRET_FILE_BYTES = 65_536
+MIN_KEY_HINT_LEN = 16
+AI_TEST_DEADLINE = 20.0
+AI_TEST_PROMPT = "Reply with OK."
+
 PLAUSIBILITY_MIN_DIFF_KCAL = 40.0
 PLAUSIBILITY_MAX_REL_DIFF = 0.25
 
@@ -301,6 +311,18 @@ def normalize_base_url(raw: str | None) -> str | None:
     return f"{scheme}://{parsed.netloc}{path}"
 
 
+def _validated_base_url(raw: str) -> str:
+    """A normalized base URL with a bindable origin, else `AIBadRequestError(invalid-base-url)`."""
+    url = normalize_base_url(raw)
+    if url is None or origin_of(url) is None:
+        raise AIBadRequestError(
+            "Base URL must be https:// (or http:// on localhost / Tailscale) with a host, an optional "
+            "valid port, and no credentials, query, or fragment.",
+            code="invalid-base-url",
+        )
+    return url
+
+
 def _is_allowed_http_host(host: str) -> bool:
     if host in _LOCAL_HTTP_HOSTS or host.endswith(".ts.net"):
         return True
@@ -309,6 +331,85 @@ def _is_allowed_http_host(host: str) -> bool:
     except ValueError:
         return False
     return isinstance(addr, ipaddress.IPv4Address) and addr in _TAILSCALE_CGNAT
+
+
+def origin_of(base_url: str | None) -> tuple[str, str, int] | None:
+    """`(scheme, hostname, port)` of a base URL, with default ports 443 / 80.
+
+    Returns `None` for anything a stored key must never be bound to: a missing or non-http(s)
+    scheme, a missing hostname, userinfo (`user@host`), or a port `urlsplit` rejects. `None` never
+    matches a saved origin (see `_same_origin`), so such a URL always needs its own key.
+    """
+    if not isinstance(base_url, str) or not base_url.strip():
+        return None
+    parsed = urlsplit(base_url.strip())
+    scheme = parsed.scheme.lower()
+    if scheme not in ("http", "https") or "@" in parsed.netloc:
+        return None
+    host = (parsed.hostname or "").lower()
+    if not host:
+        return None
+    try:
+        port = parsed.port
+    except ValueError:
+        return None
+    return scheme, host, port if port is not None else (443 if scheme == "https" else 80)
+
+
+def _same_origin(a: str | None, b: str | None) -> bool:
+    origin = origin_of(a)
+    return origin is not None and origin == origin_of(b)
+
+
+def atomic_write_secret_json(path: Path, payload: dict[str, Any]) -> None:
+    """Writes `payload` as UTF-8 JSON through a fresh same-directory temp file created `0600` with
+    `O_EXCL`, fsyncs it, then `os.replace`s it over `path` (the temp file is removed on error)."""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    data = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    tmp = path.parent / f".{path.name}.{os.getpid()}.{os.urandom(6).hex()}.tmp"
+    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    try:
+        try:
+            view = memoryview(data)
+            while view:
+                view = view[os.write(fd, view):]
+            os.fsync(fd)
+        finally:
+            os.close(fd)
+        os.replace(tmp, path)
+    except BaseException:
+        try:
+            tmp.unlink(missing_ok=True)
+        except OSError:
+            pass
+        raise
+
+
+def read_capped_json(path: Path, *, max_bytes: int = MAX_SECRET_FILE_BYTES) -> dict[str, Any] | None:
+    """The JSON object stored at `path`, or `None` when it is missing, larger than `max_bytes`,
+    unreadable, not valid JSON, or not an object. Never raises."""
+    try:
+        with open(path, "rb") as fh:
+            raw = fh.read(max_bytes + 1)
+    except OSError:
+        return None
+    if len(raw) > max_bytes:
+        return None
+    try:
+        data = json.loads(raw.decode("utf-8"))
+    except (UnicodeDecodeError, ValueError):
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def _bounded_int(val: Any, lo: int, hi: int) -> int | None:
+    """`val` when it is a real integer (not a bool, integral floats allowed) inside `lo..hi`."""
+    if isinstance(val, bool):
+        return None
+    if isinstance(val, float) and val.is_integer():
+        val = int(val)
+    return val if isinstance(val, int) and lo <= val <= hi else None
 
 
 def _positive_int_env(name: str, default: int) -> int:
@@ -752,6 +853,7 @@ class AIService:
     ):
         self.folder = Path(folder)
         self.usage_file = self.folder / "ai-usage.jsonl"
+        self.config_file = self.folder / "ai-config.json"
         self.config = config
         self.client = client
         self.total_deadline = total_deadline
@@ -760,8 +862,238 @@ class AIService:
         self._usage_24h: deque[tuple[float, int]] = deque()
         self._load_and_compact_usage()
 
+    def _resolve_config(self) -> tuple[AIConfig, dict[str, str]]:
+        """The effective config plus where each non-empty field came from (`file` or `env`).
+
+        `(base_url, api_key)` is an all-or-nothing pair: when the file holds either one, both come
+        from the file, so a file host is never sent the env key (and vice versa). `model`, the token
+        cap and the rate limit merge per field, valid file values over env.
+        """
+        env = AIConfig.from_env()
+        raw = read_capped_json(self.config_file) or {}
+        sources: dict[str, str] = {}
+
+        file_url = raw.get("base_url") if isinstance(raw.get("base_url"), str) else ""
+        file_key = raw.get("api_key") if isinstance(raw.get("api_key"), str) else ""
+        if file_url.strip() or file_key.strip():
+            base_url, api_key, pair_src = normalize_base_url(file_url), file_key.strip(), "file"
+        else:
+            base_url, api_key, pair_src = env.base_url, env.api_key, "env"
+        if base_url:
+            sources["base_url"] = pair_src
+        if api_key:
+            sources["api_key"] = pair_src
+
+        file_model = raw.get("model").strip() if isinstance(raw.get("model"), str) else ""
+        model = file_model or env.model
+        if model:
+            sources["model"] = "file" if file_model else "env"
+
+        cap = _bounded_int(raw.get("daily_token_cap"), MIN_DAILY_TOKEN_CAP, MAX_DAILY_TOKEN_CAP)
+        rate = _bounded_int(raw.get("rate_limit_per_min"), MIN_RATE_LIMIT_PER_MIN, MAX_RATE_LIMIT_PER_MIN)
+        if cap is not None:
+            sources["daily_token_cap"] = "file"
+        if rate is not None:
+            sources["rate_limit_per_min"] = "file"
+
+        cfg = AIConfig(
+            base_url=base_url,
+            model=model,
+            api_key=api_key,
+            daily_token_cap=cap if cap is not None else min(env.daily_token_cap, MAX_DAILY_TOKEN_CAP),
+            rate_limit_per_min=rate if rate is not None else min(env.rate_limit_per_min, MAX_RATE_LIMIT_PER_MIN),
+        )
+        return cfg, sources
+
     def current_config(self) -> AIConfig:
-        return self.config if self.config is not None else AIConfig.from_env()
+        if self.config is not None:
+            return self.config
+        return self._resolve_config()[0]
+
+    def masked_config(self) -> dict[str, Any]:
+        """The effective config for the dashboard. Never contains the raw API key."""
+        if self.config is not None:
+            cfg, sources = self.config, {}
+        else:
+            cfg, sources = self._resolve_config()
+        kinds = set(sources.values())
+        source = "mixed" if len(kinds) > 1 else (kinds.pop() if kinds else "none")
+        key = cfg.api_key or ""
+        return {
+            "configured": cfg.is_configured,
+            "source": source,
+            "baseUrl": cfg.base_url,
+            "model": cfg.model,
+            "hasKey": bool(key),
+            "keyHint": ("\u2022\u2022\u2022\u2022" + key[-4:]) if len(key) >= MIN_KEY_HINT_LEN else None,
+            "dailyTokenCap": int(cfg.daily_token_cap),
+            "rateLimitPerMin": int(cfg.rate_limit_per_min),
+            "dailyTokensUsed": int(self.daily_tokens_used()),
+            "envFallbackAvailable": AIConfig.from_env().is_configured,
+        }
+
+    def save_config(
+        self,
+        *,
+        base_url: str | None = None,
+        model: str | None = None,
+        api_key: str | None = None,
+        clear_api_key: bool = False,
+        daily_token_cap: Any = None,
+        rate_limit_per_min: Any = None,
+        reset_to_env: bool = False,
+    ) -> dict[str, Any]:
+        """Writes `<data_dir>/ai-config.json` (0600). `None` keeps a field, an empty string clears it.
+
+        A saved key stays bound to its provider origin: changing the host without a fresh key (or
+        `clear_api_key`) is rejected, and the env key is never copied into the file.
+        """
+        if reset_to_env:
+            try:
+                self.config_file.unlink(missing_ok=True)
+            except OSError as exc:
+                raise AIBadRequestError("Could not remove the saved AI config.", code="invalid-config") from exc
+            return self.masked_config()
+
+        cap = rate = None
+        if daily_token_cap is not None:
+            cap = _bounded_int(daily_token_cap, MIN_DAILY_TOKEN_CAP, MAX_DAILY_TOKEN_CAP)
+            if cap is None:
+                raise AIBadRequestError(
+                    f"dailyTokenCap must be an integer from {MIN_DAILY_TOKEN_CAP} to {MAX_DAILY_TOKEN_CAP}.",
+                    code="invalid-config",
+                )
+        if rate_limit_per_min is not None:
+            rate = _bounded_int(rate_limit_per_min, MIN_RATE_LIMIT_PER_MIN, MAX_RATE_LIMIT_PER_MIN)
+            if rate is None:
+                raise AIBadRequestError(
+                    f"rateLimitPerMin must be an integer from {MIN_RATE_LIMIT_PER_MIN} to {MAX_RATE_LIMIT_PER_MIN}.",
+                    code="invalid-config",
+                )
+        for label, val in (("baseUrl", base_url), ("model", model), ("apiKey", api_key)):
+            if val is not None and not isinstance(val, str):
+                raise AIBadRequestError(f"{label} must be a string.", code="invalid-config")
+
+        raw = read_capped_json(self.config_file) or {}
+        prev_url = normalize_base_url(raw.get("base_url")) if isinstance(raw.get("base_url"), str) else None
+        prev_key = raw.get("api_key").strip() if isinstance(raw.get("api_key"), str) else ""
+
+        new_url = prev_url
+        if base_url is not None:
+            new_url = _validated_base_url(base_url) if base_url.strip() else None
+
+        fresh_key = api_key.strip() if isinstance(api_key, str) else ""
+        if fresh_key:
+            new_key = fresh_key
+        elif clear_api_key or not prev_key:
+            new_key = ""
+        elif base_url is None or _same_origin(new_url, prev_url):
+            new_key = prev_key
+        else:
+            raise AIBadRequestError(
+                "Provide a new API key or clear the saved key when changing the provider host.",
+                code="key-required-for-new-host",
+            )
+
+        record: dict[str, Any] = {}
+        if new_url:
+            record["base_url"] = new_url
+        if new_key:
+            record["api_key"] = new_key
+        new_model = raw.get("model") if isinstance(raw.get("model"), str) else ""
+        if model is not None:
+            new_model = model.strip()
+        if new_model:
+            record["model"] = new_model
+        keep_cap = _bounded_int(raw.get("daily_token_cap"), MIN_DAILY_TOKEN_CAP, MAX_DAILY_TOKEN_CAP)
+        keep_rate = _bounded_int(raw.get("rate_limit_per_min"), MIN_RATE_LIMIT_PER_MIN, MAX_RATE_LIMIT_PER_MIN)
+        if (cap if cap is not None else keep_cap) is not None:
+            record["daily_token_cap"] = cap if cap is not None else keep_cap
+        if (rate if rate is not None else keep_rate) is not None:
+            record["rate_limit_per_min"] = rate if rate is not None else keep_rate
+        record["updated_at"] = int(time.time())
+
+        try:
+            atomic_write_secret_json(self.config_file, record)
+        except OSError as exc:
+            raise AIBadRequestError("Could not save the AI config.", code="invalid-config") from exc
+        return self.masked_config()
+
+    async def test_connection(
+        self,
+        *,
+        base_url: str | None = None,
+        model: str | None = None,
+        api_key: str | None = None,
+    ) -> dict[str, Any]:
+        """Sends one tiny completion with the draft (or saved) settings. A saved key is only ever
+        sent to its own origin; testing another host needs a draft key."""
+        saved = self.current_config()
+        draft_url = base_url.strip() if isinstance(base_url, str) else ""
+        eff_url = _validated_base_url(draft_url) if draft_url else saved.base_url
+        draft_model = model.strip() if isinstance(model, str) else ""
+        eff_model = draft_model or saved.model
+        draft_key = api_key.strip() if isinstance(api_key, str) else ""
+
+        if draft_key:
+            eff_key = draft_key
+        elif eff_url and saved.api_key and _same_origin(eff_url, saved.base_url):
+            eff_key = saved.api_key
+        elif draft_url:
+            raise AIBadRequestError(
+                "An API key is required to test a different provider host.",
+                code="key-required-for-new-host",
+            )
+        else:
+            raise AIUnconfiguredError()
+        if not (eff_url and eff_model and eff_key):
+            raise AIUnconfiguredError()
+
+        test_cfg = AIConfig(
+            base_url=eff_url,
+            model=eff_model,
+            api_key=eff_key,
+            daily_token_cap=saved.daily_token_cap,
+            rate_limit_per_min=saved.rate_limit_per_min,
+        )
+        self.check_limits("web-test", test_cfg)
+
+        started = time.monotonic()
+        deadline = started + max(0.05, min(AI_TEST_DEADLINE, self.total_deadline))
+        acquired = False
+        usage = ChatUsage()
+        ok = False
+        try:
+            try:
+                async with asyncio.timeout(max(0.0, deadline - time.monotonic())):
+                    await self.semaphore.acquire()
+                acquired = True
+            except TimeoutError as exc:
+                raise AIBusyError() from exc
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise AITimeoutError()
+            result = await chat(
+                [{"role": "user", "content": AI_TEST_PROMPT}],
+                timeout=remaining,
+                max_tokens=16,
+                temperature=0.0,
+                client=self.client,
+                config=test_cfg,
+            )
+            usage = result.usage
+            ok = True
+            return {"ok": True, "model": test_cfg.model, "elapsedMs": int((time.monotonic() - started) * 1000)}
+        finally:
+            if acquired:
+                self.semaphore.release()
+                self.log_usage(
+                    endpoint="test",
+                    model=test_cfg.model,
+                    usage=usage,
+                    ok=ok,
+                    elapsed_ms=int((time.monotonic() - started) * 1000),
+                )
 
     def require_configured(self) -> AIConfig:
         cfg = self.current_config()
@@ -989,7 +1321,7 @@ class AIService:
                     elapsed_ms=elapsed_ms,
                 )
 
-    async def coach(self, payload: dict[str, Any], *, token_key: str) -> dict[str, Any]:
+    async def coach(self, payload: dict[str, Any], *, token_key: str, endpoint: str = "coach") -> dict[str, Any]:
         """Stateless AI Coach pipeline with alias decoding, canonical schema + semantic validation,
         at most 1 repair attempt (counted against rate limit & 24 h cap), and all-or-nothing
         rejection. Note: as in `estimate_meal`, the concurrency semaphore stays held until the
@@ -1141,7 +1473,7 @@ class AIService:
                 self.semaphore.release()
                 elapsed_ms = int((time.monotonic() - started) * 1000)
                 self.log_usage(
-                    endpoint="coach",
+                    endpoint=endpoint,
                     model=cfg.model,
                     usage=total_usage,
                     ok=ok,

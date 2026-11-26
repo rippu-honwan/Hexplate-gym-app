@@ -1,0 +1,6 @@
+export { AnalyticsViews } from '@/views/analytics-views'
+export { CoachView } from '@/views/coach-view'
+export { McpView, SyncDataView, WebhooksView } from '@/views/connect-views'
+export { SettingsAiView, SettingsBackupView, SettingsGeneralView } from '@/views/settings-views'
+export { BodyView, ExerciseDetailView, ExercisesView, PlanView, ReportView, StatsView, WorkoutDetailView } from '@/views/training-views'
+export { MotionDetailView, MotionListView, RepCounterView } from '@/views/watch-views'

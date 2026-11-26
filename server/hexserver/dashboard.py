@@ -12,21 +12,64 @@ import datetime as dt
 import io
 import json
 import math
+import os
 import re
 import socket
 import subprocess
 from html import escape
 from pathlib import Path
-from urllib.parse import parse_qs, quote
+from urllib.parse import parse_qs, quote, urlsplit
 
 from fastapi import Request
-from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse, Response
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse, Response
 
+from . import analytics_api
 from . import motion as M
 from . import schedule as P
 from . import stats as S
+from .ai import origin_of
 from .i18n import LANG, fd, t, tm, tn
 from .ui import bars, compact, date_lead, fmt, group, head, heat, icon, key, kg, line, meter, per_set, row, scatter, section, seg, shell, stats, traces
+
+_ALLOWED_HOSTS = frozenset({"127.0.0.1", "localhost", "::1", "testserver"})
+
+
+def _host_allowed(raw_host: str | None) -> bool:
+    """Allows only local loopback Host headers (plus TestClient's `testserver`) to block DNS rebinding."""
+    if not raw_host:
+        return False
+    host = raw_host.strip().lower()
+    if not host or "/" in host or "@" in host or " " in host:
+        return False
+    if host.startswith("["):
+        end = host.find("]")
+        if end < 0:
+            return False
+        hostname = host[1:end]
+        rest = host[end + 1 :]
+        if rest and not (rest.startswith(":") and rest[1:].isdigit()):
+            return False
+    else:
+        hostname, sep, port = host.partition(":")
+        if sep and not port.isdigit():
+            return False
+    return hostname in _ALLOWED_HOSTS
+
+
+def _origin_matches_host(origin: str | None, scheme: str, raw_host: str) -> bool:
+    """Checks that an HTTP `Origin` matches `(scheme, raw_host)` via `ai.origin_of`,
+    rejecting `null`, userinfo, mismatched ports, or any path/query/fragment."""
+    if not origin:
+        return False
+    text = origin.strip()
+    if not text or text.lower() == "null":
+        return False
+    parsed = urlsplit(text)
+    if parsed.path or parsed.query or parsed.fragment:
+        return False
+    got = origin_of(text)
+    expected = origin_of(f"{scheme}://{raw_host}")
+    return got is not None and got == expected
 
 
 def local_name():
@@ -144,11 +187,20 @@ def install(app, store):
         if not req.url.path.startswith("/api/"):
             if req.client and req.client.host not in ("127.0.0.1", "::1", "testclient"):
                 return PlainTextResponse("The dashboard only opens on this Mac.", status_code=403)
-            if req.method == "POST":
+            raw_host = req.headers.get("host") or req.url.netloc
+            if not _host_allowed(raw_host):
+                return PlainTextResponse("Refused: invalid Host header.", status_code=403)
+            if req.method not in ("GET", "HEAD", "OPTIONS"):
                 site = req.headers.get("sec-fetch-site")
-                same = site in ("same-origin", "none") if site else req.headers.get("origin") == f"{req.url.scheme}://{req.url.netloc}"
+                origin = req.headers.get("origin")
+                if site:
+                    same = site in ("same-origin", "none") and (
+                        not origin or _origin_matches_host(origin, req.url.scheme, raw_host)
+                    )
+                else:
+                    same = _origin_matches_host(origin, req.url.scheme, raw_host)
                 if not same:
-                    return PlainTextResponse("Refused: this form did not come from the dashboard.", status_code=403)
+                    return PlainTextResponse("Refused: this request did not come from the dashboard.", status_code=403)
             # Your choice in Settings, else the browser's first language.
             lang = store.setting("lang") or ("zh" if req.headers.get("accept-language", "").lower().startswith("zh") else "en")
             LANG.set(lang)
@@ -961,3 +1013,48 @@ def install(app, store):
     async def settings_signing_run():
         app.state.signing.start()
         return to("/settings")
+
+    # MARK: Analytics JSON API (registered BEFORE the /analytics/{path:path} SPA catch-all)
+
+    analytics_api.install(app, store)
+
+    # MARK: Analytics (the React build in dashboard/dist, compiled on the Mac: this machine runs no Node)
+
+    analytics = Path(os.environ.get("HEXPLATE_ANALYTICS") or Path(__file__).resolve().parents[2] / "dashboard" / "dist").resolve()
+    store_root = store.folder.resolve()
+    analytics_isolated = not (
+        analytics == store_root
+        or analytics.is_relative_to(store_root)
+        or store_root.is_relative_to(analytics)
+    )
+
+    @app.get("/analytics", include_in_schema=False)
+    async def analytics_root():
+        return RedirectResponse("/analytics/")  # the build's relative asset URLs need the trailing slash
+
+    @app.get("/analytics/{path:path}", include_in_schema=False)
+    async def analytics_file(path: str):
+        # Behind the same localhost-only guard as every page above (not /api/).
+        if path == "api" or path.startswith("api/"):
+            return JSONResponse({"error": "Not found"}, status_code=404)
+        if not analytics_isolated:
+            return PlainTextResponse("Refused: analytics directory overlaps the server data directory.", status_code=403)
+        index = analytics / "index.html"
+        if not index.is_file():
+            return PlainTextResponse("The analytics dashboard is not built. Run `npm run build` in dashboard/.", status_code=404)
+
+        def _index_response() -> FileResponse:
+            return FileResponse(index, headers={"Cache-Control": "no-cache"})
+
+        if not path:
+            return _index_response()
+        f = (analytics / path).resolve()
+        if f == index:
+            return _index_response()
+        if f.is_relative_to(analytics) and f.is_file():
+            return FileResponse(f)
+        # ponytail: the app keeps its view in memory (no client router), so only the root is linked;
+        # anything without a file extension falls back to the app shell, a missing file is a 404.
+        if Path(path).suffix:
+            return PlainTextResponse("Not found", status_code=404)
+        return _index_response()

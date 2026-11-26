@@ -19,3 +19,6 @@ __pycache__/
 /catalogue
 # SwiftPM build output
 .build/
+# Analytics dashboard (dashboard/): dependencies and the local build FastAPI serves at /analytics
+dashboard/node_modules/
+dashboard/dist/
