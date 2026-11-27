@@ -1,8 +1,8 @@
 # Hexplate Analytics Dashboard
 
 Vite + React + TypeScript + Tailwind CSS v4 + shadcn/ui + Recharts. Compiled on the Mac to static
-files in `dist/`, which the FastAPI server serves read-only at `/analytics` (localhost only). The
-server machine never runs Node or `vite build`.
+files in `dist/`, which the FastAPI server serves read-only at `/` (localhost only; legacy
+`/analytics` URLs redirect to `/`). The server machine never runs Node or `vite build`.
 
 ```bash
 npm install

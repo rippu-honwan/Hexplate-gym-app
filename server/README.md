@@ -4,16 +4,17 @@ Python FastAPI + SQLite, on your own Mac. Speaks the few routes the phone app us
 state document, motion files), so Hexplate syncs with it as it did with openGym's server.
 
 ```sh
-cd server
+cd dashboard && npm install && npm run build   # build the web dashboard once (optional for `pair`)
+cd ../server
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt -r requirements-dev.txt
 .venv/bin/python -m hexserver serve            # port 8765, reachable on your Wi-Fi
-.venv/bin/python -m hexserver pair             # one-time code for the app (Settings > Server)
+.venv/bin/python -m hexserver pair             # one-time code for the app (works without building dashboard/)
 .venv/bin/python -m hexserver import state.json motion/   # JSON backups and folders of motion CSVs
 .venv/bin/python -m pytest -q
 ./launchd.sh install                           # keep it running in the background from login on
 ```
 
-The dashboard is at http://127.0.0.1:8765 on the Mac only, in English or Chinese (Settings). The
+The dashboard is at http://127.0.0.1:8765 on the Mac only (served from `dashboard/dist/`, with legacy `/analytics/` links redirecting to `/`), in English or Chinese (Settings). The
 phone pairs from it (Sync & backup, New pairing code) with the address `http://<LocalHostName>.local:8765`. If macOS asks whether Python
 may accept incoming connections, allow it, or the phone cannot reach the server. While the Mac
 sleeps the phone cannot sync; it keeps its changes and motion files and sends them later.

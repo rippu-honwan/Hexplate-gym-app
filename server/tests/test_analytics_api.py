@@ -139,8 +139,8 @@ def test_analytics_dir_overlapping_store_folder_refused(tmp_path, monkeypatch, e
     (data_dir / "ai-config.json").write_text('{"api_key":"secret"}')
     monkeypatch.setenv("HEXPLATE_ANALYTICS", str(data_dir))
     c = TestClient(create_app(data_dir))
-    assert c.get("/analytics/").status_code == 403
-    assert c.get("/analytics/ai-config.json").status_code == 403
+    assert c.get("/").status_code == 403
+    assert c.get("/ai-config.json").status_code == 403
 
 
 def test_cache_control_no_store_on_ai_and_bootstrap(app):
@@ -454,7 +454,7 @@ def test_coach_context_exposes_is_ai_clone_after_set_sets_apply(app):
     assert all(d["isAIClone"] is False for d in unmodified)
 
 
-def test_origin_normalization_and_negative_csrf_and_ssr_lang_switch(app):
+def test_origin_normalization_and_negative_csrf(app):
     c = TestClient(app)
 
     # Mixed-case Host, default port (:80), and IPv6 loopback accepted when matching Origin.
@@ -463,16 +463,19 @@ def test_origin_normalization_and_negative_csrf_and_ssr_lang_switch(app):
         headers={"Host": "Localhost:8765", "Origin": "http://localhost:8765", "Sec-Fetch-Site": "same-origin"},
         json={"lang": "zh"},
     ).status_code == 200
+    assert app.state.store.setting("lang") == "zh"
     assert c.post(
         "/analytics/api/settings/lang",
         headers={"Host": "localhost:80", "Origin": "http://localhost", "Sec-Fetch-Site": "same-origin"},
         json={"lang": "en"},
     ).status_code == 200
+    assert app.state.store.setting("lang") == "en"
     assert c.post(
         "/analytics/api/settings/lang",
         headers={"Host": "[::1]:8765", "Origin": "http://[::1]:8765", "Sec-Fetch-Site": "same-origin"},
         json={"lang": "zh"},
     ).status_code == 200
+    assert app.state.store.setting("lang") == "zh"
 
     # Negative CSRF cases all rejected with 403.
     bad_headers = [
@@ -488,31 +491,44 @@ def test_origin_normalization_and_negative_csrf_and_ssr_lang_switch(app):
     for hdrs in bad_headers:
         assert c.post("/analytics/api/settings/lang", headers=hdrs, json={"lang": "en"}).status_code == 403, hdrs
 
-    # Legacy SSR POST /settings/lang returns 303 redirect and persists setting.
-    ssr_zh = c.post(
-        "/settings/lang",
-        headers={"Host": "Localhost:8765", "Origin": "http://localhost:8765", "Sec-Fetch-Site": "same-origin"},
-        data={"lang": "zh"},
-        follow_redirects=False,
-    )
-    assert ssr_zh.status_code == 303
-    assert ssr_zh.headers["location"] == "/settings"
-    assert app.state.store.setting("lang") == "zh"
+    # Pairing POST also rejects cross-origin and cross-site CSRF requests.
+    assert c.post("/analytics/api/data/pair", headers={"Origin": "https://evil.example"}).status_code == 403
+    assert c.post("/analytics/api/data/pair", headers={"Sec-Fetch-Site": "cross-site"}).status_code == 403
 
-    ssr_en = c.post(
-        "/settings/lang",
-        headers={"Host": "127.0.0.1:8765", "Origin": "http://127.0.0.1:8765", "Sec-Fetch-Site": "same-origin"},
-        data={"lang": "en"},
-        follow_redirects=False,
-    )
-    assert ssr_en.status_code == 303
-    assert ssr_en.headers["location"] == "/settings"
-    assert app.state.store.setting("lang") == "en"
+
+def test_backup_settings_and_run_via_api(app):
+    c = TestClient(app)
+    off = c.post("/analytics/api/settings/backup", headers=SAME, json={"on": False})
+    assert off.status_code == 200
+    assert app.state.store.setting("backup") == "off"
+    assert off.json()["backup"]["on"] is False
+
+    on = c.post("/analytics/api/settings/backup", headers=SAME, json={"on": True})
+    assert on.status_code == 200
+    assert app.state.store.setting("backup") == "on"
+    assert on.json()["backup"]["on"] is True
+
+    ran = c.post("/analytics/api/settings/backup/run", headers=SAME)
+    assert ran.status_code == 200
+    body = ran.json()
+    assert body["ok"] is True
+    assert isinstance(body["copied"], int)
+    assert body["backup"]["error"] is None
+
+
+def test_bootstrap_uses_accept_language_when_no_lang_saved(app):
+    c = TestClient(app)
+    assert app.state.store.setting("lang") is None
+    en_boot = c.get("/analytics/api/bootstrap").json()
+    assert en_boot["lang"] == "en" and en_boot["strings"] == {}
+
+    zh_boot = c.get("/analytics/api/bootstrap", headers={"Accept-Language": "zh-TW,zh;q=0.9"}).json()
+    assert zh_boot["lang"] == "zh" and "Overview" in zh_boot["strings"]
 
 
 def test_analytics_index_html_returns_no_cache_on_all_branches(app):
     c = TestClient(app)
-    for path in ("/analytics/", "/analytics/index.html", "/analytics/some-spa-route"):
+    for path in ("/", "/index.html", "/some-spa-route"):
         r = c.get(path)
         assert r.status_code == 200, path
         assert r.headers.get("cache-control") == "no-cache", path

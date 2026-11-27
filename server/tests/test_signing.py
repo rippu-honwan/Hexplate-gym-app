@@ -120,12 +120,17 @@ def test_signing_refresh_iphone_only_runs_xcodegen_even_when_xcodeproj_exists(cl
     st = signing.status()
     assert st["device"] == "Test iPhone" and st["error"] is None and abs(st["expires"] - exp.timestamp()) < 2
 
-    # Settings page shows status in English and Chinese
-    en_html = client.get("/settings").text
-    assert "Refresh Apple ID signing" in en_html and "Test iPhone" in en_html and "7 days left" in en_html
+    # Bootstrap exposes signing status in English and Chinese.
+    en_boot = client.get("/analytics/api/bootstrap").json()
+    assert en_boot["signing"]["available"] is True
+    assert en_boot["signing"]["device"] == "Test iPhone"
+    assert en_boot["signing"]["error"] is None
+    assert abs(en_boot["signing"]["expires"] - exp.timestamp()) < 2
+
     store.set_setting("lang", "zh")
-    zh_html = client.get("/settings").text
-    assert "更新 Apple ID 驗證" in zh_html and "剩餘 7 天" in zh_html
+    zh_boot = client.get("/analytics/api/bootstrap").json()
+    assert zh_boot["lang"] == "zh" and "Refresh Apple ID signing" in zh_boot["strings"]
+    assert zh_boot["signing"]["device"] == "Test iPhone"
 
 
 def test_signing_refresh_with_paired_watch_provisions_and_installs_both(tmp_path, client):
@@ -271,15 +276,17 @@ def test_signing_watch_failures_are_non_fatal_and_visible(tmp_path, client):
     st2 = signing.status()
     assert st2["device"] == "Test iPhone (Watch skipped)"
     assert "Apple Watch is locked" in st2["error"]
-    en_html = client.get("/settings").text
-    assert "iPhone refreshed; Watch skipped: Apple Watch is locked" in en_html
+    boot = client.get("/analytics/api/bootstrap").json()
+    assert "iPhone refreshed; Watch skipped: Apple Watch is locked" in boot["signing"]["error"]
 
 
-def test_settings_signing_post_starts_and_redirects(client, monkeypatch):
+def test_settings_signing_run_api_starts_and_returns_status(client, monkeypatch):
     started = []
     monkeypatch.setattr(client.app.state.signing, "start", lambda: started.append(True) or True)
-    r = client.post("/settings/signing/run", headers={"sec-fetch-site": "same-origin"}, follow_redirects=False)
-    assert r.status_code == 303 and r.headers["location"] == "/settings"
+    r = client.post("/analytics/api/settings/signing/run", headers={"sec-fetch-site": "same-origin"})
+    assert r.status_code == 200
+    body = r.json()
+    assert body["ok"] is True and body["started"] is True
     assert started == [True]
 
 
@@ -296,17 +303,16 @@ def test_signing_unavailable_on_linux_and_displays_synced_status(client):
     ok, msg = linux_signing.refresh_sync()
     assert not ok and "macOS" in msg
 
-    # /settings on Linux must not show the stale Local.xcconfig error and must not offer a broken run button.
-    en_html = client.get("/settings").text
-    assert "Local.xcconfig" not in en_html
-    assert 'action="/settings/signing/run"' not in en_html
-    assert "macOS" in en_html
+    # Bootstrap reports unavailable on Linux; posting to signing/run returns started=False without running anything.
+    boot = client.get("/analytics/api/bootstrap").json()
+    assert boot["signing"]["available"] is False and boot["signing"]["running"] is False
 
-    # Posting directly to /settings/signing/run on Linux redirects safely without executing anything.
-    r = client.post("/settings/signing/run", headers={"sec-fetch-site": "same-origin"}, follow_redirects=False)
-    assert r.status_code == 303 and r.headers["location"] == "/settings"
+    r = client.post("/analytics/api/settings/signing/run", headers={"sec-fetch-site": "same-origin"})
+    assert r.status_code == 200
+    assert r.json()["ok"] is True and r.json()["started"] is False
+    assert r.json()["signing"]["available"] is False
 
-    # Once a Mac syncs fresh signing metadata, Linux /settings displays it cleanly in EN and ZH.
+    # Once a Mac syncs fresh signing metadata, bootstrap clears the stale error and surfaces it cleanly in EN and ZH.
     now = dt.datetime.now(dt.timezone.utc).timestamp()
     exp = now + 6.5 * 86400
     linux_signing.record_result(at=now, expires=exp, device="Masashi's iPhone")
@@ -314,14 +320,16 @@ def test_signing_unavailable_on_linux_and_displays_synced_status(client):
     st = linux_signing.status()
     assert st["available"] is False and st["device"] == "Masashi's iPhone" and st["error"] is None
 
-    en_synced = client.get("/settings").text
-    assert "Masashi&#x27;s iPhone" in en_synced and "7 days left" in en_synced
-    assert 'action="/settings/signing/run"' not in en_synced
+    en_boot = client.get("/analytics/api/bootstrap").json()
+    assert en_boot["signing"]["available"] is False
+    assert en_boot["signing"]["device"] == "Masashi's iPhone"
+    assert en_boot["signing"]["error"] is None
+    assert abs(en_boot["signing"]["expires"] - exp) < 2
 
     store.set_setting("lang", "zh")
-    zh_synced = client.get("/settings").text
-    assert "Masashi&#x27;s iPhone" in zh_synced and "剩餘 7 天" in zh_synced
-    assert "Mac" in zh_synced
+    zh_boot = client.get("/analytics/api/bootstrap").json()
+    assert zh_boot["lang"] == "zh" and "Apple ID signing" in zh_boot["strings"]
+    assert zh_boot["signing"]["device"] == "Masashi's iPhone" and zh_boot["signing"]["available"] is False
 
 
 def test_signing_cli_set_signing_and_sign_json(tmp_path, monkeypatch, capsys):

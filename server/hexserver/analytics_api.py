@@ -1,6 +1,6 @@
 """Localhost-only JSON API for the React web dashboard (`/analytics/api/*`).
 
-Mounted inside `dashboard.install()` BEFORE `/analytics/{path:path}` so it inherits `guard`
+Mounted inside `dashboard.install()` BEFORE the root SPA catch-all (`/{path:path}`) so it inherits `guard`
 (loopback IP check, Host allowlist against DNS rebinding, and Origin/Sec-Fetch-Site CSRF checks on
 every non-GET method) while staying completely separate from the phone's `/api/*` endpoints.
 
@@ -546,11 +546,10 @@ def _ai_error_response(exc: AIError) -> JSONResponse:
 
 
 def install(app, store) -> None:
-    """Installs `/analytics/api/*` endpoints onto `app` (must be called before `/analytics/{path:path}`)."""
+    """Installs `/analytics/api/*` endpoints onto `app` (must be called before the root SPA catch-all)."""
     db = store.db
     backup = app.state.backup
     hooks = app.state.webhooks
-    signing = app.state.signing
     ai_service = app.state.ai
 
     def doc() -> dict[str, Any]:
@@ -575,7 +574,7 @@ def install(app, store) -> None:
             "ai": ai_service.masked_config(),
             "aiUndo": coach_web.get_undo_status(store, store.folder, today=today_iso),
             "backup": backup.status(),
-            "signing": signing.status(),
+            "signing": app.state.signing.status(),
             "mcp": _mcp_payload(store),
             "pairedCount": len(store.tokens()),
             "webhookCount": len(hooks.all()),
@@ -1110,8 +1109,8 @@ def install(app, store) -> None:
 
     @app.post("/analytics/api/settings/signing/run")
     async def api_settings_signing_run():
-        started = signing.start()
-        return {"ok": True, "started": started, "signing": signing.status()}
+        started = app.state.signing.start()
+        return {"ok": True, "started": started, "signing": app.state.signing.status()}
 
     @app.get("/analytics/api/settings/ai")
     async def api_settings_ai_get():

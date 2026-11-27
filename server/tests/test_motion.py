@@ -61,7 +61,7 @@ def test_files_join_their_workout_and_set():
     assert M.smooth([0, 0, 3, 0, 0], n=3) == [0, 1, 1, 1, 0]
 
 
-def test_motion_pages_in_both_languages(client):
+def test_motion_api_in_both_languages(client):
     store = client.app.state.store
     state = json.loads(FIXTURE.read_text())
     store.put(state)
@@ -72,12 +72,21 @@ def test_motion_pages_in_both_languages(client):
                 "helpers": {"log": [[2.0, "rep 1 at 2"], [4.5, "rep 2"]]}}
         assert store.save_motion(f"20261118-12000{n}_{ex}_s{n}.csv", csv_text(meta, gap_at=100 if n == 2 else None))
     wid = w["id"]
-    assert f'href="/motion/{wid}"' in client.get("/motion").text
-    assert f'href="/motion/{wid}"' in client.get(f"/history/{wid}").text
-    html = client.get(f"/motion/{wid}").text
-    assert "1 of 2 sets are clean." in html and "gap 0.42 s" in html and "reps logged, 6 counted live" in html
-    assert html.count("<svg") >= 6
-    client.post("/settings/lang", data={"lang": "zh"}, headers={"Origin": "http://testserver"})
-    html = client.get(f"/motion/{wid}").text
-    assert "動作數據" in html and "2 組中有 1 組沒有問題" in html and "斷層 0.42 秒" in html
-    assert "找不到" in client.get("/motion/nope").text
+
+    ds = client.get("/analytics/api/dataset").json()
+    assert any(item["id"] == wid and item["fileCount"] == 2 for item in ds["motion"]["workouts"])
+    assert client.get(f"/analytics/api/workouts/{wid}").json()["hasMotion"] is True
+
+    motion = client.get(f"/analytics/api/motion/{wid}").json()
+    assert motion["summary"]["setsRecorded"] == 2 and motion["summary"]["cleanSets"] == 1
+    assert any(p["flagged"] and p["value"] >= 0.4 for p in motion["gapPoints"])
+    assert any("1 of 2 sets are clean." in line for line in motion["findings"])
+    assert len(motion["traces"]) == 1 and motion["traces"][0]["points"]
+
+    same = {"Origin": "http://testserver", "Sec-Fetch-Site": "same-origin"}
+    assert client.post("/analytics/api/settings/lang", json={"lang": "zh"}, headers=same).status_code == 200
+    zh_boot = client.get("/analytics/api/bootstrap").json()
+    assert zh_boot["lang"] == "zh" and "Motion data" in zh_boot["strings"]
+
+    missing = client.get("/analytics/api/motion/nope")
+    assert missing.status_code == 404 and missing.headers["content-type"].startswith("application/json")

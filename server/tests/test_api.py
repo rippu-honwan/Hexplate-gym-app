@@ -94,44 +94,75 @@ def test_import_command(tmp_path, monkeypatch, capsys):
     assert store.db.execute("SELECT COUNT(*) FROM motion_files").fetchone()[0] == 1
 
 
-def test_overview_page(client):
-    assert "No workouts yet" in client.get("/").text
+def test_bootstrap_and_dataset_reflect_empty_and_populated_state(client):
+    empty_boot = client.get("/analytics/api/bootstrap").json()
+    assert empty_boot["hasData"] is False and empty_boot["hasDocument"] is False
+    empty_ds = client.get("/analytics/api/dataset").json()
+    assert empty_ds["hasData"] is False and empty_ds["sessions"] == []
+
     client.app.state.store.put(state())
-    html = client.get("/").text
-    assert "Weekly volume" in html and "Upper" in html and "kg" in html
+    boot = client.get("/analytics/api/bootstrap").json()
+    assert boot["hasData"] is True and boot["unit"] == "kg"
+    ds = client.get("/analytics/api/dataset").json()
+    assert ds["hasData"] is True and len(ds["sessions"]) == len(state()["workouts"])
+    assert any(s["routine"] == "Upper" for s in ds["sessions"])
+    assert len(ds["stats"]["weeklyVolume"]) == 16
 
 
-def test_pages_and_data_actions(client, tmp_path):
+def test_analytics_endpoints_downloads_and_data_actions(client, tmp_path):
     store = client.app.state.store
     store.put(state())
     (tmp_path / "motion").mkdir(exist_ok=True)
     head = '# {"auto":9,"reps":10,"checked":true,"exId":"0025","w":20,"end":1794984800412}\nt\n'
     store.save_motion("20261118-120000_0025_s1.csv", head)
-    for path in ("/history", "/plan", "/exercises", "/body", "/stats", "/report", "/connect", "/stats?range=1y", "/report?range=3m"):
-        assert client.get(path).status_code == 200, path
-    wid = state()["workouts"][0]["id"]
-    assert "Working sets" in client.get(f"/history/{wid}").text
-    ex = client.get("/exercises").text.split('href="/exercises/')[1].split('"')[0]
-    assert "Estimated 1RM per session" in client.get(f"/progress?ex={ex}").text   # old links still land
-    assert client.get("/data/sets.csv").text.startswith("date,workout,exercise_id")
-    reps = client.get("/reps").text
-    assert "0 of 1 counted right" in reps and "+0" not in reps and "-1" in reps
-    assert "New pairing code" in client.get("/data").text
 
-    same = {"Origin": "http://testserver"}
-    page = client.post("/data/pair", headers=same).text
-    code = page.split('<div class="code">')[1].split("<")[0]
+    ds = client.get("/analytics/api/dataset").json()
+    wid = state()["workouts"][0]["id"]
+    ex = ds["exercises"][0]["id"]
+    for path in (
+        f"/analytics/api/workouts/{wid}",
+        f"/analytics/api/exercises/{ex}",
+        "/analytics/api/report?range=3m",
+        "/analytics/api/data",
+        "/analytics/api/connect",
+    ):
+        assert client.get(path).status_code == 200, path
+
+    reps = ds["reps"]
+    assert reps["exact"] == 0 and reps["confirmed"] == 1 and reps["mae"] == 1.0
+    assert reps["latest"][0]["off"] == -1
+
+    csv_res = client.get("/data/sets.csv")
+    assert csv_res.status_code == 200 and csv_res.text.startswith("date,workout,exercise_id")
+    assert csv_res.headers.get("cache-control") == "no-store"
+
+    latest_res = client.get("/data/latest.json")
+    assert latest_res.status_code == 200 and latest_res.headers.get("cache-control") == "no-store"
+
+    rev1 = client.get("/data/rev/1.json")
+    assert rev1.status_code == 200 and rev1.json()["_rev"] == 1
+    assert rev1.headers.get("cache-control") == "no-store"
+
+    missing_rev = client.get("/data/rev/999.json")
+    assert missing_rev.status_code == 404 and missing_rev.headers.get("cache-control") == "no-store"
+
+    same = {"Origin": "http://testserver", "Sec-Fetch-Site": "same-origin"}
+    pair = client.post("/analytics/api/data/pair", headers=same)
+    assert pair.status_code == 200 and pair.headers.get("cache-control") == "no-store"
+    code = pair.json()["code"]
     assert client.post("/api/pair/redeem", json={"code": code}).status_code == 200
     (h, _), = store.tokens()
-    assert client.post("/data/restore", data={"rev": "1"}, headers=same, follow_redirects=False).status_code == 303
+
+    restored = client.post("/analytics/api/data/restore", json={"rev": 1}, headers=same)
+    assert restored.status_code == 200 and restored.json()["rev"] == 2
     assert store.current()[0] == 2 and store.document(2)["workouts"] == store.document(1)["workouts"]
-    client.post("/data/revoke", data={"h": h}, headers=same)
-    assert store.tokens() == []
-    assert client.get("/data/rev/1.json").json()["_rev"] == 1
+
+    revoked = client.post("/analytics/api/data/revoke", json={"hash": h}, headers=same)
+    assert revoked.status_code == 200 and store.tokens() == []
 
     # Another website open on this Mac cannot post to the dashboard.
-    assert client.post("/data/pair", headers={"Origin": "https://evil.example"}).status_code == 403
-    assert client.post("/data/pair", headers={"Sec-Fetch-Site": "cross-site"}).status_code == 403
+    assert client.post("/analytics/api/data/pair", headers={"Origin": "https://evil.example"}).status_code == 403
+    assert client.post("/analytics/api/data/pair", headers={"Sec-Fetch-Site": "cross-site"}).status_code == 403
 
 
 def test_dashboard_is_local_only(tmp_path):
@@ -164,21 +195,26 @@ def test_backup_gates_the_phones_delete(phone, tmp_path):
     assert backup.status()["motion"] == 2
 
 
-def test_chinese_dashboard_and_settings(client):
+def test_language_and_backup_settings_api(client):
     store = client.app.state.store
     store.put(state())
-    same = {"Origin": "http://testserver"}
-    assert "Weekly volume" in client.get("/").text                        # English unless chosen
-    assert "總覽" in client.get("/", headers={"Accept-Language": "zh-TW,zh"}).text   # the browser's language
-    client.post("/settings/lang", data={"lang": "zh"}, headers=same)
-    for path in ("/", "/history", "/plan", "/exercises", "/body", "/stats", "/report", "/reps", "/data", "/connect", "/settings"):
-        html = client.get(path).text
-        assert 'lang="zh-Hant"' in html and "設定" in html, path
-    assert "每週訓練量" in client.get("/").text
-    client.post("/settings/lang", data={"lang": "en"}, headers=same)
-    assert "Weekly volume" in client.get("/").text
-    client.post("/settings/backup", data={"on": "0"}, headers=same)
-    assert store.setting("backup") == "off" and "Backup is off" in client.get("/settings").text
+    same = {"Origin": "http://testserver", "Sec-Fetch-Site": "same-origin"}
+
+    assert client.get("/analytics/api/bootstrap").json()["lang"] == "en"  # English unless chosen
+    zh_browser = client.get("/analytics/api/bootstrap", headers={"Accept-Language": "zh-TW,zh"}).json()
+    assert zh_browser["lang"] == "zh" and "Overview" in zh_browser["strings"]
+
+    set_zh = client.post("/analytics/api/settings/lang", json={"lang": "zh"}, headers=same).json()
+    assert set_zh["lang"] == "zh" and "Overview" in set_zh["strings"]
+    assert client.get("/analytics/api/bootstrap").json()["lang"] == "zh"
+
+    set_en = client.post("/analytics/api/settings/lang", json={"lang": "en"}, headers=same).json()
+    assert set_en["lang"] == "en" and set_en["strings"] == {}
+    assert client.get("/analytics/api/bootstrap").json()["lang"] == "en"
+
+    bk = client.post("/analytics/api/settings/backup", json={"on": False}, headers=same).json()
+    assert store.setting("backup") == "off" and bk["backup"]["on"] is False
+    assert client.get("/analytics/api/bootstrap").json()["backup"]["on"] is False
 
 
 def test_unknown_hexplate_keys_preserved_across_write_paths(phone, client, tmp_path, monkeypatch):
@@ -246,8 +282,10 @@ def test_plan_page_hides_ai_clones_from_list_but_resolves_pinned_day_name(client
     s["dayPlan"] = {today_iso: "ai-clone-today"}
     client.app.state.store.put(s)
 
-    html = client.get("/plan").text
-    # Routine count header excludes the ephemeral aiClone.
-    assert f"{len(state()['routines'])} routines" in html or f"{len(state()['routines'])} routine" in html
+    plan = client.get(f"/analytics/api/dataset?today={today_iso}").json()["plan"]
+    # Routine list excludes the ephemeral aiClone.
+    assert len(plan["routines"]) == len(state()["routines"])
+    assert all(r["id"] != "ai-clone-today" for r in plan["routines"])
     # Pinned day still displays the routine's name on the weekly schedule.
-    assert parent_name in html
+    today_entry = next(d for d in plan["weekDays"] if d["date"] == today_iso)
+    assert parent_name in today_entry["routineNames"] and today_entry["isAIClone"] is True
