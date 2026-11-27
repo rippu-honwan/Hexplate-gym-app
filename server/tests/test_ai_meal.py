@@ -372,8 +372,16 @@ def test_json_schema_to_json_object_fallback(phone, monkeypatch):
     assert first["response_format"]["type"] == "json_schema"
     assert first["response_format"]["json_schema"]["name"] == "hexplate_meal"
     assert first["response_format"]["json_schema"]["strict"] is True
-    assert first["max_tokens"] == ai.DEFAULT_MAX_TOKENS
+    assert first["max_tokens"] == ai.MEAL_MAX_TOKENS
     assert first["temperature"] == ai.DEFAULT_TEMPERATURE
+
+    # Strict schema requires every property at both root and item levels with no union types (R1).
+    root_schema = first["response_format"]["json_schema"]["schema"]
+    assert set(root_schema["required"]) == set(root_schema["properties"].keys())
+    item_schema = root_schema["properties"]["items"]["items"]
+    assert set(item_schema["required"]) == set(item_schema["properties"].keys())
+    for prop in (*root_schema["properties"].values(), *item_schema["properties"].values()):
+        assert isinstance(prop.get("type"), str)
 
     assert second["response_format"] == {"type": "json_object"}
     assert "JSON" in second["messages"][0]["content"]
@@ -503,6 +511,204 @@ def test_usage_jsonl_non_pii_compaction_and_io_resilience(phone, tmp_path, monke
     r_io = phone.post("/api/ai/meal", json={"image_b64": VALID_JPEG_B64})
     assert r_io.status_code == 200
     assert phone.app.state.ai.daily_tokens_used() == before_used + 210
+
+
+# 13. meal_type validation, server-side <meal_context> injection, portion/assumptions & JSON extraction (R1, R4, R7).
+def test_meal_type_portion_assumptions_and_json_extraction(phone, monkeypatch):
+    _configure_env(monkeypatch, rate=50)
+    captured_bodies = []
+
+    def handler(req: httpx.Request):
+        captured_bodies.append(json.loads(req.content))
+        # Wrapped in prose + embedded fence with braces inside a string value.
+        content = (
+            'Note {ignore this}: here is your estimate:\n'
+            '```json\n'
+            '{"name":"Protein Breakfast","confidence":"high",'
+            '"assumptions":"Scaled label per 100 g by net weight.",'
+            '"items":['
+            '{"name":"Yogurt {plain}","portion":"200 g (1 cup)","kcal":130,"protein":18.0,"carbs":9.0,"fat":2.5}'
+            ']}\n'
+            '```\nHope this helps!'
+        )
+        return httpx.Response(
+            200,
+            json={
+                "choices": [{"message": {"content": content}}],
+                "usage": {"prompt_tokens": 100, "completion_tokens": 50, "total_tokens": 150},
+            },
+        )
+
+    phone.app.state.ai.client = _mock_client(handler)
+
+    # Non-string meal_type rejected with 400 bad-request.
+    r_bad = phone.post("/api/ai/meal", json={"image_b64": VALID_JPEG_B64, "meal_type": 123})
+    assert r_bad.status_code == 400
+    assert r_bad.json()["code"] == "bad-request"
+
+    # Valid allowlisted meal_type injects server-side English label in <meal_context>.
+    r_ok = phone.post(
+        "/api/ai/meal",
+        json={"image_b64": VALID_JPEG_B64, "meal_type": "afternoon_tea", "lang": "en"},
+    )
+    assert r_ok.status_code == 200
+    body = r_ok.json()
+    assert body["name"] == "Protein Breakfast"
+    assert body["assumptions"] == "Scaled label per 100 g by net weight."
+    assert body["items"][0]["name"] == "Yogurt {plain}"
+    assert body["items"][0]["portion"] == "200 g (1 cup)"
+    user_text = captured_bodies[-1]["messages"][1]["content"][0]["text"]
+    assert "<meal_context>Meal type: Afternoon tea</meal_context>" in user_text
+
+    # Unknown string meal_type is silently ignored (forward-compatible) and never echoed.
+    r_unk = phone.post(
+        "/api/ai/meal",
+        json={"image_b64": VALID_JPEG_B64, "meal_type": "brunch<inject>"},
+    )
+    assert r_unk.status_code == 200
+    user_text_unk = captured_bodies[-1]["messages"][1]["content"][0]["text"]
+    assert "<meal_context>" not in user_text_unk
+    assert "brunch" not in user_text_unk
+
+    # Prose-only (no fence) with leading dummy JSON object and braces inside string still extracts items object.
+    prose = (
+        'Status {"step": 1} done. Result: '
+        '{"name":"Snack","confidence":"medium","assumptions":"",'
+        '"items":[{"name":"Banana {ripe}","portion":"1 medium","kcal":105,"protein":1.3,"carbs":27.0,"fat":0.4}]}'
+        ' Enjoy!'
+    )
+    sanitized = ai.sanitize_meal_response(prose)
+    assert sanitized["name"] == "Snack"
+    assert sanitized["assumptions"] is None
+    assert sanitized["items"][0]["portion"] == "1 medium"
+
+    # Non-finite NaN inside prose/fence is still strictly rejected.
+    with pytest.raises(ai.AIUpstreamError):
+        ai.sanitize_meal_response('Here: {"name":"Bad","items":[{"name":"X","kcal":NaN,"protein":1,"carbs":1,"fat":1}]}')
+
+    # Missing portion/assumptions from json_object fallback remain non-fatal.
+    minimal = json.dumps({"name": "Plain", "confidence": "low", "items": [{"name": "Rice", "kcal": 200, "protein": 4, "carbs": 44, "fat": 0.4}]})
+    san_min = ai.sanitize_meal_response(minimal)
+    assert san_min["assumptions"] is None
+    assert san_min["items"][0]["portion"] == ""
+
+
+# 14. Malformed primary output triggers fallback model re-run with accurate limits & usage (R2).
+def test_malformed_primary_triggers_fallback_with_limits_and_usage(tmp_path, monkeypatch):
+    monkeypatch.setenv("HEX_AI_BASE_URL", "https://ai.example.test/v1")
+    monkeypatch.setenv("HEX_AI_MODEL", "primary-vision")
+    monkeypatch.setenv("HEX_AI_FALLBACK_MODEL", "fallback-vision")
+    monkeypatch.setenv("HEX_AI_KEY", "sk-secret")
+    monkeypatch.setenv("HEX_AI_RATE_LIMIT_PER_MIN", "3")
+    monkeypatch.setenv("HEX_AI_DAILY_TOKEN_CAP", "10000")
+
+    models_seen: list[str] = []
+
+    def handler(req: httpx.Request):
+        payload = json.loads(req.content)
+        models_seen.append(payload["model"])
+        if payload["model"] == "primary-vision":
+            # Truncated JSON from primary thinking model.
+            return httpx.Response(
+                200,
+                json={
+                    "choices": [{"message": {"content": '{"name":"Broken","items":[{"name":"X"'}}],
+                    "usage": {"prompt_tokens": 400, "completion_tokens": 100, "total_tokens": 500},
+                },
+            )
+        return _completion_response(
+            {
+                "name": "Recovered Meal",
+                "confidence": "high",
+                "assumptions": "",
+                "items": [{"name": "Eggs", "portion": "2 large", "kcal": 140, "protein": 12.0, "carbs": 1.0, "fat": 10.0}],
+            },
+            prompt_tokens=200,
+            completion_tokens=60,
+        )
+
+    app = create_app(tmp_path / "fb_ok")
+    app.state.ai.client = _mock_client(handler)
+    code = app.state.store.new_pair_code()
+    tc = TestClient(app)
+    token = tc.post("/api/pair/redeem", json={"code": code}).json()["token"]
+    headers = {"Authorization": f"Bearer {token}"}
+
+    r = tc.post("/api/ai/meal", json={"image_b64": VALID_JPEG_B64}, headers=headers)
+    assert r.status_code == 200
+    assert r.json()["name"] == "Recovered Meal"
+    # Primary ran once, then fallback ran directly (never re-ran primary).
+    assert models_seen == ["primary-vision", "fallback-vision"]
+    # Both attempts' tokens summed cleanly without double-counting: 500 + 260 = 760.
+    assert app.state.ai.daily_tokens_used() == 760
+    usage_lines = [json.loads(l) for l in (tmp_path / "fb_ok" / "ai-usage.jsonl").read_text().splitlines() if l.strip()]
+    assert len(usage_lines) == 1
+    assert usage_lines[0]["model"] == "fallback-vision"
+    assert usage_lines[0]["total_tokens"] == 760
+    assert usage_lines[0]["ok"] is True
+
+    # Two rate slots were consumed (rate limit is 3/min): 1 more single-attempt request succeeds, next hits 429.
+    models_seen.clear()
+    app.state.ai.client = _mock_client(lambda req: _completion_response(_sample_meal_payload(), prompt_tokens=10, completion_tokens=10))
+    assert tc.post("/api/ai/meal", json={"image_b64": VALID_JPEG_B64}, headers=headers).status_code == 200
+    r_lim = tc.post("/api/ai/meal", json={"image_b64": VALID_JPEG_B64}, headers=headers)
+    assert r_lim.status_code == 429
+    assert r_lim.json()["code"] == "rate-limited"
+
+    # AINoFoodError (empty items) must NEVER trigger fallback.
+    no_food_models: list[str] = []
+
+    def no_food_handler(req: httpx.Request):
+        no_food_models.append(json.loads(req.content)["model"])
+        return _completion_response({"name": "", "confidence": "low", "assumptions": "", "items": []})
+
+    app2 = create_app(tmp_path / "fb_nofood")
+    app2.state.ai.client = _mock_client(no_food_handler)
+    code2 = app2.state.store.new_pair_code()
+    tc2 = TestClient(app2)
+    tok2 = tc2.post("/api/pair/redeem", json={"code": code2}).json()["token"]
+    r_nf = tc2.post("/api/ai/meal", json={"image_b64": VALID_JPEG_B64}, headers={"Authorization": f"Bearer {tok2}"})
+    assert r_nf.status_code == 422
+    assert no_food_models == ["primary-vision"]
+
+    # When daily cap is hit by attempt 1's pre-recorded tokens, fallback propagates 429 without double-counting.
+    monkeypatch.setenv("HEX_AI_DAILY_TOKEN_CAP", "400")
+    monkeypatch.setenv("HEX_AI_RATE_LIMIT_PER_MIN", "20")
+    app3 = create_app(tmp_path / "fb_cap")
+    models_cap: list[str] = []
+
+    def cap_handler(req: httpx.Request):
+        models_cap.append(json.loads(req.content)["model"])
+        return httpx.Response(
+            200,
+            json={
+                "choices": [{"message": {"content": '{"truncated'}}],
+                "usage": {"prompt_tokens": 350, "completion_tokens": 100, "total_tokens": 450},
+            },
+        )
+
+    app3.state.ai.client = _mock_client(cap_handler)
+    code3 = app3.state.store.new_pair_code()
+    tc3 = TestClient(app3)
+    tok3 = tc3.post("/api/pair/redeem", json={"code": code3}).json()["token"]
+    r_cap = tc3.post("/api/ai/meal", json={"image_b64": VALID_JPEG_B64}, headers={"Authorization": f"Bearer {tok3}"})
+    assert r_cap.status_code == 429
+    assert r_cap.json()["code"] == "daily-cap-exceeded"
+    assert models_cap == ["primary-vision"]
+    assert app3.state.ai.daily_tokens_used() == 450
+
+    # Insufficient remaining deadline (< MIN_FALLBACK_BUDGET_S) skips fallback re-run.
+    monkeypatch.setenv("HEX_AI_DAILY_TOKEN_CAP", "10000")
+    models_dl: list[str] = []
+
+    def dl_handler(req: httpx.Request):
+        models_dl.append(json.loads(req.content)["model"])
+        return httpx.Response(200, json={"choices": [{"message": {"content": "not-json"}}]})
+
+    svc_tight = ai.AIService(tmp_path / "fb_dl", client=_mock_client(dl_handler), total_deadline=1.0)
+    with pytest.raises(ai.AIUpstreamError):
+        asyncio.run(svc_tight.estimate_meal({"image_b64": VALID_JPEG_B64}, token_key="tok-dl"))
+    assert models_dl == ["primary-vision"]
 
 
 # 12. Static AST check banning datetime imports, localtime/gmtime/strftime, and any CJK characters in ai.py.

@@ -72,7 +72,11 @@ final class MealImageProcessorTests: XCTestCase {
         // Sanity check: raw fixture genuinely contains sensitive metadata before processing.
         XCTAssertFalse(MealImageProcessor.hasStrippedMetadata(raw))
 
-        let output = try await MealImageProcessor.prepareJPEG(from: raw)
+        let prepared = try await MealImageProcessor.prepareImage(from: raw)
+        let output = prepared.jpegData
+
+        // Local EXIF wall-clock capture timestamp is extracted prior to stripping.
+        XCTAssertEqual(prepared.captured, MealImageProcessor.CaptureTimestamp(day: "2026-11-26", time: "12:34", hour: 12))
 
         XCTAssertLessThanOrEqual(output.count, MealImageProcessor.defaultMaxBytes)
         XCTAssertTrue(AIWire.isJPEG(output))
@@ -91,23 +95,62 @@ final class MealImageProcessorTests: XCTestCase {
             XCTAssertEqual(orientation, 1, "Orientation must be baked in as normal (1)")
         }
 
-        // Verify longest side <= 1280 px and orientation 6 rotated 4032x3024 into portrait (height > width).
+        // Verify longest side <= 1600 px and orientation 6 rotated 4032x3024 into portrait (height > width).
         let pixelWidth = try XCTUnwrap(props[kCGImagePropertyPixelWidth] as? Int)
         let pixelHeight = try XCTUnwrap(props[kCGImagePropertyPixelHeight] as? Int)
-        XCTAssertLessThanOrEqual(max(pixelWidth, pixelHeight), 1280)
+        XCTAssertLessThanOrEqual(max(pixelWidth, pixelHeight), 1600)
         XCTAssertGreaterThan(pixelHeight, pixelWidth, "Orientation 6 must be baked into portrait pixels")
-        XCTAssertEqual(pixelHeight, 1280)
-        XCTAssertEqual(pixelWidth, 960)
+        XCTAssertEqual(pixelHeight, 1600)
+        XCTAssertEqual(pixelWidth, 1200)
 
         // Verify the stripped JPEG decodes cleanly to a CGImage and contains no leaked metadata strings.
         let decoded = try XCTUnwrap(CGImageSourceCreateImageAtIndex(src, 0, nil))
-        XCTAssertEqual(decoded.width, 960)
-        XCTAssertEqual(decoded.height, 1280)
+        XCTAssertEqual(decoded.width, 1200)
+        XCTAssertEqual(decoded.height, 1600)
         let ascii = String(decoding: output, as: UTF8.self)
         XCTAssertFalse(ascii.contains("iPhone"))
         XCTAssertFalse(ascii.contains("Apple"))
         XCTAssertFalse(ascii.contains("2026:11:26"))
         XCTAssertFalse(ascii.contains("Exif"))
+    }
+
+    func testPrepareImageFromFileURLAndSingleGenerationRotate() async throws {
+        let raw = try makeAnnotatedCameraJPEG(width: 2400, height: 1600)
+        let tmp = FileManager.default.temporaryDirectory.appendingPathComponent("hexplate-meal-test-\(UUID().uuidString).jpg")
+        try raw.write(to: tmp)
+        defer { try? FileManager.default.removeItem(at: tmp) }
+
+        let prepared = try MealImageProcessor.prepareImageSync(fromFileURL: tmp)
+        XCTAssertEqual(prepared.captured, MealImageProcessor.CaptureTimestamp(day: "2026-11-26", time: "12:34", hour: 12))
+        XCTAssertTrue(MealImageProcessor.hasStrippedMetadata(prepared.jpegData))
+
+        // Orientation 6 turned 2400x1600 into portrait (1067x1600).
+        let baseSrc = try XCTUnwrap(CGImageSourceCreateWithData(prepared.jpegData as CFData, nil))
+        let baseImg = try XCTUnwrap(CGImageSourceCreateImageAtIndex(baseSrc, 0, nil))
+        XCTAssertGreaterThan(baseImg.height, baseImg.width)
+
+        // 0 turns (mod 4) returns identical bytes without re-encoding.
+        let zeroTurns = try await MealImageProcessor.rotate(prepared.jpegData, quarterTurns: 4)
+        XCTAssertEqual(zeroTurns, prepared.jpegData)
+
+        // 1 quarter turn CW swaps width and height into landscape and keeps metadata stripped.
+        let rotated90 = try await MealImageProcessor.rotate(prepared.jpegData, quarterTurns: 1)
+        XCTAssertTrue(MealImageProcessor.hasStrippedMetadata(rotated90))
+        XCTAssertLessThanOrEqual(rotated90.count, MealImageProcessor.defaultMaxBytes)
+        let rotSrc = try XCTUnwrap(CGImageSourceCreateWithData(rotated90 as CFData, nil))
+        let rotImg = try XCTUnwrap(CGImageSourceCreateImageAtIndex(rotSrc, 0, nil))
+        XCTAssertEqual(rotImg.width, baseImg.height)
+        XCTAssertEqual(rotImg.height, baseImg.width)
+    }
+
+    func testParseExifWallClockValidation() {
+        XCTAssertEqual(
+            MealImageProcessor.parseExifWallClock("2026:11:27 08:15:42"),
+            MealImageProcessor.CaptureTimestamp(day: "2026-11-27", time: "08:15", hour: 8)
+        )
+        XCTAssertNil(MealImageProcessor.parseExifWallClock("2026:02:30 08:00:00"))
+        XCTAssertNil(MealImageProcessor.parseExifWallClock("not-a-date"))
+        XCTAssertNil(MealImageProcessor.parseExifWallClock(""))
     }
 
     func testPrepareJPEGThrowsTooLargeWhenCapExhaustsLadder() throws {

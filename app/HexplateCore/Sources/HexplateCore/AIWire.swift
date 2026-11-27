@@ -30,13 +30,22 @@ public enum AIWire {
 
     public struct MealItemEstimate: Codable, Equatable, Sendable {
         public let name: String
+        public let portion: String?
         public let kcal: Double
         public let protein: Double
         public let carbs: Double
         public let fat: Double
 
-        public init(name: String, kcal: Double, protein: Double, carbs: Double, fat: Double) {
+        public init(
+            name: String,
+            portion: String? = nil,
+            kcal: Double,
+            protein: Double,
+            carbs: Double,
+            fat: Double
+        ) {
             self.name = name
+            self.portion = portion
             self.kcal = kcal
             self.protein = protein
             self.carbs = carbs
@@ -52,6 +61,7 @@ public enum AIWire {
         public let fat: Double
         public let items: [MealItemEstimate]
         public let confidence: String
+        public let assumptions: String?
         public let plausibilityWarning: Bool
         public let warnings: [String]
 
@@ -63,6 +73,7 @@ public enum AIWire {
             fat: Double,
             items: [MealItemEstimate],
             confidence: String,
+            assumptions: String? = nil,
             plausibilityWarning: Bool,
             warnings: [String]
         ) {
@@ -73,6 +84,7 @@ public enum AIWire {
             self.fat = fat
             self.items = items
             self.confidence = confidence
+            self.assumptions = assumptions
             self.plausibilityWarning = plausibilityWarning
             self.warnings = warnings
         }
@@ -139,6 +151,7 @@ public enum AIWire {
         let image_b64: String
         let note: String?
         let lang: String
+        let meal_type: String?
     }
 
     private struct CoachRequestBody: Encodable {
@@ -291,12 +304,13 @@ public enum AIWire {
     }
 
     /// Synchronous request builder for `POST /api/ai/meal`.
-    /// Validates JPEG magic bytes and byte cap, trims/caps `note` at 240 characters, and encodes
-    /// without escaping `/` so base64 overhead stays strictly minimal.
+    /// Validates JPEG magic bytes and byte cap, trims/caps `note` at 240 characters, omits `meal_type`
+    /// when nil/empty, and encodes without escaping `/` so base64 overhead stays strictly minimal.
     public static func encodeMealRequest(
         jpegData: Data,
         note: String?,
-        lang: String
+        lang: String,
+        mealType: String? = nil
     ) throws -> Data {
         guard isJPEG(jpegData) else { throw ErrorKind.invalidImage }
         guard jpegData.count <= maxImageBytes else { throw ErrorKind.payloadTooLarge }
@@ -309,11 +323,19 @@ public enum AIWire {
             return String(raw.prefix(maxNoteCharacters))
         }()
 
+        let cleanedMealType: String? = {
+            guard let raw = mealType?.trimmingCharacters(in: .whitespacesAndNewlines), !raw.isEmpty else {
+                return nil
+            }
+            return raw
+        }()
+
         let normalizedLang = lang.trimmingCharacters(in: .whitespacesAndNewlines)
         let payload = MealRequestBody(
             image_b64: jpegData.base64EncodedString(),
             note: cleanedNote,
-            lang: normalizedLang.isEmpty ? "zh" : normalizedLang
+            lang: normalizedLang.isEmpty ? "zh" : normalizedLang,
+            meal_type: cleanedMealType
         )
 
         let encoder = JSONEncoder()
@@ -326,9 +348,10 @@ public enum AIWire {
     public nonisolated static func encodeMealRequestAsync(
         jpegData: Data,
         note: String?,
-        lang: String
+        lang: String,
+        mealType: String? = nil
     ) async throws -> Data {
-        try encodeMealRequest(jpegData: jpegData, note: note, lang: lang)
+        try encodeMealRequest(jpegData: jpegData, note: note, lang: lang, mealType: mealType)
     }
 
     // MARK: - Response Decoding & Error Mapping

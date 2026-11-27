@@ -1,7 +1,7 @@
 import Foundation
 
 /// Nutrition tracking in the state document:
-/// - `meals`: `{ "<id>": { id, date, time?, name, kcal?, protein?, carbs?, fat?, source, photoId?, _ts } | { deleted: true, photoId?, _ts } }`
+/// - `meals`: `{ "<id>": { id, date, time?, mealType?, name, kcal?, protein?, carbs?, fat?, source, photoId?, _ts } | { deleted: true, photoId?, _ts } }`
 ///   merged per-entry LWW in Swift by `HexMerge` and stamped by `HexStamps`.
 /// - `nutritionGoals`: `{ kcal?, protein?, carbs?, fat?, proteinPerKg? }` storing only user overrides
 ///   (reset writes `{}` so whole-key LWW in `sync.js` propagates the reset across devices).
@@ -14,6 +14,27 @@ public enum Nutrition {
     public enum Source: String, Codable, Equatable, Sendable {
         case manual
         case photo
+    }
+
+    public enum MealType: String, CaseIterable, Codable, Identifiable, Sendable {
+        case breakfast
+        case lunch
+        case afternoonTea = "afternoon_tea"
+        case dinner
+        case lateNight = "late_night"
+
+        public var id: String { rawValue }
+
+        /// Suggests a default meal type from a 24-hour local clock hour (`0...23`).
+        public static func suggested(forHour hour: Int) -> MealType {
+            switch hour {
+            case 5...10: .breakfast
+            case 11...13: .lunch
+            case 14...16: .afternoonTea
+            case 17...20: .dinner
+            default: .lateNight
+            }
+        }
     }
 
     public enum Period: String, CaseIterable, Identifiable, Sendable {
@@ -45,6 +66,10 @@ public enum Nutrition {
         public var id: String
         public var date: String
         public var time: String?
+        // ponytail: synthesized Codable inside `health-outbox.json`; if an older app build ever
+        // reads an unknown raw `mealType` from the outbox file, decode falls back to `[]` and
+        // `recentRepairPlan` self-heals the last 14 days on foreground sync.
+        public var mealType: MealType?
         public var name: String
         public var kcal: Double?
         public var protein: Double?
@@ -58,6 +83,7 @@ public enum Nutrition {
             id: String,
             date: String,
             time: String? = nil,
+            mealType: MealType? = nil,
             name: String,
             kcal: Double? = nil,
             protein: Double? = nil,
@@ -70,6 +96,7 @@ public enum Nutrition {
             self.id = id
             self.date = date
             self.time = time
+            self.mealType = mealType
             self.name = name
             self.kcal = kcal
             self.protein = protein
@@ -349,6 +376,7 @@ public enum Nutrition {
             "source": .string(meal.source.rawValue),
         ]
         if let time = cleanTime(meal.time) { obj["time"] = .string(time) }
+        if let mealType = meal.mealType { obj["mealType"] = .string(mealType.rawValue) }
         if let kcal = positive(meal.kcal) { obj["kcal"] = .number(kcal) }
         if let protein = positive(meal.protein) { obj["protein"] = .number(protein) }
         if let carbs = positive(meal.carbs) { obj["carbs"] = .number(carbs) }
@@ -544,10 +572,12 @@ public enum Nutrition {
               let date = obj["date"]?.stringValue,
               Report.valid(date) != nil else { return nil }
         let source = obj["source"]?.stringValue.flatMap(Source.init(rawValue:)) ?? .manual
+        let mealType = obj["mealType"]?.stringValue.flatMap(MealType.init(rawValue:))
         return Meal(
             id: id,
             date: date,
             time: cleanTime(obj["time"]?.stringValue),
+            mealType: mealType,
             name: obj["name"]?.stringValue ?? "",
             kcal: positive(obj["kcal"]?.numberValue),
             protein: positive(obj["protein"]?.numberValue),

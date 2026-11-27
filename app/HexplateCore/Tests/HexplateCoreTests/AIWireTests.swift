@@ -23,6 +23,16 @@ final class AIWireTests: XCTestCase {
         XCTAssertEqual(json["image_b64"] as? String, tinyJPEG.base64EncodedString())
         XCTAssertEqual(json["lang"] as? String, "en")
         XCTAssertEqual((json["note"] as? String)?.count, AIWire.maxNoteCharacters)
+        XCTAssertNil(json["meal_type"], "nil mealType must omit meal_type key")
+
+        let encodedWithMealType = try await AIWire.encodeMealRequestAsync(
+            jpegData: tinyJPEG,
+            note: nil,
+            lang: "zh",
+            mealType: "breakfast"
+        )
+        let jsonWithType = try XCTUnwrap(JSONSerialization.jsonObject(with: encodedWithMealType) as? [String: Any])
+        XCTAssertEqual(jsonWithType["meal_type"] as? String, "breakfast")
     }
 
     func testEncodeMealRequestRejectsNonJPEGAndOversizedData() {
@@ -68,9 +78,35 @@ final class AIWireTests: XCTestCase {
         XCTAssertEqual(estimate.kcal, 640)
         XCTAssertEqual(estimate.protein, 46.2, accuracy: 1e-6)
         XCTAssertEqual(estimate.items.count, 2)
+        XCTAssertNil(estimate.items[0].portion)
         XCTAssertEqual(estimate.confidence, "medium")
+        XCTAssertNil(estimate.assumptions)
         XCTAssertTrue(estimate.plausibilityWarning)
         XCTAssertEqual(estimate.warnings, ["macro-kcal-mismatch"])
+
+        // Extended payload with portion + assumptions decodes cleanly (N1 Codable check).
+        let extendedJSON = Data("""
+        {
+          "name": "Morning Combo",
+          "kcal": 350,
+          "protein": 55.0,
+          "carbs": 24.0,
+          "fat": 2.0,
+          "items": [
+            {"name": "Protein drink", "portion": "430 ml (1 bottle)", "kcal": 220, "protein": 30.0, "carbs": 22.0, "fat": 0.0},
+            {"name": "Salad chicken", "portion": "110 g (1 pack)", "kcal": 130, "protein": 25.0, "carbs": 2.0, "fat": 2.0}
+          ],
+          "confidence": "high",
+          "assumptions": "Scaled per-100g nutrition label by 110 g net pack weight.",
+          "plausibilityWarning": false,
+          "warnings": []
+        }
+        """.utf8)
+        let ext = try AIWire.decodeMealEstimate(from: extendedJSON)
+        XCTAssertEqual(ext.items[0].portion, "430 ml (1 bottle)")
+        XCTAssertEqual(ext.items[1].portion, "110 g (1 pack)")
+        XCTAssertEqual(ext.assumptions, "Scaled per-100g nutrition label by 110 g net pack weight.")
+        XCTAssertFalse(AIWire.ErrorKind.invalidResponse.isRetryable)
     }
 
     func testMapHTTPErrorCoversFullStage5aMatrix() {

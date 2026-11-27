@@ -411,7 +411,8 @@ actor HealthClient: HealthReading {
             guard let meal = op.meal else { return }
             let sampleDate = Self.localDate(day: meal.date, time: meal.time) ?? .now
             let version = NSNumber(value: Int64(max(1, meal.ts.rounded())))
-            let foodName = meal.name.trimmingCharacters(in: .whitespacesAndNewlines)
+            let trimmedName = meal.name.trimmingCharacters(in: .whitespacesAndNewlines)
+            let foodName = trimmedName.isEmpty ? (meal.mealType?.localizedTitle ?? "") : trimmedName
 
             for spec in Self.dietarySpecs {
                 guard store.authorizationStatus(for: spec.type) == .sharingAuthorized else { continue }

@@ -436,16 +436,37 @@ struct NutritionView: View {
     }
 
     private func mealRow(_ meal: Nutrition.Meal) -> some View {
-        let title = meal.name.isEmpty ? String(localized: "Meal") : meal.name
+        let hasName = !meal.name.isEmpty
+        let title = hasName ? meal.name : (meal.mealType?.localizedTitle ?? String(localized: "Meal"))
+        let badgeTitle = hasName ? meal.mealType?.localizedTitle : nil
         let details = macroDetailLine(kcal: meal.kcal, protein: meal.protein, carbs: meal.carbs, fat: meal.fat)
         let rowLayout = typeSize.isAccessibilitySize
             ? AnyLayout(VStackLayout(alignment: .leading, spacing: 2))
             : AnyLayout(HStackLayout(alignment: .center, spacing: 10))
         return rowLayout {
             VStack(alignment: .leading, spacing: 2) {
-                Text(title)
-                    .font(.body)
-                    .foregroundStyle(.primary)
+                if !typeSize.isAccessibilitySize, let badgeTitle {
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Text(title)
+                            .font(.body)
+                            .foregroundStyle(.primary)
+                        Text(verbatim: badgeTitle)
+                            .font(.caption2.weight(.medium))
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Color(.tertiarySystemFill), in: Capsule())
+                    }
+                } else {
+                    Text(title)
+                        .font(.body)
+                        .foregroundStyle(.primary)
+                    if let badgeTitle {
+                        Text(verbatim: badgeTitle)
+                            .font(.caption.weight(.medium))
+                            .foregroundStyle(.secondary)
+                    }
+                }
                 if !details.isEmpty {
                     Text(verbatim: details)
                         .font(.caption)

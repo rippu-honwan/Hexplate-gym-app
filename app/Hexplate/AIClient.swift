@@ -1,19 +1,39 @@
 import Foundation
 import HexplateCore
 import Observation
+import UIKit
 
 /// Client for paired server AI endpoints (`GET /api/ai/status`, `POST /api/ai/meal`, `POST /api/ai/coach`).
 ///
 /// Key invariants:
 /// - Reads `ServerSync.shared.aiCredentials` fresh on every request (never cached across token rotation).
-/// - Dedicated ephemeral `URLSession` with `httpShouldSetCookies = false` and `timeoutIntervalForResource = 60`
-///   (above the server's 50 s deadline so structured 504 errors arrive cleanly).
+/// - Dedicated ephemeral `URLSession` with `httpShouldSetCookies = false` and `timeoutIntervalForResource = 75`
+///   (safely above the server's 50 s deadline + cellular/Tailscale upload transit so structured 504 errors arrive cleanly).
 /// - Meal and Coach privacy consents are tracked under separate UserDefaults keys because each
 ///   feature transmits a different data scope.
 /// - Request serialization runs off-main via `AIWire.encodeMealRequestAsync` / `encodeCoachRequestAsync`.
 @MainActor
 @Observable
 final class AIClient {
+    @MainActor
+    private final class BackgroundTaskBox {
+        private var id: UIBackgroundTaskIdentifier = .invalid
+
+        func begin(name: String) {
+            end()
+            id = UIApplication.shared.beginBackgroundTask(withName: name) { [weak self] in
+                self?.end()
+            }
+        }
+
+        func end() {
+            guard id != .invalid else { return }
+            let current = id
+            id = .invalid
+            UIApplication.shared.endBackgroundTask(current)
+        }
+    }
+
     static let shared = AIClient()
     static let privacyConsentKey = "aiPrivacyConsentAccepted"
     static let coachPrivacyConsentKey = "aiCoachPrivacyConsentAccepted"
@@ -40,8 +60,8 @@ final class AIClient {
     private let session: URLSession = {
         let config = URLSessionConfiguration.ephemeral
         config.httpShouldSetCookies = false
-        config.timeoutIntervalForRequest = 60
-        config.timeoutIntervalForResource = 60
+        config.timeoutIntervalForRequest = 75
+        config.timeoutIntervalForResource = 75
         return URLSession(configuration: config)
     }()
 
@@ -123,10 +143,19 @@ final class AIClient {
         return try AIWire.decodeStatus(from: data)
     }
 
-    func estimateMeal(jpegData: Data, note: String?) async throws -> AIWire.MealEstimate {
+    func estimateMeal(
+        jpegData: Data,
+        note: String?,
+        mealType: Nutrition.MealType? = nil
+    ) async throws -> AIWire.MealEstimate {
         // Off-main base64 + JSON encoding (runs on global executor via nonisolated async).
         let lang = Theme.language
-        let body = try await AIWire.encodeMealRequestAsync(jpegData: jpegData, note: note, lang: lang)
+        let body = try await AIWire.encodeMealRequestAsync(
+            jpegData: jpegData,
+            note: note,
+            lang: lang,
+            mealType: mealType?.rawValue
+        )
         try Task.checkCancellation()
 
         #if DEBUG
@@ -160,6 +189,11 @@ final class AIClient {
         req.httpBody = body
         req.setValue("Bearer \(creds.token)", forHTTPHeaderField: "Authorization")
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        // Protect in-flight vision upload across brief screen locks or app switches (R15).
+        let bgTask = BackgroundTaskBox()
+        bgTask.begin(name: "HexplateAIMealEstimate")
+        defer { bgTask.end() }
 
         let (data, http) = try await perform(req)
         guard (200..<300).contains(http.statusCode) else {
@@ -409,10 +443,11 @@ final class AIClient {
                 carbs: 62,
                 fat: 22,
                 items: [
-                    .init(name: "Grilled salmon", kcal: 210, protein: 28, carbs: 2, fat: 12),
-                    .init(name: "Rice & sides", kcal: 210, protein: 17, carbs: 60, fat: 10),
+                    .init(name: "Grilled salmon", portion: "120 g fillet", kcal: 210, protein: 28, carbs: 2, fat: 12),
+                    .init(name: "Rice & sides", portion: "1 medium portion", kcal: 210, protein: 17, carbs: 60, fat: 10),
                 ],
                 confidence: "low",
+                assumptions: "Sauce and cooking oil estimated visually; verify numbers before saving.",
                 plausibilityWarning: true,
                 warnings: ["macro-kcal-mismatch"]
             )
@@ -424,11 +459,12 @@ final class AIClient {
             carbs: 68.5,
             fat: 19.1,
             items: [
-                .init(name: "Grilled chicken", kcal: 280, protein: 38.0, carbs: 4.5, fat: 11.5),
-                .init(name: "Steamed rice", kcal: 290, protein: 5.7, carbs: 60.0, fat: 1.6),
-                .init(name: "Broccoli & sauce", kcal: 70, protein: 2.5, carbs: 4.0, fat: 6.0),
+                .init(name: "Grilled chicken", portion: "150 g cooked", kcal: 280, protein: 38.0, carbs: 4.5, fat: 11.5),
+                .init(name: "Steamed rice", portion: "1 bowl (~200 g)", kcal: 290, protein: 5.7, carbs: 60.0, fat: 1.6),
+                .init(name: "Broccoli & sauce", portion: "80 g + 1 tbsp glaze", kcal: 70, protein: 2.5, carbs: 4.0, fat: 6.0),
             ],
             confidence: "high",
+            assumptions: "Assumed standard medium rice bowl and light teriyaki glaze.",
             plausibilityWarning: false,
             warnings: []
         )

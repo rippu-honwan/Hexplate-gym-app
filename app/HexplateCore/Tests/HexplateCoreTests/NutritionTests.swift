@@ -270,4 +270,74 @@ final class NutritionTests: XCTestCase {
         let after4 = Nutrition.HealthSyncOp.reconcileAfterFlush(batch: batch1, failed: batch1, current: batch1)
         XCTAssertEqual(after4, batch1)
     }
+
+    func testMealTypePersistenceZeroChurnUnknownHandlingAndHexMerge() throws {
+        // Hour-based meal type suggestion boundaries.
+        XCTAssertEqual(Nutrition.MealType.suggested(forHour: 5), .breakfast)
+        XCTAssertEqual(Nutrition.MealType.suggested(forHour: 10), .breakfast)
+        XCTAssertEqual(Nutrition.MealType.suggested(forHour: 11), .lunch)
+        XCTAssertEqual(Nutrition.MealType.suggested(forHour: 13), .lunch)
+        XCTAssertEqual(Nutrition.MealType.suggested(forHour: 14), .afternoonTea)
+        XCTAssertEqual(Nutrition.MealType.suggested(forHour: 16), .afternoonTea)
+        XCTAssertEqual(Nutrition.MealType.suggested(forHour: 17), .dinner)
+        XCTAssertEqual(Nutrition.MealType.suggested(forHour: 20), .dinner)
+        XCTAssertEqual(Nutrition.MealType.suggested(forHour: 21), .lateNight)
+        XCTAssertEqual(Nutrition.MealType.suggested(forHour: 2), .lateNight)
+
+        // Meal without mealType omits "mealType" key completely and does not restamp on unchanged re-upsert.
+        var doc = try emptyDoc()
+        let plain = Nutrition.Meal(id: "m-plain", date: "2026-11-27", time: "08:30", name: "Oats", kcal: 320, protein: 24)
+        doc.change(at: 1_000) { s in
+            Nutrition.upsertMeal(&s, plain)
+        }
+        let rawPlain = try XCTUnwrap(doc.root["meals"]?.object?["m-plain"]?.object)
+        XCTAssertNil(rawPlain["mealType"], "nil mealType must be omitted to avoid churning legacy entries")
+        XCTAssertEqual(rawPlain["_ts"], .number(1_000))
+
+        doc.change(at: 2_000) { s in
+            Nutrition.upsertMeal(&s, plain)
+        }
+        XCTAssertEqual(doc.root["meals"]?.object?["m-plain"]?.object?["_ts"], .number(1_000))
+
+        // Unknown raw mealType parses safely as nil.
+        var unknownDoc = doc
+        unknownDoc.change(at: 2_500) { s in
+            var map = s["meals"]?.object ?? [:]
+            var obj = map["m-plain"]?.object ?? [:]
+            obj["mealType"] = .string("future_slot")
+            map["m-plain"] = .object(obj)
+            s["meals"] = .object(map)
+        }
+        XCTAssertNil(Nutrition.meal(unknownDoc.root, id: "m-plain")?.mealType)
+
+        // Typed meal persists and survives HexMerge across two devices.
+        var devA = try emptyDoc()
+        devA.change(at: 3_000) { s in
+            Nutrition.upsertMeal(&s, Nutrition.Meal(
+                id: "m-bf",
+                date: "2026-11-27",
+                time: "08:15",
+                mealType: .breakfast,
+                name: "Protein & Chicken",
+                kcal: 340,
+                protein: 56
+            ))
+        }
+        var devB = try emptyDoc()
+        devB.change(at: 3_500) { s in
+            Nutrition.upsertMeal(&s, Nutrition.Meal(
+                id: "m-tea",
+                date: "2026-11-27",
+                time: "15:00",
+                mealType: .afternoonTea,
+                name: "Yogurt",
+                kcal: 150,
+                protein: 15
+            ))
+        }
+
+        let merged = try HexMerge.merge(devA.root, devB.root, now: 4_000)
+        XCTAssertEqual(Nutrition.meal(merged, id: "m-bf")?.mealType, .breakfast)
+        XCTAssertEqual(Nutrition.meal(merged, id: "m-tea")?.mealType, .afternoonTea)
+    }
 }

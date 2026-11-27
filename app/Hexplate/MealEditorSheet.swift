@@ -1,11 +1,106 @@
 import HexplateCore
 import SwiftUI
 
+extension Nutrition.MealType {
+    var localizedTitle: String {
+        switch self {
+        case .breakfast: String(localized: "Breakfast")
+        case .lunch: String(localized: "Lunch")
+        case .afternoonTea: String(localized: "Afternoon tea")
+        case .dinner: String(localized: "Dinner")
+        case .lateNight: String(localized: "Late night")
+        }
+    }
+
+    var symbolName: String {
+        switch self {
+        case .breakfast: "sunrise"
+        case .lunch: "sun.max"
+        case .afternoonTea: "cup.and.saucer"
+        case .dinner: "sunset"
+        case .lateNight: "moon.stars"
+        }
+    }
+}
+
+/// Reusable AX5-safe meal-slot button grid (Breakfast / Lunch / Afternoon tea / Dinner / Late night).
+/// Selected state combines filled tint, thicker border, checkmark icon, bold weight, and `.isSelected`
+/// so selection is never color-only and stays legible across all user-chosen accent colors.
+struct MealTypePicker: View {
+    @Environment(\.colorScheme) private var colorScheme
+    @ScaledMetric(relativeTo: .subheadline) private var chipMinWidth: CGFloat = 104
+
+    @Binding var selection: Nutrition.MealType?
+
+    var body: some View {
+        let columns = [GridItem(.adaptive(minimum: chipMinWidth), spacing: 8)]
+        LazyVGrid(columns: columns, spacing: 8) {
+            ForEach(Nutrition.MealType.allCases) { type in
+                let isSelected = (selection == type)
+                Button {
+                    selection = isSelected ? nil : type
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: isSelected ? "checkmark.circle.fill" : type.symbolName)
+                            .font(.subheadline)
+                            .foregroundStyle(isSelected ? AnyShapeStyle(.tint) : AnyShapeStyle(.secondary))
+                            .accessibilityHidden(true)
+                        Text(type.localizedTitle)
+                            .font(.subheadline.weight(isSelected ? .semibold : .regular))
+                            .foregroundStyle(.primary)
+                            .lineLimit(2)
+                            .multilineTextAlignment(.leading)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Spacer(minLength: 0)
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 8)
+                    .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(
+                                isSelected
+                                    ? Theme.accent.opacity(colorScheme == .dark ? 0.24 : 0.14)
+                                    : Color(.tertiarySystemFill)
+                            )
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .strokeBorder(
+                                isSelected ? AnyShapeStyle(.tint) : AnyShapeStyle(Color.secondary.opacity(0.25)),
+                                lineWidth: isSelected ? 1.5 : 1
+                            )
+                    )
+                    .contentShape(.rect(cornerRadius: 10))
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(type.localizedTitle)
+                .accessibilityAddTraits(isSelected ? [.isSelected] : [])
+            }
+        }
+        .padding(.vertical, 2)
+    }
+}
+
 /// Sheet for adding or editing a manual (or photo-backed / AI-estimated) meal entry.
 struct MealEditorSheet: View {
     struct AIDraft: Equatable {
         let estimate: AIWire.MealEstimate
         let jpegData: Data?
+        let mealType: Nutrition.MealType?
+        let captured: MealImageProcessor.CaptureTimestamp?
+
+        init(
+            estimate: AIWire.MealEstimate,
+            jpegData: Data?,
+            mealType: Nutrition.MealType? = nil,
+            captured: MealImageProcessor.CaptureTimestamp? = nil
+        ) {
+            self.estimate = estimate
+            self.jpegData = jpegData
+            self.mealType = mealType
+            self.captured = captured
+        }
     }
 
     @Environment(AppModel.self) private var model
@@ -15,20 +110,33 @@ struct MealEditorSheet: View {
     let defaultDate: String
     let aiDraft: AIDraft?
     let pendingPhotoData: Data?
+    let initialMealType: Nutrition.MealType?
+    let hasExplicitMealType: Bool
+    let captured: MealImageProcessor.CaptureTimestamp?
+    let onReestimate: ((Nutrition.MealType?) -> Void)?
 
     init(
         existing: Nutrition.Meal? = nil,
         defaultDate: String,
         aiDraft: AIDraft? = nil,
-        pendingPhotoData: Data? = nil
+        pendingPhotoData: Data? = nil,
+        initialMealType: Nutrition.MealType? = nil,
+        hasExplicitMealType: Bool = false,
+        captured: MealImageProcessor.CaptureTimestamp? = nil,
+        onReestimate: ((Nutrition.MealType?) -> Void)? = nil
     ) {
         self.existing = existing
         self.defaultDate = defaultDate
         self.aiDraft = aiDraft
         self.pendingPhotoData = pendingPhotoData
+        self.initialMealType = initialMealType
+        self.hasExplicitMealType = hasExplicitMealType
+        self.captured = captured
+        self.onReestimate = onReestimate
     }
 
     @State private var name = ""
+    @State private var mealType: Nutrition.MealType?
     @State private var date = Date.now
     @State private var includeTime = true
     @State private var time = Date.now
@@ -36,6 +144,8 @@ struct MealEditorSheet: View {
     @State private var protein = ""
     @State private var carbs = ""
     @State private var fat = ""
+    @State private var previewImage: UIImage?
+    @State private var includedItems: [Bool] = []
     @State private var confirmDelete = false
     @State private var loaded = false
 
@@ -43,16 +153,6 @@ struct MealEditorSheet: View {
         let hasName = !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         let hasMacro = [kcal, protein, carbs, fat].contains { (parseNumber($0) ?? 0) > 0 }
         return hasName || hasMacro
-    }
-
-    private var previewImage: UIImage? {
-        if let raw = pendingPhotoData ?? aiDraft?.jpegData {
-            return UIImage(data: raw)
-        }
-        if let photoId = existing?.photoId {
-            return MealPhotos.image(for: photoId)
-        }
-        return nil
     }
 
     private var confidenceLabel: LocalizedStringKey {
@@ -95,6 +195,10 @@ struct MealEditorSheet: View {
                     }
                 }
 
+                Section("Meal type") {
+                    MealTypePicker(selection: $mealType)
+                }
+
                 Section {
                     TextField("Meal name", text: $name)
                     DatePicker("Date", selection: $date, in: ...Date.now, displayedComponents: .date)
@@ -113,29 +217,63 @@ struct MealEditorSheet: View {
 
                 if let estimate = aiDraft?.estimate, !estimate.items.isEmpty {
                     Section {
-                        ForEach(Array(estimate.items.enumerated()), id: \.offset) { _, item in
-                            VStack(alignment: .leading, spacing: 2) {
-                                HStack {
-                                    Text(item.name).font(.subheadline)
-                                    Spacer()
-                                    Text("\(Format.number(item.kcal, decimals: 0)) kcal")
-                                        .font(.subheadline)
+                        ForEach(Array(estimate.items.enumerated()), id: \.offset) { idx, item in
+                            let isOnBinding = Binding<Bool>(
+                                get: { idx < includedItems.count ? includedItems[idx] : true },
+                                set: { newValue in
+                                    if idx < includedItems.count {
+                                        includedItems[idx] = newValue
+                                        recalculateFromIncludedItems(estimate)
+                                    }
+                                }
+                            )
+                            let isIncluded = idx < includedItems.count ? includedItems[idx] : true
+                            Toggle(isOn: isOnBinding) {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    HStack(alignment: .firstTextBaseline) {
+                                        Text(item.name)
+                                            .font(.subheadline)
+                                            .strikethrough(!isIncluded)
+                                            .foregroundStyle(isIncluded ? .primary : .secondary)
+                                        Spacer(minLength: 8)
+                                        Text("\(Format.number(item.kcal, decimals: 0)) kcal")
+                                            .font(.subheadline)
+                                            .monospacedDigit()
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    if let portion = item.portion, !portion.isEmpty {
+                                        Text(portion)
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                    Text("P \(Format.number(item.protein, decimals: 1)) g · C \(Format.number(item.carbs, decimals: 1)) g · F \(Format.number(item.fat, decimals: 1)) g")
+                                        .font(.caption)
                                         .monospacedDigit()
                                         .foregroundStyle(.secondary)
                                 }
-                                Text("P \(Format.number(item.protein, decimals: 1)) g · C \(Format.number(item.carbs, decimals: 1)) g · F \(Format.number(item.fat, decimals: 1)) g")
-                                    .font(.caption)
-                                    .monospacedDigit()
-                                    .foregroundStyle(.secondary)
+                                .opacity(isIncluded ? 1.0 : 0.6)
                             }
-                            .accessibilityElement(children: .combine)
                         }
                     } header: {
                         Text("Detected items")
                     } footer: {
-                        HStack(spacing: 4) {
-                            Text("Confidence:")
-                            Text(confidenceLabel)
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack(spacing: 4) {
+                                Text("Confidence:")
+                                Text(confidenceLabel)
+                            }
+                            if let assumptions = estimate.assumptions, !assumptions.isEmpty {
+                                Text(assumptions)
+                            }
+                            Text("Include or exclude items to recalculate totals.")
+                        }
+                    }
+                }
+
+                if let onReestimate {
+                    Section {
+                        Button("Re-estimate with note", systemImage: "arrow.triangle.2.circlepath") {
+                            onReestimate(mealType)
                         }
                     }
                 }
@@ -196,18 +334,52 @@ struct MealEditorSheet: View {
         return v
     }
 
+    private func recalculateFromIncludedItems(_ estimate: AIWire.MealEstimate) {
+        var sumKcal = 0.0
+        var sumProtein = 0.0
+        var sumCarbs = 0.0
+        var sumFat = 0.0
+        var anyIncluded = false
+        for (idx, item) in estimate.items.enumerated() where idx < includedItems.count && includedItems[idx] {
+            anyIncluded = true
+            sumKcal += item.kcal
+            sumProtein += item.protein
+            sumCarbs += item.carbs
+            sumFat += item.fat
+        }
+        guard anyIncluded else {
+            kcal = ""
+            protein = ""
+            carbs = ""
+            fat = ""
+            return
+        }
+        kcal = sumKcal > 0 ? Format.number(sumKcal, decimals: 0) : ""
+        protein = sumProtein > 0 ? Format.number(sumProtein, decimals: 1) : ""
+        carbs = sumCarbs > 0 ? Format.number(sumCarbs, decimals: 1) : ""
+        fat = sumFat > 0 ? Format.number(sumFat, decimals: 1) : ""
+    }
+
     private func loadInitial() {
         guard !loaded else { return }
         loaded = true
+
+        // Decode preview photo once so toggles and text edits never re-decode JPEG bytes (R18).
+        if let raw = pendingPhotoData ?? aiDraft?.jpegData {
+            previewImage = UIImage(data: raw)
+        } else if let photoId = existing?.photoId {
+            previewImage = MealPhotos.image(for: photoId)
+        }
+
         if let existing {
             name = existing.name
+            // Preserve existing mealType verbatim (including nil) so editing never churns legacy rows.
+            mealType = existing.mealType
             date = Day.date(existing.date) ?? .now
             if let t = existing.time {
                 includeTime = true
-                let parts = t.split(separator: ":").compactMap { Int($0) }
-                if parts.count == 2,
-                   let d = Calendar.current.date(from: DateComponents(hour: parts[0], minute: parts[1])) {
-                    time = d
+                if let parsed = dateFromTimeString(t) {
+                    time = parsed
                 }
             } else {
                 includeTime = false
@@ -218,17 +390,41 @@ struct MealEditorSheet: View {
             fat = existing.fat.map { Format.number($0) } ?? ""
         } else {
             date = Day.date(defaultDate) ?? .now
-            includeTime = (defaultDate == model.today)
-            time = .now
-            if let estimate = aiDraft?.estimate {
+            let effectiveCaptured = aiDraft?.captured ?? captured
+            if let cap = effectiveCaptured, cap.day == defaultDate, let capDate = dateFromTimeString(cap.time) {
+                includeTime = true
+                time = capDate
+            } else {
+                includeTime = (defaultDate == model.today)
+                time = .now
+            }
+
+            if let draft = aiDraft {
+                // Meal type carried from `.confirm` is treated as explicit (even when cleared to nil).
+                mealType = draft.mealType
                 // Display server totals verbatim without re-summing individually rounded items.
+                let estimate = draft.estimate
                 name = estimate.name
                 kcal = estimate.kcal > 0 ? Format.number(estimate.kcal, decimals: 0) : ""
                 protein = estimate.protein > 0 ? Format.number(estimate.protein, decimals: 1) : ""
                 carbs = estimate.carbs > 0 ? Format.number(estimate.carbs, decimals: 1) : ""
                 fat = estimate.fat > 0 ? Format.number(estimate.fat, decimals: 1) : ""
+                includedItems = Array(repeating: true, count: estimate.items.count)
+            } else if hasExplicitMealType {
+                mealType = initialMealType
+            } else if defaultDate == model.today {
+                let hour = Calendar.current.component(.hour, from: Date.now)
+                mealType = Nutrition.MealType.suggested(forHour: hour)
+            } else {
+                mealType = nil
             }
         }
+    }
+
+    private func dateFromTimeString(_ raw: String) -> Date? {
+        let parts = raw.split(separator: ":").compactMap { Int($0) }
+        guard parts.count == 2 else { return nil }
+        return Calendar.current.date(from: DateComponents(hour: parts[0], minute: parts[1]))
     }
 
     private func save() {
@@ -255,6 +451,7 @@ struct MealEditorSheet: View {
             id: existing?.id ?? RoutineOps.newId(now: model.now),
             date: day,
             time: timeStr,
+            mealType: mealType,
             name: name.trimmingCharacters(in: .whitespacesAndNewlines),
             kcal: parseNumber(kcal),
             protein: parseNumber(protein),

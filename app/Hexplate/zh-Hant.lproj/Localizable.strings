@@ -1318,3 +1318,17 @@
 "Changes undone" = "已復原更改";
 "Message AI Coach…" = "輸入訊息給 AI 教練…";
 "Send" = "傳送";
+
+/* Meal type selector & photo estimation preview/review flow */
+"Meal type" = "餐別";
+"Breakfast" = "早餐";
+"Lunch" = "午餐";
+"Afternoon tea" = "下午茶";
+"Dinner" = "晚餐";
+"Late night" = "宵夜";
+"Rotate 90°" = "旋轉 90°";
+"Estimate nutrition" = "開始估算營養";
+"Cancel estimation" = "取消估算";
+"Re-estimate with note" = "補充說明並重新估算";
+"Try again in %lld s." = "請於 %lld 秒後再試。";
+"Include or exclude items to recalculate totals." = "勾選或取消項目可自動重新計算總量。";
