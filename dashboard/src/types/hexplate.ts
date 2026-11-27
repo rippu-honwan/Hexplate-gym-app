@@ -347,6 +347,7 @@ export interface AiConfigMasked {
   source: 'file' | 'env' | 'mixed' | 'none'
   baseUrl: string | null
   model: string
+  fallbackModel?: string
   hasKey: boolean
   keyHint: string | null
   dailyTokenCap: number
@@ -384,6 +385,11 @@ export interface CoachDayDiff {
     | { kind: 'added'; slotIndex: number; exerciseId: string; name: string; sets: number; reps: number | null }
   )[]
   reasons: string[]
+}
+
+export interface CoachChatTurn {
+  role: 'user' | 'assistant'
+  content: string
 }
 
 export interface CoachProposal {

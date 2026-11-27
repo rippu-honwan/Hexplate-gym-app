@@ -16,7 +16,14 @@ from hexserver import ai, coach_web as cw
 from hexserver.store import Conflict, Store
 
 FIXTURES = Path(__file__).resolve().parents[2] / "app/HexplateCore/Tests/HexplateCoreTests/Fixtures"
-ENV_VARS = ("HEX_AI_BASE_URL", "HEX_AI_MODEL", "HEX_AI_KEY", "HEX_AI_DAILY_TOKEN_CAP", "HEX_AI_RATE_LIMIT_PER_MIN")
+ENV_VARS = (
+    "HEX_AI_BASE_URL",
+    "HEX_AI_MODEL",
+    "HEX_AI_FALLBACK_MODEL",
+    "HEX_AI_KEY",
+    "HEX_AI_DAILY_TOKEN_CAP",
+    "HEX_AI_RATE_LIMIT_PER_MIN",
+)
 SAVED_KEY = "sk-saved-provider-key-0001"
 
 
@@ -176,7 +183,7 @@ def test_bounds_and_key_hint(tmp_path):
     full = svc.save_config(api_key=SAVED_KEY)
     assert full["keyHint"] == "\u2022\u2022\u2022\u2022" + SAVED_KEY[-4:]
     assert SAVED_KEY not in json.dumps(full)
-    assert set(full) == {"configured", "source", "baseUrl", "model", "hasKey", "keyHint", "dailyTokenCap",
+    assert set(full) == {"configured", "source", "baseUrl", "model", "fallbackModel", "hasKey", "keyHint", "dailyTokenCap",
                          "rateLimitPerMin", "dailyTokensUsed", "envFallbackAvailable"}
     assert full["configured"] is True and full["source"] == "file" and full["envFallbackAvailable"] is False
 
@@ -192,7 +199,7 @@ def test_test_connection_is_rate_limited_and_logged(tmp_path):
     assert out["ok"] is True and out["model"] == "m" and isinstance(out["elapsedMs"], int)
     assert SAVED_KEY not in json.dumps(out)
     body = json.loads(rec.requests[0].content)
-    assert body["max_tokens"] == 16 and body["temperature"] == 0.0
+    assert body["max_tokens"] == ai.TEST_CONNECTION_MAX_TOKENS and body["temperature"] == 0.0
     with pytest.raises(ai.AIRateLimitError):
         asyncio.run(svc.test_connection())
     lines = [json.loads(x) for x in svc.usage_file.read_text().splitlines()]
@@ -489,3 +496,56 @@ def test_undo_conflict_keeps_the_undo_record(live, tmp_path, monkeypatch):
 def test_coach_web_module_is_english_only():
     source = Path(cw.__file__).read_text(encoding="utf-8")
     assert not re.search(r"[\u4e00-\u9fff\u3000-\u303f\uff00-\uffef]", source)
+
+
+def test_fallback_model_failover_on_429_503_and_never_on_401(tmp_path):
+    models_called: list[str] = []
+    max_tokens_seen: list[int] = []
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        body = json.loads(req.content)
+        m = body["model"]
+        models_called.append(m)
+        max_tokens_seen.append(body["max_tokens"])
+        if m == "gemini-4-hydrogen":
+            return httpx.Response(429, json={"error": {"code": 429, "message": "daily free-tier limit exceeded"}})
+        return _ok_completion(content="OK", tokens=(12, 3))
+
+    svc = ai.AIService(tmp_path, client=httpx.AsyncClient(transport=httpx.MockTransport(handler)))
+    masked = svc.save_config(
+        base_url="https://generativelanguage.googleapis.com/v1beta/openai",
+        model="gemini-4-hydrogen",
+        fallback_model="gemini-flash-lite-latest",
+        api_key=SAVED_KEY,
+    )
+    assert masked["model"] == "gemini-4-hydrogen"
+    assert masked["fallbackModel"] == "gemini-flash-lite-latest"
+
+    res = asyncio.run(svc.test_connection())
+    assert res["ok"] is True
+    assert res["model"] == "gemini-flash-lite-latest"
+    assert models_called == ["gemini-4-hydrogen", "gemini-flash-lite-latest"]
+    assert max_tokens_seen == [ai.TEST_CONNECTION_MAX_TOKENS, ai.TEST_CONNECTION_MAX_TOKENS]
+    assert ai.TEST_CONNECTION_MAX_TOKENS == 64
+
+    # Usage log records the fallback model that actually served the completion.
+    logged = [json.loads(x) for x in svc.usage_file.read_text().splitlines()]
+    assert logged[-1]["model"] == "gemini-flash-lite-latest"
+    assert logged[-1]["total_tokens"] == 15
+
+    # Saving without fallback_model preserves it on the same origin; setting fallback == model clears it.
+    assert svc.save_config(daily_token_cap=300_000)["fallbackModel"] == "gemini-flash-lite-latest"
+    assert svc.save_config(fallback_model="gemini-4-hydrogen")["fallbackModel"] == ""
+    svc.save_config(fallback_model="gemini-flash-lite-latest")
+
+    # Upstream 401/403 authentication errors never fall back to a second request.
+    auth_calls: list[str] = []
+
+    def auth_fail(req: httpx.Request) -> httpx.Response:
+        auth_calls.append(json.loads(req.content)["model"])
+        return httpx.Response(401, text="bad key")
+
+    svc.client = httpx.AsyncClient(transport=httpx.MockTransport(auth_fail))
+    with pytest.raises(ai.AIUpstreamAuthError):
+        asyncio.run(svc.test_connection())
+    assert auth_calls == ["gemini-4-hydrogen"]

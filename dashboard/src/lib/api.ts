@@ -2,6 +2,7 @@ import type {
   AiConfigMasked,
   BackupStatus,
   BootstrapData,
+  CoachChatTurn,
   CoachContextSummary,
   CoachProposal,
   CoachUndoStatus,
@@ -164,6 +165,7 @@ export const api = {
   saveAiConfig: (payload: {
     baseUrl?: string
     model?: string
+    fallbackModel?: string
     apiKey?: string
     clearApiKey?: boolean
     dailyTokenCap?: number
@@ -175,7 +177,7 @@ export const api = {
       body: JSON.stringify(payload),
     }),
 
-  testAiConnection: (payload: { baseUrl?: string; model?: string; apiKey?: string }) =>
+  testAiConnection: (payload: { baseUrl?: string; model?: string; fallbackModel?: string; apiKey?: string }) =>
     requestJson<{ ok: boolean; model: string; elapsedMs: number }>('/analytics/api/settings/ai/test', {
       method: 'POST',
       body: JSON.stringify(payload),
@@ -190,7 +192,13 @@ export const api = {
       undo: CoachUndoStatus | null
     }>(`/analytics/api/ai/coach/context?today=${encodeURIComponent(today)}&timezone=${encodeURIComponent(timezone)}`),
 
-  coachPropose: (payload: { message: string; today?: string; timezone?: string; lang?: 'en' | 'zh' }) =>
+  coachPropose: (payload: {
+    message: string
+    history?: CoachChatTurn[]
+    today?: string
+    timezone?: string
+    lang?: 'en' | 'zh'
+  }) =>
     requestJson<CoachProposal>('/analytics/api/ai/coach', {
       method: 'POST',
       body: JSON.stringify({

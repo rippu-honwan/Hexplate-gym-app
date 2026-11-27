@@ -518,6 +518,7 @@ DASHBOARD_ZH = {
     "Configure any OpenAI-compatible API (OpenAI, OpenRouter, Gemini OpenAI endpoint, local Ollama/vLLM). Used immediately by both this Web AI Coach and your iPhone app without restarting the server.": "設定任何相容 OpenAI 格式的 API（如 OpenAI、OpenRouter、Gemini 或本機模型）。儲存後無須重啟伺服器，即可立即供應網頁 AI 教練與 iPhone App 使用。",
     "Provider Base URL": "API Base URL",
     "Model Name": "模型名稱（Model）",
+    "Fallback Model (Optional)": "備援模型（選填）",
     "API Key": "API 金鑰（API Key）",
     "Leave blank to keep the saved key for this host": "留空以沿用此主機已儲存的金鑰",
     "Enter a new API key (required when changing host)": "請輸入新的 API 金鑰（更換主機時必填）",
@@ -594,6 +595,18 @@ DASHBOARD_ZH = {
     "Recovering muscles": "恢復中肌群",
     "Preview language only — switch to Local Server to save on server.": "僅預覽語言——請切換回「本機伺服器」以將設定儲存至伺服器。",
     "Switch to Local Server or connect to the server to load Traditional Chinese.": "請切換至「本機伺服器」或連接 Hexplate 伺服器以載入繁體中文介面字典。",
+    "New Chat": "新對話",
+    "Confirm & Apply Changes": "確認並執行更改",
+    "Dismiss": "略過",
+    "Applied (rev {rev})": "已執行更改（版本 rev {rev}）",
+    "Suggestion dismissed": "已略過建議",
+    "Plan changed — ask again": "課表已有變動，請重新詢問",
+    "Review the diff below. Nothing changes until you confirm.": "請先核對以下差異；按下確認前不會修改任何課表。",
+    "Ask about your recovery, muscle balance, or upcoming workouts. When the coach recommends a plan adjustment, you can review and confirm it right below the reply.": "可以詢問恢復狀態、肌群平衡或接下來的訓練計畫。當教練建議調整課表時，你可以直接在回覆下方預覽並按下確認才會執行。",
+    "Message your AI Coach… (Enter to send, Shift+Enter for new line)": "輸入訊息給 AI 教練…（Enter 傳送，Shift+Enter 換行）",
+    "Send": "傳送",
+    "Retry": "重試",
+    "AI Coach is thinking…": "AI 教練正在思考…",
 }
 
 

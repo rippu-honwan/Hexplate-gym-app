@@ -164,6 +164,7 @@ export function SettingsAiView({
   const { t } = useI18n()
   const [baseUrl, setBaseUrl] = useState(ai?.baseUrl ?? '')
   const [model, setModel] = useState(ai?.model ?? '')
+  const [fallbackModel, setFallbackModel] = useState(ai?.fallbackModel ?? '')
   const [apiKey, setApiKey] = useState('')
   const [showKey, setShowKey] = useState(false)
   const [dailyCap, setDailyCap] = useState(String(ai?.dailyTokenCap ?? 200000))
@@ -177,6 +178,7 @@ export function SettingsAiView({
     if (!ai) return
     setBaseUrl(ai.baseUrl ?? '')
     setModel(ai.model ?? '')
+    setFallbackModel(ai.fallbackModel ?? '')
     setDailyCap(String(ai.dailyTokenCap))
     setRateLimit(String(ai.rateLimitPerMin))
   }, [ai])
@@ -201,6 +203,7 @@ export function SettingsAiView({
       const updated = await api.saveAiConfig({
         baseUrl: baseUrl.trim(),
         model: model.trim(),
+        fallbackModel: fallbackModel.trim(),
         apiKey: apiKey.trim() || undefined,
         dailyTokenCap: Number.isFinite(capNum) ? Math.trunc(capNum) : undefined,
         rateLimitPerMin: Number.isFinite(rateNum) ? Math.trunc(rateNum) : undefined,
@@ -223,6 +226,7 @@ export function SettingsAiView({
       const res = await api.testAiConnection({
         baseUrl: baseUrl.trim() || undefined,
         model: model.trim() || undefined,
+        fallbackModel: fallbackModel.trim(),
         apiKey: apiKey.trim() || undefined,
       })
       setNotice(t('Connection succeeded ({ms} ms, model: {model}).', { ms: res.elapsedMs, model: res.model }))
@@ -294,7 +298,7 @@ export function SettingsAiView({
         }
       >
         <form onSubmit={onSave} className="flex flex-col gap-4">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <label className="flex flex-col gap-1.5 text-[13px]">
               <span className="font-medium">{t('Provider Base URL')}</span>
               <Input
@@ -311,6 +315,16 @@ export function SettingsAiView({
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
                 placeholder="gpt-4o-mini"
+                disabled={readOnly || saving}
+                autoComplete="off"
+              />
+            </label>
+            <label className="flex flex-col gap-1.5 text-[13px]">
+              <span className="font-medium">{t('Fallback Model (Optional)')}</span>
+              <Input
+                value={fallbackModel}
+                onChange={(e) => setFallbackModel(e.target.value)}
+                placeholder="gemini-flash-lite-latest"
                 disabled={readOnly || saving}
                 autoComplete="off"
               />

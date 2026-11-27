@@ -9,6 +9,8 @@ final class AppModel {
     private let store = StateStore(directory: URL.applicationSupportDirectory.appending(path: "Hexplate"))
 
     private(set) var document: StateDocument?
+    /// Monotonic counter incremented whenever `document` reloads (cheap staleness trigger for views).
+    private(set) var documentRevision: Int = 0
     private(set) var history: History?
     /// The History list: one section per month, newest first.
     private(set) var months: [Month] = []
@@ -312,6 +314,7 @@ final class AppModel {
         // Before the screens read the names (Settings → Units & language → English exercise names).
         ExerciseNames.style = ExerciseNames.style(language: Theme.language, profile: new?.root ?? [:])
         document = new
+        documentRevision &+= 1
         history = new.map { History(document: $0) }
         months = []
         guard let history else { return }

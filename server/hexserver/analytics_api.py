@@ -1124,6 +1124,7 @@ def install(app, store) -> None:
             out = ai_service.save_config(
                 base_url=body.get("baseUrl") if "baseUrl" in body else None,
                 model=body.get("model") if "model" in body else None,
+                fallback_model=body.get("fallbackModel") if "fallbackModel" in body else None,
                 api_key=body.get("apiKey") if "apiKey" in body else None,
                 clear_api_key=bool(body.get("clearApiKey", False)),
                 daily_token_cap=body.get("dailyTokenCap") if "dailyTokenCap" in body else None,
@@ -1141,6 +1142,7 @@ def install(app, store) -> None:
             out = await ai_service.test_connection(
                 base_url=body.get("baseUrl") if isinstance(body.get("baseUrl"), str) else None,
                 model=body.get("model") if isinstance(body.get("model"), str) else None,
+                fallback_model=body.get("fallbackModel") if isinstance(body.get("fallbackModel"), str) else None,
                 api_key=body.get("apiKey") if isinstance(body.get("apiKey"), str) else None,
             )
             return JSONResponse(out, headers=_NO_STORE)
@@ -1186,6 +1188,7 @@ def install(app, store) -> None:
                 today=today_iso,
                 timezone=timezone,
                 lang=lang,
+                history=body.get("history"),
             )
             return JSONResponse(out, headers=_NO_STORE)
         except AIError as e:

@@ -8,6 +8,8 @@ public enum AIWire {
     public static let maxNoteCharacters = 240
     /// Matches Stage 7b `server/hexserver/ai.py` (`MAX_COACH_MESSAGE_CHARS = 800`, Unicode scalars).
     public static let maxCoachMessageScalars = 800
+    public static let maxCoachHistoryTurns = 10
+    public static let maxCoachHistoryScalars = 1_200
     public static let maxCoachRequestBytes = 1_500_000
 
     // MARK: - DTOs
@@ -76,6 +78,16 @@ public enum AIWire {
         }
     }
 
+    public struct CoachChatTurn: Codable, Equatable, Sendable {
+        public let role: String
+        public let content: String
+
+        public init(role: String, content: String) {
+            self.role = role
+            self.content = content
+        }
+    }
+
     public struct CoachResponse: Equatable, Sendable {
         public let answer: String
         public let changes: [JSONValue]
@@ -133,6 +145,7 @@ public enum AIWire {
         let message: String
         let context: CoachContext.Snapshot
         let lang: String
+        let history: [CoachChatTurn]?
     }
 
     private struct CoachResponseEnvelope: Decodable {
@@ -172,21 +185,73 @@ public enum AIWire {
         return String(scalars.prefix(maxCoachMessageScalars)).trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
+    /// Cleans one untrusted chat history turn identically to `server/hexserver/ai.py`
+    /// `_escape_untrusted(..., max_len=1200)`: collapses ASCII control-char runs into one space,
+    /// replaces each `<` and `>` with one space (without merging into control runs), trims Unicode
+    /// whitespace/newlines, truncates to `maxCoachHistoryScalars` Unicode scalars, and trims again.
+    public nonisolated static func cleanCoachHistoryText(_ raw: String) -> String {
+        var out = String.UnicodeScalarView()
+        var inControlRun = false
+        for scalar in raw.unicodeScalars {
+            let v = scalar.value
+            if v <= 0x1F || v == 0x7F {
+                if !inControlRun {
+                    out.append(UnicodeScalar(0x20)!)
+                    inControlRun = true
+                }
+            } else if v == 0x3C || v == 0x3E {
+                out.append(UnicodeScalar(0x20)!)
+                inControlRun = false
+            } else {
+                out.append(scalar)
+                inControlRun = false
+            }
+        }
+        let trimmed = String(out).trimmingCharacters(in: .whitespacesAndNewlines)
+        let scalars = trimmed.unicodeScalars
+        if scalars.count <= maxCoachHistoryScalars {
+            return trimmed
+        }
+        return String(scalars.prefix(maxCoachHistoryScalars)).trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    /// Filters and normalizes Coach conversation history to match server `sanitize_coach_history`:
+    /// keeps only `user`/`assistant` roles with non-empty cleaned content and retains at most the
+    /// latest `maxCoachHistoryTurns` turns.
+    public nonisolated static func cleanCoachHistory(_ turns: [CoachChatTurn]) -> [CoachChatTurn] {
+        var cleaned: [CoachChatTurn] = []
+        cleaned.reserveCapacity(min(turns.count, maxCoachHistoryTurns))
+        for turn in turns {
+            guard turn.role == "user" || turn.role == "assistant" else { continue }
+            let text = cleanCoachHistoryText(turn.content)
+            guard !text.isEmpty else { continue }
+            cleaned.append(CoachChatTurn(role: turn.role, content: text))
+        }
+        if cleaned.count <= maxCoachHistoryTurns {
+            return cleaned
+        }
+        return Array(cleaned.suffix(maxCoachHistoryTurns))
+    }
+
     /// Synchronous request builder for `POST /api/ai/coach`.
-    /// Normalizes `message` by Unicode scalars, encodes deterministically with sorted keys and
-    /// unescaped slashes, and enforces `maxCoachRequestBytes`.
+    /// Normalizes `message` and optional `history` by Unicode scalars, omits the `history` key when
+    /// empty (preserving byte-for-byte golden fixture parity), encodes deterministically with sorted
+    /// keys and unescaped slashes, and enforces `maxCoachRequestBytes`.
     public nonisolated static func encodeCoachRequest(
         message: String,
         snapshot: CoachContext.Snapshot,
-        lang: String
+        lang: String,
+        history: [CoachChatTurn] = []
     ) throws -> Data {
         let cleaned = cleanCoachMessage(message)
         guard !cleaned.isEmpty else { throw ErrorKind.badRequest }
         let normalizedLang = lang.trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleanedHistory = cleanCoachHistory(history)
         let payload = CoachRequestBody(
             message: cleaned,
             context: snapshot,
-            lang: normalizedLang.isEmpty ? "zh" : normalizedLang
+            lang: normalizedLang.isEmpty ? "zh" : normalizedLang,
+            history: cleanedHistory.isEmpty ? nil : cleanedHistory
         )
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
@@ -199,9 +264,10 @@ public enum AIWire {
     public nonisolated static func encodeCoachRequestAsync(
         message: String,
         snapshot: CoachContext.Snapshot,
-        lang: String
+        lang: String,
+        history: [CoachChatTurn] = []
     ) async throws -> Data {
-        try encodeCoachRequest(message: message, snapshot: snapshot, lang: lang)
+        try encodeCoachRequest(message: message, snapshot: snapshot, lang: lang, history: history)
     }
 
     public nonisolated static func decodeCoachResponse(from data: Data) throws -> CoachResponse {

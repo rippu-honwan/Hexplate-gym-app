@@ -10,6 +10,7 @@ struct NutritionView: View {
     }
 
     private enum NutritionSheet: Identifiable {
+        case scanMeal(date: String)
         case addMeal(date: String)
         case editMeal(Nutrition.Meal)
         case goals
@@ -18,6 +19,7 @@ struct NutritionView: View {
 
         var id: String {
             switch self {
+            case .scanMeal(let date): "scanMeal-\(date)"
             case .addMeal(let date): "addMeal-\(date)"
             case .editMeal(let meal): "editMeal-\(meal.id)"
             case .goals: "goals"
@@ -37,6 +39,7 @@ struct NutritionView: View {
     @State private var trendMetric: Nutrition.Metric = .kcal
     @State private var bodyMetric: BodyData.SegmentMetric = .muscle
     @State private var sheet: NutritionSheet?
+    @State private var deferWeighIn = false
     @State private var initializedDay = false
 
     private var healthEnabled: Bool {
@@ -131,6 +134,10 @@ struct NutritionView: View {
                         ForEach(externalMeals) { ext in
                             externalMealRow(ext)
                         }
+                    }
+
+                    Button("Scan meal", systemImage: "camera.viewfinder") {
+                        present(.scanMeal(date: selectedDay))
                     }
 
                     Button("Log meal", systemImage: "plus") {
@@ -282,9 +289,12 @@ struct NutritionView: View {
             }
             // Clear `nutritionSheetOpen` ONLY in `onDismiss` so ProfileView waits until dismissal finishes.
             .sheet(item: $sheet, onDismiss: {
+                deferWeighIn = false
                 model.nutritionSheetOpen = false
             }) { active in
                 switch active {
+                case .scanMeal(let date):
+                    AIMealCaptureSheet(defaultDate: date, deferWeighIn: $deferWeighIn)
                 case .addMeal(let date):
                     MealEditorSheet(existing: nil, defaultDate: date)
                 case .editMeal(let meal):
@@ -316,7 +326,7 @@ struct NutritionView: View {
                 }
             }
             .onChange(of: model.weighInRequested) {
-                if model.weighInRequested && sheet != nil {
+                if model.weighInRequested && sheet != nil && !deferWeighIn {
                     sheet = nil
                 }
             }

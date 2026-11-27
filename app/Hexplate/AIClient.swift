@@ -23,11 +23,14 @@ final class AIClient {
 
     #if DEBUG
     let isFakeMode: Bool
+    let isFakeSlow: Bool
     let isFakeCoachMode: Bool
     private let fakeWarning: Bool
     private let fakeErrorOnce: Bool
+    private let fakeCancelOnce: Bool
     private let fakeDelayMs: Int
     private var fakeErrorConsumed = false
+    private var fakeCancelConsumed = false
 
     private let fakeCoachNoChange: Bool
     private let fakeCoachErrorOnce: Bool
@@ -51,10 +54,13 @@ final class AIClient {
         let fakeWarn = args.contains("-hexplate-fake-ai-warning")
         let fakeErr = args.contains("-hexplate-fake-ai-error")
         let fakeSlow = args.contains("-hexplate-fake-ai-slow")
-        self.isFakeMode = fakeAI || fakeWarn || fakeErr || fakeSlow
+        let fakeCancel = args.contains("-hexplate-fake-ai-cancel")
+        self.isFakeMode = fakeAI || fakeWarn || fakeErr || fakeSlow || fakeCancel
+        self.isFakeSlow = fakeSlow
         self.fakeWarning = fakeWarn
         self.fakeErrorOnce = fakeErr
-        self.fakeDelayMs = fakeSlow ? 4_000 : 700
+        self.fakeCancelOnce = fakeCancel
+        self.fakeDelayMs = fakeSlow ? 2_000 : 700
 
         let fakeCoach = args.contains("-hexplate-fake-coach")
         let fakeCoachNoChg = args.contains("-hexplate-fake-coach-no-change")
@@ -130,6 +136,10 @@ final class AIClient {
             } catch {
                 throw AIWire.ErrorKind.cancelled
             }
+            if fakeCancelOnce && !fakeCancelConsumed {
+                fakeCancelConsumed = true
+                throw AIWire.ErrorKind.cancelled
+            }
             if fakeErrorOnce && !fakeErrorConsumed {
                 fakeErrorConsumed = true
                 throw AIWire.ErrorKind.networkLost
@@ -162,9 +172,18 @@ final class AIClient {
         return try AIWire.decodeMealEstimate(from: data)
     }
 
-    func askCoach(message: String, snapshot: CoachContext.Snapshot) async throws -> AIWire.CoachResponse {
+    func askCoach(
+        message: String,
+        snapshot: CoachContext.Snapshot,
+        history: [AIWire.CoachChatTurn] = []
+    ) async throws -> AIWire.CoachResponse {
         let lang = Theme.language
-        let body = try await AIWire.encodeCoachRequestAsync(message: message, snapshot: snapshot, lang: lang)
+        let body = try await AIWire.encodeCoachRequestAsync(
+            message: message,
+            snapshot: snapshot,
+            lang: lang,
+            history: history
+        )
         try Task.checkCancellation()
 
         #if DEBUG
@@ -369,7 +388,7 @@ final class AIClient {
             opObj["reps"] = .number(Double(reps))
         }
 
-        let answer = String(localized: "I adjusted \(slot.name) to \(newSets) sets so you can stay on track without adding extra fatigue.")
+        let answer = String(localized: "I suggest adjusting \(slot.name) to \(newSets) sets so you can stay on track without adding extra fatigue.")
         let payload: JSONValue = .object([
             "answer": .string(answer),
             "changes": .array([.object(opObj)]),

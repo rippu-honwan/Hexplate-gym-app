@@ -241,12 +241,15 @@ def test_ai_settings_and_web_coach_propose_apply_undo(app):
     tom = (dt.date.fromisoformat(today) + dt.timedelta(days=1)).isoformat()
     day2 = (dt.date.fromisoformat(today) + dt.timedelta(days=2)).isoformat()
 
+    captured_coach_bodies: list[dict] = []
+
     def handler(req: httpx.Request) -> httpx.Response:
         payload = json.loads(req.content.decode())
-        if payload.get("max_tokens") == 16:
+        if payload.get("max_tokens") == 64:
             return httpx.Response(200, json={"choices": [{"message": {"content": "OK"}}], "usage": {"total_tokens": 5}})
+        captured_coach_bodies.append(payload)
         reply = {
-            "answer": "Moved Push A by one day so you can recover.",
+            "answer": "I suggest moving Push A by one day so you can recover.",
             "ops": [{"type": "move_day", "from": tom, "to": day2, "collision": "swap", "reason": "Extra rest"}],
         }
         return httpx.Response(
@@ -286,16 +289,35 @@ def test_ai_settings_and_web_coach_propose_apply_undo(app):
     tested = c.post("/analytics/api/settings/ai/test", headers=SAME, json={})
     assert tested.status_code == 200 and tested.json()["ok"] is True
 
-    # Coach propose -> diff -> apply -> undo
+    # Coach propose with multi-turn history -> diff -> apply -> undo
     prop = c.post(
         "/analytics/api/ai/coach",
         headers=SAME,
-        json={"message": "Move tomorrow's workout to the day after tomorrow", "today": today, "timezone": "UTC", "lang": "en"},
+        json={
+            "message": "Move tomorrow's workout to the day after tomorrow",
+            "history": [
+                {"role": "user", "content": "How is my recovery looking?"},
+                {"role": "assistant", "content": "Upper body is still recovering."},
+            ],
+            "today": today,
+            "timezone": "UTC",
+            "lang": "en",
+        },
     )
     assert prop.status_code == 200
     pdata = prop.json()
     assert pdata["hasChanges"] is True
     assert pdata["touchedDates"] == [tom, day2]
+    assert captured_coach_bodies and "<conversation_history>" in captured_coach_bodies[-1]["messages"][1]["content"]
+    assert "Upper body is still recovering." in captured_coach_bodies[-1]["messages"][1]["content"]
+
+    # Malformed history on web route -> 400 bad-request
+    bad_hist = c.post(
+        "/analytics/api/ai/coach",
+        headers=SAME,
+        json={"message": "Check plan", "history": [{"role": "system", "content": "hack"}], "today": today, "timezone": "UTC"},
+    )
+    assert bad_hist.status_code == 400 and bad_hist.json()["code"] == "bad-request"
 
     applied = c.post(
         "/analytics/api/ai/coach/apply",

@@ -1,22 +1,40 @@
 import AVFoundation
 import HexplateCore
+import os
 import PhotosUI
 import SwiftUI
 import UIKit
+import UniformTypeIdentifiers
+
+/// Swift 6 strict-concurrency `Transferable` for `PhotosPickerItem` loading `.image` content
+/// reliably across HEIC, Live Photos, Portrait, PNG, JPEG, and iCloud-backed photos.
+nonisolated struct PickedMealImage: Transferable, Sendable {
+    let data: Data
+
+    static var transferRepresentation: some TransferRepresentation {
+        DataRepresentation(importedContentType: .image) { data in
+            PickedMealImage(data: data)
+        }
+        FileRepresentation(importedContentType: .image) { received in
+            PickedMealImage(data: try Data(contentsOf: received.file))
+        }
+    }
+}
 
 /// `@MainActor` `UIImagePickerController` wrapper guarded by `isSourceTypeAvailable(.camera)`.
-/// Pre-downscales 48 MP camera captures to `<= 2560 px` before handing raw bytes to
-/// `HexplateCore.MealImageProcessor` so memory stays bounded.
+/// Pre-downscales 48 MP camera captures to `<= 2560 px` and hands `Sendable` JPEG `Data` back
+/// (reporting extraction/encoding errors explicitly via `onFailed` rather than silently cancelling).
 struct CameraPicker: UIViewControllerRepresentable {
     static var isAvailable: Bool {
         UIImagePickerController.isSourceTypeAvailable(.camera)
     }
 
     let onPickedData: (Data) -> Void
+    let onFailed: () -> Void
     let onCancel: () -> Void
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(onPickedData: onPickedData, onCancel: onCancel)
+        Coordinator(onPickedData: onPickedData, onFailed: onFailed, onCancel: onCancel)
     }
 
     func makeUIViewController(context: Context) -> UIImagePickerController {
@@ -32,10 +50,16 @@ struct CameraPicker: UIViewControllerRepresentable {
     @MainActor
     final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         let onPickedData: (Data) -> Void
+        let onFailed: () -> Void
         let onCancel: () -> Void
 
-        init(onPickedData: @escaping (Data) -> Void, onCancel: @escaping () -> Void) {
+        init(
+            onPickedData: @escaping (Data) -> Void,
+            onFailed: @escaping () -> Void,
+            onCancel: @escaping () -> Void
+        ) {
             self.onPickedData = onPickedData
+            self.onFailed = onFailed
             self.onCancel = onCancel
         }
 
@@ -47,19 +71,19 @@ struct CameraPicker: UIViewControllerRepresentable {
             _ picker: UIImagePickerController,
             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
         ) {
-            if let url = info[.imageURL] as? URL, let raw = try? Data(contentsOf: url) {
+            if let url = info[.imageURL] as? URL, let raw = try? Data(contentsOf: url), !raw.isEmpty {
                 onPickedData(raw)
                 return
             }
             guard let image = info[.originalImage] as? UIImage else {
-                onCancel()
+                onFailed()
                 return
             }
             let downscaled = Self.preDownscale(image, maxDimension: 2560)
-            if let jpeg = downscaled.jpegData(compressionQuality: 0.85) {
+            if let jpeg = downscaled.jpegData(compressionQuality: 0.85), !jpeg.isEmpty {
                 onPickedData(jpeg)
             } else {
-                onCancel()
+                onFailed()
             }
         }
 
@@ -75,13 +99,35 @@ struct CameraPicker: UIViewControllerRepresentable {
 }
 
 /// Single-sheet AI meal photo capture and estimation flow:
-/// privacy opt-in (first time) -> capture/library pick -> off-main EXIF-strip resize + `/api/ai/meal`
-/// -> in-place handoff to `MealEditorSheet` (never saving photo or meal until the user taps Save).
+/// privacy opt-in (first time) -> capture/library pick -> unified structured load/prepare/upload
+/// task on the sheet root -> in-place handoff to `MealEditorSheet` (saving photo/meal only on Save).
 struct AIMealCaptureSheet: View {
+    private static let log = Logger(subsystem: "Hexplate", category: "AIMeal")
+
+    private enum WorkingStage {
+        case loadingPhoto
+        case preparing
+        case estimating
+    }
+
+    private enum WorkInput {
+        case library(PhotosPickerItem)
+        case rawData(Data, source: String)
+        case preparedJPEG(Data)
+        #if DEBUG
+        case debugSample
+        #endif
+    }
+
+    private enum CameraOutcome {
+        case data(Data)
+        case failed
+    }
+
     private enum Phase {
         case consent
         case pick
-        case analyzing(rawData: Data?, preparedJPEG: Data?, token: UUID)
+        case working(stage: WorkingStage)
         case failed(error: AIWire.ErrorKind, preparedJPEG: Data?, retryBlockedUntil: Date?)
         case review(MealEditorSheet.AIDraft)
         case manual(photoData: Data?)
@@ -101,12 +147,20 @@ struct AIMealCaptureSheet: View {
     @State private var photoItem: PhotosPickerItem?
     @State private var showCamera = false
     @State private var showCameraDeniedAlert = false
+    @State private var pendingCameraOutcome: CameraOutcome?
     @State private var previewImage: UIImage?
-    @State private var photoLoadError = false
+
+    // Single structured work owner bound to the persistent root `ZStack` (C1, R2).
+    @State private var activeToken: UUID?
+    @State private var pendingWork: WorkInput?
+    @State private var userCancelled = false
+    #if DEBUG
+    @State private var debugEstimateCalls = 0
+    #endif
 
     private var shouldDeferWeighIn: Bool {
         switch phase {
-        case .analyzing, .review:
+        case .working, .review:
             return true
         case .consent, .pick, .failed, .manual:
             return false
@@ -114,7 +168,9 @@ struct AIMealCaptureSheet: View {
     }
 
     var body: some View {
-        Group {
+        // Real container (`ZStack`, never `Group`) so `.task(id: activeToken)` and
+        // `.interactiveDismissDisabled` bind once to the persistent sheet root (C1).
+        ZStack {
             switch phase {
             case .review(let draft):
                 MealEditorSheet(defaultDate: defaultDate, aiDraft: draft)
@@ -123,6 +179,13 @@ struct AIMealCaptureSheet: View {
             default:
                 captureNavigation
             }
+        }
+        .interactiveDismissDisabled(shouldDeferWeighIn)
+        .task(id: activeToken) {
+            guard let token = activeToken, let work = pendingWork else { return }
+            // Atomically consume `pendingWork` before the first suspension point (C1).
+            pendingWork = nil
+            await runWork(work, token: token)
         }
         .onAppear {
             if !initialized {
@@ -147,8 +210,8 @@ struct AIMealCaptureSheet: View {
                     consentView
                 case .pick:
                     pickView
-                case .analyzing(let rawData, let preparedJPEG, let token):
-                    analyzingView(rawData: rawData, preparedJPEG: preparedJPEG, token: token)
+                case .working(let stage):
+                    workingView(stage: stage)
                 case .failed(let error, let preparedJPEG, let blockedUntil):
                     failedView(error: error, preparedJPEG: preparedJPEG, retryBlockedUntil: blockedUntil)
                 case .review, .manual:
@@ -159,17 +222,24 @@ struct AIMealCaptureSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button("Cancel") {
+                        cancelAndDismiss()
+                    }
                 }
             }
         }
-        .fullScreenCover(isPresented: $showCamera) {
+        .fullScreenCover(isPresented: $showCamera, onDismiss: handleCameraDismiss) {
             CameraPicker(
                 onPickedData: { data in
+                    pendingCameraOutcome = .data(data)
                     showCamera = false
-                    startAnalysis(rawData: data)
+                },
+                onFailed: {
+                    pendingCameraOutcome = .failed
+                    showCamera = false
                 },
                 onCancel: {
+                    pendingCameraOutcome = nil
                     showCamera = false
                 }
             )
@@ -188,18 +258,7 @@ struct AIMealCaptureSheet: View {
         .onChange(of: photoItem) { _, item in
             guard let item else { return }
             photoItem = nil
-            photoLoadError = false
-            Task {
-                do {
-                    if let data = try await item.loadTransferable(type: Data.self) {
-                        startAnalysis(rawData: data)
-                    } else {
-                        photoLoadError = true
-                    }
-                } catch {
-                    photoLoadError = true
-                }
-            }
+            startWork(.library(item), initialStage: .loadingPhoto)
         }
     }
 
@@ -233,6 +292,8 @@ struct AIMealCaptureSheet: View {
                 .fontWeight(.semibold)
 
                 Button("Log manually instead") {
+                    activeToken = nil
+                    pendingWork = nil
                     phase = .manual(photoData: nil)
                 }
                 .frame(maxWidth: .infinity)
@@ -283,7 +344,11 @@ struct AIMealCaptureSheet: View {
                     .disabled(!ai.isAvailableForScan)
                 }
 
-                PhotosPicker(selection: $photoItem, matching: .images, photoLibrary: .shared()) {
+                PhotosPicker(
+                    selection: $photoItem,
+                    matching: .images,
+                    preferredItemEncoding: .compatible
+                ) {
                     Label("Choose from library", systemImage: "photo.on.rectangle")
                 }
                 .disabled(!ai.isAvailableForScan)
@@ -291,22 +356,20 @@ struct AIMealCaptureSheet: View {
                 #if DEBUG
                 if ai.isFakeMode {
                     Button("Use sample meal photo", systemImage: "sparkles") {
-                        if let sample = Self.makeDebugSampleJPEG() {
-                            startAnalysis(rawData: sample)
-                        }
+                        startWork(.debugSample, initialStage: .loadingPhoto)
                     }
                 }
                 #endif
             } footer: {
-                if photoLoadError {
-                    Text("Could not load that photo. Try another image.")
-                } else if !CameraPicker.isAvailable {
+                if !CameraPicker.isAvailable {
                     Text("Camera is not available on this device. Choose a photo from your library.")
                 }
             }
 
             Section {
                 Button("Log manually instead", systemImage: "square.and.pencil") {
+                    activeToken = nil
+                    pendingWork = nil
                     phase = .manual(photoData: nil)
                 }
             }
@@ -314,10 +377,24 @@ struct AIMealCaptureSheet: View {
         .keyboardDismissal()
     }
 
-    // MARK: - Analyzing Step
+    // MARK: - Working Step (Loading Photo -> Preparing -> Estimating)
 
-    private func analyzingView(rawData: Data?, preparedJPEG: Data?, token: UUID) -> some View {
-        VStack(spacing: 16) {
+    private func workingView(stage: WorkingStage) -> some View {
+        let headline: LocalizedStringKey
+        let detail: LocalizedStringKey
+        switch stage {
+        case .loadingPhoto:
+            headline = "Loading photo…"
+            detail = "Reading your selected photo from the library."
+        case .preparing:
+            headline = "Preparing photo…"
+            detail = "Resizing and stripping camera metadata before upload."
+        case .estimating:
+            headline = "Estimating nutrition…"
+            detail = "Sending your photo to Hexplate AI for nutrition analysis."
+        }
+
+        return VStack(spacing: 16) {
             Spacer()
             if let previewImage {
                 Image(uiImage: previewImage)
@@ -328,9 +405,9 @@ struct AIMealCaptureSheet: View {
             }
             ProgressView()
                 .controlSize(.large)
-            Text("Estimating nutrition…")
+            Text(headline)
                 .font(.headline)
-            Text("Stripping metadata and analyzing your meal photo.")
+            Text(detail)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -339,9 +416,6 @@ struct AIMealCaptureSheet: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(.systemGroupedBackground))
-        .task(id: token) {
-            await runAnalysis(rawData: rawData, existingJPEG: preparedJPEG, token: token)
-        }
     }
 
     // MARK: - Failed / Retry Step
@@ -391,54 +465,159 @@ struct AIMealCaptureSheet: View {
                         .disabled(true)
                 } else if canRetry, let jpeg = preparedJPEG {
                     Button("Try again", systemImage: "arrow.clockwise") {
-                        phase = .analyzing(rawData: nil, preparedJPEG: jpeg, token: UUID())
+                        startWork(.preparedJPEG(jpeg), initialStage: .estimating)
                     }
                     .fontWeight(.semibold)
                 }
 
                 Button("Choose another photo", systemImage: "photo") {
+                    activeToken = nil
+                    pendingWork = nil
                     previewImage = nil
                     phase = .pick
                 }
 
                 Button("Enter manually", systemImage: "square.and.pencil") {
+                    activeToken = nil
+                    pendingWork = nil
                     phase = .manual(photoData: preparedJPEG)
                 }
             }
         }
     }
 
-    // MARK: - Helpers
+    // MARK: - Pipeline Helpers
 
-    private func startAnalysis(rawData: Data) {
-        previewImage = UIImage(data: rawData)
-        phase = .analyzing(rawData: rawData, preparedJPEG: nil, token: UUID())
+    private func startWork(_ input: WorkInput, initialStage: WorkingStage) {
+        userCancelled = false
+        pendingWork = input
+        if case .preparedJPEG = input {
+            // Keep existing prepared thumbnail on retry.
+        } else {
+            previewImage = nil
+        }
+        phase = .working(stage: initialStage)
+        activeToken = UUID()
     }
 
-    private func runAnalysis(rawData: Data?, existingJPEG: Data?, token: UUID) async {
-        var prepared: Data? = existingJPEG
+    private func cancelAndDismiss() {
+        userCancelled = true
+        pendingWork = nil
+        activeToken = nil
+        Self.log.info("stage=cancel origin=user")
+        dismiss()
+    }
+
+    private func handleCameraDismiss() {
+        guard let outcome = pendingCameraOutcome else { return }
+        pendingCameraOutcome = nil
+        switch outcome {
+        case .data(let raw):
+            Self.log.info("source=camera stage=load_end bytes=\(raw.count)")
+            startWork(.rawData(raw, source: "camera"), initialStage: .preparing)
+        case .failed:
+            Self.log.error("source=camera stage=load_end outcome=failed")
+            activeToken = nil
+            pendingWork = nil
+            previewImage = nil
+            phase = .failed(error: .invalidImage, preparedJPEG: nil, retryBlockedUntil: nil)
+        }
+    }
+
+    private func runWork(_ work: WorkInput, token: UUID) async {
+        var prepared: Data?
+
         do {
+            let rawData: Data?
+            switch work {
+            case .library(let item):
+                let contentTypes = item.supportedContentTypes.map(\.identifier).joined(separator: ",")
+                Self.log.info("source=library stage=load_start contentTypes=\(contentTypes, privacy: .public)")
+                var loaded: Data?
+                if let picked = try? await item.loadTransferable(type: PickedMealImage.self) {
+                    loaded = picked.data
+                }
+                if loaded == nil {
+                    loaded = try await item.loadTransferable(type: Data.self)
+                }
+                try Task.checkCancellation()
+                Self.log.info("source=library stage=load_end bytes=\(loaded?.count ?? 0)")
+                guard let loaded, !loaded.isEmpty else {
+                    throw MealImageError.invalidImage
+                }
+                rawData = loaded
+
+            case .rawData(let data, let source):
+                Self.log.info("source=\(source, privacy: .public) stage=load_ready bytes=\(data.count)")
+                rawData = data
+
+            case .preparedJPEG(let jpeg):
+                Self.log.info("source=retry stage=prepare_reused bytes=\(jpeg.count)")
+                prepared = jpeg
+                rawData = nil
+
+            #if DEBUG
+            case .debugSample:
+                Self.log.info("source=debugSample stage=load_start")
+                if ai.isFakeSlow {
+                    try await Task.sleep(for: .milliseconds(2_000))
+                }
+                try Task.checkCancellation()
+                guard let sample = Self.makeDebugSampleJPEG() else {
+                    throw MealImageError.invalidImage
+                }
+                Self.log.info("source=debugSample stage=load_end bytes=\(sample.count)")
+                rawData = sample
+            #endif
+            }
+
             if prepared == nil {
                 guard let rawData else {
-                    phase = .failed(error: .invalidImage, preparedJPEG: nil, retryBlockedUntil: nil)
+                    Self.log.error("stage=prepare outcome=missing_raw_data")
+                    finishFailed(.invalidImage, preparedJPEG: nil, retryBlockedUntil: nil, token: token)
                     return
                 }
+                phase = .working(stage: .preparing)
                 let processed = try await MealImageProcessor.prepareJPEG(from: rawData)
                 try Task.checkCancellation()
                 prepared = processed
+                // Populate preview strictly from the downscaled <= 1280 px JPEG (R5).
                 previewImage = UIImage(data: processed)
+                Self.log.info("stage=prepare outcome=ok bytes=\(processed.count)")
             }
 
-            guard let jpeg = prepared else { return }
+            guard let jpeg = prepared else {
+                Self.log.error("stage=upload outcome=missing_prepared_jpeg")
+                finishFailed(.invalidImage, preparedJPEG: nil, retryBlockedUntil: nil, token: token)
+                return
+            }
+
+            phase = .working(stage: .estimating)
+            #if DEBUG
+            debugEstimateCalls += 1
+            Self.log.info("stage=upload_start bytes=\(jpeg.count) estimateCall=\(self.debugEstimateCalls)")
+            #else
+            Self.log.info("stage=upload_start bytes=\(jpeg.count)")
+            #endif
+
             let estimate = try await ai.estimateMeal(jpegData: jpeg, note: note)
-            guard !Task.isCancelled else { return }
+            try Task.checkCancellation()
+            guard activeToken == token, !userCancelled else { return }
+            Self.log.info("stage=upload_end outcome=ok items=\(estimate.items.count)")
+            activeToken = nil
             phase = .review(MealEditorSheet.AIDraft(estimate: estimate, jpegData: jpeg))
         } catch let imageError as MealImageError {
-            guard !Task.isCancelled else { return }
+            guard activeToken == token, !userCancelled else { return }
+            Self.log.error("stage=prepare outcome=error detail=\(String(describing: imageError), privacy: .public)")
             let mapped: AIWire.ErrorKind = (imageError == .tooLarge) ? .payloadTooLarge : .invalidImage
-            phase = .failed(error: mapped, preparedJPEG: nil, retryBlockedUntil: nil)
+            finishFailed(mapped, preparedJPEG: nil, retryBlockedUntil: nil, token: token)
         } catch let aiError as AIWire.ErrorKind {
-            guard !Task.isCancelled, aiError != .cancelled else { return }
+            if aiError == .cancelled {
+                handleCancellation(preparedJPEG: prepared, token: token)
+                return
+            }
+            guard activeToken == token, !userCancelled else { return }
+            Self.log.error("stage=upload_end outcome=ai_error kind=\(String(describing: aiError), privacy: .public)")
             let blockedUntil: Date?
             switch aiError {
             case .dailyCapReached(let secs):
@@ -446,13 +625,35 @@ struct AIMealCaptureSheet: View {
             default:
                 blockedUntil = nil
             }
-            phase = .failed(error: aiError, preparedJPEG: prepared, retryBlockedUntil: blockedUntil)
+            finishFailed(aiError, preparedJPEG: prepared, retryBlockedUntil: blockedUntil, token: token)
         } catch is CancellationError {
-            return
+            handleCancellation(preparedJPEG: prepared, token: token)
         } catch {
-            guard !Task.isCancelled else { return }
-            phase = .failed(error: .networkLost, preparedJPEG: prepared, retryBlockedUntil: nil)
+            guard activeToken == token, !userCancelled else { return }
+            Self.log.error("stage=upload_end outcome=unexpected_error type=\(String(describing: type(of: error)), privacy: .public)")
+            finishFailed(.networkLost, preparedJPEG: prepared, retryBlockedUntil: nil, token: token)
         }
+    }
+
+    private func handleCancellation(preparedJPEG: Data?, token: UUID) {
+        if userCancelled || activeToken != token {
+            Self.log.info("stage=cancel origin=user")
+            return
+        }
+        // R3: never leave the sheet silently frozen on a spinner after an involuntary cancellation.
+        Self.log.warning("stage=cancel origin=unknown prepared=\(preparedJPEG != nil)")
+        finishFailed(.networkLost, preparedJPEG: preparedJPEG, retryBlockedUntil: nil, token: token)
+    }
+
+    private func finishFailed(
+        _ error: AIWire.ErrorKind,
+        preparedJPEG: Data?,
+        retryBlockedUntil: Date?,
+        token: UUID
+    ) {
+        guard activeToken == token, !userCancelled else { return }
+        activeToken = nil
+        phase = .failed(error: error, preparedJPEG: preparedJPEG, retryBlockedUntil: retryBlockedUntil)
     }
 
     private func requestCameraAndPresent() {

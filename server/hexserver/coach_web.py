@@ -1736,14 +1736,26 @@ def preview_coach_ops(state: Object, ops: list[Object], *, snapshot: Object, tod
 
 # MARK: - Propose / Apply / Undo
 
-async def propose_coach_change(ai_service: ai.AIService, store, *, message: str, today: str, timezone: str, lang: str = "en") -> Object:
+async def propose_coach_change(
+    ai_service: ai.AIService,
+    store,
+    *,
+    message: str,
+    today: str,
+    timezone: str,
+    lang: str = "en",
+    history: Any = None,
+) -> Object:
     """One web Coach turn: live context -> `AIService.coach` (token `web`, endpoint `web-coach`)
     -> server-side preview of the returned canonical ops (C1)."""
     rev, state = store.current()
     built = build_web_coach_context(state, today=today, timezone=timezone, lang=lang)
     snapshot = built["context"]
+    coach_payload: dict[str, Any] = {"message": message, "lang": lang, "context": snapshot}
+    if history is not None:
+        coach_payload["history"] = history
     reply = await ai_service.coach(
-        {"message": message, "lang": lang, "context": snapshot}, token_key="web", endpoint="web-coach"
+        coach_payload, token_key="web", endpoint="web-coach"
     )
     changes = reply.get("changes") or []
     note = reply.get("note")

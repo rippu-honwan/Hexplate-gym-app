@@ -24,7 +24,6 @@ struct AnalysisView: View {
     private let ai = AIClient.shared
 
     @State private var sheet: AnalysisSheet?
-    @State private var deferWeighIn = false
     @State private var fatigueSide: BodyMap.Side = .front
     @State private var undoFeedback: String?
     @State private var undoError: String?
@@ -158,12 +157,11 @@ struct AnalysisView: View {
             }
             .navigationTitle("Analysis")
             .sheet(item: $sheet, onDismiss: {
-                deferWeighIn = false
                 model.analysisSheetOpen = false
             }) { activeSheet in
                 switch activeSheet {
                 case .coach:
-                    CoachSheet(deferWeighIn: $deferWeighIn)
+                    CoachSheet()
                 case .muscle(let slug):
                     let detail = load.muscles[slug] ?? Recovery.MuscleDetail(fatigue: 0, lastSessionSets: 0, hoursToRecovered: 0)
                     MuscleFatigueDetailSheet(slug: slug, detail: detail)
@@ -180,8 +178,8 @@ struct AnalysisView: View {
             }
             .navigationDestination(for: LiftLink.self) { OneRepMaxView(id: $0.id) }
             .onChange(of: model.weighInRequested) {
-                // Defer dismissing an active AI Coach request or unaccepted preview.
-                if model.weighInRequested, sheet != nil, !deferWeighIn {
+                // CoachChatStore owns in-flight requests and pending proposals across dismissal.
+                if model.weighInRequested, sheet != nil {
                     sheet = nil
                 }
             }
